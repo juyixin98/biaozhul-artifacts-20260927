@@ -1,0 +1,36 @@
+{
+  "channels": {
+    "0": "reference",
+    "1": "slave"
+  },
+  "description": "120 ppm drift plus 250 ms fixed offset; no frame loss",
+  "drift_ppm": 120.0,
+  "drop_times_s": [],
+  "drops": [],
+  "generated_by": "tools.fixturegen (independent; no core imports)",
+  "offset_s": 0.25,
+  "pulse_duration_s": 0.02,
+  "pulse_frequency_hz": 1000.0,
+  "pulse_slave_times_s": [
+    2.25024,
+    3.7504199999999996,
+    5.2505999999999995,
+    6.750779999999999,
+    8.25096,
+    9.75114,
+    11.25132
+  ],
+  "pulse_times_reality_s": [
+    2.0,
+    3.5,
+    5.0,
+    6.5,
+    8.0,
+    9.5,
+    11.0
+  ],
+  "sample_rate_hz": 16000,
+  "scenario": "drift_offset",
+  "slope": 1.00012,
+  "spurious_slave_pulse_times_s": []
+}

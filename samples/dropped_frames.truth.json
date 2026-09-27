@@ -1,0 +1,45 @@
+{
+  "channels": {
+    "0": "reference",
+    "1": "slave"
+  },
+  "description": "80 ppm drift, -120 ms offset, one 10 ms dropped block",
+  "drift_ppm": 80.0,
+  "drop_times_s": [
+    7.0
+  ],
+  "drops": [
+    {
+      "reality_time_s": 7.0,
+      "removed_duration_s": 0.01,
+      "removed_samples": 160,
+      "slave_time_before_splice_s": 6.88056
+    }
+  ],
+  "generated_by": "tools.fixturegen (independent; no core imports)",
+  "offset_s": -0.12,
+  "pulse_duration_s": 0.02,
+  "pulse_frequency_hz": 1000.0,
+  "pulse_slave_times_s": [
+    1.88016,
+    3.38028,
+    4.880400000000001,
+    6.380520000000001,
+    7.8806400000000005,
+    9.380760000000002,
+    10.880880000000001
+  ],
+  "pulse_times_reality_s": [
+    2.0,
+    3.5,
+    5.0,
+    6.5,
+    8.0,
+    9.5,
+    11.0
+  ],
+  "sample_rate_hz": 16000,
+  "scenario": "dropped_frames",
+  "slope": 1.00008,
+  "spurious_slave_pulse_times_s": []
+}

@@ -1,0 +1,12 @@
+status     : corrected
+mode       : auto
+drift ppm  : 72.61 (truth 80)
+offset ms  : -119.98 (truth -120)
+rms resid  : 0.0111 ms
+usable     : 2.00..11.00 s
+segments   : 2
+gap        : coverage 0.000..2.000 s (0 samples)
+gap        : frame_drop 7.013..7.023 s (161 samples)
+gap        : coverage 11.000..12.000 s (0 samples)
+warnings   : []
+uncertain  : ['relative_time_only']

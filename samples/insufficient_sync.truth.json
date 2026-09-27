@@ -1,0 +1,26 @@
+{
+  "channels": {
+    "0": "reference",
+    "1": "slave"
+  },
+  "description": "two pulses over uncorrelated noise: not enough evidence",
+  "drift_ppm": 60.0,
+  "drop_times_s": [],
+  "drops": [],
+  "generated_by": "tools.fixturegen (independent; no core imports)",
+  "offset_s": 0.05,
+  "pulse_duration_s": 0.02,
+  "pulse_frequency_hz": 1000.0,
+  "pulse_slave_times_s": [
+    2.0501199999999997,
+    9.05054
+  ],
+  "pulse_times_reality_s": [
+    2.0,
+    9.0
+  ],
+  "sample_rate_hz": 16000,
+  "scenario": "insufficient_sync",
+  "slope": 1.00006,
+  "spurious_slave_pulse_times_s": []
+}

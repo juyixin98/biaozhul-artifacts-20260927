@@ -1,0 +1,22 @@
+{
+  "bad_sync": {
+    "truth": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/bad_sync.truth.json",
+    "wav": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/bad_sync.wav"
+  },
+  "correlation": {
+    "truth": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/correlation.truth.json",
+    "wav": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/correlation.wav"
+  },
+  "drift_offset": {
+    "truth": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/drift_offset.truth.json",
+    "wav": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/drift_offset.wav"
+  },
+  "dropped_frames": {
+    "truth": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/dropped_frames.truth.json",
+    "wav": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/dropped_frames.wav"
+  },
+  "insufficient_sync": {
+    "truth": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/insufficient_sync.truth.json",
+    "wav": "/home/admin/Downloads/xinbiaozhu/opp239/a/samples/insufficient_sync.wav"
+  }
+}

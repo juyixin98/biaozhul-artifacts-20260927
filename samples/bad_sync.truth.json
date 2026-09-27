@@ -1,0 +1,39 @@
+{
+  "channels": {
+    "0": "reference",
+    "1": "slave"
+  },
+  "description": "extra slave-only pulses that are false sync points",
+  "drift_ppm": 150.0,
+  "drop_times_s": [],
+  "drops": [],
+  "generated_by": "tools.fixturegen (independent; no core imports)",
+  "offset_s": 0.18,
+  "pulse_duration_s": 0.02,
+  "pulse_frequency_hz": 1000.0,
+  "pulse_slave_times_s": [
+    2.1803000000000003,
+    3.6805250000000007,
+    5.18075,
+    6.680975,
+    8.1812,
+    9.681425,
+    11.181650000000001
+  ],
+  "pulse_times_reality_s": [
+    2.0,
+    3.5,
+    5.0,
+    6.5,
+    8.0,
+    9.5,
+    11.0
+  ],
+  "sample_rate_hz": 16000,
+  "scenario": "bad_sync",
+  "slope": 1.00015,
+  "spurious_slave_pulse_times_s": [
+    4.25,
+    8.75
+  ]
+}

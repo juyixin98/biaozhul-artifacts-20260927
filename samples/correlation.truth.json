@@ -1,0 +1,20 @@
+{
+  "channels": {
+    "0": "reference",
+    "1": "slave"
+  },
+  "description": "no pulses; same content must be aligned by correlation",
+  "drift_ppm": 95.0,
+  "drop_times_s": [],
+  "drops": [],
+  "generated_by": "tools.fixturegen (independent; no core imports)",
+  "offset_s": 0.2,
+  "pulse_duration_s": 0.02,
+  "pulse_frequency_hz": 1000.0,
+  "pulse_slave_times_s": [],
+  "pulse_times_reality_s": [],
+  "sample_rate_hz": 16000,
+  "scenario": "correlation",
+  "slope": 1.000095,
+  "spurious_slave_pulse_times_s": []
+}

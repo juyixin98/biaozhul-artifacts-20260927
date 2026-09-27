@@ -1,0 +1,83 @@
+# clockalign service configuration
+# Override the file location with the CLOCKALIGN_CONFIG environment variable.
+
+app:
+  name: clockalign
+  # version is taken from the installed package; left null here on purpose
+  version: null
+  host: 127.0.0.1
+  port: 8080
+
+media:
+  # Channels inside one file are interpreted with this layout: [reference, slave]
+  stereo_channel_role: [reference, slave]
+  # Maximum supported sample rate; inputs above it are rejected, not downsampled.
+  max_sample_rate: 192000
+  # Slave/reference sample-rate mismatch beyond this many ppm is rejected:
+  # that is a format mismatch, not a recoverable clock drift.
+  sample_rate_mismatch_ppm_max: 50000
+
+sync:
+  # "pulses"   -> matched-filter detection of known sync pulses, then pairing
+  # "correlate"-> normalized cross-correlation over content windows
+  # "auto"     -> pulses when >= min_points are found, else correlation
+  mode: auto
+  pulse:
+    frequency_hz: 1000.0
+    duration_s: 0.02
+    window: hann
+    # Matched-filter score threshold (0..1) and minimum peak spacing
+    score_threshold: 0.4
+    min_spacing_s: 0.1
+  # Maximum |tB - tA| used when pairing detected pulses (seconds)
+  pair_max_offset_s: 1.0
+  correlation:
+    window_s: 0.5
+    hop_s: 1.0
+    # Search half-window around each expected alignment (seconds)
+    search_half_window_s: 0.6
+    # Minimum normalized correlation peak quality to accept a sync point
+    min_score: 0.5
+
+fit:
+  # Minimum number of sync points before a drift line can even be attempted
+  min_points: 4
+  # Minimum time span covered by accepted sync points (seconds)
+  min_span_s: 3.0
+  ransac:
+    iterations: 2000
+    # Random seed for deterministic pair sampling
+    seed: 239239
+    # Residual (seconds) for a point to count as inlier
+    inlier_threshold_s: 0.002
+    # Fraction of inliers below which no model is accepted
+    min_inlier_fraction: 0.6
+    min_inliers: 4
+  # |drift| above this many ppm is rejected as implausible for real clocks
+  max_drift_ppm: 1000.0
+  segments:
+    min_points: 3
+    # Residual jump between adjacent sorted points above this (seconds)
+    # is treated as a discontinuity (dropped/duplicated frame) boundary
+    discontinuity_jump_s: 0.003
+    min_span_s: 1.0
+
+resample:
+  # Fractional-sample mapping uses linear interpolation
+  method: linear
+  # Guard applied to every observed segment, in seconds: timestamps beyond
+  # [first - guard, last + guard] are never extrapolated by the correction
+  edge_guard_s: 0.005
+
+storage:
+  # Relative paths resolve against CLOCKALIGN_HOME (default: ./data)
+  database: jobs.db
+  artifacts_dir: artifacts
+
+validation:
+  # Tolerance when comparing measured sync-point residuals after correction
+  residual_rms_max_s: 0.0015
+  # Tolerance when checking independently supplied ground truth (fixture CLI)
+  drift_ppm_tol: 15.0
+  offset_ms_tol: 3.0
+  drop_time_tol_s: 0.05
