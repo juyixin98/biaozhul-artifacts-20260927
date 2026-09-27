@@ -1,0 +1,7 @@
+/target
+/ec-data
+**/*.rs.bk
+
+# python
+__pycache__/
+*.pyc
