@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Local SQLite job database
+*.db
+jobs.db
+
+# OS / editor
+.DS_Store
+*.swp
