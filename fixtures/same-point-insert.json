@@ -1,0 +1,25 @@
+{
+  "name": "same-point-insert",
+  "description": "两侧在同一位置插入不同内容:冲突,不猜测先后顺序;三种显式选择均可重建",
+  "base": "top\nbottom\n",
+  "local": "top\nfrom-local\nbottom\n",
+  "remote": "top\nfrom-remote\nbottom\n",
+  "expected": {
+    "status": "conflicted",
+    "text": "top\n<<<<<<< local\nfrom-local\n||||||| base\n=======\nfrom-remote\n>>>>>>> remote\nbottom\n",
+    "conflicts": [
+      {
+        "kind": "same-point-insert",
+        "base_range": [1, 1],
+        "local_range": [1, 2],
+        "remote_range": [1, 2]
+      }
+    ],
+    "notes_include": []
+  },
+  "resolutions": {
+    "local": "top\nfrom-local\nbottom\n",
+    "remote": "top\nfrom-remote\nbottom\n",
+    "base": "top\nbottom\n"
+  }
+}

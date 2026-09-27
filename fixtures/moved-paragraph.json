@@ -1,0 +1,14 @@
+{
+  "name": "moved-paragraph",
+  "description": "local 移动段落 p1 到 mid 之后,remote 修改另一段;移动与修改应干净合并",
+  "base": "intro\np1-a\np1-b\nmid\np2-a\np2-b\noutro\n",
+  "local": "intro\nmid\np1-a\np1-b\np2-a\np2-b\noutro\n",
+  "remote": "intro\np1-a\np1-b\nmid\np2-a edited\np2-b\noutro\n",
+  "expected": {
+    "status": "clean",
+    "text": "intro\nmid\np1-a\np1-b\np2-a edited\np2-b\noutro\n",
+    "conflicts": [],
+    "notes_include": []
+  },
+  "resolutions": {}
+}

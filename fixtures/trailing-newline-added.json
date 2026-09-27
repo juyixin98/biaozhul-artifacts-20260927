@@ -1,0 +1,14 @@
+{
+  "name": "trailing-newline-added",
+  "description": "base 末尾无换行,local 追加一行(必然终止原末行),remote 改首行;末尾换行变化须被诊断记录",
+  "base": "one\ntwo",
+  "local": "one\ntwo\nthree\n",
+  "remote": "ONE\ntwo",
+  "expected": {
+    "status": "clean",
+    "text": "ONE\ntwo\nthree\n",
+    "conflicts": [],
+    "notes_include": ["trailing newline added by local"]
+  },
+  "resolutions": {}
+}

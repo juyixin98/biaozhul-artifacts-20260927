@@ -1,0 +1,14 @@
+{
+  "name": "duplicate-lines",
+  "description": "大量重复行:local 删除第一处 same,remote 修改末尾 uniq-b;结果确定且干净",
+  "base": "same\nsame\nsame\nuniq-a\nsame\nuniq-b\n",
+  "local": "same\nsame\nuniq-a\nsame\nuniq-b\n",
+  "remote": "same\nsame\nsame\nuniq-a\nsame\nuniq-b edited\n",
+  "expected": {
+    "status": "clean",
+    "text": "same\nsame\nuniq-a\nsame\nuniq-b edited\n",
+    "conflicts": [],
+    "notes_include": []
+  },
+  "resolutions": {}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "trailing-newline-removed",
+  "description": "local 去掉末尾换行,remote 改首行:结果必须确实没有末尾换行,且诊断记录该变化",
+  "base": "one\ntwo\n",
+  "local": "one\ntwo",
+  "remote": "one!\ntwo\n",
+  "expected": {
+    "status": "clean",
+    "text": "one!\ntwo",
+    "conflicts": [],
+    "notes_include": ["trailing newline removed by local"]
+  },
+  "resolutions": {}
+}

@@ -1,0 +1,25 @@
+{
+  "name": "delete-vs-modify",
+  "description": "local 删除 line2-line3,remote 修改 line2:删除与修改竞争,冲突",
+  "base": "keep\nline2\nline3\ntail\n",
+  "local": "keep\ntail\n",
+  "remote": "keep\nline2 modified\nline3\ntail\n",
+  "expected": {
+    "status": "conflicted",
+    "text": "keep\n<<<<<<< local\n||||||| base\nline2\nline3\n=======\nline2 modified\nline3\n>>>>>>> remote\ntail\n",
+    "conflicts": [
+      {
+        "kind": "delete-vs-modify",
+        "base_range": [1, 3],
+        "local_range": [1, 1],
+        "remote_range": [1, 3]
+      }
+    ],
+    "notes_include": []
+  },
+  "resolutions": {
+    "local": "keep\ntail\n",
+    "remote": "keep\nline2 modified\nline3\ntail\n",
+    "base": "keep\nline2\nline3\ntail\n"
+  }
+}

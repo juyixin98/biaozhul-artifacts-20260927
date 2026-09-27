@@ -1,0 +1,14 @@
+{
+  "name": "identical-edits",
+  "description": "两侧做出完全相同的修改:应用一次,不产生冲突也不重复内容",
+  "base": "x\ny\n",
+  "local": "x\nY\n",
+  "remote": "x\nY\n",
+  "expected": {
+    "status": "clean",
+    "text": "x\nY\n",
+    "conflicts": [],
+    "notes_include": []
+  },
+  "resolutions": {}
+}

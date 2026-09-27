@@ -1,0 +1,25 @@
+{
+  "name": "line-ending-mismatch",
+  "description": "两侧把同一行改成相同内容但行结束符不同(LF vs CRLF):冲突,不替用户选择行结束符",
+  "base": "p\nq\n",
+  "local": "p\nQ\n",
+  "remote": "p\nQ\r\n",
+  "expected": {
+    "status": "conflicted",
+    "text": "p\n<<<<<<< local\nQ\n||||||| base\nq\n=======\nQ\r\n>>>>>>> remote\n",
+    "conflicts": [
+      {
+        "kind": "line-ending-mismatch",
+        "base_range": [1, 2],
+        "local_range": [1, 2],
+        "remote_range": [1, 2]
+      }
+    ],
+    "notes_include": []
+  },
+  "resolutions": {
+    "local": "p\nQ\n",
+    "remote": "p\nQ\r\n",
+    "base": "p\nq\n"
+  }
+}

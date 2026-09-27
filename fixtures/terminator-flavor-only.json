@@ -1,0 +1,14 @@
+{
+  "name": "terminator-flavor-only",
+  "description": "remote 只把 LF 改成 CRLF(行内容未变):不产生编辑、不静默改写,只出诊断说明",
+  "base": "a\nb\nc\n",
+  "local": "A\nb\nc\n",
+  "remote": "a\r\nb\r\nc\r\n",
+  "expected": {
+    "status": "clean",
+    "text": "A\nb\nc\n",
+    "conflicts": [],
+    "notes_include": ["remote differs from base only in line-terminator flavor"]
+  },
+  "resolutions": {}
+}

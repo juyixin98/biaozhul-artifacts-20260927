@@ -1,0 +1,14 @@
+{
+  "name": "crlf-preserved",
+  "description": "CRLF 文本上两侧各改一行内容:合并结果必须逐字节保留 CRLF",
+  "base": "a\r\nb\r\nc\r\n",
+  "local": "a\r\nB\r\nc\r\n",
+  "remote": "a\r\nb\r\nC\r\n",
+  "expected": {
+    "status": "clean",
+    "text": "a\r\nB\r\nC\r\n",
+    "conflicts": [],
+    "notes_include": []
+  },
+  "resolutions": {}
+}

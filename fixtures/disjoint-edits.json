@@ -1,0 +1,14 @@
+{
+  "name": "disjoint-edits",
+  "description": "两侧在互不相交的区间各自修改,应自动合并且与两侧独立编辑一致",
+  "base": "alpha\nbravo\ncharlie\ndelta\necho\n",
+  "local": "alpha\nBRAVO\ncharlie\ndelta\necho\n",
+  "remote": "alpha\nbravo\ncharlie\nDELTA\necho\n",
+  "expected": {
+    "status": "clean",
+    "text": "alpha\nBRAVO\ncharlie\nDELTA\necho\n",
+    "conflicts": [],
+    "notes_include": []
+  },
+  "resolutions": {}
+}

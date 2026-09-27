@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+merge3.sqlite3
+diagnostics.log
+.pytest_cache/
