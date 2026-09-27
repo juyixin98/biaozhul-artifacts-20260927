@@ -1,0 +1,4 @@
+/target
+/data
+# Local CLI artifacts at the repo root (golden fixtures under crates/ are tracked)
+/*.hfc
