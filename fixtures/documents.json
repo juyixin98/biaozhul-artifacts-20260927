@@ -1,0 +1,12 @@
+[
+  {"id": "d1",  "title": "red apple pie",     "body": "fresh apple pie with cinnamon",          "author": "alice", "tags": "dessert fruit",  "year": 2021},
+  {"id": "d2",  "title": "green apple salad", "body": "apple walnut salad with fresh greens",   "author": "bob",   "tags": "salad fruit",    "year": 2022},
+  {"id": "d3",  "title": "banana bread",      "body": "moist banana bread with walnut",         "author": "alice", "tags": "dessert bread",  "year": 2020},
+  {"id": "d4",  "title": "cherry tart",       "body": "sour cherry tart recipe",                "author": "carol", "tags": "dessert fruit",  "year": 2023},
+  {"id": "d5",  "title": "apple",             "body": "apple",                                  "author": "dave",  "tags": "fruit",          "year": 2019},
+  {"id": "d6",  "title": "walnut cookies",    "body": "crunchy walnut cookies with apple chips","author": "bob",   "tags": "dessert snack",  "year": 2024},
+  {"id": "d7",  "title": "fresh greens",      "body": "greens and apple cider vinaigrette",     "author": "carol", "tags": "salad",          "year": 2021},
+  {"id": "d8",  "title": "pie crust",         "body": "buttery pie crust for apple pie",        "author": "alice", "tags": "baking",         "year": 2022},
+  {"id": "d9",  "title": "fruit salad",       "body": "cherry apple banana fruit salad bowl",   "author": "dave",  "tags": "salad fruit",    "year": 2023},
+  {"id": "d10", "title": "cinnamon rolls",    "body": "sweet cinnamon rolls",                   "author": "bob",   "tags": "dessert baking", "year": 2020}
+]

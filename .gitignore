@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+.pytest_cache/
+# 测试运行目录下的临时 SQLite 文件保留 JSONL 日志
+logs/runs/**/*.db
