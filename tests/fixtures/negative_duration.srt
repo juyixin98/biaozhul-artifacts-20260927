@@ -1,0 +1,11 @@
+1
+00:00:05,000 --> 00:00:02,000
+Ends three seconds before it starts (flip candidate).
+
+2
+00:00:10,000 --> 00:00:10,500
+Only 500ms display time — too short under the 1000ms threshold.
+
+3
+00:00:20,000 --> 00:00:20,000
+Zero duration cue.

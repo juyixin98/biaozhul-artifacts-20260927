@@ -1,0 +1,74 @@
+1
+00:00:02,000 --> 00:00:04,000
+Cascade cue 1: 99ms gap forces 100ms spreading.
+
+
+2
+00:00:03,900 --> 00:00:05,900
+Cascade cue 2: 99ms gap forces 100ms spreading.
+
+
+3
+00:00:05,800 --> 00:00:07,800
+Cascade cue 3: 99ms gap forces 100ms spreading.
+
+
+4
+00:00:07,700 --> 00:00:09,700
+Cascade cue 4: 99ms gap forces 100ms spreading.
+
+
+5
+00:00:09,600 --> 00:00:11,600
+Cascade cue 5: 99ms gap forces 100ms spreading.
+
+
+6
+00:00:11,500 --> 00:00:13,500
+Cascade cue 6: 99ms gap forces 100ms spreading.
+
+
+7
+00:00:13,400 --> 00:00:15,400
+Cascade cue 7: 99ms gap forces 100ms spreading.
+
+
+8
+00:00:15,300 --> 00:00:17,300
+Cascade cue 8: 99ms gap forces 100ms spreading.
+
+
+9
+00:00:17,200 --> 00:00:19,200
+Cascade cue 9: 99ms gap forces 100ms spreading.
+
+
+10
+00:00:19,100 --> 00:00:21,100
+Cascade cue 10: 99ms gap forces 100ms spreading.
+
+
+11
+00:00:21,000 --> 00:00:23,000
+Cascade cue 11: 99ms gap forces 100ms spreading.
+
+
+12
+00:00:22,900 --> 00:00:24,900
+Cascade cue 12: 99ms gap forces 100ms spreading.
+
+
+13
+00:00:24,800 --> 00:00:26,800
+Cascade cue 13: 99ms gap forces 100ms spreading.
+
+
+14
+00:00:26,700 --> 00:00:28,700
+Cascade cue 14: 99ms gap forces 100ms spreading.
+
+
+15
+00:00:28,600 --> 00:00:30,600
+Cascade cue 15: 99ms gap forces 100ms spreading.
+

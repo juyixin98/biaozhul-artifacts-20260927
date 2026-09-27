@@ -1,0 +1,19 @@
+1
+00:00:01,000 --> 00:00:03,000
+First cue, starts the chain.
+
+2
+00:00:02,500 --> 00:00:05,000
+Second cue overlaps first by 500ms.
+
+3
+00:00:04,000 --> 00:00:06,000
+Third overlaps second by 1000ms — chained A>B>C.
+
+4
+00:00:05,800 --> 00:00:08,000
+Fourth overlaps third by 200ms, same chain.
+
+5
+00:00:20,000 --> 00:00:22,500
+Later cue is isolated and legal.

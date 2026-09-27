@@ -1,0 +1,17 @@
+WEBVTT
+
+cue-A
+00:00:01.000 --> 00:00:03.000
+Both cues start at exactly one second.
+
+cue-B
+00:00:01.000 --> 00:00:02.000
+Duplicate start timestamp — same_start diagnostic.
+
+cue-C
+00:00:10.000 --> 00:00:09.000
+This one ends before it begins — negative duration.
+
+cue-D
+00:00:30.000 --> 00:00:30.000
+Zero duration cue at a boundary instant.

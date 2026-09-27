@@ -1,0 +1,7 @@
+1
+00:00:61,000 --> 00:00:63,000
+Seconds 61 are illegal in the strict grammar.
+
+2
+00:00:01.000 --> 00:00:03.000
+Dot decimal in an SRT file is also illegal.

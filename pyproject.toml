@@ -1,0 +1,12 @@
+[project]
+name = "subtitle-guard"
+version = "1.0.0"
+description = "SRT/WebVTT restricted-subset subtitle validation and suggested-repair backend"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+    "exhaustive: exhaustive small-grid oracle tests (slower)",
+]

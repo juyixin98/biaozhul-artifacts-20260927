@@ -1,0 +1,19 @@
+1
+00:00:01,000 --> 00:00:04,000
+Two 3000ms cues need 6001ms (with 1ms gap) inside the 5000ms first segment.
+
+2
+00:00:01,500 --> 00:00:04,500
+Overlaps cue 1; moving apart cannot fit segment [0,5000) => infeasible.
+
+3
+00:00:31,000 --> 00:00:33,000
+Two 2000ms cues here would need 4001ms in segment [30000,60000): feasible,
+
+4
+00:00:31,500 --> 00:00:33,500
+but this whole file is still unrepairable because cues 1-2 are not.
+
+5
+00:00:59,000 --> 00:01:01,500
+Also crosses the 60000ms segment boundary (never silently shifted/deleted).

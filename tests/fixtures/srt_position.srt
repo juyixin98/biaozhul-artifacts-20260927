@@ -1,0 +1,3 @@
+1
+00:00:01,000 --> 00:00:03,000  X1:10 X2:100 Y1:10 Y2:100
+Positioning metadata after the timing line is outside the SRT subset.

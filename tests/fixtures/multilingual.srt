@@ -1,0 +1,23 @@
+1
+00:00:01,000 --> 00:00:04,000
+<b>中文</b>字幕行：保留全部标记与字符。
+
+2
+00:00:04,500 --> 00:00:08,000
+العربية سطر الترجمة <i>مع علامات</i>
+
+3
+00:00:09,000 --> 00:00:12,000
+한국어 자막 줄 — 유니코드 보존.
+
+4
+00:00:13,000 --> 00:00:16,500
+Emoji &amp; entities &#128512; kept literally, no decoding.
+
+5
+00:00:30,500 --> 00:00:33,000
+This cue sits across the 60s? no — but next one crosses a boundary.
+
+6
+00:00:59,000 --> 00:01:01,500
+Crosses the 60000ms segment boundary on purpose.

@@ -1,0 +1,12 @@
+WEBVTT
+
+NOTE This is a note block, legal but ignored.
+
+00:00:01.000 --> 00:00:03.000
+<c.highlight>class tags are not in the subset</c>
+
+00:00:04.000 --> 00:00:06.000
+<v Alice>voice tags are also not allowed</v>
+
+00:00:08.000 --> 00:00:10.000
+<b>bold stays open forever
