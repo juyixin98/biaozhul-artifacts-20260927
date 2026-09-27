@@ -1,0 +1,13 @@
+input i [-2: 10];
+array a[4];
+{
+// Branch narrowing: the then-branch guard proves the index safe;
+// the unguarded read stays a possible out-of-bounds.
+
+if (i >= 0) {
+    if (i < 4) {
+        x = a[i];
+    }
+}
+z = a[i];
+}

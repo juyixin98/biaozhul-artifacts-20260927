@@ -1,0 +1,31 @@
+[package]
+name = "ia-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Axum HTTP backend and CLI fronting the interval analysis service."
+
+[[bin]]
+name = "ia"
+path = "src/main.rs"
+
+[lib]
+name = "ia_app"
+path = "src/lib.rs"
+
+[dependencies]
+ia-lang = { workspace = true }
+ia-intervals = { workspace = true }
+ia-concrete = { workspace = true }
+ia-solver = { workspace = true }
+ia-verify = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+axum = { workspace = true }
+tokio = { workspace = true }
+time = { workspace = true }
+
+[dev-dependencies]
+tower = { workspace = true }
+serde_json = { workspace = true }

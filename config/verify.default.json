@@ -1,0 +1,6 @@
+{
+  "_comment": "Default evidence-verification configuration for `ia verify`. The enumeration cap is a hard safety bound: when the declared input domain exceeds it, verification is reported as NOT RUN rather than silently treated as exhaustive.",
+  "enumeration_cap": 200000,
+  "step_limit": 200000,
+  "narrowing": true
+}

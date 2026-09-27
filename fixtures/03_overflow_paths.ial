@@ -1,0 +1,21 @@
+input x [9223372036854775607: 9223372036854775807];
+input mn [-9223372036854775808: -9223372036854775800];
+input w [-2: 2];
+{
+// Overflow paths: addition can cross i64::MAX, negation can hit MIN,
+// and division may meet zero or MIN/-1. These must be reported as
+// *possible* (over-approximation), except the literal MIN/-1 site which
+// is guaranteed.
+
+a = x + 100;        // possible add overflow (some x stay in range)
+b = -mn;            // possible neg overflow (interval includes MIN)
+c = 10 / w;         // possible division by zero
+d = 100 % w;        // possible modulo by zero
+
+// w + 3 lies in [1, 5]: no zero divisor and no overflow, so this site
+// must be reported SAFE.
+safe = 100 / (w + 3);
+
+// Guaranteed overflow: literal MIN divided by -1.
+e = (-9223372036854775808) / (-1);
+}

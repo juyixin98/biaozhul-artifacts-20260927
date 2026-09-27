@@ -1,0 +1,11 @@
+input start [0: 6];
+{
+// Countdown loop with widening/narrowing and an exit-state containment
+// probe: after the loop i must be exactly -1 for every input start.
+
+i = start;
+while (i >= 0) {
+    i = i - 1;
+}
+assert(i == -1);
+}

@@ -1,0 +1,14 @@
+input n [0: 5];
+array a[10];
+{
+// Loop growth with safe, bounded induction variable.
+// x grows from 0 toward n (n in [0, 5]); every array access is in [0, 9].
+
+x = 0;
+while (x < n) {
+    a[x] = x * 2;
+    x = x + 1;
+}
+assert(x <= 5);
+y = a[0];
+}

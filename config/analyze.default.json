@@ -1,0 +1,6 @@
+{
+  "_comment": "Default analysis configuration for `ia analyze`. Loaded with `--config config/analyze.default.json`. All keys optional; command-line flags override file values.",
+  "narrowing": true,
+  "plain_fixpoint": false,
+  "max_trace_events": 200
+}

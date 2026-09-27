@@ -1,0 +1,13 @@
+input k [0: 3];
+array a[4];
+{
+// Unreachable code: the contradiction 3 < 1 makes the then-branch dead.
+// Its guaranteed-bad array access must still be reported, as unreachable.
+
+if (3 < 1) {
+    a[100] = k;
+    k = k * 9999999999 * 9999999999;
+} else {
+    k = k + 1;
+}
+}

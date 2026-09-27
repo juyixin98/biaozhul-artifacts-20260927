@@ -1,0 +1,14 @@
+[package]
+name = "ia-verify"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Evidence verification: exhaustive concrete execution cross-checked against abstract results."
+
+[dependencies]
+ia-lang = { workspace = true }
+ia-intervals = { workspace = true }
+ia-concrete = { workspace = true }
+ia-solver = { workspace = true }
+serde = { workspace = true }

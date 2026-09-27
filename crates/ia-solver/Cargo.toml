@@ -1,0 +1,12 @@
+[package]
+name = "ia-solver"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Interval abstract interpretation: branching refinement, widening/narrowing loop fixpoints, checks."
+
+[dependencies]
+ia-lang = { workspace = true }
+ia-intervals = { workspace = true }
+serde = { workspace = true }

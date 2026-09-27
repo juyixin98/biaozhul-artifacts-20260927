@@ -1,0 +1,10 @@
+[package]
+name = "ia-lang"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Lexer, AST, parser and program validation for the small bounded-integer language (IAL)."
+
+[dependencies]
+serde = { workspace = true }

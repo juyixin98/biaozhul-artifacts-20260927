@@ -1,0 +1,37 @@
+# Workspace for the bounded-integer interval abstract interpreter.
+# All third-party versions are pinned exactly ("=x.y.z") for reproducible review.
+[workspace]
+resolver = "2"
+members = [
+    "crates/ia-lang",
+    "crates/ia-intervals",
+    "crates/ia-concrete",
+    "crates/ia-solver",
+    "crates/ia-verify",
+    "crates/ia-app",
+    "crates/ia-tests",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+rust-version = "1.85"
+
+# Fixed dependency versions shared across crates.
+[workspace.dependencies]
+serde = { version = "=1.0.219", features = ["derive"] }
+serde_json = "=1.0.140"
+axum = "=0.8.4"
+tokio = { version = "=1.44.2", features = ["rt-multi-thread", "macros", "net", "signal"] }
+tower = { version = "=0.5.2", features = ["util"] }
+time = { version = "=0.3.41", default-features = false, features = ["std", "formatting"] }
+
+ia-lang = { path = "crates/ia-lang", version = "0.1.0" }
+ia-intervals = { path = "crates/ia-intervals", version = "0.1.0" }
+ia-concrete = { path = "crates/ia-concrete", version = "0.1.0" }
+ia-solver = { path = "crates/ia-solver", version = "0.1.0" }
+ia-verify = { path = "crates/ia-verify", version = "0.1.0" }
+
+[profile.release]
+lto = "thin"

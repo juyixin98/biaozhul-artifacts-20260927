@@ -1,0 +1,9 @@
+input m [-7: 7];
+{
+// Modulo and sign-mixed division, plus an assertion that can fail for
+// some inputs (reported possible, never mislabelled as a definite bug).
+
+r = m % 3;
+q = m / 2;
+assert(m > -3);
+}

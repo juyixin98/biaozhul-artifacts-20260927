@@ -1,0 +1,11 @@
+[package]
+name = "ia-concrete"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Independent concrete reference executor (i64 checked semantics). Does NOT depend on the solver."
+
+[dependencies]
+ia-lang = { workspace = true }
+serde = { workspace = true }

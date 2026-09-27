@@ -1,0 +1,11 @@
+[package]
+name = "ia-intervals"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Bounded i64 interval abstract domain (join, widening, narrowing, arithmetic)."
+
+[dependencies]
+ia-lang = { workspace = true }
+serde = { workspace = true }
