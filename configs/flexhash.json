@@ -1,0 +1,10 @@
+{
+  "listen_addr": "127.0.0.1:8080",
+  "sqlite_path": "data/flexhash.db",
+  "bucket_count": 1024,
+  "members": [
+    {"id": "hop-a", "address": "127.0.0.1:9001", "weight": 3, "healthy": true},
+    {"id": "hop-b", "address": "127.0.0.1:9002", "weight": 2, "healthy": true},
+    {"id": "hop-c", "address": "127.0.0.1:9003", "weight": 1, "healthy": true}
+  ]
+}
