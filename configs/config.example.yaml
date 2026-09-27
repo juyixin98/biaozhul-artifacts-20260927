@@ -1,0 +1,40 @@
+# Example local configuration for the flowrouter service.
+# All next-hops are loopback/local synthetic endpoints; no real accounts.
+
+listen: "127.0.0.1:8080"
+
+# Ring granularity: each unit of weight contributes this many virtual nodes.
+# Higher values reduce bucket discretization error (bucket_share is closer to
+# weight share) at the cost of ring size / lookup binary-search depth.
+vnodes_per_weight: 160
+
+# Optional hard cap on total vnodes (0 = uncapped). When positive, the
+# documented two-stage largest-remainder allocation is used: one guaranteed
+# vnode per positive-weight member, the remainder distributed proportionally.
+max_vnodes: 0
+
+store:
+  # SQLite database file. Use ":memory:" for an ephemeral service.
+  path: "data/flowrouter.db"
+  # How long SQLite waits on a locked database before returning SQLITE_BUSY,
+  # which the service maps to RESOURCE_EXHAUSTED/STORE_BUSY.
+  busy_timeout_ms: 1000
+
+# Optional active TCP probing. Probes can only mark members DOWN; recovery is
+# always an explicit, versioned POST /admin/members/{id}/up.
+health:
+  enabled: false
+  interval: "1s"
+  timeout: "200ms"
+  failures: 2
+
+members:
+  - id: "hop-a"
+    address: "127.0.0.1:9101"
+    weight: 1
+  - id: "hop-b"
+    address: "127.0.0.1:9102"
+    weight: 1
+  - id: "hop-c"
+    address: "127.0.0.1:9103"
+    weight: 2

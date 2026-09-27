@@ -1,0 +1,16 @@
+# All-zero weights: service starts, ring is empty, routing returns
+# NO_HEALTHY_MEMBER/ZERO_TOTAL_WEIGHT until weights change via the admin API.
+listen: "127.0.0.1:8091"
+vnodes_per_weight: 64
+store:
+  path: ":memory:"
+  busy_timeout_ms: 500
+health:
+  enabled: false
+members:
+  - id: "hop-a"
+    address: ""
+    weight: 0
+  - id: "hop-b"
+    address: ""
+    weight: 0
