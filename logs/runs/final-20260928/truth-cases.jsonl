@@ -1,0 +1,240 @@
+{"case": 0, "expr": "cinnamon OR apple AND fresh AND author:alice", "clauses": 4, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 1, "expr": "pie", "clauses": 1, "ref_raw": ["d1", "d8"], "ref_norm": ["d1", "d8"], "index": ["d1", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 2, "expr": "cherry", "clauses": 1, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 3, "expr": "apple OR \"greens apple\" OR tags:dessert AND banana NOT cherry year:2024", "clauses": 6, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 4, "expr": "(NOT year:2023 author:dave banana AND banana AND cherry)", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 5, "expr": "NOT pie AND fresh", "clauses": 2, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 6, "expr": "year:2021", "clauses": 1, "ref_raw": ["d1", "d7"], "ref_norm": ["d1", "d7"], "index": ["d1", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 7, "expr": "(body:fresh cherry fresh) AND baking", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 8, "expr": "pie author:dave banana OR baking OR cherry", "clauses": 5, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 9, "expr": "cinnamon OR fresh AND tags:fruit", "clauses": 3, "ref_raw": ["d1", "d10", "d2"], "ref_norm": ["d1", "d10", "d2"], "index": ["d1", "d10", "d2"], "idempotent": true, "verdict": "pass"}
+{"case": 10, "expr": "year:2023 AND (tags:snack AND author:dave) AND tags:salad", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 11, "expr": "NOT author:alice", "clauses": 1, "ref_raw": ["d10", "d2", "d4", "d5", "d6", "d7", "d9"], "ref_norm": ["d10", "d2", "d4", "d5", "d6", "d7", "d9"], "index": ["d10", "d2", "d4", "d5", "d6", "d7", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 12, "expr": "year:2019", "clauses": 1, "ref_raw": ["d5"], "ref_norm": ["d5"], "index": ["d5"], "idempotent": true, "verdict": "pass"}
+{"case": 13, "expr": "banana", "clauses": 1, "ref_raw": ["d3", "d9"], "ref_norm": ["d3", "d9"], "index": ["d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 14, "expr": "cherry", "clauses": 1, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 15, "expr": "(\"cinnamon fresh\" baking NOT year:2023) AND (title:salad AND pie)", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 16, "expr": "body:and AND author:carol AND year:2019 banana OR year:2024 OR walnut", "clauses": 6, "ref_raw": ["d2", "d3", "d6"], "ref_norm": ["d2", "d3", "d6"], "index": ["d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 17, "expr": "\"cinnamon\"", "clauses": 1, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 18, "expr": "title:apple OR NOT body:and OR \"apple cherry\" NOT pie cinnamon salad", "clauses": 6, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 19, "expr": "(year:2021 AND year:2023)", "clauses": 2, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 20, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 21, "expr": "(baking OR greens OR baking OR (year:2023 AND salad))", "clauses": 5, "ref_raw": ["d2", "d7", "d9"], "ref_norm": ["d2", "d7", "d9"], "index": ["d2", "d7", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 22, "expr": "((greens OR banana) OR cinnamon OR cherry OR fresh)", "clauses": 5, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d7", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d7", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d7", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 23, "expr": "year:2024", "clauses": 1, "ref_raw": ["d6"], "ref_norm": ["d6"], "index": ["d6"], "idempotent": true, "verdict": "pass"}
+{"case": 24, "expr": "pie author:carol AND greens AND greens OR title:apple", "clauses": 5, "ref_raw": ["d1", "d2", "d5"], "ref_norm": ["d1", "d2", "d5"], "index": ["d1", "d2", "d5"], "idempotent": true, "verdict": "pass"}
+{"case": 25, "expr": "apple", "clauses": 1, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 26, "expr": "(baking OR fresh OR apple) fresh", "clauses": 4, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 27, "expr": "author:carol", "clauses": 1, "ref_raw": ["d4", "d7"], "ref_norm": ["d4", "d7"], "index": ["d4", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 28, "expr": "salad", "clauses": 1, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 29, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 30, "expr": "(title:apple title:salad AND cinnamon OR baking)", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 31, "expr": "year:2021 body:with year:2023 AND greens tags:bread year:2022", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 32, "expr": "salad fresh title:pie", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 33, "expr": "(walnut apple OR body:fresh)", "clauses": 3, "ref_raw": ["d1", "d2", "d6"], "ref_norm": ["d1", "d2", "d6"], "index": ["d1", "d2", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 34, "expr": "NOT walnut AND banana OR walnut", "clauses": 3, "ref_raw": ["d2", "d3", "d6", "d9"], "ref_norm": ["d2", "d3", "d6", "d9"], "index": ["d2", "d3", "d6", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 35, "expr": "year:2021 OR cinnamon OR baking AND title:apple AND \"cherry banana\" OR baking OR salad", "clauses": 7, "ref_raw": ["d1", "d10", "d2", "d7", "d9"], "ref_norm": ["d1", "d10", "d2", "d7", "d9"], "index": ["d1", "d10", "d2", "d7", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 36, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 37, "expr": "year:2022", "clauses": 1, "ref_raw": ["d2", "d8"], "ref_norm": ["d2", "d8"], "index": ["d2", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 38, "expr": "(year:2023 tags:snack author:dave) banana", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 39, "expr": "(pie OR fresh OR walnut) fresh AND body:and AND author:dave tags:fruit OR \"baking salad\"", "clauses": 8, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 40, "expr": "tags:snack", "clauses": 1, "ref_raw": ["d6"], "ref_norm": ["d6"], "index": ["d6"], "idempotent": true, "verdict": "pass"}
+{"case": 41, "expr": "year:2022", "clauses": 1, "ref_raw": ["d2", "d8"], "ref_norm": ["d2", "d8"], "index": ["d2", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 42, "expr": "\"banana\"", "clauses": 1, "ref_raw": ["d3", "d9"], "ref_norm": ["d3", "d9"], "index": ["d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 43, "expr": "(walnut AND \"pie\" AND (title:apple OR walnut OR cinnamon))", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 44, "expr": "\"cinnamon greens\"", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 45, "expr": "(apple AND year:2020 AND cinnamon AND cinnamon)", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 46, "expr": "year:2019", "clauses": 1, "ref_raw": ["d5"], "ref_norm": ["d5"], "index": ["d5"], "idempotent": true, "verdict": "pass"}
+{"case": 47, "expr": "cinnamon", "clauses": 1, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 48, "expr": "salad", "clauses": 1, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 49, "expr": "author:alice AND greens salad", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 50, "expr": "year:2019", "clauses": 1, "ref_raw": ["d5"], "ref_norm": ["d5"], "index": ["d5"], "idempotent": true, "verdict": "pass"}
+{"case": 51, "expr": "banana OR banana OR pie", "clauses": 3, "ref_raw": ["d1", "d3", "d8", "d9"], "ref_norm": ["d1", "d3", "d8", "d9"], "index": ["d1", "d3", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 52, "expr": "NOT banana year:2021 NOT year:2024 OR year:2021 year:2022", "clauses": 5, "ref_raw": ["d1", "d7"], "ref_norm": ["d1", "d7"], "index": ["d1", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 53, "expr": "(body:with AND cinnamon title:pie NOT baking AND walnut AND baking AND salad)", "clauses": 7, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 54, "expr": "(baking AND banana AND banana AND baking AND fresh)", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 55, "expr": "NOT walnut", "clauses": 1, "ref_raw": ["d1", "d10", "d4", "d5", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d4", "d5", "d7", "d8", "d9"], "index": ["d1", "d10", "d4", "d5", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 56, "expr": "(salad year:2019 title:apple) title:salad", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 57, "expr": "(title:apple AND cherry AND body:with OR salad)", "clauses": 4, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 58, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 59, "expr": "pie", "clauses": 1, "ref_raw": ["d1", "d8"], "ref_norm": ["d1", "d8"], "index": ["d1", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 60, "expr": "cherry", "clauses": 1, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 61, "expr": "(year:2021 OR pie) OR title:pie", "clauses": 3, "ref_raw": ["d1", "d7", "d8"], "ref_norm": ["d1", "d7", "d8"], "index": ["d1", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 62, "expr": "(\"greens\" NOT banana fresh cherry)", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 63, "expr": "pie OR salad OR year:2020 baking author:carol (walnut AND tags:snack)", "clauses": 7, "ref_raw": ["d1", "d2", "d8", "d9"], "ref_norm": ["d1", "d2", "d8", "d9"], "index": ["d1", "d2", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 64, "expr": "year:2024", "clauses": 1, "ref_raw": ["d6"], "ref_norm": ["d6"], "index": ["d6"], "idempotent": true, "verdict": "pass"}
+{"case": 65, "expr": "tags:salad body:with (year:2021 AND \"greens fresh\" AND salad) title:salad", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 66, "expr": "(NOT body:fresh banana OR (NOT greens year:2023 \"baking\") OR cherry)", "clauses": 6, "ref_raw": ["d3", "d4", "d9"], "ref_norm": ["d3", "d4", "d9"], "index": ["d3", "d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 67, "expr": "year:2019 (year:2024 apple) (walnut cinnamon salad)", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 68, "expr": "apple", "clauses": 1, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 69, "expr": "cherry OR year:2022 OR year:2024", "clauses": 3, "ref_raw": ["d2", "d4", "d6", "d8", "d9"], "ref_norm": ["d2", "d4", "d6", "d8", "d9"], "index": ["d2", "d4", "d6", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 70, "expr": "author:dave", "clauses": 1, "ref_raw": ["d5", "d9"], "ref_norm": ["d5", "d9"], "index": ["d5", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 71, "expr": "author:bob", "clauses": 1, "ref_raw": ["d10", "d2", "d6"], "ref_norm": ["d10", "d2", "d6"], "index": ["d10", "d2", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 72, "expr": "(banana AND apple AND (\"greens walnut\" NOT baking))", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 73, "expr": "(apple OR author:alice OR fresh greens pie)", "clauses": 5, "ref_raw": ["d1", "d2", "d3", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d3", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d3", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 74, "expr": "(apple OR greens) NOT fresh salad fresh", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 75, "expr": "fresh", "clauses": 1, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 76, "expr": "(baking AND NOT year:2024) AND year:2024 AND title:salad NOT banana apple", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 77, "expr": "body:with", "clauses": 1, "ref_raw": ["d1", "d2", "d3", "d6"], "ref_norm": ["d1", "d2", "d3", "d6"], "index": ["d1", "d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 78, "expr": "NOT \"pie baking\" author:dave walnut", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 79, "expr": "(greens apple) OR \"cherry\" author:bob year:2023", "clauses": 5, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 80, "expr": "year:2022 OR body:and OR walnut OR walnut OR pie AND fresh", "clauses": 6, "ref_raw": ["d1", "d2", "d3", "d6", "d7", "d8"], "ref_norm": ["d1", "d2", "d3", "d6", "d7", "d8"], "index": ["d1", "d2", "d3", "d6", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 81, "expr": "year:2019", "clauses": 1, "ref_raw": ["d5"], "ref_norm": ["d5"], "index": ["d5"], "idempotent": true, "verdict": "pass"}
+{"case": 82, "expr": "banana", "clauses": 1, "ref_raw": ["d3", "d9"], "ref_norm": ["d3", "d9"], "index": ["d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 83, "expr": "NOT body:fresh AND salad pie", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 84, "expr": "baking greens pie", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 85, "expr": "(pie OR NOT fresh pie OR tags:bread)", "clauses": 4, "ref_raw": ["d1", "d3", "d8"], "ref_norm": ["d1", "d3", "d8"], "index": ["d1", "d3", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 86, "expr": "greens OR \"cherry\" OR pie OR apple OR pie tags:snack pie", "clauses": 7, "ref_raw": ["d1", "d2", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 87, "expr": "banana", "clauses": 1, "ref_raw": ["d3", "d9"], "ref_norm": ["d3", "d9"], "index": ["d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 88, "expr": "baking pie pie tags:fruit OR \"salad cherry\"", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 89, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 90, "expr": "((\"cherry walnut\" OR baking) AND (apple salad) AND NOT apple)", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 91, "expr": "apple", "clauses": 1, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 92, "expr": "apple", "clauses": 1, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 93, "expr": "\"baking apple\"", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 94, "expr": "title:pie body:with OR walnut banana", "clauses": 4, "ref_raw": ["d1", "d3"], "ref_norm": ["d1", "d3"], "index": ["d1", "d3"], "idempotent": true, "verdict": "pass"}
+{"case": 95, "expr": "title:pie OR (baking OR year:2021 OR year:2019)", "clauses": 4, "ref_raw": ["d1", "d5", "d7", "d8"], "ref_norm": ["d1", "d5", "d7", "d8"], "index": ["d1", "d5", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 96, "expr": "(cinnamon OR (year:2019 apple greens) OR cherry \"walnut\")", "clauses": 6, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 97, "expr": "(cinnamon cherry \"pie\" OR cherry)", "clauses": 4, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 98, "expr": "fresh OR tags:baking OR pie OR pie OR year:2023", "clauses": 5, "ref_raw": ["d1", "d10", "d2", "d4", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d4", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d4", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 99, "expr": "(year:2023 OR (banana OR walnut OR year:2022) OR title:apple)", "clauses": 5, "ref_raw": ["d1", "d2", "d3", "d4", "d5", "d6", "d8", "d9"], "ref_norm": ["d1", "d2", "d3", "d4", "d5", "d6", "d8", "d9"], "index": ["d1", "d2", "d3", "d4", "d5", "d6", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 100, "expr": "year:2019 author:carol (NOT salad AND NOT year:2020 AND baking)", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 101, "expr": "salad", "clauses": 1, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 102, "expr": "baking \"pie fresh\" NOT pie OR greens OR \"cherry\"", "clauses": 5, "ref_raw": ["d2", "d4", "d7", "d9"], "ref_norm": ["d2", "d4", "d7", "d9"], "index": ["d2", "d4", "d7", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 103, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 104, "expr": "\"baking greens\"", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 105, "expr": "(salad OR cinnamon)", "clauses": 2, "ref_raw": ["d1", "d10", "d2", "d9"], "ref_norm": ["d1", "d10", "d2", "d9"], "index": ["d1", "d10", "d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 106, "expr": "NOT fresh OR NOT author:dave OR year:2021 OR cinnamon AND fresh AND pie OR NOT salad", "clauses": 7, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 107, "expr": "(year:2024 AND walnut) NOT walnut NOT baking OR cherry OR greens", "clauses": 6, "ref_raw": ["d2", "d4", "d7", "d9"], "ref_norm": ["d2", "d4", "d7", "d9"], "index": ["d2", "d4", "d7", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 108, "expr": "((salad greens baking) OR body:with AND year:2022)", "clauses": 5, "ref_raw": ["d2"], "ref_norm": ["d2"], "index": ["d2"], "idempotent": true, "verdict": "pass"}
+{"case": 109, "expr": "((salad pie) AND cherry OR title:apple)", "clauses": 4, "ref_raw": ["d1", "d2", "d5"], "ref_norm": ["d1", "d2", "d5"], "index": ["d1", "d2", "d5"], "idempotent": true, "verdict": "pass"}
+{"case": 110, "expr": "cinnamon year:2023 baking OR banana OR year:2023 OR NOT year:2020", "clauses": 6, "ref_raw": ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 111, "expr": "fresh", "clauses": 1, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 112, "expr": "(year:2023 AND \"baking\" AND NOT apple) AND (tags:salad OR walnut OR walnut) AND NOT pie", "clauses": 7, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 113, "expr": "title:bread AND (pie OR NOT title:salad OR tags:snack) AND tags:snack", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 114, "expr": "cinnamon baking AND cherry", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 115, "expr": "NOT \"pie banana\"", "clauses": 1, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 116, "expr": "greens apple AND NOT cinnamon", "clauses": 3, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 117, "expr": "walnut OR NOT salad OR baking", "clauses": 3, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 118, "expr": "banana pie (pie OR walnut)", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 119, "expr": "\"salad\" AND body:with", "clauses": 2, "ref_raw": ["d2"], "ref_norm": ["d2"], "index": ["d2"], "idempotent": true, "verdict": "pass"}
+{"case": 120, "expr": "year:2022", "clauses": 1, "ref_raw": ["d2", "d8"], "ref_norm": ["d2", "d8"], "index": ["d2", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 121, "expr": "(NOT apple AND NOT year:2022)", "clauses": 2, "ref_raw": ["d10", "d3", "d4"], "ref_norm": ["d10", "d3", "d4"], "index": ["d10", "d3", "d4"], "idempotent": true, "verdict": "pass"}
+{"case": 122, "expr": "NOT title:apple OR \"apple\"", "clauses": 2, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 123, "expr": "(\"baking\" OR cherry walnut year:2019)", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 124, "expr": "(greens OR baking baking cinnamon)", "clauses": 4, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 125, "expr": "tags:fruit author:alice AND baking year:2024 apple year:2020", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 126, "expr": "salad", "clauses": 1, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 127, "expr": "\"greens\" tags:snack OR (cherry fresh \"walnut\")", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 128, "expr": "cherry", "clauses": 1, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 129, "expr": "(tags:snack OR greens OR year:2024)", "clauses": 3, "ref_raw": ["d2", "d6", "d7"], "ref_norm": ["d2", "d6", "d7"], "index": ["d2", "d6", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 130, "expr": "cherry AND fresh baking OR cherry", "clauses": 4, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 131, "expr": "banana OR body:with", "clauses": 2, "ref_raw": ["d1", "d2", "d3", "d6", "d9"], "ref_norm": ["d1", "d2", "d3", "d6", "d9"], "index": ["d1", "d2", "d3", "d6", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 132, "expr": "((apple OR year:2021 OR cherry) OR salad)", "clauses": 4, "ref_raw": ["d1", "d2", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 133, "expr": "NOT fresh walnut AND baking NOT baking", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 134, "expr": "fresh", "clauses": 1, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 135, "expr": "author:carol year:2021 pie AND body:with AND NOT greens year:2023", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 136, "expr": "(salad OR year:2020 OR baking fresh OR salad)", "clauses": 5, "ref_raw": ["d10", "d2", "d3", "d9"], "ref_norm": ["d10", "d2", "d3", "d9"], "index": ["d10", "d2", "d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 137, "expr": "banana", "clauses": 1, "ref_raw": ["d3", "d9"], "ref_norm": ["d3", "d9"], "index": ["d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 138, "expr": "apple", "clauses": 1, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 139, "expr": "body:fresh", "clauses": 1, "ref_raw": ["d1", "d2"], "ref_norm": ["d1", "d2"], "index": ["d1", "d2"], "idempotent": true, "verdict": "pass"}
+{"case": 140, "expr": "\"walnut banana\"", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 141, "expr": "year:2021 AND cinnamon AND tags:bread OR \"salad apple\"", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 142, "expr": "fresh", "clauses": 1, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 143, "expr": "walnut cinnamon (banana cherry NOT cinnamon)", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 144, "expr": "(year:2023 AND baking NOT fresh AND NOT apple NOT \"cherry\" body:with)", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 145, "expr": "pie OR greens OR \"cherry baking\" AND fresh AND title:salad", "clauses": 5, "ref_raw": ["d1", "d2", "d7", "d8"], "ref_norm": ["d1", "d2", "d7", "d8"], "index": ["d1", "d2", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 146, "expr": "year:2023 NOT greens fresh OR cherry", "clauses": 4, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 147, "expr": "pie year:2020 NOT fresh (salad AND \"walnut\" AND banana) (banana OR apple OR \"pie fresh\")", "clauses": 9, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 148, "expr": "walnut", "clauses": 1, "ref_raw": ["d2", "d3", "d6"], "ref_norm": ["d2", "d3", "d6"], "index": ["d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 149, "expr": "body:fresh", "clauses": 1, "ref_raw": ["d1", "d2"], "ref_norm": ["d1", "d2"], "index": ["d1", "d2"], "idempotent": true, "verdict": "pass"}
+{"case": 150, "expr": "(cherry OR apple OR salad) fresh", "clauses": 4, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 151, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 152, "expr": "salad OR (cherry AND year:2020) OR \"pie cherry\" pie", "clauses": 5, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 153, "expr": "baking OR NOT title:salad OR cinnamon AND fresh", "clauses": 4, "ref_raw": ["d1", "d10", "d3", "d4", "d5", "d6", "d7", "d8"], "ref_norm": ["d1", "d10", "d3", "d4", "d5", "d6", "d7", "d8"], "index": ["d1", "d10", "d3", "d4", "d5", "d6", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 154, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 155, "expr": "year:2021", "clauses": 1, "ref_raw": ["d1", "d7"], "ref_norm": ["d1", "d7"], "index": ["d1", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 156, "expr": "\"fresh cherry\"", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 157, "expr": "baking AND cinnamon AND author:bob (NOT year:2020 OR NOT walnut) author:alice AND apple AND year:2024", "clauses": 8, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 158, "expr": "(walnut AND walnut AND year:2024 OR year:2022 OR pie AND banana)", "clauses": 6, "ref_raw": ["d2", "d6", "d8"], "ref_norm": ["d2", "d6", "d8"], "index": ["d2", "d6", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 159, "expr": "(year:2022 AND year:2020 AND banana OR NOT baking OR apple)", "clauses": 5, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 160, "expr": "walnut OR salad", "clauses": 2, "ref_raw": ["d2", "d3", "d6", "d9"], "ref_norm": ["d2", "d3", "d6", "d9"], "index": ["d2", "d3", "d6", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 161, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 162, "expr": "pie greens baking AND (NOT author:carol AND pie AND fresh)", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 163, "expr": "(year:2024 AND fresh AND NOT year:2019 OR salad OR title:pie OR greens)", "clauses": 6, "ref_raw": ["d1", "d2", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d7", "d8", "d9"], "index": ["d1", "d2", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 164, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 165, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 166, "expr": "NOT cinnamon", "clauses": 1, "ref_raw": ["d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 167, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 168, "expr": "(\"pie\" cherry OR apple)", "clauses": 3, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 169, "expr": "(year:2019 OR apple OR apple OR fresh title:pie OR walnut title:bread)", "clauses": 7, "ref_raw": ["d1", "d2", "d3", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d3", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d3", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 170, "expr": "cinnamon", "clauses": 1, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 171, "expr": "(greens OR year:2020)", "clauses": 2, "ref_raw": ["d10", "d2", "d3", "d7"], "ref_norm": ["d10", "d2", "d3", "d7"], "index": ["d10", "d2", "d3", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 172, "expr": "NOT apple", "clauses": 1, "ref_raw": ["d10", "d3", "d4"], "ref_norm": ["d10", "d3", "d4"], "index": ["d10", "d3", "d4"], "idempotent": true, "verdict": "pass"}
+{"case": 173, "expr": "NOT cherry", "clauses": 1, "ref_raw": ["d1", "d10", "d2", "d3", "d5", "d6", "d7", "d8"], "ref_norm": ["d1", "d10", "d2", "d3", "d5", "d6", "d7", "d8"], "index": ["d1", "d10", "d2", "d3", "d5", "d6", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 174, "expr": "(banana OR NOT \"salad\" OR \"pie\" OR walnut)", "clauses": 4, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 175, "expr": "NOT \"fresh walnut\" OR salad OR apple OR walnut", "clauses": 4, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 176, "expr": "\"pie\" AND salad AND cinnamon banana salad", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 177, "expr": "pie OR body:fresh", "clauses": 2, "ref_raw": ["d1", "d2", "d8"], "ref_norm": ["d1", "d2", "d8"], "index": ["d1", "d2", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 178, "expr": "title:bread cherry", "clauses": 2, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 179, "expr": "((apple AND fresh AND cherry) \"greens pie\")", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 180, "expr": "cherry", "clauses": 1, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 181, "expr": "((baking OR author:alice OR salad) year:2020 \"cherry apple\" tags:baking)", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 182, "expr": "walnut", "clauses": 1, "ref_raw": ["d2", "d3", "d6"], "ref_norm": ["d2", "d3", "d6"], "index": ["d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 183, "expr": "(apple AND pie OR \"greens fresh\" OR walnut OR baking OR body:with)", "clauses": 6, "ref_raw": ["d1", "d2", "d3", "d6", "d8"], "ref_norm": ["d1", "d2", "d3", "d6", "d8"], "index": ["d1", "d2", "d3", "d6", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 184, "expr": "apple", "clauses": 1, "ref_raw": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 185, "expr": "fresh", "clauses": 1, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 186, "expr": "(title:bread author:alice year:2019) OR walnut OR NOT salad", "clauses": 5, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 187, "expr": "year:2020 OR body:fresh (baking greens baking) pie OR salad", "clauses": 7, "ref_raw": ["d10", "d2", "d3", "d9"], "ref_norm": ["d10", "d2", "d3", "d9"], "index": ["d10", "d2", "d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 188, "expr": "baking AND (NOT year:2019 OR \"cherry\" OR body:and) AND pie", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 189, "expr": "year:2020", "clauses": 1, "ref_raw": ["d10", "d3"], "ref_norm": ["d10", "d3"], "index": ["d10", "d3"], "idempotent": true, "verdict": "pass"}
+{"case": 190, "expr": "walnut OR baking OR year:2023 (author:dave greens) pie", "clauses": 6, "ref_raw": ["d2", "d3", "d6"], "ref_norm": ["d2", "d3", "d6"], "index": ["d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 191, "expr": "NOT \"baking walnut\"", "clauses": 1, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 192, "expr": "(body:fresh OR author:alice AND \"salad walnut\" AND author:dave)", "clauses": 4, "ref_raw": ["d1", "d2"], "ref_norm": ["d1", "d2"], "index": ["d1", "d2"], "idempotent": true, "verdict": "pass"}
+{"case": 193, "expr": "(banana AND NOT title:pie AND NOT \"greens\" banana)", "clauses": 4, "ref_raw": ["d3", "d9"], "ref_norm": ["d3", "d9"], "index": ["d3", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 194, "expr": "year:2024 year:2023 OR baking OR year:2023 AND year:2023 AND title:apple", "clauses": 6, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 195, "expr": "NOT \"salad\"", "clauses": 1, "ref_raw": ["d1", "d10", "d3", "d4", "d5", "d6", "d7", "d8"], "ref_norm": ["d1", "d10", "d3", "d4", "d5", "d6", "d7", "d8"], "index": ["d1", "d10", "d3", "d4", "d5", "d6", "d7", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 196, "expr": "author:bob AND baking AND title:apple AND NOT author:dave AND NOT baking", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 197, "expr": "walnut", "clauses": 1, "ref_raw": ["d2", "d3", "d6"], "ref_norm": ["d2", "d3", "d6"], "index": ["d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 198, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 199, "expr": "cinnamon OR \"cinnamon banana\" baking pie", "clauses": 4, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 200, "expr": "author:dave year:2021 fresh OR greens \"apple\"", "clauses": 5, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 201, "expr": "greens OR (fresh author:carol year:2020) OR (walnut AND year:2023)", "clauses": 6, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 202, "expr": "year:2019 AND fresh", "clauses": 2, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 203, "expr": "(banana OR \"fresh greens\" OR pie)", "clauses": 3, "ref_raw": ["d1", "d2", "d3", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d3", "d7", "d8", "d9"], "index": ["d1", "d2", "d3", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 204, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 205, "expr": "author:alice", "clauses": 1, "ref_raw": ["d1", "d3", "d8"], "ref_norm": ["d1", "d3", "d8"], "index": ["d1", "d3", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 206, "expr": "(salad OR (cinnamon OR baking))", "clauses": 3, "ref_raw": ["d1", "d10", "d2", "d9"], "ref_norm": ["d1", "d10", "d2", "d9"], "index": ["d1", "d10", "d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 207, "expr": "(cinnamon AND pie \"salad apple\" \"greens\" AND author:dave)", "clauses": 5, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 208, "expr": "fresh", "clauses": 1, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 209, "expr": "NOT cinnamon", "clauses": 1, "ref_raw": ["d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 210, "expr": "(baking OR salad OR body:fresh OR NOT baking)", "clauses": 4, "ref_raw": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d10", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 211, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 212, "expr": "baking year:2024 cherry OR year:2024", "clauses": 4, "ref_raw": ["d6"], "ref_norm": ["d6"], "index": ["d6"], "idempotent": true, "verdict": "pass"}
+{"case": 213, "expr": "salad", "clauses": 1, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 214, "expr": "year:2024", "clauses": 1, "ref_raw": ["d6"], "ref_norm": ["d6"], "index": ["d6"], "idempotent": true, "verdict": "pass"}
+{"case": 215, "expr": "walnut", "clauses": 1, "ref_raw": ["d2", "d3", "d6"], "ref_norm": ["d2", "d3", "d6"], "index": ["d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 216, "expr": "(title:salad cinnamon year:2024)", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 217, "expr": "cinnamon", "clauses": 1, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 218, "expr": "pie OR cinnamon AND \"banana\" AND banana", "clauses": 4, "ref_raw": ["d1", "d8"], "ref_norm": ["d1", "d8"], "index": ["d1", "d8"], "idempotent": true, "verdict": "pass"}
+{"case": 219, "expr": "\"banana\" apple", "clauses": 2, "ref_raw": ["d9"], "ref_norm": ["d9"], "index": ["d9"], "idempotent": true, "verdict": "pass"}
+{"case": 220, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 221, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 222, "expr": "tags:snack", "clauses": 1, "ref_raw": ["d6"], "ref_norm": ["d6"], "index": ["d6"], "idempotent": true, "verdict": "pass"}
+{"case": 223, "expr": "greens", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 224, "expr": "baking", "clauses": 1, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 225, "expr": "\"greens\"", "clauses": 1, "ref_raw": ["d2", "d7"], "ref_norm": ["d2", "d7"], "index": ["d2", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 226, "expr": "fresh OR NOT cinnamon OR year:2021 OR banana", "clauses": 4, "ref_raw": ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "ref_norm": ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "index": ["d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 227, "expr": "(pie cinnamon year:2023 OR baking)", "clauses": 4, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 228, "expr": "(cherry OR tags:salad NOT apple AND cinnamon AND walnut)", "clauses": 5, "ref_raw": ["d4", "d9"], "ref_norm": ["d4", "d9"], "index": ["d4", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 229, "expr": "year:2019 OR year:2024 salad AND year:2019 title:pie year:2024", "clauses": 6, "ref_raw": ["d5"], "ref_norm": ["d5"], "index": ["d5"], "idempotent": true, "verdict": "pass"}
+{"case": 230, "expr": "body:with", "clauses": 1, "ref_raw": ["d1", "d2", "d3", "d6"], "ref_norm": ["d1", "d2", "d3", "d6"], "index": ["d1", "d2", "d3", "d6"], "idempotent": true, "verdict": "pass"}
+{"case": 231, "expr": "cinnamon", "clauses": 1, "ref_raw": ["d1", "d10"], "ref_norm": ["d1", "d10"], "index": ["d1", "d10"], "idempotent": true, "verdict": "pass"}
+{"case": 232, "expr": "year:2021", "clauses": 1, "ref_raw": ["d1", "d7"], "ref_norm": ["d1", "d7"], "index": ["d1", "d7"], "idempotent": true, "verdict": "pass"}
+{"case": 233, "expr": "salad", "clauses": 1, "ref_raw": ["d2", "d9"], "ref_norm": ["d2", "d9"], "index": ["d2", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 234, "expr": "cherry fresh tags:salad", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 235, "expr": "year:2020", "clauses": 1, "ref_raw": ["d10", "d3"], "ref_norm": ["d10", "d3"], "index": ["d10", "d3"], "idempotent": true, "verdict": "pass"}
+{"case": 236, "expr": "year:2024", "clauses": 1, "ref_raw": ["d6"], "ref_norm": ["d6"], "index": ["d6"], "idempotent": true, "verdict": "pass"}
+{"case": 237, "expr": "NOT cinnamon AND (\"baking banana\" AND greens)", "clauses": 3, "ref_raw": [], "ref_norm": [], "index": [], "idempotent": true, "verdict": "pass"}
+{"case": 238, "expr": "banana AND (baking OR NOT cherry OR cinnamon) AND cherry OR fresh OR salad", "clauses": 7, "ref_raw": ["d1", "d2", "d7", "d9"], "ref_norm": ["d1", "d2", "d7", "d9"], "index": ["d1", "d2", "d7", "d9"], "idempotent": true, "verdict": "pass"}
+{"case": 239, "expr": "(fresh OR greens)", "clauses": 2, "ref_raw": ["d1", "d2", "d7"], "ref_norm": ["d1", "d2", "d7"], "index": ["d1", "d2", "d7"], "idempotent": true, "verdict": "pass"}

@@ -1,0 +1,223 @@
+
+=== 成功：字段 + 括号 + 隐式 AND [200] ===
+{
+  "run_id": "5ab426733913",
+  "query": "apple AND (pie OR salad)",
+  "canonical": {
+    "type": "and",
+    "children": [
+      {
+        "type": "or",
+        "children": [
+          {
+            "type": "term",
+            "field": null,
+            "value": "pie"
+          },
+          {
+            "type": "term",
+            "field": null,
+            "value": "salad"
+          }
+        ]
+      },
+      {
+        "type": "term",
+        "field": null,
+        "value": "apple"
+      }
+    ]
+  },
+  "version": "eeb4413e5dab6433",
+  "matches": [
+    "d1",
+    "d2",
+    "d8",
+    "d9"
+  ],
+  "count": 4,
+  "truncated": false,
+  "budget_usage": {
+    "depth": 3,
+    "clauses": 3
+  },
+  "idempotent": true,
+  "duration_ms": 2.626
+}
+
+=== 成功：短语（引号内 OR 不是运算符） [200] ===
+{
+  "run_id": "9ffbe74f32af",
+  "query": "title:\"red apple\"",
+  "canonical": {
+    "type": "phrase",
+    "field": "title",
+    "terms": [
+      "red",
+      "apple"
+    ]
+  },
+  "version": "c96d98e7af3e20f6",
+  "matches": [
+    "d1"
+  ],
+  "count": 1,
+  "truncated": false,
+  "budget_usage": {
+    "depth": 1,
+    "clauses": 1
+  },
+  "idempotent": true,
+  "duration_ms": 1.897
+}
+
+=== 成功：空查询 = 全部文档 [200] ===
+{
+  "run_id": "79ae2e33f47a",
+  "query": "",
+  "canonical": {
+    "type": "empty"
+  },
+  "version": "fb91c8327bf2a28b",
+  "matches": [
+    "d1",
+    "d10",
+    "d2",
+    "d3",
+    "d4",
+    "d5",
+    "d6",
+    "d7",
+    "d8",
+    "d9"
+  ],
+  "count": 10,
+  "truncated": false,
+  "budget_usage": {
+    "depth": 0,
+    "clauses": 0
+  },
+  "idempotent": true,
+  "duration_ms": 2.055
+}
+
+=== 等价书写 1 [200] ===
+{
+  "run_id": "9972d9752c64",
+  "query": "apple AND pie",
+  "canonical": {
+    "type": "and",
+    "children": [
+      {
+        "type": "term",
+        "field": null,
+        "value": "apple"
+      },
+      {
+        "type": "term",
+        "field": null,
+        "value": "pie"
+      }
+    ]
+  },
+  "version": "50dd4ea45067b566",
+  "matches": [
+    "d1",
+    "d8"
+  ],
+  "count": 2,
+  "truncated": false,
+  "budget_usage": {
+    "depth": 2,
+    "clauses": 2
+  },
+  "idempotent": true,
+  "duration_ms": 2.161
+}
+
+=== 等价书写 2（应返回相同 version） [200] ===
+{
+  "run_id": "b9f3fce7d5fc",
+  "query": "pie AND apple",
+  "canonical": {
+    "type": "and",
+    "children": [
+      {
+        "type": "term",
+        "field": null,
+        "value": "apple"
+      },
+      {
+        "type": "term",
+        "field": null,
+        "value": "pie"
+      }
+    ]
+  },
+  "version": "50dd4ea45067b566",
+  "matches": [
+    "d1",
+    "d8"
+  ],
+  "count": 2,
+  "truncated": false,
+  "budget_usage": {
+    "depth": 2,
+    "clauses": 2
+  },
+  "idempotent": true,
+  "duration_ms": 2.74
+}
+
+=== 400 语法错误（位置 7） [400] ===
+{
+  "error": {
+    "category": "PARSE_ERROR",
+    "message": "运算符 OR 位置非法：这里需要一个查询词或短语",
+    "position": 7
+  }
+}
+
+=== 422 未知字段 [422] ===
+{
+  "error": {
+    "category": "FIELD_UNKNOWN",
+    "message": "未知字段 'foo'：白名单字段为 author, body, tags, title, year",
+    "position": 1
+  }
+}
+
+=== 422 类型错误 [422] ===
+{
+  "error": {
+    "category": "FIELD_TYPE",
+    "message": "字段 'year' 是整数类型，值 'abc' 不是合法整数",
+    "position": 1
+  }
+}
+
+=== 413 预算超限 [413] ===
+{
+  "error": {
+    "category": "BUDGET_EXCEEDED",
+    "message": "查询嵌套深度 9 超过预算 8（最大允许 8 层）",
+    "position": null
+  }
+}
+
+=== 版本号对照 ===
+eeb4413e5dab6433  <= 'apple AND (pie OR salad)'
+c96d98e7af3e20f6  <= 'title:"red apple"'
+fb91c8327bf2a28b  <= ''
+50dd4ea45067b566  <= 'apple AND pie'
+50dd4ea45067b566  <= 'pie AND apple'
+
+=== 版本存储查询 ===
+
+=== GET /queries/50dd4ea45067b566 [200] ===
+{
+  "version_hash": "50dd4ea45067b566",
+  "canonical_json": "{\"children\":[{\"field\":null,\"type\":\"term\",\"value\":\"apple\"},{\"field\":null,\"type\":\"term\",\"value\":\"pie\"}],\"type\":\"and\"}",
+  "first_seen": "2026-09-27T23:51:02+00:00",
+  "run_count": 5
+}
