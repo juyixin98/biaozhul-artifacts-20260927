@@ -1,0 +1,10 @@
+# Test / reference-only dependencies, on top of requirements.txt.
+# These are NOT imported by the application package `app`.
+#   pytest, httpx  -> unit + API tests
+#   pyloudnorm     -> independent third-party reference (integrated loudness).
+#                     Pulled in because its meter is a clean, auditable oracle;
+#                     scipy arrives transitively but is listed in runtime reqs
+#                     because the kernel uses lfilter as a documented primitive.
+pytest>=8.0,<9.0
+httpx>=0.27,<1.0
+pyloudnorm==0.2.0

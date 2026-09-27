@@ -1,0 +1,373 @@
+{
+  "ffmpeg_version": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+  "cases": [
+    {
+      "fixture": "silence_3s",
+      "duration_s": 3.0,
+      "channels": 1,
+      "kernel": {
+        "status": "SILENCE",
+        "I_LUFS": null,
+        "int_blocks_before_abs_gate": 27,
+        "int_blocks_after_abs_gate": 0,
+        "int_blocks_after_rel_gate": 0,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": null,
+        "lra_status": "SILENCE",
+        "LRA_LU": null,
+        "lra_blocks_total": 1,
+        "lra_after_abs": 0,
+        "lra_after_rel": 0,
+        "lra_rel_gate": null,
+        "p10": null,
+        "p95": null
+      },
+      "ffmpeg": {
+        "result": "no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)"
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "silence_0.3s",
+      "duration_s": 0.3,
+      "channels": 1,
+      "kernel": {
+        "status": "SILENCE",
+        "I_LUFS": null,
+        "int_blocks_before_abs_gate": 0,
+        "int_blocks_after_abs_gate": 0,
+        "int_blocks_after_rel_gate": 0,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": null,
+        "lra_status": "SILENCE",
+        "LRA_LU": null,
+        "lra_blocks_total": 0,
+        "lra_after_abs": 0,
+        "lra_after_rel": 0,
+        "lra_rel_gate": null,
+        "p10": null,
+        "p95": null
+      },
+      "ffmpeg": {
+        "result": "no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)"
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "tone_-23_mono_10s",
+      "duration_s": 10.0,
+      "channels": 1,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -22.993,
+        "int_blocks_before_abs_gate": 97,
+        "int_blocks_after_abs_gate": 97,
+        "int_blocks_after_rel_gate": 97,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -32.993,
+        "lra_status": "OK",
+        "LRA_LU": 0.0,
+        "lra_blocks_total": 8,
+        "lra_after_abs": 8,
+        "lra_after_rel": 8,
+        "lra_rel_gate": -42.993,
+        "p10": -22.95,
+        "p95": -22.95
+      },
+      "pyloudnorm_I_LUFS": -23.035,
+      "ffmpeg": {
+        "I_LUFS": -23.0,
+        "I_threshold": -33.0,
+        "LRA_LU": 0.0,
+        "LRA_threshold": -43.0,
+        "LRA_low": -23.0,
+        "LRA_high": -23.0,
+        "I_abs_diff_LU": 0.007
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "tone_-23_stereo_10s",
+      "duration_s": 10.0,
+      "channels": 2,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -19.983,
+        "int_blocks_before_abs_gate": 97,
+        "int_blocks_after_abs_gate": 97,
+        "int_blocks_after_rel_gate": 97,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -29.983,
+        "lra_status": "OK",
+        "LRA_LU": 0.0,
+        "lra_blocks_total": 8,
+        "lra_after_abs": 8,
+        "lra_after_rel": 8,
+        "lra_rel_gate": -39.983,
+        "p10": -19.95,
+        "p95": -19.95
+      },
+      "pyloudnorm_I_LUFS": -20.024,
+      "ffmpeg": {
+        "I_LUFS": -20.0,
+        "I_threshold": -30.0,
+        "LRA_LU": 0.0,
+        "LRA_threshold": -40.0,
+        "LRA_low": -20.0,
+        "LRA_high": -20.0,
+        "I_abs_diff_LU": 0.017
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "burst_250ms_in_2s",
+      "duration_s": 2.0,
+      "channels": 1,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -26.796,
+        "int_blocks_before_abs_gate": 17,
+        "int_blocks_after_abs_gate": 6,
+        "int_blocks_after_rel_gate": 6,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -36.796,
+        "lra_status": "INSUFFICIENT_BLOCKS",
+        "LRA_LU": null,
+        "lra_blocks_total": 0,
+        "lra_after_abs": 0,
+        "lra_after_rel": 0,
+        "lra_rel_gate": null,
+        "p10": null,
+        "p95": null
+      },
+      "pyloudnorm_I_LUFS": -26.837,
+      "ffmpeg": {
+        "I_LUFS": -26.8,
+        "I_threshold": -36.8,
+        "LRA_LU": 0.0,
+        "LRA_threshold": 0.0,
+        "LRA_low": 0.0,
+        "LRA_high": 0.0,
+        "I_abs_diff_LU": 0.004
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "burst_200ms_in_2s",
+      "duration_s": 2.0,
+      "channels": 1,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -26.795,
+        "int_blocks_before_abs_gate": 17,
+        "int_blocks_after_abs_gate": 4,
+        "int_blocks_after_rel_gate": 3,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -38.045,
+        "lra_status": "INSUFFICIENT_BLOCKS",
+        "LRA_LU": null,
+        "lra_blocks_total": 0,
+        "lra_after_abs": 0,
+        "lra_after_rel": 0,
+        "lra_rel_gate": null,
+        "p10": null,
+        "p95": null
+      },
+      "pyloudnorm_I_LUFS": -26.837,
+      "ffmpeg": {
+        "I_LUFS": -26.8,
+        "I_threshold": -38.0,
+        "LRA_LU": 0.0,
+        "LRA_threshold": 0.0,
+        "LRA_low": 0.0,
+        "LRA_high": 0.0,
+        "I_abs_diff_LU": 0.005
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "tone_0.3s_insufficient",
+      "duration_s": 0.3,
+      "channels": 1,
+      "kernel": {
+        "status": "INSUFFICIENT_BLOCKS",
+        "I_LUFS": null,
+        "int_blocks_before_abs_gate": 0,
+        "int_blocks_after_abs_gate": 0,
+        "int_blocks_after_rel_gate": 0,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": null,
+        "lra_status": "INSUFFICIENT_BLOCKS",
+        "LRA_LU": null,
+        "lra_blocks_total": 0,
+        "lra_after_abs": 0,
+        "lra_after_rel": 0,
+        "lra_rel_gate": null,
+        "p10": null,
+        "p95": null
+      },
+      "ffmpeg": {
+        "result": "no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)"
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "tone_1s_no_lra",
+      "duration_s": 1.0,
+      "channels": 1,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -22.993,
+        "int_blocks_before_abs_gate": 7,
+        "int_blocks_after_abs_gate": 7,
+        "int_blocks_after_rel_gate": 7,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -32.993,
+        "lra_status": "INSUFFICIENT_BLOCKS",
+        "LRA_LU": null,
+        "lra_blocks_total": 0,
+        "lra_after_abs": 0,
+        "lra_after_rel": 0,
+        "lra_rel_gate": null,
+        "p10": null,
+        "p95": null
+      },
+      "pyloudnorm_I_LUFS": -23.035,
+      "ffmpeg": {
+        "I_LUFS": -23.0,
+        "I_threshold": -33.0,
+        "LRA_LU": 0.0,
+        "LRA_threshold": 0.0,
+        "LRA_low": 0.0,
+        "LRA_high": 0.0,
+        "I_abs_diff_LU": 0.007
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "quiet_below_-70",
+      "duration_s": 2.0,
+      "channels": 1,
+      "kernel": {
+        "status": "NOT_COMPUTED",
+        "I_LUFS": null,
+        "int_blocks_before_abs_gate": 17,
+        "int_blocks_after_abs_gate": 0,
+        "int_blocks_after_rel_gate": 0,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": null,
+        "lra_status": "INSUFFICIENT_BLOCKS",
+        "LRA_LU": null,
+        "lra_blocks_total": 0,
+        "lra_after_abs": 0,
+        "lra_after_rel": 0,
+        "lra_rel_gate": null,
+        "p10": null,
+        "p95": null
+      },
+      "ffmpeg": {
+        "result": "no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)"
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "channel_switch_8s",
+      "duration_s": 8.0,
+      "channels": 2,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -22.993,
+        "int_blocks_before_abs_gate": 77,
+        "int_blocks_after_abs_gate": 77,
+        "int_blocks_after_rel_gate": 77,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -32.993,
+        "lra_status": "OK",
+        "LRA_LU": 0.0,
+        "lra_blocks_total": 6,
+        "lra_after_abs": 6,
+        "lra_after_rel": 6,
+        "lra_rel_gate": -42.993,
+        "p10": -22.95,
+        "p95": -22.95
+      },
+      "pyloudnorm_I_LUFS": -23.035,
+      "ffmpeg": {
+        "I_LUFS": -23.0,
+        "I_threshold": -33.0,
+        "LRA_LU": 0.0,
+        "LRA_threshold": -43.0,
+        "LRA_low": -23.0,
+        "LRA_high": -23.0,
+        "I_abs_diff_LU": 0.007
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "surround_5.1_4s",
+      "duration_s": 4.0,
+      "channels": 6,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -15.344,
+        "int_blocks_before_abs_gate": 37,
+        "int_blocks_after_abs_gate": 37,
+        "int_blocks_after_rel_gate": 37,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -25.344,
+        "lra_status": "OK",
+        "LRA_LU": 0.0,
+        "lra_blocks_total": 2,
+        "lra_after_abs": 2,
+        "lra_after_rel": 2,
+        "lra_rel_gate": -35.344,
+        "p10": -15.35,
+        "p95": -15.35
+      },
+      "pyloudnorm_error": "Audio must have five channels or less.",
+      "ffmpeg": {
+        "I_LUFS": -15.3,
+        "I_threshold": -25.3,
+        "LRA_LU": 0.0,
+        "LRA_threshold": -35.3,
+        "LRA_low": -15.4,
+        "LRA_high": -15.4,
+        "I_abs_diff_LU": 0.044
+      },
+      "agrees_with_ffmpeg_I": true
+    },
+    {
+      "fixture": "multilevel_32s",
+      "duration_s": 32.0,
+      "channels": 1,
+      "kernel": {
+        "status": "OK",
+        "I_LUFS": -20.382,
+        "int_blocks_before_abs_gate": 317,
+        "int_blocks_after_abs_gate": 252,
+        "int_blocks_after_rel_gate": 186,
+        "abs_gate": -70.0,
+        "rel_gate_LUFS": -31.647,
+        "lra_status": "OK",
+        "LRA_LU": 18.0,
+        "lra_blocks_total": 30,
+        "lra_after_abs": 30,
+        "lra_after_rel": 30,
+        "lra_rel_gate": -42.411,
+        "p10": -34.65,
+        "p95": -16.65
+      },
+      "pyloudnorm_I_LUFS": -20.424,
+      "ffmpeg": {
+        "I_LUFS": -20.4,
+        "I_threshold": -31.6,
+        "LRA_LU": 18.0,
+        "LRA_threshold": -42.3,
+        "LRA_low": -34.7,
+        "LRA_high": -16.7,
+        "I_abs_diff_LU": 0.018
+      },
+      "agrees_with_ffmpeg_I": true
+    }
+  ]
+}

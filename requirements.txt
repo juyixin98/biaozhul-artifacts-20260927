@@ -1,0 +1,10 @@
+# Runtime dependencies for the R128 loudness backend.
+# scipy is used ONLY as an IIR filtering primitive (scipy.signal.lfilter with
+# carried state). Filter design/coefficients, chunking, rolling windows, channel
+# weighting, gating and the LRA histogram are all implemented in this project.
+# Exact reproducible versions are recorded in requirements.lock.
+fastapi>=0.115,<1.0
+uvicorn>=0.30,<1.0
+numpy>=1.26,<3.0
+scipy>=1.11,<2.0
+pydantic>=2.7,<3.0

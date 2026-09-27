@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.db
+*.db-wal
+*.db-shm
+.pytest_cache/
+reports/*.wav
+# keep reports/reference_comparison.json (committed) but ignore ad-hoc files
+r128_jobs.db

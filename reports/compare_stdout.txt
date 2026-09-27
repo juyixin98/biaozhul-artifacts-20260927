@@ -1,0 +1,72 @@
+ffmpeg available: True  ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+pyloudnorm available: True
+
+== silence_3s  (3.0s, 1ch)
+   kernel  status=SILENCE            I=None  int blocks 27 -> abs 0 -> rel 0  relgate=None
+           LRA status=SILENCE            LRA=None  blocks 1 -> abs 0 -> rel 0  p10=None p95=None gate=None
+   ffmpeg  no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)
+
+== silence_0.3s  (0.3s, 1ch)
+   kernel  status=SILENCE            I=None  int blocks 0 -> abs 0 -> rel 0  relgate=None
+           LRA status=SILENCE            LRA=None  blocks 0 -> abs 0 -> rel 0  p10=None p95=None gate=None
+   ffmpeg  no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)
+
+== tone_-23_mono_10s  (10.0s, 1ch)
+   kernel  status=OK                 I=-22.993  int blocks 97 -> abs 97 -> rel 97  relgate=-32.993
+           LRA status=OK                 LRA=0.0  blocks 8 -> abs 8 -> rel 8  p10=-22.95 p95=-22.95 gate=-42.993
+   ffmpeg  I=-23.0 thr=-33.0 LRA=0.0 low=-23.0 high=-23.0  |dI|=0.007 agree=True
+   pyloudnorm I=-23.035
+
+== tone_-23_stereo_10s  (10.0s, 2ch)
+   kernel  status=OK                 I=-19.983  int blocks 97 -> abs 97 -> rel 97  relgate=-29.983
+           LRA status=OK                 LRA=0.0  blocks 8 -> abs 8 -> rel 8  p10=-19.95 p95=-19.95 gate=-39.983
+   ffmpeg  I=-20.0 thr=-30.0 LRA=0.0 low=-20.0 high=-20.0  |dI|=0.017 agree=True
+   pyloudnorm I=-20.024
+
+== burst_250ms_in_2s  (2.0s, 1ch)
+   kernel  status=OK                 I=-26.796  int blocks 17 -> abs 6 -> rel 6  relgate=-36.796
+           LRA status=INSUFFICIENT_BLOCKS LRA=None  blocks 0 -> abs 0 -> rel 0  p10=None p95=None gate=None
+   ffmpeg  I=-26.8 thr=-36.8 LRA=0.0 low=0.0 high=0.0  |dI|=0.004 agree=True
+   pyloudnorm I=-26.837
+
+== burst_200ms_in_2s  (2.0s, 1ch)
+   kernel  status=OK                 I=-26.795  int blocks 17 -> abs 4 -> rel 3  relgate=-38.045
+           LRA status=INSUFFICIENT_BLOCKS LRA=None  blocks 0 -> abs 0 -> rel 0  p10=None p95=None gate=None
+   ffmpeg  I=-26.8 thr=-38.0 LRA=0.0 low=0.0 high=0.0  |dI|=0.005 agree=True
+   pyloudnorm I=-26.837
+
+== tone_0.3s_insufficient  (0.3s, 1ch)
+   kernel  status=INSUFFICIENT_BLOCKS I=None  int blocks 0 -> abs 0 -> rel 0  relgate=None
+           LRA status=INSUFFICIENT_BLOCKS LRA=None  blocks 0 -> abs 0 -> rel 0  p10=None p95=None gate=None
+   ffmpeg  no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)
+
+== tone_1s_no_lra  (1.0s, 1ch)
+   kernel  status=OK                 I=-22.993  int blocks 7 -> abs 7 -> rel 7  relgate=-32.993
+           LRA status=INSUFFICIENT_BLOCKS LRA=None  blocks 0 -> abs 0 -> rel 0  p10=None p95=None gate=None
+   ffmpeg  I=-23.0 thr=-33.0 LRA=0.0 low=0.0 high=0.0  |dI|=0.007 agree=True
+   pyloudnorm I=-23.035
+
+== quiet_below_-70  (2.0s, 1ch)
+   kernel  status=NOT_COMPUTED       I=None  int blocks 17 -> abs 0 -> rel 0  relgate=None
+           LRA status=INSUFFICIENT_BLOCKS LRA=None  blocks 0 -> abs 0 -> rel 0  p10=None p95=None gate=None
+   ffmpeg  no-gated-result sentinel (ffmpeg prints I=-70/Thr=0)
+
+== channel_switch_8s  (8.0s, 2ch)
+   kernel  status=OK                 I=-22.993  int blocks 77 -> abs 77 -> rel 77  relgate=-32.993
+           LRA status=OK                 LRA=0.0  blocks 6 -> abs 6 -> rel 6  p10=-22.95 p95=-22.95 gate=-42.993
+   ffmpeg  I=-23.0 thr=-33.0 LRA=0.0 low=-23.0 high=-23.0  |dI|=0.007 agree=True
+   pyloudnorm I=-23.035
+
+== surround_5.1_4s  (4.0s, 6ch)
+   kernel  status=OK                 I=-15.344  int blocks 37 -> abs 37 -> rel 37  relgate=-25.344
+           LRA status=OK                 LRA=0.0  blocks 2 -> abs 2 -> rel 2  p10=-15.35 p95=-15.35 gate=-35.344
+   ffmpeg  I=-15.3 thr=-25.3 LRA=0.0 low=-15.4 high=-15.4  |dI|=0.044 agree=True
+
+== multilevel_32s  (32.0s, 1ch)
+   kernel  status=OK                 I=-20.382  int blocks 317 -> abs 252 -> rel 186  relgate=-31.647
+           LRA status=OK                 LRA=18.0  blocks 30 -> abs 30 -> rel 30  p10=-34.65 p95=-16.65 gate=-42.411
+   ffmpeg  I=-20.4 thr=-31.6 LRA=18.0 low=-34.7 high=-16.7  |dI|=0.018 agree=True
+   pyloudnorm I=-20.424
+
+JSON report -> /home/admin/Downloads/xinbiaozhu/opp235/a/reports/reference_comparison.json
+ALL I AGREE WITH FFMPEG
