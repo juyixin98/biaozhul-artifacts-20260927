@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic payload containing credential-shaped values. Used to prove diagnostics only print redacted metadata, never the secret. The values are fake and local-only.",
+  "request_id": "req-secret-demo",
+  "document_id": "secret-demo",
+  "base_text": "user: demo\nstatus: active\n",
+  "local_text": "user: demo\nstatus: active\nnote: ok\n",
+  "remote_text": "user: demo\nstatus: ACTIVE\n",
+  "fake_secret": "sk-live-0123456789abcdefDEADBEEF",
+  "fake_token": "bearer ZZ9-totally-not-a-real-token-99"
+}

@@ -1,0 +1,7 @@
+# Direct dependencies with pinned versions (transitively locked in requirements-lock.txt)
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.1
+httpx==0.28.1
+pytest==8.3.4
