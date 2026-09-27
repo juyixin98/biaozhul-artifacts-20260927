@@ -1,0 +1,27 @@
+# mphfd server configuration (TOML). Every field is optional; defaults shown.
+# Copy to mphfd.toml and pass via `mphfd serve --config mphfd.toml`.
+
+# Directory holding <name>.mphf index files (created if absent).
+data_dir = "data"
+
+# HTTP bind address.
+bind = "127.0.0.1:8080"
+
+# Default membership verifier for build requests:
+#   0  = store every original key (zero false positives)
+#   8  = 1-byte fingerprint (~0.4% FP)
+#   16 = 2-byte fingerprint (~1.5e-5 FP, default)
+#   32 = 4-byte fingerprint
+#   64 = 8-byte fingerprint
+fingerprint_bits = 16
+
+# Target load factor n/m in (0.05, 0.81]. 0.75 is the robust default;
+# larger values are denser but may need more seeded retries.
+load_factor = 0.75
+
+# Cap on seeded construction attempts before build fails with
+# error "peeling_failed".
+max_attempts = 256
+
+# First hash seed attempted; retries are derived deterministically from it.
+base_seed = 1

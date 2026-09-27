@@ -1,0 +1,509 @@
+{
+  "algorithm": "bdz3-v1",
+  "format_version": 1,
+  "hash_vectors": [
+    {
+      "fp16": 11707,
+      "fp8": 232,
+      "h0": 7565362702677110517,
+      "h1": 1022040345128796356,
+      "h2": 5149892213239774945,
+      "key_hex": ""
+    },
+    {
+      "fp16": 35888,
+      "fp8": 188,
+      "h0": 16743144052928588081,
+      "h1": 2072315432188309050,
+      "h2": 4708584604646280668,
+      "key_hex": "61"
+    },
+    {
+      "fp16": 38336,
+      "fp8": 86,
+      "h0": 6990891533008902279,
+      "h1": 18155429034359613529,
+      "h2": 12168125247651088027,
+      "key_hex": "6974656d2d3030303031"
+    },
+    {
+      "fp16": 46618,
+      "fp8": 208,
+      "h0": 1092860545552445864,
+      "h1": 15623510208712414902,
+      "h2": 10754054452032544302,
+      "key_hex": "000102ff"
+    }
+  ],
+  "m": 89,
+  "members": [
+    {
+      "i": 0,
+      "key": "item-00000",
+      "slot": 4,
+      "vertex": 18
+    },
+    {
+      "i": 1,
+      "key": "item-00001",
+      "slot": 62,
+      "vertex": 82
+    },
+    {
+      "i": 2,
+      "key": "item-00002",
+      "slot": 19,
+      "vertex": 83
+    },
+    {
+      "i": 3,
+      "key": "item-00003",
+      "slot": 29,
+      "vertex": 37
+    },
+    {
+      "i": 4,
+      "key": "item-00004",
+      "slot": 3,
+      "vertex": 16
+    },
+    {
+      "i": 5,
+      "key": "item-00005",
+      "slot": 26,
+      "vertex": 33
+    },
+    {
+      "i": 6,
+      "key": "item-00006",
+      "slot": 61,
+      "vertex": 79
+    },
+    {
+      "i": 7,
+      "key": "item-00007",
+      "slot": 50,
+      "vertex": 26
+    },
+    {
+      "i": 8,
+      "key": "item-00008",
+      "slot": 11,
+      "vertex": 45
+    },
+    {
+      "i": 9,
+      "key": "item-00009",
+      "slot": 25,
+      "vertex": 31
+    },
+    {
+      "i": 10,
+      "key": "item-00010",
+      "slot": 27,
+      "vertex": 34
+    },
+    {
+      "i": 11,
+      "key": "item-00011",
+      "slot": 59,
+      "vertex": 73
+    },
+    {
+      "i": 12,
+      "key": "item-00012",
+      "slot": 36,
+      "vertex": 68
+    },
+    {
+      "i": 13,
+      "key": "item-00013",
+      "slot": 56,
+      "vertex": 67
+    },
+    {
+      "i": 14,
+      "key": "item-00014",
+      "slot": 55,
+      "vertex": 63
+    },
+    {
+      "i": 15,
+      "key": "item-00015",
+      "slot": 23,
+      "vertex": 8
+    },
+    {
+      "i": 16,
+      "key": "item-00016",
+      "slot": 63,
+      "vertex": 88
+    },
+    {
+      "i": 17,
+      "key": "item-00017",
+      "slot": 33,
+      "vertex": 53
+    },
+    {
+      "i": 18,
+      "key": "item-00018",
+      "slot": 18,
+      "vertex": 81
+    },
+    {
+      "i": 19,
+      "key": "item-00019",
+      "slot": 49,
+      "vertex": 20
+    },
+    {
+      "i": 20,
+      "key": "item-00020",
+      "slot": 2,
+      "vertex": 11
+    },
+    {
+      "i": 21,
+      "key": "item-00021",
+      "slot": 24,
+      "vertex": 13
+    },
+    {
+      "i": 22,
+      "key": "item-00022",
+      "slot": 41,
+      "vertex": 5
+    },
+    {
+      "i": 23,
+      "key": "item-00023",
+      "slot": 43,
+      "vertex": 7
+    },
+    {
+      "i": 24,
+      "key": "item-00024",
+      "slot": 20,
+      "vertex": 85
+    },
+    {
+      "i": 25,
+      "key": "item-00025",
+      "slot": 45,
+      "vertex": 12
+    },
+    {
+      "i": 26,
+      "key": "item-00026",
+      "slot": 32,
+      "vertex": 52
+    },
+    {
+      "i": 27,
+      "key": "item-00027",
+      "slot": 57,
+      "vertex": 69
+    },
+    {
+      "i": 28,
+      "key": "item-00028",
+      "slot": 53,
+      "vertex": 46
+    },
+    {
+      "i": 29,
+      "key": "item-00029",
+      "slot": 1,
+      "vertex": 3
+    },
+    {
+      "i": 30,
+      "key": "item-00030",
+      "slot": 31,
+      "vertex": 48
+    },
+    {
+      "i": 31,
+      "key": "item-00031",
+      "slot": 14,
+      "vertex": 61
+    },
+    {
+      "i": 32,
+      "key": "item-00032",
+      "slot": 52,
+      "vertex": 35
+    },
+    {
+      "i": 33,
+      "key": "item-00033",
+      "slot": 39,
+      "vertex": 76
+    },
+    {
+      "i": 34,
+      "key": "item-00034",
+      "slot": 42,
+      "vertex": 6
+    },
+    {
+      "i": 35,
+      "key": "item-00035",
+      "slot": 38,
+      "vertex": 72
+    },
+    {
+      "i": 36,
+      "key": "item-00036",
+      "slot": 0,
+      "vertex": 1
+    },
+    {
+      "i": 37,
+      "key": "item-00037",
+      "slot": 13,
+      "vertex": 57
+    },
+    {
+      "i": 38,
+      "key": "item-00038",
+      "slot": 6,
+      "vertex": 21
+    },
+    {
+      "i": 39,
+      "key": "item-00039",
+      "slot": 15,
+      "vertex": 62
+    },
+    {
+      "i": 40,
+      "key": "item-00040",
+      "slot": 60,
+      "vertex": 74
+    },
+    {
+      "i": 41,
+      "key": "item-00041",
+      "slot": 9,
+      "vertex": 30
+    },
+    {
+      "i": 42,
+      "key": "item-00042",
+      "slot": 5,
+      "vertex": 19
+    },
+    {
+      "i": 43,
+      "key": "item-00043",
+      "slot": 48,
+      "vertex": 17
+    },
+    {
+      "i": 44,
+      "key": "item-00044",
+      "slot": 58,
+      "vertex": 70
+    },
+    {
+      "i": 45,
+      "key": "item-00045",
+      "slot": 28,
+      "vertex": 36
+    },
+    {
+      "i": 46,
+      "key": "item-00046",
+      "slot": 10,
+      "vertex": 43
+    },
+    {
+      "i": 47,
+      "key": "item-00047",
+      "slot": 30,
+      "vertex": 47
+    },
+    {
+      "i": 48,
+      "key": "item-00048",
+      "slot": 44,
+      "vertex": 10
+    },
+    {
+      "i": 49,
+      "key": "item-00049",
+      "slot": 54,
+      "vertex": 50
+    },
+    {
+      "i": 50,
+      "key": "item-00050",
+      "slot": 16,
+      "vertex": 75
+    },
+    {
+      "i": 51,
+      "key": "item-00051",
+      "slot": 17,
+      "vertex": 77
+    },
+    {
+      "i": 52,
+      "key": "item-00052",
+      "slot": 12,
+      "vertex": 56
+    },
+    {
+      "i": 53,
+      "key": "item-00053",
+      "slot": 51,
+      "vertex": 29
+    },
+    {
+      "i": 54,
+      "key": "item-00054",
+      "slot": 46,
+      "vertex": 14
+    },
+    {
+      "i": 55,
+      "key": "item-00055",
+      "slot": 7,
+      "vertex": 24
+    },
+    {
+      "i": 56,
+      "key": "item-00056",
+      "slot": 22,
+      "vertex": 2
+    },
+    {
+      "i": 57,
+      "key": "item-00057",
+      "slot": 40,
+      "vertex": 4
+    },
+    {
+      "i": 58,
+      "key": "item-00058",
+      "slot": 21,
+      "vertex": 86
+    },
+    {
+      "i": 59,
+      "key": "item-00059",
+      "slot": 47,
+      "vertex": 15
+    },
+    {
+      "i": 60,
+      "key": "item-00060",
+      "slot": 34,
+      "vertex": 54
+    },
+    {
+      "i": 61,
+      "key": "item-00061",
+      "slot": 8,
+      "vertex": 25
+    },
+    {
+      "i": 62,
+      "key": "item-00062",
+      "slot": 37,
+      "vertex": 71
+    },
+    {
+      "i": 63,
+      "key": "item-00063",
+      "slot": 35,
+      "vertex": 66
+    }
+  ],
+  "n": 64,
+  "non_members": [
+    {
+      "edge_collision": false,
+      "key": "item-00064",
+      "occupied": true,
+      "slot": 53,
+      "vertex": 46
+    },
+    {
+      "edge_collision": false,
+      "key": "not-a-key",
+      "occupied": true,
+      "slot": 22,
+      "vertex": 2
+    },
+    {
+      "edge_collision": false,
+      "key": "",
+      "occupied": true,
+      "slot": 48,
+      "vertex": 17
+    },
+    {
+      "edge_collision": false,
+      "key": "ITEM-00000",
+      "occupied": true,
+      "slot": 36,
+      "vertex": 68
+    },
+    {
+      "edge_collision": false,
+      "key": "item-00000x",
+      "occupied": false,
+      "slot": 18,
+      "vertex": 80
+    }
+  ],
+  "note": "Generated by tests/reference/mphf_ref.py \u2014 independent Python oracle.",
+  "scripted": {
+    "disjoint": {
+      "edges": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          3,
+          4,
+          5
+        ]
+      ],
+      "m": 6,
+      "peels": true
+    },
+    "k4_3": {
+      "edges": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "m": 4,
+      "peels": false
+    }
+  },
+  "seed": 9060646600666492426
+}

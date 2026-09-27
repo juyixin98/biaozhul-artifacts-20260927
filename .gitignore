@@ -1,0 +1,6 @@
+/target
+/data
+/mphfd.toml
+*.mphf
+*.mphf.tmp
+__pycache__/
