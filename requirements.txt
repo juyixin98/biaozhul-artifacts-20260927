@@ -1,0 +1,7 @@
+# 直接依赖（完整传递依赖见 requirements.lock.txt）
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+PyYAML==6.0.2
+pytest==8.3.4
+httpx==0.28.1

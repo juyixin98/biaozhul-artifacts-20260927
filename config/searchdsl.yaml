@@ -1,0 +1,22 @@
+# searchdsl 独立配置
+# 字段白名单与类型（执行前校验依据）
+fields:
+  title:  text
+  body:   text
+  author: text
+  tags:   text
+  year:   int
+
+# 不带 field: 的词/短语在这些字段上做 OR 匹配（均须为 text）
+default_fields: [title, body]
+
+# 复杂度预算（规范化之前检查）
+budget:
+  max_depth: 8          # 最大树深（叶子计 1 层）
+  max_clauses: 64       # 最大叶子子句数
+  max_phrase_terms: 16  # 单个短语最大词数
+  max_term_length: 128  # 单个裸词最大长度
+
+database_path: data/search.db
+log_path: logs/searchdsl.jsonl
+default_result_limit: 100
