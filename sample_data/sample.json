@@ -1,0 +1,26 @@
+{
+  "description": "本地合成语料：刻意制造稀疏/稠密 term、全否定与删除场景",
+  "versions": [
+    {
+      "note": "v1：8 篇初始文档",
+      "adds": {
+        "1": "alpha beta gamma 索引 算法",
+        "2": "alpha beta delta 索引 版本",
+        "3": "alpha rareword 版本 存储",
+        "4": "beta gamma 算法 持久化",
+        "5": "gamma delta 索引 查询",
+        "6": "common 全集 持久化 查询",
+        "7": "common 全集 版本 算法",
+        "8": "common 全集 存储 删除测试"
+      },
+      "deletes": []
+    },
+    {
+      "note": "v2：加入第 9 篇，删除第 8 篇（删除只影响全集可见性，不重写块）",
+      "adds": {
+        "9": "alpha epsilon 查询 新版本"
+      },
+      "deletes": [8]
+    }
+  ]
+}
