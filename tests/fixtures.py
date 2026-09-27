@@ -82,8 +82,13 @@ def tone_burst(seconds_total: float, start: float, duration: float,
 
 def quiet_below_abs_gate(seconds: float, lufs: float = -80.0,
                          channels: int = 1) -> np.ndarray:
-    """Non-silent signal whose every block is below the -70 LUFS gate."""
-    amp = math.sqrt(2.0) * (10.0 ** (lufs / 20.0))
+    """Non-silent signal whose every block is below the -70 LUFS gate.
+
+    ``lufs`` is the (unit-variance) white-noise RMS level in dBFS; use a value
+    comfortably below -70 (default -80). Unlike a sine, noise already carries
+    its power in RMS, so no sqrt(2) factor is applied.
+    """
+    amp = 10.0 ** (lufs / 20.0)
     rng = np.random.default_rng(7)
     x = amp * rng.standard_normal(int(seconds * FS))
     return _to_channels(x, channels, identical=False)[: int(seconds * FS)]

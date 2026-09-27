@@ -259,3 +259,18 @@ def test_true_peak_is_explicitly_not_measured():
 def test_absolute_gate_constant_is_minus_70():
     r = analyze_array(fx.digital_silence(1.0))
     assert r.gating.absolute_gate_lufs == ABSOLUTE_GATE_LUFS
+
+
+def test_long_quiet_signal_lra_not_computed_with_real_blocks():
+    # 4 s of -75 dBFS noise: complete 400 ms AND 3 s blocks exist (non-silent)
+    # but none clears -70 LUFS -> both integrated and LRA are NOT_COMPUTED
+    # (distinct from INSUFFICIENT_BLOCKS, which means no complete window).
+    x = fx.quiet_below_abs_gate(4.0, lufs=-78.0)
+    r = analyze_array(x)
+    assert r.gating.blocks_total > 0
+    assert r.lra.blocks_total == 2  # 3 s windows ending at 3.0 s and 4.0 s
+    assert r.status == "NOT_COMPUTED"
+    assert r.lra.status == "NOT_COMPUTED"
+    assert r.lra.blocks_above_absolute == 0
+    assert r.integrated_loudness_lufs is None
+    assert r.lra.loudness_range_lu is None
