@@ -1,0 +1,99 @@
+{
+  "vnodes_per_weight": 160,
+  "max_vnodes": 0,
+  "scenarios": [
+    {
+      "name": "s1_add_member",
+      "versions": [
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 2, "up": true}
+        ]},
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 2, "up": true},
+          {"id": "hop-d", "weight": 1, "up": true}
+        ]}
+      ]
+    },
+    {
+      "name": "s2_remove_heavy_member",
+      "versions": [
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 2, "up": true}
+        ]},
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true}
+        ]}
+      ]
+    },
+    {
+      "name": "s3_weight_change",
+      "versions": [
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 2, "up": true}
+        ]},
+        {"members": [
+          {"id": "hop-a", "weight": 3, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 2, "up": true}
+        ]}
+      ]
+    },
+    {
+      "name": "s4_all_down_then_recover",
+      "versions": [
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 1, "up": true}
+        ]},
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": false},
+          {"id": "hop-b", "weight": 1, "up": false},
+          {"id": "hop-c", "weight": 1, "up": false}
+        ]},
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 1, "up": true}
+        ]}
+      ],
+      "transitions": [[0, 1], [1, 2], [0, 2]]
+    },
+    {
+      "name": "s5_zero_weight_member",
+      "versions": [
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-z", "weight": 0, "up": true}
+        ]}
+      ]
+    },
+    {
+      "name": "s6_capped_ring",
+      "max_vnodes": 10,
+      "versions": [
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 2, "up": true}
+        ]},
+        {"members": [
+          {"id": "hop-a", "weight": 1, "up": true},
+          {"id": "hop-b", "weight": 1, "up": true},
+          {"id": "hop-c", "weight": 2, "up": true},
+          {"id": "hop-d", "weight": 1, "up": true}
+        ]}
+      ]
+    }
+  ]
+}
