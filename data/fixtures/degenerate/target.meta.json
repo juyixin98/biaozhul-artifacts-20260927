@@ -1,0 +1,17 @@
+{
+  "pulses": null,
+  "events": [
+    {
+      "name": "segment_start",
+      "time_s": 1.123075
+    },
+    {
+      "name": "annotation_a",
+      "time_s": 3.123225
+    },
+    {
+      "name": "segment_end",
+      "time_s": 7.123525
+    }
+  ]
+}

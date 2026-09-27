@@ -1,0 +1,11 @@
+{
+  "offset_s": 0.123,
+  "drift_ppm": 75.0,
+  "pulse_times_s": [
+    0.5,
+    7.5
+  ],
+  "drops": [],
+  "spurious_pulses": [],
+  "note": "ground truth of the synthesis parameters; correlation-based estimates are checked against these, never treated as absolute time proof"
+}

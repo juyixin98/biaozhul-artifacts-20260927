@@ -1,0 +1,21 @@
+{
+  "db_path": "data/jobs.sqlite3",
+  "output_dir": "data/outputs",
+  "detection": {
+    "correlation_threshold": 0.55,
+    "max_pairing_offset_s": 0.4,
+    "min_peak_separation_s": 0.05
+  },
+  "fit": {
+    "min_inliers": 3,
+    "min_residual_threshold_s": 0.004,
+    "mad_multiplier": 6.0,
+    "max_inlier_residual_s": 0.05
+  },
+  "resample": {
+    "half_width_taps": 16
+  },
+  "report": {
+    "alignment_check_enabled": true
+  }
+}
