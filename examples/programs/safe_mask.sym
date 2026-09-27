@@ -1,0 +1,4 @@
+// Masking keeps the value below 8 on every input: safe.
+param x: u8;
+let y: u8 = x & 7u8;
+assert(y < 8u8);

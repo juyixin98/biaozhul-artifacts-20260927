@@ -1,0 +1,33 @@
+[package]
+name = "symex-service"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Symbolic execution service for a small fixed-width integer language (SMT-backed)"
+
+[lib]
+name = "symex"
+path = "src/lib.rs"
+
+[[bin]]
+name = "symexd"
+path = "src/main.rs"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror = "1"
+# Pinned exactly: bindings must match the locally-provided libz3 4.8.12.
+z3 = "=0.12.1"
+z3-sys = "=0.8.1"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+lto = "thin"

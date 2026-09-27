@@ -1,0 +1,14 @@
+# Default configuration for symexd. Override with --config PATH and/or
+# SYMEX_* environment variables (see README).
+
+[engine]
+# Maximum number of feasible path schedules explored per analysis.
+max_paths = 256
+# Maximum loop iterations unrolled per loop per path.
+loop_unroll = 16
+# Per-satisfiability-check timeout in milliseconds.
+solver_timeout_ms = 2000
+
+[server]
+bind = "127.0.0.1:8080"
+log_level = "info"

@@ -1,0 +1,10 @@
+// Bounded loop; with loop_unroll below x the verdict is unknown.
+param x: u8;
+assume(x <= 10u8);
+let i: u8 = 0u8;
+let acc: u8 = 0u8;
+while (i < x) {
+    acc = acc + i;
+    i = i + 1u8;
+}
+assert(acc <= 55u8, "sum of 0..10 fits in u8");

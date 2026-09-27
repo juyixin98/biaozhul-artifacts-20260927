@@ -1,0 +1,5 @@
+// Division by zero is a reported failure, attributed to the divisor.
+param a: u8;
+param b: u8;
+let c: u8 = a / b;
+assert(c <= a);

@@ -1,0 +1,4 @@
+// 8-bit increment wraps to zero exactly at x = 255.
+param x: u8;
+let y: u8 = x + 1u8;
+assert(y != 0u8, "increment must not wrap to zero");

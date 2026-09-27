@@ -1,0 +1,25 @@
+# Explicit local SMT dependency fixture (no system-wide install, no production account).
+#
+# Provisioned locally on this machine (see README -> "本地依赖"):
+#   apt-get download libz3-dev libz3-4 libclang1-18
+#   dpkg -x libz3-dev_*.deb   ~/opt/z3
+#   dpkg -x libz3-4_*.deb     ~/opt/z3
+#   dpkg -x libclang1-18_*.deb ~/opt/clang
+#
+# If the prefix differs in another environment, edit the absolute paths below
+# (or invoke cargo with Z3_PREFIX/CLANG_PREFIX overrides exported beforehand).
+
+[env]
+Z3_PREFIX = { value = "/home/admin/opt/z3", force = true }
+CLANG_PREFIX = { value = "/home/admin/opt/clang", force = true }
+# Used by z3-sys build script (bindgen header) and bindgen (libclang runtime).
+Z3_SYS_Z3_HEADER = { value = "/home/admin/opt/z3/usr/include/z3.h", force = true }
+LIBCLANG_PATH = { value = "/home/admin/opt/clang/usr/lib/x86_64-linux-gnu", force = true }
+# Clang builtin headers (stddef.h et al.) come from the locally extracted
+# libclang-common-18-dev fixture.
+BINDGEN_EXTRA_CLANG_ARGS = { value = "-isystem /home/admin/opt/clangcommon/usr/lib/llvm-18/lib/clang/18/include", force = true }
+# Runtime loader path for binaries and test harnesses launched by cargo.
+LD_LIBRARY_PATH = { value = "/home/admin/opt/clang/usr/lib/x86_64-linux-gnu:/home/admin/opt/llvm18/usr/lib/x86_64-linux-gnu:/home/admin/opt/z3/usr/lib/x86_64-linux-gnu", force = true }
+
+[build]
+rustflags = ["-L", "native=/home/admin/opt/z3/usr/lib/x86_64-linux-gnu", "-C", "link-arg=-lz3"]
