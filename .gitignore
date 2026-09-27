@@ -1,0 +1,14 @@
+# local sqlite database(s)
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# test/build artifacts
+/flowrouter
+*.out
+coverage.txt
+
+# os/editor
+.DS_Store
+*.swp
