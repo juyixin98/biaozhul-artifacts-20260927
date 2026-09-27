@@ -1,0 +1,38 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/cuckoo-core",
+    "crates/cuckoo-persist",
+    "crates/cuckoo-api",
+    "crates/cuckoo-verify",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+license = "MIT"
+
+[workspace.dependencies]
+# 关键依赖在各 crate 中锁定到具体版本（含 Cargo.lock 校验和）
+axum = { version = "=0.7.9", features = ["macros"] }
+tokio = { version = "=1.40.0", features = ["rt-multi-thread", "macros", "net", "fs", "io-util", "signal"] }
+tower = "=0.5.2"
+serde = { version = "=1.0.215", features = ["derive"] }
+serde_json = "=1.0.133"
+xxhash-rust = { version = "=0.8.15", features = ["xxh64"] }
+hmac = "=0.12.1"
+sha2 = "=0.10.8"
+rand_core = { version = "=0.6.4", features = ["std"] }
+getrandom = "=0.2.15"
+thiserror = "=2.0.9"
+tracing = "=0.1.41"
+tracing-subscriber = { version = "=0.3.19", features = ["env-filter"] }
+
+tempfile = "=3.14.0"
+hyper = { version = "=1.5.2", features = ["full"] }
+http-body-util = "=0.1.2"
+hyper-util = { version = "=0.1.10", features = ["tokio"] }
+
+[profile.release]
+lto = "thin"

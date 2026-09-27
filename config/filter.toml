@@ -1,0 +1,28 @@
+# cuckoo-api 配置示例
+# 用法: cuckoo-api config/filter.toml
+# 所有项都可用同名 CKF_* 环境变量覆盖（见 README）。
+
+[server]
+# 监听地址。默认 127.0.0.1:8088。
+bind = "127.0.0.1:8088"
+
+[filter]
+# 桶数量 = 2^buckets_exp（必须是 2 的幂）。
+buckets_exp = 12          # 4096 个桶
+# 每个桶槽位数：仅支持 2 或 4。
+bucket_size = 4           # 物理槽 = 4096 * 4 = 16384
+# 指纹位宽 4..=16。越大假阳性越低。
+fingerprint_bits = 12
+# 单次插入最大迁移（kick）次数；超过即 FILTER_FULL 并整体回滚。
+max_kicks = 500
+# 迁移用确定性 RNG（SplitMix64）种子；固定它可复现迁移路径。
+rng_seed = 20260927
+
+[storage]
+# 快照文件路径；写入采用 临时文件 + fsync + rename 原子替换。
+path = "data/filter.snapshot"
+
+[security]
+# 删除凭证 HMAC 主密钥文件（也可用环境变量 CKF_MASTER_KEY 直接给）。
+# 必须 >= 16 字节。示例脚本会生成本地随机密钥文件，请勿提交真实密钥。
+master_key_file = "data/master.key"

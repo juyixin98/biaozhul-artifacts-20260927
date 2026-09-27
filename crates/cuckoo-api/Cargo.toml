@@ -1,0 +1,33 @@
+[package]
+name = "cuckoo-api"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "cuckoo-api"
+path = "src/main.rs"
+
+[lib]
+name = "cuckoo_api"
+path = "src/lib.rs"
+
+[dependencies]
+cuckoo-core = { path = "../cuckoo-core" }
+cuckoo-persist = { path = "../cuckoo-persist" }
+axum = { workspace = true }
+tokio = { workspace = true }
+tower = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+toml = "=0.8.19"
+toml_edit = "=0.22.22"
+
+[dev-dependencies]
+tempfile = { workspace = true }
+hyper = { workspace = true }
+hyper-util = { version = "=0.1.10", features = ["tokio"] }
+http-body-util = { workspace = true }

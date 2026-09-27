@@ -1,0 +1,21 @@
+[package]
+name = "cuckoo-verify"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "cuckoo_verify"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cuckoo-verify"
+path = "src/main.rs"
+
+[dependencies]
+cuckoo-core = { path = "../cuckoo-core" }
+cuckoo-persist = { path = "../cuckoo-persist" }
+tempfile = { workspace = true }
+
+[dev-dependencies]
+xxhash-rust = { workspace = true }

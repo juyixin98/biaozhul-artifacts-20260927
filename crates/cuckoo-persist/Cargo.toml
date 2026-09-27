@@ -1,0 +1,14 @@
+[package]
+name = "cuckoo-persist"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+cuckoo-core = { path = "../cuckoo-core" }
+thiserror = { workspace = true }
+xxhash-rust = { workspace = true }
+serde = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

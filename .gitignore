@@ -1,0 +1,6 @@
+/target
+/data
+/verify-reports
+**/*.snapshot
+**/*.snapshot.tmp-*
+*.log

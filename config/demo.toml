@@ -1,0 +1,18 @@
+# 小容量演示配置：64 桶 * 4 槽 = 256 槽，f=8。
+# 用于快速观察迁移与（极端情况下）容量耗尽，不要用于正式数据。
+
+[server]
+bind = "127.0.0.1:8088"
+
+[filter]
+buckets_exp = 6
+bucket_size = 4
+fingerprint_bits = 8
+max_kicks = 100
+rng_seed = 20260927
+
+[storage]
+path = "data/demo.snapshot"
+
+[security]
+master_key_file = "data/master.key"
