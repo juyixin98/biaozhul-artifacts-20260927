@@ -1,0 +1,5 @@
+flexhash 2026/09/28 04:28:36.230301 replayed 4 events -> config v2 health rev 2 (1024 buckets)
+flexhash 2026/09/28 04:28:36.237532 listening on 127.0.0.1:19080
+flexhash 2026/09/28 04:28:36.545639 GET /healthz -> 200 (42.182µs)
+flexhash 2026/09/28 04:28:36.561081 GET /v1/replay/state -> 200 (2.503433ms)
+flexhash 2026/09/28 04:29:01.652162 shutting down

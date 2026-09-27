@@ -1,0 +1,12 @@
+?   	flexhash/cmd/flexhash	[no test files]
+?   	flexhash/cmd/genflows	[no test files]
+?   	flexhash/internal/fherr	[no test files]
+?   	flexhash/internal/oracle	[no test files]
+?   	flexhash/internal/testlog	[no test files]
+ok  	flexhash/e2etest	1.011s
+ok  	flexhash/internal/config	0.005s
+ok  	flexhash/internal/flow	0.003s
+ok  	flexhash/internal/hashring	0.021s
+ok  	flexhash/internal/replay	0.108s
+ok  	flexhash/internal/server	0.688s
+ok  	flexhash/internal/store	0.095s

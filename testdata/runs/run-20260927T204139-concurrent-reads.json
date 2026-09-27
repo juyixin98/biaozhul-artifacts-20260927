@@ -1,0 +1,25 @@
+{
+  "run_id": "run-20260927T204139-concurrent-reads",
+  "test_name": "concurrent-reads",
+  "started_at": "2026-09-27T20:41:39.714839397Z",
+  "steps": [
+    {
+      "at": "2026-09-27T20:41:40.563864026Z",
+      "title": "after concurrent waves",
+      "detail": {
+        "final_version": 41,
+        "health_rev": 0,
+        "readers": 16,
+        "waves": 40
+      },
+      "outcome": "info"
+    },
+    {
+      "at": "2026-09-27T20:41:40.563868765Z",
+      "title": "concurrent reads consistent",
+      "outcome": "pass",
+      "reason": "16 readers saw only complete snapshots across 40 waves"
+    }
+  ],
+  "result": "passed"
+}

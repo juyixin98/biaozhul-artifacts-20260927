@@ -1,0 +1,129 @@
+{
+  "run_id": "run-20260927T204139-distribution-and-migration",
+  "test_name": "distribution-and-migration",
+  "started_at": "2026-09-27T20:41:39.592187007Z",
+  "steps": [
+    {
+      "at": "2026-09-27T20:41:39.594923232Z",
+      "title": "v1 a:b:c=1:1:1",
+      "detail": {
+        "bucket_quota": {
+          "a": 342,
+          "b": 341,
+          "c": 341
+        },
+        "flow_shares": {
+          "a": 0.3336,
+          "b": 0.3369,
+          "c": 0.3295
+        }
+      },
+      "outcome": "info"
+    },
+    {
+      "at": "2026-09-27T20:41:39.594931349Z",
+      "title": "v1 flow share ~= bucket share",
+      "detail": {
+        "bucket_share": {
+          "a": 0.333984375,
+          "b": 0.3330078125,
+          "c": 0.3330078125
+        },
+        "flow_share": {
+          "a": 0.3336,
+          "b": 0.3369,
+          "c": 0.3295
+        },
+        "tolerance": 0.03
+      },
+      "outcome": "pass",
+      "reason": "per-member gap within tolerance of uniform 20k flow hashing"
+    },
+    {
+      "at": "2026-09-27T20:41:39.613855213Z",
+      "title": "v2 add d",
+      "detail": {
+        "buckets_moved": 256,
+        "flow_fraction_modN": 0.74985,
+        "flow_fraction_ring": 0.2498,
+        "flows_moved_modN": 14997,
+        "flows_moved_ring": 4996,
+        "flows_moved_weighted_mod": 14997
+      },
+      "outcome": "info"
+    },
+    {
+      "at": "2026-09-27T20:41:39.616463656Z",
+      "title": "v2 bucket locality",
+      "outcome": "pass",
+      "reason": "flows move exactly with their bucket and only toward added member d"
+    },
+    {
+      "at": "2026-09-27T20:41:39.633640647Z",
+      "title": "v3 remove c",
+      "detail": {
+        "buckets_moved": 256,
+        "c_flows_before": 4923,
+        "flows_moved_modN": 14876,
+        "flows_moved_ring": 4923,
+        "ring_moved_all_from_c": true
+      },
+      "outcome": "info"
+    },
+    {
+      "at": "2026-09-27T20:41:39.633645069Z",
+      "title": "v3 minimal removal",
+      "outcome": "pass",
+      "reason": "only c-owned buckets relocated; all survivors kept theirs"
+    },
+    {
+      "at": "2026-09-27T20:41:39.669431212Z",
+      "title": "v4 reweight 3:1:1",
+      "detail": {
+        "bucket_quota": {
+          "a": 614,
+          "b": 205,
+          "d": 205
+        },
+        "buckets_moved_ring": 272,
+        "flow_shares": {
+          "a": 0.59445,
+          "b": 0.20365,
+          "d": 0.2019
+        },
+        "flows_moved_plain_modN": 0,
+        "flows_moved_ring": 5216,
+        "flows_moved_weighted_mod": 13338,
+        "plain_modN_violates_weights": true,
+        "ring_vs_weighted_mod_ratio": 0.3910631279052332
+      },
+      "outcome": "info"
+    },
+    {
+      "at": "2026-09-27T20:41:39.669441297Z",
+      "title": "v4 flow share ~= bucket share",
+      "detail": {
+        "bucket_share": {
+          "a": 0.599609375,
+          "b": 0.2001953125,
+          "d": 0.2001953125
+        },
+        "flow_share": {
+          "a": 0.59445,
+          "b": 0.20365,
+          "d": 0.2019
+        },
+        "tolerance": 0.03
+      },
+      "outcome": "pass",
+      "reason": "per-member gap within tolerance of uniform 20k flow hashing"
+    },
+    {
+      "at": "2026-09-27T20:41:39.669442036Z",
+      "title": "v4 weighted with minimal churn",
+      "outcome": "pass",
+      "reason": "3:1:1 honored with 272/1024 bucket moves vs a near-total weighted re-mod"
+    }
+  ],
+  "result": "passed"
+}

@@ -1,0 +1,10 @@
+	flexhash/internal/fherr		coverage: 0.0% of statements
+ok  	flexhash/internal/config	0.005s	coverage: 53.3% of statements
+ok  	flexhash/internal/flow	0.004s	coverage: 74.1% of statements
+	flexhash/internal/oracle		coverage: 0.0% of statements
+ok  	flexhash/internal/hashring	0.034s	coverage: 76.3% of statements
+ok  	flexhash/internal/replay	0.084s	coverage: 79.4% of statements
+	flexhash/internal/testlog		coverage: 0.0% of statements
+ok  	flexhash/internal/server	0.307s	coverage: 74.4% of statements
+ok  	flexhash/internal/store	0.061s	coverage: 67.5% of statements
+ok  	flexhash/e2etest	1.021s	coverage: [no statements]

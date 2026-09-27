@@ -1,0 +1,28 @@
+{
+  "run_id": "run-20260927T204139-zero-weight-and-all-down",
+  "test_name": "zero-weight-and-all-down",
+  "started_at": "2026-09-27T20:41:39.705798675Z",
+  "steps": [
+    {
+      "at": "2026-09-27T20:41:39.708168246Z",
+      "title": "zero weight member holds no bucket/traffic",
+      "detail": {
+        "a": 171,
+        "b": 85,
+        "z": 0
+      },
+      "outcome": "pass",
+      "reason": "quota z=0"
+    },
+    {
+      "at": "2026-09-27T20:41:39.711478386Z",
+      "title": "all weighted members down",
+      "detail": {
+        "total": 20000,
+        "unavailable_flows": 20000
+      },
+      "outcome": "info"
+    }
+  ],
+  "result": "passed"
+}

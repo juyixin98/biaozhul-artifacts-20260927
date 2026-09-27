@@ -1,0 +1,39 @@
+{
+  "run_id": "run-20260927T203527-bucket-vs-traffic-share",
+  "test_name": "bucket-vs-traffic-share",
+  "started_at": "2026-09-27T20:35:27.25339078Z",
+  "steps": [
+    {
+      "at": "2026-09-27T20:35:27.278710415Z",
+      "title": "a down: structural vs realized",
+      "detail": {
+        "a_buckets_failed_over": {
+          "b": 5682,
+          "d": 6225
+        },
+        "bucket_quota_unchanged": {
+          "a": 614,
+          "b": 205,
+          "d": 205
+        },
+        "traffic_when_a_down": {
+          "b": 9750,
+          "d": 10250
+        },
+        "traffic_when_up": {
+          "a": 11907,
+          "b": 4068,
+          "d": 4025
+        }
+      },
+      "outcome": "info"
+    },
+    {
+      "at": "2026-09-27T20:35:27.280969888Z",
+      "title": "shares distinguished",
+      "outcome": "pass",
+      "reason": "bucket ownership frozen while realized traffic fails over 1:1"
+    }
+  ],
+  "result": "passed"
+}
