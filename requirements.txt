@@ -1,0 +1,7 @@
+# Pinned versions used during development and local verification (Python 3.12.3).
+fastapi==0.115.14
+uvicorn[standard]==0.30.6
+pydantic==2.13.5
+# Test / verification only
+pytest==9.1.1
+httpx==0.28.1

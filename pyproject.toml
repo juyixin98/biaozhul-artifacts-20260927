@@ -1,0 +1,17 @@
+[project]
+name = "ac-streaming-matcher"
+version = "1.0.0"
+description = "Local Aho-Corasick streaming matching backend (FastAPI + SQLite)"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi==0.115.14",
+    "uvicorn[standard]==0.30.6",
+    "pydantic==2.13.5",
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1", "httpx==0.28.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
