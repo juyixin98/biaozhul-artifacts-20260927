@@ -1,0 +1,8 @@
+# synthetic TCP capture for fixture wrap_boundary_gap
+# lost segment straddles the sequence wrap point
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40008,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4294967246,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40008,"seq":22222,"ack":4294967247,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40008,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4294967247,"ack":22223,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"wg-1","order":4,"src_ip":"10.0.0.10","src_port":40008,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4294967247,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b"}
+{"record_id":"wg-3","order":5,"src_ip":"10.0.0.10","src_port":40008,"dst_ip":"10.0.0.20","dst_port":8080,"seq":11,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"5a5b5c5d5e5f606162636465666768696a6b6c6d6e6f7071727374757677"}
+{"record_id":"wg-4","order":6,"src_ip":"10.0.0.10","src_port":40008,"dst_ip":"10.0.0.20","dst_port":8080,"seq":41,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"78797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495"}

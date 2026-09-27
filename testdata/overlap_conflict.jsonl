@@ -1,0 +1,9 @@
+# synthetic TCP capture for fixture overlap_conflict
+# overlapping segments disagree on buffered bytes 16..19
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40005,"dst_ip":"10.0.0.20","dst_port":8080,"seq":5000,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40005,"seq":9000,"ack":5001,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40005,"dst_ip":"10.0.0.20","dst_port":8080,"seq":5001,"ack":9001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"ov-2","order":4,"src_ip":"10.0.0.10","src_port":40005,"dst_ip":"10.0.0.20","dst_port":8080,"seq":5011,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"3c3d3e3f404141414141"}
+{"record_id":"ov-cover","order":5,"src_ip":"10.0.0.10","src_port":40005,"dst_ip":"10.0.0.20","dst_port":8080,"seq":5017,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"58585858464748494a4b"}
+{"record_id":"ov-1","order":6,"src_ip":"10.0.0.10","src_port":40005,"dst_ip":"10.0.0.20","dst_port":8080,"seq":5001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"32333435363738393a3b"}
+{"record_id":"ov-3","order":7,"src_ip":"10.0.0.10","src_port":40005,"dst_ip":"10.0.0.20","dst_port":8080,"seq":5027,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"4c4d4e4f"}

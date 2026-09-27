@@ -1,0 +1,18 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40009",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 7000,
+    "isn_s2c": 13000
+  },
+  "name": "half_close",
+  "description": "c2s half-closes then a stray data segment must be rejected",
+  "missing_handshake": false,
+  "c2s_stream_hex": "000102030405060708090a0b0c0d0e0f10111213",
+  "s2c_stream_hex": "28292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f60616263",
+  "open_gaps": null,
+  "conflicts": null,
+  "generations": 1,
+  "injected_reuse": false,
+  "wrap": false
+}

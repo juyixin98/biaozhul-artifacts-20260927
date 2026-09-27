@@ -1,0 +1,22 @@
+{
+  "http": {
+    "addr": "127.0.0.1:18080",
+    "read_timeout_ms": 5000,
+    "write_timeout_ms": 30000,
+    "max_capture_bytes": 16777216
+  },
+  "storage": {
+    "dsn": "data/tcpreasm.db"
+  },
+  "reassembly": {
+    "overlap_policy": "first-wins",
+    "max_buffered_bytes_per_dir": 8388608,
+    "delivered_evidence_bytes": 262144,
+    "infer_generation_without_handshake": true
+  },
+  "diagnostics": {
+    "log_path": "",
+    "payload_preview_bytes": 0,
+    "mask_ips": false
+  }
+}

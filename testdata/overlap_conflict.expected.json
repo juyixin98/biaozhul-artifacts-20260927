@@ -1,0 +1,27 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40005",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 5000,
+    "isn_s2c": 9000
+  },
+  "name": "overlap_conflict",
+  "description": "overlapping segments disagree on buffered bytes 16..19",
+  "missing_handshake": false,
+  "c2s_stream_hex": "32333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f",
+  "s2c_stream_hex": "",
+  "open_gaps": null,
+  "conflicts": [
+    {
+      "direction": "c2s",
+      "start_off": 16,
+      "end_off": 20,
+      "original_sha256": "8bf6c53cf770ff3f3abad85b84aa60f8e01cb1e4ec511832ab541757ad4c7b2d",
+      "injected_sha256": "7b346904f63cc07f1d8cc2d88d7dae08a3f088a0e4159d5214c27a6571a51eb4",
+      "category": "POLICY_DEPENDENT"
+    }
+  ],
+  "generations": 1,
+  "injected_reuse": false,
+  "wrap": false
+}

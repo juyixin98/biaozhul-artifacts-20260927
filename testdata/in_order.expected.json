@@ -1,0 +1,18 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40001",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 1000,
+    "isn_s2c": 5000
+  },
+  "name": "in_order",
+  "description": "clean handshake and in-order bidirectional streams",
+  "missing_handshake": false,
+  "c2s_stream_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f2021222324252627",
+  "s2c_stream_hex": "6465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f8081",
+  "open_gaps": null,
+  "conflicts": null,
+  "generations": 1,
+  "injected_reuse": false,
+  "wrap": false
+}

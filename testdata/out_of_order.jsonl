@@ -1,0 +1,12 @@
+# synthetic TCP capture for fixture out_of_order
+# data packets arrive fully reversed
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2000,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40002,"seq":6000,"ack":2001,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2001,"ack":6001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"oo-5","order":4,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2041,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"32333435363738393a3b"}
+{"record_id":"oo-4","order":5,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2031,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"28292a2b2c2d2e2f3031"}
+{"record_id":"oo-3","order":6,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2021,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1e1f2021222324252627"}
+{"record_id":"oo-2","order":7,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2011,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1415161718191a1b1c1d"}
+{"record_id":"oo-1","order":8,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"0a0b0c0d0e0f10111213"}
+{"record_id":"os-1","order":9,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40002,"seq":6001,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e"}
+{"record_id":"oo-fin","order":10,"src_ip":"10.0.0.10","src_port":40002,"dst_ip":"10.0.0.20","dst_port":8080,"seq":2051,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false}

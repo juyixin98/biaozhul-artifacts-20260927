@@ -1,0 +1,10 @@
+# synthetic TCP capture for fixture retransmission
+# identical retransmissions of already delivered/buffered segments
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40003,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3000,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40003,"seq":7000,"ack":3001,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40003,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3001,"ack":7001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"rt-1","order":4,"src_ip":"10.0.0.10","src_port":40003,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1415161718191a1b1c1d1e1f202122"}
+{"record_id":"rt-2","order":5,"src_ip":"10.0.0.10","src_port":40003,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3016,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"232425262728292a2b2c2d2e2f3031"}
+{"record_id":"rt-3","order":6,"src_ip":"10.0.0.10","src_port":40003,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3031,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"32333435363738393a3b3c3d3e3f40"}
+{"record_id":"rt-1-rex","order":4,"src_ip":"10.0.0.10","src_port":40003,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1415161718191a1b1c1d1e1f202122"}
+{"record_id":"rt-3-rex","order":6,"src_ip":"10.0.0.10","src_port":40003,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3031,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"32333435363738393a3b3c3d3e3f40"}

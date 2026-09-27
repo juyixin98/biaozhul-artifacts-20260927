@@ -1,0 +1,10 @@
+# build/runtime artifacts
+data/
+*.db
+*.db-wal
+*.db-shm
+reproduce-results/
+
+# editor/OS
+*.swp
+.DS_Store

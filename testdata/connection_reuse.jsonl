@@ -1,0 +1,12 @@
+# synthetic TCP capture for fixture connection_reuse
+# two sequential handshakes on one 4-tuple, distinct generations
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40011,"dst_ip":"10.0.0.20","dst_port":8080,"seq":8000,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40011,"seq":14000,"ack":8001,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40011,"dst_ip":"10.0.0.20","dst_port":8080,"seq":8001,"ack":14001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"g1c-1","order":4,"src_ip":"10.0.0.10","src_port":40011,"dst_ip":"10.0.0.20","dst_port":8080,"seq":8001,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"0102030405060708090a0b0c0d0e0f10111213141516171819"}
+{"record_id":"g1s-1","order":5,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40011,"seq":14001,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"464748494a4b4c4d4e4f50515253545556575859"}
+{"record_id":"g2-syn","order":6,"src_ip":"10.0.0.10","src_port":40011,"dst_ip":"10.0.0.20","dst_port":8080,"seq":8200,"syn":true,"fin":false,"rst":false}
+{"record_id":"g2-synack","order":7,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40011,"seq":14200,"ack":8201,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"g2-ack","order":8,"src_ip":"10.0.0.10","src_port":40011,"dst_ip":"10.0.0.20","dst_port":8080,"seq":8201,"ack":14201,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"g2c-1","order":9,"src_ip":"10.0.0.10","src_port":40011,"dst_ip":"10.0.0.20","dst_port":8080,"seq":8201,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"6162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f80818283"}
+{"record_id":"g2s-1","order":10,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40011,"seq":14201,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"2122232425262728292a2b2c2d2e2f"}

@@ -1,0 +1,10 @@
+# synthetic TCP capture for fixture half_close
+# c2s half-closes then a stray data segment must be rejected
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40009,"dst_ip":"10.0.0.20","dst_port":8080,"seq":7000,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40009,"seq":13000,"ack":7001,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40009,"dst_ip":"10.0.0.20","dst_port":8080,"seq":7001,"ack":13001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hc-1","order":4,"src_ip":"10.0.0.10","src_port":40009,"dst_ip":"10.0.0.20","dst_port":8080,"seq":7001,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"000102030405060708090a0b0c0d0e0f10111213"}
+{"record_id":"hs2-1","order":5,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40009,"seq":13001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"28292a2b2c2d2e2f303132333435363738393a3b"}
+{"record_id":"hs2-2","order":6,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40009,"seq":13021,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"3c3d3e3f404142434445464748494a4b4c4d4e4f"}
+{"record_id":"hs2-3","order":7,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40009,"seq":13041,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"505152535455565758595a5b5c5d5e5f60616263"}
+{"record_id":"hc-stray","order":8,"src_ip":"10.0.0.10","src_port":40009,"dst_ip":"10.0.0.20","dst_port":8080,"seq":7022,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"5858"}

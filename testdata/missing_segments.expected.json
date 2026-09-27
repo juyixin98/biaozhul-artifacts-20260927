@@ -1,0 +1,29 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40006",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 6000,
+    "isn_s2c": 11000
+  },
+  "name": "missing_segments",
+  "description": "one interior segment lost per direction",
+  "missing_handshake": false,
+  "c2s_stream_hex": "3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f7071727374757677",
+  "s2c_stream_hex": "5a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f80818283848586",
+  "open_gaps": [
+    {
+      "direction": "c2s",
+      "start_off": 30,
+      "end_off": 45
+    },
+    {
+      "direction": "s2c",
+      "start_off": 15,
+      "end_off": 30
+    }
+  ],
+  "conflicts": null,
+  "generations": 1,
+  "injected_reuse": false,
+  "wrap": false
+}

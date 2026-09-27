@@ -1,0 +1,9 @@
+# synthetic TCP capture for fixture conflicting_retransmission
+# late retransmission contradicts already-delivered bytes
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40004,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4000,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40004,"seq":8000,"ack":4001,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40004,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4001,"ack":8001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"cx-1","order":4,"src_ip":"10.0.0.10","src_port":40004,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1e1f2021222324252627"}
+{"record_id":"cx-2","order":5,"src_ip":"10.0.0.10","src_port":40004,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4011,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"28292a2b2c2d2e2f3031"}
+{"record_id":"cx-3","order":6,"src_ip":"10.0.0.10","src_port":40004,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4021,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"32333435363738393a3b"}
+{"record_id":"cx-2-bad","order":5,"src_ip":"10.0.0.10","src_port":40004,"dst_ip":"10.0.0.20","dst_port":8080,"seq":4011,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"d7292a2b2c2d2e2f3031"}

@@ -1,0 +1,27 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40004",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 4000,
+    "isn_s2c": 8000
+  },
+  "name": "conflicting_retransmission",
+  "description": "late retransmission contradicts already-delivered bytes",
+  "missing_handshake": false,
+  "c2s_stream_hex": "1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b",
+  "s2c_stream_hex": "",
+  "open_gaps": null,
+  "conflicts": [
+    {
+      "direction": "c2s",
+      "start_off": 10,
+      "end_off": 11,
+      "original_sha256": "32ebb1abcc1c601ceb9c4e3c4faba0caa5b85bb98c4f1e6612c40faa528a91c9",
+      "injected_sha256": "414a21e525a759e3ffeb22556be6348a92d5a13e40b61a0805f36f18c2909513",
+      "category": "UNDECIDABLE_CONFLICT_AGAINST_DELIVERED"
+    }
+  ],
+  "generations": 1,
+  "injected_reuse": false,
+  "wrap": false
+}

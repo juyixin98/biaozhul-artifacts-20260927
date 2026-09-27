@@ -1,0 +1,18 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40002",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 2000,
+    "isn_s2c": 6000
+  },
+  "name": "out_of_order",
+  "description": "data packets arrive fully reversed",
+  "missing_handshake": false,
+  "c2s_stream_hex": "0a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b",
+  "s2c_stream_hex": "464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e",
+  "open_gaps": null,
+  "conflicts": null,
+  "generations": 1,
+  "injected_reuse": false,
+  "wrap": false
+}

@@ -1,0 +1,11 @@
+# synthetic TCP capture for fixture in_order
+# clean handshake and in-order bidirectional streams
+{"record_id":"hs-syn","order":1,"src_ip":"10.0.0.10","src_port":40001,"dst_ip":"10.0.0.20","dst_port":8080,"seq":1000,"syn":true,"fin":false,"rst":false}
+{"record_id":"hs-synack","order":2,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40001,"seq":5000,"ack":1001,"has_ack":true,"syn":true,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"hs-ack","order":3,"src_ip":"10.0.0.10","src_port":40001,"dst_ip":"10.0.0.20","dst_port":8080,"seq":1001,"ack":5001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false}
+{"record_id":"c-1","order":4,"src_ip":"10.0.0.10","src_port":40001,"dst_ip":"10.0.0.20","dst_port":8080,"seq":1001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"00010203040506070809"}
+{"record_id":"c-2","order":5,"src_ip":"10.0.0.10","src_port":40001,"dst_ip":"10.0.0.20","dst_port":8080,"seq":1011,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"0a0b0c0d0e0f10111213"}
+{"record_id":"c-3","order":6,"src_ip":"10.0.0.10","src_port":40001,"dst_ip":"10.0.0.20","dst_port":8080,"seq":1021,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1415161718191a1b1c1d"}
+{"record_id":"c-4","order":7,"src_ip":"10.0.0.10","src_port":40001,"dst_ip":"10.0.0.20","dst_port":8080,"seq":1031,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"1e1f2021222324252627"}
+{"record_id":"s-1","order":8,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40001,"seq":5001,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"6465666768696a6b6c6d6e6f707172"}
+{"record_id":"s-2","order":9,"src_ip":"10.0.0.20","src_port":8080,"dst_ip":"10.0.0.10","dst_port":40001,"seq":5016,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false,"payload_hex":"737475767778797a7b7c7d7e7f8081"}

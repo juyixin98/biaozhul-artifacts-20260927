@@ -1,0 +1,5 @@
+# synthetic TCP capture for fixture missing_handshake
+# capture begins with data, SYN/SYN-ACK absent
+{"record_id":"mh-1","order":4,"src_ip":"10.0.0.10","src_port":40010,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3735928560,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"0a0b0c0d0e0f101112131415161718191a1b1c1d"}
+{"record_id":"mh-2","order":5,"src_ip":"10.0.0.10","src_port":40010,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3735928580,"has_ack":true,"syn":false,"ack_flag":true,"fin":false,"rst":false,"payload_hex":"1e1f202122232425262728292a2b2c2d2e2f3031"}
+{"record_id":"mh-fin","order":6,"src_ip":"10.0.0.10","src_port":40010,"dst_ip":"10.0.0.20","dst_port":8080,"seq":3735928600,"has_ack":true,"syn":false,"ack_flag":true,"fin":true,"rst":false}

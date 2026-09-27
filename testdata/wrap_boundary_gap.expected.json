@@ -1,0 +1,24 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40008",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 4294967246,
+    "isn_s2c": 22222
+  },
+  "name": "wrap_boundary_gap",
+  "description": "lost segment straddles the sequence wrap point",
+  "missing_handshake": false,
+  "c2s_stream_hex": "1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495",
+  "s2c_stream_hex": "",
+  "open_gaps": [
+    {
+      "direction": "c2s",
+      "start_off": 30,
+      "end_off": 60
+    }
+  ],
+  "conflicts": null,
+  "generations": 1,
+  "injected_reuse": false,
+  "wrap": true
+}

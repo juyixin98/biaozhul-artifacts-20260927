@@ -1,0 +1,18 @@
+{
+  "flow": {
+    "client": "10.0.0.10:40011",
+    "server": "10.0.0.20:8080",
+    "isn_c2s": 8000,
+    "isn_s2c": 14000
+  },
+  "name": "connection_reuse",
+  "description": "two sequential handshakes on one 4-tuple, distinct generations",
+  "missing_handshake": false,
+  "c2s_stream_hex": "6162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f80818283",
+  "s2c_stream_hex": "2122232425262728292a2b2c2d2e2f",
+  "open_gaps": null,
+  "conflicts": null,
+  "generations": 2,
+  "injected_reuse": true,
+  "wrap": false
+}

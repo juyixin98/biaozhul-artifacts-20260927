@@ -1,0 +1,20 @@
+{
+  "request_id": "sample-req-001",
+  "packets": [
+    {"record_id": "s1", "order": 1, "src_ip": "10.0.0.10", "src_port": 40001,
+     "dst_ip": "10.0.0.20", "dst_port": 8080, "seq": 1000, "syn": true},
+    {"record_id": "s2", "order": 2, "src_ip": "10.0.0.20", "src_port": 8080,
+     "dst_ip": "10.0.0.10", "dst_port": 40001, "seq": 5000, "ack": 1001,
+     "has_ack": true, "syn": true, "ack_flag": true},
+    {"record_id": "s3", "order": 3, "src_ip": "10.0.0.10", "src_port": 40001,
+     "dst_ip": "10.0.0.20", "dst_port": 8080, "seq": 1001, "ack": 5001,
+     "has_ack": true, "ack_flag": true},
+    {"record_id": "d1", "order": 4, "src_ip": "10.0.0.10", "src_port": 40001,
+     "dst_ip": "10.0.0.20", "dst_port": 8080, "seq": 1001, "ack": 5001,
+     "has_ack": true, "ack_flag": true, "payload_hex": "474554202f2048545450"},
+    {"record_id": "d2", "order": 5, "src_ip": "10.0.0.10", "src_port": 40001,
+     "dst_ip": "10.0.0.20", "dst_port": 8080, "seq": 1011, "ack": 5001,
+     "has_ack": true, "ack_flag": true, "fin": true,
+     "payload_hex": "2f312e300d0a0d0a"}
+  ]
+}
