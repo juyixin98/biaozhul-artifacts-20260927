@@ -1,0 +1,8 @@
+# Runtime dependencies for the EBU R128 loudness backend.
+# The measurement core itself uses NumPy only.
+numpy>=2.0,<3.0
+fastapi>=0.115,<1.0
+uvicorn>=0.30,<1.0
+pydantic>=2.7,<3.0
+pydantic-settings>=2.3,<3.0
+python-multipart>=0.0.12,<0.1
