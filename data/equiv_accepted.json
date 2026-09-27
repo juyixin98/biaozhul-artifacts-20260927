@@ -1,0 +1,7 @@
+{
+  "_comment": "Equivalence request: same Boolean function written two ways. Expected HTTP 200, decision=accepted, assignments_checked=4, witness=null.",
+  "lhs": { "expr": "a -> b", "order": ["a", "b"] },
+  "rhs": { "expr": "!a || b", "order": ["a", "b"] },
+  "client_label": "example-sensitive-label",
+  "max_assignments": 65536
+}

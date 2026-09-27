@@ -1,0 +1,6 @@
+{
+  "_comment": "Same function under a variable renaming (x->p, y->q). Expected decision=accepted.",
+  "lhs": { "expr": "x && y || !x", "order": ["x", "y"] },
+  "rhs": { "expr": "p && q || !p", "order": ["p", "q"] },
+  "mapping": { "x": "p", "y": "q" }
+}

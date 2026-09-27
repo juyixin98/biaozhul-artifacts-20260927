@@ -1,0 +1,11 @@
+# Local development configuration for the ROBDD backend.
+# All values are local-only; there are no external credentials.
+
+bind_addr = "127.0.0.1:8080"
+
+# Equivalence queries refuse to exhaustively enumerate beyond this many rows;
+# beyond it the verdict is "inconclusive" rather than guessed. 2^16 covers
+# every function on up to 16 variables.
+max_truth_table_rows = 65536
+
+log_level = "info"

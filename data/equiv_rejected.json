@@ -1,0 +1,5 @@
+{
+  "_comment": "AND vs OR. Expected HTTP 422, decision=rejected; witness assigns a and b differently.",
+  "lhs": { "expr": "a && b", "order": ["a", "b"] },
+  "rhs": { "expr": "a || b", "order": ["a", "b"] }
+}
