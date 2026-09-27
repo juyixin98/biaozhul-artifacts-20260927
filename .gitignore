@@ -1,0 +1,12 @@
+# build artifacts
+/bin/
+*.exe
+
+# runtime sqlite databases (local demo data; fixtures and run evidence are kept)
+/data/
+*.db-wal
+*.db-shm
+
+# go test/coverage artifacts
+*.out
+coverage.txt.tmp
