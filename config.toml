@@ -1,0 +1,27 @@
+# fm-index-service 启动配置样例
+# 用法：./fm-index-service --config config.toml
+# 所有字段都有内置默认值；本文件展示可配置项与推荐值。
+
+[server]
+host = "127.0.0.1"
+port = 8921
+# 单个 HTTP 请求体上限（字节）。创建索引的 JSON/base64 约膨胀 4/3，
+# 24 MiB 上限可承载约 16 MiB 原文。
+max_body_bytes = 25165824
+# 单次 locate/verify 允许返回的位置数上限，超出返回 413 resource_exhausted。
+max_locations = 1000000
+
+[storage]
+# 索引持久化根目录（每个索引一个子目录，含 manifest.json 提交点）。
+data_dir = "./data/indexes"
+# 允许通过 path 字段导入的本地目录白名单；留空 [] 禁止文件导入。
+import_dirs = ["./examples/data"]
+
+[index]
+# 建索引接受的最大原文长度（字节）。当前 SA 用 u32 寻址，硬上限 ~4GiB，
+# 默认限制 16 MiB 以控制单次构建内存与耗时。
+max_text_bytes = 16777216
+# rank 检查点块大小：越小 rank 查询越快但磁盘/内存越大。
+rank_block = 256
+# SA 采样步长：越小定位（locate）越快，采样点越多。任意行最多走 step 步 LF 必入样。
+sample_step = 16

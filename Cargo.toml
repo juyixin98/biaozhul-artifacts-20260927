@@ -1,0 +1,39 @@
+[package]
+name = "fm-index-service"
+version = "0.1.0"
+edition = "2024"
+description = "字节文本 FM 索引后端服务（BWT + rank 检查点 + SA 采样 + Axum HTTP 接口）"
+
+[lib]
+name = "fm_index_service"
+path = "src/lib.rs"
+
+[[bin]]
+name = "fm-index-service"
+path = "src/main.rs"
+
+[dependencies]
+axum = "0.7"
+base64 = "0.23.1"
+hex = "0.4.3"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+sha2 = "0.11.0"
+thiserror = "2.0.21"
+tokio = { version = "1.53.1", features = ["full"] }
+toml = "1.1.6"
+tower = { version = "0.5.3", features = ["util"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+
+[dev-dependencies]
+base64 = "0.23.1"
+hex = "0.4.3"
+http-body-util = "0.1.5"
+serde_json = "1.0.151"
+sha2 = "0.11.0"
+tempfile = "3.27.0"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
