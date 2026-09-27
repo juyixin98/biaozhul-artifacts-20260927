@@ -1,0 +1,15 @@
+{
+  "expected_finding_codes": [
+    "table_version_switch",
+    "table_version_switch"
+  ],
+  "parsed_packets": 4,
+  "pat_version_after": 2,
+  "pmt_version_after": 2,
+  "streams_after": [
+    {
+      "elementary_pid": 4352,
+      "stream_type": 27
+    }
+  ]
+}

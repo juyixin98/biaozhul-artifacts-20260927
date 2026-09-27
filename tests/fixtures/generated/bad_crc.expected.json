@@ -1,0 +1,12 @@
+{
+  "expected_ledger": [
+    {
+      "kind": "section_crc_error",
+      "packet_index": 1,
+      "pid": 4096
+    }
+  ],
+  "parsed_packets": 3,
+  "programs": {},
+  "unknown_pid_packet_index": 2
+}

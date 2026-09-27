@@ -1,0 +1,35 @@
+{
+  "adaptation_only_packet_indexes": [
+    3,
+    4
+  ],
+  "expected_ledger": [
+    {
+      "kind": "signaled_discontinuity",
+      "packet_index": 5,
+      "pid": 4352
+    }
+  ],
+  "expected_pes": [
+    {
+      "corrupt": false,
+      "length": 114,
+      "pid": 4352,
+      "pts": 9000,
+      "start_packet_index": 2
+    },
+    {
+      "corrupt": false,
+      "length": 134,
+      "pid": 4352,
+      "pts": 27000,
+      "start_packet_index": 5
+    }
+  ],
+  "parsed_packets": 6,
+  "programs": {
+    "768": {
+      "pmt_pid": 4096
+    }
+  }
+}

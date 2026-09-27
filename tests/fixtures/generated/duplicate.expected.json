@@ -1,0 +1,25 @@
+{
+  "expected_ledger": [
+    {
+      "kind": "duplicate_packet",
+      "packet_index": 3,
+      "pid": 4352
+    }
+  ],
+  "expected_pes": [
+    {
+      "corrupt": false,
+      "dts": null,
+      "length": 264,
+      "pid": 4352,
+      "pts": 9000,
+      "start_packet_index": 2
+    }
+  ],
+  "parsed_packets": 5,
+  "programs": {
+    "768": {
+      "pmt_pid": 4096
+    }
+  }
+}

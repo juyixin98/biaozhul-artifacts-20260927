@@ -1,0 +1,54 @@
+{
+  "expected_finding_codes": [
+    "cc_baseline",
+    "cc_baseline",
+    "cc_baseline",
+    "cc_baseline",
+    "cc_baseline"
+  ],
+  "expected_pes": [
+    {
+      "corrupt": false,
+      "dts": null,
+      "length": 314,
+      "pid": 4352,
+      "pts": 9000,
+      "start_packet_index": 2
+    },
+    {
+      "corrupt": false,
+      "dts": null,
+      "length": 314,
+      "pid": 4352,
+      "pts": 27000,
+      "start_packet_index": 4
+    },
+    {
+      "corrupt": false,
+      "dts": null,
+      "length": 214,
+      "pid": 4353,
+      "pts": 8000,
+      "start_packet_index": 6
+    }
+  ],
+  "parsed_packets": 8,
+  "programs": {
+    "768": {
+      "pmt_pid": 4096,
+      "streams": [
+        {
+          "elementary_pid": 4352,
+          "stream_type": 27
+        },
+        {
+          "elementary_pid": 4353,
+          "stream_type": 15
+        }
+      ]
+    }
+  },
+  "resyncs": 0,
+  "trailing_bytes": 0,
+  "verdict": "accepted"
+}

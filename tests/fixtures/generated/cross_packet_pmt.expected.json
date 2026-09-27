@@ -1,0 +1,36 @@
+{
+  "expected_finding_codes_absent": [
+    "section_crc_error",
+    "section_malformed"
+  ],
+  "expected_pes": [
+    {
+      "corrupt": false,
+      "length": 164,
+      "pid": 4352,
+      "pts": 9000,
+      "start_packet_index": 3
+    }
+  ],
+  "parsed_packets": 4,
+  "pmt_section_bytes": 216,
+  "pmt_split_packet_indexes": [
+    1,
+    2
+  ],
+  "programs": {
+    "768": {
+      "pmt_pid": 4096,
+      "streams": [
+        {
+          "elementary_pid": 4352,
+          "stream_type": 27
+        },
+        {
+          "elementary_pid": 4353,
+          "stream_type": 15
+        }
+      ]
+    }
+  }
+}

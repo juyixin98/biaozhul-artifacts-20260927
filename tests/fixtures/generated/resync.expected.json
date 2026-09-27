@@ -1,0 +1,31 @@
+{
+  "expected_ledger": [
+    {
+      "kind": "resync_occurred",
+      "packet_index_after": 4
+    }
+  ],
+  "expected_pes": [
+    {
+      "corrupt": false,
+      "length": 198,
+      "pid": 4352,
+      "pts": 9000,
+      "start_packet_index": 2
+    },
+    {
+      "corrupt": false,
+      "length": 174,
+      "pid": 4352,
+      "pts": 36000,
+      "start_packet_index": 4
+    }
+  ],
+  "garbage_byte_offset": 752,
+  "garbage_bytes": 10,
+  "programs": {
+    "768": {
+      "pmt_pid": 4096
+    }
+  }
+}
