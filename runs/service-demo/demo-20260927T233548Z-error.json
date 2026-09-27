@@ -1,0 +1,1 @@
+{"detail":{"code":"FIELD_UNKNOWN","message":"unknown field 'bogus'; allowed: author, body, category, notes, published, tags, title, year","pos":{"start":0,"end":9}}}

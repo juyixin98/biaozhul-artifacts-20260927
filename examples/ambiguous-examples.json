@@ -1,0 +1,692 @@
+{
+  "successful": [
+    {
+      "query": "quick brown fox",
+      "ambiguity": "adjacent words: implicit AND or a phrase?",
+      "resolution": "implicit AND of three terms (only double quotes make a phrase)",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "quick"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "brown"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "fox"
+          }
+        ],
+        "op": "and"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "brown"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "fox"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "quick"
+          }
+        ],
+        "op": "and"
+      },
+      "query_hash": "48b21c908ca9fab4b0406a61d140968025faffe22215ceea717bf4651bd83742",
+      "status": "ok"
+    },
+    {
+      "query": "a AND b OR c",
+      "ambiguity": "does AND or OR bind tighter?",
+      "resolution": "(a AND b) OR c — AND binds tighter than OR",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "children": [
+              {
+                "field": null,
+                "op": "term",
+                "value": "a"
+              },
+              {
+                "field": null,
+                "op": "term",
+                "value": "b"
+              }
+            ],
+            "op": "and"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "c"
+          }
+        ],
+        "op": "or"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "c"
+          },
+          {
+            "children": [
+              {
+                "field": null,
+                "op": "term",
+                "value": "a"
+              },
+              {
+                "field": null,
+                "op": "term",
+                "value": "b"
+              }
+            ],
+            "op": "and"
+          }
+        ],
+        "op": "or"
+      },
+      "query_hash": "7d2b7757cd5097307f54a3393cdb0c89e2dea57a75fb8ae39c5d0b2971162f9c",
+      "status": "ok"
+    },
+    {
+      "query": "a b OR c d",
+      "ambiguity": "mixing implicit conjunction with OR",
+      "resolution": "(a AND b) OR (c AND d)",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "children": [
+              {
+                "field": null,
+                "op": "term",
+                "value": "a"
+              },
+              {
+                "field": null,
+                "op": "term",
+                "value": "b"
+              }
+            ],
+            "op": "and"
+          },
+          {
+            "children": [
+              {
+                "field": null,
+                "op": "term",
+                "value": "c"
+              },
+              {
+                "field": null,
+                "op": "term",
+                "value": "d"
+              }
+            ],
+            "op": "and"
+          }
+        ],
+        "op": "or"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "children": [
+              {
+                "field": null,
+                "op": "term",
+                "value": "a"
+              },
+              {
+                "field": null,
+                "op": "term",
+                "value": "b"
+              }
+            ],
+            "op": "and"
+          },
+          {
+            "children": [
+              {
+                "field": null,
+                "op": "term",
+                "value": "c"
+              },
+              {
+                "field": null,
+                "op": "term",
+                "value": "d"
+              }
+            ],
+            "op": "and"
+          }
+        ],
+        "op": "or"
+      },
+      "query_hash": "3b3fa53b7dd87aadf8f3e1688360c16916343a538174ff11a8fb8913b47c800e",
+      "status": "ok"
+    },
+    {
+      "query": "NOT a b",
+      "ambiguity": "does NOT cover the rest of the line?",
+      "resolution": "(NOT a) AND b — NOT binds tighter than AND",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "child": {
+              "field": null,
+              "op": "term",
+              "value": "a"
+            },
+            "op": "not"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "b"
+          }
+        ],
+        "op": "and"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "b"
+          },
+          {
+            "child": {
+              "field": null,
+              "op": "term",
+              "value": "a"
+            },
+            "op": "not"
+          }
+        ],
+        "op": "and"
+      },
+      "query_hash": "9549e633d07c0705e6b728ad9766438094e6f5d63799fb7f54a5954ade887d0f",
+      "status": "ok"
+    },
+    {
+      "query": "NOT a OR b",
+      "ambiguity": "is the negation over the whole disjunction?",
+      "resolution": "(NOT a) OR b",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "child": {
+              "field": null,
+              "op": "term",
+              "value": "a"
+            },
+            "op": "not"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "b"
+          }
+        ],
+        "op": "or"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "b"
+          },
+          {
+            "child": {
+              "field": null,
+              "op": "term",
+              "value": "a"
+            },
+            "op": "not"
+          }
+        ],
+        "op": "or"
+      },
+      "query_hash": "eb32b03093bc7c7b67c473026456c0ac7be6f5c06e49d510a71188cb13b5f0f0",
+      "status": "ok"
+    },
+    {
+      "query": "\"a AND b OR c\"",
+      "ambiguity": "are the quoted words operators?",
+      "resolution": "one phrase token; symbols inside quotes are literal",
+      "raw_parse_tree": {
+        "field": null,
+        "op": "phrase",
+        "value": "a AND b OR c"
+      },
+      "canonical_tree": {
+        "field": null,
+        "op": "phrase",
+        "value": "a AND b OR c"
+      },
+      "query_hash": "bbea837ea13d5ba3ca1721a419dedf7a0eb80b9489a1ea363872dbfe41ae5f5c",
+      "status": "ok"
+    },
+    {
+      "query": "and or not",
+      "ambiguity": "are lowercase and/or/not keywords?",
+      "resolution": "three ordinary terms (only uppercase reserved words are operators)",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "and"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "or"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "not"
+          }
+        ],
+        "op": "and"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "and"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "not"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "or"
+          }
+        ],
+        "op": "and"
+      },
+      "query_hash": "d5e59b4c70efd68d61a174f597a46ee3d2285a6743e216bd9428083bb897deb6",
+      "status": "ok"
+    },
+    {
+      "query": "year:[2000 TO 2010]",
+      "ambiguity": "inclusive or exclusive endpoints?",
+      "resolution": "inclusive both ends: gte 2000, lte 2010",
+      "raw_parse_tree": {
+        "field": "year",
+        "gt": null,
+        "gte": "2000",
+        "lt": null,
+        "lte": "2010",
+        "op": "range"
+      },
+      "canonical_tree": {
+        "field": "year",
+        "gt": null,
+        "gte": "2000",
+        "lt": null,
+        "lte": "2010",
+        "op": "range"
+      },
+      "query_hash": "adbc58b08cbb36a6d98000c30cf5cc7d6416771e0fc0f3d9f5c1b2b1934acbc0",
+      "status": "ok"
+    },
+    {
+      "query": "year:{2000 TO 2010}",
+      "ambiguity": "inclusive or exclusive endpoints?",
+      "resolution": "exclusive both ends: gt 2000, lt 2010",
+      "raw_parse_tree": {
+        "field": "year",
+        "gt": "2000",
+        "gte": null,
+        "lt": "2010",
+        "lte": null,
+        "op": "range"
+      },
+      "canonical_tree": {
+        "field": "year",
+        "gt": "2000",
+        "gte": null,
+        "lt": "2010",
+        "lte": null,
+        "op": "range"
+      },
+      "query_hash": "f0435877c3d8608f0fa54ec4a44d11539fd8182bb40f9d17d4f591ac1a5f6f21",
+      "status": "ok"
+    },
+    {
+      "query": "title:fox tags:dog",
+      "ambiguity": "two field clauses next to each other",
+      "resolution": "implicit AND of the two field-qualified terms",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "field": "title",
+            "op": "term",
+            "value": "fox"
+          },
+          {
+            "field": "tags",
+            "op": "term",
+            "value": "dog"
+          }
+        ],
+        "op": "and"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": "tags",
+            "op": "term",
+            "value": "dog"
+          },
+          {
+            "field": "title",
+            "op": "term",
+            "value": "fox"
+          }
+        ],
+        "op": "and"
+      },
+      "query_hash": "9f3c58823b7471b72626769455daf32097e7f118a6780e772336e57841db06a3",
+      "status": "ok"
+    },
+    {
+      "query": "a OR b OR c",
+      "ambiguity": "left or right associativity?",
+      "resolution": "left-associative, flattened to one OR node in canonical form",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "a"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "b"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "c"
+          }
+        ],
+        "op": "or"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "a"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "b"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "c"
+          }
+        ],
+        "op": "or"
+      },
+      "query_hash": "7859649771f4a62bda68a5e103ed8616df3abdcbc8a4aceff5a59e5f312189e6",
+      "status": "ok"
+    },
+    {
+      "query": "NOT NOT fox",
+      "ambiguity": "double negation",
+      "resolution": "fox (double negation eliminated)",
+      "raw_parse_tree": {
+        "child": {
+          "child": {
+            "field": null,
+            "op": "term",
+            "value": "fox"
+          },
+          "op": "not"
+        },
+        "op": "not"
+      },
+      "canonical_tree": {
+        "field": null,
+        "op": "term",
+        "value": "fox"
+      },
+      "query_hash": "ce0ea9500d78fadf841b0ac2cdfa6c996ba6215a84547c450a197a9826f5804c",
+      "status": "ok"
+    },
+    {
+      "query": "fox fox fox",
+      "ambiguity": "repeated identical clauses",
+      "resolution": "single term fox (idempotence)",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "fox"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "fox"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "fox"
+          }
+        ],
+        "op": "and"
+      },
+      "canonical_tree": {
+        "field": null,
+        "op": "term",
+        "value": "fox"
+      },
+      "query_hash": "ce0ea9500d78fadf841b0ac2cdfa6c996ba6215a84547c450a197a9826f5804c",
+      "status": "ok"
+    },
+    {
+      "query": "()",
+      "ambiguity": "empty parentheses",
+      "resolution": "match_all (empty query semantics)",
+      "raw_parse_tree": {
+        "op": "match_all"
+      },
+      "canonical_tree": {
+        "op": "match_all"
+      },
+      "query_hash": "ef41ac6609f9a2c393b8368afd0af88de3b651869598eeb18ae22b404d2c2a29",
+      "status": "ok"
+    },
+    {
+      "query": "body:价格 AND salmon",
+      "ambiguity": "non-ASCII term and Latin term mixed",
+      "resolution": "AND of a Chinese unigram term with a Latin term",
+      "raw_parse_tree": {
+        "children": [
+          {
+            "field": "body",
+            "op": "term",
+            "value": "价格"
+          },
+          {
+            "field": null,
+            "op": "term",
+            "value": "salmon"
+          }
+        ],
+        "op": "and"
+      },
+      "canonical_tree": {
+        "children": [
+          {
+            "field": null,
+            "op": "term",
+            "value": "salmon"
+          },
+          {
+            "field": "body",
+            "op": "term",
+            "value": "价格"
+          }
+        ],
+        "op": "and"
+      },
+      "query_hash": "304b8baacb654bc3164c8a7de036d66edca8b30bb054dfb3de22bc05d7010958",
+      "status": "ok"
+    }
+  ],
+  "errors": [
+    {
+      "query": "",
+      "situation": "blank query",
+      "expected_code": "QUERY_EMPTY",
+      "status": "error",
+      "actual_code": "QUERY_EMPTY",
+      "message": "query is empty or whitespace-only",
+      "pos": {
+        "start": 0,
+        "end": 0
+      }
+    },
+    {
+      "query": "a AND",
+      "situation": "dangling operator",
+      "expected_code": "UNEXPECTED_TOKEN",
+      "status": "error",
+      "actual_code": "UNEXPECTED_TOKEN",
+      "message": "missing right operand after AND",
+      "pos": {
+        "start": 2,
+        "end": 5
+      }
+    },
+    {
+      "query": "OR a",
+      "situation": "operator with no left operand",
+      "expected_code": "UNEXPECTED_TOKEN",
+      "status": "error",
+      "actual_code": "UNEXPECTED_TOKEN",
+      "message": "OR is an operator but no operand surrounds it",
+      "pos": {
+        "start": 0,
+        "end": 2
+      }
+    },
+    {
+      "query": "(a b",
+      "situation": "unclosed parenthesis",
+      "expected_code": "UNBALANCED_PAREN",
+      "status": "error",
+      "actual_code": "UNBALANCED_PAREN",
+      "message": "unmatched '('",
+      "pos": {
+        "start": 0,
+        "end": 1
+      }
+    },
+    {
+      "query": "a ) b",
+      "situation": "closing parenthesis without opener",
+      "expected_code": "UNBALANCED_PAREN",
+      "status": "error",
+      "actual_code": "UNBALANCED_PAREN",
+      "message": "unmatched ')'",
+      "pos": {
+        "start": 2,
+        "end": 3
+      }
+    },
+    {
+      "query": "\"abc",
+      "situation": "unterminated phrase",
+      "expected_code": "UNTERMINATED_STRING",
+      "status": "error",
+      "actual_code": "UNTERMINATED_STRING",
+      "message": "unterminated quoted string (missing closing '\"')",
+      "pos": {
+        "start": 0,
+        "end": 4
+      }
+    },
+    {
+      "query": "year:[2000 2010]",
+      "situation": "missing TO in range",
+      "expected_code": "RANGE_MALFORMED",
+      "status": "error",
+      "actual_code": "RANGE_MALFORMED",
+      "message": "range bounds must be separated by TO",
+      "pos": {
+        "start": 11,
+        "end": 15
+      }
+    },
+    {
+      "query": "title:",
+      "situation": "field qualifier without value",
+      "expected_code": "UNEXPECTED_TOKEN",
+      "status": "error",
+      "actual_code": "UNEXPECTED_TOKEN",
+      "message": "field 'title' is missing a value",
+      "pos": {
+        "start": 0,
+        "end": 6
+      }
+    },
+    {
+      "query": "title :fox",
+      "situation": "space before ':' breaks the field qualifier",
+      "expected_code": "UNEXPECTED_TOKEN",
+      "status": "error",
+      "actual_code": "UNEXPECTED_TOKEN",
+      "message": "unexpected token ':'",
+      "pos": {
+        "start": 6,
+        "end": 7
+      }
+    },
+    {
+      "query": "year:[2010 TO 2000]",
+      "situation": "inverted range",
+      "expected_code": "RANGE_EMPTY",
+      "status": "error",
+      "actual_code": "RANGE_EMPTY",
+      "message": "empty range on year: '2010' .. '2000'",
+      "pos": {
+        "start": 0,
+        "end": 19
+      }
+    }
+  ]
+}

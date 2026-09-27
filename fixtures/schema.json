@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "title": {"type": "text"},
+    "body": {"type": "text"},
+    "notes": {"type": "text"},
+    "category": {"type": "keyword"},
+    "tags": {"type": "keyword", "multi_valued": true},
+    "author": {"type": "keyword"},
+    "year": {"type": "int"},
+    "published": {"type": "date"}
+  },
+  "default_fields": ["title", "body"],
+  "title_field": "doc_id"
+}
