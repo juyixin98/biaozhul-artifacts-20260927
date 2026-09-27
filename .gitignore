@@ -1,0 +1,7 @@
+# generated artifacts
+/bin/
+/reports/
+/logs/
+*.db
+*.db-wal
+*.db-shm

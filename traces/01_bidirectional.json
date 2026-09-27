@@ -1,0 +1,53 @@
+{
+  "run_id": "r-bidirectional-01",
+  "name": "TCP handshake + UDP bidirectional flow and peer enforcement",
+  "start_at": "2026-01-01T00:00:00Z",
+  "packets": [
+    {
+      "seq": 1, "label": "tcp-syn-open",
+      "observed_at": "2026-01-01T00:00:00Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 2, "label": "tcp-synack-return",
+      "observed_at": "2026-01-01T00:00:01Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"syn": true, "ack": true}
+    },
+    {
+      "seq": 3, "label": "tcp-ack-established",
+      "observed_at": "2026-01-01T00:00:02Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"ack": true}
+    },
+    {
+      "seq": 4, "label": "tcp-data-return",
+      "observed_at": "2026-01-01T00:00:03Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"ack": true}
+    },
+    {
+      "seq": 5, "label": "udp-query-open",
+      "observed_at": "2026-01-01T00:00:04Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 53000, "dst_ip": "198.51.100.200", "dst_port": 53, "proto": "UDP"}
+    },
+    {
+      "seq": 6, "label": "udp-response-return",
+      "observed_at": "2026-01-01T00:00:05Z", "direction": "inbound",
+      "tuple": {"src_ip": "198.51.100.200", "src_port": 53, "dst_ip": "198.51.100.1", "dst_port": 30000, "proto": "UDP"}
+    },
+    {
+      "seq": 7, "label": "tcp-wrong-peer-injected",
+      "observed_at": "2026-01-01T00:00:06Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.99", "src_port": 9000, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"ack": true}
+    },
+    {
+      "seq": 8, "label": "tcp-unsolicited-port",
+      "observed_at": "2026-01-01T00:00:07Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20050, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "run_id": "r-tcp-close-01",
+  "name": "TCP graceful close passes through FIN_WAIT/TIME_WAIT and releases the port",
+  "start_at": "2026-01-01T00:00:00Z",
+  "packets": [
+    {
+      "seq": 1, "label": "syn",
+      "observed_at": "2026-01-01T00:00:00Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 41001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 2, "label": "synack",
+      "observed_at": "2026-01-01T00:00:01Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"syn": true, "ack": true}
+    },
+    {
+      "seq": 3, "label": "ack",
+      "observed_at": "2026-01-01T00:00:02Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 41001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"ack": true}
+    },
+    {
+      "seq": 4, "label": "internal-fin",
+      "observed_at": "2026-01-01T00:00:03Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 41001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"fin": true, "ack": true}
+    },
+    {
+      "seq": 5, "label": "peer-fin",
+      "observed_at": "2026-01-01T00:00:04Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"fin": true, "ack": true}
+    },
+    {
+      "seq": 6, "label": "stray-syn-while-timewait-rejected",
+      "observed_at": "2026-01-01T00:00:05Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 7, "label": "final-ack-closes",
+      "observed_at": "2026-01-01T00:00:06Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"ack": true}
+    },
+    {
+      "seq": 8, "label": "late-segment-after-close",
+      "observed_at": "2026-01-01T00:00:07Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.1", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"ack": true}
+    },
+    {
+      "seq": 9, "label": "new-flow-reuses-freed-port",
+      "observed_at": "2026-01-01T00:00:08Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.9", "src_port": 42000, "dst_ip": "203.0.113.50", "dst_port": 443, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    }
+  ]
+}

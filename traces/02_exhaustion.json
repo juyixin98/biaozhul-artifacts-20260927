@@ -1,0 +1,47 @@
+{
+  "run_id": "r-exhaustion-01",
+  "name": "TCP port pool exhaustion after two distinct flows",
+  "start_at": "2026-01-01T00:00:00Z",
+  "config": {
+    "external_ip": "198.51.100.1",
+    "tcp_port_min": 20000,
+    "tcp_port_max": 20001,
+    "udp_port_min": 30000,
+    "udp_port_max": 30001,
+    "tcp_syn_timeout": "30s",
+    "tcp_established_timeout": "5m0s",
+    "tcp_fin_timeout": "2m0s",
+    "tcp_time_wait_timeout": "30s",
+    "udp_timeout": "2m0s",
+    "reuse_cooldown": "0s",
+    "sqlite_path": "",
+    "http_listen": "127.0.0.1:18080",
+    "reaper_gap": "1s"
+  },
+  "packets": [
+    {
+      "seq": 1, "label": "flow-a-syn",
+      "observed_at": "2026-01-01T00:00:00Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 2, "label": "flow-b-syn",
+      "observed_at": "2026-01-01T00:00:01Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.3", "src_port": 40002, "dst_ip": "203.0.113.11", "dst_port": 443, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 3, "label": "flow-c-syn-exhausted",
+      "observed_at": "2026-01-01T00:00:02Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.4", "src_port": 40003, "dst_ip": "203.0.113.12", "dst_port": 8080, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 4, "label": "flow-a-data-still-active",
+      "observed_at": "2026-01-01T00:00:03Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    }
+  ]
+}

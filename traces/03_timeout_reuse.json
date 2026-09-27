@@ -1,0 +1,58 @@
+{
+  "run_id": "r-timeout-reuse-01",
+  "name": "UDP timeout frees the port for reuse; late return and clock rollback cannot revive it",
+  "start_at": "2026-01-01T00:00:00Z",
+  "config": {
+    "external_ip": "198.51.100.1",
+    "tcp_port_min": 20000,
+    "tcp_port_max": 20099,
+    "udp_port_min": 30000,
+    "udp_port_max": 30000,
+    "tcp_syn_timeout": "30s",
+    "tcp_established_timeout": "5m0s",
+    "tcp_fin_timeout": "2m0s",
+    "tcp_time_wait_timeout": "30s",
+    "udp_timeout": "10s",
+    "reuse_cooldown": "0s",
+    "sqlite_path": "",
+    "http_listen": "127.0.0.1:18080",
+    "reaper_gap": "1s"
+  },
+  "packets": [
+    {
+      "seq": 1, "label": "udp-open-A",
+      "observed_at": "2026-01-01T00:00:00Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 50001, "dst_ip": "198.51.100.200", "dst_port": 53, "proto": "UDP"}
+    },
+    {
+      "seq": 2, "label": "udp-return-A-active",
+      "observed_at": "2026-01-01T00:00:05Z", "direction": "inbound",
+      "tuple": {"src_ip": "198.51.100.200", "src_port": 53, "dst_ip": "198.51.100.1", "dst_port": 30000, "proto": "UDP"}
+    },
+    {
+      "seq": 3, "label": "udp-open-B-exhausted",
+      "observed_at": "2026-01-01T00:00:08Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.3", "src_port": 50002, "dst_ip": "198.51.100.201", "dst_port": 53, "proto": "UDP"}
+    },
+    {
+      "seq": 4, "label": "udp-return-A-after-timeout-late",
+      "observed_at": "2026-01-01T00:00:20Z", "direction": "inbound",
+      "tuple": {"src_ip": "198.51.100.200", "src_port": 53, "dst_ip": "198.51.100.1", "dst_port": 30000, "proto": "UDP"}
+    },
+    {
+      "seq": 5, "label": "udp-open-C-reuses-port",
+      "observed_at": "2026-01-01T00:00:21Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.4", "src_port": 50004, "dst_ip": "198.51.100.202", "dst_port": 123, "proto": "UDP"}
+    },
+    {
+      "seq": 6, "label": "udp-return-C",
+      "observed_at": "2026-01-01T00:00:22Z", "direction": "inbound",
+      "tuple": {"src_ip": "198.51.100.202", "src_port": 123, "dst_ip": "198.51.100.1", "dst_port": 30000, "proto": "UDP"}
+    },
+    {
+      "seq": 7, "label": "udp-old-A-stamped-in-the-past",
+      "observed_at": "2026-01-01T00:00:06Z", "direction": "inbound",
+      "tuple": {"src_ip": "198.51.100.200", "src_port": 53, "dst_ip": "198.51.100.1", "dst_port": 30000, "proto": "UDP"}
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "r-input-rejects-01",
+  "name": "Input validation classes: fragments, protocols, bad endpoints, external address mismatch",
+  "start_at": "2026-01-01T00:00:00Z",
+  "packets": [
+    {
+      "seq": 1, "label": "fragment-dropped",
+      "observed_at": "2026-01-01T00:00:00Z", "direction": "outbound", "fragmented": true,
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 2, "label": "protocol-unsupported-icmp",
+      "observed_at": "2026-01-01T00:00:01Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 0, "dst_ip": "203.0.113.10", "dst_port": 0, "proto": "ICMP"}
+    },
+    {
+      "seq": 3, "label": "bad-src-ip",
+      "observed_at": "2026-01-01T00:00:02Z", "direction": "outbound",
+      "tuple": {"src_ip": "not-an-ip", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 4, "label": "zero-dst-port",
+      "observed_at": "2026-01-01T00:00:03Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 0, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 5, "label": "tcp-no-flags",
+      "observed_at": "2026-01-01T00:00:04Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"}
+    },
+    {
+      "seq": 6, "label": "tcp-synfin-illegal",
+      "observed_at": "2026-01-01T00:00:05Z", "direction": "outbound",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true, "fin": true}
+    },
+    {
+      "seq": 7, "label": "bad-direction",
+      "observed_at": "2026-01-01T00:00:06Z", "direction": "sideways",
+      "tuple": {"src_ip": "10.0.0.2", "src_port": 40001, "dst_ip": "203.0.113.10", "dst_port": 80, "proto": "TCP"},
+      "tcp_flags": {"syn": true}
+    },
+    {
+      "seq": 8, "label": "inbound-wrong-external-address",
+      "observed_at": "2026-01-01T00:00:07Z", "direction": "inbound",
+      "tuple": {"src_ip": "203.0.113.10", "src_port": 80, "dst_ip": "198.51.100.9", "dst_port": 20000, "proto": "TCP"},
+      "tcp_flags": {"syn": true, "ack": true}
+    }
+  ]
+}
