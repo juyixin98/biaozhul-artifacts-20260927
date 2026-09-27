@@ -1,0 +1,7 @@
+{"run_id":"api-lifecycle","test":"api_lifecycle","phase":"step","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"step 0 verdict=\"pending\""}
+{"run_id":"api-lifecycle","test":"api_lifecycle","phase":"step","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"step 1 verdict=\"pending\""}
+{"run_id":"api-lifecycle","test":"api_lifecycle","phase":"step","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"step 2 verdict=\"pending\""}
+{"run_id":"api-close","test":"api_close","phase":"closed_conflict","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"cannot apply step 2 to a closed monitor"}
+{"run_id":"api-err-compute","test":"api_errors","phase":"computation_failed","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"fact `amount` is \"oops\", expected a number"}
+{"run_id":"api-lifecycle","test":"api_lifecycle","phase":"recovery_consistent","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"resumed monitor obligations equal original run"}
+{"run_id":"api-evaluate","test":"api_evaluate","phase":"verified","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"live evidence bundle verified after cut+restore"}

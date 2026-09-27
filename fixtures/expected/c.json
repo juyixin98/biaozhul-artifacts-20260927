@@ -1,0 +1,20 @@
+{
+  "run_id": "hand-c-missing-response",
+  "verdict": "violated",
+  "closed": true,
+  "obligations": [
+    { "id": "ack_order#o0",  "rule_id": "ack_order",  "kind": "response", "status": "violated", "trigger_step": 0, "deadline_step": 2, "ordinal": 0, "resolution_step": null, "violation_step": 2 },
+    { "id": "ship_order#o0", "rule_id": "ship_order", "kind": "response", "status": "violated", "trigger_step": 0, "deadline_step": 3, "ordinal": 0, "resolution_step": null, "violation_step": 3,
+      "correlation": { "key": "order_id", "value": "o-3" } },
+    { "id": "bill_order#o0", "rule_id": "bill_order", "kind": "response", "status": "violated", "trigger_step": 0, "deadline_step": 4, "ordinal": 0, "resolution_step": null, "violation_step": 4 },
+    { "id": "always_healthy#o0", "rule_id": "always_healthy", "kind": "sustain", "status": "satisfied", "trigger_step": null, "deadline_step": null, "ordinal": 0, "resolution_step": 5, "violation_step": null }
+  ],
+  "hand_reasoning": [
+    "s0 order_placed(o-3,pri9) spawns ack#0 d2, ship#0 d3, bill#0 d4",
+    "s1 note: nothing",
+    "s2 note: ack#0 deadline expires -> violated@2 (deadline_expired)",
+    "s3 note: ship#0 deadline expires -> violated@3",
+    "s4 invoiced without invoice_no: pattern requires exists(invoice_no), does NOT match; bill#0 expires -> violated@4",
+    "s5 end: no pending response obligations remain; always_healthy held on 5 events -> satisfied"
+  ]
+}

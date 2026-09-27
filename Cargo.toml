@@ -1,0 +1,27 @@
+[package]
+name = "bounded-monitor"
+version = "0.1.0"
+edition = "2021"
+description = "Bounded temporal rule monitor over finite traces (respond-within-N / hold-for-K)"
+license = "MIT"
+
+[lib]
+name = "bounded_monitor"
+path = "src/lib.rs"
+
+[[bin]]
+name = "bounded-monitor"
+path = "src/bin/cli.rs"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"

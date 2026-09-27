@@ -1,0 +1,69 @@
+[
+  {
+    "run_id": "recorded-smoke",
+    "data": {
+      "index": 0,
+      "closed": false,
+      "spawned": [
+        "ack_order#o0",
+        "ship_order#o0",
+        "bill_order#o0"
+      ],
+      "resolved": [],
+      "violated": [],
+      "verdict": "pending"
+    }
+  },
+  {
+    "run_id": "recorded-smoke",
+    "data": {
+      "index": 1,
+      "closed": false,
+      "spawned": [],
+      "resolved": [
+        "ack_order#o0"
+      ],
+      "violated": [],
+      "verdict": "pending"
+    }
+  },
+  {
+    "run_id": "recorded-smoke",
+    "data": {
+      "index": 2,
+      "closed": false,
+      "spawned": [],
+      "resolved": [
+        "ship_order#o0"
+      ],
+      "violated": [],
+      "verdict": "pending"
+    }
+  },
+  {
+    "run_id": "recorded-smoke",
+    "data": {
+      "index": 3,
+      "closed": false,
+      "spawned": [],
+      "resolved": [
+        "bill_order#o0"
+      ],
+      "violated": [],
+      "verdict": "pending"
+    }
+  },
+  {
+    "run_id": "recorded-smoke",
+    "data": {
+      "index": 4,
+      "closed": true,
+      "spawned": [],
+      "resolved": [
+        "always_healthy#o0"
+      ],
+      "violated": [],
+      "verdict": "satisfied"
+    }
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "description": "Boundary satisfaction: response arrives exactly on the deadline (within_steps), multiple obligations from one trigger, sustain window completes exactly, always rule sees exactly K=3 events.",
+  "steps": [
+    {
+      "index": 0,
+      "event": {
+        "type": "order_placed",
+        "facts": { "order_id": "o-1", "priority": 9, "healthy": true }
+      }
+    },
+    {
+      "index": 1,
+      "event": {
+        "type": "order_ack",
+        "facts": { "order_id": "o-1", "healthy": true }
+      }
+    },
+    {
+      "index": 2,
+      "event": {
+        "type": "shipped",
+        "facts": { "order_id": "o-1", "healthy": true }
+      }
+    },
+    {
+      "index": 3,
+      "event": {
+        "type": "invoiced",
+        "facts": { "order_id": "o-1", "invoice_no": "INV-1", "healthy": true }
+      }
+    },
+    { "index": 4, "event": { "type": "end_marker", "facts": { "healthy": true } }, "end": true }
+  ]
+}

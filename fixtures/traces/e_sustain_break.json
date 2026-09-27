@@ -1,0 +1,10 @@
+{
+  "description": "Sustain break across overlapping windows: fan_on at steps 0 and 1 starts hold windows 0..2 and 1..3. Both hold at s0/s1/s2. At s3 only window #o1 (1..3) is still open and the condition breaks there (cool=false, not fan_on): #o1 violated@3; #o0 already completed satisfied@2. This isolates window-lifetime bookkeeping. A second pairing where both open windows break at the same step is covered by Rust unit test sustain::two_open_windows_break_at_one_step.",
+  "steps": [
+    { "index": 0, "event": { "type": "fan_on", "facts": { "cool": true, "healthy": true } } },
+    { "index": 1, "event": { "type": "fan_on", "facts": { "cool": true, "healthy": true } } },
+    { "index": 2, "event": { "type": "tick", "facts": { "cool": true, "healthy": true } } },
+    { "index": 3, "event": { "type": "tick", "facts": { "cool": false, "healthy": true } } },
+    { "index": 4, "event": { "type": "end_marker", "facts": { "healthy": true } }, "end": true }
+  ]
+}

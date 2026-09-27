@@ -1,0 +1,20 @@
+{
+  "description": "Missing responses: no ack within 2, no matching shipped within 3, and the invoiced event at step 4 lacks invoice_no so the bill response pattern does not match. Every deadline expires on its boundary step. always_healthy held on all 5 events and is satisfied.",
+  "steps": [
+    {
+      "index": 0,
+      "event": {
+        "type": "order_placed",
+        "facts": { "order_id": "o-3", "priority": 9, "healthy": true }
+      }
+    },
+    { "index": 1, "event": { "type": "note", "facts": { "healthy": true } } },
+    { "index": 2, "event": { "type": "note", "facts": { "healthy": true } } },
+    { "index": 3, "event": { "type": "note", "facts": { "healthy": true } } },
+    {
+      "index": 4,
+      "event": { "type": "invoiced", "facts": { "healthy": true } }
+    },
+    { "index": 5, "event": { "type": "end_marker", "facts": { "healthy": true } }, "end": true }
+  ]
+}

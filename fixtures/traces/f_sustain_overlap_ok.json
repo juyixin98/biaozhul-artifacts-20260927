@@ -1,0 +1,11 @@
+{
+  "description": "Sustain overlap satisfied: fan_on at steps 0 and 2. Window #o0 covers 0..2 (holds at 0,1,2 -> satisfied at 2). Window #o1 covers 2..4 (holds at 2,3,4 -> satisfied at 4). Both complete exactly on their last required step. Closing marker at 5.",
+  "steps": [
+    { "index": 0, "event": { "type": "fan_on", "facts": { "cool": true, "healthy": true } } },
+    { "index": 1, "event": { "type": "tick", "facts": { "cool": true, "healthy": true } } },
+    { "index": 2, "event": { "type": "fan_on", "facts": { "cool": true, "healthy": true } } },
+    { "index": 3, "event": { "type": "tick", "facts": { "cool": true, "healthy": true } } },
+    { "index": 4, "event": { "type": "tick", "facts": { "cool": true, "healthy": true } } },
+    { "index": 5, "event": { "type": "end_marker", "facts": { "healthy": true } }, "end": true }
+  ]
+}

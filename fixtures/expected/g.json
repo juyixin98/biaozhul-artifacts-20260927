@@ -1,0 +1,12 @@
+{
+  "run_id": "hand-g-empty-closed",
+  "verdict": "satisfied",
+  "closed": true,
+  "obligations": [
+    { "id": "always_healthy#o0", "rule_id": "always_healthy", "kind": "sustain", "status": "satisfied", "trigger_step": null, "deadline_step": null, "ordinal": 0, "resolution_step": 0, "violation_step": null }
+  ],
+  "hand_reasoning": [
+    "s0 is a bare end marker (no event): zero triggers fire",
+    "always_healthy on a zero-event trace holds vacuously -> satisfied@0, reason vacuously_held_empty_trace"
+  ]
+}

@@ -1,0 +1,5 @@
+{"run_id":"err-compute","test":"compute","phase":"non_numeric_fact","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"fact `amount` is \"not-a-number\", expected a number"}
+{"run_id":"err-input","test":"input","phase":"zero_window","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"response rule `r` needs within_steps >= 1"}
+{"run_id":"err-resource","test":"resource","phase":"max_steps_exceeded","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"step cap 3 reached"}
+{"run_id":"err-state","test":"state","phase":"step_index_gap","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"expected index 0, got 1"}
+{"run_id":"err-state","test":"state","phase":"monitor_closed","step":null,"verdict":null,"spawned":[],"resolved":[],"violated":[],"pending":[],"detail":"cannot apply step 2 to a closed monitor"}

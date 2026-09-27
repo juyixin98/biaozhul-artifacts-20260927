@@ -1,0 +1,60 @@
+{
+  "id": "shop",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "type": "response",
+      "id": "ack_order",
+      "trigger": { "event_type": "order_placed" },
+      "response": {
+        "event_type": "order_ack",
+        "where": { "op": "eq", "path": "type", "value": "order_ack" }
+      },
+      "within_steps": 2,
+      "consume": "all_matching"
+    },
+    {
+      "type": "response",
+      "id": "ship_order",
+      "trigger": { "event_type": "order_placed", "where": { "op": "gte", "path": "priority", "value": 5 } },
+      "response": { "event_type": "shipped" },
+      "within_steps": 3,
+      "consume": "all_matching",
+      "correlation_key": "order_id"
+    },
+    {
+      "type": "response",
+      "id": "bill_order",
+      "trigger": { "event_type": "order_placed" },
+      "response": {
+        "event_type": "invoiced",
+        "where": { "op": "exists", "path": "invoice_no" }
+      },
+      "within_steps": 4,
+      "consume": "earliest_deadline"
+    },
+    {
+      "type": "sustain",
+      "id": "cool_after_fan",
+      "condition": {
+        "op": "or",
+        "any": [
+          { "op": "eq", "path": "type", "value": "fan_on" },
+          { "op": "eq", "path": "cool", "value": true }
+        ]
+      },
+      "duration_steps": 3,
+      "scope": {
+        "mode": "after_trigger",
+        "trigger": { "event_type": "fan_on" }
+      }
+    },
+    {
+      "type": "sustain",
+      "id": "always_healthy",
+      "condition": { "op": "eq", "path": "healthy", "value": true },
+      "duration_steps": 3,
+      "scope": { "mode": "always" }
+    }
+  ]
+}

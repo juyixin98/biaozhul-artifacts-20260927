@@ -1,0 +1,19 @@
+{
+  "run_id": "hand-a-boundary-satisfied",
+  "verdict": "satisfied",
+  "closed": true,
+  "obligations": [
+    { "id": "ack_order#o0",  "rule_id": "ack_order",  "kind": "response", "status": "satisfied", "trigger_step": 0, "deadline_step": 2, "ordinal": 0, "resolution_step": 1, "violation_step": null },
+    { "id": "ship_order#o0", "rule_id": "ship_order", "kind": "response", "status": "satisfied", "trigger_step": 0, "deadline_step": 3, "ordinal": 0, "resolution_step": 2, "violation_step": null,
+      "correlation": { "key": "order_id", "value": "o-1" } },
+    { "id": "bill_order#o0", "rule_id": "bill_order", "kind": "response", "status": "satisfied", "trigger_step": 0, "deadline_step": 4, "ordinal": 0, "resolution_step": 3, "violation_step": null },
+    { "id": "always_healthy#o0", "rule_id": "always_healthy", "kind": "sustain", "status": "satisfied", "trigger_step": null, "deadline_step": null, "ordinal": 0, "resolution_step": 4, "violation_step": null }
+  ],
+  "hand_reasoning": [
+    "s0 order_placed spawns ack#0(d=2), ship#0(d=3, corr o-1), bill#0(d=4)",
+    "s1 order_ack satisfies ack#0 one step early",
+    "s2 shipped order_id=o-1 satisfies ship#0 one step before deadline 3",
+    "s3 invoiced with invoice_no satisfies bill#0 one step before deadline 4",
+    "always_healthy: 4 observed events >= K=3, held at every event -> satisfied at close s4"
+  ]
+}

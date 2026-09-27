@@ -1,0 +1,41 @@
+{
+  "description": "Overlapping triggers: two order_placed events create independent obligations per rule (ack#o0/#o1, ship#o0/#o1, bill#o0/#o1). One early ack satisfies only ack#o0. One shipped with the wrong correlation value (o-2 vs pending o-1) resolves nothing; the correct shipped event at the boundary satisfies ship#o1 only. Earliest-deadline policy on bill_order: one invoiced event with an invoice satisfies only bill#o0; bill#o1 is sealed by the end marker.",
+  "steps": [
+    {
+      "index": 0,
+      "event": {
+        "type": "order_placed",
+        "facts": { "order_id": "o-1", "priority": 9, "healthy": true }
+      }
+    },
+    {
+      "index": 1,
+      "event": {
+        "type": "order_ack",
+        "facts": { "order_id": "o-1", "healthy": true }
+      }
+    },
+    {
+      "index": 2,
+      "event": {
+        "type": "order_placed",
+        "facts": { "order_id": "o-2", "priority": 7, "healthy": true }
+      }
+    },
+    {
+      "index": 3,
+      "event": {
+        "type": "shipped",
+        "facts": { "order_id": "o-2", "healthy": true }
+      }
+    },
+    {
+      "index": 4,
+      "event": {
+        "type": "invoiced",
+        "facts": { "invoice_no": "INV-1", "healthy": true }
+      }
+    },
+    { "index": 5, "event": { "type": "end_marker", "facts": { "healthy": true } }, "end": true }
+  ]
+}

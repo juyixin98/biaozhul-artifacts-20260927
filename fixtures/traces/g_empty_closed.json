@@ -1,0 +1,6 @@
+{
+  "description": "Empty trace closed immediately by a bare end marker (no observed event). No trigger ever fires; the always_healthy rule holds vacuously. Final verdict: satisfied.",
+  "steps": [
+    { "index": 0, "end": true }
+  ]
+}

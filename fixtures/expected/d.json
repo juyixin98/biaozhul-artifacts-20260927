@@ -1,0 +1,20 @@
+{
+  "run_id": "hand-d-early-close",
+  "verdict": "violated",
+  "closed": true,
+  "obligations": [
+    { "id": "ack_order#o0",  "rule_id": "ack_order",  "kind": "response", "status": "violated", "trigger_step": 0, "deadline_step": 2, "ordinal": 0, "resolution_step": null, "violation_step": 2 },
+    { "id": "ship_order#o0", "rule_id": "ship_order", "kind": "response", "status": "violated", "trigger_step": 0, "deadline_step": 3, "ordinal": 0, "resolution_step": null, "violation_step": 2,
+      "correlation": { "key": "order_id", "value": "o-4" } },
+    { "id": "bill_order#o0", "rule_id": "bill_order", "kind": "response", "status": "violated", "trigger_step": 0, "deadline_step": 4, "ordinal": 0, "resolution_step": null, "violation_step": 2 },
+    { "id": "always_healthy#o0", "rule_id": "always_healthy", "kind": "sustain", "status": "violated", "trigger_step": null, "deadline_step": null, "ordinal": 0, "resolution_step": null, "violation_step": 2 }
+  ],
+  "hand_reasoning": [
+    "s0 order_placed(o-4,pri9) spawns ack#0 d2, ship#0 d3, bill#0 d4",
+    "s1 note: nothing",
+    "s2 bare end marker (no event) runs the seal: no deadline expiration processing occurs",
+    "ack#0 is still pending at the close (deadline 2 has no response event): sealed trace_closed_unresolved@2",
+    "ship#0, bill#0 deadlines are beyond the trace: sealed trace_closed_unresolved@2",
+    "always_healthy: 2 observed events < K=3 -> trace_too_short_for_duration @2"
+  ]
+}

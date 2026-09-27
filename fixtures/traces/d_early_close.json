@@ -1,0 +1,14 @@
+{
+  "description": "Early end: the trace closes at step 2 via a BARE end marker (no observed event) while three response obligations are still pending (ack deadline 2 lands exactly on the close, ship deadline 3 and bill deadline 4 are beyond it). All three are sealed as violations by the end marker. always_healthy observed only 2 events < duration 3, so it is a violation of class trace_too_short_for_duration.",
+  "steps": [
+    {
+      "index": 0,
+      "event": {
+        "type": "order_placed",
+        "facts": { "order_id": "o-4", "priority": 9, "healthy": true }
+      }
+    },
+    { "index": 1, "event": { "type": "note", "facts": { "healthy": true } } },
+    { "index": 2, "end": true }
+  ]
+}

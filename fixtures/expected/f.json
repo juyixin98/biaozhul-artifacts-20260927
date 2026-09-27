@@ -1,0 +1,18 @@
+{
+  "run_id": "hand-f-sustain-overlap-ok",
+  "verdict": "satisfied",
+  "closed": true,
+  "obligations": [
+    { "id": "cool_after_fan#o0", "rule_id": "cool_after_fan", "kind": "sustain", "status": "satisfied", "trigger_step": 0, "deadline_step": 2, "ordinal": 0, "resolution_step": 2, "violation_step": null },
+    { "id": "cool_after_fan#o1", "rule_id": "cool_after_fan", "kind": "sustain", "status": "satisfied", "trigger_step": 2, "deadline_step": 4, "ordinal": 1, "resolution_step": 4, "violation_step": null },
+    { "id": "always_healthy#o0", "rule_id": "always_healthy", "kind": "sustain", "status": "satisfied", "trigger_step": null, "deadline_step": null, "ordinal": 0, "resolution_step": 5, "violation_step": null }
+  ],
+  "hand_reasoning": [
+    "s0 fan_on: cool#0 window [0,2], holds at s0",
+    "s1 tick cool=true: cool#0 holds",
+    "s2 fan_on: cool#0 holds and deadline=2 -> satisfied@2; spawn cool#1 window [2,4], holds at s2",
+    "s3 tick cool=true: cool#1 holds",
+    "s4 tick cool=true: cool#1 deadline=4 holds -> satisfied@4",
+    "s5 end marker: always_healthy 5 events>=K3 held throughout -> satisfied@5"
+  ]
+}

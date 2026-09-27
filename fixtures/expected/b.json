@@ -1,0 +1,24 @@
+{
+  "run_id": "hand-b-overlap-triggers",
+  "verdict": "violated",
+  "closed": true,
+  "obligations": [
+    { "id": "ack_order#o0",  "rule_id": "ack_order",  "kind": "response", "status": "satisfied", "trigger_step": 0, "deadline_step": 2, "ordinal": 0, "resolution_step": 1, "violation_step": null },
+    { "id": "ack_order#o1",  "rule_id": "ack_order",  "kind": "response", "status": "violated",  "trigger_step": 2, "deadline_step": 4, "ordinal": 1, "resolution_step": null, "violation_step": 4 },
+    { "id": "ship_order#o0", "rule_id": "ship_order", "kind": "response", "status": "violated",  "trigger_step": 0, "deadline_step": 3, "ordinal": 0, "resolution_step": null, "violation_step": 3,
+      "correlation": { "key": "order_id", "value": "o-1" } },
+    { "id": "ship_order#o1", "rule_id": "ship_order", "kind": "response", "status": "satisfied", "trigger_step": 2, "deadline_step": 5, "ordinal": 1, "resolution_step": 3, "violation_step": null,
+      "correlation": { "key": "order_id", "value": "o-2" } },
+    { "id": "bill_order#o0", "rule_id": "bill_order", "kind": "response", "status": "satisfied", "trigger_step": 0, "deadline_step": 4, "ordinal": 0, "resolution_step": 4, "violation_step": null },
+    { "id": "bill_order#o1", "rule_id": "bill_order", "kind": "response", "status": "violated",  "trigger_step": 2, "deadline_step": 6, "ordinal": 1, "resolution_step": null, "violation_step": 5 },
+    { "id": "always_healthy#o0", "rule_id": "always_healthy", "kind": "sustain", "status": "satisfied", "trigger_step": null, "deadline_step": null, "ordinal": 0, "resolution_step": 5, "violation_step": null }
+  ],
+  "hand_reasoning": [
+    "s0 order_placed(o-1,pri9) spawns ack#0 d2, ship#0 d3 corr o-1, bill#0 d4",
+    "s1 order_ack matches and resolves ack#0 only",
+    "s2 order_placed(o-2,pri7) spawns ack#1 d4, ship#1 d5 corr o-2, bill#1 d6",
+    "s3 shipped o-2: corr excludes ship#0 (wants o-1), resolves ship#1 exactly? within=3 deadline=5, s3 early; ship#0 expires at s3 (deadline) -> violated@3",
+    "s4 invoiced with invoice_no: bill consume=earliest_deadline picks bill#0 (d4 <= d6); ack#1 deadline=4 with no ack -> violated@4",
+    "s5 end marker: bill#1 still pending (d6 beyond trace) -> trace_closed_unresolved @5; always_healthy 5 events>=K3 held -> satisfied"
+  ]
+}
