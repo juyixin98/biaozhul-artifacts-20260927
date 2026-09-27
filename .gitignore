@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# Local databases (rebuilt from fixtures)
+data/
+*.db
+
+# OS
+.DS_Store

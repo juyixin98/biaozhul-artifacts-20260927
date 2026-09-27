@@ -1,0 +1,17 @@
+{
+  "limits": {
+    "max_query_bytes": 4096,
+    "max_nesting_depth": 12,
+    "max_clauses": 64,
+    "max_query_terms": 256,
+    "max_phrase_terms": 16,
+    "max_result_window": 1000
+  },
+  "search": {"default_limit": 10, "max_limit": 100},
+  "paths": {
+    "schema": "fixtures/schema.json",
+    "corpus": "fixtures/corpus.jsonl",
+    "database": "data/searchdsl.db"
+  },
+  "server": {"host": "127.0.0.1", "port": 8000}
+}

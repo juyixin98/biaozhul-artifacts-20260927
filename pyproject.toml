@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "searchdsl"
+version = "1.0.0"
+description = "Search DSL: field-qualified boolean query parser, canonical query tree, SQLite-backed retrieval"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.115.6",
+    "uvicorn==0.34.0",
+    "pydantic==2.10.4",
+]
+
+[project.optional-dependencies]
+test = ["httpx==0.28.1", "pytest==8.3.4"]
+
+[project.scripts]
+searchdsl = "searchdsl.cli:main"
+
+[tool.setuptools]
+packages = ["searchdsl"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
