@@ -1,0 +1,12 @@
+# Example configuration for prereg2d-server.
+# Precedence: environment variables (PREREG2D_*) override these values,
+# which in turn override built-in defaults.
+
+# Directory holding events.jsonl and CURRENT (created if missing).
+data_dir = "./data"
+
+# TCP bind address.
+bind = "127.0.0.1:8080"
+
+# Maximum accepted JSON request body in bytes.
+max_body_bytes = 16777216

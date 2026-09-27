@@ -1,0 +1,75 @@
+{
+  "fixture": "handcalc-v1",
+  "note": "All expected sums were computed by hand (and independently by tests/common HashMap oracle). Coordinates: xs=[-5,0,7], ys=[-3,2,100]. Rectangles are inclusive [x_lo,x_hi]x[y_lo,y_hi].",
+  "register": { "xs": [-5, 0, 7], "ys": [-3, 2, 100] },
+  "batches": [
+    {
+      "name": "baseline",
+      "updates": [
+        { "x": -5, "y": -3, "delta": 3 },
+        { "x": 0, "y": 2, "delta": -5 },
+        { "x": 7, "y": 100, "delta": 10 }
+      ]
+    },
+    {
+      "name": "cancel-corner",
+      "updates": [ { "x": -5, "y": -3, "delta": -3 } ]
+    }
+  ],
+  "rejected_batches": [
+    {
+      "name": "unregistered-x",
+      "error_code": "unregistered_coordinate",
+      "updates": [ { "x": 1, "y": 2, "delta": 4 } ]
+    },
+    {
+      "name": "unregistered-y",
+      "error_code": "unregistered_coordinate",
+      "updates": [ { "x": 0, "y": 999, "delta": 4 } ]
+    },
+    {
+      "name": "duplicate-in-batch",
+      "error_code": "duplicate_in_batch",
+      "updates": [
+        { "x": 0, "y": 2, "delta": 1 },
+        { "x": 0, "y": 2, "delta": 2 }
+      ]
+    },
+    {
+      "name": "empty-batch",
+      "error_code": "empty_batch",
+      "updates": []
+    },
+    {
+      "name": "overflow-max",
+      "error_code": "overflow",
+      "updates": [ { "x": 7, "y": 100, "delta": 9223372036854775807 } ]
+    },
+    {
+      "name": "overflow-min",
+      "error_code": "overflow",
+      "updates": [
+        { "x": 0, "y": 2, "delta": -9223372036854775808 }
+      ]
+    }
+  ],
+  "rebuild": { "xs": [0, 7, 42], "ys": [2, 100] },
+  "queries": [
+    { "at_version": 1, "name": "baseline-is-zero", "x_lo": -9223372036854775808, "x_hi": 9223372036854775807, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "sum": 0 },
+    { "at_version": 2, "name": "whole-plane-v2", "x_lo": -9223372036854775808, "x_hi": 9223372036854775807, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "sum": 8 },
+    { "at_version": 2, "name": "mixed-sign-window", "x_lo": -5, "x_hi": 0, "y_lo": -3, "y_hi": 2, "sum": -2 },
+    { "at_version": 2, "name": "point-exact-negative", "x_lo": 0, "x_hi": 0, "y_lo": 2, "y_hi": 2, "sum": -5 },
+    { "at_version": 2, "name": "point-exact-positive", "x_lo": 7, "x_hi": 7, "y_lo": 100, "y_hi": 100, "sum": 10 },
+    { "at_version": 2, "name": "valid-bounds-no-points-x-gap", "x_lo": 1, "x_hi": 6, "y_lo": -3, "y_hi": 100, "sum": 0 },
+    { "at_version": 2, "name": "inverted-x-empty", "x_lo": 1, "x_hi": 0, "y_lo": -3, "y_hi": 100, "sum": 0, "empty": true },
+    { "at_version": 2, "name": "inverted-y-empty", "x_lo": -5, "x_hi": 7, "y_lo": 5, "y_hi": 4, "sum": 0, "empty": true },
+    { "at_version": 2, "name": "boundary-touch-inclusive", "x_lo": -5, "x_hi": 7, "y_lo": -3, "y_hi": 100, "sum": 8 },
+    { "at_version": 3, "name": "cancelled-corner-zero", "x_lo": -5, "x_hi": -5, "y_lo": -3, "y_hi": -3, "sum": 0 },
+    { "at_version": 3, "name": "whole-plane-v3", "x_lo": -9223372036854775808, "x_hi": 9223372036854775807, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "sum": 5 },
+    { "at_version": 4, "name": "rebuild-dropped-point", "x_lo": -5, "x_hi": -5, "y_lo": -3, "y_hi": -3, "sum": 0 },
+    { "at_version": 4, "name": "rebuild-carried-negative", "x_lo": 0, "x_hi": 0, "y_lo": 2, "y_hi": 2, "sum": -5 },
+    { "at_version": 4, "name": "rebuild-whole-plane", "x_lo": -9223372036854775808, "x_hi": 9223372036854775807, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "sum": 5 },
+    { "at_version": 2, "name": "old-version-still-readable-after-rebuild", "x_lo": -9223372036854775808, "x_hi": 9223372036854775807, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "sum": 8 },
+    { "at_version": 3, "name": "v3-still-readable-after-rebuild", "x_lo": -9223372036854775808, "x_hi": 9223372036854775807, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "sum": 5 }
+  ]
+}
