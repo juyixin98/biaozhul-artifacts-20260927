@@ -46,12 +46,13 @@ set -e
 python - "$OUT" "$STATUS" "$RUN_ID" <<'PY'
 import json, sys
 out_dir, status, run_id = sys.argv[1], int(sys.argv[2]), sys.argv[3]
+import re as _re
 log_lines = open(f"{out_dir}/pytest.log").read().strip().splitlines()
-summary_line = next(
-    (l.strip() for l in reversed(log_lines)
-     if ("passed" in l or "failed" in l) and "warning" not in l.lower()),
-    "",
-)
+summary_line = ""
+for l in reversed(log_lines):
+    if _re.search(r"\d+ (?:passed|failed)", l):
+        summary_line = l.strip()
+        break
 summary = {
     "run_id": run_id,
     "verdict": "pass" if status == 0 else "fail",

@@ -146,8 +146,11 @@ SQLite `meta` 表保存 `package_version`、`dsl_version(dsl-1.0)`、
 
 ## 6. 目录中的可复核产物
 
-* `runs/test-results/<run_id>/`：`context.json`、`pytest.log`、
-  `summary.json`、`truth-differential.jsonl`
-* `runs/service-demo/`：真实服务正常/异常响应与 `server.log`
-* `runs/diagnose/*.jsonl`：正常与异常查询的逐步诊断
-* `examples/ambiguous-examples.json`：歧义样例的明确 AST 与错误位置
+冻结的一份证据已提交在 `examples/run-evidence/`（正常与异常的真实结果）：
+
+* `test-results/`：`context.json`、`pytest.log`（118 项逐条）、`summary.json`、
+  `truth-differential.jsonl`（300/300 `match`）
+* `service-demo/`：真实 HTTP 服务的正常(200)/异常(400)响应与 `server.log`
+* `diagnose/ok.jsonl`、`diagnose/error.jsonl`：正常与异常查询的逐步诊断
+
+重新运行会在被忽略的 `runs/` 下生成带最新 `run_id` 的新证据（脚本见上）。

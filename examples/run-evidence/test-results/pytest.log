@@ -131,4 +131,4 @@ tests/test_validate.py::test_valid_queries_pass PASSED                   [100%]
     _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-======================== 118 passed, 1 warning in 1.17s ========================
+======================== 118 passed, 1 warning in 1.36s ========================

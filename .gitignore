@@ -9,5 +9,9 @@ __pycache__/
 data/
 *.db
 
+# Regenerable run output (a frozen, reviewable copy lives in
+# examples/run-evidence/; refresh it via scripts/*.sh when desired)
+runs/
+
 # OS
 .DS_Store
