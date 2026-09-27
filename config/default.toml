@@ -1,0 +1,42 @@
+# deletable-cuckoo 示例配置
+# 所有字段均可被环境变量覆盖（见 README「配置」一节）。
+
+[server]
+# 监听地址；生产环境按需改为 0.0.0.0，本合成夹具默认只绑定回环。
+host = "127.0.0.1"
+port = 8080
+# 请求体上限（字节），防止超大键拖垮服务。
+max_request_bytes = 1048576
+
+[filter]
+# 桶数量必须是 2 的幂（备用桶异或定位依赖这一点）。
+num_buckets = 1024
+# 每个桶的槽位数。
+bucket_size = 4
+# 指纹位宽，合法范围 [4, 32]。指纹空间为 2^f - 1（0 保留给空槽）。
+fingerprint_bits = 16
+# 插入时迁移（kick）次数上限；超过即判定容量耗尽并整体回滚。
+max_kicks = 500
+# 哈希内核的域分离种子（32 字节十六进制）。
+# 这是合成夹具固定种子；真实部署必须通过环境变量覆盖。
+seed_hex = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+
+[storage]
+# 快照与密钥文件所在目录。
+data_dir = "./data"
+snapshot_file = "snapshot.bin"
+# 落盘是否 fsync（测试可关；生产应保持 true）。
+fsync = true
+
+[credentials]
+# 删除凭证 HMAC 密钥（32 字节十六进制）。
+# 留空时使用 <data_dir>/secret.key：不存在则自动生成（0600）并持久化。
+hmac_secret_hex = ""
+
+[logging]
+# trace | debug | info | warn | error
+level = "info"
+# text | json
+format = "text"
+# 运行身份；留空则启动时随机生成（写入日志与响应头 x-run-id）。
+run_id = ""
