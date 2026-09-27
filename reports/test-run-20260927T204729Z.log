@@ -1,0 +1,315 @@
+# flowrouter 测试运行报告（最终提交代码，gofmt 后）
+
+- 运行时间(UTC): 2026-09-27T20:47:29Z
+- Go: go version go1.23.4 linux/amd64 | 平台: Linux 6.8.0-90-generic x86_64 | Python: Python 3.12.3
+
+## go vet
+vet: PASS
+
+## go test ./... -race -count=1 -v
+?   	flowrouter/cmd/flowrouter	[no test files]
+?   	flowrouter/cmd/genfixtures	[no test files]
+?   	flowrouter/internal/testutil	[no test files]
+=== RUN   TestRouteAndVersion
+--- PASS: TestRouteAndVersion (0.10s)
+=== RUN   TestInputErrorClass
+--- PASS: TestInputErrorClass (0.05s)
+=== RUN   TestDownRoute503AndRecovery
+--- PASS: TestDownRoute503AndRecovery (0.06s)
+=== RUN   TestZeroWeightConfigReturns503
+--- PASS: TestZeroWeightConfigReturns503 (0.05s)
+=== RUN   TestBulkRoutePartialErrors
+--- PASS: TestBulkRoutePartialErrors (0.04s)
+=== RUN   TestStatsDistinguishesShares
+--- PASS: TestStatsDistinguishesShares (0.07s)
+=== RUN   TestReplayEndToEnd
+--- PASS: TestReplayEndToEnd (0.55s)
+=== RUN   TestReplayUnknownVersionFailureRecorded
+--- PASS: TestReplayUnknownVersionFailureRecorded (0.07s)
+=== RUN   TestReplayBadInputs
+=== RUN   TestReplayBadInputs/unknown_flowset
+=== RUN   TestReplayBadInputs/bad_version
+--- PASS: TestReplayBadInputs (0.10s)
+    --- PASS: TestReplayBadInputs/unknown_flowset (0.00s)
+    --- PASS: TestReplayBadInputs/bad_version (0.01s)
+=== RUN   TestHealthz
+--- PASS: TestHealthz (0.09s)
+=== RUN   TestConcurrentRoutingNoRace
+--- PASS: TestConcurrentRoutingNoRace (1.84s)
+PASS
+ok  	flowrouter/internal/api	4.047s
+=== RUN   TestKindsAndCodes
+--- PASS: TestKindsAndCodes (0.00s)
+=== RUN   TestAsAndIs
+--- PASS: TestAsAndIs (0.00s)
+=== RUN   TestWithCause
+--- PASS: TestWithCause (0.00s)
+PASS
+ok  	flowrouter/internal/apperr	1.017s
+=== RUN   TestLoadValid
+--- PASS: TestLoadValid (0.00s)
+=== RUN   TestLoadZeroWeightsAccepted
+--- PASS: TestLoadZeroWeightsAccepted (0.00s)
+=== RUN   TestInvalidConfigs
+=== RUN   TestInvalidConfigs/empty_listen
+=== RUN   TestInvalidConfigs/bad_vpw
+=== RUN   TestInvalidConfigs/duplicate_id
+=== RUN   TestInvalidConfigs/empty_id
+=== RUN   TestInvalidConfigs/negative_weight
+=== RUN   TestInvalidConfigs/bad_address
+=== RUN   TestInvalidConfigs/cap_too_small
+=== RUN   TestInvalidConfigs/bad_duration
+--- PASS: TestInvalidConfigs (0.01s)
+    --- PASS: TestInvalidConfigs/empty_listen (0.00s)
+    --- PASS: TestInvalidConfigs/bad_vpw (0.00s)
+    --- PASS: TestInvalidConfigs/duplicate_id (0.00s)
+    --- PASS: TestInvalidConfigs/empty_id (0.00s)
+    --- PASS: TestInvalidConfigs/negative_weight (0.00s)
+    --- PASS: TestInvalidConfigs/bad_address (0.00s)
+    --- PASS: TestInvalidConfigs/cap_too_small (0.00s)
+    --- PASS: TestInvalidConfigs/bad_duration (0.00s)
+=== RUN   TestMissingAndMalformedFile
+--- PASS: TestMissingAndMalformedFile (0.00s)
+PASS
+ok  	flowrouter/internal/config	1.031s
+=== RUN   TestCanonicalKeyNormalizes
+--- PASS: TestCanonicalKeyNormalizes (0.00s)
+=== RUN   TestTupleValidation
+--- PASS: TestTupleValidation (0.00s)
+=== RUN   TestErrorKind
+--- PASS: TestErrorKind (0.00s)
+=== RUN   TestHashSpacesDisjoint
+--- PASS: TestHashSpacesDisjoint (0.00s)
+PASS
+ok  	flowrouter/internal/flow	1.027s
+=== RUN   TestKnownVectors
+--- PASS: TestKnownVectors (0.00s)
+=== RUN   TestFNVReferenceVector
+--- PASS: TestFNVReferenceVector (0.00s)
+=== RUN   TestDomainPrefixesAndDeterminism
+--- PASS: TestDomainPrefixesAndDeterminism (0.00s)
+PASS
+ok  	flowrouter/internal/hashx	1.021s
+=== RUN   TestProbeMarksDownAfterThreshold
+2026/09/28 04:47:30 WARN member marked down after failed probes member=a strikes=2
+--- PASS: TestProbeMarksDownAfterThreshold (0.00s)
+=== RUN   TestBackgroundProberEventuallyMarksDown
+2026/09/28 04:47:30 WARN member marked down after failed probes member=a strikes=2
+2026/09/28 04:47:30 WARN member marked down after failed probes member=a strikes=3
+--- PASS: TestBackgroundProberEventuallyMarksDown (0.01s)
+=== RUN   TestProbeSuccessNeverRecovers
+--- PASS: TestProbeSuccessNeverRecovers (0.00s)
+=== RUN   TestSingleFailureBelowThresholdKeepsMemberUp
+2026/09/28 04:47:30 WARN member marked down after failed probes member=a strikes=3
+--- PASS: TestSingleFailureBelowThresholdKeepsMemberUp (0.00s)
+=== RUN   TestBadProbeConfigRejected
+--- PASS: TestBadProbeConfigRejected (0.00s)
+PASS
+ok  	flowrouter/internal/health	1.039s
+=== RUN   TestReplayMatchesGolden
+=== RUN   TestReplayMatchesGolden/s1_add_member
+=== RUN   TestReplayMatchesGolden/s2_remove_heavy_member
+=== RUN   TestReplayMatchesGolden/s3_weight_change
+=== RUN   TestReplayMatchesGolden/s4_all_down_then_recover
+=== RUN   TestReplayMatchesGolden/s5_zero_weight_member
+=== RUN   TestReplayMatchesGolden/s6_capped_ring
+--- PASS: TestReplayMatchesGolden (4.49s)
+    --- PASS: TestReplayMatchesGolden/s1_add_member (0.49s)
+    --- PASS: TestReplayMatchesGolden/s2_remove_heavy_member (0.68s)
+    --- PASS: TestReplayMatchesGolden/s3_weight_change (0.87s)
+    --- PASS: TestReplayMatchesGolden/s4_all_down_then_recover (1.54s)
+    --- PASS: TestReplayMatchesGolden/s5_zero_weight_member (0.03s)
+    --- PASS: TestReplayMatchesGolden/s6_capped_ring (0.51s)
+=== RUN   TestReplayUnknownVersionClassifiedAndPersisted
+--- PASS: TestReplayUnknownVersionClassifiedAndPersisted (0.03s)
+=== RUN   TestFlowSetValidation
+=== RUN   TestFlowSetValidation/not_json
+=== RUN   TestFlowSetValidation/no_name
+=== RUN   TestFlowSetValidation/empty
+=== RUN   TestFlowSetValidation/bad_tuple
+=== RUN   TestFlowSetValidation/dup_tuple
+--- PASS: TestFlowSetValidation (0.00s)
+    --- PASS: TestFlowSetValidation/not_json (0.00s)
+    --- PASS: TestFlowSetValidation/no_name (0.00s)
+    --- PASS: TestFlowSetValidation/empty (0.00s)
+    --- PASS: TestFlowSetValidation/bad_tuple (0.00s)
+    --- PASS: TestFlowSetValidation/dup_tuple (0.00s)
+=== RUN   TestFileLibraryTraversalRejected
+--- PASS: TestFileLibraryTraversalRejected (0.00s)
+PASS
+ok  	flowrouter/internal/replay	5.544s
+=== RUN   TestAllocateLinearExact
+--- PASS: TestAllocateLinearExact (0.00s)
+=== RUN   TestAllocateEmpty
+--- PASS: TestAllocateEmpty (0.00s)
+=== RUN   TestAllocateCappedLargestRemainder
+--- PASS: TestAllocateCappedLargestRemainder (0.00s)
+=== RUN   TestAllocateCappedTieBreakDeterministic
+--- PASS: TestAllocateCappedTieBreakDeterministic (0.00s)
+=== RUN   TestAllocateCapErrors
+--- PASS: TestAllocateCapErrors (0.00s)
+=== RUN   TestCappedSkewedWeightFeasible
+--- PASS: TestCappedSkewedWeightFeasible (0.00s)
+=== RUN   TestAllocateTotalsConsistent
+--- PASS: TestAllocateTotalsConsistent (0.00s)
+=== RUN   TestGoldenAgainstIndependentOracle
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/traffic_share
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/allocation
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/ownership
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/transitions
+=== RUN   TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/traffic_share
+--- PASS: TestGoldenAgainstIndependentOracle (4.27s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/ownership (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/transitions (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s1_add_member/traffic_share (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/ownership (0.01s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/transitions (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s2_remove_heavy_member/traffic_share (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/ownership (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/transitions (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s3_weight_change/traffic_share (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/ownership (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/transitions (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s4_all_down_then_recover/traffic_share (0.01s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/ownership (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/transitions (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s5_zero_weight_member/traffic_share (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/ownership (0.01s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/transitions (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_smoke/s6_capped_ring/traffic_share (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/allocation (0.01s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/ownership (0.24s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/transitions (0.07s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s1_add_member/traffic_share (0.10s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/ownership (0.13s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/transitions (0.05s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s2_remove_heavy_member/traffic_share (0.06s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/ownership (0.10s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/transitions (0.04s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s3_weight_change/traffic_share (0.06s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/ownership (0.13s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/transitions (0.16s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s4_all_down_then_recover/traffic_share (0.09s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/ownership (0.09s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/transitions (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s5_zero_weight_member/traffic_share (0.03s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/allocation (0.00s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/ownership (0.10s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/transitions (0.04s)
+    --- PASS: TestGoldenAgainstIndependentOracle/flows_10k/s6_capped_ring/traffic_share (0.06s)
+=== RUN   TestDeterminismAcrossRebuilds
+--- PASS: TestDeterminismAcrossRebuilds (0.06s)
+=== RUN   TestStableMappingOnMemberChange
+--- PASS: TestStableMappingOnMemberChange (0.02s)
+=== RUN   TestEmptyRingExplicit
+--- PASS: TestEmptyRingExplicit (0.00s)
+=== RUN   TestBucketShareVsTrafficShare
+--- PASS: TestBucketShareVsTrafficShare (1.70s)
+PASS
+ok  	flowrouter/internal/ring	7.080s
+=== RUN   TestInitialLoadAndVersion
+--- PASS: TestInitialLoadAndVersion (0.01s)
+=== RUN   TestStableRoutingSameGeneration
+--- PASS: TestStableRoutingSameGeneration (0.00s)
+=== RUN   TestVersionCASConflict
+--- PASS: TestVersionCASConflict (0.01s)
+=== RUN   TestImmediateExclusionAndRecovery
+--- PASS: TestImmediateExclusionAndRecovery (0.03s)
+=== RUN   TestDownUnknownMember
+--- PASS: TestDownUnknownMember (0.00s)
+=== RUN   TestZeroWeightMemberNeverReceives
+--- PASS: TestZeroWeightMemberNeverReceives (0.01s)
+=== RUN   TestAllMembersDownNoHealthy
+--- PASS: TestAllMembersDownNoHealthy (0.01s)
+=== RUN   TestConcurrentConfigReadsWhileMutating
+--- PASS: TestConcurrentConfigReadsWhileMutating (0.29s)
+=== RUN   TestNegativeWeightRejected
+--- PASS: TestNegativeWeightRejected (0.01s)
+=== RUN   TestCountersAreNotShares
+--- PASS: TestCountersAreNotShares (0.01s)
+PASS
+ok  	flowrouter/internal/router	1.409s
+=== RUN   TestRingVersionRoundTrip
+--- PASS: TestRingVersionRoundTrip (0.04s)
+=== RUN   TestUnknownVersionIsConflict
+--- PASS: TestUnknownVersionIsConflict (0.03s)
+=== RUN   TestUnknownRunIsConflict
+--- PASS: TestUnknownRunIsConflict (0.03s)
+=== RUN   TestBadJSONRejectedAsInvalidInput
+--- PASS: TestBadJSONRejectedAsInvalidInput (0.03s)
+=== RUN   TestRunLifecycleAndDecisions
+--- PASS: TestRunLifecycleAndDecisions (0.04s)
+=== RUN   TestBusyDatabaseMapsToResourceExhausted
+--- PASS: TestBusyDatabaseMapsToResourceExhausted (0.11s)
+=== RUN   TestMaxRingVersionEmptyIsZero
+--- PASS: TestMaxRingVersionEmptyIsZero (0.04s)
+PASS
+ok  	flowrouter/internal/store	1.333s
+
+## go test ./... -cover
+	flowrouter/cmd/genfixtures		coverage: 0.0% of statements
+	flowrouter/cmd/flowrouter		coverage: 0.0% of statements
+	flowrouter/internal/testutil		coverage: 0.0% of statements
+ok  	flowrouter/internal/api	0.658s	coverage: 70.0% of statements
+ok  	flowrouter/internal/apperr	0.006s	coverage: 93.5% of statements
+ok  	flowrouter/internal/config	0.011s	coverage: 83.3% of statements
+ok  	flowrouter/internal/flow	0.010s	coverage: 84.6% of statements
+ok  	flowrouter/internal/hashx	0.004s	coverage: 100.0% of statements
+ok  	flowrouter/internal/health	0.017s	coverage: 75.8% of statements
+ok  	flowrouter/internal/replay	0.253s	coverage: 87.8% of statements
+ok  	flowrouter/internal/ring	0.828s	coverage: 93.7% of statements
+ok  	flowrouter/internal/router	0.054s	coverage: 74.7% of statements
+ok  	flowrouter/internal/store	0.059s	coverage: 77.6% of statements
