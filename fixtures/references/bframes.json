@@ -1,0 +1,30 @@
+{
+  "fixture": "bframes.mp4",
+  "comment": "B帧重排：解码序 I P B B P B。DTS=0..500 步长100；CTO(v1有符号)=[0,200,-100,-100,100,-100]；PTS=DTS+CTO。单段编辑(600,0)，movie_timescale=media_timescale=1000，movie_time==PTS。",
+  "movie_timescale": 1000,
+  "movie_duration": 600,
+  "tracks": [
+    {
+      "track_id": 1,
+      "handler": "vide",
+      "media_timescale": 1000,
+      "samples": [
+        {"index": 0, "dts": 0,   "cto": 0,    "pts": 0,   "duration": 100, "size": 500, "is_sync": true},
+        {"index": 1, "dts": 100, "cto": 200,  "pts": 300, "duration": 100, "size": 300, "is_sync": false},
+        {"index": 2, "dts": 200, "cto": -100, "pts": 100, "duration": 100, "size": 120, "is_sync": false},
+        {"index": 3, "dts": 300, "cto": -100, "pts": 200, "duration": 100, "size": 130, "is_sync": false},
+        {"index": 4, "dts": 400, "cto": 100,  "pts": 500, "duration": 100, "size": 400, "is_sync": true},
+        {"index": 5, "dts": 500, "cto": -100, "pts": 400, "duration": 100, "size": 110, "is_sync": false}
+      ],
+      "presentations": [
+        {"sample_index": 0, "movie_time": "0",   "movie_duration": "100"},
+        {"sample_index": 2, "movie_time": "100", "movie_duration": "100"},
+        {"sample_index": 3, "movie_time": "200", "movie_duration": "100"},
+        {"sample_index": 1, "movie_time": "300", "movie_duration": "100"},
+        {"sample_index": 5, "movie_time": "400", "movie_duration": "100"},
+        {"sample_index": 4, "movie_time": "500", "movie_duration": "100"}
+      ],
+      "unpresented": []
+    }
+  ]
+}

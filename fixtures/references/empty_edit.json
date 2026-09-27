@@ -1,0 +1,26 @@
+{
+  "fixture": "empty_edit.mp4",
+  "comment": "前置空编辑：elst=[(500,-1),(1000,0)]。空编辑使电影游标前进500，之后媒体[0,1000)映射到电影[500,1500)。movie_time = 500 + PTS。",
+  "movie_timescale": 1000,
+  "movie_duration": 1500,
+  "tracks": [
+    {
+      "track_id": 1,
+      "handler": "vide",
+      "media_timescale": 1000,
+      "samples": [
+        {"index": 0, "dts": 0,   "cto": 0, "pts": 0,   "duration": 250, "size": 200, "is_sync": true},
+        {"index": 1, "dts": 250, "cto": 0, "pts": 250, "duration": 250, "size": 210, "is_sync": true},
+        {"index": 2, "dts": 500, "cto": 0, "pts": 500, "duration": 250, "size": 220, "is_sync": true},
+        {"index": 3, "dts": 750, "cto": 0, "pts": 750, "duration": 250, "size": 230, "is_sync": true}
+      ],
+      "presentations": [
+        {"sample_index": 0, "movie_time": "500",  "movie_duration": "250"},
+        {"sample_index": 1, "movie_time": "750",  "movie_duration": "250"},
+        {"sample_index": 2, "movie_time": "1000", "movie_duration": "250"},
+        {"sample_index": 3, "movie_time": "1250", "movie_duration": "250"}
+      ],
+      "unpresented": []
+    }
+  ]
+}

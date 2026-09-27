@@ -1,0 +1,44 @@
+{
+  "fixture": "multitrack.mp4",
+  "comment": "双轨不同比例：视频90000(样本时长3000=1/30s)，音频48000(样本时长960=20ms)，电影1000。视频movie_time为分数100/3、200/3，必须精确；音频为整数0/20/40/60/80。",
+  "movie_timescale": 1000,
+  "movie_duration": 100,
+  "tracks": [
+    {
+      "track_id": 1,
+      "handler": "vide",
+      "media_timescale": 90000,
+      "samples": [
+        {"index": 0, "dts": 0,    "cto": 0, "pts": 0,    "duration": 3000, "size": 600, "is_sync": true},
+        {"index": 1, "dts": 3000, "cto": 0, "pts": 3000, "duration": 3000, "size": 300, "is_sync": true},
+        {"index": 2, "dts": 6000, "cto": 0, "pts": 6000, "duration": 3000, "size": 320, "is_sync": true}
+      ],
+      "presentations": [
+        {"sample_index": 0, "movie_time": "0",     "movie_duration": "100/3"},
+        {"sample_index": 1, "movie_time": "100/3", "movie_duration": "100/3"},
+        {"sample_index": 2, "movie_time": "200/3", "movie_duration": "100/3"}
+      ],
+      "unpresented": []
+    },
+    {
+      "track_id": 2,
+      "handler": "soun",
+      "media_timescale": 48000,
+      "samples": [
+        {"index": 0, "dts": 0,    "cto": 0, "pts": 0,    "duration": 960, "size": 180, "is_sync": true},
+        {"index": 1, "dts": 960,  "cto": 0, "pts": 960,  "duration": 960, "size": 180, "is_sync": true},
+        {"index": 2, "dts": 1920, "cto": 0, "pts": 1920, "duration": 960, "size": 180, "is_sync": true},
+        {"index": 3, "dts": 2880, "cto": 0, "pts": 2880, "duration": 960, "size": 180, "is_sync": true},
+        {"index": 4, "dts": 3840, "cto": 0, "pts": 3840, "duration": 960, "size": 180, "is_sync": true}
+      ],
+      "presentations": [
+        {"sample_index": 0, "movie_time": "0",  "movie_duration": "20"},
+        {"sample_index": 1, "movie_time": "20", "movie_duration": "20"},
+        {"sample_index": 2, "movie_time": "40", "movie_duration": "20"},
+        {"sample_index": 3, "movie_time": "60", "movie_duration": "20"},
+        {"sample_index": 4, "movie_time": "80", "movie_duration": "20"}
+      ],
+      "unpresented": []
+    }
+  ]
+}

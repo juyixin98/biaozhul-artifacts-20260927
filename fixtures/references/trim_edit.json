@@ -1,0 +1,24 @@
+{
+  "fixture": "trim_edit.mp4",
+  "comment": "裁剪编辑：elst=[(500,250)]，媒体区间[250,750)，起点闭终点开。PTS=250包含(映射到电影0)，PTS=750恰为段终点被排除；PTS=0在段前被排除。",
+  "movie_timescale": 1000,
+  "movie_duration": 500,
+  "tracks": [
+    {
+      "track_id": 1,
+      "handler": "vide",
+      "media_timescale": 1000,
+      "samples": [
+        {"index": 0, "dts": 0,   "cto": 0, "pts": 0,   "duration": 250, "size": 200, "is_sync": true},
+        {"index": 1, "dts": 250, "cto": 0, "pts": 250, "duration": 250, "size": 210, "is_sync": true},
+        {"index": 2, "dts": 500, "cto": 0, "pts": 500, "duration": 250, "size": 220, "is_sync": true},
+        {"index": 3, "dts": 750, "cto": 0, "pts": 750, "duration": 250, "size": 230, "is_sync": true}
+      ],
+      "presentations": [
+        {"sample_index": 1, "movie_time": "0",   "movie_duration": "250"},
+        {"sample_index": 2, "movie_time": "250", "movie_duration": "250"}
+      ],
+      "unpresented": [0, 3]
+    }
+  ]
+}
