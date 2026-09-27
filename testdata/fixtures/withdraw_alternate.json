@@ -1,0 +1,23 @@
+{
+  "description": "Two peers advertise 198.18.0.0/16 to r1; r1 selects by MED (same neighboring AS 65010 makes MED comparable). seq 3 withdraws ONLY peer p1's candidate: p2's candidate must survive and be promoted to best. The trace must show the promotion and the withdrawal UPDATEs sent to downstream r2 switching the RIB-Out, while a later withdraw of an unknown source is a state_conflict that deletes nothing.",
+  "budget": 100,
+  "queue_cap": 1000,
+  "topology": {
+    "nodes": [
+      {"router_id": "p1", "asn": 65010, "address": "10.0.1.1", "igp_cost": 5},
+      {"router_id": "p2", "asn": 65010, "address": "10.0.1.2", "igp_cost": 5},
+      {"router_id": "r1", "asn": 65050, "address": "10.0.2.1", "igp_cost": 5},
+      {"router_id": "r2", "asn": 65060, "address": "10.0.3.1", "igp_cost": 5}
+    ],
+    "links": [
+      {"src": "p1", "dst": "r1"},
+      {"src": "p2", "dst": "r1"},
+      {"src": "r1", "dst": "r2"}
+    ]
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "r1", "prefix": "198.18.0.0/16", "peer": "p1", "next_hop": "10.0.1.1", "as_path": [65010], "med": 100, "origin": "igp"},
+    {"seq": 2, "kind": "announce", "router_id": "r1", "prefix": "198.18.0.0/16", "peer": "p2", "next_hop": "10.0.1.2", "as_path": [65010], "med": 200, "origin": "igp"},
+    {"seq": 3, "kind": "withdraw", "router_id": "r1", "prefix": "198.18.0.0/16", "peer": "p1"}
+  ]
+}

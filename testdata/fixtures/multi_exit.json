@@ -1,0 +1,26 @@
+{
+  "description": "Multi-exit AS65001 with two eBGP upstreams. After seq 1 both border routers learn the prefix; IGP early-exit cost selects the closer exit per router. After seq 2 withdraws the ispA local-origin route, every router must fail over to the ispB path learned via br2. Withdrawals must leave the ispB-sourced candidates intact.",
+  "budget": 200,
+  "queue_cap": 2000,
+  "topology": {
+    "nodes": [
+      {"router_id": "ispA", "asn": 65010, "address": "10.0.0.1", "igp_cost": 100},
+      {"router_id": "ispB", "asn": 65020, "address": "10.0.0.2", "igp_cost": 100},
+      {"router_id": "br1",  "asn": 65001, "address": "10.1.0.1", "igp_cost": 10},
+      {"router_id": "br2",  "asn": 65001, "address": "10.1.0.2", "igp_cost": 20},
+      {"router_id": "core", "asn": 65001, "address": "10.1.0.3", "igp_cost": 15}
+    ],
+    "links": [
+      {"src": "ispA", "dst": "br1"},
+      {"src": "ispB", "dst": "br2"},
+      {"src": "br1", "dst": "br2"},
+      {"src": "br1", "dst": "core"},
+      {"src": "br2", "dst": "core"}
+    ]
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "ispA", "prefix": "203.0.113.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 2, "kind": "announce", "router_id": "ispB", "prefix": "203.0.113.0/24", "next_hop": "10.0.0.2", "as_path": [65099], "origin": "igp"},
+    {"seq": 3, "kind": "withdraw", "router_id": "ispA", "prefix": "203.0.113.0/24"}
+  ]
+}

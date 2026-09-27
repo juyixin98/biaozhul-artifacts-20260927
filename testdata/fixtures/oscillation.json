@@ -1,0 +1,30 @@
+{
+  "description": "Synthetic upstream flapping: the same external source is alternately announced and withdrawn to a chain a-b-c. The engine does not merely hit its step budget; the deterministic recurrence of identical (global best-path state, empty FIFO queue) after seq 3 reproduces the post-seq-1 state, so cycle evidence (first_step/second_step and the state walk) is returned with status not_converged / oscillation_detected.",
+  "budget": 20,
+  "queue_cap": 1000,
+  "topology": {
+    "nodes": [
+      {"router_id": "a", "asn": 65010, "address": "10.0.0.1", "igp_cost": 1},
+      {"router_id": "b", "asn": 65020, "address": "10.0.0.2", "igp_cost": 1},
+      {"router_id": "c", "asn": 65030, "address": "10.0.0.3", "igp_cost": 1}
+    ],
+    "links": [
+      {"src": "a", "dst": "b"},
+      {"src": "b", "dst": "c"}
+    ]
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 2, "kind": "withdraw", "router_id": "a", "prefix": "198.51.100.0/24"},
+    {"seq": 3, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 4, "kind": "withdraw", "router_id": "a", "prefix": "198.51.100.0/24"},
+    {"seq": 5, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 6, "kind": "withdraw", "router_id": "a", "prefix": "198.51.100.0/24"},
+    {"seq": 7, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 8, "kind": "withdraw", "router_id": "a", "prefix": "198.51.100.0/24"},
+    {"seq": 9, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 10, "kind": "withdraw", "router_id": "a", "prefix": "198.51.100.0/24"},
+    {"seq": 11, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 12, "kind": "withdraw", "router_id": "a", "prefix": "198.51.100.0/24"}
+  ]
+}

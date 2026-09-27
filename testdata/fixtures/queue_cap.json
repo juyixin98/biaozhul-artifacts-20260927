@@ -1,0 +1,23 @@
+{
+  "description": "A star fan-out with queue_cap 2: one local announcement at hub must enqueue four leaf UPDATEs in a single decision, exceeding the cap. The failure class is resource_exhausted, distinct from both invalid input and the budget non-convergence verdict.",
+  "budget": 100,
+  "queue_cap": 2,
+  "topology": {
+    "nodes": [
+      {"router_id": "hub", "asn": 65000, "address": "10.0.0.1", "igp_cost": 1},
+      {"router_id": "l1", "asn": 65001, "address": "10.0.1.1", "igp_cost": 1},
+      {"router_id": "l2", "asn": 65002, "address": "10.0.2.1", "igp_cost": 1},
+      {"router_id": "l3", "asn": 65003, "address": "10.0.3.1", "igp_cost": 1},
+      {"router_id": "l4", "asn": 65004, "address": "10.0.4.1", "igp_cost": 1}
+    ],
+    "links": [
+      {"src": "hub", "dst": "l1"},
+      {"src": "hub", "dst": "l2"},
+      {"src": "hub", "dst": "l3"},
+      {"src": "hub", "dst": "l4"}
+    ]
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "hub", "prefix": "203.0.113.0/24", "next_hop": "10.0.0.1", "origin": "igp"}
+  ]
+}

@@ -1,0 +1,12 @@
+# local runtime artifacts
+/data/
+/logs/
+/testdata/out/
+*.db
+*.db-wal
+*.db-shm
+
+# build output
+/bin/
+/pvserver
+/pvreplay

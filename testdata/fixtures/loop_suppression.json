@@ -1,0 +1,28 @@
+{
+  "description": "AS65000 (c-a-b) receives its own prefix back with 65000 in the AS_PATH and must reject it before import policy. Also demonstrates a synthetic seed carrying an AS_PATH that would loop back to the receiver.",
+  "budget": 100,
+  "queue_cap": 1000,
+  "topology": {
+    "nodes": [
+      {"router_id": "a", "asn": 65000, "address": "10.1.0.1", "igp_cost": 10},
+      {"router_id": "b", "asn": 65001, "address": "10.2.0.1", "igp_cost": 20},
+      {"router_id": "c", "asn": 65002, "address": "10.3.0.1", "igp_cost": 30}
+    ],
+    "links": [
+      {"src": "a", "dst": "b"},
+      {"src": "b", "dst": "c"},
+      {"src": "c", "dst": "a"}
+    ]
+  },
+  "policies": {
+    "a": {
+      "import": [
+        {"name": "permit-all", "match": {}, "action": {"allow": true, "set_local_pref": 500}}
+      ]
+    }
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "next_hop": "10.1.0.1", "origin": "igp"},
+    {"seq": 2, "kind": "announce", "router_id": "a", "prefix": "198.51.100.0/24", "peer": "c", "next_hop": "10.3.0.1", "as_path": [65000, 65002], "origin": "igp"}
+  ]
+}

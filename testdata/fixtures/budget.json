@@ -1,0 +1,26 @@
+{
+  "description": "Long stable propagation in a 6-router chain consumes steps one hop at a time. With budget 5 the run must stop as not_converged / budget_exceeded (distinct from oscillation_detected) before processing all seeds, recording processed_seeds and the steps used.",
+  "budget": 5,
+  "queue_cap": 1000,
+  "topology": {
+    "nodes": [
+      {"router_id": "r1", "asn": 65001, "address": "10.0.0.1", "igp_cost": 1},
+      {"router_id": "r2", "asn": 65002, "address": "10.0.0.2", "igp_cost": 1},
+      {"router_id": "r3", "asn": 65003, "address": "10.0.0.3", "igp_cost": 1},
+      {"router_id": "r4", "asn": 65004, "address": "10.0.0.4", "igp_cost": 1},
+      {"router_id": "r5", "asn": 65005, "address": "10.0.0.5", "igp_cost": 1},
+      {"router_id": "r6", "asn": 65006, "address": "10.0.0.6", "igp_cost": 1}
+    ],
+    "links": [
+      {"src": "r1", "dst": "r2"},
+      {"src": "r2", "dst": "r3"},
+      {"src": "r3", "dst": "r4"},
+      {"src": "r4", "dst": "r5"},
+      {"src": "r5", "dst": "r6"}
+    ]
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "r1", "prefix": "203.0.113.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 2, "kind": "announce", "router_id": "r1", "prefix": "203.0.114.0/24", "next_hop": "10.0.0.1", "origin": "igp"}
+  ]
+}

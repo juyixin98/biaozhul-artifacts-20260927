@@ -1,0 +1,12 @@
+{
+  "description": "Malformed configuration on purpose: the event references a router not present in the topology. Must fail validation with invalid_input before the engine is ever invoked.",
+  "topology": {
+    "nodes": [
+      {"router_id": "a", "asn": 65001, "address": "10.0.0.1", "igp_cost": 1}
+    ],
+    "links": []
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "ghost", "prefix": "203.0.113.0/24", "next_hop": "10.0.0.1", "origin": "igp"}
+  ]
+}

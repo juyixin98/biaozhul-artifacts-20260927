@@ -1,0 +1,41 @@
+{
+  "description": "Asymmetric, independent import and export policies. br1 imports ispA with local-pref 300 but denies any export toward br2; br2 imports ispB with local-pref 100. br1's route therefore must never appear at core via br2's RIB (export deny, independently applied), and a synthetic candidate denied on import at br2 must be dropped even though export would permit it.",
+  "budget": 100,
+  "queue_cap": 1000,
+  "topology": {
+    "nodes": [
+      {"router_id": "ispA", "asn": 65010, "address": "10.0.0.1", "igp_cost": 100},
+      {"router_id": "ispB", "asn": 65020, "address": "10.0.0.2", "igp_cost": 100},
+      {"router_id": "br1",  "asn": 65001, "address": "10.1.0.1", "igp_cost": 10},
+      {"router_id": "br2",  "asn": 65001, "address": "10.1.0.2", "igp_cost": 10},
+      {"router_id": "core", "asn": 65001, "address": "10.1.0.3", "igp_cost": 15}
+    ],
+    "links": [
+      {"src": "ispA", "dst": "br1"},
+      {"src": "ispB", "dst": "br2"},
+      {"src": "br1", "dst": "br2"},
+      {"src": "br1", "dst": "core"},
+      {"src": "br2", "dst": "core"}
+    ]
+  },
+  "policies": {
+    "br1": {
+      "import": [
+        {"name": "trust-a", "match": {"peer": "ispA"}, "action": {"allow": true, "set_local_pref": 300}}
+      ],
+      "export": [
+        {"name": "no-ibgp-leak", "match": {"peer": "br2"}, "action": {"allow": false}}
+      ]
+    },
+    "br2": {
+      "import": [
+        {"name": "trust-b", "match": {"peer": "ispB"}, "action": {"allow": true, "set_local_pref": 100}},
+        {"name": "block-a-via-b", "match": {"prefix": "192.0.2.0/24", "peer": "br1"}, "action": {"allow": false}}
+      ]
+    }
+  },
+  "events": [
+    {"seq": 1, "kind": "announce", "router_id": "ispA", "prefix": "192.0.2.0/24", "next_hop": "10.0.0.1", "origin": "igp"},
+    {"seq": 2, "kind": "announce", "router_id": "ispB", "prefix": "192.0.2.0/24", "next_hop": "10.0.0.2", "origin": "igp"}
+  ]
+}
