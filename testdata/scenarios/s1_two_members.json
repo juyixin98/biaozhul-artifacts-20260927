@@ -1,0 +1,38 @@
+{
+  "name": "s1_two_members",
+  "config": {
+    "interfaces": ["eth0"],
+    "query_interval_sec": 100,
+    "query_response_interval_sec": 10,
+    "robustness_variable": 2,
+    "last_member_query_interval_sec": 5,
+    "last_member_query_count": 3
+  },
+  "events": [
+    {"time_ms": 0,     "type": "report",            "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+    {"time_ms": 10000, "type": "report",            "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.2"},
+    {"time_ms": 20000, "type": "general_query",     "iface": "eth0"},
+    {"time_ms": 25000, "type": "report",            "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1", "gen": 1},
+    {"time_ms": 26000, "type": "suppressed_report", "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.2"},
+    {"time_ms": 40000, "type": "leave",             "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+    {"time_ms": 50000, "type": "leave",             "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.2"}
+  ],
+  "run_until": 100000,
+  "expect": {
+    "transitions": [
+      {"time_ms": 0,     "type": "group_created",             "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+      {"time_ms": 10000, "type": "report_accepted",           "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.2"},
+      {"time_ms": 20000, "type": "query_issued",              "iface": "eth0", "gen": 1},
+      {"time_ms": 25000, "type": "report_accepted",           "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1", "gen": 1},
+      {"time_ms": 26000, "type": "report_suppressed",         "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.2", "gen": 1},
+      {"time_ms": 40000, "type": "member_left",               "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1", "reason": "members_remaining"},
+      {"time_ms": 50000, "type": "last_member_query_started", "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.2"},
+      {"time_ms": 65000, "type": "group_expired",             "iface": "eth0", "group": "239.1.1.1", "reason": "last_member_timeout"}
+    ],
+    "rejections": [],
+    "intervals": {
+      "eth0/239.1.1.1": [{"start_ms": 0, "end_ms": 65000}]
+    },
+    "final_groups": {}
+  }
+}

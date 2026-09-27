@@ -1,0 +1,45 @@
+{
+  "name": "s6_rejections",
+  "config": {
+    "interfaces": ["eth0"],
+    "query_interval_sec": 100,
+    "query_response_interval_sec": 10,
+    "robustness_variable": 2,
+    "last_member_query_interval_sec": 5,
+    "last_member_query_count": 3
+  },
+  "events": [
+    {"time_ms": 0,   "type": "report",      "iface": "eth9", "group": "239.1.1.1", "member": "10.0.0.1"},
+    {"time_ms": 0,   "type": "report",      "iface": "eth0", "group": "8.8.8.8",   "member": "10.0.0.1"},
+    {"time_ms": 0,   "type": "report",      "iface": "eth0", "group": "239.1.1.1", "member": "not-an-ip"},
+    {"time_ms": 0,   "type": "leave",       "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+    {"time_ms": 0,   "type": "report",      "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+    {"time_ms": 0,   "type": "leave",       "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.2"},
+    {"time_ms": 0,   "type": "group_query", "iface": "eth0", "group": "239.1.1.2"},
+    {"time_ms": 0,   "type": "report",      "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1", "gen": 5},
+    {"time_ms": 100, "type": "report",      "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+    {"time_ms": 50,  "type": "report",      "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"}
+  ],
+  "run_until": 300000,
+  "expect": {
+    "transitions": [
+      {"time_ms": 0,      "type": "group_created",   "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+      {"time_ms": 100,    "type": "report_accepted", "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+      {"time_ms": 210100, "type": "group_expired",   "iface": "eth0", "group": "239.1.1.1", "reason": "membership_timeout"}
+    ],
+    "rejections": [
+      {"event_index": 0, "category": "unknown_interface"},
+      {"event_index": 1, "category": "invalid_group"},
+      {"event_index": 2, "category": "invalid_member"},
+      {"event_index": 3, "category": "unknown_member"},
+      {"event_index": 5, "category": "unknown_member"},
+      {"event_index": 6, "category": "unknown_group"},
+      {"event_index": 7, "category": "future_generation"},
+      {"event_index": 9, "category": "out_of_order"}
+    ],
+    "intervals": {
+      "eth0/239.1.1.1": [{"start_ms": 0, "end_ms": 210100}]
+    },
+    "final_groups": {}
+  }
+}

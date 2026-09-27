@@ -1,0 +1,39 @@
+{
+  "name": "s2_lost_query",
+  "config": {
+    "interfaces": ["eth0"],
+    "query_interval_sec": 100,
+    "query_response_interval_sec": 10,
+    "robustness_variable": 2,
+    "last_member_query_interval_sec": 5,
+    "last_member_query_count": 3
+  },
+  "events": [
+    {"time_ms": 0,      "type": "report",        "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+    {"time_ms": 100000, "type": "general_query", "iface": "eth0"},
+    {"time_ms": 250000, "type": "report",        "iface": "eth0", "group": "239.1.1.2", "member": "10.0.0.1", "gen": 1}
+  ],
+  "run_until": 300000,
+  "expect": {
+    "transitions": [
+      {"time_ms": 0,      "type": "group_created", "iface": "eth0", "group": "239.1.1.1", "member": "10.0.0.1"},
+      {"time_ms": 100000, "type": "query_issued",  "iface": "eth0", "gen": 1},
+      {"time_ms": 210000, "type": "group_expired", "iface": "eth0", "group": "239.1.1.1", "reason": "membership_timeout"},
+      {"time_ms": 250000, "type": "group_created", "iface": "eth0", "group": "239.1.1.2", "member": "10.0.0.1", "gen": 1}
+    ],
+    "rejections": [],
+    "intervals": {
+      "eth0/239.1.1.1": [{"start_ms": 0, "end_ms": 210000}],
+      "eth0/239.1.1.2": [{"start_ms": 250000, "end_ms": null}]
+    },
+    "final_groups": {
+      "eth0/239.1.1.2": {
+        "members": ["10.0.0.1"],
+        "expiry_ms": 460000,
+        "round": 1,
+        "last_member": false,
+        "suppressed_total": 0
+      }
+    }
+  }
+}
