@@ -1,0 +1,23 @@
+[package]
+name = "fsm-api"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "HTTP/CLI backend for the explicit FSM checker (Axum)"
+
+[[bin]]
+name = "fsm-check"
+path = "src/main.rs"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+axum = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+fsm-lang = { workspace = true }
+fsm-core = { workspace = true }
+fsm-verify = { workspace = true }
+fsm-fixtures = { workspace = true }

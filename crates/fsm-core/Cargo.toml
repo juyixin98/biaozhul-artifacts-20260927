@@ -1,0 +1,11 @@
+[package]
+name = "fsm-core"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "Explicit-state search kernel: budgeted BFS for AG safety and EF reachability"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+fsm-lang = { workspace = true }

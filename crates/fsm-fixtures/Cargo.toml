@@ -1,0 +1,9 @@
+[package]
+name = "fsm-fixtures"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+description = "Local synthetic FSM fixtures (mutex protocol, bounded counter, no-init, truncation, swap)"
+
+[dependencies]
+serde_json = { workspace = true }

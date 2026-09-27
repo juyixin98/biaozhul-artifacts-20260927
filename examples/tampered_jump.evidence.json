@@ -1,0 +1,8 @@
+{
+  "kind": "deadlock",
+  "length": 1,
+  "path": [
+    {"state": {"x": 0}, "fired": null},
+    {"state": {"x": 3}, "fired": "inc"}
+  ]
+}

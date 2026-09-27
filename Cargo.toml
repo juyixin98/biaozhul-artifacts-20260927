@@ -1,0 +1,35 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/fsm-lang",
+    "crates/fsm-core",
+    "crates/fsm-verify",
+    "crates/fsm-fixtures",
+    "crates/fsm-api",
+    "tests/fsm-blackbox",
+]
+
+[workspace.package]
+edition = "2021"
+license = "MIT"
+repository = "local/explicit-fsm-checker"
+
+# Versions are pinned to the crates that are vendored in the local registry
+# cache, so the whole project builds with `cargo build --offline`.
+[workspace.dependencies]
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.151"
+axum = "=0.8.9"
+tokio = { version = "=1.53.1", features = ["full"] }
+tower = { version = "=0.5.3", features = ["util"] }
+tracing = "=0.1.44"
+tracing-subscriber = { version = "=0.3.23", features = ["env-filter", "fmt"] }
+anyhow = "=1.0.104"
+
+fsm-lang = { path = "crates/fsm-lang" }
+fsm-core = { path = "crates/fsm-core" }
+fsm-verify = { path = "crates/fsm-verify" }
+fsm-fixtures = { path = "crates/fsm-fixtures" }
+
+[profile.release]
+debug = false

@@ -1,0 +1,10 @@
+// Bounded counter WITHOUT a terminal clause: at x==3 no guard is enabled and
+// the state is not terminal, so it is a genuine deadlock.
+system counter_deadlock {
+  var { x: int[0..3] }
+  init { x := 0 }
+  transition inc {
+    guard: x < 3;
+    then: x := x + 1
+  }
+}
