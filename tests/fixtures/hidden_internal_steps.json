@@ -1,0 +1,25 @@
+{
+  "run_id": "fixture-hidden-internal-steps",
+  "observable_actions": ["a", "b", "c"],
+  "specification": {
+    "name": "spec-with-tau",
+    "states": ["s0", "s1", "s2"],
+    "initial_states": ["s0"],
+    "hidden_actions": ["tick"],
+    "edges": [
+      { "id": "e-tick", "source": "s0", "action": "tick", "target": "s1" },
+      { "id": "e-a", "source": "s1", "action": "a", "target": "s2" },
+      { "id": "e-b", "source": "s2", "action": "b", "target": "s0" }
+    ]
+  },
+  "implementation": {
+    "name": "impl-flat",
+    "states": ["i0", "i1"],
+    "initial_states": ["i0"],
+    "hidden_actions": [],
+    "edges": [
+      { "id": "i-a", "source": "i0", "action": "a", "target": "i1" },
+      { "id": "i-b", "source": "i1", "action": "b", "target": "i0" }
+    ]
+  }
+}

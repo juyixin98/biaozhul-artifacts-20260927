@@ -1,0 +1,20 @@
+{
+  "run_id": "demo-5-conflict",
+  "observable_actions": ["a"],
+  "specification": {
+    "name": "spec",
+    "states": ["s0"],
+    "initial_states": ["s0"],
+    "edges": [
+      { "source": "s0", "action": "a", "target": "s0" }
+    ]
+  },
+  "implementation": {
+    "name": "impl-undeclared-action",
+    "states": ["i0"],
+    "initial_states": ["i0"],
+    "edges": [
+      { "source": "i0", "action": "mystery", "target": "i0" }
+    ]
+  }
+}

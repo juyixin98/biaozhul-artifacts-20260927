@@ -1,0 +1,28 @@
+[package]
+name = "weak-trace-inclusion"
+version = "0.1.0"
+edition = "2021"
+description = "Weak trace inclusion checker for finite labeled transition systems with declared silent actions"
+
+[lib]
+name = "weak_trace_inclusion"
+path = "src/lib.rs"
+
+[[bin]]
+name = "weak_trace_server"
+path = "src/main.rs"
+
+[dependencies]
+axum = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+lto = "thin"

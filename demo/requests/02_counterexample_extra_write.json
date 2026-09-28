@@ -1,0 +1,27 @@
+{
+  "run_id": "demo-2-counterexample",
+  "observable_actions": ["login", "read", "write"],
+  "specification": {
+    "name": "rbac-spec",
+    "states": ["anonymous", "logged_in"],
+    "initial_states": ["anonymous"],
+    "hidden_actions": ["audit"],
+    "edges": [
+      { "id": "s-login", "source": "anonymous", "action": "login", "target": "logged_in" },
+      { "id": "s-audit", "source": "logged_in", "action": "audit", "target": "logged_in" },
+      { "id": "s-read", "source": "logged_in", "action": "read", "target": "logged_in" }
+    ]
+  },
+  "implementation": {
+    "name": "buggy-rbac-impl",
+    "states": ["i0", "i1", "i2"],
+    "initial_states": ["i0"],
+    "hidden_actions": ["gc"],
+    "edges": [
+      { "id": "i-gc", "source": "i0", "action": "gc", "target": "i0" },
+      { "id": "i-login", "source": "i0", "action": "login", "target": "i1" },
+      { "id": "i-read", "source": "i1", "action": "read", "target": "i1" },
+      { "id": "i-write", "source": "i1", "action": "write", "target": "i2" }
+    ]
+  }
+}

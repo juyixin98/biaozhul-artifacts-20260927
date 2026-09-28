@@ -1,0 +1,42 @@
+{
+  "run_id": "demo-4-unknown-blowup",
+  "observable_actions": ["a", "b"],
+  "specification": {
+    "name": "spec-all",
+    "states": ["s0"],
+    "initial_states": ["s0"],
+    "hidden_actions": [],
+    "edges": [
+      { "id": "s-a", "source": "s0", "action": "a", "target": "s0" },
+      { "id": "s-b", "source": "s0", "action": "b", "target": "s0" }
+    ]
+  },
+  "implementation": {
+    "name": "binary-tree-impl",
+    "states": [
+      "q0_0",
+      "q1_0", "q1_1",
+      "q2_0", "q2_1", "q2_2", "q2_3",
+      "q3_0", "q3_1", "q3_2", "q3_3", "q3_4", "q3_5", "q3_6", "q3_7"
+    ],
+    "initial_states": ["q0_0"],
+    "hidden_actions": [],
+    "edges": [
+      { "source": "q0_0", "action": "a", "target": "q1_0" },
+      { "source": "q0_0", "action": "b", "target": "q1_1" },
+      { "source": "q1_0", "action": "a", "target": "q2_0" },
+      { "source": "q1_0", "action": "b", "target": "q2_1" },
+      { "source": "q1_1", "action": "a", "target": "q2_2" },
+      { "source": "q1_1", "action": "b", "target": "q2_3" },
+      { "source": "q2_0", "action": "a", "target": "q3_0" },
+      { "source": "q2_0", "action": "b", "target": "q3_1" },
+      { "source": "q2_1", "action": "a", "target": "q3_2" },
+      { "source": "q2_1", "action": "b", "target": "q3_3" },
+      { "source": "q2_2", "action": "a", "target": "q3_4" },
+      { "source": "q2_2", "action": "b", "target": "q3_5" },
+      { "source": "q2_3", "action": "a", "target": "q3_6" },
+      { "source": "q2_3", "action": "b", "target": "q3_7" }
+    ]
+  },
+  "limits": { "max_search_nodes": 4 }
+}

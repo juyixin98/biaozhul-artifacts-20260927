@@ -1,0 +1,24 @@
+{
+  "run_id": "fixture-extra-output",
+  "observable_actions": ["a", "b"],
+  "specification": {
+    "name": "spec-a-only",
+    "states": ["s0", "s1"],
+    "initial_states": ["s0"],
+    "hidden_actions": [],
+    "edges": [
+      { "id": "s-a", "source": "s0", "action": "a", "target": "s1" }
+    ]
+  },
+  "implementation": {
+    "name": "impl-a-then-b",
+    "states": ["i0", "i1", "i2"],
+    "initial_states": ["i0"],
+    "hidden_actions": ["think"],
+    "edges": [
+      { "id": "i-think", "source": "i0", "action": "think", "target": "i0" },
+      { "id": "i-a", "source": "i0", "action": "a", "target": "i1" },
+      { "id": "i-b", "source": "i1", "action": "b", "target": "i2" }
+    ]
+  }
+}

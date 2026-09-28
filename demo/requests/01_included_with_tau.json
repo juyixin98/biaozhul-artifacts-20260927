@@ -1,0 +1,31 @@
+{
+  "run_id": "demo-1-included-via-tau",
+  "observable_actions": ["coin", "tea", "coffee"],
+  "specification": {
+    "name": "drink-machine-spec",
+    "states": ["idle", "armed", "pour_tea", "pour_coffee"],
+    "initial_states": ["idle"],
+    "hidden_actions": ["internal_reset"],
+    "edges": [
+      { "id": "spec-coin", "source": "idle", "action": "coin", "target": "armed" },
+      { "id": "spec-reset", "source": "armed", "action": "internal_reset", "target": "idle" },
+      { "id": "spec-tea", "source": "armed", "action": "tea", "target": "pour_tea" },
+      { "id": "spec-coffee", "source": "armed", "action": "coffee", "target": "pour_coffee" },
+      { "id": "spec-back-tea", "source": "pour_tea", "action": "internal_reset", "target": "idle" },
+      { "id": "spec-back-coffee", "source": "pour_coffee", "action": "internal_reset", "target": "idle" }
+    ]
+  },
+  "implementation": {
+    "name": "drink-machine-impl",
+    "states": ["i_idle", "i_armed", "i_pour"],
+    "initial_states": ["i_idle"],
+    "hidden_actions": ["blink_led", "cool_down"],
+    "edges": [
+      { "id": "impl-blink", "source": "i_idle", "action": "blink_led", "target": "i_idle" },
+      { "id": "impl-coin", "source": "i_idle", "action": "coin", "target": "i_armed" },
+      { "id": "impl-tea", "source": "i_armed", "action": "tea", "target": "i_pour" },
+      { "id": "impl-coffee", "source": "i_armed", "action": "coffee", "target": "i_pour" },
+      { "id": "impl-cool", "source": "i_pour", "action": "cool_down", "target": "i_idle" }
+    ]
+  }
+}

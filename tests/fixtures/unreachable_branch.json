@@ -1,0 +1,25 @@
+{
+  "run_id": "fixture-unreachable-branch",
+  "observable_actions": ["a", "c"],
+  "specification": {
+    "name": "spec-a-loop",
+    "states": ["s0"],
+    "initial_states": ["s0"],
+    "hidden_actions": [],
+    "edges": [
+      { "id": "s-a", "source": "s0", "action": "a", "target": "s0" }
+    ]
+  },
+  "implementation": {
+    "name": "impl-dead-c-branch",
+    "states": ["i0", "i1", "i_dead"],
+    "initial_states": ["i0"],
+    "hidden_actions": [],
+    "edges": [
+      { "id": "i-a", "source": "i0", "action": "a", "target": "i1" },
+      { "id": "i-a2", "source": "i1", "action": "a", "target": "i0" },
+      { "id": "dead-c", "source": "i_dead", "action": "c", "target": "i0" },
+      { "id": "dead-self", "source": "i_dead", "action": "c", "target": "i_dead" }
+    ]
+  }
+}

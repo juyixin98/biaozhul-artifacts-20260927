@@ -1,0 +1,26 @@
+{
+  "run_id": "demo-3-dead-branch",
+  "observable_actions": ["start", "stop", "eject"],
+  "specification": {
+    "name": "motor-spec",
+    "states": ["stopped", "running"],
+    "initial_states": ["stopped"],
+    "hidden_actions": [],
+    "edges": [
+      { "id": "s-start", "source": "stopped", "action": "start", "target": "running" },
+      { "id": "s-stop", "source": "running", "action": "stop", "target": "stopped" }
+    ]
+  },
+  "implementation": {
+    "name": "motor-impl-with-unreachable-debug-mode",
+    "states": ["m0", "m1", "debug_mode"],
+    "initial_states": ["m0"],
+    "hidden_actions": [],
+    "edges": [
+      { "id": "i-start", "source": "m0", "action": "start", "target": "m1" },
+      { "id": "i-stop", "source": "m1", "action": "stop", "target": "m0" },
+      { "id": "dead-eject-1", "source": "debug_mode", "action": "eject", "target": "m0" },
+      { "id": "dead-eject-2", "source": "debug_mode", "action": "eject", "target": "debug_mode" }
+    ]
+  }
+}
