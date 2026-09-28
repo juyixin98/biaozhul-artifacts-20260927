@@ -1,0 +1,31 @@
+[package]
+name = "diffconstraints"
+version = "0.1.0"
+edition = "2021"
+description = "Integer difference-constraint service (x - y <= c): named constraints, feasibility, and negative-cycle conflict evidence"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "diffconstraints"
+path = "src/lib.rs"
+
+[[bin]]
+name = "diffconstraints-server"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.8", default-features = false, features = ["http1", "json", "tokio", "matched-path"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal", "sync", "time"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tower = { version = "0.5", default-features = false, features = ["util"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt", "ansi", "std"] }
+
+[dev-dependencies]
+# Integration tests talk to the server over a real TCP loopback socket using
+# std::net + the JSON types of the crate itself. No third-party HTTP client,
+# so the test oracle does not depend on the web framework under test.
+
+[profile.release]
+lto = "thin"
