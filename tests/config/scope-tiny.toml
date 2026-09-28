@@ -1,0 +1,17 @@
+# Test-only scope pack: 512-byte limit so the "oversize = explicitly NOT
+# SCANNED" path is testable without committing a >1 MiB blob.
+[meta]
+name = "tiny test scope"
+version = "2026.09.0-scope-test.1"
+
+[limits]
+max_file_bytes = 512
+binary_min_run = 8
+
+[ignore]
+patterns = [
+    ".git/",
+    "__pycache__/",
+    ".venv/",
+    "vendor/",
+]
