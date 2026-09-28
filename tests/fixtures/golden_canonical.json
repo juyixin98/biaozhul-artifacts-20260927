@@ -1,0 +1,69 @@
+{
+  "description": "黄金场景：重写后行号身份、先删后插、重复键、跨文件、NULL 键。期望由人工逐版本推导，不由被测代码生成。",
+  "schema": {
+    "columns": {"id": "int64", "name": "string"},
+    "key": ["id"]
+  },
+  "steps": [
+    {"op": "load", "file_id": "fA", "rows": [
+      {"id": 1, "name": "a1"}, {"id": 2, "name": "a2"},
+      {"id": 3, "name": "a3"}, {"id": 4, "name": "a4"}
+    ]},
+    {"op": "load", "file_id": "fB", "rows": [
+      {"id": 2, "name": "b2"}, {"id": 5, "name": "b5"},
+      {"id": null, "name": "bnull"}
+    ]},
+    {"op": "eq", "delete_id": "d-eq-2", "key": {"id": 2},
+     "note": "等值删除键 2：跨 fA/fB 两个文件，删除两行重复键"},
+    {"op": "pos", "delete_id": "d-pos-a-2", "file_id": "fA", "row_number": 2,
+     "note": "位置删除 fA 第 2 行（id=3），绑定 fA v1"},
+    {"op": "rewrite", "file_ids": ["fA"], "new_file_id": "fC",
+     "note": "重写 fA：id=2 与 id=3 已删，幸存 [id=1(rn0), id=4(rn3)] 原样延续"},
+    {"op": "pos", "delete_id": "d-pos-a2-stale", "file_id": "fA", "row_number": 2,
+     "expect_http": 409, "expect_category": "state_conflict",
+     "note": "fA 已 superseded，不能再对旧内容下位置删除 -> 状态冲突"},
+    {"op": "pos", "delete_id": "d-pos-c-0", "file_id": "fC", "row_number": 0,
+     "note": "重写后新文件 fC 第 0 行（id=1）可被新位置删除；旧行号不自动继承"},
+    {"op": "eq", "delete_id": "d-eq-5", "key": {"id": 5},
+     "note": "先删除键 5（fB 中 id=5）"},
+    {"op": "load", "file_id": "fD", "rows": [{"id": 5, "name": "d5-new"}, {"id": 5, "name": "d5-dup"}],
+     "note": "删后再插两个同键 5：insert_seq 晚于删除 seq，必须都保留（先删后插 + 重复键）"},
+    {"op": "eq", "delete_id": "d-eq-null", "key": {"id": null},
+     "note": "谓词 NULL：NULL=NULL 为 UNKNOWN，fB 的 NULL 行保留"}
+  ],
+  "final_live_files": ["fB", "fC", "fD"],
+  "final_verdicts": [
+    {"file_id": "fB", "row_number": 0, "action": "delete", "reason": "equality_delete",
+     "by_delete_id": "d-eq-2", "insert_seq": 2, "id": 2},
+    {"file_id": "fB", "row_number": 1, "action": "delete", "reason": "equality_delete",
+     "by_delete_id": "d-eq-5", "insert_seq": 2, "id": 5},
+    {"file_id": "fB", "row_number": 2, "action": "keep", "reason": "null_row_key_blocked",
+     "by_delete_id": null, "insert_seq": 2, "id": null},
+    {"file_id": "fC", "row_number": 0, "action": "delete", "reason": "position_delete",
+     "by_delete_id": "d-pos-c-0", "insert_seq": 1, "id": 1},
+    {"file_id": "fC", "row_number": 1, "action": "keep", "reason": "no_match",
+     "by_delete_id": null, "insert_seq": 1, "id": 4},
+    {"file_id": "fD", "row_number": 0, "action": "keep", "reason": "in_scope_insert",
+     "by_delete_id": "d-eq-5", "insert_seq": 7, "id": 5},
+    {"file_id": "fD", "row_number": 1, "action": "keep", "reason": "in_scope_insert",
+     "by_delete_id": "d-eq-5", "insert_seq": 7, "id": 5}
+  ],
+  "final_deleted_rows": 3,
+  "final_kept_rows": 4,
+  "seq_assignments": {
+    "load fA": 1, "load fB": 2, "d-eq-2": 3, "d-pos-a-2": 4,
+    "d-pos-c-0": 5, "d-eq-5": 6, "load fD": 7, "d-eq-null": 8,
+    "note": "重写不占序列号；被状态检查拒绝的 d-pos-a2-stale 不分配序列号"
+  },
+  "version_snapshots": [
+    {"after_step": 3, "live": {"fA": 1, "fB": 1},
+     "expect_deleted": [["fA", 1], ["fB", 0]]},
+    {"after_step": 4, "live": {"fA": 1, "fB": 1},
+     "expect_deleted": [["fA", 1], ["fA", 2], ["fB", 0]]},
+    {"after_step": 5, "live": {"fB": 1, "fC": 1},
+     "expect_deleted_after_rewrite": [["fB", 0]],
+     "note": "fC 仅含幸存 id=1/id=4；旧位置删除 d-pos-a-2 失效：绑定行 rn=2(id=3) 未幸存，状态 stale_row_already_removed；旧行号不得在 fC 上复用"},
+    {"after_step": 7, "live": {"fB": 1, "fC": 1},
+     "expect_deleted": [["fB", 0], ["fC", 0]]}
+  ]
+}

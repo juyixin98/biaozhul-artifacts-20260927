@@ -1,0 +1,2 @@
+[console_scripts]
+deleter = deleter.__main__:main
