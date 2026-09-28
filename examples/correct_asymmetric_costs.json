@@ -1,0 +1,1 @@
+{"query": "recieve", "threshold": 1.0, "max_results": 5, "costs": {"transpose": 0.6, "substitute": 1.0, "insert": 1.0, "delete": 1.0}}

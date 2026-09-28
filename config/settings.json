@@ -1,0 +1,9 @@
+{
+  "db_path": "data/spellcheck.db",
+  "seed_path": "data/seed_lexicon.jsonl",
+  "default_threshold": 2.0,
+  "uncertainty_margin": 0.5,
+  "max_query_length": 32,
+  "max_candidates_evaluated": 2000,
+  "max_results": 25
+}
