@@ -1,0 +1,33 @@
+[package]
+name = "cnf-dpll"
+version = "0.1.0"
+edition = "2021"
+description = "DIMACS CNF solver backend: DPLL + two-watched-literal BCP with certifying SAT/UNSAT evidence"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "cnf_dpll"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cnf-api"
+path = "src/main.rs"
+
+[[bin]]
+name = "cnf-cli"
+path = "src/bin/cli.rs"
+
+[dependencies]
+axum = { version = "0.7", features = ["macros"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+serde_json = "1"
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+lto = "thin"
