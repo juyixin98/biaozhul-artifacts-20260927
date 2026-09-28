@@ -1,0 +1,3 @@
+{"data": {"file": "logs/service-20260927.jsonl", "run_id": "d330634767b2"}, "level": "INFO", "logger": "trie_service", "message": "logging configured", "ts": "2026-09-27T22:50:27Z.825"}
+{"data": {"file": "logs/service-20260927.jsonl", "run_id": "165540fb4a94"}, "level": "INFO", "logger": "trie_service", "message": "logging configured", "ts": "2026-09-27T22:51:54Z.181"}
+{"data": {"file": "logs/service-20260927.jsonl", "run_id": "45d2e3aab30d"}, "level": "INFO", "logger": "trie_service", "message": "logging configured", "ts": "2026-09-27T22:51:56Z.582"}

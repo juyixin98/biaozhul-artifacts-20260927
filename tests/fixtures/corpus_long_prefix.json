@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "description": "本地合成夹具：长公共前缀、同分、规范化碰撞、热词。无真实业务数据。",
+    "normalizer_version_expected": "norm-1.0.0"
+  },
+  "entries": [
+    {"id": "mp-01", "surface": "multiprocessing",       "score": 95},
+    {"id": "mp-02", "surface": "multiprocessor",        "score": 80},
+    {"id": "mp-03", "surface": "multiprogramming",      "score": 80},
+    {"id": "mp-04", "surface": "multi",                 "score": 70},
+    {"id": "mp-05", "surface": "multitask",             "score": 70},
+    {"id": "mp-06", "surface": "multitasking",          "score": 60},
+    {"id": "mp-07", "surface": "multithreading",        "score": 55},
+    {"id": "mp-08", "surface": "multicast",             "score": 40},
+    {"id": "mp-09", "surface": "multiplex",             "score": 40},
+    {"id": "mp-10", "surface": "MultiPurpose",          "score": 30},
+    {"id": "col-1", "surface": "ＭＵＬＴＩcast",        "score": 40},
+    {"id": "col-2", "surface": "MULTIcast",             "score": 40},
+    {"id": "col-3", "surface": "MuLtIcAsT",             "score": 40},
+    {"id": "ws-1",  "surface": "  multi   task ",       "score": 25},
+    {"id": "uni-1", "surface": "Straße",                "score": 33},
+    {"id": "uni-2", "surface": "strasse",               "score": 33},
+    {"id": "uni-3", "surface": "STRASSE",               "score": 33},
+    {"id": "ot-1",  "surface": "database",              "score": 90},
+    {"id": "ot-2",  "surface": "datastore",             "score": 50},
+    {"id": "ot-3",  "surface": "db",                    "score": 100},
+    {"id": "zs-1",  "surface": "zero-score",            "score": 0},
+    {"id": "zs-2",  "surface": "zebra",                 "score": 0}
+  ]
+}
