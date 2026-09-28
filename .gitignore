@@ -1,0 +1,16 @@
+# build artifacts
+/bin/
+/placer
+*.db
+*.db-wal
+*.db-shm
+/data/
+
+# go
+/vendor/
+
+# editor/OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
