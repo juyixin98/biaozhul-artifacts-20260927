@@ -1,0 +1,7 @@
+c SAT fixture where the first deterministic branch (x1=false) conflicts:
+c   with x1=false, (x1∨x2) and (x1∨¬x2) force x2 both ways.
+c Search must backtrack to x1=true; (¬x1∨x3) then propagates x3=true.
+p cnf 3 3
+1 2 0
+1 -2 0
+-1 3 0

@@ -1,0 +1,8 @@
+c SAT fixture: cascading unit propagation
+c x1 must be true, then x2..x5 are forced in turn.
+p cnf 5 5
+1 0
+-1 2 0
+-2 3 0
+-3 4 0
+-4 5 0

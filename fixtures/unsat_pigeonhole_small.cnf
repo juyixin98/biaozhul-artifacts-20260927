@@ -1,0 +1,6 @@
+c UNSAT fixture: the four clauses forbid all four assignments of (x1, x2).
+p cnf 2 4
+1 2 0
+1 -2 0
+-1 2 0
+-1 -2 0

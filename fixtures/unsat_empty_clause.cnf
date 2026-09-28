@@ -1,0 +1,7 @@
+c Empty clause present: formula is trivially UNSAT without any search.
+c Also exercises normalization: duplicate literal and tautology below.
+p cnf 3 4
+0
+1 1 -2 0
+3 -3 0
+2 0
