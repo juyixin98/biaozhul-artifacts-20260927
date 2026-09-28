@@ -1,0 +1,54 @@
+# Default review policy for the local synthetic fixture.
+# This is configuration-as-evidence: every dynamic identifier MUST be listed
+# here (or supplied via per-request policy_overrides) before it can render.
+
+allowed_statement_types: [SELECT, INSERT, UPDATE, DELETE]
+
+# Bulk UPDATE/DELETE without WHERE is refused.
+require_where_for_update_delete: true
+
+# Static names are cross-checked against the read-only fixture catalog.
+check_static_tables: true
+check_static_columns: true
+
+max_array_length: 1000
+
+# Tables the reviewer is willing to write to (INSERT/UPDATE/DELETE target).
+writable_tables:
+  - users
+  - orders
+
+# Identifier slots: {{ name }} in a template must match a key below.
+slots:
+  # dynamic table in an admin search endpoint
+  user_relation:
+    scope: relation
+    allowed: [users, customers]
+    require_in_schema: true
+  # dynamic ORDER BY column on the users listing endpoint
+  sort_col:
+    scope: sort
+    allowed: [id, name, email, created_at]
+    default: id
+    require_in_schema: false
+  sort_dir:
+    scope: sort
+    allowed: [ASC, DESC]
+    default: ASC
+    require_in_schema: false
+    quote: false            # renders a bare SQL keyword, never an identifier
+  # dynamic column in a projection
+  select_col:
+    scope: column
+    allowed: [name, email, created_at]
+    require_in_schema: false
+
+# Value-parameter allow-lists. '*' applies to every unnamed '?' marker;
+# named markers (e.g. :role) key by the bare name after the ':' marker.
+params:
+  "*":
+    allow_array: true          # arrays are legal only inside IN (...)
+  "role":
+    allowed_values: [admin, member, guest]
+  "status":
+    allowed_values: [active, disabled, pending]

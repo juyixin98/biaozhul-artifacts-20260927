@@ -1,0 +1,7 @@
+policy_path: config/policy.yaml
+fixture_dir: samples/fixture
+audit_db_path: data/audit.db
+audit_key_path: data/audit.key
+host: 127.0.0.1
+port: 8080
+log_level: INFO

@@ -1,0 +1,269 @@
+# Golden set for SQLGuard.
+#
+# Each case is an independent, hand-authored oracle: the expected verdict and
+# finding codes were written from the security requirements, not produced by
+# the kernel. Tests assert BOTH the verdict and the exact code set, so a
+# missing detection (漏报) or a spurious one (误报) fails the build.
+#
+# verdict: accept | reject | unanalyzable
+# codes_*: exact set membership for reject / unanalyzable / advisory codes.
+
+cases:
+  - id: select_positional_ok
+    template: "SELECT id, name FROM users WHERE id = ?"
+    params: {"0": 7}
+    verdict: accept
+
+  - id: select_named_params_ok
+    template: "SELECT id FROM users WHERE name = :name AND status = @status"
+    params: {"name": "Ada", "status": "active"}
+    verdict: accept
+
+  - id: escaped_quote_in_string_is_one_literal
+    template: "SELECT id FROM users WHERE name = 'O''Brien' AND id = ?"
+    params: {"0": 1}
+    verdict: accept
+
+  - id: comment_placeholder_is_inert_line
+    template: "SELECT id FROM users WHERE id = ? -- TODO: remove :x ?9\n"
+    params: {"0": 1}
+    verdict: accept
+
+  - id: comment_placeholder_is_inert_block
+    template: "SELECT id FROM users /* :x ? $y */ WHERE id = ?"
+    params: {"0": 1}
+    verdict: accept
+
+  - id: literal_question_mark_is_not_a_param
+    template: "SELECT id FROM users WHERE name = '?'"
+    params: {}
+    verdict: accept
+
+  - id: param_as_table_name_rejected
+    template: "SELECT id FROM ? WHERE x = 1"
+    params: {"0": "users"}
+    verdict: reject
+    codes_reject: ["VALUE_PARAM_AS_IDENTIFIER"]
+    # even though 'users' is supplied, it must never be inlined; planner
+    # also cannot accept '?' there, but the identifier-position rule fires first
+
+  - id: dynamic_table_slot_ok
+    template: "SELECT id FROM {{ user_relation }} WHERE id = ?"
+    params: {"0": 1}
+    slots: {"user_relation": "customers"}
+    verdict: accept
+
+  - id: dynamic_sort_slot_ok
+    template: "SELECT id FROM users ORDER BY {{ sort_col }} {{ sort_dir }} LIMIT ?"
+    params: {"0": 10}
+    slots: {"sort_col": "email", "sort_dir": "DESC"}
+    verdict: accept
+
+  - id: sort_slot_uses_default_identifiers
+    template: "SELECT id FROM users ORDER BY {{ sort_col }} {{ sort_dir }}"
+    verdict: accept
+
+  - id: dynamic_identifier_not_whitelisted_rejected
+    template: "SELECT id FROM {{ user_relation }}"
+    slots: {"user_relation": "sqlite_master"}
+    verdict: reject
+    codes_reject: ["IDENTIFIER_NOT_WHITELISTED"]
+
+  - id: undeclared_slot_rejected
+    template: "SELECT id FROM users ORDER BY {{ evil }}"
+    slots: {"evil": "id; DROP TABLE users"}
+    verdict: reject
+    codes_reject: ["SLOT_UNDECLARED"]
+
+  - id: missing_slot_value_rejected
+    template: "SELECT id FROM {{ user_relation }}"
+    verdict: reject
+    codes_reject: ["MISSING_IDENTIFIER"]
+
+  - id: order_by_direct_param_rejected
+    template: "SELECT id FROM users ORDER BY ?"
+    params: {"0": "name"}
+    verdict: reject
+    codes_reject: ["VALUE_PARAM_AS_IDENTIFIER"]
+
+  - id: order_by_param_inside_expression_accepted
+    template: "SELECT id FROM users ORDER BY (id * ?) DESC"
+    params: {"0": 1}
+    verdict: accept
+
+  - id: array_param_in_list_ok
+    template: "SELECT id FROM users WHERE id IN (?) AND role = :role"
+    params: {"0": [1, 2, 3], "role": "admin"}
+    verdict: accept
+
+  - id: array_param_scalar_context_rejected
+    template: "SELECT id FROM users WHERE id = ?"
+    params: {"0": [1, 2, 3]}
+    verdict: reject
+    codes_reject: ["ARRAY_PARAM_IN_SCALAR_CONTEXT"]
+
+  - id: empty_array_expansion_rejected
+    template: "SELECT id FROM users WHERE id IN (?)"
+    params: {"0": []}
+    verdict: reject
+    codes_reject: ["EMPTY_EXPANSION"]
+
+  - id: missing_binding_rejected
+    template: "SELECT id FROM users WHERE id = ? AND name = :n"
+    params: {"0": 1}
+    verdict: reject
+    codes_reject: ["MISSING_BINDING"]
+
+  - id: unused_binding_is_advisory_but_accepted
+    template: "SELECT id FROM users WHERE id = ?"
+    params: {"0": 1, "extra": "x"}
+    verdict: accept
+    codes_advisory: ["UNUSED_BINDING"]
+
+  - id: value_allowlist_enforced_reject
+    template: "SELECT id FROM users WHERE role = :role"
+    params: {"role": "superuser"}
+    verdict: reject
+    codes_reject: ["PARAM_VALUE_NOT_ALLOWED"]
+
+  - id: value_allowlist_member_accepted
+    template: "SELECT id FROM users WHERE role = :role AND status = :s"
+    params: {"role": "guest", "s": "pending"}
+    verdict: accept
+
+  - id: multiple_statements_rejected
+    template: "SELECT 1; DROP TABLE users"
+    verdict: reject
+    codes_reject: ["MULTIPLE_STATEMENTS", "STATEMENT_TYPE_NOT_ALLOWED"]
+
+  - id: ddl_statement_rejected
+    template: "DROP TABLE users"
+    verdict: reject
+    codes_reject: ["STATEMENT_TYPE_NOT_ALLOWED"]
+
+  - id: pragma_rejected
+    template: "PRAGMA table_info(users)"
+    verdict: reject
+
+  - id: unterminated_string_unanalyzable
+    template: "SELECT id FROM users WHERE name = 'unterminated"
+    verdict: unanalyzable
+    codes_unanalyzable: ["LEX_ERROR"]
+
+  - id: update_without_where_rejected
+    template: "UPDATE users SET status = ?"
+    params: {"0": "disabled"}
+    verdict: reject
+    codes_reject: ["MISSING_WHERE"]
+
+  - id: delete_without_where_rejected
+    template: "DELETE FROM users"
+    verdict: reject
+    codes_reject: ["MISSING_WHERE"]
+
+  - id: update_param_on_set_lhs_rejected
+    template: "UPDATE users SET ? = 1 WHERE id = ?"
+    params: {"0": "status", "1": 3}
+    verdict: reject
+    codes_reject: ["VALUE_PARAM_AS_IDENTIFIER"]
+
+  - id: update_ok
+    template: "UPDATE users SET name = :n, status = :s WHERE id = :id"
+    params: {"n": "Ada A.", "s": "active", "id": 1}
+    verdict: accept
+
+  - id: update_non_writable_target_rejected
+    template: "UPDATE customers SET name = ? WHERE id = ?"
+    params: {"0": "x", "1": 1}
+    verdict: reject
+    codes_reject: ["TARGET_TABLE_NOT_WRITABLE"]
+
+  - id: insert_ok
+    template: >-
+      INSERT INTO users (name, email, role, status, created_at)
+      VALUES (?, ?, :r, :s, :ts)
+    params: {"0": "New", "1": "new@example.test", "r": "member",
+             "s": "pending", "ts": "2026-09-01T00:00:00Z"}
+    verdict: accept
+
+  - id: insert_unknown_column_rejected
+    template: "INSERT INTO users (nonexistent) VALUES (?)"
+    params: {"0": 1}
+    verdict: reject
+    codes_reject: ["UNKNOWN_TABLE"]
+
+  - id: unknown_static_table_rejected
+    template: "SELECT * FROM passwords WHERE id = ?"
+    params: {"0": 1}
+    verdict: reject
+    codes_reject: ["UNKNOWN_TABLE"]
+
+  - id: cte_select_ok
+    template: >-
+      WITH recent AS (SELECT id, name FROM users WHERE id > :min)
+      SELECT * FROM recent WHERE name = :n
+    params: {"min": 0, "n": "Ada"}
+    verdict: accept
+
+  - id: cte_param_binding_required
+    template: >-
+      WITH recent AS (SELECT id FROM users WHERE id > :min)
+      SELECT * FROM recent
+    params: {}
+    verdict: reject
+    codes_reject: ["MISSING_BINDING"]
+
+  - id: qualified_table_name_ok
+    template: "SELECT main.users.id FROM main.users WHERE main.users.id = ?"
+    params: {"0": 1}
+    verdict: accept
+
+  - id: invalid_param_type_rejected
+    template: "SELECT id FROM users WHERE id = ?"
+    params: {"0": {"nested": "object"}}
+    verdict: reject
+    codes_reject: ["INVALID_PARAM_TYPE"]
+
+  - id: null_and_bool_values_accepted
+    template: "UPDATE users SET name = COALESCE(?, name) WHERE id = ?"
+    params: {"0": null, "1": true}
+    verdict: accept
+
+  - id: join_subquery_with_param_ok
+    template: >-
+      SELECT u.id FROM users u JOIN
+      (SELECT user_id FROM orders WHERE amount_cents > :amt) o
+      ON u.id = o.user_id WHERE u.status = :s
+    params: {"amt": 100, "s": "active"}
+    verdict: accept
+
+  - id: in_subquery_param_ok
+    template: "SELECT id FROM users WHERE id IN (SELECT user_id FROM orders)"
+    verdict: accept
+
+  - id: classic_injection_literal_does_not_become_code
+    # the payload arrives as a bound VALUE; quoting is SQLite's job
+    template: "SELECT id FROM users WHERE name = ?"
+    params: {"0": "x' OR '1'='1"}
+    verdict: accept
+
+  - id: rendered_sql_rejects_bad_column_in_expression
+    template: "SELECT nope FROM users WHERE id = ?"
+    params: {"0": 1}
+    verdict: reject
+    codes_reject: ["RENDERED_SQL_INVALID"]
+
+  - id: empty_template_rejected
+    template: ""
+    verdict: reject
+    codes_reject: ["EMPTY_TEMPLATE"]
+
+  - id: only_comments_rejected
+    template: "/* just a comment */"
+    verdict: reject
+    codes_reject: ["EMPTY_TEMPLATE"]
+
+  - id: blob_literal_compared_ok
+    template: "SELECT id FROM users WHERE id = ? AND x'4142' IS NOT NULL"
+    params: {"0": 1}
+    verdict: accept

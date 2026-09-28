@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Runtime state (audit DB, HMAC key) — never commit
+data/
+
+# Generated fixture DB is rebuilt from schema.sql + seed.sql
+samples/fixture/fixture.db
+
+# OS/editor
+.DS_Store
+*.swp
