@@ -1,0 +1,723 @@
+{
+  "checkpoint": {
+    "certificate": {
+      "header_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+      "signatures": [
+        {
+          "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+          "signature": "0xe08d465ca403886637b70919223967acb4ebfc92378f59a0d2b303af0948c3b554e535a9938221d439c097667b52770ce37883c4d57ec1697b1c2c30bd312600"
+        },
+        {
+          "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+          "signature": "0x8c5fc373973433432acfcc9e92e7c399728001253c1aad1c45dcf7b07ebe2307268194bb38bddabac346769168faea8f15099e357b723ccf55af1be88b22bc0d"
+        },
+        {
+          "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+          "signature": "0x64846a3908c9e561472a3f41edeb00cebbdb031cd5a335b93528ed042755e16976c94d5ac383c3375b346cefa237b6850c2917f4f2fedeb436b11ce2b0241308"
+        },
+        {
+          "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+          "signature": "0x07171dac51f422fb9151f4bbac16ae8060bf10031c2171d1ec7b7c16a0cbe187963a7a5cb942e0056b73a83869ed20bbd2792e6729f001429cab2c6c58dc2a02"
+        },
+        {
+          "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+          "signature": "0x3ffa9140d143f0e47e14e86ed5fbf662c89ec9a3205f41cb825f52f74317a5e12dd5a99d7ea94f732319686f1c5d9ba26c7f6e9d3901f1a99ba41307a62d600d"
+        }
+      ]
+    },
+    "committee": {
+      "members": [
+        {
+          "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+          "weight": 10
+        },
+        {
+          "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+          "weight": 10
+        },
+        {
+          "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+          "weight": 10
+        },
+        {
+          "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+          "weight": 10
+        },
+        {
+          "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+          "weight": 10
+        },
+        {
+          "public_key": "0xbf76def1db2fc02de7638c464e33b3551897aec4c8c7dcc692820461e19d6373",
+          "weight": 10
+        }
+      ]
+    },
+    "committee_commitment": "0x330d0ab172027442250f0ae4259effd9f1a9d89096555f9e52ce0ec6c3fa5ede",
+    "header": {
+      "body_root": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "next_committee_commitment": null,
+      "parent_root": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "round": 100,
+      "timestamp": 1700000000000
+    },
+    "root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed"
+  },
+  "constants": {
+    "SLOT_MS": 6000,
+    "T0": 1700000000000,
+    "base_committee_size": 6,
+    "base_required_weight": 41,
+    "base_total_weight": 60,
+    "domains": {
+      "cert_sign": "4c435349474e4801",
+      "committee": "4c4301434f4d",
+      "header": "4c4301484452"
+    },
+    "trust_period_ms": 604800000
+  },
+  "note": "Independent oracle fixture. Not a public-chain client.",
+  "protocol": "local-header-lightclient/simplified-v1",
+  "vectors": [
+    {
+      "description": "three contiguous headers, each signed by 5/6 (50w >= 41w)",
+      "id": "legal_continuous_3",
+      "items": [
+        {
+          "certificate": {
+            "header_root": "0x150cc0a63184a5d22e2ca2afcb2b52ea549f13e8371c7adbacfbbf8c471bfa92",
+            "signatures": [
+              {
+                "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+                "signature": "0x41b6ce79c0b8c66541285108f645335b21ddd2caffb70a560cbbb018947978b472d5d9d4c3d0de83815979ed1c86dbe87d31187bbf4adc46b1c11d263101870f"
+              },
+              {
+                "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+                "signature": "0xb4611e24fe3c58c07fb0656224899241e1f3af4aed7a48eada99d7349ab799d7a6d9d2cbed600c05f40de4faf2d2cda5abfd43f03789dbf03b00cd1ef657f10e"
+              },
+              {
+                "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+                "signature": "0x6bc26d84d187624275ae182ddda43874a74b025f5fb636cf191bc9d12bc2de5037f0849ea5d2f52e8a66cf21bc0adf85f26a3cb0f84eee478915a76b58847807"
+              },
+              {
+                "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+                "signature": "0xc3ac915350d704e66d7a40e2755fda592cbe40cea9598d0287c7630369ba4d8529d09ae4c87b1fcb4b8781b03fa768a27090c19fdc639c33565271ad0344aa00"
+              },
+              {
+                "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+                "signature": "0x36a6fa2b2ed2b861b75c2a6a222bca1352e5e9c8238fc2e78b6c2960858b3e63f9c271ec008fa7395fb33fe8354745cd3864dac158357544d9013723ea1f6103"
+              }
+            ]
+          },
+          "expected": {
+            "verdict": "accept"
+          },
+          "header": {
+            "body_root": "0x61167f81dd292f0ba8312955d9bec75479f5dd64b2eab206b132ab7e0baece4f",
+            "next_committee_commitment": null,
+            "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+            "round": 101,
+            "timestamp": 1700000006000
+          },
+          "root": "0x150cc0a63184a5d22e2ca2afcb2b52ea549f13e8371c7adbacfbbf8c471bfa92"
+        },
+        {
+          "certificate": {
+            "header_root": "0xb327c69bc00f02b0d8474bc954ad238c31a912d5cbf8eeffa7a2c9fb803ba080",
+            "signatures": [
+              {
+                "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+                "signature": "0x3eeedf42a1add1b75907fbe2cfb0088808d24c954e6101f00bd35433c1ce19243fa1e482c41c6400aae2b023212b119a15ff5295cb6aa29c4647769d650d5f01"
+              },
+              {
+                "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+                "signature": "0x15c5982ddb791c8e96e673b1a6f708790884c9f5ecf3e6c76b6909b686f0bea2e17aa103b78539c7490e0bcfebb489d9568a92851d492fdc89784b94707e6f00"
+              },
+              {
+                "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+                "signature": "0xc66ff2e885214227e3f447c02d59a3461416101e7e3a0265c0c5df559e7f3b3b97be8bc53cc0af4ff8998400be85c2442be096272632e4a3cb4c0843a6f9220d"
+              },
+              {
+                "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+                "signature": "0x256df76fb156ff77d40c47ad0cc42479e35b470c5a505ef5b0ed885f6f7051afc813a66081ccfc184399cb242c9734f6790431056df6c4ef7721798d6f888502"
+              },
+              {
+                "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+                "signature": "0xdf3d8f49c40d7cacc79b4708a94201921384ec123408b442a7dc2b0b25fc5aae0a490bdb91a96ef80b6629ecf8dd43c76ce41996014031c271c0e9b151963007"
+              }
+            ]
+          },
+          "expected": {
+            "verdict": "accept"
+          },
+          "header": {
+            "body_root": "0xc670168785d4865c19261b35a34e24c9603fd991c9f10b63523f1f254af3f76b",
+            "next_committee_commitment": null,
+            "parent_root": "0x150cc0a63184a5d22e2ca2afcb2b52ea549f13e8371c7adbacfbbf8c471bfa92",
+            "round": 102,
+            "timestamp": 1700000012000
+          },
+          "root": "0xb327c69bc00f02b0d8474bc954ad238c31a912d5cbf8eeffa7a2c9fb803ba080"
+        },
+        {
+          "certificate": {
+            "header_root": "0xccbeea200866dcc630eb749d1131e787384aec3fa2fb9bd55d63b299db6a33f2",
+            "signatures": [
+              {
+                "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+                "signature": "0xa3916936c16dd902cfc14b71ca30f9041f8a2b2b9743ee318e99729e6b522e593ad172e0d633ebbd224850fff379f322e747635dd56342662adc522c6069750b"
+              },
+              {
+                "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+                "signature": "0x4fd8e3e643cad7ea4b976018b3c396dc8acd556a13c98f81905010277c160d2fedda212254a1b2d757da37a261ae03b7625915d0e548656149a676a1adc72e03"
+              },
+              {
+                "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+                "signature": "0x32a6da6327e017eec036470555983860a007304b2110b828d0ddd7fcd6605417922af9686451defd18ecc940e8f1b9695c338af7ec2c83bf44fd95144083ab09"
+              },
+              {
+                "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+                "signature": "0xfbb9b6ee6d7d7f7379945ff0d31ae5f3c738efe3600a1dff39ab0ccaa7c777dd470a4e0c71767c890d293bdd56cd3b253b2ce0c7858ab94c073a567ae891bd0d"
+              },
+              {
+                "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+                "signature": "0xd56a0734d9baaefefb0acf686f348ec22c4ad52e0d7ff5e86b1b8bb5c6a80b380cdd584ee59d3e4c425e39ce649325d3843ed06d730b8c93c84870d1b8e8e40b"
+              }
+            ]
+          },
+          "expected": {
+            "verdict": "accept"
+          },
+          "header": {
+            "body_root": "0x47111468fb6395c308db86c12b8098ce90dc7144ebc3fbdb72a6613ed9d3966e",
+            "next_committee_commitment": null,
+            "parent_root": "0xb327c69bc00f02b0d8474bc954ad238c31a912d5cbf8eeffa7a2c9fb803ba080",
+            "round": 103,
+            "timestamp": 1700000018000
+          },
+          "root": "0xccbeea200866dcc630eb749d1131e787384aec3fa2fb9bd55d63b299db6a33f2"
+        }
+      ],
+      "kind": "chain"
+    },
+    {
+      "certificate": {
+        "header_root": "0x80939e15f04bf8eb160954f451c4cb2a99f3278c857d5df3d75ff49193d7eb79",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0x7dd7a1bf90219c8700fbd61687ee4fa74ab2ca9c0ce819ae06b7bc4d7610336a85ac677ff012f97c8f167278dd5e6fecdebb0c6b35ddc048e0298cf3049eae0f"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0xf78a5f9d98e6161df476ae1399d6c042538b3b393eae40ba2bf5e9ace9d19a41f2062889d01fceaba47e8bc310fdb7fc1e20026576febd69c0ba90ff37b8c700"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x5d2a98c55b625dc3bc351e203accead04ad5bbd2d7a8c0649dc0fd2fd59e11cedd1e970b9000157800cdd4615a13b947e64a33880df9ce7fa44f579dbae50e09"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0x1870067f0df46fdcbd6620a6b3778f76cce0295f76d7952a82657b33009dd68c727ea2b392655d36364ca5ee8374d8fc74094e3eae54567b81a629d785447f0a"
+          }
+        ]
+      },
+      "description": "4/6 signers = weight 40, required 41 -> reject",
+      "expected": {
+        "category": "computation_failure",
+        "code": "INSUFFICIENT_WEIGHT",
+        "reason": "signed weight 40 < required 41 of total 60",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x0101010101010101010101010101010101010101010101010101010101010101",
+        "next_committee_commitment": null,
+        "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+        "round": 201,
+        "timestamp": 1700001206000
+      },
+      "id": "weight_below_threshold",
+      "kind": "single",
+      "required_weight": 41,
+      "root": "0x80939e15f04bf8eb160954f451c4cb2a99f3278c857d5df3d75ff49193d7eb79",
+      "signed_weight": 40
+    },
+    {
+      "certificate": {
+        "header_root": "0x678f27831f46331d696f078a2e0f3b5cb75a72b3b24c4601dfcc39f5b3aef705",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0xd8ceac061f0c57ee0efd72ae1b033c58d160bd97056c5580676cfc0913982bb2bacf902936b70257a849c5967725d90bbd1f6cd03239e6621c1bf0c48112b806"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0x3404e15fd5aa8480645b469df87565530118bb120fa48a1830db5469f2214eba0b55fd29d59b81d5b7c5db2031b0289f1a809f4fc659bc3fa5805bbaa8b98505"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x4b20af684ade4f3e8a364a78214c904a63e7125fa9b146df8e9b945456f8c11ad67b9ec6fc56781f35c831f6a48adc1f8528ed532fe362e56cbd3631e6d7180b"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0xbe6364d0a882e4675c263400995c2cb8c9ffd20faf0a19a2f28ac4069f917df34cd14d8d9435a28d8016ed7b284aa01bc06e5f8f66d7b12b7bb56ba3fa95eb05"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0x79dd5eab5723a720903094852a8298cc99ebf92c2a04a99c66f1b1fe9694eec2dc2fbf522784d0e8ec0a614cfc84bb034ba5de8ff7eae805fa71d280bdb28200"
+          }
+        ]
+      },
+      "description": "rotation header authorized by 5/6 of the OLD committee",
+      "expected": {
+        "verdict": "accept"
+      },
+      "header": {
+        "body_root": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "next_committee_commitment": "0x9d90e5065a872d7794f077c4bef62ff0afac5cab8959529f1d13a4576f43d93c",
+        "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+        "round": 300,
+        "timestamp": 1700001800000
+      },
+      "id": "committee_rotation_authorized",
+      "kind": "single",
+      "new_committee_commitment": "0x9d90e5065a872d7794f077c4bef62ff0afac5cab8959529f1d13a4576f43d93c",
+      "next_committee": {
+        "members": [
+          {
+            "public_key": "0x03da51c2be66a1376bb551109f695d0f5f4080cf6a541dfcbd4c0984ff0427cf",
+            "weight": 10
+          },
+          {
+            "public_key": "0x0c976ed92c98544203cc1a1e82aec9b5ff1d63d8320da9557411ad12ec284a2d",
+            "weight": 10
+          },
+          {
+            "public_key": "0x199af3563afd9899e309c3e070c80dff2acc6e345e122a9855295491fd930117",
+            "weight": 10
+          },
+          {
+            "public_key": "0xcc4896e1732d93a042139f3c55eec8fe958d0f0432ac35c604bc8db555e48289",
+            "weight": 10
+          },
+          {
+            "public_key": "0xd769d33cb20310e321e0997d796599f61bb08a491b634bfe92564cd718fb5051",
+            "weight": 10
+          }
+        ]
+      },
+      "root": "0x678f27831f46331d696f078a2e0f3b5cb75a72b3b24c4601dfcc39f5b3aef705"
+    },
+    {
+      "certificate": {
+        "header_root": "0x338f4e14535b80ca41f276b6edf96da6cb7a3861362fe6c811e8fc8a4b495450",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0x6c9eb9f3115cb48410cf0bde98009efbc35b092a9c184b0ea82bb20cb7d00ca07bf69826c88c2a770ea19e69e212c04a9e52b1b14de84ad35aacf332916e9e01"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0xcf18cbb860c01b55e93efdbd7040947a9f7584e57b9fa11e4717a4f5689d2bad07ef492bd573e048c837f7a721af703f773a669e8cfd56736a28b49cc9852602"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x552df476eba9ed297a38a47dc6b220deb229e71dacf59f49a5e188bc5f67ca1f784bf5b86abc58ac21ac5f3a06a3bd55a159501560fe0804d32d32d0c5b20706"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0xc7bc44f62e5aa99e5955fb9023ef82a2316ce9083894838836008e6c91afb5c41eb9259f1f2bf2954175c9d31eca2f9823e6e4006c128a0be5e830e59b60330a"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0xdf62af2fb8acd0e1297d332a6c9422ce67d2b8269604fcf2058084f734308b87275a6350236b1c7f98d699d4bfec1169a313785167988d495761c01fd5f2ed01"
+          }
+        ]
+      },
+      "description": "after rotation, old committee's 5/6 cert is rejected",
+      "expected": {
+        "category": "computation_failure",
+        "code": "SIGNER_UNKNOWN",
+        "reason": "signers are not members of the now-active committee",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d",
+        "next_committee_commitment": null,
+        "parent_root": "0x678f27831f46331d696f078a2e0f3b5cb75a72b3b24c4601dfcc39f5b3aef705",
+        "round": 301,
+        "timestamp": 1700001806000
+      },
+      "id": "old_committee_signs_after_rotation",
+      "kind": "single",
+      "prerequisite": "committee_rotation_authorized",
+      "root": "0x338f4e14535b80ca41f276b6edf96da6cb7a3861362fe6c811e8fc8a4b495450"
+    },
+    {
+      "certificate": {
+        "header_root": "0x338f4e14535b80ca41f276b6edf96da6cb7a3861362fe6c811e8fc8a4b495450",
+        "signatures": [
+          {
+            "public_key": "0x03da51c2be66a1376bb551109f695d0f5f4080cf6a541dfcbd4c0984ff0427cf",
+            "signature": "0xed7ce0c8c86a9a34d2864bea0d8427c5547d17154e6c26782a5fb4f0e67f05767ab9a5463e39714dcc9d24104666ff6f852844fb4ad841e421fa71b3a2975300"
+          },
+          {
+            "public_key": "0x0c976ed92c98544203cc1a1e82aec9b5ff1d63d8320da9557411ad12ec284a2d",
+            "signature": "0x0f9ca453e451a87c4eb53472cc6730c06afb0963c1f564b723fec8e22558327da326821102c354cda131fb286ca0fbe23667078ed084a740d4af8c65d323a60c"
+          },
+          {
+            "public_key": "0x199af3563afd9899e309c3e070c80dff2acc6e345e122a9855295491fd930117",
+            "signature": "0x8aef8a09d1abfa49be22d5dc5bb8124d36e210625901c4540bad51043a83eafd69c2f0c1d55fc2b22e0ef6a779889e93900eec6edec5e1c2d6c3ab6f33256003"
+          }
+        ]
+      },
+      "description": "new committee, 3/5 = 30w < 34w required",
+      "expected": {
+        "category": "computation_failure",
+        "code": "INSUFFICIENT_WEIGHT",
+        "reason": "signed weight 30 < required 34 of total 50",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d",
+        "next_committee_commitment": null,
+        "parent_root": "0x678f27831f46331d696f078a2e0f3b5cb75a72b3b24c4601dfcc39f5b3aef705",
+        "round": 301,
+        "timestamp": 1700001806000
+      },
+      "id": "new_committee_underweight",
+      "kind": "single",
+      "prerequisite": "committee_rotation_authorized",
+      "required_weight": 34,
+      "root": "0x338f4e14535b80ca41f276b6edf96da6cb7a3861362fe6c811e8fc8a4b495450",
+      "signed_weight": 30
+    },
+    {
+      "certificate": {
+        "header_root": "0x338f4e14535b80ca41f276b6edf96da6cb7a3861362fe6c811e8fc8a4b495450",
+        "signatures": [
+          {
+            "public_key": "0x03da51c2be66a1376bb551109f695d0f5f4080cf6a541dfcbd4c0984ff0427cf",
+            "signature": "0xed7ce0c8c86a9a34d2864bea0d8427c5547d17154e6c26782a5fb4f0e67f05767ab9a5463e39714dcc9d24104666ff6f852844fb4ad841e421fa71b3a2975300"
+          },
+          {
+            "public_key": "0x0c976ed92c98544203cc1a1e82aec9b5ff1d63d8320da9557411ad12ec284a2d",
+            "signature": "0x0f9ca453e451a87c4eb53472cc6730c06afb0963c1f564b723fec8e22558327da326821102c354cda131fb286ca0fbe23667078ed084a740d4af8c65d323a60c"
+          },
+          {
+            "public_key": "0x199af3563afd9899e309c3e070c80dff2acc6e345e122a9855295491fd930117",
+            "signature": "0x8aef8a09d1abfa49be22d5dc5bb8124d36e210625901c4540bad51043a83eafd69c2f0c1d55fc2b22e0ef6a779889e93900eec6edec5e1c2d6c3ab6f33256003"
+          },
+          {
+            "public_key": "0xcc4896e1732d93a042139f3c55eec8fe958d0f0432ac35c604bc8db555e48289",
+            "signature": "0xbede413ef787822564b13d92602834a3be0c7d0a9db3a5fe6efad582afa85c11055c87fe41d2cacf8838780566aebe14c88163653c2ea4b60c709a1f32547a0c"
+          }
+        ]
+      },
+      "description": "new committee, 4/5 = 40w >= 34w",
+      "expected": {
+        "verdict": "accept"
+      },
+      "header": {
+        "body_root": "0x0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d",
+        "next_committee_commitment": null,
+        "parent_root": "0x678f27831f46331d696f078a2e0f3b5cb75a72b3b24c4601dfcc39f5b3aef705",
+        "round": 301,
+        "timestamp": 1700001806000
+      },
+      "id": "new_committee_authorized",
+      "kind": "single",
+      "prerequisite": "committee_rotation_authorized",
+      "root": "0x338f4e14535b80ca41f276b6edf96da6cb7a3861362fe6c811e8fc8a4b495450"
+    },
+    {
+      "certificate": {
+        "header_root": "0x1f0c603158ea29e6811afaf705db9682d540d41a58948c73d3f7093d49342eb2",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0x102498b1cddc48bf6aa94edef85f90f2db472b58a6f4f0ae8993e1c3bfafefdf32799895cb683ec1449fe235037d289872ae59eceda2cb636fad9688acde460b"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0xb6005fe6e174475694a75e629173d64b1ce376d7692f98b37ddcc1f7ede64f49a412a29da7da04db555cf033c06a6275cd67cd4da0f6bf83918dd05e5e3bdb0c"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x7b62eba7ae2a9724395b4c07244d4a441d0246d071ea701eaabe6fcafa74293ca550de5dd4104c818503b8678c1c24c34ab8851c269c4ae9e987d1e441e6390b"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0x2086c996b14785ee39b00d3e760368b9dae80709ee2176ad19fd813e162a72a5bb1c7910426103e6c28c61756b032536fc476ec55a54b232d8afbc68520de502"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0xa9c5385cb35a6148d5906f53b788e3339447d41203ea1f5cc0847eea82cd634f21c9bcdef95c4813e44f87818afd1be77ccb5c4382202e41f77c335972416505"
+          }
+        ]
+      },
+      "description": "second header at round 101 branching from checkpoint",
+      "expected": {
+        "category": "state_conflict",
+        "code": "CONFLICT_EQUIVOCATION",
+        "reason": "different header at the same round as trusted tip",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0xf0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+        "next_committee_commitment": null,
+        "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+        "round": 101,
+        "timestamp": 1700000006000
+      },
+      "id": "conflict_same_round_equivocation",
+      "kind": "single",
+      "prerequisite": "legal_continuous_3:first",
+      "root": "0x1f0c603158ea29e6811afaf705db9682d540d41a58948c73d3f7093d49342eb2"
+    },
+    {
+      "certificate": {
+        "header_root": "0x3fb2d55d205f781f7080bf490bcf1a3125cc54f99491030bfb3fb47acaedeb70",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0xcdf266541ae333f87064d128b12a3903972fe9cec452bfc70f1783631afc1d57e2519edb5ac8a572212e208b3561c012b5753268b3efcf7d39d9fc49ca9d5808"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0x97a8a667f865c2efa561f5b5a2151dbbd168d41bfe08c9ca5d2a98463789862389ae31724b8d6a138c822cd23c715f445b3f20be20b06ee808857cfdeed3140a"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0xa6f27824e6f2e58e40869c1b50495d75a5f0ee944967430922af758023679f489d7255ab88f7a1b92ab49abd35cc49632f223f6f9aa3af900dfd8e1cbec3830f"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0xdba1d0f86058a277f5295acaba6212e484bc304980915dbfdb78dce5c9281c0cdf1641c2adde01f583fe0a714663a6daac15706eaca2dbcdcb8742dbfe7c6906"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0xb6386ea7ee07d47bd95d3ecab93b69bc1c2e497007bf6c2e138421a228242a7854480dcfcc057d9c2327efe5d679b61d240a6695132071f54def8b84bde2640b"
+          }
+        ]
+      },
+      "description": "header whose parent is not the tip and unknown",
+      "expected": {
+        "category": "state_conflict",
+        "code": "UNTRUSTED_BRANCH",
+        "reason": "cannot update root from an untrusted branch",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b",
+        "next_committee_commitment": null,
+        "parent_root": "0xbebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebebe",
+        "round": 101,
+        "timestamp": 1700000006000
+      },
+      "id": "untrusted_branch_unknown_parent",
+      "kind": "single",
+      "root": "0x3fb2d55d205f781f7080bf490bcf1a3125cc54f99491030bfb3fb47acaedeb70"
+    },
+    {
+      "certificate": {
+        "header_root": "0x5ff1a0f9b5646bee5ada4ab0eb0cf94f54f0aa7b18ca8d31cecf9658a75be231",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0xab4fbe403c4834dffa548f88091fdf1fc7168660d3fddec82e8968fba704c591f83098dc8aeb380fd1721e7c61d93ede1afd52c467de87c5394800d841b8a208"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0x620c96b79e0049ccca565bc2eb976476cc63e7921b18a51b5f156d34ac6e9818e10df414dc417e2efd33476da6024699958e2aa643ba096a5f3a652945789f00"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x522450a727506e49b5db3afff2d71a9c1dac0b41edb2ac623a7e1353d022439bdd8dc122466487ecbf2a6fa338a35b746ae68eb5c56d965cd130fc83368cc10b"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0x32df0384f069231657cfa680136e2e3dfcf31b8677334b767ee918ecf6adeb87ee701be002537eb4bcfe7d6da576a768ae7b4a703d4c6ab6d4941caf874cda05"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0xb303686232c17a478a21dbb308ab6faf764acccac6ace2a05de21ccbd91f06be14f712033e5db05050103494f7f45d4418f0e55add4f3fa7fe3d7c6561edc601"
+          }
+        ]
+      },
+      "description": "round 50 <= checkpoint round 100",
+      "expected": {
+        "category": "state_conflict",
+        "code": "STALE_ROUND",
+        "reason": "round must strictly increase",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x0505050505050505050505050505050505050505050505050505050505050505",
+        "next_committee_commitment": null,
+        "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+        "round": 50,
+        "timestamp": 1700000060000
+      },
+      "id": "stale_round",
+      "kind": "single",
+      "root": "0x5ff1a0f9b5646bee5ada4ab0eb0cf94f54f0aa7b18ca8d31cecf9658a75be231"
+    },
+    {
+      "certificate": {
+        "header_root": "0x2c8c2141d52bf1c113e8da35e9535ca08cdd57faeb89051bdea7029befb246fa",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0x24e9be4f81071f9e736e364c43d201479bbe00540fbe8af11c8284ab5fa947a42ffd49d0d883813beb993f068927e9aae9abc4d5cee25529e5e0918c63b1cf03"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0x6f680d90993ad509d2be9601ba500f25f412cfc20a76643fe80ddc92db8fe37d72a8f5d857fb139287ce07a0eb258e831f9e3af02768928356c03ce880291706"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x45a0f6653196ab2a5d2f32f83f789ab2ec5895978b8df398c35cecc045a92ed8e5d5143045c276c428fd5109278e2130fe5a9cb3ddf47bf6fc30d5bf1f1d8b06"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0x6bf38b36e3ae058238d99bb237979a6c019431b6c976124ea71e51a77dd6b6493dc1c70cf7a672d70a5d5dbaf51b643a76d8c5b34f21f58d631ab788c399c606"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0xb7c1c1ed0ab8c6e4807f91a214992d2d412fc1d523d6c5c54cb47d555ca3e12cf3746f30b48541225b50901c8d359ba26ce6faf1930d1643e84a0b99ed462e00"
+          }
+        ]
+      },
+      "description": "one corrupted Ed25519 signature among five",
+      "expected": {
+        "category": "computation_failure",
+        "code": "CRYPTO_BAD_SIGNATURE",
+        "reason": "individual signature verification failed",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x0202020202020202020202020202020202020202020202020202020202020202",
+        "next_committee_commitment": null,
+        "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+        "round": 202,
+        "timestamp": 1700001212000
+      },
+      "id": "bad_signature",
+      "kind": "single",
+      "root": "0x2c8c2141d52bf1c113e8da35e9535ca08cdd57faeb89051bdea7029befb246fa"
+    },
+    {
+      "certificate": {
+        "header_root": "0x431e5f80397c06bd787fd52cb311163e7d6804ae529beb0e26f5bcf481628be1",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0xf1d805e442687daea56a0e52bea3bdc29f60df2b3cf950ea4bd891c8073d70f6ad5d81e7d91ff4666c453d2225b0dec6c2748e6388377209f6af458105730702"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0x1e5ecfa151e71f8178d1457c114181efbcebc9894d7729eacb8ac4f38731adce3a8b790dabe28d8238a6c4b3546b83926368fa37f0654594547147f9b2122606"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x0f525d1f258ba1f320eeda98997d0957e62cb8d042751e9d2e408d5ee19d062194b2802018e63ada7f7089d871f72a54008b1c67307d593c3d559d966a530f05"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0xa47682d38274c3a07c77f0ecafb108ab402867ba29ed5b7901475fcc0939a6e290c0b326a2794c9f311b26dae0153df874ef2c0f93df24197e1133dee2416607"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0x1c7e95d8842ccf749b6960fec7560a856f679318d6cac890f13c23b1aa0afb8b6ec1742cb7a1ad1cef4f3f1e6e50768d6b7e16bd752499a7ef3a1f0b9710430b"
+          }
+        ]
+      },
+      "description": "certificate.header_root mismatches header root",
+      "expected": {
+        "category": "input_error",
+        "code": "CERT_BIND_MISMATCH",
+        "reason": "certificate is bound to a different header",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x0303030303030303030303030303030303030303030303030303030303030303",
+        "next_committee_commitment": null,
+        "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+        "round": 203,
+        "timestamp": 1700001218000
+      },
+      "id": "cert_bound_to_other_header",
+      "kind": "single",
+      "root": "0xc159ab5457e1d8158ee6e73196b320b24b89da485bc7f3d53de7867892263898"
+    },
+    {
+      "certificate": {
+        "header_root": "0x280b4f295ac6c46df0ae4df760ee07a96021cff17d6b1c90bebf2b747c3d7d5c",
+        "signatures": [
+          {
+            "public_key": "0x01dde6de29d7b4f821dda0d2fb3e44cd6eb3c58d8c36da0c3c9695727db0258c",
+            "signature": "0xf123e46227058840f0c8c565471de662e570a9d2d975fdb0939a22dd42ca2ff73954cf2c1003d595ee349106df0abc6e1a2cbe09994925a5b5b7d1fff6c34b0f"
+          },
+          {
+            "public_key": "0x0f8386275e124f3c521eaf137091059d71af26f58a9b188b49eed6f73b950559",
+            "signature": "0xc6053969b08294d32856de0d2461c677fcb7e46c1a74a147f2fa56d046da82d01149cac5e450be3625811eb3a9a2a65b14e88dadcb7ef028b97c2fc95142320c"
+          },
+          {
+            "public_key": "0x1e62810de664f69f49416a23db446e06be23c9b00b5fd64269f57bb83de7af44",
+            "signature": "0x19fa72005d1eda390fa16846d1947017c9b9f7186cfde226e7c27b00599927fbd8e0fa6a007ab569192d41c6927534173450b636148c9a36748825a895d84d08"
+          },
+          {
+            "public_key": "0x7c0b1d5e078ef261a322281578066caec8e060b17e4ef99d9ce4447c6920fcce",
+            "signature": "0xf60bdfacfef27e25b45d4be2abf99c4a1528b3a0aebc366757f0cf465142500642b6623e1943e24c5d2eddc42205c30e8d0593e037a655bc779f0f1bc406200f"
+          },
+          {
+            "public_key": "0xa66e13ac16dabac345745bc909d5a28db8af13cbf01ebb5292bd36f97705a067",
+            "signature": "0x6d4131f4a3a50677c93c19927cdd7fd4de01f63a59641abd8fd4e75356b5be71ef1998c8a16769fd609ae5a3bdd3a3509a9c40f3157b6e87ee87e97b7a1c2102"
+          }
+        ]
+      },
+      "description": "supplied committee doesn't hash to declared commitment",
+      "expected": {
+        "category": "input_error",
+        "code": "ROTATION_COMMITMENT_MISMATCH",
+        "reason": "committee commitment mismatch",
+        "verdict": "reject"
+      },
+      "header": {
+        "body_root": "0x3131313131313131313131313131313131313131313131313131313131313131",
+        "next_committee_commitment": "0xdededededededededededededededededededededededededededededededede",
+        "parent_root": "0x006c90eaa6a2f3e9afa6b72102e880786dafce61d1de08d1a87bf52ac0ad13ed",
+        "round": 310,
+        "timestamp": 1700001860000
+      },
+      "id": "rotation_commitment_mismatch",
+      "kind": "single",
+      "next_committee": {
+        "members": [
+          {
+            "public_key": "0x03da51c2be66a1376bb551109f695d0f5f4080cf6a541dfcbd4c0984ff0427cf",
+            "weight": 10
+          },
+          {
+            "public_key": "0x0c976ed92c98544203cc1a1e82aec9b5ff1d63d8320da9557411ad12ec284a2d",
+            "weight": 10
+          },
+          {
+            "public_key": "0x199af3563afd9899e309c3e070c80dff2acc6e345e122a9855295491fd930117",
+            "weight": 10
+          },
+          {
+            "public_key": "0xcc4896e1732d93a042139f3c55eec8fe958d0f0432ac35c604bc8db555e48289",
+            "weight": 10
+          },
+          {
+            "public_key": "0xd769d33cb20310e321e0997d796599f61bb08a491b634bfe92564cd718fb5051",
+            "weight": 10
+          }
+        ]
+      },
+      "root": "0x280b4f295ac6c46df0ae4df760ee07a96021cff17d6b1c90bebf2b747c3d7d5c"
+    }
+  ]
+}
