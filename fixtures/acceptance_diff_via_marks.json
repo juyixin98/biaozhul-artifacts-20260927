@@ -1,0 +1,23 @@
+{
+  "case_id": "acceptance_diff_via_marks",
+  "description": "Both sides perform exactly 'a' from their initial state, but the implementation accepts after 'a' while the specification does not. A checker that equates states by identical single-step actions must still find the counterexample ['a'].",
+  "silent_action": "tau",
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0", "s1"],
+    "accepting": ["s0"],
+    "transitions": [
+      { "from": "s0", "action": "a", "to": "s1" }
+    ]
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1"],
+    "accepting": ["i0", "i1"],
+    "transitions": [
+      { "from": "i0", "action": "a", "to": "i1" }
+    ]
+  }
+}

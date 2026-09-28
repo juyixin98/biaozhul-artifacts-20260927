@@ -1,0 +1,22 @@
+{
+  "case_id": "hidden_internal_steps_included",
+  "description": "Implementation performs an internal tau step before the observable action; weak inclusion must ignore it. All states accepting.",
+  "silent_action": "tau",
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0", "s1"],
+    "transitions": [
+      { "from": "s0", "action": "a", "to": "s1" }
+    ]
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1", "i2"],
+    "transitions": [
+      { "from": "i0", "action": "tau", "to": "i1" },
+      { "from": "i1", "action": "a", "to": "i2" }
+    ]
+  }
+}

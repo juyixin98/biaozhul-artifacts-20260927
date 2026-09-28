@@ -1,0 +1,30 @@
+{
+  "case_id": "vending_machine",
+  "description": "Vending-machine style pair. The specification can only serve coffee or tea after a coin. After booting, the implementation's idle state has an internal 'sticky vend' path (tau -> armed) that lets it emit coffee without a coin — a weak trace inclusion violation whose shortest counterexample is ['coffee'].",
+  "silent_action": "tau",
+  "specification": {
+    "name": "VendingSpec",
+    "initial": "idle",
+    "states": ["idle", "paid", "done"],
+    "transitions": [
+      { "from": "idle", "action": "coin", "to": "paid" },
+      { "from": "paid", "action": "coffee", "to": "done" },
+      { "from": "paid", "action": "tea", "to": "done" },
+      { "from": "done", "action": "coin", "to": "paid" }
+    ]
+  },
+  "implementation": {
+    "name": "VendingImpl",
+    "initial": "boot",
+    "states": ["boot", "idle", "armed", "paid", "done"],
+    "transitions": [
+      { "from": "boot", "action": "tau", "to": "idle" },
+      { "from": "idle", "action": "coin", "to": "paid" },
+      { "from": "paid", "action": "coffee", "to": "done" },
+      { "from": "paid", "action": "tea", "to": "done" },
+      { "from": "done", "action": "coin", "to": "paid" },
+      { "from": "idle", "action": "tau", "to": "armed" },
+      { "from": "armed", "action": "coffee", "to": "done" }
+    ]
+  }
+}

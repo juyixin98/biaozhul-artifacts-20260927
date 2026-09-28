@@ -1,0 +1,22 @@
+{
+  "case_id": "unreachable_branch_ignored",
+  "description": "State 'dead' has an erroneous 'bad' output but is unreachable from the initial state (no transition enters it). Inclusion must hold: the implementation cannot actually produce that trace.",
+  "silent_action": "tau",
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0", "s1"],
+    "transitions": [
+      { "from": "s0", "action": "a", "to": "s1" }
+    ]
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1", "dead"],
+    "transitions": [
+      { "from": "i0", "action": "a", "to": "i1" },
+      { "from": "dead", "action": "bad", "to": "i0" }
+    ]
+  }
+}

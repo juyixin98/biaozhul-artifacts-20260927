@@ -1,0 +1,26 @@
+[package]
+name = "wtio"
+version = "0.1.0"
+edition = "2021"
+description = "Weak trace inclusion checker for finite labeled transition systems"
+
+[lib]
+name = "wtio"
+path = "src/lib.rs"
+
+[[bin]]
+name = "wtio"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.8", features = ["json"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+rand = "0.8"

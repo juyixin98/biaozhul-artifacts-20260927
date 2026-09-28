@@ -1,0 +1,4 @@
+{"run_id":"run-1790518807133-0","seq":1,"kind":"request_received","detail":{"alphabet_explicit":false,"impl":"VendingImpl","silent":"tau","spec":"VendingSpec"}}
+{"run_id":"run-1790518807133-0","seq":2,"kind":"compiled","detail":{"aligned_alphabet":["coffee","coin","tea"],"impl_states":5,"impl_transitions":7,"spec_states":3,"spec_transitions":4}}
+{"run_id":"run-1790518807133-0","seq":3,"kind":"solver_done","detail":{"stats":{"explored_pairs":2,"impl_macrostates":4,"max_impl_set_size":3,"max_spec_set_size":1,"spec_macrostates":3,"transitions_followed":3},"unknown":null,"verdict":"not_included"}}
+{"run_id":"run-1790518807133-0","seq":4,"kind":"counterexample_verified","detail":{"confirmed":true,"impl_edge_count":3,"impl_macro_path":[["boot","idle","armed"],["done"]],"problems":[],"spec_macro_path":[["idle"],[]],"trace":["coffee"]}}

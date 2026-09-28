@@ -1,0 +1,24 @@
+{
+  "case_id": "shortest_counterexample",
+  "description": "Impl diverges only on the two-action word ['a','x']; it also has long safe prefixes. Asserts BFS returns the shortest divergence, and alphabetical tie-breaking applies ('a' before 'b').",
+  "silent_action": "tau",
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0", "s1", "s2"],
+    "transitions": [
+      { "from": "s0", "action": "a", "to": "s1" },
+      { "from": "s1", "action": "a", "to": "s2" }
+    ]
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1", "i2"],
+    "transitions": [
+      { "from": "i0", "action": "a", "to": "i1" },
+      { "from": "i1", "action": "a", "to": "i2" },
+      { "from": "i1", "action": "x", "to": "i2" }
+    ]
+  }
+}

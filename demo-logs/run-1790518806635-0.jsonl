@@ -1,0 +1,3 @@
+{"run_id":"run-1790518806635-0","seq":1,"kind":"request_received","detail":{"alphabet_explicit":false,"impl":"Impl","silent":"tau","spec":"Spec"}}
+{"run_id":"run-1790518806635-0","seq":2,"kind":"compiled","detail":{"aligned_alphabet":["a"],"impl_states":3,"impl_transitions":2,"spec_states":2,"spec_transitions":1}}
+{"run_id":"run-1790518806635-0","seq":3,"kind":"solver_done","detail":{"stats":{"explored_pairs":3,"impl_macrostates":3,"max_impl_set_size":2,"max_spec_set_size":1,"spec_macrostates":3,"transitions_followed":3},"unknown":null,"verdict":"included"}}

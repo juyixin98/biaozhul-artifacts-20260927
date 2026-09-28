@@ -1,0 +1,47 @@
+{
+  "case_id": "resource_exhausted_unknown",
+  "description": "Two fully observable chains of 30 states with a fresh action per step cause heavy macro-set growth. A tiny pair limit forces the BFS to stop early; the verdict must be 'unknown' with reason pair_limit, never a false counterexample.",
+  "silent_action": "tau",
+  "alphabet": ["a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "a8", "a9",
+               "a10", "a11", "a12", "a13", "a14", "a15", "a16", "a17", "a18", "a19",
+               "a20", "a21", "a22", "a23", "a24", "a25", "a26", "a27", "a28", "a29"],
+  "limits": { "max_explored_pairs": 3 },
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9",
+               "s10", "s11", "s12", "s13", "s14", "s15", "s16", "s17", "s18", "s19",
+               "s20", "s21", "s22", "s23", "s24", "s25", "s26", "s27", "s28", "s29"],
+    "transitions": [
+      { "from": "s0", "action": "a0", "to": "s1" },
+      { "from": "s1", "action": "a1", "to": "s2" },
+      { "from": "s2", "action": "a2", "to": "s3" },
+      { "from": "s3", "action": "a3", "to": "s4" },
+      { "from": "s4", "action": "a4", "to": "s5" },
+      { "from": "s5", "action": "a5", "to": "s6" },
+      { "from": "s6", "action": "a6", "to": "s7" },
+      { "from": "s7", "action": "a7", "to": "s8" },
+      { "from": "s8", "action": "a8", "to": "s9" },
+      { "from": "s9", "action": "a9", "to": "s10" }
+    ]
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", "i9",
+               "i10", "i11", "i12", "i13", "i14", "i15", "i16", "i17", "i18", "i19",
+               "i20", "i21", "i22", "i23", "i24", "i25", "i26", "i27", "i28", "i29"],
+    "transitions": [
+      { "from": "i0", "action": "a0", "to": "i1" },
+      { "from": "i1", "action": "a1", "to": "i2" },
+      { "from": "i2", "action": "a2", "to": "i3" },
+      { "from": "i3", "action": "a3", "to": "i4" },
+      { "from": "i4", "action": "a4", "to": "i5" },
+      { "from": "i5", "action": "a5", "to": "i6" },
+      { "from": "i6", "action": "a6", "to": "i7" },
+      { "from": "i7", "action": "a7", "to": "i8" },
+      { "from": "i8", "action": "a8", "to": "i9" },
+      { "from": "i9", "action": "a9", "to": "i10" }
+    ]
+  }
+}

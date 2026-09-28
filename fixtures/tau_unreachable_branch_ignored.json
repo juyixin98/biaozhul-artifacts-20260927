@@ -1,0 +1,25 @@
+{
+  "case_id": "tau_unreachable_branch_ignored",
+  "description": "'bad' sits behind a tau edge out of a dead state that is itself unreachable, and there is also a tau cycle. Verifies closure computation handles cycles and does not manufacture traces.",
+  "silent_action": "tau",
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0", "s1"],
+    "transitions": [
+      { "from": "s0", "action": "a", "to": "s1" }
+    ]
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1", "loop", "dead"],
+    "transitions": [
+      { "from": "i0", "action": "a", "to": "i1" },
+      { "from": "i1", "action": "tau", "to": "loop" },
+      { "from": "loop", "action": "tau", "to": "i1" },
+      { "from": "dead", "action": "tau", "to": "i0" },
+      { "from": "dead", "action": "bad", "to": "i1" }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "case_id": "erroneous_extra_output",
+  "description": "Implementation can emit action 'x' after a hidden tau; specification cannot. Shortest counterexample must be ['x'], replayed through the internal step.",
+  "silent_action": "tau",
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0"],
+    "transitions": []
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1", "i2"],
+    "transitions": [
+      { "from": "i0", "action": "tau", "to": "i1" },
+      { "from": "i1", "action": "x", "to": "i2" }
+    ]
+  }
+}

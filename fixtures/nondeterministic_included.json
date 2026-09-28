@@ -1,0 +1,26 @@
+{
+  "case_id": "nondeterministic_included",
+  "description": "Implementation is nondeterministic after 'a': one branch does 'b', the other 'c'; specification accepts both continuations. Every branch remains reachable — inclusion holds.",
+  "silent_action": "tau",
+  "specification": {
+    "name": "Spec",
+    "initial": "s0",
+    "states": ["s0", "s1", "s2", "s3"],
+    "transitions": [
+      { "from": "s0", "action": "a", "to": "s1" },
+      { "from": "s1", "action": "b", "to": "s2" },
+      { "from": "s1", "action": "c", "to": "s3" }
+    ]
+  },
+  "implementation": {
+    "name": "Impl",
+    "initial": "i0",
+    "states": ["i0", "i1", "i2", "i3"],
+    "transitions": [
+      { "from": "i0", "action": "a", "to": "i1" },
+      { "from": "i0", "action": "a", "to": "i2" },
+      { "from": "i1", "action": "b", "to": "i3" },
+      { "from": "i2", "action": "c", "to": "i3" }
+    ]
+  }
+}

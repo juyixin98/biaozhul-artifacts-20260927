@@ -1,0 +1,4 @@
+{"run_id":"run-1790518806471-0","seq":1,"kind":"request_received","detail":{"alphabet_explicit":false,"impl":"Impl","silent":"tau","spec":"Spec"}}
+{"run_id":"run-1790518806471-0","seq":2,"kind":"compiled","detail":{"aligned_alphabet":[],"impl_states":2,"impl_transitions":1,"spec_states":3,"spec_transitions":1}}
+{"run_id":"run-1790518806471-0","seq":3,"kind":"solver_done","detail":{"stats":{"explored_pairs":1,"impl_macrostates":1,"max_impl_set_size":2,"max_spec_set_size":2,"spec_macrostates":1,"transitions_followed":0},"unknown":null,"verdict":"not_included"}}
+{"run_id":"run-1790518806471-0","seq":4,"kind":"counterexample_verified","detail":{"confirmed":true,"impl_edge_count":0,"impl_macro_path":[["i0","i1"]],"problems":[],"spec_macro_path":[["s0","s1"]],"trace":[]}}
