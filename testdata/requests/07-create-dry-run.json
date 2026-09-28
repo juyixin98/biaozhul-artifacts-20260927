@@ -1,0 +1,16 @@
+{
+  "apiVersion": "admission.example.com/v1",
+  "kind": "AdmissionReview",
+  "request": {
+    "uid": "demo-dryrun-0006",
+    "operation": "CREATE",
+    "dryRun": true,
+    "comment": "dry run: full chain executes, but no quota is booked and no verdict is stored",
+    "object": {
+      "apiVersion": "apps.example.com/v1",
+      "kind": "Workload",
+      "metadata": { "namespace": "team-a", "name": "preview-only", "labels": { "team": "payments" } },
+      "spec": { "cpu": "500m", "memory": "128Mi" }
+    }
+  }
+}

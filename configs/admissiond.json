@@ -1,0 +1,63 @@
+{
+  "http": {
+    "addr": "127.0.0.1:8080",
+    "readTimeoutMs": 2000,
+    "writeTimeoutMs": 3000,
+    "shutdownTimeoutMs": 2000
+  },
+  "storage": {
+    "sqlitePath": "data/admission.db"
+  },
+  "logging": {
+    "dir": "testlogs"
+  },
+  "admission": {
+    "defaultTimeoutMs": 250,
+    "maxMutationPasses": 3,
+    "defaults": [
+      {
+        "type": "defaults.replicas",
+        "failurePolicy": "FailClose",
+        "args": { "default": 3 }
+      },
+      {
+        "type": "defaults.resources",
+        "failurePolicy": "FailClose",
+        "args": { "defaultCPU": "250m", "defaultMemory": "128Mi" }
+      }
+    ],
+    "mutators": [
+      {
+        "type": "mutators.reserved-resources",
+        "failurePolicy": "FailClose"
+      },
+      {
+        "type": "mutators.label-sync",
+        "failurePolicy": "FailClose"
+      }
+    ],
+    "validators": [
+      {
+        "type": "validators.replica-range",
+        "failurePolicy": "FailClose",
+        "args": { "min": 1, "max": 10 }
+      },
+      {
+        "type": "validators.immutable-fields",
+        "failurePolicy": "FailClose"
+      },
+      {
+        "type": "validators.quota",
+        "failurePolicy": "FailClose",
+        "args": { "capacityCPUm": 2000, "capacityMemoryBytes": 2147483648 }
+      }
+    ]
+  },
+  "reconcile": {
+    "maxAttempts": 4,
+    "baseDelayMs": 50,
+    "factor": 2,
+    "maxDelayMs": 1000,
+    "tickMs": 25
+  }
+}

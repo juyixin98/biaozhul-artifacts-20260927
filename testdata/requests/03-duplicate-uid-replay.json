@@ -1,0 +1,19 @@
+{
+  "apiVersion": "admission.example.com/v1",
+  "kind": "AdmissionReview",
+  "request": {
+    "uid": "demo-happy-0001",
+    "operation": "CREATE",
+    "comment": "same uid as 01-create-valid.json: exercises the duplicate-call replay path",
+    "object": {
+      "apiVersion": "apps.example.com/v1",
+      "kind": "Workload",
+      "metadata": {
+        "namespace": "team-a",
+        "name": "checkout-api-DIFFERENT-BODY-IGNORED-ON-REPLAY",
+        "labels": { "team": "payments" }
+      },
+      "spec": { "cpu": "900m", "memory": "512Mi" }
+    }
+  }
+}

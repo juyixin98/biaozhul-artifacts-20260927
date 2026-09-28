@@ -1,0 +1,34 @@
+{
+  "http": { "addr": "127.0.0.1:8081" },
+  "storage": { "sqlitePath": "data/admission-failures.db" },
+  "logging": { "dir": "testlogs" },
+  "admission": {
+    "defaultTimeoutMs": 100,
+    "maxMutationPasses": 3,
+    "defaults": [
+      { "type": "defaults.replicas", "failurePolicy": "FailClose", "args": { "default": 2 } },
+      { "type": "defaults.resources", "failurePolicy": "FailClose" }
+    ],
+    "mutators": [
+      { "type": "mutators.reserved-resources", "failurePolicy": "FailClose" },
+      {
+        "type": "fixtures.delay",
+        "name": "demo.slow-mutator",
+        "failurePolicy": "FailOpen",
+        "timeoutMs": 30,
+        "args": { "delayMs": 500 }
+      },
+      { "type": "mutators.label-sync", "failurePolicy": "FailClose" }
+    ],
+    "validators": [
+      { "type": "validators.replica-range", "failurePolicy": "FailClose", "args": { "min": 1, "max": 5 } },
+      { "type": "validators.immutable-fields", "failurePolicy": "FailClose" },
+      {
+        "type": "validators.quota",
+        "failurePolicy": "FailOpen",
+        "args": { "capacityCPUm": 100, "capacityMemoryBytes": 104857600 }
+      }
+    ]
+  },
+  "reconcile": { "maxAttempts": 3, "baseDelayMs": 50, "factor": 2, "maxDelayMs": 500, "tickMs": 25 }
+}

@@ -1,0 +1,15 @@
+{
+  "apiVersion": "admission.example.com/v1",
+  "kind": "AdmissionReview",
+  "request": {
+    "uid": "demo-quota-0005",
+    "operation": "CREATE",
+    "comment": "resource exhaustion category: 5000m cpu exceeds the 2000m ledger capacity",
+    "object": {
+      "apiVersion": "apps.example.com/v1",
+      "kind": "Workload",
+      "metadata": { "namespace": "team-a", "name": "oversized", "labels": { "team": "payments" } },
+      "spec": { "cpu": "5000m", "memory": "128Mi" }
+    }
+  }
+}

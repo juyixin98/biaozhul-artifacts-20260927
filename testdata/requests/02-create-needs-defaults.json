@@ -1,0 +1,18 @@
+{
+  "apiVersion": "admission.example.com/v1",
+  "kind": "AdmissionReview",
+  "request": {
+    "uid": "demo-defaults-0002",
+    "operation": "CREATE",
+    "object": {
+      "apiVersion": "apps.example.com/v1",
+      "kind": "Workload",
+      "metadata": {
+        "namespace": "team-a",
+        "name": "minimal-worker",
+        "labels": { "team": "platform" }
+      },
+      "spec": {}
+    }
+  }
+}

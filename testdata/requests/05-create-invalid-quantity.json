@@ -1,0 +1,15 @@
+{
+  "apiVersion": "admission.example.com/v1",
+  "kind": "AdmissionReview",
+  "request": {
+    "uid": "demo-invalid-0004",
+    "operation": "CREATE",
+    "comment": "input error category: unparseable cpu quantity",
+    "object": {
+      "apiVersion": "apps.example.com/v1",
+      "kind": "Workload",
+      "metadata": { "namespace": "team-a", "name": "bad-quantity", "labels": { "team": "payments" } },
+      "spec": { "cpu": "not-a-quantity", "memory": "128Mi" }
+    }
+  }
+}
