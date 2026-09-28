@@ -1,0 +1,118 @@
+{
+  "description": "Hand-written expected trees for D/R verification. These are authored independently of the kernel; tests assert the kernel reproduces them exactly. Values are paired with the per-slot definition/repetition levels the Parquet spec assigns.",
+  "cases": [
+    {
+      "name": "nullable_list_int32",
+      "schema": {
+        "name": "root", "type": "struct",
+        "children": [
+          {"name": "a", "type": "list",
+           "item": {"name": "element", "type": "int32"}}
+        ]
+      },
+      "records": [
+        {"a": [1, null, 3]},
+        {"a": []},
+        {"a": null}
+      ],
+      "expected_levels": {
+        "a.list.element": {
+          "definition": [3, 2, 3, 1, 0],
+          "repetition": [0, 1, 1, 0, 0]
+        }
+      },
+      "max_levels": {"a.list.element": {"max_definition_level": 3, "max_repetition_level": 1}}
+    },
+    {
+      "name": "nested_list_list_int32",
+      "schema": {
+        "name": "root", "type": "struct",
+        "children": [
+          {"name": "b", "type": "list",
+           "item": {"name": "element", "type": "list",
+                     "item": {"name": "element", "type": "int32"}}}
+        ]
+      },
+      "records": [
+        {"b": [[1, 2], [null]]},
+        {"b": []},
+        {"b": null},
+        {"b": [[], [3, null]]}
+      ],
+      "expected_levels": {
+        "b.list.element.list.element": {
+          "definition": [5, 5, 4, 1, 0, 3, 5, 4],
+          "repetition": [0, 2, 1, 0, 0, 0, 1, 2]
+        }
+      },
+      "max_levels": {"b.list.element.list.element": {"max_definition_level": 5, "max_repetition_level": 2}}
+    },
+    {
+      "name": "three_level_list",
+      "schema": {
+        "name": "root", "type": "struct",
+        "children": [
+          {"name": "c", "type": "list",
+           "item": {"name": "element", "type": "list",
+                     "item": {"name": "element", "type": "list",
+                               "item": {"name": "element", "type": "int64"}}}}
+        ]
+      },
+      "records": [
+        {"c": [[[1, 2], [3]], null, [[null]]]},
+        {"c": []},
+        {"c": null},
+        {"c": [[[]]]}
+      ],
+      "expected_levels": {
+        "c.list.element.list.element.list.element": {
+          "definition": [7, 7, 7, 2, 6, 1, 0, 5],
+          "repetition": [0, 3, 2, 1, 1, 0, 0, 0]
+        }
+      }
+    },
+    {
+      "name": "consecutive_nulls_and_structs",
+      "schema": {
+        "name": "root", "type": "struct",
+        "children": [
+          {"name": "id", "type": "int32", "nullable": false},
+          {"name": "s", "type": "struct", "children": [
+            {"name": "x", "type": "int32"},
+            {"name": "l", "type": "list",
+             "item": {"name": "element", "type": "int32"}}
+          ]},
+          {"name": "ls", "type": "list",
+           "item": {"name": "element", "type": "struct", "children": [
+             {"name": "a", "type": "string"},
+             {"name": "ok", "type": "boolean"}
+           ]}}
+        ]
+      },
+      "records": [
+        {"id": 1, "s": {"x": 10, "l": [1, 2]},
+         "ls": [{"a": "p", "ok": true}, null, {"a": null, "ok": false}]},
+        {"id": 2, "s": null, "ls": []},
+        {"id": 3, "s": {"x": null, "l": []}, "ls": null},
+        {"id": 4, "s": {"x": 4, "l": null}, "ls": [null]},
+        {"id": 5, "s": null, "ls": []}
+      ]
+    },
+    {
+      "name": "cross_page_large",
+      "schema": {
+        "name": "root", "type": "struct",
+        "children": [
+          {"name": "a", "type": "list",
+           "item": {"name": "element", "type": "int32"}},
+          {"name": "nested", "type": "list",
+           "item": {"name": "element", "type": "list",
+                     "item": {"name": "element", "type": "int64"}}}
+        ]
+      },
+      "record_count": 2000,
+      "page_slot_target": 20,
+      "parquet_page_bytes": 128
+    }
+  ]
+}

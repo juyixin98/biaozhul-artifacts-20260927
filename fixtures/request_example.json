@@ -1,0 +1,104 @@
+{
+  "schema": {
+    "name": "root",
+    "type": "struct",
+    "children": [
+      {
+        "name": "user_id",
+        "type": "int64",
+        "nullable": false
+      },
+      {
+        "name": "tags",
+        "type": "list",
+        "item": {"name": "element", "type": "string"}
+      },
+      {
+        "name": "groups",
+        "type": "list",
+        "item": {
+          "name": "element",
+          "type": "list",
+          "item": {"name": "element", "type": "int32"}
+        }
+      },
+      {
+        "name": "address",
+        "type": "struct",
+        "children": [
+          {"name": "city", "type": "string"},
+          {"name": "zip", "type": "int32"}
+        ]
+      },
+      {
+        "name": "events",
+        "type": "list",
+        "item": {
+          "name": "element",
+          "type": "struct",
+          "children": [
+            {"name": "kind", "type": "string"},
+            {"name": "ok", "type": "boolean"}
+          ]
+        }
+      }
+    ]
+  },
+  "records": [
+    {
+      "user_id": 1,
+      "tags": ["home", null, "vip"],
+      "groups": [[10, 20], null, []],
+      "address": {"city": "Berlin", "zip": 10115},
+      "events": [
+        {"kind": "login", "ok": true},
+        null,
+        {"kind": "click", "ok": false}
+      ]
+    },
+    {
+      "user_id": 2,
+      "tags": [],
+      "groups": [],
+      "address": null,
+      "events": null
+    },
+    {
+      "user_id": 3,
+      "tags": null,
+      "groups": [[], [null, 7]],
+      "address": {"city": null, "zip": null},
+      "events": []
+    }
+  ],
+  "expected": [
+    {
+      "user_id": 1,
+      "tags": ["home", null, "vip"],
+      "groups": [[10, 20], null, []],
+      "address": {"city": "Berlin", "zip": 10115},
+      "events": [
+        {"kind": "login", "ok": true},
+        null,
+        {"kind": "click", "ok": false}
+      ]
+    },
+    {
+      "user_id": 2,
+      "tags": [],
+      "groups": [],
+      "address": null,
+      "events": null
+    },
+    {
+      "user_id": 3,
+      "tags": null,
+      "groups": [[], [null, 7]],
+      "address": {"city": null, "zip": null},
+      "events": []
+    }
+  ],
+  "page_slot_target": 12,
+  "parquet_page_bytes": 256,
+  "page_version": "2.0"
+}

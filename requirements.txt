@@ -1,0 +1,9 @@
+# Runtime stack (validated together, see RESULTS.md)
+pyarrow==17.0.0
+fastapi==0.115.2
+uvicorn[standard]==0.30.6
+pydantic==2.9.2
+# Test-only stack
+fastparquet==2024.11.0
+pytest==8.3.3
+httpx==0.27.2
