@@ -1,0 +1,6 @@
+{
+  "server": {"listen": "127.0.0.1:8080"},
+  "storage": {"driver": "memory"},
+  "resolution": {"max_depth": 8},
+  "routes": []
+}

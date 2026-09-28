@@ -1,0 +1,27 @@
+{
+  "server": {
+    "listen": "127.0.0.1:8080",
+    "read_timeout_ms": 5000,
+    "write_timeout_ms": 10000
+  },
+  "storage": {
+    "driver": "sqlite",
+    "dsn": "testdata/bootstrap/ribd.db"
+  },
+  "resolution": {
+    "max_depth": 8
+  },
+  "routes": [
+    {"id": "boot-v4-default", "prefix": "0.0.0.0/0", "admin_distance": 250, "metric": 0,
+     "next_hop": {"interface": "eth0"},
+     "meta": {"source": "bootstrap", "secret-token": "change-me"}},
+    {"id": "boot-v4-static-default", "prefix": "0.0.0.0/0", "admin_distance": 10, "metric": 0,
+     "next_hop": {"addr": "203.0.113.1"}},
+    {"id": "boot-p2p", "prefix": "203.0.113.0/24", "admin_distance": 0, "metric": 0,
+     "next_hop": {"interface": "eth1"}},
+    {"id": "boot-v6-default", "prefix": "::/0", "admin_distance": 200, "metric": 0,
+     "next_hop": {"interface": "eth0"}},
+    {"id": "boot-v6-connected", "prefix": "2001:db8:1::/64", "admin_distance": 0, "metric": 0,
+     "next_hop": {"interface": "eth2"}}
+  ]
+}

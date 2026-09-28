@@ -1,0 +1,27 @@
+{
+  "_comment": "Hand-authored bootstrap fixture for the independent golden test (test/golden_test.go). Routes are intentionally listed out of policy order so candidate ordering must come from AD/metric/sequence selection, not insertion order.",
+  "routes": [
+    {"id": "r-default-v4", "prefix": "0.0.0.0/0", "admin_distance": 250, "metric": 0, "next_hop": {"interface": "eth0"}},
+    {"id": "r-self", "prefix": "198.18.0.1/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "198.18.0.1"}},
+    {"id": "r-host-alt", "prefix": "198.51.100.7/32", "admin_distance": 110, "metric": 0, "next_hop": {"interface": "eth7"}},
+    {"id": "r-v6-default", "prefix": "::/0", "admin_distance": 200, "metric": 0, "next_hop": {"interface": "eth0"}, "meta": {"iface-purpose": "ipv6-default", "secret-token": "fixture-token-9f3c"}},
+    {"id": "r-depth-4", "prefix": "10.0.0.4/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "10.0.0.5"}},
+    {"id": "r-seq-b", "prefix": "10.1.0.0/16", "admin_distance": 20, "metric": 0, "next_hop": {"addr": "203.0.113.2"}},
+    {"id": "r-depth-2", "prefix": "10.0.0.2/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "10.0.0.3"}},
+    {"id": "r-cyc-b", "prefix": "198.19.0.2/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "198.19.0.1"}},
+    {"id": "r-p2p", "prefix": "203.0.113.0/24", "admin_distance": 0, "metric": 0, "next_hop": {"interface": "eth1"}},
+    {"id": "r-v6-host", "prefix": "2001:db8::1/128", "admin_distance": 0, "metric": 0, "next_hop": {"interface": "eth3"}},
+    {"id": "r-depth-1", "prefix": "10.0.0.1/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "10.0.0.2"}},
+    {"id": "r-dangle", "prefix": "198.17.0.0/24", "admin_distance": 7, "metric": 0, "next_hop": {"addr": "10.255.255.1"}},
+    {"id": "r-v6-connected", "prefix": "2001:db8:1::/64", "admin_distance": 0, "metric": 0, "next_hop": {"interface": "eth2"}},
+    {"id": "r-static-default", "prefix": "0.0.0.0/0", "admin_distance": 10, "metric": 0, "next_hop": {"addr": "203.0.113.1"}},
+    {"id": "r-depth-3", "prefix": "10.0.0.3/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "10.0.0.4"}},
+    {"id": "r-overlap-24", "prefix": "198.51.100.0/24", "admin_distance": 5, "metric": 10, "next_hop": {"addr": "203.0.113.1"}},
+    {"id": "r-depth-5", "prefix": "10.0.0.5/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "10.0.0.6"}},
+    {"id": "r-host", "prefix": "198.51.100.7/32", "admin_distance": 100, "metric": 0, "next_hop": {"interface": "eth99"}},
+    {"id": "r-cyc-a", "prefix": "198.19.0.1/32", "admin_distance": 5, "metric": 0, "next_hop": {"addr": "198.19.0.2"}},
+    {"id": "r-seq-a", "prefix": "10.1.0.0/16", "admin_distance": 20, "metric": 0, "next_hop": {"addr": "203.0.113.1"}},
+    {"id": "r-metric-hi", "prefix": "198.51.100.0/24", "admin_distance": 5, "metric": 100, "next_hop": {"addr": "203.0.113.2"}},
+    {"id": "r-v6-compressed", "prefix": "2001:0db8:0000:0000:0000:0000:0000:0000/32", "admin_distance": 10, "metric": 0, "next_hop": {"addr": "2001:DB8:1::1"}}
+  ]
+}
