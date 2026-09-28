@@ -1,0 +1,16 @@
+{
+  "name": "tight",
+  "description": "Two zones, two nodes each, small capacities so that simultaneous placement and resource exhaustion are tight. Used for mutual anti-affinity and insufficient-resources tests.",
+  "nodes": [
+    {"id": "t-a-1", "region": "r1", "zone": "z-a", "status": "ready",
+     "capacity": {"milli_cpu": 1000, "memory_bytes": 2000000000, "storage_bytes": 50000000000}},
+    {"id": "t-a-2", "region": "r1", "zone": "z-a", "status": "ready",
+     "capacity": {"milli_cpu": 1000, "memory_bytes": 2000000000, "storage_bytes": 50000000000}},
+    {"id": "t-b-1", "region": "r2", "zone": "z-b", "status": "ready",
+     "capacity": {"milli_cpu": 1000, "memory_bytes": 2000000000, "storage_bytes": 50000000000}},
+    {"id": "t-b-2", "region": "r2", "zone": "z-b", "status": "ready",
+     "capacity": {"milli_cpu": 1000, "memory_bytes": 2000000000, "storage_bytes": 50000000000}}
+  ],
+  "instances": [],
+  "policy": {"groups": []}
+}

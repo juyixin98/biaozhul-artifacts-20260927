@@ -1,0 +1,44 @@
+{
+  "name": "skewed",
+  "description": "3 zones; zone-a overloaded, zone-b partially filled, zone-c empty but contains one disabled node (used to verify eligible vs configured skew counting).",
+  "nodes": [
+    {"id": "n-a-1", "region": "r1", "zone": "zone-a", "status": "ready",
+     "capacity": {"milli_cpu": 2000, "memory_bytes": 4000000000, "storage_bytes": 100000000000},
+     "labels": {"disk": "ssd", "rack": "r1"}},
+    {"id": "n-a-2", "region": "r1", "zone": "zone-a", "status": "ready",
+     "capacity": {"milli_cpu": 2000, "memory_bytes": 4000000000, "storage_bytes": 100000000000},
+     "labels": {"disk": "ssd", "rack": "r2"}},
+    {"id": "n-b-1", "region": "r1", "zone": "zone-b", "status": "ready",
+     "capacity": {"milli_cpu": 2000, "memory_bytes": 4000000000, "storage_bytes": 100000000000},
+     "labels": {"disk": "hdd", "rack": "r3"}},
+    {"id": "n-c-1", "region": "r2", "zone": "zone-c", "status": "ready",
+     "capacity": {"milli_cpu": 2000, "memory_bytes": 4000000000, "storage_bytes": 100000000000},
+     "labels": {"disk": "ssd", "rack": "r4"}},
+    {"id": "n-c-2", "region": "r2", "zone": "zone-c", "status": "ready",
+     "capacity": {"milli_cpu": 2000, "memory_bytes": 4000000000, "storage_bytes": 100000000000},
+     "labels": {"disk": "ssd", "rack": "r5"},
+     "taints": [{"key": "gpu", "value": "a100", "effect": "no_schedule"}]},
+    {"id": "n-c-3", "region": "r2", "zone": "zone-c", "status": "disabled",
+     "capacity": {"milli_cpu": 2000, "memory_bytes": 4000000000, "storage_bytes": 100000000000},
+     "labels": {"disk": "hdd", "rack": "r6"}}
+  ],
+  "instances": [
+    {"id": "b-1", "state": "bound", "node_id": "n-a-1",
+     "request": {"milli_cpu": 700, "memory_bytes": 1000000000, "storage_bytes": 10000000000},
+     "groups": {"app": "web"}},
+    {"id": "b-2", "state": "bound", "node_id": "n-a-1",
+     "request": {"milli_cpu": 700, "memory_bytes": 1000000000, "storage_bytes": 10000000000},
+     "groups": {"app": "web"}},
+    {"id": "b-3", "state": "bound", "node_id": "n-a-2",
+     "request": {"milli_cpu": 700, "memory_bytes": 1000000000, "storage_bytes": 10000000000},
+     "groups": {"app": "web"}},
+    {"id": "b-4", "state": "bound", "node_id": "n-b-1",
+     "request": {"milli_cpu": 700, "memory_bytes": 1000000000, "storage_bytes": 10000000000},
+     "groups": {"app": "web"}}
+  ],
+  "policy": {
+    "groups": [
+      {"group": "app", "mode": "hard", "affinity": false, "topology_key": "zone"}
+    ]
+  }
+}
