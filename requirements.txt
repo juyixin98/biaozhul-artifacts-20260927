@@ -1,0 +1,12 @@
+# 运行时直接依赖（精确锁定见 requirements.lock）
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4
+pycryptodome==3.21.0
+# 成熟 Keccak 第二来源，用于交叉校验
+eth-hash==0.7.0
+
+# 仅测试/夹具生成（预言机，不参与被测核心的生产路径）
+eth-abi==5.1.0
+pytest==8.3.4
+httpx==0.28.1

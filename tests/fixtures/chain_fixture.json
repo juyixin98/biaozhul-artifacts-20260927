@@ -1,0 +1,96 @@
+{
+  "description": "本地合成链状态夹具：铸造/转账/备注 + 余额不足与溢出回滚；期望值独立计算",
+  "blocks": [
+    {
+      "label": "genesis-ops",
+      "transactions": [
+        {
+          "signature": "mint(bytes20,uint256)",
+          "args": [
+            {
+              "bytes": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            1000
+          ]
+        },
+        {
+          "signature": "mint(bytes20,uint256)",
+          "args": [
+            {
+              "bytes": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            },
+            250
+          ]
+        },
+        {
+          "signature": "setNote(bytes20,string)",
+          "args": [
+            {
+              "bytes": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            "alice"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "transfers-and-reverts",
+      "transactions": [
+        {
+          "signature": "transfer(bytes20,bytes20,uint256)",
+          "args": [
+            {
+              "bytes": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            {
+              "bytes": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            },
+            300
+          ]
+        },
+        {
+          "signature": "transfer(bytes20,bytes20,uint256)",
+          "args": [
+            {
+              "bytes": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            },
+            {
+              "bytes": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            50
+          ]
+        },
+        {
+          "signature": "transfer(bytes20,bytes20,uint256)",
+          "args": [
+            {
+              "bytes": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            },
+            {
+              "bytes": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            999999
+          ]
+        },
+        {
+          "signature": "noteOf(bytes20)",
+          "args": [
+            {
+              "bytes": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "expectations": {
+    "balances": {
+      "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": "750",
+      "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb": "500"
+    },
+    "reverted_categories_ordered": [
+      "insufficient_balance"
+    ],
+    "final_state_root": "0x4862f473421ea51ca907c75618f05806ba7227f13a8c01f2ff75834a7e86be6c"
+  }
+}

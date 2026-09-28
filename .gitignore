@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# 本地数据与运行产物
+data/
+*.db
+*.sqlite
+
+# 运行日志保留在 test-logs/，但忽略开发期大文件
+test-logs/*.jsonl
+
+# OS
+.DS_Store
