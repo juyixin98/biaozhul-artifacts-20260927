@@ -1,0 +1,144 @@
+{
+  "primitive": {
+    "type": "int32",
+    "values": [
+      0,
+      1,
+      2,
+      3,
+      null,
+      5,
+      6,
+      null,
+      8,
+      9
+    ]
+  },
+  "strings": {
+    "type": "utf8",
+    "values": [
+      "alpha",
+      null,
+      "",
+      "βγ",
+      "",
+      null,
+      "z",
+      "δεζ"
+    ]
+  },
+  "slice_cases": [
+    {
+      "type": "int32",
+      "offset": 6,
+      "length": 4,
+      "expect": [
+        6,
+        null,
+        8,
+        9
+      ]
+    },
+    {
+      "type": "utf8",
+      "offset": 1,
+      "length": 5,
+      "expect": [
+        null,
+        "",
+        "βγ",
+        "",
+        null
+      ]
+    },
+    {
+      "type": "utf8",
+      "offset": 5,
+      "length": 3,
+      "expect": [
+        null,
+        "z",
+        "δεζ"
+      ]
+    }
+  ],
+  "malformed": {
+    "decreasing_offsets": {
+      "type": "utf8",
+      "length": 3,
+      "offset": 0,
+      "buffers": [
+        null,
+        "AAAAAAMAAAACAAAABQAAAA==",
+        "YWJjZGU="
+      ],
+      "expect_violations": [
+        "DECREASING_OFFSET"
+      ]
+    },
+    "out_of_bounds_offsets": {
+      "type": "utf8",
+      "length": 2,
+      "offset": 0,
+      "buffers": [
+        null,
+        "AAAAAAMAAAAKAAAA",
+        "YWJjZGU="
+      ],
+      "expect_violations": [
+        "OFFSET_OUT_OF_BOUNDS"
+      ]
+    },
+    "short_data": {
+      "type": "int32",
+      "length": 6,
+      "offset": 0,
+      "buffers": [
+        null,
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAA="
+      ],
+      "expect_violations": [
+        "BUFFER_TOO_SHORT"
+      ]
+    },
+    "padding_bits": {
+      "type": "int32",
+      "length": 6,
+      "offset": 0,
+      "buffers": [
+        "/w==",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      ],
+      "expect_violations": [
+        "INVALID_PADDING"
+      ]
+    },
+    "invalid_utf8": {
+      "type": "utf8",
+      "length": 1,
+      "offset": 0,
+      "buffers": [
+        null,
+        "AAAAAAEAAAA=",
+        "/w=="
+      ],
+      "expect_violations": [
+        "UTF8_INVALID"
+      ]
+    },
+    "nonzero_offset_view": {
+      "type": "utf8",
+      "length": 2,
+      "offset": 1,
+      "buffers": [
+        "BQ==",
+        "AAAAAAEAAAABAAAAAgAAAA==",
+        "YWI="
+      ],
+      "expect_values": [
+        null,
+        "b"
+      ]
+    }
+  }
+}

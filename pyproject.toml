@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arrowzero"
+version = "0.1.0"
+description = "Safe zero-copy Arrow column views: import, slice, concat with per-buffer validation"
+requires-python = ">=3.10"
+dependencies = [
+    "pyarrow>=15,<26",
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "httpx>=0.27"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra -v"
+markers = [
+    "unit: pure unit tests",
+    "integration: tests that exercise the service/API end to end",
+]
