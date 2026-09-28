@@ -1,0 +1,26 @@
+{
+  "name": "linear_chain_for_budget",
+  "variables": [
+    { "name": "n", "domain": { "kind": "int_range", "lo": 0, "hi": 9 } }
+  ],
+  "initial": { "op": "eq", "left": { "op": "var", "name": "n" }, "right": { "op": "const", "value": 0 } },
+  "transitions": [
+    {
+      "name": "advance",
+      "guard": { "op": "lt", "left": { "op": "var", "name": "n" }, "right": { "op": "const", "value": 9 } },
+      "updates": [ { "var": "n", "value": { "op": "add", "left": { "op": "var", "name": "n" }, "right": { "op": "const", "value": 1 } } } ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "n_never_above_limit",
+      "kind": "ag",
+      "predicate": { "op": "le", "left": { "op": "var", "name": "n" }, "right": { "op": "const", "value": 9 } }
+    },
+    {
+      "name": "reaches_end",
+      "kind": "ef",
+      "predicate": { "op": "eq", "left": { "op": "var", "name": "n" }, "right": { "op": "const", "value": 9 } }
+    }
+  ]
+}

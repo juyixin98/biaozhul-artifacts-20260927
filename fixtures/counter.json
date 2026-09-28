@@ -1,0 +1,52 @@
+{
+  "name": "bounded_counter_0_3",
+  "variables": [
+    { "name": "c", "domain": { "kind": "int_range", "lo": 0, "hi": 3 } },
+    { "name": "done", "domain": { "kind": "bool" } }
+  ],
+  "initial": {
+    "op": "and",
+    "left": { "op": "eq", "left": { "op": "var", "name": "c" }, "right": { "op": "const", "value": 0 } },
+    "right": { "op": "eq", "left": { "op": "var", "name": "done" }, "right": { "op": "const", "value": false } }
+  },
+  "transitions": [
+    {
+      "name": "inc",
+      "guard": {
+        "op": "and",
+        "left": { "op": "lt", "left": { "op": "var", "name": "c" }, "right": { "op": "const", "value": 3 } },
+        "right": { "op": "eq", "left": { "op": "var", "name": "done" }, "right": { "op": "const", "value": false } }
+      },
+      "updates": [
+        { "var": "c", "value": { "op": "add", "left": { "op": "var", "name": "c" }, "right": { "op": "const", "value": 1 } } }
+      ]
+    },
+    {
+      "name": "finish",
+      "guard": {
+        "op": "and",
+        "left": { "op": "eq", "left": { "op": "var", "name": "c" }, "right": { "op": "const", "value": 3 } },
+        "right": { "op": "eq", "left": { "op": "var", "name": "done" }, "right": { "op": "const", "value": false } }
+      },
+      "updates": [ { "var": "done", "value": { "op": "const", "value": true } } ]
+    }
+  ],
+  "terminal": { "op": "eq", "left": { "op": "var", "name": "done" }, "right": { "op": "const", "value": true } },
+  "properties": [
+    {
+      "name": "nonnegative",
+      "kind": "ag",
+      "predicate": { "op": "ge", "left": { "op": "var", "name": "c" }, "right": { "op": "const", "value": 0 } }
+    },
+    {
+      "name": "can_reach_top",
+      "kind": "ef",
+      "predicate": { "op": "eq", "left": { "op": "var", "name": "c" }, "right": { "op": "const", "value": 3 } }
+    },
+    {
+      "name": "can_overflow",
+      "kind": "ef",
+      "predicate": { "op": "eq", "left": { "op": "var", "name": "c" }, "right": { "op": "const", "value": 4 } }
+    }
+  ]
+}

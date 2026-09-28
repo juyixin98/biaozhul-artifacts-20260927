@@ -1,0 +1,41 @@
+{
+  "name": "simultaneous_swap",
+  "variables": [
+    { "name": "a", "domain": { "kind": "int_range", "lo": 0, "hi": 1 } },
+    { "name": "b", "domain": { "kind": "int_range", "lo": 0, "hi": 1 } }
+  ],
+  "initial": {
+    "op": "and",
+    "left": { "op": "eq", "left": { "op": "var", "name": "a" }, "right": { "op": "const", "value": 1 } },
+    "right": { "op": "eq", "left": { "op": "var", "name": "b" }, "right": { "op": "const", "value": 0 } }
+  },
+  "transitions": [
+    {
+      "name": "swap",
+      "updates": [
+        { "var": "a", "value": { "op": "var", "name": "b" } },
+        { "var": "b", "value": { "op": "var", "name": "a" } }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "values_stay_binary",
+      "kind": "ag",
+      "predicate": {
+        "op": "and",
+        "left": { "op": "or", "left": { "op": "eq", "left": { "op": "var", "name": "a" }, "right": { "op": "const", "value": 0 } }, "right": { "op": "eq", "left": { "op": "var", "name": "a" }, "right": { "op": "const", "value": 1 } } },
+        "right": { "op": "or", "left": { "op": "eq", "left": { "op": "var", "name": "b" }, "right": { "op": "const", "value": 0 } }, "right": { "op": "eq", "left": { "op": "var", "name": "b" }, "right": { "op": "const", "value": 1 } } }
+      }
+    },
+    {
+      "name": "swapped_reachable",
+      "kind": "ef",
+      "predicate": {
+        "op": "and",
+        "left": { "op": "eq", "left": { "op": "var", "name": "a" }, "right": { "op": "const", "value": 0 } },
+        "right": { "op": "eq", "left": { "op": "var", "name": "b" }, "right": { "op": "const", "value": 1 } }
+      }
+    }
+  ]
+}

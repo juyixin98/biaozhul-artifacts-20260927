@@ -1,0 +1,20 @@
+{
+  "name": "update_walks_out_of_domain",
+  "variables": [
+    { "name": "x", "domain": { "kind": "int_range", "lo": 0, "hi": 1 } }
+  ],
+  "initial": { "op": "eq", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 0 } },
+  "transitions": [
+    {
+      "name": "jump",
+      "updates": [ { "var": "x", "value": { "op": "add", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 2 } } } ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "small",
+      "kind": "ag",
+      "predicate": { "op": "le", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 1 } }
+    }
+  ]
+}

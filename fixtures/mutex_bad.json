@@ -1,0 +1,82 @@
+{
+  "name": "mutex_bad_flawed_lock",
+  "variables": [
+    { "name": "wants0", "domain": { "kind": "bool" } },
+    { "name": "wants1", "domain": { "kind": "bool" } },
+    { "name": "in_cs0", "domain": { "kind": "bool" } },
+    { "name": "in_cs1", "domain": { "kind": "bool" } }
+  ],
+  "initial": {
+    "op": "and",
+    "left": {
+      "op": "and",
+      "left": { "op": "eq", "left": { "op": "var", "name": "wants0" }, "right": { "op": "const", "value": false } },
+      "right": { "op": "eq", "left": { "op": "var", "name": "wants1" }, "right": { "op": "const", "value": false } }
+    },
+    "right": {
+      "op": "and",
+      "left": { "op": "eq", "left": { "op": "var", "name": "in_cs0" }, "right": { "op": "const", "value": false } },
+      "right": { "op": "eq", "left": { "op": "var", "name": "in_cs1" }, "right": { "op": "const", "value": false } }
+    }
+  },
+  "transitions": [
+    {
+      "name": "request0",
+      "guard": { "op": "eq", "left": { "op": "var", "name": "wants0" }, "right": { "op": "const", "value": false } },
+      "updates": [ { "var": "wants0", "value": { "op": "const", "value": true } } ]
+    },
+    {
+      "name": "request1",
+      "guard": { "op": "eq", "left": { "op": "var", "name": "wants1" }, "right": { "op": "const", "value": false } },
+      "updates": [ { "var": "wants1", "value": { "op": "const", "value": true } } ]
+    },
+    {
+      "name": "enter0",
+      "guard": { "op": "eq", "left": { "op": "var", "name": "wants0" }, "right": { "op": "const", "value": true } },
+      "updates": [ { "var": "in_cs0", "value": { "op": "const", "value": true } } ]
+    },
+    {
+      "name": "enter1",
+      "guard": { "op": "eq", "left": { "op": "var", "name": "wants1" }, "right": { "op": "const", "value": true } },
+      "updates": [ { "var": "in_cs1", "value": { "op": "const", "value": true } } ]
+    },
+    {
+      "name": "leave0",
+      "guard": {
+        "op": "and",
+        "left": { "op": "eq", "left": { "op": "var", "name": "in_cs0" }, "right": { "op": "const", "value": true } },
+        "right": { "op": "eq", "left": { "op": "var", "name": "wants0" }, "right": { "op": "const", "value": true } }
+      },
+      "updates": [
+        { "var": "in_cs0", "value": { "op": "const", "value": false } },
+        { "var": "wants0", "value": { "op": "const", "value": false } }
+      ]
+    },
+    {
+      "name": "leave1",
+      "guard": {
+        "op": "and",
+        "left": { "op": "eq", "left": { "op": "var", "name": "in_cs1" }, "right": { "op": "const", "value": true } },
+        "right": { "op": "eq", "left": { "op": "var", "name": "wants1" }, "right": { "op": "const", "value": true } }
+      },
+      "updates": [
+        { "var": "in_cs1", "value": { "op": "const", "value": false } },
+        { "var": "wants1", "value": { "op": "const", "value": false } }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "mutex",
+      "kind": "ag",
+      "predicate": {
+        "op": "not",
+        "expr": {
+          "op": "and",
+          "left": { "op": "eq", "left": { "op": "var", "name": "in_cs0" }, "right": { "op": "const", "value": true } },
+          "right": { "op": "eq", "left": { "op": "var", "name": "in_cs1" }, "right": { "op": "const", "value": true } }
+        }
+      }
+    }
+  ]
+}

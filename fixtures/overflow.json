@@ -1,0 +1,25 @@
+{
+  "name": "arithmetic_overflow_spec",
+  "variables": [
+    { "name": "x", "domain": { "kind": "int_range", "lo": 0, "hi": 1 } }
+  ],
+  "initial": { "op": "eq", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 0 } },
+  "transitions": [
+    {
+      "name": "huge_guard",
+      "guard": {
+        "op": "gt",
+        "left": { "op": "add", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 9223372036854775807 } },
+        "right": { "op": "const", "value": 0 }
+      },
+      "updates": [ { "var": "x", "value": { "op": "const", "value": 1 } } ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "anything",
+      "kind": "ag",
+      "predicate": { "op": "ge", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 0 } }
+    }
+  ]
+}

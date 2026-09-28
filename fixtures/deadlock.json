@@ -1,0 +1,21 @@
+{
+  "name": "one_shot_deadlock",
+  "variables": [
+    { "name": "fired", "domain": { "kind": "bool" } }
+  ],
+  "initial": { "op": "eq", "left": { "op": "var", "name": "fired" }, "right": { "op": "const", "value": false } },
+  "transitions": [
+    {
+      "name": "shoot",
+      "guard": { "op": "eq", "left": { "op": "var", "name": "fired" }, "right": { "op": "const", "value": false } },
+      "updates": [ { "var": "fired", "value": { "op": "const", "value": true } } ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "eventually_idle_forever",
+      "kind": "ag",
+      "predicate": { "op": "eq", "left": { "op": "var", "name": "fired" }, "right": { "op": "const", "value": false } }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[package]
+name = "fsm-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "fsm-server"
+path = "src/main.rs"
+
+[dependencies]
+fsm-lang = { workspace = true }
+fsm-core = { workspace = true }
+fsm-evidence = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+axum = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+clap = { workspace = true }
+toml = { workspace = true }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }

@@ -1,0 +1,21 @@
+{
+  "name": "no_initial_state_spec",
+  "variables": [
+    { "name": "x", "domain": { "kind": "int_range", "lo": 0, "hi": 2 } }
+  ],
+  "initial": { "op": "const", "value": false },
+  "transitions": [
+    {
+      "name": "step",
+      "guard": { "op": "lt", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 2 } },
+      "updates": [ { "var": "x", "value": { "op": "add", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 1 } } } ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "anything",
+      "kind": "ag",
+      "predicate": { "op": "ge", "left": { "op": "var", "name": "x" }, "right": { "op": "const", "value": 0 } }
+    }
+  ]
+}

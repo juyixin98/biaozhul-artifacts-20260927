@@ -1,0 +1,11 @@
+[package]
+name = "fsm-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+fsm-lang = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

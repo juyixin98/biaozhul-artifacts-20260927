@@ -1,0 +1,9 @@
+# Local fsm-server configuration (TOML).
+# CLI flags and FSM_* environment variables override these values.
+host = "127.0.0.1"
+port = 8080
+
+[budget]
+max_states = 100000
+max_transitions = 1000000
+max_initial_scan = 1000000
