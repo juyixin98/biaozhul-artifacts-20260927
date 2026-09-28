@@ -1,0 +1,64 @@
+{
+  "default_action": "deny",
+  "rules": [
+    {
+      "id": "v4-web-allow",
+      "action": "allow",
+      "protocol": "tcp",
+      "source": "10.1.0.0/24",
+      "destination": "10.2.0.0/24",
+      "source_ports": "*",
+      "destination_ports": "80-90",
+      "comment": "opens the web port range"
+    },
+    {
+      "id": "v4-web-85-deny",
+      "action": "deny",
+      "protocol": "tcp",
+      "source": "10.1.0.0/24",
+      "destination": "10.2.0.0/24",
+      "source_ports": "*",
+      "destination_ports": "85",
+      "comment": "FULLY SHADOWED: v4-web-allow already matches :85"
+    },
+    {
+      "id": "v4-web-extend",
+      "action": "allow",
+      "protocol": "tcp",
+      "source": "10.1.0.0/24",
+      "destination": "10.2.0.0/24",
+      "source_ports": "*",
+      "destination_ports": "90-100",
+      "comment": "PARTIALLY SHADOWED: :90 already allowed; :91-100 live"
+    },
+    {
+      "id": "v4-dns-deny",
+      "action": "deny",
+      "protocol": "udp",
+      "source": "10.1.0.0/24",
+      "destination": "10.2.0.0/24",
+      "source_ports": "*",
+      "destination_ports": "53",
+      "comment": "REDUNDANT: default action is already deny"
+    },
+    {
+      "id": "v6-web-allow",
+      "action": "allow",
+      "protocol": "tcp",
+      "source": "2001:db8:1::/48",
+      "destination": "2001:db8:2::/48",
+      "source_ports": "*",
+      "destination_ports": "443"
+    },
+    {
+      "id": "experimental-99",
+      "action": "allow",
+      "protocol": "99",
+      "source": "*",
+      "destination": "*",
+      "source_ports": "*",
+      "destination_ports": "*",
+      "comment": "unknown numeric protocol: accepted, uncertainty note emitted"
+    }
+  ]
+}
