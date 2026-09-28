@@ -1,0 +1,9 @@
+{
+  "namespaces": [
+    {"name": "ns"}
+  ],
+  "endpoints": [
+    {"uid": "u-x", "name": "x", "namespace": "ns", "labels": {}, "ports": [{"number": 70000, "protocol": "TCP"}]}
+  ],
+  "policies": []
+}

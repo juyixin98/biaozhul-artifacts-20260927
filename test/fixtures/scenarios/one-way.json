@@ -1,0 +1,38 @@
+{
+  "namespaces": [
+    {"name": "secure", "labels": {"zone": "restricted"}},
+    {"name": "other", "labels": {"zone": "general"}}
+  ],
+  "endpoints": [
+    {
+      "uid": "u-a", "name": "svc-a", "namespace": "secure",
+      "labels": {"app": "a"},
+      "ports": [{"number": 8080, "protocol": "TCP"}]
+    },
+    {
+      "uid": "u-b", "name": "svc-b", "namespace": "secure",
+      "labels": {"app": "b"},
+      "ports": [{"number": 8080, "protocol": "TCP"}]
+    },
+    {
+      "uid": "u-out", "name": "outsider", "namespace": "other",
+      "labels": {"app": "out"},
+      "ports": [{"number": 8080, "protocol": "TCP"}]
+    }
+  ],
+  "policies": [
+    {
+      "name": "a-to-b-one-way", "namespace": "secure",
+      "podSelector": {"matchLabels": {"app": "a"}},
+      "policyTypes": ["Egress"],
+      "egress": [
+        {"to": [{"podSelector": {"matchLabels": {"app": "b"}}}], "ports": [{"number": 8080}]}
+      ]
+    },
+    {
+      "name": "b-egress-locked", "namespace": "secure",
+      "podSelector": {"matchLabels": {"app": "b"}},
+      "policyTypes": ["Egress"]
+    }
+  ]
+}

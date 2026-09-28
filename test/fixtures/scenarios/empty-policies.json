@@ -1,0 +1,25 @@
+{
+  "namespaces": [
+    {"name": "ns1"},
+    {"name": "ns2"}
+  ],
+  "endpoints": [
+    {
+      "uid": "u-iso", "name": "isolated", "namespace": "ns1",
+      "labels": {"app": "isolated"},
+      "ports": [{"number": 8080, "protocol": "TCP"}]
+    },
+    {
+      "uid": "u-open", "name": "open", "namespace": "ns2",
+      "labels": {"app": "open"},
+      "ports": [{"number": 8080, "protocol": "TCP"}]
+    }
+  ],
+  "policies": [
+    {
+      "name": "deny-all-both-directions", "namespace": "ns1",
+      "podSelector": {"matchLabels": {"app": "isolated"}},
+      "policyTypes": ["Ingress", "Egress"]
+    }
+  ]
+}

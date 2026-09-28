@@ -1,0 +1,12 @@
+{
+  "http": {
+    "addr": ":18080"
+  },
+  "fixturePath": "test/fixtures/scenarios/overlapping-selectors.json",
+  "reconcileInterval": "30s",
+  "sqlite": {
+    "dsn": "file:data/netpolicy.db"
+  },
+  "historyKeep": 10,
+  "logLevel": "info"
+}

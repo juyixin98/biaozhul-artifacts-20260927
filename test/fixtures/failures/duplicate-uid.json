@@ -1,0 +1,10 @@
+{
+  "namespaces": [
+    {"name": "ns"}
+  ],
+  "endpoints": [
+    {"uid": "u-dup", "name": "one", "namespace": "ns", "labels": {}},
+    {"uid": "u-dup", "name": "two", "namespace": "ns", "labels": {}}
+  ],
+  "policies": []
+}

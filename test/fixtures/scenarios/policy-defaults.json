@@ -1,0 +1,26 @@
+{
+  "namespaces": [
+    {"name": "dc"}
+  ],
+  "endpoints": [
+    {
+      "uid": "u-c", "name": "caller", "namespace": "dc",
+      "labels": {"app": "caller"},
+      "ports": [{"number": 9000, "protocol": "TCP"}]
+    },
+    {
+      "uid": "u-d", "name": "callee", "namespace": "dc",
+      "labels": {"app": "callee"},
+      "ports": [{"number": 8080, "protocol": "TCP"}, {"number": 9000, "protocol": "TCP"}]
+    }
+  ],
+  "policies": [
+    {
+      "name": "callee-allow-caller", "namespace": "dc",
+      "podSelector": {"matchLabels": {"app": "callee"}},
+      "ingress": [
+        {"from": [{"podSelector": {"matchLabels": {"app": "caller"}}}], "ports": [{"number": 8080}]}
+      ]
+    }
+  ]
+}

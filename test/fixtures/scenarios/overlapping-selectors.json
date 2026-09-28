@@ -1,0 +1,90 @@
+{
+  "namespaces": [
+    {"name": "prod", "labels": {"env": "prod"}},
+    {"name": "dev", "labels": {"env": "dev"}}
+  ],
+  "endpoints": [
+    {
+      "uid": "u-web-a", "name": "web-a", "namespace": "prod",
+      "labels": {"app": "web", "role": "frontend"},
+      "ports": [
+        {"name": "http", "number": 8080, "protocol": "TCP"},
+        {"name": "metrics", "number": 9090, "protocol": "TCP"}
+      ]
+    },
+    {
+      "uid": "u-web-b", "name": "web-b", "namespace": "prod",
+      "labels": {"app": "web", "role": "frontend"},
+      "ports": [
+        {"name": "http", "number": 8080, "protocol": "TCP"}
+      ]
+    },
+    {
+      "uid": "u-api", "name": "api", "namespace": "prod",
+      "labels": {"app": "api", "role": "backend"},
+      "ports": [
+        {"name": "http", "number": 8080, "protocol": "TCP"}
+      ]
+    },
+    {
+      "uid": "u-billing", "name": "billing", "namespace": "prod",
+      "labels": {"app": "billing", "role": "backend", "team": "payments"},
+      "ports": [
+        {"name": "http", "number": 8080, "protocol": "TCP"}
+      ]
+    },
+    {
+      "uid": "u-db", "name": "db", "namespace": "prod",
+      "labels": {"app": "db", "role": "storage"},
+      "ports": [
+        {"name": "db", "number": 5432, "protocol": "TCP"}
+      ]
+    },
+    {
+      "uid": "u-devbox", "name": "devbox", "namespace": "dev",
+      "labels": {"app": "dev"},
+      "ports": [
+        {"name": "http", "number": 8080, "protocol": "TCP"}
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "name": "web-from-api", "namespace": "prod",
+      "podSelector": {"matchLabels": {"app": "web"}},
+      "policyTypes": ["Ingress"],
+      "ingress": [
+        {"from": [{"podSelector": {"matchLabels": {"app": "api"}}}], "ports": ["http"]}
+      ]
+    },
+    {
+      "name": "web-from-billing", "namespace": "prod",
+      "podSelector": {"matchLabels": {"role": "frontend"}},
+      "policyTypes": ["Ingress"],
+      "ingress": [
+        {"from": [{"podSelector": {"matchLabels": {"app": "billing"}}}], "ports": ["http"]}
+      ]
+    },
+    {
+      "name": "api-egress-web", "namespace": "prod",
+      "podSelector": {"matchLabels": {"app": "api"}},
+      "policyTypes": ["Egress"],
+      "egress": [
+        {"to": [{"podSelector": {"matchLabels": {"app": "web"}}}], "ports": ["http"]}
+      ]
+    },
+    {
+      "name": "billing-egress", "namespace": "prod",
+      "podSelector": {"matchLabels": {"app": "billing"}},
+      "policyTypes": ["Egress"],
+      "egress": [
+        {"to": [{}], "ports": ["http"]}
+      ]
+    },
+    {
+      "name": "db-wall", "namespace": "prod",
+      "podSelector": {"matchLabels": {"app": "db"}},
+      "policyTypes": ["Ingress", "Egress"]
+    }
+  ]
+}

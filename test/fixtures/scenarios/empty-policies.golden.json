@@ -1,0 +1,16 @@
+{
+  "_note": "Hand-derived empty-policy fixture. ns1/u-iso is selected by one policy with policyTypes [Ingress,Egress] and zero rules: it is isolated in both directions. ns2/u-open is selected by nothing and stays default-allow in both directions. This pins down the default behavior of unselected workloads explicitly.",
+  "scenario": "empty-policies",
+  "checks": [
+    {"src": "u-iso", "dst": "u-iso", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "both_sides_selected_no_rule_matched"},
+    {"src": "u-open", "dst": "u-iso", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "ingress_selected_no_rule_matched",
+      "_explain": "open is allowed out by default, but iso's ingress side is isolated with no allow rule"},
+    {"src": "u-iso", "dst": "u-open", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "egress_selected_no_rule_matched",
+      "_explain": "open accepts ingress by default, but iso's egress side is isolated with no allow rule"},
+    {"src": "u-open", "dst": "u-open", "protocol": "TCP", "port": 8080, "verdict": "ALLOW",
+      "reason": "ingress_unselected_default_allow+egress_unselected_default_allow"}
+  ]
+}

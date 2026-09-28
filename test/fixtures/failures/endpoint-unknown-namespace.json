@@ -1,0 +1,9 @@
+{
+  "namespaces": [
+    {"name": "ns"}
+  ],
+  "endpoints": [
+    {"uid": "u-x", "name": "x", "namespace": "ghost", "labels": {}}
+  ],
+  "policies": []
+}

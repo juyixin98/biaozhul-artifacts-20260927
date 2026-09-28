@@ -1,0 +1,24 @@
+{
+  "_note": "Hand-derived expectations for named port resolution. Key property under test: a named port is resolved against the DESTINATION endpoint, so 'http' means TCP/80 to server1, TCP/8080 to server2 and nothing to server3 (which only serves 'https'). The client is egress-isolated by client-egress; the three servers share one ingress policy selecting by app In(server1,server2,server3).",
+  "scenario": "named-ports",
+  "checks": [
+    {"src": "u-client", "dst": "u-server1", "protocol": "TCP", "port": 80,   "verdict": "ALLOW", "namedPort": "http",  "reason": "allowed_both_sides"},
+    {"src": "u-client", "dst": "u-server1", "protocol": "TCP", "port": 443,  "verdict": "ALLOW", "namedPort": "https", "reason": "allowed_both_sides"},
+    {"src": "u-client", "dst": "u-server1", "protocol": "UDP", "port": 5353, "verdict": "ALLOW", "namedPort": "dns",   "reason": "allowed_both_sides"},
+    {"src": "u-client", "dst": "u-server2", "protocol": "TCP", "port": 8080, "verdict": "ALLOW", "namedPort": "http",  "reason": "allowed_both_sides"},
+    {"src": "u-client", "dst": "u-server2", "protocol": "TCP", "port": 80,   "verdict": "DENY",  "reason": "both_sides_selected_no_rule_matched",
+      "_explain": "same name 'http' as on server1, but server2 declares http=8080; a global numeric assumption would wrongly ALLOW this"},
+    {"src": "u-client", "dst": "u-server1", "protocol": "TCP", "port": 8080, "verdict": "DENY",  "reason": "both_sides_selected_no_rule_matched",
+      "_explain": "mirror of the above: server1's http is 80, not 8080"},
+    {"src": "u-client", "dst": "u-server3", "protocol": "TCP", "port": 80,   "verdict": "DENY",  "reason": "both_sides_selected_no_rule_matched",
+      "_explain": "server3 does not serve a port named 'http' at all: neither the ingress rule nor the client egress rule admits it"},
+    {"src": "u-client", "dst": "u-server3", "protocol": "TCP", "port": 443,  "verdict": "ALLOW", "namedPort": "https", "reason": "allowed_both_sides"},
+    {"src": "u-client", "dst": "u-server1", "protocol": "UDP", "port": 53,   "verdict": "DENY",  "reason": "both_sides_selected_no_rule_matched",
+      "_explain": "named dns is UDP/5353 on server1; numeric 53 never matches"},
+    {"src": "u-server1", "dst": "u-server2", "protocol": "TCP", "port": 8080, "verdict": "DENY",  "reason": "ingress_selected_no_rule_matched",
+      "_explain": "servers have no ingress rule allowing other servers; ingress policy selects server2, the source server1 is not the allowed client; servers themselves are not egress-isolated"},
+    {"src": "u-server1", "dst": "u-client", "protocol": "TCP", "port": 80,   "verdict": "ALLOW", "reason": "ingress_unselected_default_allow+egress_unselected_default_allow",
+      "_explain": "neither side selected for this direction: client unselected for ingress, server1 unselected for egress -> default allow"},
+    {"src": "u-client", "dst": "u-server1", "protocol": "SCTP", "port": 80, "verdict": "UNDECIDABLE", "reason": "protocol_unsupported"}
+  ]
+}

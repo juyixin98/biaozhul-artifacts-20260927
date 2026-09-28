@@ -1,0 +1,24 @@
+{
+  "_note": "Hand-derived one-way fixture. Only egress policies exist: a may initiate to b; b's egress is isolated with no rules; no endpoint has an ingress policy (so ingress defaults allow). This isolates the 'both sides must allow' boundary.",
+  "scenario": "one-way",
+  "checks": [
+    {"src": "u-a", "dst": "u-b", "protocol": "TCP", "port": 8080, "verdict": "ALLOW",
+      "reason": "ingress_unselected_default_allow",
+      "_explain": "a's egress policy allows b (egress side isolated but matched); b has no ingress policy so the ingress side defaults allow"},
+    {"src": "u-b", "dst": "u-a", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "egress_selected_no_rule_matched",
+      "_explain": "reverse direction: b's egress is isolated with an empty rule list; a allows ingress by default, but BOTH sides must permit"},
+    {"src": "u-b", "dst": "u-b", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "egress_selected_no_rule_matched"},
+    {"src": "u-a", "dst": "u-a", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "egress_selected_no_rule_matched",
+      "_explain": "a's egress policy permits b only, not a itself"},
+    {"src": "u-a", "dst": "u-out", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "egress_selected_no_rule_matched"},
+    {"src": "u-out", "dst": "u-a", "protocol": "TCP", "port": 8080, "verdict": "ALLOW",
+      "reason": "ingress_unselected_default_allow+egress_unselected_default_allow",
+      "_explain": "u-out is in another namespace and unselected; a has no ingress policy: both sides unselected"},
+    {"src": "u-out", "dst": "u-b", "protocol": "TCP", "port": 8080, "verdict": "ALLOW",
+      "reason": "ingress_unselected_default_allow+egress_unselected_default_allow"}
+  ]
+}

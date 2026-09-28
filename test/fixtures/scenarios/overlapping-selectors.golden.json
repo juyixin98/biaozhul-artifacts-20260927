@@ -1,0 +1,87 @@
+{
+  "_note": "Hand-derived expected connectivity matrix for the overlapping-selectors fixture. Codes: A=ALLOW (both sides permit); I=DENY because the destination ingress side is isolated and no rule matched; E=DENY because the source egress side is isolated and no rule matched; B=DENY because BOTH sides are isolated with no match; U=UNDECIDABLE. Rows are sources and columns destinations, in engine sort order (namespace,name). Derived entirely by hand from the fixture; the engine never generates this file.",
+  "scenario": "overlapping-selectors",
+  "order": ["u-api", "u-billing", "u-db", "u-web-a", "u-web-b", "u-devbox"],
+  "sweeps": [
+    {
+      "protocol": "TCP",
+      "port": 8080,
+      "namedPort": "http",
+      "matrix": [
+        ["E", "E", "B", "A", "A", "E"],
+        ["A", "A", "B", "A", "A", "E"],
+        ["E", "E", "B", "B", "B", "E"],
+        ["A", "A", "I", "I", "I", "A"],
+        ["A", "A", "I", "I", "I", "A"],
+        ["A", "A", "I", "I", "I", "A"]
+      ],
+      "cells": [
+        {"src": "u-api", "dst": "u-web-a", "verdict": "ALLOW", "ingressPolicies": ["prod/web-from-api"], "egressPolicies": ["prod/api-egress-web"], "reason": "allowed_both_sides"},
+        {"src": "u-api", "dst": "u-api", "verdict": "DENY", "reason": "egress_selected_no_rule_matched",
+          "_explain": "api is egress-isolated and its egress policy only permits destinations labelled app=web; api itself is not web"},
+        {"src": "u-api", "dst": "u-billing", "verdict": "DENY", "reason": "egress_selected_no_rule_matched"},
+        {"src": "u-billing", "dst": "u-api", "verdict": "ALLOW", "reason": "ingress_unselected_default_allow",
+          "_explain": "billing egress allows all same-namespace destinations ({} peer) and matches on http; api has no ingress policy so the ingress side defaults allow"},
+        {"src": "u-billing", "dst": "u-billing", "verdict": "ALLOW", "reason": "ingress_unselected_default_allow",
+          "_explain": "the {} egress peer selects every pod in prod including billing itself; billing has no ingress policy"},
+        {"src": "u-billing", "dst": "u-web-a", "verdict": "ALLOW", "ingressPolicies": ["prod/web-from-billing"], "egressPolicies": ["prod/billing-egress"], "reason": "allowed_both_sides"},
+        {"src": "u-devbox", "dst": "u-web-a", "verdict": "DENY", "reason": "ingress_selected_no_rule_matched",
+          "_explain": "overlapping ingress selectors: devbox is neither app=api nor app=billing, so neither overlapping policy admits it"},
+        {"src": "u-api", "dst": "u-devbox", "verdict": "DENY", "reason": "egress_selected_no_rule_matched",
+          "_explain": "cross-namespace: api egress policy peer is a bare podSelector, which only matches within the policy's own namespace prod"},
+        {"src": "u-api", "dst": "u-db", "verdict": "DENY", "reason": "both_sides_selected_no_rule_matched"},
+        {"src": "u-db", "dst": "u-db", "verdict": "DENY", "reason": "both_sides_selected_no_rule_matched",
+          "_explain": "db-wall selects db in both directions with zero rules"},
+        {"src": "u-devbox", "dst": "u-devbox", "verdict": "ALLOW", "reason": "ingress_unselected_default_allow+egress_unselected_default_allow"}
+      ]
+    },
+    {
+      "protocol": "TCP",
+      "port": 9090,
+      "namedPort": "metrics",
+      "matrix": [
+        ["E", "E", "B", "B", "B", "E"],
+        ["E", "E", "B", "B", "B", "E"],
+        ["E", "E", "B", "B", "B", "E"],
+        ["A", "A", "I", "I", "I", "A"],
+        ["A", "A", "I", "I", "I", "A"],
+        ["A", "A", "I", "I", "I", "A"]
+      ],
+      "cells": [
+        {"src": "u-api", "dst": "u-web-a", "verdict": "DENY", "reason": "both_sides_selected_no_rule_matched",
+          "_explain": "peer would match on both sides but the policies only allow named port http=8080; 9090 metrics is not listed"},
+        {"src": "u-api", "dst": "u-web-b", "verdict": "DENY", "reason": "both_sides_selected_no_rule_matched",
+          "_explain": "the egress peer matches web-b, but web-b serves only 8080: the named http cannot resolve to 9090 on that destination, and its ingress rules only list http"},
+        {"src": "u-billing", "dst": "u-billing", "verdict": "DENY", "reason": "egress_selected_no_rule_matched",
+          "_explain": "egress permits named http only; billing serves no 9090 and the name does not resolve there"},
+        {"src": "u-api", "dst": "u-api", "verdict": "DENY", "reason": "egress_selected_no_rule_matched"},
+        {"src": "u-api", "dst": "u-devbox", "verdict": "DENY", "reason": "egress_selected_no_rule_matched"},
+        {"src": "u-web-a", "dst": "u-api", "verdict": "ALLOW", "reason": "ingress_unselected_default_allow+egress_unselected_default_allow",
+          "_explain": "neither side is selected: web-a has no egress policy, api has no ingress policy; the unmatched destination port 9090 is irrelevant when no policy applies"},
+        {"src": "u-devbox", "dst": "u-devbox", "verdict": "ALLOW", "reason": "ingress_unselected_default_allow+egress_unselected_default_allow"}
+      ]
+    },
+    {
+      "protocol": "UDP",
+      "port": 8080,
+      "_explain": "Only api and billing are egress-isolated; webs and devbox are not. All named rule ports are TCP, so UDP can never match a port rule; db is isolated both directions regardless of protocol.",
+      "matrix": [
+        ["E", "E", "B", "B", "B", "E"],
+        ["E", "E", "B", "B", "B", "E"],
+        ["E", "E", "B", "B", "B", "E"],
+        ["A", "A", "I", "I", "I", "A"],
+        ["A", "A", "I", "I", "I", "A"],
+        ["A", "A", "I", "I", "I", "A"]
+      ],
+      "cells": [
+        {"src": "u-devbox", "dst": "u-devbox", "verdict": "ALLOW", "reason": "ingress_unselected_default_allow+egress_unselected_default_allow"},
+        {"src": "u-web-a", "dst": "u-devbox", "verdict": "ALLOW", "reason": "ingress_unselected_default_allow+egress_unselected_default_allow",
+          "_explain": "web-a has no egress policy and devbox has no ingress policy: protocol mismatch only matters where a port rule exists"},
+        {"src": "u-api", "dst": "u-api", "verdict": "DENY", "reason": "egress_selected_no_rule_matched"},
+        {"src": "u-api", "dst": "u-web-a", "verdict": "DENY", "reason": "both_sides_selected_no_rule_matched",
+          "_explain": "named http resolves to TCP only; UDP never matches the rule ports"},
+        {"src": "u-devbox", "dst": "u-web-a", "verdict": "DENY", "reason": "ingress_selected_no_rule_matched"}
+      ]
+    }
+  ]
+}

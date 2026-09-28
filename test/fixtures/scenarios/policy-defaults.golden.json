@@ -1,0 +1,21 @@
+{
+  "_note": "Hand-derived policyTypes-defaulting fixture. callee-allow-caller omits policyTypes and has ingress rules but no egress rules, so it defaults to [Ingress] ONLY: callee is ingress-isolated but egress remains default-allowed.",
+  "scenario": "policy-defaults",
+  "effectivePolicyTypes": {
+    "dc/callee-allow-caller": ["Ingress"]
+  },
+  "checks": [
+    {"src": "u-c", "dst": "u-d", "protocol": "TCP", "port": 8080, "verdict": "ALLOW",
+      "reason": "egress_unselected_default_allow",
+      "_explain": "d ingress rule matches c on 8080 (ingress isolated but matched); c has no egress policy so the egress side defaults allow"},
+    {"src": "u-c", "dst": "u-d", "protocol": "TCP", "port": 9000, "verdict": "DENY",
+      "reason": "ingress_selected_no_rule_matched",
+      "_explain": "the only ingress rule allows numeric 8080, not 9000"},
+    {"src": "u-d", "dst": "u-c", "protocol": "TCP", "port": 9000, "verdict": "ALLOW",
+      "reason": "ingress_unselected_default_allow+egress_unselected_default_allow",
+      "_explain": "proves egress did NOT default-isolate d: d can initiate to c"},
+    {"src": "u-d", "dst": "u-d", "protocol": "TCP", "port": 8080, "verdict": "DENY",
+      "reason": "ingress_selected_no_rule_matched",
+      "_explain": "ingress isolated; rule from caller does not match d's own labels"}
+  ]
+}

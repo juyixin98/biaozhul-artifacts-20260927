@@ -1,0 +1,16 @@
+{
+  "namespaces": [
+    {"name": "ns"}
+  ],
+  "endpoints": [
+    {"uid": "u-a", "name": "a", "namespace": "ns", "labels": {"app": "a"}}
+  ],
+  "policies": [
+    {
+      "name": "bad", "namespace": "ns",
+      "podSelector": {"matchExpressions": [
+        {"key": "app", "operator": "Equals", "values": ["a"]}
+      ]}
+    }
+  ]
+}

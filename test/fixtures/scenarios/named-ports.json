@@ -1,0 +1,64 @@
+{
+  "namespaces": [
+    {"name": "app", "labels": {"tier": "workload"}}
+  ],
+  "endpoints": [
+    {
+      "uid": "u-client", "name": "client", "namespace": "app",
+      "labels": {"app": "client"},
+      "ports": []
+    },
+    {
+      "uid": "u-server1", "name": "server1", "namespace": "app",
+      "labels": {"app": "server1"},
+      "ports": [
+        {"name": "http", "number": 80, "protocol": "TCP"},
+        {"name": "https", "number": 443, "protocol": "TCP"},
+        {"name": "dns", "number": 5353, "protocol": "UDP"}
+      ]
+    },
+    {
+      "uid": "u-server2", "name": "server2", "namespace": "app",
+      "labels": {"app": "server2"},
+      "ports": [
+        {"name": "http", "number": 8080, "protocol": "TCP"},
+        {"name": "https", "number": 443, "protocol": "TCP"}
+      ]
+    },
+    {
+      "uid": "u-server3", "name": "server3", "namespace": "app",
+      "labels": {"app": "server3"},
+      "ports": [
+        {"name": "https", "number": 443, "protocol": "TCP"}
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "name": "client-egress", "namespace": "app",
+      "podSelector": {"matchLabels": {"app": "client"}},
+      "policyTypes": ["Egress"],
+      "egress": [
+        {
+          "to": [{"podSelector": {"matchExpressions": [
+            {"key": "app", "operator": "In", "values": ["server1", "server2", "server3"]}
+          ]}}],
+          "ports": ["http", "https", {"number": 0, "name": "dns", "protocol": "UDP"}]
+        }
+      ]
+    },
+    {
+      "name": "servers-ingress", "namespace": "app",
+      "podSelector": {"matchExpressions": [
+        {"key": "app", "operator": "In", "values": ["server1", "server2", "server3"]}
+      ]},
+      "policyTypes": ["Ingress"],
+      "ingress": [
+        {
+          "from": [{"podSelector": {"matchLabels": {"app": "client"}}}],
+          "ports": ["http", "https", {"number": 0, "name": "dns", "protocol": "UDP"}]
+        }
+      ]
+    }
+  ]
+}

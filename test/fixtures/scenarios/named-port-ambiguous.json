@@ -1,0 +1,30 @@
+{
+  "namespaces": [
+    {"name": "ns"}
+  ],
+  "endpoints": [
+    {
+      "uid": "u-src", "name": "src", "namespace": "ns",
+      "labels": {"app": "src"},
+      "ports": []
+    },
+    {
+      "uid": "u-dst", "name": "dst", "namespace": "ns",
+      "labels": {"app": "dst"},
+      "ports": [
+        {"name": "web", "number": 80, "protocol": "TCP"},
+        {"name": "web", "number": 8080, "protocol": "TCP"}
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "name": "dst-ingress-named", "namespace": "ns",
+      "podSelector": {"matchLabels": {"app": "dst"}},
+      "policyTypes": ["Ingress"],
+      "ingress": [
+        {"from": [{"podSelector": {"matchLabels": {"app": "src"}}}], "ports": ["web"]}
+      ]
+    }
+  ]
+}
