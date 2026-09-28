@@ -1,0 +1,142 @@
+{
+  "name": "late_reports",
+  "description": "Reports delayed relative to the tick. A report aged 31s (>30s skew) is stale, excluded from aggregation and never triggers scale-up: a load-40 storm arrives as NO_FRESH_METRICS. Reports aged 20s are still fresh and drive a rate-limited scale-up. A report aged exactly 30s sits on the boundary and is treated as fresh (utilisation exactly at target -> tolerance noop).",
+  "initial_replicas": 4,
+  "steps": [
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 40,
+      "reported_at": 969
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 40,
+      "reported_at": 969
+    },
+    {
+      "at": 1000,
+      "kind": "reconcile",
+      "request_id": "late-stale",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "NO_FRESH_METRICS"
+        ],
+        "raw_desired": 4,
+        "fresh": 0,
+        "stale": 2,
+        "missing": 2,
+        "total_load": 40
+      }
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 40,
+      "reported_at": 1000
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 40,
+      "reported_at": 1000
+    },
+    {
+      "at": 1020,
+      "kind": "reconcile",
+      "request_id": "late-fresh-up",
+      "expect": {
+        "action": "scale_up",
+        "desired_replicas": 8,
+        "reasons": [
+          "UP_RATE_LIMITED"
+        ],
+        "raw_desired": 10,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 100
+      }
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 10,
+      "reported_at": 1000
+    },
+    {
+      "at": 1030,
+      "kind": "reconcile",
+      "request_id": "late-boundary-tol",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 8,
+        "reasons": [
+          "WITHIN_TOLERANCE"
+        ],
+        "raw_desired": 8,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 80
+      }
+    }
+  ]
+}

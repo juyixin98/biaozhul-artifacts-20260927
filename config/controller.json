@@ -1,0 +1,14 @@
+{
+  "target_load_per_instance": 10,
+  "max_scale_up_factor": 2,
+  "max_scale_up_floor": 1,
+  "scale_down_stable_window_seconds": 60,
+  "stale_skew_seconds": 30,
+  "tolerance": 0.10,
+  "min_fresh_fraction": 0.5,
+  "min_replicas": 0,
+  "max_replicas": 16,
+  "bootstrap_replicas": 1,
+  "http_addr": "127.0.0.1:8080",
+  "database_dsn": "file:data/controller.db"
+}

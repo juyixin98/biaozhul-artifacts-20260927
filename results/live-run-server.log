@@ -1,0 +1,45 @@
+replicactl 2026/09/28 16:24:25.502042 step=config_loaded target_per_instance=10 up_factor=2 up_floor=1 down_window=60s stale_skew=30s tolerance=0.10 min_fresh=0.50 range=[0,16] bootstrap=1
+replicactl 2026/09/28 16:24:25.520053 component=http_server location=127.0.0.1:33369 msg=listening version=schema1
+replicactl 2026/09/28 16:24:25.616626 request_id=req-1790583865616572224-000001 method=GET path=/healthz status=200 duration_ms=0
+replicactl 2026/09/28 16:24:25.628710 request_id=demo-zero-nodemand step=reconcile_start tick_at=2000000 location=controller.Reconcile
+replicactl 2026/09/28 16:24:25.631303 request_id=demo-zero-nodemand step=reconcile_done action=noop current=0 desired=0 reasons=[ZERO_NO_DEMAND]
+replicactl 2026/09/28 16:24:25.631395 request_id=demo-zero-nodemand method=POST path=/v1/reconcile status=200 duration_ms=2
+replicactl 2026/09/28 16:24:25.645719 request_id=demo-demand step=demand_recorded present=true reported_at=2000000
+replicactl 2026/09/28 16:24:25.645736 request_id=demo-demand method=POST path=/v1/demand status=202 duration_ms=2
+replicactl 2026/09/28 16:24:25.655424 request_id=demo-bootstrap step=reconcile_start tick_at=2000000 location=controller.Reconcile
+replicactl 2026/09/28 16:24:25.659905 request_id=demo-bootstrap step=reconcile_done action=scale_up current=0 desired=1 reasons=[FROM_ZERO_BOOTSTRAP]
+replicactl 2026/09/28 16:24:25.659934 request_id=demo-bootstrap method=POST path=/v1/reconcile status=200 duration_ms=4
+replicactl 2026/09/28 16:24:25.673924 request_id=demo-m1 step=metric_accepted instance=instance-001 load=30 reported_at=2000000
+replicactl 2026/09/28 16:24:25.673943 request_id=demo-m1 method=POST path=/v1/metrics status=202 duration_ms=2
+replicactl 2026/09/28 16:24:25.683556 request_id=demo-up-1 step=reconcile_start tick_at=2000000 location=controller.Reconcile
+replicactl 2026/09/28 16:24:25.689810 request_id=demo-up-1 step=reconcile_done action=scale_up current=1 desired=2 reasons=[UP_RATE_LIMITED]
+replicactl 2026/09/28 16:24:25.689834 request_id=demo-up-1 method=POST path=/v1/reconcile status=200 duration_ms=6
+replicactl 2026/09/28 16:24:25.703592 request_id=demo-seed4 step=fleet_seeded replicas=4
+replicactl 2026/09/28 16:24:25.703609 request_id=demo-seed4 method=POST path=/v1/admin/seed status=200 duration_ms=2
+replicactl 2026/09/28 16:24:25.715610 request_id=demo-m2a step=metric_accepted instance=instance-001 load=50 reported_at=1999960
+replicactl 2026/09/28 16:24:25.715629 request_id=demo-m2a method=POST path=/v1/metrics status=202 duration_ms=2
+replicactl 2026/09/28 16:24:25.728079 request_id=demo-m2b step=metric_accepted instance=instance-002 load=50 reported_at=1999960
+replicactl 2026/09/28 16:24:25.728097 request_id=demo-m2b method=POST path=/v1/metrics status=202 duration_ms=2
+replicactl 2026/09/28 16:24:25.737696 request_id=demo-stale step=reconcile_start tick_at=2000000 location=controller.Reconcile
+replicactl 2026/09/28 16:24:25.741820 request_id=demo-stale step=reconcile_done action=noop current=4 desired=4 reasons=[NO_FRESH_METRICS]
+replicactl 2026/09/28 16:24:25.741847 request_id=demo-stale method=POST path=/v1/reconcile status=200 duration_ms=4
+replicactl 2026/09/28 16:24:25.755036 request_id=demo-m3a step=metric_accepted instance=instance-001 load=30 reported_at=2000000
+replicactl 2026/09/28 16:24:25.755053 request_id=demo-m3a method=POST path=/v1/metrics status=202 duration_ms=2
+replicactl 2026/09/28 16:24:25.766654 request_id=demo-m3b step=metric_accepted instance=instance-002 load=30 reported_at=2000000
+replicactl 2026/09/28 16:24:25.766671 request_id=demo-m3b method=POST path=/v1/metrics status=202 duration_ms=2
+replicactl 2026/09/28 16:24:25.775953 request_id=demo-fault-set step=faults_reconfigured set=demo: simulated local adapter outage current=<unset> metric=<unset> demand=<unset> decision=<unset> history=<unset>
+replicactl 2026/09/28 16:24:25.775972 request_id=demo-fault-set method=POST path=/v1/admin/faults status=200 duration_ms=0
+replicactl 2026/09/28 16:24:25.785431 request_id=demo-fault-tick step=reconcile_start tick_at=2000000 location=controller.Reconcile
+replicactl 2026/09/28 16:24:25.787833 request_id=demo-fault-tick step=reconcile_failed class=ADAPTER_APPLY_FAILED detail="demo: simulated local adapter outage"
+replicactl 2026/09/28 16:24:25.787868 request_id=demo-fault-tick method=POST path=/v1/reconcile status=409 duration_ms=2
+replicactl 2026/09/28 16:24:25.797315 request_id=demo-fault-clear step=faults_reconfigured set=<cleared> current=<unset> metric=<unset> demand=<unset> decision=<unset> history=<unset>
+replicactl 2026/09/28 16:24:25.797334 request_id=demo-fault-clear method=POST path=/v1/admin/faults status=200 duration_ms=0
+replicactl 2026/09/28 16:24:25.807962 request_id=demo-lookup method=GET path=/v1/requests/demo-bootstrap status=200 duration_ms=0
+replicactl 2026/09/28 16:24:25.811669 step=shutdown_start signal=terminated
+replicactl 2026/09/28 16:24:25.811731 step=shutdown_complete
+replicactl 2026/09/28 16:24:25.815593 step=config_loaded target_per_instance=10 up_factor=2 up_floor=1 down_window=60s stale_skew=30s tolerance=0.10 min_fresh=0.50 range=[0,16] bootstrap=1
+replicactl 2026/09/28 16:24:25.819113 component=http_server location=127.0.0.1:33369 msg=listening version=schema1
+replicactl 2026/09/28 16:24:25.820757 request_id=req-1790583865820711504-000001 method=GET path=/healthz status=200 duration_ms=0
+replicactl 2026/09/28 16:24:25.830025 request_id=demo-after-restart method=GET path=/v1/fixture status=200 duration_ms=0
+replicactl 2026/09/28 16:24:25.834269 step=shutdown_start signal=terminated
+replicactl 2026/09/28 16:24:25.834495 step=shutdown_complete

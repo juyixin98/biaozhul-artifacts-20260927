@@ -1,0 +1,486 @@
+{
+  "name": "missing_reports",
+  "description": "Two of four instances never report. Conservative imputation assigns each missing instance target load T=10; raw target is 3. Every tick before the 60s window is covered is a WINDOW_PENDING noop; then scale-down lands at the window max (3). A later fully-idle 3-instance window scales all the way to zero, proving the hysteresis window rather than immediate reaction.",
+  "initial_replicas": 4,
+  "steps": [
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "reconcile",
+      "request_id": "missing-pending-1000",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "reconcile",
+      "request_id": "missing-pending-1010",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "reconcile",
+      "request_id": "missing-pending-1020",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "reconcile",
+      "request_id": "missing-pending-1030",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "reconcile",
+      "request_id": "missing-pending-1040",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "reconcile",
+      "request_id": "missing-pending-1050",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "reconcile",
+      "request_id": "missing-down-3",
+      "expect": {
+        "action": "scale_down",
+        "desired_replicas": 3,
+        "reasons": [],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "reconcile",
+      "request_id": "missing-idle-pending-1070",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "reconcile",
+      "request_id": "missing-idle-pending-1080",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "reconcile",
+      "request_id": "missing-idle-pending-1090",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "reconcile",
+      "request_id": "missing-idle-pending-1100",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "reconcile",
+      "request_id": "missing-idle-pending-1110",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "reconcile",
+      "request_id": "missing-idle-pending-1120",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "reconcile",
+      "request_id": "missing-down-zero",
+      "expect": {
+        "action": "scale_down",
+        "desired_replicas": 0,
+        "reasons": [],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,563 @@
+{
+  "name": "service_restart",
+  "description": "The service is killed and restarted on the same SQLite file mid-window: the scale-down evidence history survives, so the downscale fires at exactly the tick the contract predicts instead of restarting the 60s wait. Then the fleet scales to zero; three more restarts verify the independent zero policy: no signal (ZERO_NO_DEMAND), stale signal (ZERO_DEMAND_STALE), fresh signal (FROM_ZERO_BOOTSTRAP to 1).",
+  "initial_replicas": 4,
+  "steps": [
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "reconcile",
+      "request_id": "restart-pre-1000",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "reconcile",
+      "request_id": "restart-pre-1010",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "reconcile",
+      "request_id": "restart-pre-1020",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "reconcile",
+      "request_id": "restart-pre-1030",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "reconcile",
+      "request_id": "restart-pre-1040",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 5,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "reconcile",
+      "request_id": "restart-pre-1050",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 5,
+      "reported_at": 1060
+    },
+    {
+      "at": 1050,
+      "kind": "reconcile",
+      "request_id": "restart-at-1050",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 4,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      },
+      "restart_before": true
+    },
+    {
+      "at": 1060,
+      "kind": "reconcile",
+      "request_id": "restart-down-3",
+      "expect": {
+        "action": "scale_down",
+        "desired_replicas": 3,
+        "reasons": [],
+        "raw_desired": 3,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 2,
+        "total_load": 30
+      }
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "reconcile",
+      "request_id": "restart-idle-1070",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "reconcile",
+      "request_id": "restart-idle-1080",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "reconcile",
+      "request_id": "restart-idle-1090",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "reconcile",
+      "request_id": "restart-idle-1100",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "reconcile",
+      "request_id": "restart-idle-1110",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "reconcile",
+      "request_id": "restart-idle-1120",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 3,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "reconcile",
+      "request_id": "restart-to-zero",
+      "expect": {
+        "action": "scale_down",
+        "desired_replicas": 0,
+        "reasons": [],
+        "raw_desired": 0,
+        "fresh": 3,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1140,
+      "kind": "reconcile",
+      "request_id": "restart-at-zero-no-demand",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 0,
+        "reasons": [
+          "ZERO_NO_DEMAND"
+        ],
+        "raw_desired": 0,
+        "fresh": 0,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      },
+      "restart_before": true
+    },
+    {
+      "at": 1150,
+      "kind": "demand",
+      "present": true,
+      "reported_at": 1100
+    },
+    {
+      "at": 1150,
+      "kind": "reconcile",
+      "request_id": "restart-at-zero-stale-demand",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 0,
+        "reasons": [
+          "ZERO_DEMAND_STALE"
+        ],
+        "raw_desired": 0,
+        "fresh": 0,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      },
+      "restart_before": true
+    },
+    {
+      "at": 1160,
+      "kind": "demand",
+      "present": true,
+      "reported_at": 1160
+    },
+    {
+      "at": 1160,
+      "kind": "reconcile",
+      "request_id": "restart-at-zero-fresh-demand",
+      "expect": {
+        "action": "scale_up",
+        "desired_replicas": 1,
+        "reasons": [
+          "FROM_ZERO_BOOTSTRAP"
+        ],
+        "raw_desired": 0,
+        "fresh": 0,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      },
+      "restart_before": true
+    }
+  ]
+}

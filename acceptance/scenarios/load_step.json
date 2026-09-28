@@ -1,0 +1,412 @@
+{
+  "name": "load_step",
+  "description": "Abrupt load step: raw target exceeds the 2x per-tick ceiling every tick (2->4->8->16); asserts the rate-limit reason and hand-computed aggregates, the MaxReplicas=16 cap stop, and a return-to-target WITHIN_TOLERANCE noop.",
+  "initial_replicas": 2,
+  "steps": [
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 30,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 30,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "reconcile",
+      "request_id": "loadstep-1",
+      "expect": {
+        "action": "scale_up",
+        "desired_replicas": 4,
+        "reasons": [
+          "UP_RATE_LIMITED"
+        ],
+        "raw_desired": 6,
+        "fresh": 2,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 60
+      }
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 30,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 30,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 30,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 30,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "reconcile",
+      "request_id": "loadstep-2",
+      "expect": {
+        "action": "scale_up",
+        "desired_replicas": 8,
+        "reasons": [
+          "UP_RATE_LIMITED"
+        ],
+        "raw_desired": 12,
+        "fresh": 4,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 120
+      }
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 30,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "reconcile",
+      "request_id": "loadstep-3",
+      "expect": {
+        "action": "scale_up",
+        "desired_replicas": 16,
+        "reasons": [],
+        "raw_desired": 24,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 240
+      }
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 30,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "reconcile",
+      "request_id": "loadstep-4-cap",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "MAX_REPLICAS_CAPPED"
+        ],
+        "raw_desired": 48,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 480
+      }
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 10,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "reconcile",
+      "request_id": "loadstep-5-target",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "WITHIN_TOLERANCE"
+        ],
+        "raw_desired": 16,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 160
+      }
+    }
+  ]
+}

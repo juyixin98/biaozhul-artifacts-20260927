@@ -1,0 +1,59 @@
+== build ==
+== start service (fresh db) ==
+
+== 1) zero fleet, no demand: explicit no-action reason ==
+--> POST /v1/reconcile (X-Request-ID: demo-zero-nodemand) {"at": 2000000}
+{"id":1,"request_id":"demo-zero-nodemand","tick_at":2000000,"action":"noop","current_replicas":0,"desired_replicas":0,"reasons":["ZERO_NO_DEMAND"],"observation":{"at":2000000,"current_replicas":0,"fleet_ids":[],"samples":[],"fresh_count":0,"stale_count":0,"missing_count":0,"fresh_fraction":0,"min_fresh_fraction":0,"fresh_load_sum":0,"imputed_load_sum":0,"total_load":0,"average_load":0,"target_load_per_instance":10,"utilisation_ratio":0,"raw_desired":0,"clamped_desired":0}}
+
+== 2) fresh demand signal: independent zero policy bootstraps to 1 ==
+--> POST /v1/demand (X-Request-ID: demo-demand) {"present": true, "reported_at": 2000000}
+{"request_id":"demo-demand","status":"accepted"}
+
+--> POST /v1/reconcile (X-Request-ID: demo-bootstrap) {"at": 2000000}
+{"id":2,"request_id":"demo-bootstrap","tick_at":2000000,"action":"scale_up","current_replicas":0,"desired_replicas":1,"reasons":["FROM_ZERO_BOOTSTRAP"],"observation":{"at":2000000,"current_replicas":0,"fleet_ids":[],"samples":[],"fresh_count":0,"stale_count":0,"missing_count":0,"fresh_fraction":0,"min_fresh_fraction":0,"fresh_load_sum":0,"imputed_load_sum":0,"total_load":0,"average_load":0,"target_load_per_instance":10,"utilisation_ratio":0,"raw_desired":0,"clamped_desired":0,"demand_present":true,"demand_reported_at":2000000,"demand_stale":false}}
+
+== 3) one instance reports a load of 30 (T=10): raw=3, rate limited 1->2 ==
+--> POST /v1/metrics (X-Request-ID: demo-m1) {"instance_id": "instance-001", "load": 30, "reported_at": 2000000}
+{"request_id":"demo-m1","status":"accepted"}
+
+--> POST /v1/reconcile (X-Request-ID: demo-up-1) {"at": 2000000}
+{"id":3,"request_id":"demo-up-1","tick_at":2000000,"action":"scale_up","current_replicas":1,"desired_replicas":2,"reasons":["UP_RATE_LIMITED"],"observation":{"at":2000000,"current_replicas":1,"fleet_ids":["instance-001"],"samples":[{"instance_id":"instance-001","load":30,"reported_at":2000000,"age_seconds":0,"status":"fresh","used_load":30}],"fresh_count":1,"stale_count":0,"missing_count":0,"fresh_fraction":1,"min_fresh_fraction":0.5,"fresh_load_sum":30,"imputed_load_sum":0,"total_load":30,"average_load":30,"target_load_per_instance":10,"utilisation_ratio":3,"raw_desired":3,"clamped_desired":3}}
+
+== 4) two old reports (40s > 30s skew), two instances silent: ZERO fresh -> no scale-up ==
+--> POST /v1/admin/seed (X-Request-ID: demo-seed4) {"replicas": 4}
+{"replicas":4,"request_id":"demo-seed4","status":"seeded"}
+
+--> POST /v1/metrics (X-Request-ID: demo-m2a) {"instance_id": "instance-001", "load": 50, "reported_at": 1999960}
+{"request_id":"demo-m2a","status":"accepted"}
+
+--> POST /v1/metrics (X-Request-ID: demo-m2b) {"instance_id": "instance-002", "load": 50, "reported_at": 1999960}
+{"request_id":"demo-m2b","status":"accepted"}
+
+--> POST /v1/reconcile (X-Request-ID: demo-stale) {"at": 2000000}
+{"id":4,"request_id":"demo-stale","tick_at":2000000,"action":"noop","current_replicas":4,"desired_replicas":4,"reasons":["NO_FRESH_METRICS"],"observation":{"at":2000000,"current_replicas":4,"fleet_ids":["instance-001","instance-002","instance-003","instance-004"],"samples":[{"instance_id":"instance-001","load":50,"reported_at":1999960,"age_seconds":40,"status":"stale","used_load":10},{"instance_id":"instance-002","load":50,"reported_at":1999960,"age_seconds":40,"status":"stale","used_load":10},{"instance_id":"instance-003","load":0,"reported_at":0,"age_seconds":0,"status":"missing","used_load":10},{"instance_id":"instance-004","load":0,"reported_at":0,"age_seconds":0,"status":"missing","used_load":10}],"fresh_count":0,"stale_count":2,"missing_count":2,"fresh_fraction":0,"min_fresh_fraction":0.5,"fresh_load_sum":0,"imputed_load_sum":40,"total_load":40,"average_load":10,"target_load_per_instance":10,"utilisation_ratio":1,"raw_desired":4,"clamped_desired":4}}
+
+== 5) injected adapter fault: failure class is returned, not a 500 with no reason ==
+--> POST /v1/metrics (X-Request-ID: demo-m3a) {"instance_id": "instance-001", "load": 30, "reported_at": 2000000}
+{"request_id":"demo-m3a","status":"accepted"}
+
+--> POST /v1/metrics (X-Request-ID: demo-m3b) {"instance_id": "instance-002", "load": 30, "reported_at": 2000000}
+{"request_id":"demo-m3b","status":"accepted"}
+
+--> POST /v1/admin/faults (X-Request-ID: demo-fault-set) {"set_replicas": "demo: simulated local adapter outage"}
+{"request_id":"demo-fault-set","status":"applied"}
+
+--> POST /v1/reconcile (X-Request-ID: demo-fault-tick) {"at": 2000000}
+{"error":"reconcile failed: demo: simulated local adapter outage","request_id":"demo-fault-tick","category":"ADAPTER_APPLY_FAILED"}
+
+--> POST /v1/admin/faults (X-Request-ID: demo-fault-clear) {"set_replicas": ""}
+{"request_id":"demo-fault-clear","status":"applied"}
+
+== 6) decision log is correlated by request id ==
+--> GET /v1/requests/demo-bootstrap
+{"id":2,"request_id":"demo-bootstrap","tick_at":2000000,"action":"scale_up","current_replicas":0,"desired_replicas":1,"reasons":["FROM_ZERO_BOOTSTRAP"],"observation":{"at":2000000,"current_replicas":0,"fleet_ids":[],"samples":[],"fresh_count":0,"stale_count":0,"missing_count":0,"fresh_fraction":0,"min_fresh_fraction":0,"fresh_load_sum":0,"imputed_load_sum":0,"total_load":0,"average_load":0,"target_load_per_instance":10,"utilisation_ratio":0,"raw_desired":0,"clamped_desired":0,"demand_present":true,"demand_reported_at":2000000,"demand_stale":false}}
+
+== 7) real process restart on the same SQLite file ==
+--> GET /v1/fixture (X-Request-ID: demo-after-restart) 
+{"current_replicas":4,"demand_present":true,"demand_reported_at":2000000,"instances":[{"InstanceID":"instance-001","Load":30,"ReportedAt":2000000,"Fresh":false,"Missing":false},{"InstanceID":"instance-002","Load":30,"ReportedAt":2000000,"Fresh":false,"Missing":false},{"InstanceID":"instance-003","Load":0,"ReportedAt":0,"Fresh":false,"Missing":true},{"InstanceID":"instance-004","Load":0,"ReportedAt":0,"Fresh":false,"Missing":true}],"request_id":"demo-after-restart"}
+
+

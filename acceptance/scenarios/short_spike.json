@@ -1,0 +1,1417 @@
+{
+  "name": "short_spike",
+  "description": "A single one-tick load spike (one evidence point at raw desired 16 inside a sea of zeros). Scale-up fires on the spike tick; afterwards every downscale is withheld while that point remains within the 60s stable window, including the tick where it sits exactly on the window edge. One tick later the spike leaves the window and the fleet scales all the way down to zero.",
+  "initial_replicas": 8,
+  "steps": [
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1000
+    },
+    {
+      "at": 1000,
+      "kind": "reconcile",
+      "request_id": "spike-idle-1000",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 8,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1010
+    },
+    {
+      "at": 1010,
+      "kind": "reconcile",
+      "request_id": "spike-idle-1010",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 8,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1020
+    },
+    {
+      "at": 1020,
+      "kind": "reconcile",
+      "request_id": "spike-idle-1020",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 8,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1030
+    },
+    {
+      "at": 1030,
+      "kind": "reconcile",
+      "request_id": "spike-idle-1030",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 8,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1040
+    },
+    {
+      "at": 1040,
+      "kind": "reconcile",
+      "request_id": "spike-idle-1040",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 8,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1050
+    },
+    {
+      "at": 1050,
+      "kind": "reconcile",
+      "request_id": "spike-idle-1050",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 8,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 20,
+      "reported_at": 1060
+    },
+    {
+      "at": 1060,
+      "kind": "reconcile",
+      "request_id": "spike-up",
+      "expect": {
+        "action": "scale_up",
+        "desired_replicas": 16,
+        "reasons": [],
+        "raw_desired": 16,
+        "fresh": 8,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 160
+      }
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 0,
+      "reported_at": 1070
+    },
+    {
+      "at": 1070,
+      "kind": "reconcile",
+      "request_id": "spike-held-1070",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 0,
+      "reported_at": 1080
+    },
+    {
+      "at": 1080,
+      "kind": "reconcile",
+      "request_id": "spike-held-1080",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 0,
+      "reported_at": 1090
+    },
+    {
+      "at": 1090,
+      "kind": "reconcile",
+      "request_id": "spike-held-1090",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 0,
+      "reported_at": 1100
+    },
+    {
+      "at": 1100,
+      "kind": "reconcile",
+      "request_id": "spike-held-1100",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 0,
+      "reported_at": 1110
+    },
+    {
+      "at": 1110,
+      "kind": "reconcile",
+      "request_id": "spike-held-1110",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 0,
+      "reported_at": 1120
+    },
+    {
+      "at": 1120,
+      "kind": "reconcile",
+      "request_id": "spike-held-1120",
+      "expect": {
+        "action": "noop",
+        "desired_replicas": 16,
+        "reasons": [
+          "WINDOW_PENDING"
+        ],
+        "raw_desired": 0,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-001",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-002",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-003",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-004",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-005",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-006",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-007",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-008",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-009",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-010",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-011",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-012",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-013",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-014",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-015",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "metric",
+      "instance": "instance-016",
+      "load": 0,
+      "reported_at": 1130
+    },
+    {
+      "at": 1130,
+      "kind": "reconcile",
+      "request_id": "spike-down-zero",
+      "expect": {
+        "action": "scale_down",
+        "desired_replicas": 0,
+        "reasons": [],
+        "raw_desired": 0,
+        "fresh": 16,
+        "stale": 0,
+        "missing": 0,
+        "total_load": 0
+      }
+    }
+  ]
+}

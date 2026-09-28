@@ -1,0 +1,2750 @@
+{
+  "all_passed": true,
+  "reports": [
+    {
+      "scenario": "late_reports",
+      "description": "Reports delayed relative to the tick. A report aged 31s (\u003e30s skew) is stale, excluded from aggregation and never triggers scale-up: a load-40 storm arrives as NO_FRESH_METRICS. Reports aged 20s are still fresh and drive a rate-limited scale-up. A report aged exactly 30s sits on the boundary and is treated as fresh (utilisation exactly at target -\u003e tolerance noop).",
+      "binary_path": "/tmp/replicactl-acceptance-1248131918/late_reports/replicactl",
+      "passed": true,
+      "results": [
+        {
+          "index": 2,
+          "request_id": "late-stale",
+          "at": 1000,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "NO_FRESH_METRICS"
+            ],
+            "raw_desired": 4,
+            "fresh": 0,
+            "stale": 2,
+            "missing": 2,
+            "total_load": 40
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "NO_FRESH_METRICS"
+            ],
+            "RawDesired": 4,
+            "Fresh": 0,
+            "Stale": 2,
+            "Missing": 2,
+            "TotalLoad": 40
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "NO_FRESH_METRICS"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 4,
+            "fresh": 0,
+            "stale": 2,
+            "missing": 2,
+            "total_load": 40
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 5,
+          "request_id": "late-fresh-up",
+          "at": 1020,
+          "hand_expected": {
+            "action": "scale_up",
+            "desired_replicas": 8,
+            "reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "raw_desired": 10,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 100
+          },
+          "reference": {
+            "Action": "scale_up",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "RawDesired": 10,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 100
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_up",
+            "desired_replicas": 8,
+            "reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 10,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 100
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 14,
+          "request_id": "late-boundary-tol",
+          "at": 1030,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WITHIN_TOLERANCE"
+            ],
+            "raw_desired": 8,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 80
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "WITHIN_TOLERANCE"
+            ],
+            "RawDesired": 8,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 80
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WITHIN_TOLERANCE"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 8,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 80
+          },
+          "restarted": false,
+          "mismatches": null
+        }
+      ],
+      "noop_justifications": [
+        {
+          "at": 1000,
+          "reason": "NO_FRESH_METRICS",
+          "detail": "no instance reported within the stale skew; stale data cannot trigger scale-up"
+        },
+        {
+          "at": 1030,
+          "reason": "WITHIN_TOLERANCE",
+          "detail": "average utilisation inside the +/-10% deadband"
+        }
+      ]
+    },
+    {
+      "scenario": "load_step",
+      "description": "Abrupt load step: raw target exceeds the 2x per-tick ceiling every tick (2-\u003e4-\u003e8-\u003e16); asserts the rate-limit reason and hand-computed aggregates, the MaxReplicas=16 cap stop, and a return-to-target WITHIN_TOLERANCE noop.",
+      "binary_path": "/tmp/replicactl-acceptance-1248131918/load_step/replicactl",
+      "passed": true,
+      "results": [
+        {
+          "index": 2,
+          "request_id": "loadstep-1",
+          "at": 1000,
+          "hand_expected": {
+            "action": "scale_up",
+            "desired_replicas": 4,
+            "reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "raw_desired": 6,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 60
+          },
+          "reference": {
+            "Action": "scale_up",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "RawDesired": 6,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 60
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_up",
+            "desired_replicas": 4,
+            "reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 6,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 60
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 7,
+          "request_id": "loadstep-2",
+          "at": 1010,
+          "hand_expected": {
+            "action": "scale_up",
+            "desired_replicas": 8,
+            "reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "raw_desired": 12,
+            "fresh": 4,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 120
+          },
+          "reference": {
+            "Action": "scale_up",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "RawDesired": 12,
+            "Fresh": 4,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 120
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_up",
+            "desired_replicas": 8,
+            "reasons": [
+              "UP_RATE_LIMITED"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 12,
+            "fresh": 4,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 120
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 16,
+          "request_id": "loadstep-3",
+          "at": 1020,
+          "hand_expected": {
+            "action": "scale_up",
+            "desired_replicas": 16,
+            "reasons": [],
+            "raw_desired": 24,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 240
+          },
+          "reference": {
+            "Action": "scale_up",
+            "DesiredReplicas": 16,
+            "Reasons": [],
+            "RawDesired": 24,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 240
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_up",
+            "desired_replicas": 16,
+            "reasons": null,
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 24,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 240
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 33,
+          "request_id": "loadstep-4-cap",
+          "at": 1030,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "MAX_REPLICAS_CAPPED"
+            ],
+            "raw_desired": 48,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 480
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "MAX_REPLICAS_CAPPED"
+            ],
+            "RawDesired": 48,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 480
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "MAX_REPLICAS_CAPPED"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 48,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 480
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 50,
+          "request_id": "loadstep-5-target",
+          "at": 1040,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WITHIN_TOLERANCE"
+            ],
+            "raw_desired": 16,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 160
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "WITHIN_TOLERANCE"
+            ],
+            "RawDesired": 16,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 160
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WITHIN_TOLERANCE"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 16,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 160
+          },
+          "restarted": false,
+          "mismatches": null
+        }
+      ],
+      "noop_justifications": [
+        {
+          "at": 1030,
+          "reason": "MAX_REPLICAS_CAPPED",
+          "detail": "computed target above the configured maximum; fleet already at the cap"
+        },
+        {
+          "at": 1040,
+          "reason": "WITHIN_TOLERANCE",
+          "detail": "average utilisation inside the +/-10% deadband"
+        }
+      ]
+    },
+    {
+      "scenario": "missing_reports",
+      "description": "Two of four instances never report. Conservative imputation assigns each missing instance target load T=10; raw target is 3. Every tick before the 60s window is covered is a WINDOW_PENDING noop; then scale-down lands at the window max (3). A later fully-idle 3-instance window scales all the way to zero, proving the hysteresis window rather than immediate reaction.",
+      "binary_path": "/tmp/replicactl-acceptance-1248131918/missing_reports/replicactl",
+      "passed": true,
+      "results": [
+        {
+          "index": 2,
+          "request_id": "missing-pending-1000",
+          "at": 1000,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 5,
+          "request_id": "missing-pending-1010",
+          "at": 1010,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 8,
+          "request_id": "missing-pending-1020",
+          "at": 1020,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 11,
+          "request_id": "missing-pending-1030",
+          "at": 1030,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 14,
+          "request_id": "missing-pending-1040",
+          "at": 1040,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 17,
+          "request_id": "missing-pending-1050",
+          "at": 1050,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 20,
+          "request_id": "missing-down-3",
+          "at": 1060,
+          "hand_expected": {
+            "action": "scale_down",
+            "desired_replicas": 3,
+            "reasons": [],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "scale_down",
+            "DesiredReplicas": 3,
+            "Reasons": [],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_down",
+            "desired_replicas": 3,
+            "reasons": null,
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 24,
+          "request_id": "missing-idle-pending-1070",
+          "at": 1070,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 28,
+          "request_id": "missing-idle-pending-1080",
+          "at": 1080,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 32,
+          "request_id": "missing-idle-pending-1090",
+          "at": 1090,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 36,
+          "request_id": "missing-idle-pending-1100",
+          "at": 1100,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 40,
+          "request_id": "missing-idle-pending-1110",
+          "at": 1110,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 44,
+          "request_id": "missing-idle-pending-1120",
+          "at": 1120,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 48,
+          "request_id": "missing-down-zero",
+          "at": 1130,
+          "hand_expected": {
+            "action": "scale_down",
+            "desired_replicas": 0,
+            "reasons": [],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "scale_down",
+            "DesiredReplicas": 0,
+            "Reasons": [],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_down",
+            "desired_replicas": 0,
+            "reasons": null,
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        }
+      ],
+      "noop_justifications": [
+        {
+          "at": 1000,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1010,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1020,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1030,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1040,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1050,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1070,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1080,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1090,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1100,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1110,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1120,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        }
+      ]
+    },
+    {
+      "scenario": "service_restart",
+      "description": "The service is killed and restarted on the same SQLite file mid-window: the scale-down evidence history survives, so the downscale fires at exactly the tick the contract predicts instead of restarting the 60s wait. Then the fleet scales to zero; three more restarts verify the independent zero policy: no signal (ZERO_NO_DEMAND), stale signal (ZERO_DEMAND_STALE), fresh signal (FROM_ZERO_BOOTSTRAP to 1).",
+      "binary_path": "/tmp/replicactl-acceptance-1248131918/service_restart/replicactl",
+      "passed": true,
+      "results": [
+        {
+          "index": 2,
+          "request_id": "restart-pre-1000",
+          "at": 1000,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 5,
+          "request_id": "restart-pre-1010",
+          "at": 1010,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 8,
+          "request_id": "restart-pre-1020",
+          "at": 1020,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 11,
+          "request_id": "restart-pre-1030",
+          "at": 1030,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 14,
+          "request_id": "restart-pre-1040",
+          "at": 1040,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 17,
+          "request_id": "restart-pre-1050",
+          "at": 1050,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 19,
+          "request_id": "restart-at-1050",
+          "at": 1050,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 4,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 4,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": true,
+          "mismatches": null
+        },
+        {
+          "index": 20,
+          "request_id": "restart-down-3",
+          "at": 1060,
+          "hand_expected": {
+            "action": "scale_down",
+            "desired_replicas": 3,
+            "reasons": [],
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "reference": {
+            "Action": "scale_down",
+            "DesiredReplicas": 3,
+            "Reasons": [],
+            "RawDesired": 3,
+            "Fresh": 2,
+            "Stale": 0,
+            "Missing": 2,
+            "TotalLoad": 30
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_down",
+            "desired_replicas": 3,
+            "reasons": null,
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 3,
+            "fresh": 2,
+            "stale": 0,
+            "missing": 2,
+            "total_load": 30
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 24,
+          "request_id": "restart-idle-1070",
+          "at": 1070,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 28,
+          "request_id": "restart-idle-1080",
+          "at": 1080,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 32,
+          "request_id": "restart-idle-1090",
+          "at": 1090,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 36,
+          "request_id": "restart-idle-1100",
+          "at": 1100,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 40,
+          "request_id": "restart-idle-1110",
+          "at": 1110,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 44,
+          "request_id": "restart-idle-1120",
+          "at": 1120,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 3,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 3,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 48,
+          "request_id": "restart-to-zero",
+          "at": 1130,
+          "hand_expected": {
+            "action": "scale_down",
+            "desired_replicas": 0,
+            "reasons": [],
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "scale_down",
+            "DesiredReplicas": 0,
+            "Reasons": [],
+            "RawDesired": 0,
+            "Fresh": 3,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_down",
+            "desired_replicas": 0,
+            "reasons": null,
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 3,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 49,
+          "request_id": "restart-at-zero-no-demand",
+          "at": 1140,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 0,
+            "reasons": [
+              "ZERO_NO_DEMAND"
+            ],
+            "raw_desired": 0,
+            "fresh": 0,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 0,
+            "Reasons": [
+              "ZERO_NO_DEMAND"
+            ],
+            "RawDesired": 0,
+            "Fresh": 0,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 0,
+            "reasons": [
+              "ZERO_NO_DEMAND"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 0,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": true,
+          "mismatches": null
+        },
+        {
+          "index": 51,
+          "request_id": "restart-at-zero-stale-demand",
+          "at": 1150,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 0,
+            "reasons": [
+              "ZERO_DEMAND_STALE"
+            ],
+            "raw_desired": 0,
+            "fresh": 0,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 0,
+            "Reasons": [
+              "ZERO_DEMAND_STALE"
+            ],
+            "RawDesired": 0,
+            "Fresh": 0,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 0,
+            "reasons": [
+              "ZERO_DEMAND_STALE"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 0,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": true,
+          "mismatches": null
+        },
+        {
+          "index": 53,
+          "request_id": "restart-at-zero-fresh-demand",
+          "at": 1160,
+          "hand_expected": {
+            "action": "scale_up",
+            "desired_replicas": 1,
+            "reasons": [
+              "FROM_ZERO_BOOTSTRAP"
+            ],
+            "raw_desired": 0,
+            "fresh": 0,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "scale_up",
+            "DesiredReplicas": 1,
+            "Reasons": [
+              "FROM_ZERO_BOOTSTRAP"
+            ],
+            "RawDesired": 0,
+            "Fresh": 0,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_up",
+            "desired_replicas": 1,
+            "reasons": [
+              "FROM_ZERO_BOOTSTRAP"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 0,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": true,
+          "mismatches": null
+        }
+      ],
+      "noop_justifications": [
+        {
+          "at": 1000,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1010,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1020,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1030,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1040,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1050,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1050,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1070,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1080,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1090,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1100,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1110,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1120,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1140,
+          "reason": "ZERO_NO_DEMAND",
+          "detail": "fleet at zero and no fresh out-of-band demand signal exists"
+        },
+        {
+          "at": 1150,
+          "reason": "ZERO_DEMAND_STALE",
+          "detail": "fleet at zero but the only demand signal is older than the stale skew"
+        }
+      ]
+    },
+    {
+      "scenario": "short_spike",
+      "description": "A single one-tick load spike (one evidence point at raw desired 16 inside a sea of zeros). Scale-up fires on the spike tick; afterwards every downscale is withheld while that point remains within the 60s stable window, including the tick where it sits exactly on the window edge. One tick later the spike leaves the window and the fleet scales all the way down to zero.",
+      "binary_path": "/tmp/replicactl-acceptance-1248131918/short_spike/replicactl",
+      "passed": true,
+      "results": [
+        {
+          "index": 8,
+          "request_id": "spike-idle-1000",
+          "at": 1000,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 17,
+          "request_id": "spike-idle-1010",
+          "at": 1010,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 26,
+          "request_id": "spike-idle-1020",
+          "at": 1020,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 35,
+          "request_id": "spike-idle-1030",
+          "at": 1030,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 44,
+          "request_id": "spike-idle-1040",
+          "at": 1040,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 53,
+          "request_id": "spike-idle-1050",
+          "at": 1050,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 8,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 8,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 62,
+          "request_id": "spike-up",
+          "at": 1060,
+          "hand_expected": {
+            "action": "scale_up",
+            "desired_replicas": 16,
+            "reasons": [],
+            "raw_desired": 16,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 160
+          },
+          "reference": {
+            "Action": "scale_up",
+            "DesiredReplicas": 16,
+            "Reasons": [],
+            "RawDesired": 16,
+            "Fresh": 8,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 160
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_up",
+            "desired_replicas": 16,
+            "reasons": null,
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 16,
+            "fresh": 8,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 160
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 79,
+          "request_id": "spike-held-1070",
+          "at": 1070,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 96,
+          "request_id": "spike-held-1080",
+          "at": 1080,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 113,
+          "request_id": "spike-held-1090",
+          "at": 1090,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 130,
+          "request_id": "spike-held-1100",
+          "at": 1100,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 147,
+          "request_id": "spike-held-1110",
+          "at": 1110,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 164,
+          "request_id": "spike-held-1120",
+          "at": 1120,
+          "hand_expected": {
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "noop",
+            "DesiredReplicas": 16,
+            "Reasons": [
+              "WINDOW_PENDING"
+            ],
+            "RawDesired": 0,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "noop",
+            "desired_replicas": 16,
+            "reasons": [
+              "WINDOW_PENDING"
+            ],
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        },
+        {
+          "index": 181,
+          "request_id": "spike-down-zero",
+          "at": 1130,
+          "hand_expected": {
+            "action": "scale_down",
+            "desired_replicas": 0,
+            "reasons": [],
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "reference": {
+            "Action": "scale_down",
+            "DesiredReplicas": 0,
+            "Reasons": [],
+            "RawDesired": 0,
+            "Fresh": 16,
+            "Stale": 0,
+            "Missing": 0,
+            "TotalLoad": 0
+          },
+          "actual": {
+            "http_code": 200,
+            "action": "scale_down",
+            "desired_replicas": 0,
+            "reasons": null,
+            "failure_class": "",
+            "failure_detail": "",
+            "raw_desired": 0,
+            "fresh": 16,
+            "stale": 0,
+            "missing": 0,
+            "total_load": 0
+          },
+          "restarted": false,
+          "mismatches": null
+        }
+      ],
+      "noop_justifications": [
+        {
+          "at": 1000,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1010,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1020,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1030,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1040,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1050,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1070,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1080,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1090,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1100,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1110,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        },
+        {
+          "at": 1120,
+          "reason": "WINDOW_PENDING",
+          "detail": "scale-down level not observed for the full 60s stable window (or a higher point remains in it)"
+        }
+      ]
+    }
+  ],
+  "fault_cases": [
+    {
+      "name": "metric_read",
+      "http_code": 409,
+      "category": "METRIC_READ_FAILED",
+      "passed": true
+    },
+    {
+      "name": "current_read",
+      "http_code": 409,
+      "category": "FLEET_READ_FAILED",
+      "passed": true
+    },
+    {
+      "name": "set_replicas",
+      "http_code": 409,
+      "category": "ADAPTER_APPLY_FAILED",
+      "passed": true
+    },
+    {
+      "name": "decision_append",
+      "http_code": 409,
+      "category": "STORE_FAILED",
+      "passed": true
+    },
+    {
+      "name": "history_read",
+      "http_code": 409,
+      "category": "STORE_FAILED",
+      "passed": true
+    },
+    {
+      "name": "demand_read",
+      "http_code": 409,
+      "category": "METRIC_READ_FAILED",
+      "passed": true
+    }
+  ]
+}
