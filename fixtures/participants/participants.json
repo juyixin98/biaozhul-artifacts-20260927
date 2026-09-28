@@ -1,0 +1,10 @@
+{
+  "description": "本地合成参与者清单：每个标识仅代表一个本地测试持份者，无真实个人数据。",
+  "participants": [
+    {"id": "P01", "name": "alpha-local", "role": "custodian"},
+    {"id": "P02", "name": "bravo-local", "role": "custodian"},
+    {"id": "P03", "name": "charlie-local", "role": "custodian"},
+    {"id": "P04", "name": "delta-local", "role": "custodian"},
+    {"id": "P05", "name": "echo-local", "role": "auditor-observer"}
+  ]
+}

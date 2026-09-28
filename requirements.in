@@ -1,0 +1,7 @@
+# 直接依赖（完整传递锁定见 requirements-lock.txt，由 pip freeze 生成）。
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pyfinite>=1.9
+cryptography>=43
+pytest>=8
+httpx>=0.27
