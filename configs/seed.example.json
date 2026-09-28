@@ -1,0 +1,20 @@
+{
+  "v4": [
+    {"id": "v4-default", "prefix": "0.0.0.0/0", "admin_distance": 255, "metric": 0, "protocol": "static",
+     "nexthop": {"kind": "address", "address": "203.0.113.1"}},
+    {"id": "v4-edge", "prefix": "203.0.113.0/24", "admin_distance": 0, "metric": 0, "protocol": "connected",
+     "nexthop": {"kind": "connected", "interface": "eth0"}},
+    {"id": "v4-host-a", "prefix": "10.10.10.1/32", "admin_distance": 5, "metric": 10, "protocol": "static",
+     "nexthop": {"kind": "address", "address": "203.0.113.254"}},
+    {"id": "v4-dc", "prefix": "10.10.0.0/16", "admin_distance": 5, "metric": 20, "protocol": "ospf",
+     "nexthop": {"kind": "address", "address": "203.0.113.2"}}
+  ],
+  "v6": [
+    {"id": "v6-default", "prefix": "::/0", "admin_distance": 255, "metric": 0, "protocol": "static",
+     "nexthop": {"kind": "address", "address": "2001:db8:1::1"}},
+    {"id": "v6-edge", "prefix": "2001:db8:1::/64", "admin_distance": 0, "metric": 0, "protocol": "connected",
+     "nexthop": {"kind": "connected", "interface": "eth1"}},
+    {"id": "v6-host", "prefix": "2001:db8:2::1/128", "admin_distance": 5, "metric": 0, "protocol": "static",
+     "nexthop": {"kind": "blackhole"}}
+  ]
+}

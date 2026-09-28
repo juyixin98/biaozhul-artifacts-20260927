@@ -1,0 +1,144 @@
+{
+  "scenarios": [
+    {
+      "name": "ipv4_lpm_default_host_overlap",
+      "max_depth": 16,
+      "routes": [
+        {"id": "v4-default", "prefix": "0.0.0.0/0", "admin_distance": 255, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "203.0.113.1"}},
+        {"id": "v4-edge", "prefix": "203.0.113.0/24", "admin_distance": 0, "metric": 0, "protocol": "connected",
+         "nexthop": {"kind": "connected", "interface": "eth0"}},
+        {"id": "v4-host", "prefix": "10.10.10.1/32", "admin_distance": 200, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "203.0.113.254"}},
+        {"id": "v4-dc", "prefix": "10.10.0.0/16", "admin_distance": 5, "metric": 20, "protocol": "ospf",
+         "nexthop": {"kind": "address", "address": "203.0.113.2"}}
+      ],
+      "checks": [
+        {"name": "host route wins despite worse AD, recurse to edge",
+         "target": "10.10.10.1", "status": "forwarded", "egress": "eth0",
+         "chain_ids": ["v4-host", "v4-edge"],
+         "chain_prefixes": ["10.10.10.1/32", "203.0.113.0/24"],
+         "depth": 2},
+        {"name": "overlap /16 used for nearby address",
+         "target": "10.10.20.20", "status": "forwarded", "egress": "eth0",
+         "chain_ids": ["v4-dc", "v4-edge"],
+         "chain_prefixes": ["10.10.0.0/16", "203.0.113.0/24"],
+         "depth": 2},
+        {"name": "default route of last resort",
+         "target": "198.51.100.77", "status": "forwarded", "egress": "eth0",
+         "chain_ids": ["v4-default", "v4-edge"],
+         "chain_prefixes": ["0.0.0.0/0", "203.0.113.0/24"],
+         "depth": 2},
+        {"name": "address on connected subnet terminates in one hop",
+         "target": "203.0.113.55", "status": "forwarded", "egress": "eth0",
+         "chain_ids": ["v4-edge"], "chain_prefixes": ["203.0.113.0/24"], "depth": 1}
+      ]
+    },
+    {
+      "name": "same_prefix_fixed_policy",
+      "max_depth": 16,
+      "routes": [
+        {"id": "bad-admin", "prefix": "10.0.0.0/8", "admin_distance": 10, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "connected", "interface": "eth-high-ad"}},
+        {"id": "good-admin", "prefix": "10.0.0.0/8", "admin_distance": 5, "metric": 50, "protocol": "static",
+         "nexthop": {"kind": "connected", "interface": "eth-low-ad"}},
+        {"id": "good-admin-low-metric", "prefix": "10.0.0.0/8", "admin_distance": 5, "metric": 5, "protocol": "static",
+         "nexthop": {"kind": "connected", "interface": "eth-low-metric"}}
+      ],
+      "checks": [
+        {"name": "AD beats metric: AD=5 metric=50 beats AD=10 metric=0, but metric tiebreak picks lowest",
+         "target": "10.9.9.9", "status": "forwarded", "egress": "eth-low-metric",
+         "chain_ids": ["good-admin-low-metric"], "chain_prefixes": ["10.0.0.0/8"], "depth": 1}
+      ]
+    },
+    {
+      "name": "ipv6_compressed_forms",
+      "max_depth": 16,
+      "routes": [
+        {"id": "v6-default", "prefix": "::/0", "admin_distance": 255, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "connected", "interface": "ip6default"}},
+        {"id": "v6-edge", "prefix": "2001:0DB8:0001:0000::/64", "admin_distance": 0, "metric": 0, "protocol": "connected",
+         "nexthop": {"kind": "connected", "interface": "eth1"}},
+        {"id": "v6-doc-recurse", "prefix": "2001:db8::/32", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "2001:db8:1::1"}},
+        {"id": "v6-host-blackhole", "prefix": "2001:db8:2::1/128", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "blackhole"}}
+      ],
+      "checks": [
+        {"name": "non-canonical route prefix normalized to 2001:db8:1::/64",
+         "target": "2001:db8:1::abcd", "status": "forwarded", "egress": "eth1",
+         "chain_ids": ["v6-edge"], "chain_prefixes": ["2001:db8:1::/64"], "depth": 1},
+        {"name": "recurse through doc prefix onto edge, chain printed compressed",
+         "target": "2001:db8:9::1", "status": "forwarded", "egress": "eth1",
+         "chain_ids": ["v6-doc-recurse", "v6-edge"],
+         "chain_prefixes": ["2001:db8::/32", "2001:db8:1::/64"], "depth": 2},
+        {"name": "uppercase/expanded target equivalent, host /128 blackhole",
+         "target": "2001:DB8:0002:0000:0000:0000:0000:0001", "status": "blackhole", "egress": "",
+         "chain_ids": ["v6-host-blackhole"], "chain_prefixes": ["2001:db8:2::1/128"], "depth": 1},
+        {"name": "v6 default of last resort, compressed",
+         "target": "2606:4700:4700::1111", "status": "forwarded", "egress": "ip6default",
+         "chain_ids": ["v6-default"], "chain_prefixes": ["::/0"], "depth": 1}
+      ]
+    },
+    {
+      "name": "recursion_loop_three_hops",
+      "max_depth": 16,
+      "routes": [
+        {"id": "p1", "prefix": "10.0.0.0/8", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.1.0.1"}},
+        {"id": "p2", "prefix": "10.1.0.0/16", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.1.2.1"}},
+        {"id": "p3", "prefix": "10.1.2.0/24", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.0.0.1"}}
+      ],
+      "checks": [
+        {"name": "LPM starts at most specific p3, cycles p3->p1->p2->p3 and is rejected",
+         "target": "10.1.2.3", "status": "recursion_loop",
+         "chain_ids": ["p3", "p1", "p2", "p3"],
+         "chain_prefixes": ["10.1.2.0/24", "10.0.0.0/8", "10.1.0.0/16", "10.1.2.0/24"],
+         "depth": 4}
+      ]
+    },
+    {
+      "name": "unresolved_and_no_route",
+      "max_depth": 16,
+      "routes": [
+        {"id": "dangling", "prefix": "10.0.0.0/8", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "172.16.0.1"}}
+      ],
+      "checks": [
+        {"name": "nexthop has no covering route -> nexthop_unresolved",
+         "target": "10.255.255.255", "status": "nexthop_unresolved",
+         "chain_ids": ["dangling"], "chain_prefixes": ["10.0.0.0/8"], "depth": 1},
+        {"name": "address with no match at all -> no_route",
+         "target": "192.0.2.1", "status": "no_route",
+         "chain_ids": [], "chain_prefixes": [], "depth": 0}
+      ]
+    },
+    {
+      "name": "depth_limit",
+      "max_depth": 3,
+      "routes": [
+        {"id": "h0", "prefix": "10.0.0.0/8", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.128.0.1"}},
+        {"id": "h1", "prefix": "10.128.0.0/9", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.192.0.1"}},
+        {"id": "h2", "prefix": "10.192.0.0/10", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.224.0.1"}},
+        {"id": "h3", "prefix": "10.224.0.0/11", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.240.0.1"}},
+        {"id": "h4", "prefix": "10.240.0.0/12", "admin_distance": 5, "metric": 0, "protocol": "static",
+         "nexthop": {"kind": "address", "address": "10.248.0.1"}},
+        {"id": "end", "prefix": "10.248.0.0/13", "admin_distance": 0, "metric": 0, "protocol": "connected",
+         "nexthop": {"kind": "connected", "interface": "ethX"}}
+      ],
+      "checks": [
+        {"name": "acyclic chain longer than max depth is rejected as depth_exceeded, not loop",
+         "target": "10.0.0.1", "status": "depth_exceeded",
+         "chain_ids": ["h0", "h1", "h2"],
+         "chain_prefixes": ["10.0.0.0/8", "10.128.0.0/9", "10.192.0.0/10"],
+         "depth": 3}
+      ]
+    }
+  ]
+}

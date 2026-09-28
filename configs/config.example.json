@@ -1,0 +1,8 @@
+{
+  "listen_addr": "127.0.0.1:8080",
+  "sqlite_dsn": "file:data/rib.db?cache=shared&_pragma=busy_timeout(5000)",
+  "max_recursion_depth": 16,
+  "redact_diagnostics": true,
+  "log_level": "info",
+  "replay_limit": 10000
+}
