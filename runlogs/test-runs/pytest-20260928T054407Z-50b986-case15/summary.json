@@ -1,0 +1,8 @@
+{
+  "actual": "ELEMENT_TOO_LARGE",
+  "case_id": "15",
+  "event_count": 2,
+  "events_dropped": 0,
+  "expected": "ELEMENT_TOO_LARGE",
+  "run_id": "pytest-20260928T054407Z-50b986-case15"
+}

@@ -1,0 +1,7 @@
+回放结果      : OK
+判定理由      : 回放一致：1 笔应用交易，21 个 UTXO
+日志条目      : 2（其中 APPLY 1）
+genesis txid  : 382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e
+存储状态根    : 9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15
+重建状态根    : 9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15
+UTXO 数量     : 21

@@ -1,0 +1,59 @@
+health: {"status": "ok", "height": 1, "state_root": "5c103d50ab30c76972056e8f091423925c212eb8ef6dbe50bd97d2ada5dbcb4d", "db": "/home/admin/Downloads/xinbiaozhu/opp266/b/data/stackvm.db"}
+
+== verify 合法 P2PK（不应改状态） ==
+HTTP 200
+{
+  "accepted": true,
+  "kind": "SUCCESS",
+  "code": "OK",
+  "detail": "全部输入验证通过",
+  "txid": "0d98cfdb6685d4933db77d70c3ce2e6f445f0331808ea9390eee2f1af78ccaa3",
+  "run_id": "run-20260928T053314Z-c76d9e"
+}
+
+== submit 合法交易（201） ==
+HTTP 201
+{
+  "accepted": true,
+  "kind": "SUCCESS",
+  "code": "OK",
+  "detail": "全部输入验证通过",
+  "txid": "7633a8d4458bb0afcbc7a99a1fda6aeb9f719847121586d2df674513638702e0",
+  "height": 2,
+  "run_id": "run-20260928T053314Z-1f9775"
+}
+
+== 重复提交（预期 STATE/TX_ALREADY_ACCEPTED） ==
+HTTP 422
+{
+  "accepted": false,
+  "kind": "STATE",
+  "code": "TX_ALREADY_ACCEPTED",
+  "detail": "交易 7633a8d4458bb0afcbc7a99a1fda6aeb9f719847121586d2df674513638702e0 已在链上，禁止重复入账",
+  "run_id": "run-20260928T053314Z-1db6b3"
+}
+
+== 重复签名（预期 COMPUTE/SIG_DUPLICATED，无转账） ==
+HTTP 422
+{
+  "accepted": false,
+  "kind": "COMPUTE",
+  "code": "SIG_DUPLICATED",
+  "detail": "同一签名在 CHECKMULTISIG 中被重复提交",
+  "run_id": "run-20260928T053314Z-a04a8c"
+}
+
+== 错误交易域（预期 COMPUTE/SIG_INVALID） ==
+HTTP 422
+{
+  "accepted": false,
+  "kind": "COMPUTE",
+  "code": "SIG_INVALID",
+  "detail": "OP_CHECKSIG：签名未通过（摘要/域标签/公钥不匹配）",
+  "run_id": "run-20260928T053314Z-2b51ad"
+}
+
+state replay: {"height": 2, "state_root": "9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15"}
+replay: {"ok": true, "code": "OK", "detail": "回放一致：1 笔应用交易，21 个 UTXO", "entries": 2, "applied": 1, "genesis_txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e", "rebuilt_state_root": "9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15", "stored_state_root": "9cc85ed12f75b ...
+
+全部调用符合预期。

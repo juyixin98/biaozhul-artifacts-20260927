@@ -1,0 +1,8 @@
+{
+  "actual": "OK",
+  "case_id": "00",
+  "event_count": 6,
+  "events_dropped": 0,
+  "expected": "OK",
+  "run_id": "pytest-20260928T054407Z-50b986-case00"
+}

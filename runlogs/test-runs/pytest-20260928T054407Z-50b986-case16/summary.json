@@ -1,0 +1,8 @@
+{
+  "actual": "UNKNOWN_OPCODE",
+  "case_id": "16",
+  "event_count": 3,
+  "events_dropped": 0,
+  "expected": "UNKNOWN_OPCODE",
+  "run_id": "pytest-20260928T054407Z-50b986-case16"
+}

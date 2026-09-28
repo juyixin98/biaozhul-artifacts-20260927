@@ -1,0 +1,3 @@
+{"case_id": "16", "digest": "982f2ca29190fd268de81f281ecf37f6866d44d32e90d5320933c5707130666e", "event": "case", "expected": "UNKNOWN_OPCODE", "label": "unknown_opcode", "prev_lock": "62", "reason": "锁定脚本含白名单外字节 0x62，解码期即拒绝", "seq": 0, "ts": "2026-09-28T05:44:07.936550+00:00", "txid": "9cebb5c9debcf041734ea795e615df7886f82eff47ce1a75c4058567e1c7c250"}
+{"accepted": false, "code": "UNKNOWN_OPCODE", "detail": "偏移 0: 不支持的字节 0x62", "event": "verdict", "kind": "INPUT", "seq": 1, "total_in": 1000, "total_out": 1000, "ts": "2026-09-28T05:44:07.936566+00:00"}
+{"active": true, "alt": [], "budget_left": 199, "event": "trace_step", "input": 0, "note": "", "offset": 0, "op": "PUSHBYTES_1", "pc": 0, "seq": 2, "stack": ["01"], "ts": "2026-09-28T05:44:07.936576+00:00"}

@@ -1,0 +1,7 @@
+{"case_id": "18", "digest": "f76f5e7f94852cadf7dd0d84e25b4db5eb73d92c9a04f8ba8a44fdd72aa832ac", "event": "case", "expected": "OK", "label": "if_true_branch_ok", "prev_lock": "6351676a68", "reason": "条件为真走 IF 分支留下 1；ELSE 中的 RETURN 在非活跃分支不执行", "seq": 0, "ts": "2026-09-28T05:44:07.963963+00:00", "txid": "4f141d5d9045d02c9acbbc56c3f1ad2b9aa3a87036489c159d8b524a3fa3da8f"}
+{"accepted": true, "code": "OK", "detail": "全部输入验证通过", "event": "verdict", "kind": "SUCCESS", "seq": 1, "total_in": 1000, "total_out": 1000, "ts": "2026-09-28T05:44:07.963975+00:00"}
+{"active": true, "alt": [], "budget_left": 199, "event": "trace_step", "input": 0, "note": "", "offset": 0, "op": "OP_1", "pc": 0, "seq": 2, "stack": ["01"], "ts": "2026-09-28T05:44:07.963982+00:00"}
+{"active": true, "alt": [], "budget_left": 198, "event": "trace_step", "input": 0, "note": "", "offset": 0, "op": "OP_IF", "pc": 0, "seq": 3, "stack": [], "ts": "2026-09-28T05:44:07.963987+00:00"}
+{"active": true, "alt": [], "budget_left": 197, "event": "trace_step", "input": 0, "note": "", "offset": 1, "op": "OP_1", "pc": 1, "seq": 4, "stack": ["01"], "ts": "2026-09-28T05:44:07.963991+00:00"}
+{"active": true, "alt": [], "budget_left": 196, "event": "trace_step", "input": 0, "note": "", "offset": 2, "op": "OP_ELSE", "pc": 2, "seq": 5, "stack": ["01"], "ts": "2026-09-28T05:44:07.963995+00:00"}
+{"active": false, "alt": [], "budget_left": 195, "event": "trace_step", "input": 0, "note": "inactive branch", "offset": 4, "op": "OP_ENDIF", "pc": 4, "seq": 6, "stack": ["01"], "ts": "2026-09-28T05:44:07.963999+00:00"}

@@ -1,0 +1,8 @@
+{
+  "actual": "EVAL_FALSE",
+  "case_id": "11",
+  "event_count": 6,
+  "events_dropped": 0,
+  "expected": "EVAL_FALSE",
+  "run_id": "pytest-20260928T054407Z-50b986-case11"
+}

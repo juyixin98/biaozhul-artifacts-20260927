@@ -1,0 +1,143 @@
+== health ==
+{
+    "status": "ok",
+    "height": 2,
+    "state_root": "9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15",
+    "db": "/home/admin/Downloads/xinbiaozhu/opp266/b/data/stackvm.db"
+}
+
+== verify case 00（合法，状态不应改变） ==
+{
+    "accepted": true,
+    "kind": "SUCCESS",
+    "code": "OK",
+    "detail": "\u5168\u90e8\u8f93\u5165\u9a8c\u8bc1\u901a\u8fc7",
+    "txid": "0d98cfdb6685d4933db77d70c3ce2e6f445f0331808ea9390eee2f1af78ccaa3",
+    "digest": "1f8e830eb911d448e284e4acbb088d6101fd894ce1ef164ecc3b8ff9d9f27bfd",
+    "total_in": 1000,
+    "total_out": 1000,
+    "inputs": [
+        {
+            "index": 0,
+            "prevout": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e:0",
+            "prev_script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000,
+            "ok": true,
+            "code": "OK",
+            "detail": "\u9a8c\u8bc1\u901a\u8fc7",
+            "budget_left": 178,
+            "trace": [
+                {
+                    "pc": 0,
+                    "op": "PUSHBYTES_71",
+                    "offset": 0,
+                    "budget_left": 199,
+                    "active": true,
+                    "stack": [
+                        "30450221008d5979dc87039bb0af4f675270e05525c3fdd897ef733412528d22296838251b02206385201e2a8ce3f18bd908ffcba18320985eeebc30ed2ec20be2e3a9039a296c"
+                    ],
+                    "alt": [],
+                    "note": ""
+                },
+                {
+                    "pc": 0,
+                    "op": "PUSHBYTES_33",
+                    "offset": 0,
+                    "budget_left": 198,
+                    "active": true,
+                    "stack": [
+                        "30450221008d5979dc87039bb0af4f675270e05525c3fdd897ef733412528d22296838251b02206385201e2a8ce3f18bd908ffcba18320985eeebc30ed2ec20be2e3a9039a296c",
+                        "0211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907"
+                    ],
+                    "alt": [],
+                    "note": ""
+                },
+                {
+                    "pc": 1,
+                    "op": "OP_CHECKSIG",
+                    "offset": 34,
+                    "budget_left": 178,
+                    "active": true,
+                    "stack": [
+                        "01"
+                    ],
+                    "alt": [],
+                    "note": ""
+                }
+            ],
+            "checks": [
+                {
+                    "op": "CHECKSIG",
+                    "pub": "0211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907",
+                    "sig": "30450221008d5979dc87039bb0af4f675270e05525c3fdd897ef733412528d22296838251b02206385201e2a8ce3f18bd908ffcba18320985eeebc30ed2ec20be2e3a9039a296c",
+                    "digest": "1f8e830eb911d448e284e4acbb088d6101fd894ce1ef164ecc3b8ff9d9f27bfd",
+                    "result": true
+                }
+            ]
+        }
+    ],
+    "run_id": "run-20260928T053405Z-9b3ae4"
+}
+
+== submit case 20（合法，201，UTXO 原子移动） ==
+HTTP/1.1 422 Unprocessable Entity
+{
+    "accepted": false,
+    "kind": "STATE",
+    "code": "TX_ALREADY_ACCEPTED",
+    "detail": "\u4ea4\u6613 7633a8d4458bb0afcbc7a99a1fda6aeb9f719847121586d2df674513638702e0 \u5df2\u5728\u94fe\u4e0a\uff0c\u7981\u6b62\u91cd\u590d\u5165\u8d26",
+    "run_id": "run-20260928T053405Z-40e236"
+}
+
+== 重复提交 case 20 → TX_ALREADY_ACCEPTED/STATE ==
+{
+    "accepted": false,
+    "kind": "STATE",
+    "code": "TX_ALREADY_ACCEPTED",
+    "detail": "\u4ea4\u6613 7633a8d4458bb0afcbc7a99a1fda6aeb9f719847121586d2df674513638702e0 \u5df2\u5728\u94fe\u4e0a\uff0c\u7981\u6b62\u91cd\u590d\u5165\u8d26",
+    "run_id": "run-20260928T053405Z-5cf3d8"
+}
+
+== case 05 重复签名 → SIG_DUPLICATED/COMPUTE ==
+{
+    "accepted": false,
+    "kind": "COMPUTE",
+    "code": "SIG_DUPLICATED",
+    "detail": "\u540c\u4e00\u7b7e\u540d\u5728 CHECKMULTISIG \u4e2d\u88ab\u91cd\u590d\u63d0\u4ea4",
+    "run_id": "run-20260928T053405Z-5d00e7"
+}
+
+== case 08 预算耗尽 → BUDGET_EXHAUSTED/RESOURCE ==
+{
+    "accepted": false,
+    "kind": "RESOURCE",
+    "code": "BUDGET_EXHAUSTED",
+    "detail": "OP_NOP \u9700\u8981 1 \u6b65\uff0c\u4ec5\u5269 0 \u6b65\uff08\u9884\u7b97 200\uff09",
+    "run_id": "run-20260928T053405Z-14eac0"
+}
+
+== case 16 未知操作码 → UNKNOWN_OPCODE/INPUT ==
+{
+    "accepted": false,
+    "kind": "INPUT",
+    "code": "UNKNOWN_OPCODE",
+    "detail": "\u504f\u79fb 0: \u4e0d\u652f\u6301\u7684\u5b57\u8282 0x62",
+    "run_id": "run-20260928T053405Z-ad65da"
+}
+
+== state（含离线回放比对） ==
+{
+    "height": 2,
+    "state_root": "9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15",
+    "replay": {
+        "ok": true,
+        "code": "OK",
+        "detail": "\u56de\u653e\u4e00\u81f4\uff1a1 \u7b14\u5e94\u7528\u4ea4\u6613\uff0c21 \u4e2a UTXO",
+        "entries": 2,
+        "applied": 1,
+        "genesis_txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+        "rebuilt_state_root": "9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15",
+        "stored_state_root": "9cc85ed12f75b9fe230af5ab6a3fd1be9eeef698553ab5c5642e1e992a21cd15",
+        "utxo_count": 21
+    }
+}
