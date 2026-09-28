@@ -1,0 +1,483 @@
+== health ==
+{
+    "ok": true,
+    "status": "healthy"
+}
+== versions ==
+{
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39",
+    "pyarrow": "25.0.1",
+    "fastapi": "0.141.1",
+    "pytest": "9.1.1",
+    "sqlite": "3.45.1",
+    "service": "dictsvc 1.0.0"
+}
+== encode: repeated dict items, cross-batch same local code ==
+{
+    "ok": true,
+    "run_id": "demo-repeated",
+    "policy": {
+        "sort_policy": "type_then_value",
+        "width_policy": "reject",
+        "target_width": 8,
+        "global_index_width": 8,
+        "null_semantics": "validity bitmap only; NULL occupies no value"
+    },
+    "global_dictionary": {
+        "cardinality": 3,
+        "entries": [
+            {
+                "global_code": 0,
+                "type": "utf8",
+                "value": "a"
+            },
+            {
+                "global_code": 1,
+                "type": "utf8",
+                "value": "b"
+            },
+            {
+                "global_code": 2,
+                "type": "utf8",
+                "value": "z"
+            }
+        ]
+    },
+    "batches": [
+        {
+            "batch_id": "b1",
+            "local_to_global": [
+                0,
+                1,
+                0
+            ],
+            "global_indices": [
+                0,
+                1,
+                0,
+                0,
+                null
+            ],
+            "valid": [
+                true,
+                true,
+                true,
+                true,
+                false
+            ],
+            "stats": {
+                "row_count": 5,
+                "null_rows": 1,
+                "declared_entries": 3,
+                "distinct_values": 2,
+                "used_entries": 2,
+                "unused_declared": 0,
+                "duplicate_declared": 1
+            }
+        },
+        {
+            "batch_id": "b2",
+            "local_to_global": [
+                2,
+                1
+            ],
+            "global_indices": [
+                2,
+                1,
+                2
+            ],
+            "valid": [
+                true,
+                true,
+                true
+            ],
+            "stats": {
+                "row_count": 3,
+                "null_rows": 0,
+                "declared_entries": 2,
+                "distinct_values": 2,
+                "used_entries": 2,
+                "unused_declared": 0,
+                "duplicate_declared": 0
+            }
+        }
+    ],
+    "verification": {
+        "all_match": true,
+        "checked_rows": 8,
+        "mismatches": []
+    },
+    "events": [
+        {
+            "step": "request_batch",
+            "batch_id": "b1",
+            "rows": 5,
+            "declared": 3,
+            "null_rows_input": 1
+        },
+        {
+            "step": "request_batch",
+            "batch_id": "b2",
+            "rows": 3,
+            "declared": 2,
+            "null_rows_input": 0
+        },
+        {
+            "step": "start",
+            "batch_count": 2,
+            "target_width": 8,
+            "width_policy": "reject"
+        },
+        {
+            "step": "batch_validated",
+            "batch_id": "b1",
+            "declared": 3,
+            "distinct": 2,
+            "duplicate_declared": 1,
+            "null_rows": 1
+        },
+        {
+            "step": "batch_validated",
+            "batch_id": "b2",
+            "declared": 2,
+            "distinct": 2,
+            "duplicate_declared": 0,
+            "null_rows": 0
+        },
+        {
+            "step": "global_merged",
+            "cardinality": 3
+        },
+        {
+            "step": "width_decided",
+            "global_index_width": 8
+        },
+        {
+            "step": "batch_remapped",
+            "batch_id": "b1",
+            "used_distinct_values": 2,
+            "unused_declared": 0
+        },
+        {
+            "step": "batch_remapped",
+            "batch_id": "b2",
+            "used_distinct_values": 2,
+            "unused_declared": 0
+        },
+        {
+            "step": "done",
+            "cardinality": 3,
+            "global_index_width": 8
+        },
+        {
+            "step": "roundtrip",
+            "all_match": true,
+            "checked_rows": 8,
+            "mismatches": 0
+        }
+    ]
+}
+== empty + all-NULL batches ==
+{
+    "ok": true,
+    "run_id": "demo-nulls",
+    "policy": {
+        "sort_policy": "type_then_value",
+        "width_policy": "reject",
+        "target_width": 8,
+        "global_index_width": 8,
+        "null_semantics": "validity bitmap only; NULL occupies no value"
+    },
+    "global_dictionary": {
+        "cardinality": 0,
+        "entries": []
+    },
+    "batches": [
+        {
+            "batch_id": "empty",
+            "local_to_global": [],
+            "global_indices": [],
+            "valid": [],
+            "stats": {
+                "row_count": 0,
+                "null_rows": 0,
+                "declared_entries": 0,
+                "distinct_values": 0,
+                "used_entries": 0,
+                "unused_declared": 0,
+                "duplicate_declared": 0
+            }
+        },
+        {
+            "batch_id": "all_null",
+            "local_to_global": [],
+            "global_indices": [
+                null,
+                null,
+                null
+            ],
+            "valid": [
+                false,
+                false,
+                false
+            ],
+            "stats": {
+                "row_count": 3,
+                "null_rows": 3,
+                "declared_entries": 0,
+                "distinct_values": 0,
+                "used_entries": 0,
+                "unused_declared": 0,
+                "duplicate_declared": 0
+            }
+        }
+    ],
+    "verification": {
+        "all_match": true,
+        "checked_rows": 3,
+        "mismatches": []
+    },
+    "events": [
+        {
+            "step": "request_batch",
+            "batch_id": "empty",
+            "rows": 0,
+            "declared": 0,
+            "null_rows_input": 0
+        },
+        {
+            "step": "request_batch",
+            "batch_id": "all_null",
+            "rows": 3,
+            "declared": 0,
+            "null_rows_input": 3
+        },
+        {
+            "step": "start",
+            "batch_count": 2,
+            "target_width": 8,
+            "width_policy": "reject"
+        },
+        {
+            "step": "batch_validated",
+            "batch_id": "empty",
+            "declared": 0,
+            "distinct": 0,
+            "duplicate_declared": 0,
+            "null_rows": 0
+        },
+        {
+            "step": "batch_validated",
+            "batch_id": "all_null",
+            "declared": 0,
+            "distinct": 0,
+            "duplicate_declared": 0,
+            "null_rows": 3
+        },
+        {
+            "step": "global_merged",
+            "cardinality": 0
+        },
+        {
+            "step": "width_decided",
+            "global_index_width": 8
+        },
+        {
+            "step": "batch_remapped",
+            "batch_id": "empty",
+            "used_distinct_values": 0,
+            "unused_declared": 0
+        },
+        {
+            "step": "batch_remapped",
+            "batch_id": "all_null",
+            "used_distinct_values": 0,
+            "unused_declared": 0
+        },
+        {
+            "step": "done",
+            "cardinality": 0,
+            "global_index_width": 8
+        },
+        {
+            "step": "roundtrip",
+            "all_match": true,
+            "checked_rows": 3,
+            "mismatches": 0
+        }
+    ]
+}
+== cardinality 257 vs 8-bit: reject (classified failure) ==
+HTTP 422 {"ok":false,"error":{"category":"CARDINALITY_OVERFLOW","message":"global cardinality 257 exceeds capacity 256 of target width 8-bit and width_policy='reject'","details":{"cardinality":257,"target_capacity":256,"target_width":8,"required_width":16}}}
+== cardinality 257 vs 8-bit: expand to 16 ==
+global_index_width = 16 cardinality = 257
+== verify demo-repeated against independently supplied rows ==
+{
+    "ok": true,
+    "verification": {
+        "all_match": true,
+        "checked_rows": 8,
+        "mismatches": []
+    }
+}
+== fetch stored run metadata ==
+{
+    "ok": true,
+    "run": {
+        "run_id": "demo-repeated",
+        "created_at": "2026-09-28T00:39:21.380803+00:00",
+        "status": "ok",
+        "sort_policy": "type_then_value",
+        "width_policy": "reject",
+        "target_width": 8,
+        "global_index_width": 8,
+        "cardinality": 3,
+        "batch_count": 2,
+        "error_category": null,
+        "error_message": null,
+        "batches": [
+            {
+                "batch_id": "b1",
+                "ordinal": 0,
+                "row_count": 5,
+                "null_rows": 1,
+                "declared_entries": 3,
+                "distinct_values": 2,
+                "used_entries": 2,
+                "unused_declared": 0,
+                "duplicate_declared": 1,
+                "local_to_global": [
+                    0,
+                    1,
+                    0
+                ],
+                "global_indices": [
+                    0,
+                    1,
+                    0,
+                    0,
+                    -1
+                ],
+                "valid": [
+                    true,
+                    true,
+                    true,
+                    true,
+                    false
+                ]
+            },
+            {
+                "batch_id": "b2",
+                "ordinal": 1,
+                "row_count": 3,
+                "null_rows": 0,
+                "declared_entries": 2,
+                "distinct_values": 2,
+                "used_entries": 2,
+                "unused_declared": 0,
+                "duplicate_declared": 0,
+                "local_to_global": [
+                    2,
+                    1
+                ],
+                "global_indices": [
+                    2,
+                    1,
+                    2
+                ],
+                "valid": [
+                    true,
+                    true,
+                    true
+                ]
+            }
+        ],
+        "global_entries": [
+            {
+                "global_code": 0,
+                "type": "utf8",
+                "value": "a"
+            },
+            {
+                "global_code": 1,
+                "type": "utf8",
+                "value": "b"
+            },
+            {
+                "global_code": 2,
+                "type": "utf8",
+                "value": "z"
+            }
+        ],
+        "events": [
+            {
+                "step": "request_batch",
+                "batch_id": "b1",
+                "rows": 5,
+                "declared": 3,
+                "null_rows_input": 1
+            },
+            {
+                "step": "request_batch",
+                "batch_id": "b2",
+                "rows": 3,
+                "declared": 2,
+                "null_rows_input": 0
+            },
+            {
+                "step": "start",
+                "batch_count": 2,
+                "target_width": 8,
+                "width_policy": "reject"
+            },
+            {
+                "step": "batch_validated",
+                "batch_id": "b1",
+                "declared": 3,
+                "distinct": 2,
+                "duplicate_declared": 1,
+                "null_rows": 1
+            },
+            {
+                "step": "batch_validated",
+                "batch_id": "b2",
+                "declared": 2,
+                "distinct": 2,
+                "duplicate_declared": 0,
+                "null_rows": 0
+            },
+            {
+                "step": "global_merged",
+                "cardinality": 3
+            },
+            {
+                "step": "width_decided",
+                "global_index_width": 8
+            },
+            {
+                "step": "batch_remapped",
+                "batch_id": "b1",
+                "used_distinct_values": 2,
+                "unused_declared": 0
+            },
+            {
+                "step": "batch_remapped",
+                "batch_id": "b2",
+                "used_distinct_values": 2,
+                "unused_declared": 0
+            },
+            {
+                "step": "done",
+                "cardinality": 3,
+                "global_index_width": 8
+            },
+            {
+                "step": "roundtrip",
+                "all_match": true,
+                "checked_rows": 8,
+                "mismatches": 0
+            }
+        ]
+    }
+}

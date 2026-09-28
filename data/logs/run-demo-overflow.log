@@ -1,0 +1,7 @@
+2026-09-28 08:39:21,582 INFO run_id=demo-overflow started_at=2026-09-28T00:39:21.582163+00:00
+2026-09-28 08:39:21,582 INFO versions {"fastapi": "0.141.1", "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39", "pyarrow": "25.0.1", "pytest": "9.1.1", "python": "3.12.3", "service": "dictsvc 1.0.0", "sqlite": "3.45.1"}
+2026-09-28 08:39:21,582 INFO step {"batch_id": "over", "declared": 257, "null_rows_input": 0, "rows": 257, "step": "request_batch"}
+2026-09-28 08:39:21,582 INFO step {"batch_count": 1, "step": "start", "target_width": 8, "width_policy": "reject"}
+2026-09-28 08:39:21,583 INFO step {"batch_id": "over", "declared": 257, "distinct": 257, "duplicate_declared": 0, "null_rows": 0, "step": "batch_validated"}
+2026-09-28 08:39:21,583 INFO step {"cardinality": 257, "step": "global_merged"}
+2026-09-28 08:39:21,585 INFO VERDICT ok=False basis=error category=CARDINALITY_OVERFLOW extra={"details": {"cardinality": 257, "required_width": 16, "target_capacity": 256, "target_width": 8}, "message": "global cardinality 257 exceeds capacity 256 of target width 8-bit and width_policy='reject'"}

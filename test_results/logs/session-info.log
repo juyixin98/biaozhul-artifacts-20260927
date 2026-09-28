@@ -1,0 +1,9 @@
+dictsvc test session
+fastapi: 0.141.1
+platform: Linux-6.8.0-90-generic-x86_64-with-glibc2.39
+pyarrow: 25.0.1
+pytest: 9.1.1
+python: 3.12.3
+service: dictsvc 1.0.0
+sqlite: 3.45.1
+python_executable: /home/admin/Downloads/xinbiaozhu/opp256/b/.venv/bin/python

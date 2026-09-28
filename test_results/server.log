@@ -1,0 +1,18 @@
+INFO:     Started server process [1493550]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8011 (Press CTRL+C to quit)
+INFO:     127.0.0.1:40512 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58434 - "GET /healthz HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58448 - "GET /version HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58458 - "POST /v1/encode HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58464 - "POST /v1/encode HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58474 - "POST /v1/encode HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:58488 - "POST /v1/encode HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58494 - "POST /v1/verify HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58502 - "GET /v1/runs/demo-repeated HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48434 - "POST /v1/encode/arrow?target_width=8&width_policy=reject HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1493550]

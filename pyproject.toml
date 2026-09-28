@@ -1,0 +1,11 @@
+[project]
+name = "dictsvc"
+version = "1.0.0"
+description = "Unified dictionary encoding service for multiple column batches"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+log_cli = false

@@ -1,0 +1,5 @@
+global dictionary: [('utf8', 'a'), ('utf8', 'b'), ('utf8', 'z')]
+b1 global_indices: [0, 1, 0, 0, None]
+b1 valid:          [True, True, True, True, False]
+b2 global_indices: [2, 1, 2, None, None]
+arrow remap rows: ['b1', 'b1', 'b1', 'b1', 'b1', 'b2', 'b2', 'b2', 'b2', 'b2'] [0, 1, 0, 0, None, 2, 1, 2, None, None] [True, True, True, True, False, True, True, True, False, False]

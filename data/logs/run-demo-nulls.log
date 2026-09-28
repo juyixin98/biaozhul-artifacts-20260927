@@ -1,0 +1,14 @@
+2026-09-28 08:39:21,459 INFO run_id=demo-nulls started_at=2026-09-28T00:39:21.459267+00:00
+2026-09-28 08:39:21,459 INFO versions {"fastapi": "0.141.1", "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39", "pyarrow": "25.0.1", "pytest": "9.1.1", "python": "3.12.3", "service": "dictsvc 1.0.0", "sqlite": "3.45.1"}
+2026-09-28 08:39:21,459 INFO step {"batch_id": "empty", "declared": 0, "null_rows_input": 0, "rows": 0, "step": "request_batch"}
+2026-09-28 08:39:21,459 INFO step {"batch_id": "all_null", "declared": 0, "null_rows_input": 3, "rows": 3, "step": "request_batch"}
+2026-09-28 08:39:21,460 INFO step {"batch_count": 2, "step": "start", "target_width": 8, "width_policy": "reject"}
+2026-09-28 08:39:21,460 INFO step {"batch_id": "empty", "declared": 0, "distinct": 0, "duplicate_declared": 0, "null_rows": 0, "step": "batch_validated"}
+2026-09-28 08:39:21,460 INFO step {"batch_id": "all_null", "declared": 0, "distinct": 0, "duplicate_declared": 0, "null_rows": 3, "step": "batch_validated"}
+2026-09-28 08:39:21,460 INFO step {"cardinality": 0, "step": "global_merged"}
+2026-09-28 08:39:21,460 INFO step {"global_index_width": 8, "step": "width_decided"}
+2026-09-28 08:39:21,460 INFO step {"batch_id": "empty", "step": "batch_remapped", "unused_declared": 0, "used_distinct_values": 0}
+2026-09-28 08:39:21,460 INFO step {"batch_id": "all_null", "step": "batch_remapped", "unused_declared": 0, "used_distinct_values": 0}
+2026-09-28 08:39:21,460 INFO step {"cardinality": 0, "global_index_width": 8, "step": "done"}
+2026-09-28 08:39:21,460 INFO step {"all_match": true, "checked_rows": 3, "mismatches": 0, "step": "roundtrip"}
+2026-09-28 08:39:21,463 INFO VERDICT ok=True basis=roundtrip all rows matched; metadata committed extra={"cardinality": 0, "global_index_width": 8}
