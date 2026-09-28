@@ -1,0 +1,17 @@
+[project]
+name = "opp265-fixed-width-smt"
+version = "0.1.0"
+description = "固定键宽稀疏 Merkle 状态服务（成员/非成员证明、压缩路径、批更新、离线回放）"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = [
+    "unit: 不依赖网络与服务进程的单元测试",
+    "integration: FastAPI + SQLite 集成测试",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["app"]
