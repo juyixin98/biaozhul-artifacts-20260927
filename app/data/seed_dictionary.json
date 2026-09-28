@@ -1,0 +1,30 @@
+{
+  "description": "Synthetic local dictionary for demos. All entries are fabricated; no production data.",
+  "entries": [
+    {"surface": "南京", "frequency": 120},
+    {"surface": "南京市", "frequency": 80},
+    {"surface": "市长", "frequency": 60},
+    {"surface": "长江", "frequency": 90},
+    {"surface": "长江大桥", "frequency": 45},
+    {"surface": "江", "frequency": 20},
+    {"surface": "大", "frequency": 25},
+    {"surface": "桥", "frequency": 22},
+    {"surface": "研究", "frequency": 150},
+    {"surface": "研究生", "frequency": 70},
+    {"surface": "生命", "frequency": 85},
+    {"surface": "生", "frequency": 30},
+    {"surface": "命", "frequency": 18},
+    {"surface": "学", "frequency": 40},
+    {"surface": "学生", "frequency": 55},
+    {"surface": "大学", "frequency": 110},
+    {"surface": "北京大学", "frequency": 65},
+    {"surface": "北京", "frequency": 130},
+    {"surface": "汉字", "frequency": 95},
+    {"surface": "分词", "frequency": 100},
+    {"surface": "street", "frequency": 50},
+    {"surface": "strasse", "frequency": 35},
+    {"surface": "fish", "frequency": 40},
+    {"surface": "the", "frequency": 200},
+    {"surface": "a", "frequency": 180}
+  ]
+}
