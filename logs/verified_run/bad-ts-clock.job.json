@@ -1,0 +1,43 @@
+{
+  "job_id": "bad-ts-clock",
+  "run_id": "verified-demo",
+  "status": "succeeded",
+  "container": "mpegts",
+  "sources": [
+    "tb12800"
+  ],
+  "error_code": null,
+  "error": null,
+  "plan": {
+    "job_id": "bad-ts-clock",
+    "feasible": false,
+    "mode": "transcode_required",
+    "output_container": "mpegts",
+    "output_time_base": [
+      1,
+      1
+    ],
+    "clips": [
+      "fixtures/tb12800.media.json"
+    ],
+    "findings": [
+      {
+        "code": "container_constraint",
+        "severity": "error",
+        "stream": null,
+        "clip_index": null,
+        "sample_index": null,
+        "message": "输出时基与容器 mpegts 不兼容：mpegts_clock_not_divisible",
+        "evidence": {
+          "clock": 90000,
+          "bad_source_denominators": [
+            12800
+          ]
+        }
+      }
+    ],
+    "segments": [],
+    "output_duration_sec": 0.0,
+    "invariants": {}
+  }
+}

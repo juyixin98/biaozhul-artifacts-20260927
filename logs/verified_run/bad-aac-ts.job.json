@@ -1,0 +1,41 @@
+{
+  "job_id": "bad-aac-ts",
+  "run_id": "verified-demo",
+  "status": "succeeded",
+  "container": "mpegts",
+  "sources": [
+    "aac_delay_ts"
+  ],
+  "error_code": null,
+  "error": null,
+  "plan": {
+    "job_id": "bad-aac-ts",
+    "feasible": false,
+    "mode": "transcode_required",
+    "output_container": "mpegts",
+    "output_time_base": [
+      1,
+      90000
+    ],
+    "clips": [
+      "fixtures/aac_delay_ts.media.json"
+    ],
+    "findings": [
+      {
+        "code": "container_constraint",
+        "severity": "error",
+        "stream": "audio",
+        "clip_index": 0,
+        "sample_index": null,
+        "message": "容器 mpegts 无法表达 2112 样本的编码器延迟修剪（无 MP4 edit-list），AAC priming 会在开头产生噪声，必须转码",
+        "evidence": {
+          "encoder_delay": 2112,
+          "container": "mpegts"
+        }
+      }
+    ],
+    "segments": [],
+    "output_duration_sec": 0.0,
+    "invariants": {}
+  }
+}

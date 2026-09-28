@@ -1,0 +1,28 @@
+{
+  "job_id": "bad-ts-clock",
+  "status": "succeeded",
+  "feasible": false,
+  "mode": "transcode_required",
+  "output_time_base": [
+    1,
+    1
+  ],
+  "output_duration_sec": 0.0,
+  "errors": [
+    {
+      "code": "container_constraint",
+      "severity": "error",
+      "stream": null,
+      "clip_index": null,
+      "message": "输出时基与容器 mpegts 不兼容：mpegts_clock_not_divisible",
+      "evidence": {
+        "clock": 90000,
+        "bad_source_denominators": [
+          12800
+        ]
+      }
+    }
+  ],
+  "warnings": [],
+  "checks": []
+}

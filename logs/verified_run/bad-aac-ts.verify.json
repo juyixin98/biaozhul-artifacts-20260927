@@ -1,0 +1,26 @@
+{
+  "job_id": "bad-aac-ts",
+  "status": "succeeded",
+  "feasible": false,
+  "mode": "transcode_required",
+  "output_time_base": [
+    1,
+    90000
+  ],
+  "output_duration_sec": 0.0,
+  "errors": [
+    {
+      "code": "container_constraint",
+      "severity": "error",
+      "stream": "audio",
+      "clip_index": 0,
+      "message": "容器 mpegts 无法表达 2112 样本的编码器延迟修剪（无 MP4 edit-list），AAC priming 会在开头产生噪声，必须转码",
+      "evidence": {
+        "encoder_delay": 2112,
+        "container": "mpegts"
+      }
+    }
+  ],
+  "warnings": [],
+  "checks": []
+}

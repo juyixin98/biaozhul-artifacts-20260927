@@ -1,0 +1,50 @@
+{
+ "source": "fixtures/tb12800.media.json",
+ "video": {
+  "codec": "h264",
+  "codec_type": "video",
+  "time_base": [
+   1,
+   12800
+  ],
+  "start_time_ticks": 0,
+  "width": 320,
+  "height": 240,
+  "pixel_format": "yuv420p",
+  "profile": "high",
+  "level": 31,
+  "sample_aspect_ratio": "1/1",
+  "extradata_id": "synth-sps-avc1-320x240",
+  "container": "mp4",
+  "frames": [
+   {
+    "index": 0,
+    "dts": 0,
+    "pts": 0,
+    "duration": 512,
+    "keyframe": true,
+    "references": []
+   },
+   {
+    "index": 1,
+    "dts": 512,
+    "pts": 512,
+    "duration": 512,
+    "keyframe": false,
+    "references": [
+     0
+    ]
+   },
+   {
+    "index": 2,
+    "dts": 1024,
+    "pts": 1024,
+    "duration": 512,
+    "keyframe": false,
+    "references": [
+     1
+    ]
+   }
+  ]
+ }
+}

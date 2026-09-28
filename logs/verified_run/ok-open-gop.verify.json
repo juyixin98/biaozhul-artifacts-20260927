@@ -1,0 +1,38 @@
+{
+  "job_id": "ok-open-gop",
+  "status": "succeeded",
+  "feasible": true,
+  "mode": "concat_copy",
+  "output_time_base": [
+    1,
+    25
+  ],
+  "output_duration_sec": 0.16,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "non_keyframe_cut",
+      "stream": "video",
+      "clip_index": 0,
+      "message": "首片段从帧 #6 起切，保留其完整参考链作为预滚（含开放GOP跨GOP帧），时间轴已重定位消除负 DTS"
+    }
+  ],
+  "checks": [
+    {
+      "clip_index": 0,
+      "stream": "video",
+      "samples": 10,
+      "min_dts": 0,
+      "nonnegative": true,
+      "strict_increasing": true,
+      "preroll_count": 6,
+      "pad_count": 0,
+      "roles": {
+        "content": 4,
+        "preroll_reference": 6,
+        "silence_pad": 0,
+        "drop_encoder_delay": 0
+      }
+    }
+  ]
+}

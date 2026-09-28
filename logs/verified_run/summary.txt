@@ -1,0 +1,13 @@
+# HTTP 层验证结果（TestClient）
+
+health: {'status': 'ok', 'version': '1.0.0', 'run_id': 'verified-demo'}
+
+{"job_id": "ok-mixed-tb", "status": "succeeded", "feasible": true, "mode": "concat_copy", "errors": [], "warnings": []}
+{"job_id": "ok-open-gop", "status": "succeeded", "feasible": true, "mode": "concat_copy", "errors": [], "warnings": ["non_keyframe_cut"]}
+{"job_id": "ok-tailpad", "status": "succeeded", "feasible": true, "mode": "concat_copy", "errors": [], "warnings": ["av_duration_mismatch"]}
+{"job_id": "ok-aac-delay", "status": "succeeded", "feasible": true, "mode": "concat_copy", "errors": [], "warnings": []}
+{"job_id": "bad-nonkey", "status": "succeeded", "feasible": false, "mode": "transcode_required", "errors": ["non_keyframe_cut"], "warnings": []}
+{"job_id": "bad-open-gop-lost", "status": "succeeded", "feasible": false, "mode": "transcode_required", "errors": ["open_gop_reference_lost"], "warnings": []}
+{"job_id": "bad-ts-clock", "status": "succeeded", "feasible": false, "mode": "transcode_required", "errors": ["container_constraint"], "warnings": []}
+{"job_id": "bad-aac-ts", "status": "succeeded", "feasible": false, "mode": "transcode_required", "errors": ["container_constraint"], "warnings": []}
+{"job_id": "err-missing", "status": "failed", "feasible": null, "mode": null, "errors": [], "warnings": []}

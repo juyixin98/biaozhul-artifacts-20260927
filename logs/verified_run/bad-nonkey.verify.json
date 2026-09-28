@@ -1,0 +1,26 @@
+{
+  "job_id": "bad-nonkey",
+  "status": "succeeded",
+  "feasible": false,
+  "mode": "transcode_required",
+  "output_time_base": [
+    1,
+    25
+  ],
+  "output_duration_sec": 0.0,
+  "errors": [
+    {
+      "code": "non_keyframe_cut",
+      "severity": "error",
+      "stream": "video",
+      "clip_index": 1,
+      "message": "片段 1 的拼接入点帧 #2 不是可独立起解码的关键帧（最近重启点 #0），拼接边界禁止非关键帧/开放GOP直拼，必须转码",
+      "evidence": {
+        "first_content_frame": 2,
+        "nearest_keyframe": 0
+      }
+    }
+  ],
+  "warnings": [],
+  "checks": []
+}

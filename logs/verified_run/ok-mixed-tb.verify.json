@@ -1,0 +1,47 @@
+{
+  "job_id": "ok-mixed-tb",
+  "status": "succeeded",
+  "feasible": true,
+  "mode": "concat_copy",
+  "output_time_base": [
+    1,
+    150
+  ],
+  "output_duration_sec": 0.513333333,
+  "errors": [],
+  "warnings": [],
+  "checks": [
+    {
+      "clip_index": 0,
+      "stream": "video",
+      "samples": 7,
+      "min_dts": 0,
+      "nonnegative": true,
+      "strict_increasing": true,
+      "preroll_count": 0,
+      "pad_count": 0,
+      "roles": {
+        "content": 7,
+        "preroll_reference": 0,
+        "silence_pad": 0,
+        "drop_encoder_delay": 0
+      }
+    },
+    {
+      "clip_index": 1,
+      "stream": "video",
+      "samples": 7,
+      "min_dts": 42,
+      "nonnegative": true,
+      "strict_increasing": true,
+      "preroll_count": 0,
+      "pad_count": 0,
+      "roles": {
+        "content": 7,
+        "preroll_reference": 0,
+        "silence_pad": 0,
+        "drop_encoder_delay": 0
+      }
+    }
+  ]
+}

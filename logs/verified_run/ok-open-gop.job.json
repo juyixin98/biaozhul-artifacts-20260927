@@ -1,0 +1,220 @@
+{
+  "job_id": "ok-open-gop",
+  "run_id": "verified-demo",
+  "status": "succeeded",
+  "container": "mp4",
+  "sources": [
+    "open_gop"
+  ],
+  "error_code": null,
+  "error": null,
+  "plan": {
+    "job_id": "ok-open-gop",
+    "feasible": true,
+    "mode": "concat_copy",
+    "output_container": "mp4",
+    "output_time_base": [
+      1,
+      25
+    ],
+    "clips": [
+      "fixtures/open_gop.media.json"
+    ],
+    "findings": [
+      {
+        "code": "non_keyframe_cut",
+        "severity": "warning",
+        "stream": "video",
+        "clip_index": 0,
+        "sample_index": null,
+        "message": "首片段从帧 #6 起切，保留其完整参考链作为预滚（含开放GOP跨GOP帧），时间轴已重定位消除负 DTS",
+        "evidence": {
+          "first_content_frame": 6
+        }
+      }
+    ],
+    "segments": [
+      {
+        "clip_index": 0,
+        "source": "fixtures/open_gop.media.json",
+        "stream": "video",
+        "output_start_dts": 0,
+        "output_start_pts": 0,
+        "preroll_count": 6,
+        "content_count": 4,
+        "pad_count": 0,
+        "first_content_src_index": 6,
+        "retained_src_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "samples": [
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 0,
+            "src_dts": 0,
+            "src_pts": 0,
+            "out_dts": 0,
+            "out_pts": 0,
+            "duration": 1,
+            "keyframe": true,
+            "role": "preroll_reference",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 1,
+            "src_dts": 1,
+            "src_pts": 1,
+            "out_dts": 1,
+            "out_pts": 1,
+            "duration": 1,
+            "keyframe": false,
+            "role": "preroll_reference",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 2,
+            "src_dts": 2,
+            "src_pts": 2,
+            "out_dts": 2,
+            "out_pts": 2,
+            "duration": 1,
+            "keyframe": false,
+            "role": "preroll_reference",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 3,
+            "src_dts": 3,
+            "src_pts": 3,
+            "out_dts": 3,
+            "out_pts": 3,
+            "duration": 1,
+            "keyframe": false,
+            "role": "preroll_reference",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 4,
+            "src_dts": 4,
+            "src_pts": 4,
+            "out_dts": 4,
+            "out_pts": 4,
+            "duration": 1,
+            "keyframe": false,
+            "role": "preroll_reference",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 5,
+            "src_dts": 5,
+            "src_pts": 5,
+            "out_dts": 5,
+            "out_pts": 5,
+            "duration": 1,
+            "keyframe": true,
+            "role": "preroll_reference",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 6,
+            "src_dts": 6,
+            "src_pts": 6,
+            "out_dts": 6,
+            "out_pts": 6,
+            "duration": 1,
+            "keyframe": false,
+            "role": "content",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 7,
+            "src_dts": 7,
+            "src_pts": 7,
+            "out_dts": 7,
+            "out_pts": 7,
+            "duration": 1,
+            "keyframe": false,
+            "role": "content",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 8,
+            "src_dts": 8,
+            "src_pts": 8,
+            "out_dts": 8,
+            "out_pts": 8,
+            "duration": 1,
+            "keyframe": false,
+            "role": "content",
+            "pcm_samples_contribution": null,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "video",
+            "src_index": 9,
+            "src_dts": 9,
+            "src_pts": 9,
+            "out_dts": 9,
+            "out_pts": 9,
+            "duration": 1,
+            "keyframe": false,
+            "role": "content",
+            "pcm_samples_contribution": null,
+            "note": ""
+          }
+        ]
+      }
+    ],
+    "output_duration_sec": 0.16,
+    "invariants": {
+      "total_samples": 10,
+      "per_stream": {
+        "video": {
+          "samples": 10,
+          "min_dts": 0,
+          "max_dts_end": 10,
+          "nonnegative": true,
+          "strict_increasing": true,
+          "preroll_reference": 6,
+          "silence_pad": 0,
+          "drop_encoder_delay": 0
+        }
+      }
+    }
+  }
+}

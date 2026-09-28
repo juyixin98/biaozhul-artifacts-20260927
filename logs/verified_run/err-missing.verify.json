@@ -1,0 +1,7 @@
+{
+  "job_id": "err-missing",
+  "status": "failed",
+  "error_code": "input_not_found",
+  "error": "无法解析输入 'no_such_fixture_zzz'：在 fixtures 下未找到 sidecar 夹具，且未开启真实媒体解析（MEDIACONCAT_ALLOW_FFPROBE=1）",
+  "checks": []
+}

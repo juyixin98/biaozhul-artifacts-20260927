@@ -1,0 +1,37 @@
+service: {'status': 'ok', 'version': '1.0.0', 'run_id': 'run-demo'}
+
+=== 混合时基直拼 (job_id=demo-mixed-tb) ===
+status: succeeded
+feasible: True | mode: concat_copy | output_tb: [1, 150] | duration_sec: 0.513333333
+verify checks:
+   {"clip_index": 0, "stream": "video", "samples": 7, "min_dts": 0, "nonnegative": true, "strict_increasing": true, "preroll_count": 0, "pad_count": 0, "roles": {"content": 7, "preroll_reference": 0, "silence_pad": 0, "drop_encoder_delay": 0}}
+   {"clip_index": 1, "stream": "video", "samples": 7, "min_dts": 42, "nonnegative": true, "strict_increasing": true, "preroll_count": 0, "pad_count": 0, "roles": {"content": 7, "preroll_reference": 0, "silence_pad": 0, "drop_encoder_delay": 0}}
+
+=== 开放GOP预滚 (job_id=demo-open-gop) ===
+status: succeeded
+feasible: True | mode: concat_copy | output_tb: [1, 25] | duration_sec: 0.16
+  [warning] non_keyframe_cut: 首片段从非关键帧 #6 起切，保留关键帧 #5 起的预滚参考样本，时间轴已重定位消除负 DTS
+      evidence: {"first_content_frame": 6, "preroll_anchor": 5}
+verify checks:
+   {"clip_index": 0, "stream": "video", "samples": 6, "min_dts": 0, "nonnegative": true, "strict_increasing": true, "preroll_count": 2, "pad_count": 0, "roles": {"content": 4, "preroll_reference": 2, "silence_pad": 0, "drop_encoder_delay": 0}}
+
+=== 边界非关键帧(需转码) (job_id=demo-nonkey) ===
+status: succeeded
+feasible: False | mode: transcode_required | output_tb: [1, 25] | duration_sec: 0.0
+  [error] non_keyframe_cut: 片段 1 的拼接入点不是关键帧（首个内容帧 #2 需回溯到关键帧 #0），拼接边界禁止非关键帧直拼
+      evidence: {"first_content_frame": 2, "nearest_keyframe": 0}
+verify checks:
+
+=== 音频尾部填充 (job_id=demo-tailpad) ===
+status: succeeded
+feasible: True | mode: concat_copy | output_tb: [1, 48000] | duration_sec: 0.32
+  [warning] av_duration_mismatch: 片段 0 音频短于视频 3072 输出 ticks，追加 3 个静音包填充
+      evidence: {"gap_ticks": 3072, "silence_packets": 3, "audio_frame_ticks": 1024}
+verify checks:
+   {"clip_index": 0, "stream": "video", "samples": 8, "min_dts": 0, "nonnegative": true, "strict_increasing": true, "preroll_count": 0, "pad_count": 0, "roles": {"content": 8, "preroll_reference": 0, "silence_pad": 0, "drop_encoder_delay": 0}}
+   {"clip_index": 0, "stream": "audio", "samples": 15, "min_dts": 0, "nonnegative": true, "strict_increasing": true, "preroll_count": 0, "pad_count": 3, "roles": {"content": 12, "preroll_reference": 0, "silence_pad": 3, "drop_encoder_delay": 0}}
+
+=== 异常输入 (job_id=demo-missing) ===
+status: failed
+error_code: input_not_found
+error: 无法解析输入 'definitely_missing_clip'：在 fixtures 下未找到 sidecar 夹具，且未开启真实媒体解析（MEDIACONCAT_ALLOW_FFPROBE=1）

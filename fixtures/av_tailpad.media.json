@@ -1,0 +1,226 @@
+{
+ "source": "fixtures/av_tailpad.media.json",
+ "video": {
+  "codec": "h264",
+  "codec_type": "video",
+  "time_base": [
+   1,
+   25
+  ],
+  "start_time_ticks": 0,
+  "width": 320,
+  "height": 240,
+  "pixel_format": "yuv420p",
+  "profile": "high",
+  "level": 31,
+  "sample_aspect_ratio": "1/1",
+  "extradata_id": "synth-sps-avc1-320x240",
+  "container": "mp4",
+  "frames": [
+   {
+    "index": 0,
+    "dts": 0,
+    "pts": 0,
+    "duration": 1,
+    "keyframe": true,
+    "references": []
+   },
+   {
+    "index": 1,
+    "dts": 1,
+    "pts": 1,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     0
+    ]
+   },
+   {
+    "index": 2,
+    "dts": 2,
+    "pts": 2,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     1
+    ]
+   },
+   {
+    "index": 3,
+    "dts": 3,
+    "pts": 3,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     2
+    ]
+   },
+   {
+    "index": 4,
+    "dts": 4,
+    "pts": 4,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     3
+    ]
+   },
+   {
+    "index": 5,
+    "dts": 5,
+    "pts": 5,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     4
+    ]
+   },
+   {
+    "index": 6,
+    "dts": 6,
+    "pts": 6,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     5
+    ]
+   },
+   {
+    "index": 7,
+    "dts": 7,
+    "pts": 7,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     6
+    ]
+   }
+  ]
+ },
+ "audio": {
+  "codec": "aac",
+  "codec_type": "audio",
+  "time_base": [
+   1,
+   48000
+  ],
+  "start_time_ticks": 0,
+  "sample_rate": 48000,
+  "channels": 2,
+  "audio_object_type": "AAC-LC",
+  "profile": "LC",
+  "extradata_id": "synth-asc-48000-2",
+  "encoder_delay_samples": 0,
+  "container": "mp4",
+  "frames": [
+   {
+    "index": 0,
+    "dts": 0,
+    "pts": 0,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 1,
+    "dts": 1024,
+    "pts": 1024,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 2,
+    "dts": 2048,
+    "pts": 2048,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 3,
+    "dts": 3072,
+    "pts": 3072,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 4,
+    "dts": 4096,
+    "pts": 4096,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 5,
+    "dts": 5120,
+    "pts": 5120,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 6,
+    "dts": 6144,
+    "pts": 6144,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 7,
+    "dts": 7168,
+    "pts": 7168,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 8,
+    "dts": 8192,
+    "pts": 8192,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 9,
+    "dts": 9216,
+    "pts": 9216,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 10,
+    "dts": 10240,
+    "pts": 10240,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 11,
+    "dts": 11264,
+    "pts": 11264,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   }
+  ]
+ }
+}

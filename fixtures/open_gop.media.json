@@ -1,0 +1,120 @@
+{
+ "source": "fixtures/open_gop.media.json",
+ "cut_in_sec": 0.24,
+ "video": {
+  "codec": "h264",
+  "codec_type": "video",
+  "time_base": [
+   1,
+   25
+  ],
+  "start_time_ticks": 0,
+  "width": 320,
+  "height": 240,
+  "pixel_format": "yuv420p",
+  "profile": "high",
+  "level": 31,
+  "sample_aspect_ratio": "1/1",
+  "extradata_id": "synth-sps-avc1-320x240",
+  "container": "mp4",
+  "frames": [
+   {
+    "index": 0,
+    "dts": 0,
+    "pts": 0,
+    "duration": 1,
+    "keyframe": true,
+    "references": []
+   },
+   {
+    "index": 1,
+    "dts": 1,
+    "pts": 1,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     0
+    ]
+   },
+   {
+    "index": 2,
+    "dts": 2,
+    "pts": 2,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     1
+    ]
+   },
+   {
+    "index": 3,
+    "dts": 3,
+    "pts": 3,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     2
+    ]
+   },
+   {
+    "index": 4,
+    "dts": 4,
+    "pts": 4,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     3
+    ]
+   },
+   {
+    "index": 5,
+    "dts": 5,
+    "pts": 5,
+    "duration": 1,
+    "keyframe": true,
+    "references": []
+   },
+   {
+    "index": 6,
+    "dts": 6,
+    "pts": 6,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     5,
+     4
+    ]
+   },
+   {
+    "index": 7,
+    "dts": 7,
+    "pts": 7,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     6
+    ]
+   },
+   {
+    "index": 8,
+    "dts": 8,
+    "pts": 8,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     7
+    ]
+   },
+   {
+    "index": 9,
+    "dts": 9,
+    "pts": 9,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     8
+    ]
+   }
+  ]
+ }
+}

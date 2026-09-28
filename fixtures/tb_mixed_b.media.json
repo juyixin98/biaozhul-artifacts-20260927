@@ -1,0 +1,94 @@
+{
+ "source": "fixtures/tb_mixed_b.media.json",
+ "video": {
+  "codec": "h264",
+  "codec_type": "video",
+  "time_base": [
+   1,
+   30
+  ],
+  "start_time_ticks": 0,
+  "width": 320,
+  "height": 240,
+  "pixel_format": "yuv420p",
+  "profile": "high",
+  "level": 31,
+  "sample_aspect_ratio": "1/1",
+  "extradata_id": "synth-sps-avc1-320x240",
+  "container": "mp4",
+  "frames": [
+   {
+    "index": 0,
+    "dts": 0,
+    "pts": 0,
+    "duration": 1,
+    "keyframe": true,
+    "references": []
+   },
+   {
+    "index": 1,
+    "dts": 1,
+    "pts": 3,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     0
+    ]
+   },
+   {
+    "index": 2,
+    "dts": 2,
+    "pts": 1,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     0,
+     3
+    ]
+   },
+   {
+    "index": 3,
+    "dts": 3,
+    "pts": 2,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     0,
+     3
+    ]
+   },
+   {
+    "index": 4,
+    "dts": 4,
+    "pts": 6,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     3
+    ]
+   },
+   {
+    "index": 5,
+    "dts": 5,
+    "pts": 4,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     3,
+     6
+    ]
+   },
+   {
+    "index": 6,
+    "dts": 6,
+    "pts": 5,
+    "duration": 1,
+    "keyframe": false,
+    "references": [
+     3,
+     6
+    ]
+   }
+  ]
+ }
+}

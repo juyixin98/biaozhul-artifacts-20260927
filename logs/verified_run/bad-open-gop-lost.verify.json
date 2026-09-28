@@ -1,0 +1,27 @@
+{
+  "job_id": "bad-open-gop-lost",
+  "status": "succeeded",
+  "feasible": false,
+  "mode": "transcode_required",
+  "output_time_base": [
+    1,
+    25
+  ],
+  "output_duration_sec": 0.0,
+  "errors": [
+    {
+      "code": "open_gop_reference_lost",
+      "severity": "error",
+      "stream": "video",
+      "clip_index": 1,
+      "message": "片段 1 引用了上一片段/源外样本 [-1]，拼接会丢失必需参考",
+      "evidence": {
+        "external_references": [
+          -1
+        ]
+      }
+    }
+  ],
+  "warnings": [],
+  "checks": []
+}

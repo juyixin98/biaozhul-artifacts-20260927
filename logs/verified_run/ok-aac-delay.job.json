@@ -1,0 +1,178 @@
+{
+  "job_id": "ok-aac-delay",
+  "run_id": "verified-demo",
+  "status": "succeeded",
+  "container": "mp4",
+  "sources": [
+    "aac_delay"
+  ],
+  "error_code": null,
+  "error": null,
+  "plan": {
+    "job_id": "ok-aac-delay",
+    "feasible": true,
+    "mode": "concat_copy",
+    "output_container": "mp4",
+    "output_time_base": [
+      1,
+      48000
+    ],
+    "clips": [
+      "fixtures/aac_delay.media.json"
+    ],
+    "findings": [],
+    "segments": [
+      {
+        "clip_index": 0,
+        "source": "fixtures/aac_delay.media.json",
+        "stream": "audio",
+        "output_start_dts": 0,
+        "output_start_pts": 0,
+        "preroll_count": 0,
+        "content_count": 8,
+        "pad_count": 0,
+        "first_content_src_index": 0,
+        "retained_src_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "samples": [
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 0,
+            "src_dts": 0,
+            "src_pts": 0,
+            "out_dts": 0,
+            "out_pts": 0,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "drop_encoder_delay",
+            "pcm_samples_contribution": 0,
+            "note": "priming 2112"
+          },
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 1,
+            "src_dts": 1024,
+            "src_pts": 1024,
+            "out_dts": 1024,
+            "out_pts": 1024,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "drop_encoder_delay",
+            "pcm_samples_contribution": 0,
+            "note": "priming 2112"
+          },
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 2,
+            "src_dts": 2048,
+            "src_pts": 2048,
+            "out_dts": 2048,
+            "out_pts": 2048,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "drop_encoder_delay",
+            "pcm_samples_contribution": 960,
+            "note": "priming 2112"
+          },
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 3,
+            "src_dts": 3072,
+            "src_pts": 3072,
+            "out_dts": 3072,
+            "out_pts": 3072,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "content",
+            "pcm_samples_contribution": 1024,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 4,
+            "src_dts": 4096,
+            "src_pts": 4096,
+            "out_dts": 4096,
+            "out_pts": 4096,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "content",
+            "pcm_samples_contribution": 1024,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 5,
+            "src_dts": 5120,
+            "src_pts": 5120,
+            "out_dts": 5120,
+            "out_pts": 5120,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "content",
+            "pcm_samples_contribution": 1024,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 6,
+            "src_dts": 6144,
+            "src_pts": 6144,
+            "out_dts": 6144,
+            "out_pts": 6144,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "content",
+            "pcm_samples_contribution": 1024,
+            "note": ""
+          },
+          {
+            "clip_index": 0,
+            "stream": "audio",
+            "src_index": 7,
+            "src_dts": 7168,
+            "src_pts": 7168,
+            "out_dts": 7168,
+            "out_pts": 7168,
+            "duration": 1024,
+            "keyframe": true,
+            "role": "content",
+            "pcm_samples_contribution": 1024,
+            "note": ""
+          }
+        ]
+      }
+    ],
+    "output_duration_sec": 0.126666667,
+    "invariants": {
+      "total_samples": 8,
+      "per_stream": {
+        "audio": {
+          "samples": 8,
+          "min_dts": 0,
+          "max_dts_end": 8192,
+          "nonnegative": true,
+          "strict_increasing": true,
+          "preroll_reference": 0,
+          "silence_pad": 0,
+          "drop_encoder_delay": 3
+        }
+      }
+    }
+  }
+}

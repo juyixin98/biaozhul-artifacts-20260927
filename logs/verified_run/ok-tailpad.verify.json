@@ -1,0 +1,54 @@
+{
+  "job_id": "ok-tailpad",
+  "status": "succeeded",
+  "feasible": true,
+  "mode": "concat_copy",
+  "output_time_base": [
+    1,
+    48000
+  ],
+  "output_duration_sec": 0.32,
+  "errors": [],
+  "warnings": [
+    {
+      "code": "av_duration_mismatch",
+      "stream": null,
+      "clip_index": 0,
+      "message": "片段 0 音频短于视频 3072 输出 ticks，追加 3 个静音帧（末帧部分贡献 0 ticks）对齐视频边界"
+    }
+  ],
+  "checks": [
+    {
+      "clip_index": 0,
+      "stream": "video",
+      "samples": 8,
+      "min_dts": 0,
+      "nonnegative": true,
+      "strict_increasing": true,
+      "preroll_count": 0,
+      "pad_count": 0,
+      "roles": {
+        "content": 8,
+        "preroll_reference": 0,
+        "silence_pad": 0,
+        "drop_encoder_delay": 0
+      }
+    },
+    {
+      "clip_index": 0,
+      "stream": "audio",
+      "samples": 15,
+      "min_dts": 0,
+      "nonnegative": true,
+      "strict_increasing": true,
+      "preroll_count": 0,
+      "pad_count": 3,
+      "roles": {
+        "content": 12,
+        "preroll_reference": 0,
+        "silence_pad": 3,
+        "drop_encoder_delay": 0
+      }
+    }
+  ]
+}

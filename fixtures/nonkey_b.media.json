@@ -1,0 +1,71 @@
+{
+ "source": "fixtures/nonkey_b.media.json",
+ "cut_in_sec": 0.08,
+ "video": {
+  "codec": "h264",
+  "codec_type": "video",
+  "time_base": [
+   1,
+   25
+  ],
+  "start_time_ticks": 0,
+  "width": 320,
+  "height": 240,
+  "pixel_format": "yuv420p",
+  "profile": "high",
+  "level": 31,
+  "sample_aspect_ratio": "1/1",
+  "extradata_id": "synth-sps-avc1-320x240",
+  "container": "mp4",
+  "frames": [
+   {
+    "index": 0,
+    "dts": 0,
+    "pts": 0,
+    "duration": 1,
+    "keyframe": true,
+    "references": []
+   },
+   {
+    "index": 1,
+    "dts": 1,
+    "pts": 1,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     0
+    ]
+   },
+   {
+    "index": 2,
+    "dts": 2,
+    "pts": 2,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     1
+    ]
+   },
+   {
+    "index": 3,
+    "dts": 3,
+    "pts": 3,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     2
+    ]
+   },
+   {
+    "index": 4,
+    "dts": 4,
+    "pts": 4,
+    "duration": 1,
+    "keyframe": 0,
+    "references": [
+     3
+    ]
+   }
+  ]
+ }
+}

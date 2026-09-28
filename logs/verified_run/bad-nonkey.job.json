@@ -1,0 +1,43 @@
+{
+  "job_id": "bad-nonkey",
+  "run_id": "verified-demo",
+  "status": "succeeded",
+  "container": "mp4",
+  "sources": [
+    "nonkey_a",
+    "nonkey_b"
+  ],
+  "error_code": null,
+  "error": null,
+  "plan": {
+    "job_id": "bad-nonkey",
+    "feasible": false,
+    "mode": "transcode_required",
+    "output_container": "mp4",
+    "output_time_base": [
+      1,
+      25
+    ],
+    "clips": [
+      "fixtures/nonkey_a.media.json",
+      "fixtures/nonkey_b.media.json"
+    ],
+    "findings": [
+      {
+        "code": "non_keyframe_cut",
+        "severity": "error",
+        "stream": "video",
+        "clip_index": 1,
+        "sample_index": null,
+        "message": "片段 1 的拼接入点帧 #2 不是可独立起解码的关键帧（最近重启点 #0），拼接边界禁止非关键帧/开放GOP直拼，必须转码",
+        "evidence": {
+          "first_content_frame": 2,
+          "nearest_keyframe": 0
+        }
+      }
+    ],
+    "segments": [],
+    "output_duration_sec": 0.0,
+    "invariants": {}
+  }
+}

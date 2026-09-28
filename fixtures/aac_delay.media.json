@@ -1,0 +1,93 @@
+{
+ "source": "fixtures/aac_delay.media.json",
+ "audio": {
+  "codec": "aac",
+  "codec_type": "audio",
+  "time_base": [
+   1,
+   48000
+  ],
+  "start_time_ticks": 0,
+  "sample_rate": 48000,
+  "channels": 2,
+  "audio_object_type": "AAC-LC",
+  "profile": "LC",
+  "extradata_id": "synth-asc-48000-2",
+  "encoder_delay_samples": 2112,
+  "container": "mp4",
+  "frames": [
+   {
+    "index": 0,
+    "dts": 0,
+    "pts": 0,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 1,
+    "dts": 1024,
+    "pts": 1024,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 2,
+    "dts": 2048,
+    "pts": 2048,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 3,
+    "dts": 3072,
+    "pts": 3072,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 4,
+    "dts": 4096,
+    "pts": 4096,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 5,
+    "dts": 5120,
+    "pts": 5120,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 6,
+    "dts": 6144,
+    "pts": 6144,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   },
+   {
+    "index": 7,
+    "dts": 7168,
+    "pts": 7168,
+    "duration": 1024,
+    "keyframe": true,
+    "references": [],
+    "pcm_samples": 1024
+   }
+  ]
+ }
+}
