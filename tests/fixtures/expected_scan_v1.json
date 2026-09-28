@@ -1,0 +1,86 @@
+{
+  "_about": "Expected answers for tests/fixtures/snapshot. These values are hand-authored; fingerprints were derived with an independent HKDF/HMAC implementation (master=0x11*32, salt=0x22*16), not produced by the scanner under test.",
+  "fixture_secrets": {
+    "aws": "AKIAFAKE000000000001",
+    "github": "ghp_0123456789abcdefghijklmnopqrstuvwxyz",
+    "app_token": "aB3xK9zPq7vRm2TnY8wCdEfGhJk4MsU",
+    "prose_token": "Xq7vKp2mZbW8xNdR4tYcL6sHgFjAeQ3uVwBnCaQ"
+  },
+  "fingerprint_key": {
+    "master_hex": "1111111111111111111111111111111111111111111111111111111111111111",
+    "salt_hex": "22222222222222222222222222222222",
+    "hkdf_info": "secretscan-candidate-fingerprint-v1"
+  },
+  "rules_version": "2026.09.01",
+  "classification_version": "1.0.0",
+  "summary": {
+    "files_scanned": 4,
+    "files_ignored": 3,
+    "files_skipped": 2,
+    "file_errors": 1,
+    "candidates_total": 5,
+    "candidates_new": 5,
+    "candidates_uncertain": 1,
+    "known_fixed": 0
+  },
+  "scanned_files": ["config/app.env", "data/blob.bin", "notes/random.txt", "src/app.py"],
+  "ignored": [".git/", "vendor/", "config/app.example.env"],
+  "skipped": [
+    {"path": "huge.log", "reason": "too_large"},
+    {"path": "link-to-app", "reason": "symlink_skipped"}
+  ],
+  "errors": [{"path": "no-read.log", "code": "unreadable"}],
+  "candidates": [
+    {
+      "rule_id": "aws_access_key_id",
+      "masked": "AKIA…01",
+      "confidence": "high",
+      "source": "rule",
+      "uncertain": false,
+      "fingerprint": "eeb918c321f09900aeb1f58f199b0ec44c3da8e78de0049382e885c324bd6cba",
+      "locations": [{"path": "src/app.py", "line": 4, "column": 22, "kind": "text"}]
+    },
+    {
+      "rule_id": "github_personal_token",
+      "masked": "ghp_…yz",
+      "confidence": "high",
+      "source": "rule",
+      "uncertain": false,
+      "fingerprint": "963669829d11a21a41c5c579217f55991049c91c8ec69ce20b10911a9c55b8d4",
+      "locations": [{"path": "data/blob.bin", "line": 1, "kind": "binary"}]
+    },
+    {
+      "rule_id": "pgp_private_key",
+      "masked": "----…--",
+      "confidence": "high",
+      "source": "rule",
+      "uncertain": false,
+      "locations": [{"path": "config/app.env", "line": 2, "column": 1, "kind": "text"}]
+    },
+    {
+      "rule_id": "generic_assignment",
+      "masked": "aB3x…sU",
+      "confidence": "medium",
+      "source": "rule",
+      "uncertain": false,
+      "fingerprint": "a2b33c6b3dce8b3227e3ad4d15144e8a577bd81306c1a91b024440249cc8aae0",
+      "locations": [{"path": "config/app.env", "line": 1, "column": 11, "kind": "text"}]
+    },
+    {
+      "rule_id": "entropy_heuristic",
+      "masked": "Xq7v…aQ",
+      "confidence": "low",
+      "source": "entropy",
+      "uncertain": true,
+      "reasons": ["entropy_only:>=4.5"],
+      "fingerprint": "5a52fe272aff4440f107505685ac6cebba6bab9ca1fd7a96aaa5888be5d916f9",
+      "locations": [{"path": "notes/random.txt", "line": 2, "kind": "text"}]
+    }
+  ],
+  "not_expected_as_candidates": [
+    "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+    "AKIAFAKE000000000002",
+    "AKIAFAKE000000000003",
+    "AKIAFAKE000000000004"
+  ]
+}

@@ -1,0 +1,10 @@
+# Pinned, offline-verified runtime dependencies (Python >= 3.11).
+# Install: python -m pip install -r requirements.txt
+fastapi==0.115.6
+uvicorn==0.34.0
+cryptography==44.0.0
+PyYAML==6.0.2
+
+# Test / verification only
+pytest==8.3.4
+httpx==0.28.1

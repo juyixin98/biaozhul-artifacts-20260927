@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.secretscan_state/
+.pytest_cache/
+*.egg-info/
+# Deterministic fixture snapshot — rebuilt by tests/build_fixtures.py
+# (the builder is the source of truth, not its generated output).
+tests/fixtures/snapshot/
+tests/snapshot/

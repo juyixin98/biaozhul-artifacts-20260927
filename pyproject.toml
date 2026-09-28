@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools==75.8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "offline-secret-scan"
+version = "1.0.0"
+description = "Offline repository snapshot secret candidate scanning (structural rules + entropy)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.115.6",
+    "uvicorn==0.34.0",
+    "cryptography==44.0.0",
+    "PyYAML==6.0.2",
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.4", "httpx==0.28.1"]
+
+[project.scripts]
+secretscan = "secretscan.cli:main"
+
+[tool.setuptools]
+packages = ["secretscan"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
