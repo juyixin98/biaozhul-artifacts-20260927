@@ -1,0 +1,9 @@
+{
+  "consistent": true,
+  "live_active_tip": "011ba4c16523191238ae1751be2881cef20707868fef74ac72f7896f66b1d83a",
+  "rebuilt_active_tip": "011ba4c16523191238ae1751be2881cef20707868fef74ac72f7896f66b1d83a",
+  "event_counts": {
+    "live": 8,
+    "rebuilt": 8
+  }
+}

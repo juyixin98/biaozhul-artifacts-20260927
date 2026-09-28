@@ -1,0 +1,68 @@
+{
+  "fixture": "recording.json",
+  "active_tip": "011ba4c16523191238ae1751be2881cef20707868fef74ac72f7896f66b1d83a",
+  "active_height": 3,
+  "pending_count": 0,
+  "decisions": [
+    {
+      "name": "g0",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m1",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m2",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m3",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "o1",
+      "outcome": "PENDING",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "f1",
+      "outcome": "ACCEPT_SWITCH",
+      "reason": null,
+      "rollback": [
+        1,
+        3
+      ]
+    },
+    {
+      "name": "f2",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    }
+  ],
+  "accounts": {
+    "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": {
+      "balance": 90,
+      "nonce": 1
+    },
+    "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4": {
+      "balance": 850,
+      "nonce": 2
+    },
+    "rx1aa349b803829aba918bc9709ee71f9b2350d9722": {
+      "balance": 560,
+      "nonce": 0
+    }
+  },
+  "report_written_to": "results/short_fork.report.json"
+}

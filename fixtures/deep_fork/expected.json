@@ -1,0 +1,39 @@
+{
+  "scenario": "deep_fork_rejected_finalized",
+  "difficulty": 4,
+  "finality_depth": 3,
+  "arrival_outcomes": {
+    "g0": "ACCEPT_EXTEND",
+    "m1": "ACCEPT_EXTEND",
+    "m2": "ACCEPT_EXTEND",
+    "m3": "ACCEPT_EXTEND",
+    "m4": "ACCEPT_EXTEND",
+    "m5": "ACCEPT_EXTEND",
+    "d1": "ACCEPT_FORK",
+    "d2": "REJECTED"
+  },
+  "rejected_block": "d2",
+  "reject_reason": "REORG_FINALIZED",
+  "would_rollback_height_range": [
+    1,
+    5
+  ],
+  "would_confirmations_of_shallowest": 5,
+  "active_chain_names": [
+    "g0",
+    "m1",
+    "m2",
+    "m3",
+    "m4",
+    "m5"
+  ],
+  "winning_tip": "m5",
+  "final_balances": {
+    "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4": 960,
+    "rx1aa349b803829aba918bc9709ee71f9b2350d9722": 525,
+    "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": 15
+  },
+  "fork_balances_never_visible": {
+    "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": 15
+  }
+}

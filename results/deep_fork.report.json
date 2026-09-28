@@ -1,0 +1,269 @@
+{
+  "fixture": "recording.json",
+  "allowed_difficulties": [
+    4,
+    16
+  ],
+  "finality_depth": 3,
+  "active_tip": "264384fbd75bbe0cc98990d137ad622c4809d3b41100effe51dcf3c3d5a50f8f",
+  "active_height": 5,
+  "active_hashes": [
+    "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+    "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+    "2febcf65cbb821db52e34b3d5457c00ebc0a976556decf0a2d7aee7a987b7297",
+    "3596ce3d73bb3602d4a68a0435588eac218ab524290067deccc548f8f9a4daa9",
+    "0f298b8f9ce7a91033f28f92f64ba3c60fef1cc3c690525947a30f81ba101e74",
+    "264384fbd75bbe0cc98990d137ad622c4809d3b41100effe51dcf3c3d5a50f8f"
+  ],
+  "pending_count": 0,
+  "accounts": {
+    "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": {
+      "balance": 15,
+      "nonce": 0
+    },
+    "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4": {
+      "balance": 960,
+      "nonce": 4
+    },
+    "rx1aa349b803829aba918bc9709ee71f9b2350d9722": {
+      "balance": 525,
+      "nonce": 1
+    }
+  },
+  "derived_events": [
+    {
+      "block_hash": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "height": 0,
+      "txid": "3a955d1347a252f5fef6017b84156aab115039513b1e46ad78320f3753d03b8b",
+      "position_in_block": 0,
+      "kind": "credit",
+      "address": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+      "amount_delta": 1000,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "height": 0,
+      "txid": "f1c297a1e23cbbb598446ae61e5c01717c1cc0c8862311be20d434c08dd5aa02",
+      "position_in_block": 2,
+      "kind": "credit",
+      "address": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+      "amount_delta": 500,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+      "height": 1,
+      "txid": "3d3f61b3f7dc9a7dd72c0f5164e6011b5c6a92fb34593dff82e7e70aecd998a9",
+      "position_in_block": 0,
+      "kind": "debit",
+      "address": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+      "amount_delta": -10,
+      "nonce_delta": 1
+    },
+    {
+      "block_hash": "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+      "height": 1,
+      "txid": "3d3f61b3f7dc9a7dd72c0f5164e6011b5c6a92fb34593dff82e7e70aecd998a9",
+      "position_in_block": 1,
+      "kind": "credit",
+      "address": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+      "amount_delta": 10,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "2febcf65cbb821db52e34b3d5457c00ebc0a976556decf0a2d7aee7a987b7297",
+      "height": 2,
+      "txid": "8e27bb5e48978d3a004a1262e76f77646be542900ec52884034e86fcb42625c8",
+      "position_in_block": 0,
+      "kind": "debit",
+      "address": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+      "amount_delta": -10,
+      "nonce_delta": 1
+    },
+    {
+      "block_hash": "2febcf65cbb821db52e34b3d5457c00ebc0a976556decf0a2d7aee7a987b7297",
+      "height": 2,
+      "txid": "8e27bb5e48978d3a004a1262e76f77646be542900ec52884034e86fcb42625c8",
+      "position_in_block": 1,
+      "kind": "credit",
+      "address": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+      "amount_delta": 10,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "3596ce3d73bb3602d4a68a0435588eac218ab524290067deccc548f8f9a4daa9",
+      "height": 3,
+      "txid": "910d7efcfe989d6114ef279145d50b4a7c62b618844f885e4c173583f6d3af59",
+      "position_in_block": 0,
+      "kind": "debit",
+      "address": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+      "amount_delta": -10,
+      "nonce_delta": 1
+    },
+    {
+      "block_hash": "3596ce3d73bb3602d4a68a0435588eac218ab524290067deccc548f8f9a4daa9",
+      "height": 3,
+      "txid": "910d7efcfe989d6114ef279145d50b4a7c62b618844f885e4c173583f6d3af59",
+      "position_in_block": 1,
+      "kind": "credit",
+      "address": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+      "amount_delta": 10,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "0f298b8f9ce7a91033f28f92f64ba3c60fef1cc3c690525947a30f81ba101e74",
+      "height": 4,
+      "txid": "5024b487a54c6604e367db1592c9283910c7ce4d0466f35d533e0dcca5097d39",
+      "position_in_block": 0,
+      "kind": "debit",
+      "address": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+      "amount_delta": -5,
+      "nonce_delta": 1
+    },
+    {
+      "block_hash": "0f298b8f9ce7a91033f28f92f64ba3c60fef1cc3c690525947a30f81ba101e74",
+      "height": 4,
+      "txid": "5024b487a54c6604e367db1592c9283910c7ce4d0466f35d533e0dcca5097d39",
+      "position_in_block": 1,
+      "kind": "credit",
+      "address": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22",
+      "amount_delta": 5,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "264384fbd75bbe0cc98990d137ad622c4809d3b41100effe51dcf3c3d5a50f8f",
+      "height": 5,
+      "txid": "7f4f2b73bef0ff83d92dbe9efdb103767893fc1736a3cde190c5800831f97c48",
+      "position_in_block": 0,
+      "kind": "debit",
+      "address": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+      "amount_delta": -10,
+      "nonce_delta": 1
+    },
+    {
+      "block_hash": "264384fbd75bbe0cc98990d137ad622c4809d3b41100effe51dcf3c3d5a50f8f",
+      "height": 5,
+      "txid": "7f4f2b73bef0ff83d92dbe9efdb103767893fc1736a3cde190c5800831f97c48",
+      "position_in_block": 1,
+      "kind": "credit",
+      "address": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22",
+      "amount_delta": 10,
+      "nonce_delta": 0
+    }
+  ],
+  "decisions": [
+    {
+      "name": "g0",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "height": 0,
+      "weight": 4,
+      "parent": "0000000000000000000000000000000000000000000000000000000000000000",
+      "reason": null,
+      "detail": "genesis accepted",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "m1",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+      "height": 1,
+      "weight": 4,
+      "parent": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "m2",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "2febcf65cbb821db52e34b3d5457c00ebc0a976556decf0a2d7aee7a987b7297",
+      "height": 2,
+      "weight": 4,
+      "parent": "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "m3",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "3596ce3d73bb3602d4a68a0435588eac218ab524290067deccc548f8f9a4daa9",
+      "height": 3,
+      "weight": 4,
+      "parent": "2febcf65cbb821db52e34b3d5457c00ebc0a976556decf0a2d7aee7a987b7297",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "m4",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "0f298b8f9ce7a91033f28f92f64ba3c60fef1cc3c690525947a30f81ba101e74",
+      "height": 4,
+      "weight": 4,
+      "parent": "3596ce3d73bb3602d4a68a0435588eac218ab524290067deccc548f8f9a4daa9",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "m5",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "264384fbd75bbe0cc98990d137ad622c4809d3b41100effe51dcf3c3d5a50f8f",
+      "height": 5,
+      "weight": 4,
+      "parent": "0f298b8f9ce7a91033f28f92f64ba3c60fef1cc3c690525947a30f81ba101e74",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "d1",
+      "outcome": "ACCEPT_FORK",
+      "block_hash": "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+      "height": 1,
+      "weight": 16,
+      "parent": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "reason": null,
+      "detail": "fork stored but not active (candidate weight 20 <= active weight 24)",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "d2",
+      "outcome": "REJECTED",
+      "block_hash": "0e029a1a8d71d32dc218fc582f915262c213d3056021177aff3857047d819d72",
+      "height": 2,
+      "weight": 16,
+      "parent": "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+      "reason": "REORG_FINALIZED",
+      "detail": "reorg would roll back 5 block(s); the shallowest has 5 confirmations > finality_depth 3",
+      "switch": {
+        "would_detach": [
+          "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+          "2febcf65cbb821db52e34b3d5457c00ebc0a976556decf0a2d7aee7a987b7297",
+          "3596ce3d73bb3602d4a68a0435588eac218ab524290067deccc548f8f9a4daa9",
+          "0f298b8f9ce7a91033f28f92f64ba3c60fef1cc3c690525947a30f81ba101e74",
+          "264384fbd75bbe0cc98990d137ad622c4809d3b41100effe51dcf3c3d5a50f8f"
+        ],
+        "would_attach": [
+          "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+          "0e029a1a8d71d32dc218fc582f915262c213d3056021177aff3857047d819d72"
+        ],
+        "rollback_heights": [
+          1,
+          5
+        ]
+      },
+      "released": []
+    }
+  ]
+}

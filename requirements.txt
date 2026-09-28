@@ -1,0 +1,8 @@
+# Direct dependencies (full transitive set with pinned versions in requirements.lock)
+fastapi==0.141.1
+uvicorn[standard]==0.54.0
+pydantic==2.13.5
+cryptography==50.0.1
+# dev/test
+httpx==0.28.1
+pytest==9.1.1

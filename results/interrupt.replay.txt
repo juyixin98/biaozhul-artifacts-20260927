@@ -1,0 +1,53 @@
+{
+  "fixture": "recording.json",
+  "active_tip": "3a66e8acaed521ecbca00f4b8d8fb4f674f21cd92803fc0ced52416d53ccb81c",
+  "active_height": 2,
+  "pending_count": 0,
+  "decisions": [
+    {
+      "name": "g0",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m1",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m2",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "f1",
+      "outcome": "ACCEPT_SWITCH_RESUMED",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "f2",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    }
+  ],
+  "accounts": {
+    "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": {
+      "balance": 60,
+      "nonce": 1
+    },
+    "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4": {
+      "balance": 900,
+      "nonce": 1
+    },
+    "rx1aa349b803829aba918bc9709ee71f9b2350d9722": {
+      "balance": 540,
+      "nonce": 0
+    }
+  },
+  "report_written_to": "results/interrupt.report.json"
+}

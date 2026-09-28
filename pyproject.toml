@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "reorg-derived-index"
+version = "1.0.0"
+description = "Revocable chain-reorganization derived index with fork-choice and finality depth (synthetic local chain)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.141.1",
+    "uvicorn[standard]==0.54.0",
+    "pydantic==2.13.5",
+    "cryptography==50.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx==0.28.1",
+    "pytest==9.1.1",
+]
+
+[project.scripts]
+reorg-replay = "reorgindex.replay.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

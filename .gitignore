@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtualenv
+.venv/
+
+# Local runtime artifacts (databases, reports, server logs) — regenerable
+run/
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/

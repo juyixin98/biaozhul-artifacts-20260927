@@ -1,0 +1,270 @@
+{
+  "scenario": "short_fork_wins",
+  "difficulty": 4,
+  "finality_depth": 3,
+  "producer_pubkey": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+  "producer_address": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+  "addresses": {
+    "producer": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+    "alice": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+    "bob": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+    "carol": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22"
+  },
+  "arrival_order": [
+    "g0",
+    "m1",
+    "m2",
+    "m3",
+    "o1",
+    "f1",
+    "f2"
+  ],
+  "crash_after": null,
+  "blocks": [
+    {
+      "name": "g0",
+      "block": {
+        "version": 1,
+        "height": 0,
+        "parent": "0000000000000000000000000000000000000000000000000000000000000000",
+        "merkle_root": "de1c2d2f7413625e94f20cf3b5bfa2e3b2ac6d3b256fbfefffb60fdbb31a5daf",
+        "difficulty": 4,
+        "timestamp": "2026-09-27T00:00:00+00:00",
+        "producer": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+        "nonce": "16",
+        "pow_signature": "2530ac1e40cd3dc33c421a0e8310abbdddeaa1d41cc624cce16595dc7840bb1274817f82d7634d4166e5836764ee5fa2a88dac6ce04bbe7edb7326f783ab3a04",
+        "transactions": [
+          {
+            "type": "mint",
+            "nonce": 0,
+            "sender": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "recipient": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "amount": "1000",
+            "fee": "0",
+            "fee_recipient": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "txid": "3a955d1347a252f5fef6017b84156aab115039513b1e46ad78320f3753d03b8b",
+            "pubkey": "88825f41bbaad9f31b8cf76fae5f1856e69fe147fd027b9c9c8321ab29a42f82",
+            "signature": "b949cbf62b9b0fb857c25f91c07dfe9d3123b8f36a99456868e022a7f18804cb258fe45deaa5b1388428a056b714600f37b5c7a6803b0b2b12b9c74147560802"
+          },
+          {
+            "type": "mint",
+            "nonce": 0,
+            "sender": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+            "recipient": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+            "amount": "500",
+            "fee": "0",
+            "fee_recipient": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+            "txid": "f1c297a1e23cbbb598446ae61e5c01717c1cc0c8862311be20d434c08dd5aa02",
+            "pubkey": "890041153beedb0e8bdec2eaf0ea66e5a4d30ad4a863f9ee66ef4f7bfd2f9645",
+            "signature": "7c0b5dfee867980a9e2afc2e963f6f2183a4345be4ef5c590f7a5340420950c4672c1d7149e9abc8b74229fd7f71973010c9be84d74c4c07078380d6618ffa07"
+          }
+        ]
+      }
+    },
+    {
+      "name": "m1",
+      "block": {
+        "version": 1,
+        "height": 1,
+        "parent": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+        "merkle_root": "f2a706957f0682b774866e085222e27107379d82692b3041b7fbc411b638a2ea",
+        "difficulty": 4,
+        "timestamp": "2026-09-27T00:01:00+00:00",
+        "producer": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+        "nonce": "2",
+        "pow_signature": "77210464892bdda9701077580786afbfb6738a7fe7e403d42226c32f8a8119e2743070357c49ce3f2f491fcf67fadfde37a188bd71adc07ee696d55e4ecc4106",
+        "transactions": [
+          {
+            "type": "transfer",
+            "nonce": 1,
+            "sender": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "recipient": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22",
+            "amount": "100",
+            "fee": "0",
+            "fee_recipient": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+            "txid": "f2a706957f0682b774866e085222e27107379d82692b3041b7fbc411b638a2ea",
+            "pubkey": "88825f41bbaad9f31b8cf76fae5f1856e69fe147fd027b9c9c8321ab29a42f82",
+            "signature": "2fdd308140f705b51ae11d42f0a47ee7838a9d36d93fab58a7d3b8e201998ace8fe8af8d0d2c0ff9194bab108805d1cd710eb19d93c542f537c3c362caaad300"
+          }
+        ]
+      }
+    },
+    {
+      "name": "m2",
+      "block": {
+        "version": 1,
+        "height": 2,
+        "parent": "0ac773876d3e31e2f65248764d3bc33ec9437d493023702868a7d33d1eb46062",
+        "merkle_root": "aa51396996db09aaaa12a546e865d0039780239a418045078610b8d8b180d892",
+        "difficulty": 4,
+        "timestamp": "2026-09-27T00:02:00+00:00",
+        "producer": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+        "nonce": "0",
+        "pow_signature": "7705f35b0f0be490fc0783a832546f43596f2b26abcc5c6781e657926d160effa1494219352786d8e58b5ecd9cbbf47d90f0da6f5065643c2b8c4283ef6c4901",
+        "transactions": [
+          {
+            "type": "transfer",
+            "nonce": 1,
+            "sender": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+            "recipient": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "amount": "50",
+            "fee": "0",
+            "fee_recipient": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+            "txid": "aa51396996db09aaaa12a546e865d0039780239a418045078610b8d8b180d892",
+            "pubkey": "890041153beedb0e8bdec2eaf0ea66e5a4d30ad4a863f9ee66ef4f7bfd2f9645",
+            "signature": "70aa33867c5b023b0d1ee2c4298bfb32ca9bff49ebb23ef2aa3a92355d5e6cdcd38814c46a255f8510259c0135c71aac7b2f79952ef3c666a274aae6ccc85f06"
+          }
+        ]
+      }
+    },
+    {
+      "name": "m3",
+      "block": {
+        "version": 1,
+        "height": 3,
+        "parent": "3380299a01428dc87185c3fecd0a3c0782b5df387ab725edc6baf6b9e45f892f",
+        "merkle_root": "6e7bf9eb2d3d726139e8a7330875c1322b2e7e71e2f170dcde7110b7cf717e83",
+        "difficulty": 4,
+        "timestamp": "2026-09-27T00:03:00+00:00",
+        "producer": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+        "nonce": "3",
+        "pow_signature": "7d79d2f6ddee7fb7c4ebdcec3d630fe64843dfec05b31fbd3a412fb5d18a3952e82a63ea6f8fddd59cbd8f20a32b27f471c384c16158426049291ced5bcefd0f",
+        "transactions": [
+          {
+            "type": "transfer",
+            "nonce": 2,
+            "sender": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "recipient": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+            "amount": "20",
+            "fee": "0",
+            "fee_recipient": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+            "txid": "6e7bf9eb2d3d726139e8a7330875c1322b2e7e71e2f170dcde7110b7cf717e83",
+            "pubkey": "88825f41bbaad9f31b8cf76fae5f1856e69fe147fd027b9c9c8321ab29a42f82",
+            "signature": "daacd79e2b2789007774d829282c98ccb1ac41fa8d943e2043ccc6e8e620a575a1147621e54cfa247edf6e3e3f54cd20d19fb88311129c924f5006da8956a909"
+          }
+        ]
+      }
+    },
+    {
+      "name": "f1",
+      "block": {
+        "version": 1,
+        "height": 1,
+        "parent": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+        "merkle_root": "f2a706957f0682b774866e085222e27107379d82692b3041b7fbc411b638a2ea",
+        "difficulty": 16,
+        "timestamp": "2026-09-27T00:01:00+00:00",
+        "producer": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+        "nonce": "0",
+        "pow_signature": "9ca8faf48b72491f57aaf7f80ac794ee6d2f5b7d9641fe30bc96fbeab3a402e3477669ce67f419d00db3268a996001cfaf13043429c79bfca2b46eaf6acaba0a",
+        "transactions": [
+          {
+            "type": "transfer",
+            "nonce": 1,
+            "sender": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "recipient": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22",
+            "amount": "100",
+            "fee": "0",
+            "fee_recipient": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+            "txid": "f2a706957f0682b774866e085222e27107379d82692b3041b7fbc411b638a2ea",
+            "pubkey": "88825f41bbaad9f31b8cf76fae5f1856e69fe147fd027b9c9c8321ab29a42f82",
+            "signature": "2fdd308140f705b51ae11d42f0a47ee7838a9d36d93fab58a7d3b8e201998ace8fe8af8d0d2c0ff9194bab108805d1cd710eb19d93c542f537c3c362caaad300"
+          }
+        ]
+      }
+    },
+    {
+      "name": "f2",
+      "block": {
+        "version": 1,
+        "height": 2,
+        "parent": "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+        "merkle_root": "ca4f37617830b5cc96ad5ecfddf74f79cf6358c01371874f91842db088a02562",
+        "difficulty": 4,
+        "timestamp": "2026-09-27T00:02:00+00:00",
+        "producer": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+        "nonce": "1",
+        "pow_signature": "eb40bb92d897dda6ff531b86b6285f6553f4478f2860f1c08b8760cda58d012a7e47fc22c385cd2608a2eb2c323c2146e026515afdc444bb86b7cefff0c21b0f",
+        "transactions": [
+          {
+            "type": "transfer",
+            "nonce": 2,
+            "sender": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+            "recipient": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+            "amount": "50",
+            "fee": "0",
+            "fee_recipient": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+            "txid": "ca4f37617830b5cc96ad5ecfddf74f79cf6358c01371874f91842db088a02562",
+            "pubkey": "88825f41bbaad9f31b8cf76fae5f1856e69fe147fd027b9c9c8321ab29a42f82",
+            "signature": "3e03c1ca4e028ec6e4d46d5c5fd6a205f5c75bf9da2d2f13642a3f7e9e6b04488bdb2ca1b6439564200115768893509fd5a9e44a5e213c6b06a0a271555e0204"
+          }
+        ]
+      }
+    },
+    {
+      "name": "o1",
+      "block": {
+        "version": 1,
+        "height": 3,
+        "parent": "2d4ae19159ec827d412c5f7d8e98bcc4226551d9c94392711a650dbe1f646446",
+        "merkle_root": "e2f5f5e2be27cb8e07900b0ce5740efa2322335ddf01652c42cceb0bd0167f77",
+        "difficulty": 4,
+        "timestamp": "2026-09-27T00:03:00+00:00",
+        "producer": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+        "nonce": "5",
+        "pow_signature": "801216f92c30066ad6d824bffc1f4561873a80fa1e44e853b1447c56e3a6edb4965abbb74758c09a19b4a5c4fcf8190f6a37b885b2668a5bcb9adff6b9103906",
+        "transactions": [
+          {
+            "type": "transfer",
+            "nonce": 1,
+            "sender": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22",
+            "recipient": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+            "amount": "10",
+            "fee": "0",
+            "fee_recipient": "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad",
+            "txid": "e2f5f5e2be27cb8e07900b0ce5740efa2322335ddf01652c42cceb0bd0167f77",
+            "pubkey": "ff50de22978fa45759b794546d1913b79ab7938a6766cbee3da408a301999b6c",
+            "signature": "89801857a289d68fea0f2805b65d13be8079ab4cc2727c21285b50e3d5475ef33c7c807683a18a98aaefe4aee0ccc5abae89e845819cd48a85a0454b8eade307"
+          }
+        ]
+      }
+    }
+  ],
+  "expected": {
+    "arrival_outcomes": {
+      "g0": "ACCEPT_EXTEND",
+      "m1": "ACCEPT_EXTEND",
+      "m2": "ACCEPT_EXTEND",
+      "m3": "ACCEPT_EXTEND",
+      "o1": "PENDING",
+      "f1": "ACCEPT_SWITCH",
+      "f2": "ACCEPT_EXTEND"
+    },
+    "winning_tip": "f2",
+    "active_chain_names": [
+      "g0",
+      "f1",
+      "f2"
+    ],
+    "rollback_height_range_on_f1": [
+      1,
+      3
+    ],
+    "duplicate_txid": "f2a706957f0682b774866e085222e27107379d82692b3041b7fbc411b638a2ea",
+    "duplicate_active_block": "f1",
+    "duplicate_occurrences": [
+      "m1",
+      "f1"
+    ],
+    "duplicate_active_count": 1,
+    "final_balances": {
+      "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4": 850,
+      "rx1aa349b803829aba918bc9709ee71f9b2350d9722": 560,
+      "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": 90
+    },
+    "released_after_switch": [
+      "o1"
+    ],
+    "final_tip_name": "o1"
+  }
+}

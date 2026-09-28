@@ -1,0 +1,79 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/admin/Downloads/xinbiaozhu/opp261/b/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/admin/Downloads/xinbiaozhu/opp261/b
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 62 items
+
+tests/test_api.py::test_health_and_empty_chain PASSED                    [  1%]
+tests/test_api.py::test_submit_genesis_and_query_account PASSED          [  3%]
+tests/test_api.py::test_orphan_returns_pending_and_listed PASSED         [  4%]
+tests/test_api.py::test_bad_block_returns_422_with_stable_code PASSED    [  6%]
+tests/test_api.py::test_full_scenario_switch_and_duplicate_query PASSED  [  8%]
+tests/test_api.py::test_deep_fork_422_finalized_and_resume_endpoint PASSED [  9%]
+tests/test_crypto.py::test_canonical_json_key_order_and_compactness PASSED [ 11%]
+tests/test_crypto.py::test_canonical_json_stable_across_dict_reorder PASSED [ 12%]
+tests/test_crypto.py::test_ed25519_sign_verify_roundtrip PASSED          [ 14%]
+tests/test_crypto.py::test_ed25519_rejects_tampered_message PASSED       [ 16%]
+tests/test_crypto.py::test_ed25519_rejects_foreign_key PASSED            [ 17%]
+tests/test_crypto.py::test_address_is_deterministic_and_distinct PASSED  [ 19%]
+tests/test_crypto.py::test_merkle_known_zero_case_and_duplicated_tail PASSED [ 20%]
+tests/test_crypto.py::test_merkle_order_sensitive PASSED                 [ 22%]
+tests/test_crypto.py::test_mined_block_passes_pow_and_identity_binds_nonce PASSED [ 24%]
+tests/test_crypto.py::test_block_identity_changes_when_parent_changes PASSED [ 25%]
+tests/test_diagnostics.py::test_request_id_shape PASSED                  [ 27%]
+tests/test_diagnostics.py::test_mask_hash_keeps_prefix_only PASSED       [ 29%]
+tests/test_diagnostics.py::test_mask_address PASSED                      [ 30%]
+tests/test_diagnostics.py::test_redact_strips_signer_secrets_but_keeps_state PASSED [ 32%]
+tests/test_diagnostics.py::test_diagnostics_persist_and_log_redacted PASSED [ 33%]
+tests/test_edges.py::test_equal_weight_tie_breaks_to_lower_tip_hash PASSED [ 35%]
+tests/test_edges.py::test_stored_fork_is_never_visible_in_queries PASSED [ 37%]
+tests/test_edges.py::test_unknown_parent_suspends_and_height_mismatch_rejects PASSED [ 38%]
+tests/test_edges.py::test_invalid_orphan_at_release_is_isolated_and_archived PASSED [ 40%]
+tests/test_edges.py::test_finality_boundary_exactly_k_confirmations PASSED [ 41%]
+tests/test_replay.py::test_replay_short_fork_report PASSED               [ 43%]
+tests/test_replay.py::test_replay_deep_fork_rejection_recorded PASSED    [ 45%]
+tests/test_replay.py::test_replay_interrupted_switch_is_resumed PASSED   [ 46%]
+tests/test_replay.py::test_full_rebuild_matches_live_index PASSED        [ 48%]
+tests/test_replay.py::test_rebuild_projection_matches_oracle PASSED      [ 50%]
+tests/test_scenarios.py::test_short_fork_wins_with_rollback_range PASSED [ 51%]
+tests/test_scenarios.py::test_short_fork_matches_independent_oracle_simulation PASSED [ 53%]
+tests/test_scenarios.py::test_deep_fork_is_rejected_with_finality_category PASSED [ 54%]
+tests/test_scenarios.py::test_shallow_switch_just_inside_finality_boundary_is_allowed PASSED [ 56%]
+tests/test_scenarios.py::test_switch_interrupted_then_resumed PASSED     [ 58%]
+tests/test_scenarios.py::test_orphan_suspended_then_released_by_parent PASSED [ 59%]
+tests/test_state.py::test_genesis_mints_seed_balances PASSED             [ 61%]
+tests/test_state.py::test_transfer_updates_balance_and_nonce PASSED      [ 62%]
+tests/test_state.py::test_same_txid_twice_in_one_chain_is_DUPLICATE_TXID PASSED [ 64%]
+tests/test_state.py::test_nonce_must_be_strictly_sequential PASSED       [ 66%]
+tests/test_state.py::test_nonce_reuse_category_when_already_spent PASSED [ 67%]
+tests/test_state.py::test_state_overspend_signed PASSED                  [ 69%]
+tests/test_state.py::test_clone_is_independent PASSED                    [ 70%]
+tests/test_storage.py::test_extension_materializes_accounts PASSED       [ 72%]
+tests/test_storage.py::test_switch_detach_then_attach_is_atomic_per_phase PASSED [ 74%]
+tests/test_storage.py::test_crash_after_detach_is_recoverable_from_new_connection PASSED [ 75%]
+tests/test_storage.py::test_reader_never_sees_half_written_attach PASSED [ 77%]
+tests/test_storage.py::test_tx_locations_track_active_flag PASSED        [ 79%]
+tests/test_validation.py::test_valid_fixture_block_passes_verification PASSED [ 80%]
+tests/test_validation.py::test_bad_tx_signature_is_BAD_SIGNATURE PASSED  [ 82%]
+tests/test_validation.py::test_tx_body_tamper_fails_signature PASSED     [ 83%]
+tests/test_validation.py::test_pow_signature_tamper_is_BAD_SIGNATURE PASSED [ 85%]
+tests/test_validation.py::test_nonce_tamper_without_reseal_is_BAD_POW_or_BAD_SIGNATURE PASSED [ 87%]
+tests/test_validation.py::test_unknown_producer_rejected PASSED          [ 88%]
+tests/test_validation.py::test_disallowed_difficulty_rejected PASSED     [ 90%]
+tests/test_validation.py::test_bad_merkle_root_rejected PASSED           [ 91%]
+tests/test_validation.py::test_duplicate_txid_within_block_rejected PASSED [ 93%]
+tests/test_validation.py::test_mint_outside_genesis_rejected PASSED      [ 95%]
+tests/test_validation.py::test_transfer_in_genesis_rejected PASSED       [ 96%]
+tests/test_validation.py::test_genesis_parent_must_be_zero PASSED        [ 98%]
+tests/test_validation.py::test_missing_field_is_malformed PASSED         [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /home/admin/Downloads/xinbiaozhu/opp261/b/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 62 passed, 1 warning in 1.81s =========================

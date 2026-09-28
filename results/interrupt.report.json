@@ -1,0 +1,151 @@
+{
+  "fixture": "recording.json",
+  "allowed_difficulties": [
+    4,
+    16
+  ],
+  "finality_depth": 3,
+  "active_tip": "3a66e8acaed521ecbca00f4b8d8fb4f674f21cd92803fc0ced52416d53ccb81c",
+  "active_height": 2,
+  "active_hashes": [
+    "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+    "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+    "3a66e8acaed521ecbca00f4b8d8fb4f674f21cd92803fc0ced52416d53ccb81c"
+  ],
+  "pending_count": 0,
+  "accounts": {
+    "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": {
+      "balance": 60,
+      "nonce": 1
+    },
+    "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4": {
+      "balance": 900,
+      "nonce": 1
+    },
+    "rx1aa349b803829aba918bc9709ee71f9b2350d9722": {
+      "balance": 540,
+      "nonce": 0
+    }
+  },
+  "derived_events": [
+    {
+      "block_hash": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "height": 0,
+      "txid": "3a955d1347a252f5fef6017b84156aab115039513b1e46ad78320f3753d03b8b",
+      "position_in_block": 0,
+      "kind": "credit",
+      "address": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+      "amount_delta": 1000,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "height": 0,
+      "txid": "f1c297a1e23cbbb598446ae61e5c01717c1cc0c8862311be20d434c08dd5aa02",
+      "position_in_block": 2,
+      "kind": "credit",
+      "address": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+      "amount_delta": 500,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+      "height": 1,
+      "txid": "f2a706957f0682b774866e085222e27107379d82692b3041b7fbc411b638a2ea",
+      "position_in_block": 0,
+      "kind": "debit",
+      "address": "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4",
+      "amount_delta": -100,
+      "nonce_delta": 1
+    },
+    {
+      "block_hash": "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+      "height": 1,
+      "txid": "f2a706957f0682b774866e085222e27107379d82692b3041b7fbc411b638a2ea",
+      "position_in_block": 1,
+      "kind": "credit",
+      "address": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22",
+      "amount_delta": 100,
+      "nonce_delta": 0
+    },
+    {
+      "block_hash": "3a66e8acaed521ecbca00f4b8d8fb4f674f21cd92803fc0ced52416d53ccb81c",
+      "height": 2,
+      "txid": "59304edb843d52873952116843ac683e765ccc62d8d75d127eefc1f4c5f99ef8",
+      "position_in_block": 0,
+      "kind": "debit",
+      "address": "rx182c0491c36b4cea301291fbca1bc1a67d091cc22",
+      "amount_delta": -40,
+      "nonce_delta": 1
+    },
+    {
+      "block_hash": "3a66e8acaed521ecbca00f4b8d8fb4f674f21cd92803fc0ced52416d53ccb81c",
+      "height": 2,
+      "txid": "59304edb843d52873952116843ac683e765ccc62d8d75d127eefc1f4c5f99ef8",
+      "position_in_block": 1,
+      "kind": "credit",
+      "address": "rx1aa349b803829aba918bc9709ee71f9b2350d9722",
+      "amount_delta": 40,
+      "nonce_delta": 0
+    }
+  ],
+  "decisions": [
+    {
+      "name": "g0",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "height": 0,
+      "weight": 4,
+      "parent": "0000000000000000000000000000000000000000000000000000000000000000",
+      "reason": null,
+      "detail": "genesis accepted",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "m1",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+      "height": 1,
+      "weight": 4,
+      "parent": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "m2",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "2febcf65cbb821db52e34b3d5457c00ebc0a976556decf0a2d7aee7a987b7297",
+      "height": 2,
+      "weight": 4,
+      "parent": "16a22984d40322e53bfd6dea52eb2bf318594f32a06bd58cabdb647473385478",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    },
+    {
+      "name": "f1",
+      "outcome": "ACCEPT_SWITCH_RESUMED",
+      "block_hash": "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+      "height": 1,
+      "weight": 16,
+      "parent": "029a16d74a76af26c610738543d3a82d4d855291c8c637731ab2fec4a9075ed1",
+      "detail": "interrupted switch completed from durable plan"
+    },
+    {
+      "name": "f2",
+      "outcome": "ACCEPT_EXTEND",
+      "block_hash": "3a66e8acaed521ecbca00f4b8d8fb4f674f21cd92803fc0ced52416d53ccb81c",
+      "height": 2,
+      "weight": 4,
+      "parent": "074baee0fce96cf6a9cceb6a8db4bec846de2f1acdae29d2e0fcfa6d181fcab1",
+      "reason": null,
+      "detail": "extended active chain",
+      "switch": null,
+      "released": []
+    }
+  ]
+}

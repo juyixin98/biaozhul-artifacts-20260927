@@ -1,0 +1,74 @@
+{
+  "fixture": "recording.json",
+  "active_tip": "264384fbd75bbe0cc98990d137ad622c4809d3b41100effe51dcf3c3d5a50f8f",
+  "active_height": 5,
+  "pending_count": 0,
+  "decisions": [
+    {
+      "name": "g0",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m1",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m2",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m3",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m4",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "m5",
+      "outcome": "ACCEPT_EXTEND",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "d1",
+      "outcome": "ACCEPT_FORK",
+      "reason": null,
+      "rollback": null
+    },
+    {
+      "name": "d2",
+      "outcome": "REJECTED",
+      "reason": "REORG_FINALIZED",
+      "rollback": [
+        1,
+        5
+      ]
+    }
+  ],
+  "accounts": {
+    "rx182c0491c36b4cea301291fbca1bc1a67d091cc22": {
+      "balance": 15,
+      "nonce": 0
+    },
+    "rx182f0df3fa65b0b1cd93c79d25b80ccc2676f58f4": {
+      "balance": 960,
+      "nonce": 4
+    },
+    "rx1aa349b803829aba918bc9709ee71f9b2350d9722": {
+      "balance": 525,
+      "nonce": 1
+    }
+  },
+  "report_written_to": "results/deep_fork.report.json"
+}

@@ -1,0 +1,7 @@
+{
+  "addresses": [
+    "rx1e45e762c61728e47979d7e8a6dd82f9fd53230ad"
+  ],
+  "producer_pubkey": "28d8b67bc850e65130630585a4f117ca247ec4c2553b7c600fb5f0e203e7b2f3",
+  "note": "Local synthetic fixture producer; no real network."
+}
