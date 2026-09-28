@@ -1,0 +1,83 @@
+{
+  "schema": "hand-vectors/v1",
+  "provenance": {
+    "method": "Hand-computed ground truth, written independently of the implementation. Each expected result is derived by literal integer arithmetic from the EIP-1559 definition. A test separately recomputes every value with an independent reference oracle (tests/oracle/reference_oracle.py, which does NOT import basefee_model.core) and asserts hand == oracle == system_under_test.",
+    "spec": "EIP-1559; cross-checked against go-ethereum v1.10.26 consensus/misc/eip1559.go CalcBaseFee",
+    "integer_semantics": "all operands non-negative; // is floor division; upward minimum increment = 1 wei; result clamped at 0",
+    "params": {"elasticity_multiplier": 2, "base_fee_change_denominator": 8, "gas_limit": 30000000, "gas_target": 15000000}
+  },
+  "single_step": [
+    {"name": "target_load_is_flat", "parent_base_fee": 1000000000, "parent_gas_used": 15000000, "gas_limit": 30000000, "expected_next": 1000000000, "expected_direction": "flat"},
+    {"name": "empty_block_drops_eighth", "parent_base_fee": 1000000000, "parent_gas_used": 0, "gas_limit": 30000000, "expected_next": 875000000, "expected_direction": "down", "arithmetic": "1e9 - (15000000*1e9//15000000//8) = 1e9 - 125000000"},
+    {"name": "full_block_rises_eighth", "parent_base_fee": 1000000000, "parent_gas_used": 30000000, "gas_limit": 30000000, "expected_next": 1125000000, "expected_direction": "up"},
+    {"name": "three_quarter_fill_up", "parent_base_fee": 1000000000, "parent_gas_used": 22500000, "gas_limit": 30000000, "expected_next": 1062500000, "expected_direction": "up", "arithmetic": "1e9 + ((7500000*1e9//15000000)//8) = 1e9 + 62500000"},
+    {"name": "quarter_fill_down", "parent_base_fee": 1000000000, "parent_gas_used": 7500000, "gas_limit": 30000000, "expected_next": 937500000, "expected_direction": "down"},
+    {"name": "min_increment_up_from_one", "parent_base_fee": 1, "parent_gas_used": 30000000, "gas_limit": 30000000, "expected_next": 2, "expected_direction": "up", "arithmetic": "delta = (15000000*1//15000000//8)=0 -> forced to 1; 1+1=2"},
+    {"name": "down_truncation_stays", "parent_base_fee": 3, "parent_gas_used": 14999999, "gas_limit": 30000000, "expected_next": 3, "expected_direction": "down", "arithmetic": "delta=(1*3//15000000//8)=0; 3-0=3"},
+    {"name": "floor_at_one_empty", "parent_base_fee": 1, "parent_gas_used": 0, "gas_limit": 30000000, "expected_next": 1, "expected_direction": "down", "arithmetic": "delta=(1//8)=0; max(1-0,0)=1"},
+    {"name": "zero_full_rises_to_one", "parent_base_fee": 0, "parent_gas_used": 30000000, "gas_limit": 30000000, "expected_next": 1, "expected_direction": "up", "arithmetic": "delta=0 -> forced 1; 0+1=1"},
+    {"name": "eight_empty_to_seven", "parent_base_fee": 8, "parent_gas_used": 0, "gas_limit": 30000000, "expected_next": 7, "expected_direction": "down"},
+    {"name": "eight_full_to_nine", "parent_base_fee": 8, "parent_gas_used": 30000000, "gas_limit": 30000000, "expected_next": 9, "expected_direction": "up"},
+    {"name": "sixteen_empty_to_fourteen", "parent_base_fee": 16, "parent_gas_used": 0, "gas_limit": 30000000, "expected_next": 14, "expected_direction": "down"},
+    {"name": "sixteen_full_to_eighteen", "parent_base_fee": 16, "parent_gas_used": 30000000, "gas_limit": 30000000, "expected_next": 18, "expected_direction": "up"},
+    {"name": "large_base_empty", "parent_base_fee": 1000000000000, "parent_gas_used": 0, "gas_limit": 30000000, "expected_next": 875000000000, "expected_direction": "down"},
+    {"name": "large_base_full", "parent_base_fee": 1000000000000, "parent_gas_used": 30000000, "gas_limit": 30000000, "expected_next": 1125000000000, "expected_direction": "up"}
+  ],
+  "multi_block_recurrence": {
+    "description": "genesis base fee 1e9, genesis gas used = target so B1 = B0. blocks list gives block number, that block's gas used, and the base fee IN that block (= recurrence from previous block).",
+    "genesis_base_fee": 1000000000,
+    "gas_limit": 30000000,
+    "blocks": [
+      {"number": 1, "gas_used": 30000000, "base_fee": 1000000000},
+      {"number": 2, "gas_used": 30000000, "base_fee": 1125000000},
+      {"number": 3, "gas_used": 0, "base_fee": 1265625000},
+      {"number": 4, "gas_used": 0, "base_fee": 1107421875},
+      {"number": 5, "gas_used": 15000000, "base_fee": 968994141},
+      {"number": 6, "gas_used": 22500000, "base_fee": 968994141},
+      {"number": 7, "gas_used": 15000000, "base_fee": 1029556274}
+    ],
+    "next_base_fee_after_block_7": 1029556274
+  },
+  "effective_gas_price": [
+    {"name": "type2_cap_slack", "tx_type": 2, "base_fee": 100, "max_fee": 200, "priority": 50, "gas_price": null, "effective": 150, "tip": 50, "burn_per_gas": 100},
+    {"name": "type2_cap_binds", "tx_type": 2, "base_fee": 100, "max_fee": 120, "priority": 50, "gas_price": null, "effective": 120, "tip": 20, "burn_per_gas": 100},
+    {"name": "type2_cap_equals_base_tip_zero", "tx_type": 2, "base_fee": 100, "max_fee": 100, "priority": 50, "gas_price": null, "effective": 100, "tip": 0, "burn_per_gas": 100},
+    {"name": "legacy_price", "tx_type": 0, "base_fee": 100, "max_fee": null, "priority": null, "gas_price": 300, "effective": 300, "tip": 200, "burn_per_gas": 100}
+  ],
+  "intrinsic_gas": [
+    {"name": "empty_data", "data_hex": "0x", "expected": 21000},
+    {"name": "one_zero_byte", "data_hex": "0x00", "expected": 21004},
+    {"name": "two_nonzero_bytes", "data_hex": "0x01ff", "expected": 21032},
+    {"name": "one_zero_one_nonzero", "data_hex": "0x00ab", "expected": 21020}
+  ],
+  "invalid_fee_caps": [
+    {"name": "type2_cap_below_base", "tx_type": 2, "base_fee": 100, "max_fee": 90, "priority": 10, "gas_price": null, "expected_code": "fee_cap_below_base_fee"},
+    {"name": "type2_priority_above_cap", "tx_type": 2, "base_fee": 100, "max_fee": 50, "priority": 80, "gas_price": null, "expected_code": "fee_cap_less_than_priority"},
+    {"name": "type2_cap_overflow_u256", "tx_type": 2, "base_fee": 100, "max_fee": 115792089237316195423570985008687907853269984665640564039457584007913129639936, "priority": 1, "gas_price": null, "expected_code": "fee_cap_overflows_u256"},
+    {"name": "type2_upfront_overflow", "tx_type": 2, "base_fee": 100, "max_fee": 115792089237316195423570985008687907853269984665640564039457584007913129639935, "priority": 1, "gas_limit": 2, "gas_price": null, "expected_code": "fee_cap_overflows_u256"},
+    {"name": "legacy_price_below_base", "tx_type": 0, "base_fee": 100, "max_fee": null, "priority": null, "gas_price": 90, "expected_code": "fee_cap_below_base_fee"}
+  ],
+  "block_gas_violations": [
+    {"name": "gas_used_over_limit", "gas_used": 30000001, "gas_limit": 30000000, "expected_code": "block_gas_over_limit"},
+    {"name": "gas_used_negative", "gas_used": -1, "gas_limit": 30000000, "expected_code": "block_gas_negative"}
+  ],
+  "fee_conservation": {
+    "description": "one type-2 transfer at base fee 100; executed gas exactly 21000.",
+    "base_fee": 100,
+    "tx_type": 2,
+    "max_fee": 200,
+    "priority": 50,
+    "gas_used": 21000,
+    "value": 1000,
+    "effective_gas_price": 150,
+    "burned": 2100000,
+    "tips": 1050000,
+    "sender_debit": 3151000,
+    "arithmetic": {
+      "burned": "100*21000 = 2100000",
+      "tips": "50*21000 = 1050000",
+      "sender_debit": "150*21000 + 1000 = 3150000 + 1000 = 3151000",
+      "invariant": "sender_debit == burned + tips + value"
+    }
+  }
+}

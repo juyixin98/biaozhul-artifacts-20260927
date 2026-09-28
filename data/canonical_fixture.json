@@ -1,0 +1,66 @@
+{
+  "schema": "basefee-fixture/v1",
+  "chain_id": 1559,
+  "genesis_base_fee": 1000000000,
+  "gas_limit": 30000000,
+  "alloc": {
+    "0xe167b6ea2f97f0ac387e03e19076f9c67b3dc744": 1000000000000000000000000000000
+  },
+  "blocks": [
+    {
+      "number": 1,
+      "raw_transactions": [
+        "0x02f97182061780843b9aca00880de0b6b3a764000083e4e1c09400000000000000000000000000000000000000008080c001a0550fa8afc9c7dd46137d749b5fb725297a1b19aa1e8ddeec1ea2e91fdb9ef974a05b09b253adcfd8ae173ed5f94d9e7737f111577e2e5f4871877c1252d1512cf0"
+      ],
+      "tx_gas_used": [
+        15000000
+      ]
+    },
+    {
+      "number": 2,
+      "raw_transactions": [
+        "0x02f97282061701843b9aca00880de0b6b3a76400008401c9c3809400000000000000000000000000000000000000008080c001a0279d9edb1794899aed774be2b6e8395b81fe98f8443fb96e8581e4edf193eba1a05cbace4c4810ae21df0f1ff558ac60782b546368d570178cd4b55a64e3239233"
+      ],
+      "tx_gas_used": [
+        30000000
+      ]
+    },
+    {
+      "number": 3,
+      "raw_transactions": [
+        "0x02f97282061702843b9aca00880de0b6b3a76400008401c9c3809400000000000000000000000000000000000000008080c001a04e69ea3aa1673f3b0ed25fb463f3da6f9072feff396c4fafe167674145584ee4a02df26b93cbed6a50f48f0080800e0ad1d6535fb2ddf326e49680542f232dcbcc"
+      ],
+      "tx_gas_used": [
+        30000000
+      ]
+    },
+    {
+      "number": 4,
+      "raw_transactions": [],
+      "tx_gas_used": []
+    },
+    {
+      "number": 5,
+      "raw_transactions": [],
+      "tx_gas_used": []
+    },
+    {
+      "number": 6,
+      "raw_transactions": [
+        "0x02f97282061703843b9aca00880de0b6b3a764000084015752a09400000000000000000000000000000000000000008080c080a004452049e1223ee924db7b2ef9516c947b55a913f73415ba236e4cd7ed0c312aa029c0b2a035cc9ec8f4261e010372f1797b86d8514f7684c1fca864a6e7682da6"
+      ],
+      "tx_gas_used": [
+        22500000
+      ]
+    },
+    {
+      "number": 7,
+      "raw_transactions": [
+        "0xf96a04880de0b6b3a764000083e4e1c09400000000000000000000000000000000000000008080820c51a0466154def24858a03a00a43c7bfb028ed5a04ed396810e09a27178f62b236ba1a035afbdbb6f43d326ddf125335afeb93d987f840a94a97e9fea25e18d7e8cfc09"
+      ],
+      "tx_gas_used": [
+        15000000
+      ]
+    }
+  ]
+}
