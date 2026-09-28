@@ -1,0 +1,40 @@
+{
+  "name": "vary-wildcard",
+  "description": "Responses vary on arbitrary per-request context and declare Vary: *; they must never be served from a shared cache.",
+  "requests": [
+    {
+      "id": "r-w1",
+      "method": "GET",
+      "path": "/dynamic-banner",
+      "query": {"campaign": ["spring"]},
+      "headers": {"Host": "demo.local"}
+    },
+    {
+      "id": "r-w2",
+      "method": "GET",
+      "path": "/dynamic-banner",
+      "query": {"campaign": ["spring"]},
+      "headers": {"Host": "demo.local"}
+    }
+  ],
+  "responses": [
+    {
+      "request_id": "r-w1",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Vary": "*"
+      },
+      "body": "variant-secret-A"
+    },
+    {
+      "request_id": "r-w2",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain",
+        "Vary": "*"
+      },
+      "body": "variant-secret-B"
+    }
+  ]
+}

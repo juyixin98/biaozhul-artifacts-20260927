@@ -1,0 +1,46 @@
+{
+  "name": "identity-response",
+  "description": "Same URL with different bearer tokens; per-user private responses. Never reusable across identities.",
+  "requests": [
+    {
+      "id": "r-alice",
+      "method": "GET",
+      "path": "/account",
+      "query": {},
+      "headers": {
+        "Host": "demo.local",
+        "Authorization": "Bearer synthetic-token-alice"
+      }
+    },
+    {
+      "id": "r-bob",
+      "method": "GET",
+      "path": "/account",
+      "query": {},
+      "headers": {
+        "Host": "demo.local",
+        "Authorization": "Bearer synthetic-token-bob"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "request_id": "r-alice",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json",
+        "Cache-Control": "private, no-store"
+      },
+      "body": "{\"user\":\"alice\",\"email\":\"alice@example.test\",\"balance\":100}"
+    },
+    {
+      "request_id": "r-bob",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json",
+        "Cache-Control": "private, no-store"
+      },
+      "body": "{\"user\":\"bob\",\"email\":\"bob@example.test\",\"balance\":7}"
+    }
+  ]
+}

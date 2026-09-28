@@ -1,0 +1,42 @@
+{
+  "name": "language-negotiation",
+  "description": "Same URL, different Accept-Language; responses declare Vary correctly.",
+  "requests": [
+    {
+      "id": "r-zh",
+      "method": "GET",
+      "path": "/greeting",
+      "query": {},
+      "headers": {"Host": "demo.local", "Accept-Language": "zh-CN"}
+    },
+    {
+      "id": "r-en",
+      "method": "GET",
+      "path": "/greeting",
+      "query": {},
+      "headers": {"Host": "demo.local", "Accept-Language": "en"}
+    }
+  ],
+  "responses": [
+    {
+      "request_id": "r-zh",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Language": "zh-CN",
+        "Vary": "Accept-Language"
+      },
+      "body": "你好，世界"
+    },
+    {
+      "request_id": "r-en",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Language": "en",
+        "Vary": "Accept-Language"
+      },
+      "body": "Hello, world"
+    }
+  ]
+}

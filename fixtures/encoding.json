@@ -1,0 +1,42 @@
+{
+  "name": "compression-encoding",
+  "description": "Same URL, different Accept-Encoding; compressed payloads differ.",
+  "requests": [
+    {
+      "id": "r-gzip",
+      "method": "GET",
+      "path": "/bundle/app.js",
+      "query": {"v": ["2"]},
+      "headers": {"Host": "demo.local", "Accept-Encoding": "gzip"}
+    },
+    {
+      "id": "r-br",
+      "method": "GET",
+      "path": "/bundle/app.js",
+      "query": {"v": ["2"]},
+      "headers": {"Host": "demo.local", "Accept-Encoding": "br"}
+    }
+  ],
+  "responses": [
+    {
+      "request_id": "r-gzip",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/javascript",
+        "Content-Encoding": "gzip",
+        "Vary": "Accept-Encoding"
+      },
+      "body": "<gzip bytes: 1f8b08 00 ... payload A>"
+    },
+    {
+      "request_id": "r-br",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/javascript",
+        "Content-Encoding": "br",
+        "Vary": "Accept-Encoding"
+      },
+      "body": "<brotli bytes: ce b2 cf 81 ... payload B>"
+    }
+  ]
+}

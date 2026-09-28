@@ -1,0 +1,40 @@
+{
+  "name": "missing-vary",
+  "description": "Same URL negotiated by Accept-Language, but the responses carry no Vary header at all.",
+  "requests": [
+    {
+      "id": "r-zh-novary",
+      "method": "GET",
+      "path": "/banner",
+      "query": {},
+      "headers": {"Host": "demo.local", "Accept-Language": "zh-CN"}
+    },
+    {
+      "id": "r-en-novary",
+      "method": "GET",
+      "path": "/banner",
+      "query": {},
+      "headers": {"Host": "demo.local", "Accept-Language": "en"}
+    }
+  ],
+  "responses": [
+    {
+      "request_id": "r-zh-novary",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Language": "zh-CN"
+      },
+      "body": "欢迎参加活动"
+    },
+    {
+      "request_id": "r-en-novary",
+      "status": 200,
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Content-Language": "en"
+      },
+      "body": "Join the campaign"
+    }
+  ]
+}
