@@ -1,0 +1,27 @@
+{
+  "description": "确定性本地测试密钥（仅合成资产，无生产身份）",
+  "keys": [
+    {
+      "index": 0,
+      "pubkey_compressed_hex": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+    },
+    {
+      "index": 1,
+      "pubkey_compressed_hex": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+    },
+    {
+      "index": 2,
+      "pubkey_compressed_hex": "0232023018fada6098733826da0b94795857028d6b65af486085fbfe27b615e124"
+    },
+    {
+      "index": 3,
+      "pubkey_compressed_hex": "024e939632cdcba3bed9c00ec87d759543eadcc6291a1cf167b98eab13ccecb029"
+    },
+    {
+      "index": 4,
+      "pubkey_compressed_hex": "0363fd4a4fdbb45669b81604b834e6020127edbea217bfd05edffd1c007f92ccbb"
+    }
+  ],
+  "name": "synthetic-keypairs",
+  "schema_version": 1
+}

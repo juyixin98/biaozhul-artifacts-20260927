@@ -1,0 +1,854 @@
+{
+  "cases": [
+    {
+      "block": {
+        "block_id": "a05d414916e4c6fdc287fc5bfe89d1123f30dfa36775ff209c7845ab112e8787",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "9f88acd0218c88c25cd7415f1cbc4c761afa38fd5959760be85d654c30fb8388",
+          "version": 1,
+          "witness_root": "eec75f4843b3d638141b05b09c7054dbb7056cc6163aae0591fa5d418cb23668"
+        },
+        "transactions": [
+          {
+            "fee": 5,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 800,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              },
+              {
+                "amount": 95,
+                "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+              }
+            ],
+            "txid": "653ed704c5453772729ce0e0bbd27821a94dceb354f6225f23e7b760ee260b13",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3045022100c7cb3c8685524928dfcf5753ff85b783dd8b95edf33a7d823df37decf505d7880220316f35d6cd9b37a56191678072cdd324243b72f95661b63382c492e855e59661"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "K2 花 900，输出 800+95，费 5，守恒",
+      "expected_accepted": true,
+      "name": "valid_transfer_with_fee",
+      "oracle_per_tx": [
+        {
+          "fee": 5,
+          "index": 0,
+          "sum_in": 900,
+          "sum_out": 895,
+          "txid": "653ed704c5453772729ce0e0bbd27821a94dceb354f6225f23e7b760ee260b13",
+          "verdict": "planned"
+        }
+      ]
+    },
+    {
+      "block": {
+        "block_id": "9a4f944b639ef7d4c69835a5d6b23bfc4d09663164c267fa103e5d3ca9bfb763",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "df4d449a5d8c35ece0126ce9acda6014a8aa2e837bb38a6cb581d359327091a1",
+          "version": 1,
+          "witness_root": "300873f5a7cb921c15d693c7643667f115c52383fb75b673c3efb3e66d79654c"
+        },
+        "transactions": [
+          {
+            "fee": 10,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 700,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              },
+              {
+                "amount": 190,
+                "pubkey": "0232023018fada6098733826da0b94795857028d6b65af486085fbfe27b615e124"
+              }
+            ],
+            "txid": "ba72cce983fe2884c11e0d7e8e4c708ca9748ae5a0a52fb2abb35261a7548792",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3045022100e04fcfb37decc3c8e03a37313f15d7e26020e86f23f4797719d4c7f769a9b75802206190463d29300a72fc427a7b91d50c6b2f632746832e98ff2b7c2aeca16f236e"
+              }
+            ]
+          },
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "ba72cce983fe2884c11e0d7e8e4c708ca9748ae5a0a52fb2abb35261a7548792",
+                "vout": 1
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 190,
+                "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+              }
+            ],
+            "txid": "13bce89f13cb9792497a6f80521d266ebfbf5d50fc9b5735c435dba2094fb388",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3046022100de240a0cd00f4857c862134230e5dc797ab181329751a5a8165e5fbdf723963c02210089ac0217c0a95c7a2959bbafb904665db0be63b8b441d3ca2ed89c071bd94bb8"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "第二笔引用同块第一笔的输出（前序引用允许）",
+      "expected_accepted": true,
+      "name": "valid_intra_block_reference",
+      "oracle_per_tx": [
+        {
+          "fee": 10,
+          "index": 0,
+          "sum_in": 900,
+          "sum_out": 890,
+          "txid": "ba72cce983fe2884c11e0d7e8e4c708ca9748ae5a0a52fb2abb35261a7548792",
+          "verdict": "planned"
+        },
+        {
+          "fee": 0,
+          "index": 1,
+          "sum_in": 190,
+          "sum_out": 190,
+          "txid": "13bce89f13cb9792497a6f80521d266ebfbf5d50fc9b5735c435dba2094fb388",
+          "verdict": "planned"
+        }
+      ]
+    },
+    {
+      "block": {
+        "block_id": "44b47915911b572903341e114e0498aea8ad8d6ff437004545197a8b51402a1d",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "7d6fd619925dc1aa0078362033aab894d89e1927feb7adfa8892eb967defed36",
+          "version": 1,
+          "witness_root": "36ba3aba7d8efab6fb67491850b24105838f058255d46e36d811f9dc1647b423"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "30460221009608ce47b81ad78be76256cc41de6c9c487af44db2bd1c3d1564bd5906712b6e022100b99f25254a9028e2266b3aab673ea0f28d6f43de6d102448bfd50cacfa9ca6ad"
+              }
+            ]
+          },
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+              }
+            ],
+            "txid": "4748619f6356ec90151273e70c74de2ec45cc335dcec03f3b488eec2d6376896",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3045022100edb77848f513157757dfe8b7e686f3d5402150871c489a46cf88dcef066f4bf902204a863ff125950689f6a0c2f36e287490bb1c7952849653a0d1b28faff8267d3a"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "同块两笔交易先后花费同一 UTXO，第二笔必须拒绝",
+      "expected_accepted": false,
+      "expected_category": "STATE_CONFLICT",
+      "expected_code": "DOUBLE_SPEND",
+      "expected_tx_index": 1,
+      "name": "intra_block_double_spend",
+      "oracle_per_tx": [
+        {
+          "fee": 0,
+          "index": 0,
+          "sum_in": 900,
+          "sum_out": 900,
+          "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+          "verdict": "planned"
+        }
+      ]
+    },
+    {
+      "block": {
+        "block_id": "ba82014788081f6378c5ebbe4f62a5721f526d076eaeaccc0158fbc7427d2f7a",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "955f2cd8ef879b15e030957b3105b8f780231057f892435b3a7b50b95b060a04",
+          "version": 1,
+          "witness_root": "546d42e22983e2cab6c891a607e770817595866dcc5a6e1a6c5e4f5303caa990"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              },
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 1800,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "8a868b860750095a284ebe1ef5017368323477d45415952c332e5607a9311aa9",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3045022056004feb22916ce22dc2856fa049181c5c6ba2e41a17944a89e499760d48830c022100a41dc6ce05c4ef979663d6e863fdf1147a1de90e68ec85d89608592d1f57379b"
+              },
+              {
+                "signature": "304402200f9b903b70c0f1a06c7a76d75391e8355bc32000fcb24cfed1c920fd462ce5d702207687b15ffbe85122692db78aa8dba7be2c34cd737944d83ba399b53c9c58f2ac"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "单笔交易两次引用同一 outpoint",
+      "expected_accepted": false,
+      "expected_category": "STATE_CONFLICT",
+      "expected_code": "DOUBLE_SPEND",
+      "expected_tx_index": 0,
+      "name": "duplicate_input_same_tx",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "e30dd04f46076ca4c2a85bc362319776d899e3e6332c6b0edcbc2f6df60ad672",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "8f2fe62b20aad69dcb8826228fe84b719d32c2469c485fe898f5cb53891f9ff6",
+          "version": 1,
+          "witness_root": "7966accd7cf116d7438dab93314ac814b3b49c59ac7b3dea27ef583ce05fe65b"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              },
+              {
+                "amount": 0,
+                "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+              }
+            ],
+            "txid": "dcc4d5da0f84aabd30a64875e5d7d9ad90f8d9e3e268f09216686520029e8724",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3046022100c5ec3b2b6d56b39b9b11b6edb76315ef5759d5b7b61ce783945088a8eba14e84022100a7a1d30081a83340c10ef21d753ad73496300891cf82d18c2ef0e27b2ac31f60"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "输出含 0 金额，必须在验签前即拒绝",
+      "expected_accepted": false,
+      "expected_category": "INPUT_ERROR",
+      "expected_code": "ZERO_VALUE",
+      "expected_tx_index": 0,
+      "name": "zero_value_output",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "ac1a80fb49e5f824fe256fea64a8bef27f9a5068f048f18346b0d2500007a8db",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "439f919a15eb866ec0758eac5863361f28c03ea7db285c861325c8bfa6297830",
+          "version": 1,
+          "witness_root": "0f89af2272e13daf39360d8a9ca5bc5d95d865eed8ee2091095596500c5e0efc"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+              }
+            ],
+            "txid": "4748619f6356ec90151273e70c74de2ec45cc335dcec03f3b488eec2d6376896",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3046022100f2655f8c34c10b5f59c46e68cafd7ba91e839ba108dd119aed319facded14a92022100ed1a04456f6cc7699e2b136958e9b28eb73915c5908497ea42b0e830779b9008"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "合法签名最后一字节被翻转，验签必须失败",
+      "expected_accepted": false,
+      "expected_category": "COMPUTATION_FAILED",
+      "expected_code": "SIGNATURE_INVALID",
+      "expected_tx_index": 0,
+      "name": "signature_tampered",
+      "oracle_per_tx": [
+        {
+          "category": "COMPUTATION_FAILED",
+          "code": "SIGNATURE_INVALID",
+          "index": 0,
+          "txid": "4748619f6356ec90151273e70c74de2ec45cc335dcec03f3b488eec2d6376896",
+          "verdict": "rejected"
+        }
+      ]
+    },
+    {
+      "block": {
+        "block_id": "954d083035e8fd1d4f2a59e56a9b1c03d7d114771511907ca2c76bc0e463a711",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "5ed5afc16b032eeedaaeb97bf786d53941c807c7642c101fac756eb17770d93f",
+          "version": 1,
+          "witness_root": "7e2a11f4820b502f1127e0b54b29f51236b3798d70266f37c960c0af5c37362b"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 1
+              },
+              {
+                "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 500,
+                "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+              },
+              {
+                "amount": 900,
+                "pubkey": "0232023018fada6098733826da0b94795857028d6b65af486085fbfe27b615e124"
+              }
+            ],
+            "txid": "5304da703fab7ba6a618d70ee0dc8a6872eab4524f490472105d23c4c090b677",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3045022100fbe85c64e9e8c942fcdfec1c40010595ddb0722fffd24e8d49bcb600f5feacaf02203583e1c6fdd79dd93be5998d02219882457fa65f28363d3b528ce9ee0180a889"
+              },
+              {
+                "signature": "30450220280574b06e8af12ded00bea603eda8fc72b5dd327bef46c3d5ad1366de578f4a0221008c75fac8dccbf4756346e96b432c896865a2b30f008206368981fdb0bb34fc15"
+              }
+            ]
+          },
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3046022100fb1baf7204521ccb78d80c663fdeb6017fab8874172b6819a2fdf42deff85e7b022100bcd8cedc264f2d19d820fa6321877d3a04c53a8d9948904d9f77c098ae0f6986"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "index0 交易引用 index1 交易的输出",
+      "expected_accepted": false,
+      "expected_category": "STATE_CONFLICT",
+      "expected_code": "FORWARD_REFERENCE",
+      "expected_tx_index": 0,
+      "name": "forward_reference",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "bf5d0ba64cde9cbb826755f9b4d1bb87fd49fdd2d09761f775f143908a3095bc",
+        "header": {
+          "height": 3,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "4b9ab2ade81af8c2808bb15b3a31158df25c8a8e4ae3f0fa6c1dddefe85ee238",
+          "version": 1,
+          "witness_root": "f6d64e638c20686ad9ce0a5612bf1731c2d3227f982c5bf04beca687dc3117ea"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3046022100c33c204e1d672360f9444adcfebac7180781cfd78ec9fb8d91d2f7ca89446315022100a72ee2f7add7d625d1b476a9ec9ff83f6c10c921432a6a608ae5d3c46f9533bb"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "tip=1 时提交 height=3，必须报 BLOCK_CONFLICT",
+      "expected_accepted": false,
+      "expected_category": "STATE_CONFLICT",
+      "expected_code": "BLOCK_CONFLICT",
+      "name": "block_height_gap",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "109b5a98b01d9a1e6a4488437de28303a92733732a2593f5acb93ca445862f9e",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "a1aa113d90e721a560ed9fd20ec489c27f14344803cc129622ddcb7b6ef3f457",
+          "version": 1,
+          "witness_root": "46bd0457702f34746e72b6dc38fc9ef921a803870b13371dbc40053f20007cca"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "e72db20c067448154f37affd30036da4722f641e75ebf9d80fabb717b057a071",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 1000,
+                "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+              }
+            ],
+            "txid": "db7e4fe9182ece19c54f3b3b06c1f448eb155ff926862b7066cb424cd5225bd8",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3044022050de07a5aa38ce4d0b454955384d4038f855e7a0ecf4fae806db34e694ec112702202079ce745bef417baae77f163a200d32d198dac30631de7cea511dd14ddff5c5"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "引用在历史块中已花费的 outpoint",
+      "expected_accepted": false,
+      "expected_category": "STATE_CONFLICT",
+      "expected_code": "DOUBLE_SPEND",
+      "expected_tx_index": 0,
+      "name": "spend_already_spent_historical",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "3e7b48f426b69807a56fc257a18ed104ff2922657bc219985b35aece9f4be967",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "a5faccb261b729f1ed9aba582b12aab78b0988dbe60184ece6931840ae569c5b",
+          "version": 1,
+          "witness_root": "829985bfbcd91428dfcdf5a31c2a8467c93c40a836ace86f51f00d9eebda39fb"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "1111111111111111111111111111111111111111111111111111111111111111",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 1,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "0b5e4cf072e9d4331e321c28f0c5c3e087a8af99103981157fd5458e683ac704",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "304402205ca4647e9177a5dc38e9a4706a66179c8328481be831033b630592aba30f6bca02205f66576cb5052677ef1fb0b7c85d771d425e963a8d688f46f999befb89c05a1b"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "引用任何地方都不存在的 txid",
+      "expected_accepted": false,
+      "expected_category": "STATE_CONFLICT",
+      "expected_code": "UNKNOWN_OUTPOINT",
+      "expected_tx_index": 0,
+      "name": "unknown_outpoint",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "7433568ee4e135e94ba6fef957f49213ffa411489c34f516399c879cc51ce391",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "07e51ad16d7a787ff3377b341c2eaef9eae07eda5348bfcac63969cdfe8dbab3",
+          "version": 1,
+          "witness_root": "d9d488e74d5d5deac5cac93e532a61118585b8e7fc4dfb9c38c8d52192a91942"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 800,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "30edc721544f6b5ab410ae62ea9d00fce58d2e7b0c6735bb9ca38cb2ee7a0dcc",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "304402205a9c8297ecc89c64d3e22e3f1f5735116e7edfacf94b079df405de5f764751010220472bf9cb10a566b0677c1519fcbced51761071ed35caa6d6665063bca230471f"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "900 输入 vs 800 输出 + 0 费",
+      "expected_accepted": false,
+      "expected_category": "INPUT_ERROR",
+      "expected_code": "CONSERVATION_MISMATCH",
+      "expected_tx_index": 0,
+      "name": "conservation_mismatch",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "c8919b5039ce1340696febff48d244b3228c17ee90c289439ea09f24a0ac8cc5",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "6ca10a3373d1d6266529a7b81831fd70fa277632290bd9df3ba6f059a988c3a4",
+          "version": 1,
+          "witness_root": "f668d82713af31ccc38a63d1ad16e0ab3c3b1f31d59e5b0a44074d09c0191093"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [],
+            "outputs": [
+              {
+                "amount": 100,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "75b559a4670433e83d7d70bf20730154e419ca8d1d676cdfed93a0d1bc72322f",
+            "version": 1,
+            "witnesses": []
+          }
+        ]
+      },
+      "description": "高度>=1 的块里出现无输入交易",
+      "expected_accepted": false,
+      "expected_category": "INPUT_ERROR",
+      "expected_code": "ILLEGAL_ISSUE",
+      "expected_tx_index": 0,
+      "name": "illegal_issuance_non_genesis",
+      "oracle_per_tx": []
+    },
+    {
+      "block": {
+        "block_id": "aa60764f6bc927b4233ed6c4b2d84784c03be25985b71465c70c950f4e78eaad",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "4b9ab2ade81af8c2808bb15b3a31158df25c8a8e4ae3f0fa6c1dddefe85ee238",
+          "version": 1,
+          "witness_root": "f84119e0c4a2565bfe46a3226a54452103c01e66fa9395e5a5b4170c9d943266"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "3045022100cadf7c9c217d0bb6182f9dc770111d088fe2c207723ad672228340cdf2d595f5022061a1732a180f2c5485315bf3941e7b7c72c3440e54b2a8315f154dbf662d53e5"
+              },
+              {
+                "signature": "3006020101020101"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "见证数比输入数多 1",
+      "expected_accepted": false,
+      "expected_category": "INPUT_ERROR",
+      "expected_code": "WITNESS_COUNT_MISMATCH",
+      "expected_tx_index": 0,
+      "name": "witness_count_mismatch",
+      "oracle_per_tx": [
+        {
+          "category": "INPUT_ERROR",
+          "code": "WITNESS_COUNT_MISMATCH",
+          "index": 0,
+          "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+          "verdict": "rejected"
+        }
+      ]
+    },
+    {
+      "block": {
+        "block_id": "0702eab684c1aec4c6574b056014b5494e01c0837145409451440ebe03c8fcb1",
+        "header": {
+          "height": 2,
+          "prev_hash": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+          "timestamp": 1700000000,
+          "tx_root": "2222222222222222222222222222222222222222222222222222222222222222",
+          "version": 1,
+          "witness_root": "a4fa6c493a65bb311c31f46298de9f92cbf24948f6f2de0ca3348e948b18acff"
+        },
+        "transactions": [
+          {
+            "fee": 0,
+            "inputs": [
+              {
+                "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+                "vout": 0
+              }
+            ],
+            "outputs": [
+              {
+                "amount": 900,
+                "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+              }
+            ],
+            "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+            "version": 1,
+            "witnesses": [
+              {
+                "signature": "304502206d46f596a239d631b84ccaaaae1c6e8bd0e1ba76d4b6099789d40b1ef6749fae022100826d55fe218bc2c8e217f97b68286b5bd0d052ecd1733a5a5eeaf36df0341fce"
+              }
+            ]
+          }
+        ]
+      },
+      "description": "块头 tx_root 与交易列表不一致",
+      "expected_accepted": false,
+      "expected_category": "COMPUTATION_FAILED",
+      "expected_code": "ROOT_MISMATCH",
+      "name": "tx_root_mismatch",
+      "oracle_per_tx": [
+        {
+          "fee": 0,
+          "index": 0,
+          "sum_in": 900,
+          "sum_out": 900,
+          "txid": "04c763e1b61449ca821a1399ced79fbf4d971e87a298655ca5cdba7b470322dc",
+          "verdict": "planned"
+        }
+      ]
+    }
+  ],
+  "description": "UTXO 账本验证夹具：底座两块 + 14 用例；预期由独立 oracle 生成",
+  "name": "utxo-validation-cases",
+  "prefix_blocks": [
+    {
+      "block_id": "fa2f3faedf695a88ecbba8ce07237746d7911e96578cfb3e6dc2d73bc7f73288",
+      "header": {
+        "height": 0,
+        "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "timestamp": 1700000000,
+        "tx_root": "8d4f43699c62c3341943a920356dd171e4ee97a92a2362862a4c31ecb0b63cfa",
+        "version": 1,
+        "witness_root": "d456215518012509faaa989f9d7f352fba99002028512f21c38aa8a7eaddc24c"
+      },
+      "transactions": [
+        {
+          "fee": 0,
+          "inputs": [],
+          "outputs": [
+            {
+              "amount": 1000,
+              "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+            },
+            {
+              "amount": 500,
+              "pubkey": "027209db921349472e9246fd3562dceffa317ade58525f0badfcb8dc1c8e6ce750"
+            }
+          ],
+          "txid": "e72db20c067448154f37affd30036da4722f641e75ebf9d80fabb717b057a071",
+          "version": 1,
+          "witnesses": []
+        }
+      ]
+    },
+    {
+      "block_id": "cd9e935b300343e035f34bbf78f1bcae0f531114297caa0ff69f3bc3435a1183",
+      "header": {
+        "height": 1,
+        "prev_hash": "fa2f3faedf695a88ecbba8ce07237746d7911e96578cfb3e6dc2d73bc7f73288",
+        "timestamp": 1700000000,
+        "tx_root": "c71c47a402690e11e63d4e714637951cf9afa232700a533b6228297846705063",
+        "version": 1,
+        "witness_root": "7938b3001c60364aab25e7f030d42479240ffe9deb9e0c118ab66b47ebf4b583"
+      },
+      "transactions": [
+        {
+          "fee": 100,
+          "inputs": [
+            {
+              "txid": "e72db20c067448154f37affd30036da4722f641e75ebf9d80fabb717b057a071",
+              "vout": 0
+            }
+          ],
+          "outputs": [
+            {
+              "amount": 900,
+              "pubkey": "0232023018fada6098733826da0b94795857028d6b65af486085fbfe27b615e124"
+            }
+          ],
+          "txid": "903ef30d86c36591d3a0370f552990e3a403fd62201f383aa75085df8cb476ca",
+          "version": 1,
+          "witnesses": [
+            {
+              "signature": "30450221008ad8a1b8288da351ac15b72686227d6ce3d6393fff6ba61c3cc4f00c03ea6520022055219217636c14f6ded22e1761c308253a003c3d4ea934e9e42ba7796c217f87"
+            }
+          ]
+        },
+        {
+          "fee": 0,
+          "inputs": [
+            {
+              "txid": "e72db20c067448154f37affd30036da4722f641e75ebf9d80fabb717b057a071",
+              "vout": 1
+            }
+          ],
+          "outputs": [
+            {
+              "amount": 500,
+              "pubkey": "027779df528ce55480832161438c0a6bcdf97a5264c54383f0df119879124ee35d"
+            }
+          ],
+          "txid": "44d4660b3ef1d248a885a9cb5764a3188154156961ba8c54b293338e9d397ee4",
+          "version": 1,
+          "witnesses": [
+            {
+              "signature": "304502204447919b15f8a7a6d2743c37e1935a3052367dcad755504cbae57c383b51345502210081805dd82b58a41d6a012b6c61adbd041561608fb3acf858897ddcf9a5963eb9"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "schema_version": 1
+}

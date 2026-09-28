@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools==75.6.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "utxo-ledger-test-asset"
+version = "1.0.0"
+description = "测试资产 UTXO 账本（FastAPI + SQLite + secp256k1，本地合成数据）"
+requires-python = ">=3.11"
+dependencies = [
+    "cryptography==41.0.7",
+    "fastapi==0.115.6",
+    "uvicorn==0.32.1",
+    "pydantic==2.10.4",
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.4", "httpx==0.28.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+addopts = "-ra -q"
+log_cli = false
