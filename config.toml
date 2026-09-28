@@ -1,0 +1,30 @@
+# 差分分析器配置文件（tomllib 解析，无需第三方依赖）
+# 所有数据均为本地合成夹具。
+
+[storage]
+# 相对路径相对于项目根目录；测试用 tmp_path 覆盖
+sqlite_path = "data/diff.db"
+
+[universe]
+# 受穷举的“受限请求空间”字母表：前缀分割算法以此为闭合世界
+resource_alphabet = ["0", "1", "/", "-"]
+# 主体（请求身份）合成域
+principals = ["acct/alice", "acct/bob", "acct/carol", "role/admin"]
+# 匿名/未鉴权请求主体（内核里以 null 表示；"*" 同时匹配匿名）
+include_anonymous = true
+# 笛卡尔积上限，超过则返回 SCOPE_SPACE_TOO_LARGE 而不是静默抽样
+max_space_size = 500000
+
+[crypto]
+# 受信任的提交公钥（Ed25519，PEM）。未注册公钥的签名一律拒绝。
+trusted_key_path = "fixtures/keys/submitter_public.pem"
+# 仅用于本地演示 CLI（API 本身永不持有私钥）
+demo_private_key_path = "fixtures/keys/submitter_private.pem"
+
+[api]
+host = "127.0.0.1"
+port = 8080
+# 每个见证桶（新增允许/新增拒绝/…）最多保留的见证数
+witness_limit_per_bucket = 20
+# 内核判定步骤最多保留多少条（可解释性/容量平衡）
+max_trace_steps = 24
