@@ -1,0 +1,58 @@
+{
+  "snapshot": {
+    "label_version": "labels-np-1",
+    "policy_version": "pol-np-1",
+    "namespaces": [
+      {"name": "prod", "labels": {"ns": "prod"}}
+    ],
+    "endpoints": [
+      {
+        "uid": "ep-np-client", "namespace": "prod", "name": "client", "pod_ip": "10.0.1.1",
+        "labels": {"app": "client"},
+        "ports": []
+      },
+      {
+        "uid": "ep-np-svc-a", "namespace": "prod", "name": "svc-a", "pod_ip": "10.0.1.2",
+        "labels": {"app": "svc", "which": "a"},
+        "ports": [
+          {"name": "web", "port": 80, "protocol": "TCP"},
+          {"name": "admin", "port": 8001, "protocol": "TCP"}
+        ]
+      },
+      {
+        "uid": "ep-np-svc-b", "namespace": "prod", "name": "svc-b", "pod_ip": "10.0.1.3",
+        "labels": {"app": "svc", "which": "b"},
+        "ports": [
+          {"name": "web", "port": 8080, "protocol": "TCP"}
+        ]
+      }
+    ]
+  },
+  "policy_set": {
+    "version": "pol-np-1",
+    "policies": [
+      {
+        "uid": "P-NP-EGR-CLIENT", "namespace": "prod", "name": "client-egress-named-web",
+        "pod_selector": {"match_labels": {"app": "client"}},
+        "policy_types": ["Egress"],
+        "egress": [
+          {
+            "ports": [{"port": "web", "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"app": "svc"}}}]
+          }
+        ]
+      },
+      {
+        "uid": "P-NP-ING-SVC", "namespace": "prod", "name": "svc-ingress-from-client",
+        "pod_selector": {"match_labels": {"app": "svc"}},
+        "policy_types": ["Ingress"],
+        "ingress": [
+          {
+            "ports": [{"port": "web", "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"app": "client"}}}]
+          }
+        ]
+      }
+    ]
+  }
+}

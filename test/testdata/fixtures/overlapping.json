@@ -1,0 +1,149 @@
+{
+  "snapshot": {
+    "label_version": "labels-0001",
+    "policy_version": "pol-0001",
+    "namespaces": [
+      {"name": "prod", "labels": {"tier": "paas"}},
+      {"name": "dev",  "labels": {"env": "dev"}},
+      {"name": "mon",  "labels": {"purpose": "monitoring"}}
+    ],
+    "endpoints": [
+      {
+        "uid": "ep-prod-api", "namespace": "prod", "name": "api", "pod_ip": "10.0.0.11",
+        "labels": {"app": "api", "tier": "backend"},
+        "ports": [
+          {"name": "http", "port": 8080, "protocol": "TCP"},
+          {"name": "grpc", "port": 9090, "protocol": "TCP"},
+          {"name": "metrics", "port": 9100, "protocol": "TCP"}
+        ]
+      },
+      {
+        "uid": "ep-prod-web", "namespace": "prod", "name": "web", "pod_ip": "10.0.0.21",
+        "labels": {"app": "web", "tier": "frontend"},
+        "ports": [{"name": "http", "port": 8080, "protocol": "TCP"}]
+      },
+      {
+        "uid": "ep-prod-cache", "namespace": "prod", "name": "cache", "pod_ip": "10.0.0.31",
+        "labels": {"app": "cache", "tier": "backend", "db": "redis"},
+        "ports": [
+          {"name": "grpc", "port": 6379, "protocol": "TCP"},
+          {"name": "metrics", "port": 9100, "protocol": "TCP"}
+        ]
+      },
+      {
+        "uid": "ep-prod-worker", "namespace": "prod", "name": "worker", "pod_ip": "10.0.0.41",
+        "labels": {"app": "worker", "tier": "backend"},
+        "ports": []
+      },
+      {
+        "uid": "ep-mon-monitor", "namespace": "mon", "name": "monitor", "pod_ip": "10.1.0.5",
+        "labels": {"app": "monitor", "component": "metrics"},
+        "ports": [{"name": "scrape", "port": 9100, "protocol": "TCP"}]
+      },
+      {
+        "uid": "ep-dev-api", "namespace": "dev", "name": "api", "pod_ip": "10.2.0.11",
+        "labels": {"app": "api", "tier": "backend"},
+        "ports": [{"name": "http", "port": 8080, "protocol": "TCP"}]
+      }
+    ]
+  },
+  "policy_set": {
+    "version": "pol-0001",
+    "policies": [
+      {
+        "uid": "P-ING-API-01", "namespace": "prod", "name": "allow-api-ingress",
+        "pod_selector": {"match_labels": {"app": "api"}},
+        "policy_types": ["Ingress"],
+        "ingress": [
+          {
+            "ports": [{"port": 8080, "protocol": "TCP"}],
+            "peers": [
+              {
+                "namespace_selector": {"match_labels": {"tier": "paas"}},
+                "pod_selector": {"match_labels": {"tier": "frontend"}}
+              }
+            ]
+          },
+          {
+            "ports": [{"port": 9100, "protocol": "TCP"}],
+            "peers": [
+              {"namespace_selector": {"match_labels": {"purpose": "monitoring"}}}
+            ]
+          }
+        ]
+      },
+      {
+        "uid": "P-ING-API-02", "namespace": "prod", "name": "allow-api-metrics-backend",
+        "pod_selector": {"match_labels": {"app": "api"}},
+        "policy_types": ["Ingress"],
+        "ingress": [
+          {
+            "ports": [{"port": 9100, "protocol": "TCP"}],
+            "peers": [
+              {
+                "namespace_selector": {"match_labels": {"tier": "paas"}},
+                "pod_selector": {"match_expressions": [
+                  {"key": "tier", "operator": "In", "values": ["backend"]}
+                ]}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uid": "P-ING-WEB-01", "namespace": "prod", "name": "web-deny-all-ingress",
+        "pod_selector": {"match_labels": {"app": "web"}},
+        "policy_types": ["Ingress"],
+        "ingress": []
+      },
+      {
+        "uid": "P-ING-CACHE-01", "namespace": "prod", "name": "cache-only-from-api",
+        "pod_selector": {"match_labels": {"app": "cache", "db": "redis"}},
+        "policy_types": ["Ingress"],
+        "ingress": [
+          {
+            "ports": [{"port": 6379, "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"app": "api"}}}]
+          }
+        ]
+      },
+      {
+        "uid": "P-EGR-WEB-01", "namespace": "prod", "name": "web-egress-to-api",
+        "pod_selector": {"match_labels": {"app": "web"}},
+        "policy_types": ["Egress"],
+        "egress": [
+          {
+            "ports": [{"port": 8080, "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"app": "api"}}}]
+          }
+        ]
+      },
+      {
+        "uid": "P-EGR-API-01", "namespace": "prod", "name": "api-egress-cache-and-mon",
+        "pod_selector": {"match_labels": {"app": "api"}},
+        "policy_types": ["Egress"],
+        "egress": [
+          {
+            "ports": [{"port": 6379, "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"app": "cache"}}}]
+          },
+          {
+            "ports": [{"port": "scrape", "protocol": "TCP"}],
+            "peers": [{"namespace_selector": {"match_labels": {"purpose": "monitoring"}}}]
+          }
+        ]
+      },
+      {
+        "uid": "P-ING-DEV-API-01", "namespace": "dev", "name": "dev-api-no-ingress",
+        "pod_selector": {"match_labels": {"app": "api"}},
+        "policy_types": ["Ingress"],
+        "ingress": [
+          {
+            "ports": [{"port": 8080, "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"app": "does-not-exist"}}}]
+          }
+        ]
+      }
+    ]
+  }
+}

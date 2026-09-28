@@ -1,0 +1,53 @@
+{
+  "snapshot": {
+    "label_version": "labels-ow-1",
+    "policy_version": "pol-ow-1",
+    "namespaces": [
+      {"name": "ns", "labels": {"name": "ns"}}
+    ],
+    "endpoints": [
+      {
+        "uid": "ep-ow-client", "namespace": "ns", "name": "client", "pod_ip": "10.0.3.1",
+        "labels": {"role": "client"},
+        "ports": []
+      },
+      {
+        "uid": "ep-ow-server", "namespace": "ns", "name": "server", "pod_ip": "10.0.3.2",
+        "labels": {"role": "server"},
+        "ports": [{"name": "http", "port": 8080, "protocol": "TCP"}]
+      },
+      {
+        "uid": "ep-ow-other", "namespace": "ns", "name": "other", "pod_ip": "10.0.3.3",
+        "labels": {"role": "other"},
+        "ports": [{"name": "http", "port": 8080, "protocol": "TCP"}]
+      }
+    ]
+  },
+  "policy_set": {
+    "version": "pol-ow-1",
+    "policies": [
+      {
+        "uid": "P-OW-ING-SERVER", "namespace": "ns", "name": "server-ingress-from-client",
+        "pod_selector": {"match_labels": {"role": "server"}},
+        "policy_types": ["Ingress"],
+        "ingress": [
+          {
+            "ports": [{"port": 8080, "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"role": "client"}}}]
+          }
+        ]
+      },
+      {
+        "uid": "P-OW-EGR-CLIENT", "namespace": "ns", "name": "client-egress-only-other",
+        "pod_selector": {"match_labels": {"role": "client"}},
+        "policy_types": ["Egress"],
+        "egress": [
+          {
+            "ports": [{"port": 8080, "protocol": "TCP"}],
+            "peers": [{"pod_selector": {"match_labels": {"role": "other"}}}]
+          }
+        ]
+      }
+    ]
+  }
+}

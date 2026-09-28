@@ -1,0 +1,28 @@
+{
+  "snapshot": {
+    "label_version": "labels-bad-1",
+    "policy_version": "pol-bad-1",
+    "namespaces": [{"name": "ns", "labels": {"name": "ns"}}],
+    "endpoints": [
+      {
+        "uid": "ep-bad-a", "namespace": "ns", "name": "a",
+        "labels": {"app": "a"}, "ports": []}
+    ]
+  },
+  "policy_set": {
+    "version": "pol-bad-1",
+    "policies": [
+      {
+        "uid": "P-BAD-PORT", "namespace": "ns", "name": "bad-port",
+        "pod_selector": {"match_labels": {"app": "a"}},
+        "policy_types": ["Egress"],
+        "egress": [
+          {
+            "ports": [{"port": 70000, "protocol": "TCP"}],
+            "peers": []
+          }
+        ]
+      }
+    ]
+  }
+}

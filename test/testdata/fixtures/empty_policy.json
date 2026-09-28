@@ -1,0 +1,26 @@
+{
+  "snapshot": {
+    "label_version": "labels-empty-1",
+    "policy_version": "pol-empty-1",
+    "namespaces": [
+      {"name": "ns1", "labels": {"name": "ns1"}},
+      {"name": "ns2", "labels": {"name": "ns2"}}
+    ],
+    "endpoints": [
+      {
+        "uid": "ep-a", "namespace": "ns1", "name": "a", "pod_ip": "10.0.2.1",
+        "labels": {"app": "a"},
+        "ports": [{"name": "http", "port": 8080, "protocol": "TCP"}]
+      },
+      {
+        "uid": "ep-b", "namespace": "ns2", "name": "b", "pod_ip": "10.0.2.2",
+        "labels": {"app": "b"},
+        "ports": [{"name": "http", "port": 8080, "protocol": "TCP"}]
+      }
+    ]
+  },
+  "policy_set": {
+    "version": "pol-empty-1",
+    "policies": []
+  }
+}
