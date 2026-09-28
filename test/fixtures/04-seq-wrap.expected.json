@@ -1,0 +1,18 @@
+{
+  "scenario": "data straddles the 32-bit sequence wrap",
+  "client_isn": "0xfffffff6",
+  "server_isn": "0x00001b58",
+  "client_original": "HELLO-TCP-REASSEMBLY-WORLD!!",
+  "server_original": "ACK-DATA-FROM-SERVER-BYE",
+  "notes": [
+    "first client data byte raw seq 0xfffffff7; offsets 9+ wrap to 0x00000000+",
+    "client FIN raw seq 0x00000013, at data offset 28"
+  ],
+  "expectations": {
+    "client_fin_data_offset": 28,
+    "client_fin_raw_seq": "0x00000013",
+    "client_stream": "HELLO-TCP-REASSEMBLY-WORLD!!",
+    "packet_count": 9,
+    "server_stream": "ACK-DATA-FROM-SERVER-BYE"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "scenario": "8 conflicting overlap bytes ('REASSEMB' vs 'zzzzzzzz')",
+  "client_isn": "0x000003e8",
+  "server_isn": "0x00001388",
+  "client_original": "HELLO-TCP-REASSEMBLY-WORLD!!",
+  "notes": [
+    "offered bytes 0x7a at offsets 10..17 disagree with established bytes",
+    "policy first_wins: 8 rejected conflicts, stream stays the original",
+    "policy last_wins: stream becomes HELLO-TCP-zzzzzzzzLY-WORLD!!",
+    "policy quarantine: 8 bytes held, stream stays the original"
+  ],
+  "expectations": {
+    "accepted_hex": "5245415353454d42",
+    "conflict_offsets": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "offered_hex": "7a7a7a7a7a7a7a7a",
+    "offered_record": "evil-seg",
+    "packet_count": 7
+  }
+}

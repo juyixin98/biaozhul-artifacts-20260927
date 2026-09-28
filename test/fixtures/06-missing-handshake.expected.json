@@ -1,0 +1,18 @@
+{
+  "scenario": "no handshake observed (anchorless)",
+  "client_isn": "unknown",
+  "server_isn": "unknown",
+  "client_original": "HELLO-TCP-REASSEMBLY-WORLD!!",
+  "server_original": "ACK-DATA-FROM-SERVER-BYE",
+  "notes": [
+    "offsets are relative to the first observed byte, not the true ISN",
+    "handshake_known=false and an undecided HANDSHAKE_ABSENT event is emitted"
+  ],
+  "expectations": {
+    "client_stream": "HELLO-TCP-REASSEMBLY-WORLD!!",
+    "handshake_known": false,
+    "packet_count": 8,
+    "server_stream": "ACK-DATA-FROM-SERVER-BYE",
+    "undecided_event": "HANDSHAKE_ABSENT"
+  }
+}

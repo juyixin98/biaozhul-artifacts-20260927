@@ -1,0 +1,10 @@
+{
+  "http": {
+    "listen": "127.0.0.1:8080"
+  },
+  "db_path": "data/tcpreplay.db",
+  "overlap_policy": "quarantine",
+  "payload_preview": false,
+  "max_packets_per_request": 200000,
+  "max_upload_bytes": 67108864
+}

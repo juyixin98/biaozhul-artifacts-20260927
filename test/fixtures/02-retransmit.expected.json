@@ -1,0 +1,15 @@
+{
+  "scenario": "byte-identical retransmissions",
+  "client_isn": "0x000003e8",
+  "server_isn": "0x00001388",
+  "client_original": "HELLO-TCP-REASSEMBLY-WORLD!!",
+  "notes": [
+    "retransmitted bytes must not duplicate output",
+    "no overlap conflicts may be reported"
+  ],
+  "expectations": {
+    "client_stream": "HELLO-TCP-REASSEMBLY-WORLD!!",
+    "conflict_count": 0,
+    "packet_count": 11
+  }
+}

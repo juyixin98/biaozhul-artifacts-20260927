@@ -1,0 +1,18 @@
+{
+  "scenario": "same 4-tuple reused; two handshake generations",
+  "client_isn": "gen0=0x3e8 gen1=0x2328",
+  "server_isn": "gen0=0x1388 gen1=0x251c",
+  "client_original": "GEN0-CLIENT | GEN1-CLIENT",
+  "server_original": "GEN0-SERVER | GEN1-SERVER",
+  "notes": [
+    "generations must be indexed 0 and 1 with isolated streams"
+  ],
+  "expectations": {
+    "gen0_client": "GEN0-CLIENT",
+    "gen0_server": "GEN0-SERVER",
+    "gen1_client": "GEN1-CLIENT",
+    "gen1_server": "GEN1-SERVER",
+    "generation_count": 2,
+    "packet_count": 14
+  }
+}

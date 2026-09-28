@@ -1,0 +1,19 @@
+{
+  "scenario": "half-close then a rejected post-FIN byte",
+  "client_isn": "0x000003e8",
+  "server_isn": "0x00001388",
+  "client_original": "HELLO-TCP-REASSEMBLY-WORLD!!",
+  "server_original": "ACK-DATA-FROM-SERVER-BYE",
+  "notes": [
+    "FIN carries the last 14 client bytes and consumes one more seq",
+    "the stray 'X' at/after FIN is rejected, not output"
+  ],
+  "expectations": {
+    "client_stream": "HELLO-TCP-REASSEMBLY-WORLD!!",
+    "packet_count": 8,
+    "rejected_event": "DATA_AFTER_FIN_REJECTED",
+    "rejected_payload_not_in_any_stream": true,
+    "rejected_record": "stray-after-fin",
+    "server_stream": "ACK-DATA-FROM-SERVER-BYE"
+  }
+}

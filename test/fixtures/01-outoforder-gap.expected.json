@@ -1,0 +1,25 @@
+{
+  "scenario": "out-of-order delivery with a permanent 6-byte gap",
+  "client_isn": "0x000003e8",
+  "server_isn": "0x00001388",
+  "client_original": "HELLO-TCP-REASSEMBLY-WORLD!!",
+  "server_original": "ACK-DATA-FROM-SERVER-BYE",
+  "notes": [
+    "bytes at offsets 6..11 ('TCP-RE') are never sent",
+    "client replay outputs only the 6-byte contiguous prefix 'HELLO-'",
+    "gap [6,12) is proved by the FIN at offset 28"
+  ],
+  "expectations": {
+    "client_contiguous_prefix": "HELLO-",
+    "client_fin_position": 28,
+    "client_gaps": [
+      {
+        "end": 12,
+        "start": 6
+      }
+    ],
+    "client_length_proved": 28,
+    "packet_count": 9,
+    "server_stream": "ACK-DATA-FROM-SERVER-BYE"
+  }
+}
