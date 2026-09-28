@@ -130,8 +130,13 @@ def test_inventory_marks_ignored_symlink_and_scanned_separately(
         rule_pack, scope_pack, fingerprinter):
     result = scan_snapshot(FIXTURE_REPO, rule_pack, scope_pack, fingerprinter)
     statuses = {f.relpath: (f.status, f.reason) for f in result.inventory}
-    # The ignored .git directory is pruned and recorded.
-    assert statuses[".git/"][0] == STATUS_IGNORED
+    # node_modules/ is pruned per the default scope and recorded as ignored.
+    assert "node_modules/" in statuses
+    assert statuses["node_modules/"][0] == STATUS_IGNORED
+    # Nothing under the vendored tree is scanned, so its seeded fake token
+    # cannot leak into results.
+    assert not any(c.relpath.startswith("node_modules/")
+                   for c in result.candidates)
     # The symlink is NOT followed and explicitly reported as unscanned.
     assert statuses["src/link-to-aws.ini"][0] == STATUS_SYMLINK
     # Following that symlink would have double-counted AWS credentials; the
