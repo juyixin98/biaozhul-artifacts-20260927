@@ -1,0 +1,98 @@
+# Secret structural rule pack (versioned).
+#
+# A candidate requires BOTH a structural match here AND the entropy threshold
+# configured below; entropy alone never produces a candidate (the
+# "ordinary high-entropy text" case).
+#
+# This is evidence of *shape*, not proof of a live credential. Everything this
+# pack matches is reported as a candidate with a confidence level — never as a
+# confirmed leak. The scanner is fully offline and contains no network calls.
+
+[meta]
+name = "default structural rules"
+version = "2026.09.0-rules.1"
+# All patterns use Python `re` syntax. Single-quoted TOML strings are literal
+# (backslash is preserved), so regex escaping is written naturally.
+
+[[rules]]
+id = "github-classic-pat"
+description = "GitHub personal access token (classic), ghp_ prefix + 36 chars"
+pattern = 'ghp_[A-Za-z0-9]{36}'
+secret_group = 0
+# The random body carries the entropy; measure it rather than the fixed prefix.
+entropy_group = 0
+min_entropy = 3.5
+min_length = 40
+confidence = "high"
+multiline = false
+
+[[rules]]
+id = "aws-access-key-id"
+description = "AWS access key id (AKIA…) near an AWS keyword"
+pattern = '\b(AKIA[0-9A-Z]{16})\b'
+secret_group = 1
+entropy_group = 1
+min_entropy = 2.5
+min_length = 20
+confidence = "medium"
+multiline = false
+# Avoid flagging every 20-char uppercase id: require an AWS keyword on the line.
+require_keyword = true
+keyword_pattern = '(?i)\b(aws|access[_-]?key[_-]?id|amazon)\b'
+keyword_window = 80
+
+[[rules]]
+id = "aws-secret-access-key"
+description = "AWS secret access key assignment, 40-char base64-like value"
+pattern = '(?i)\b(aws[_-]?secret[_-]?access[_-]?key)\b[^\nA-Za-z0-9/+]{0,20}([A-Za-z0-9/+=]{40})'
+secret_group = 2
+entropy_group = 2
+min_entropy = 3.5
+min_length = 40
+confidence = "medium"
+multiline = false
+
+[[rules]]
+id = "slack-bot-token"
+description = "Slack bot/user token (xox[baprs]-…)"
+pattern = '\bxox[baprs]-[0-9A-Za-z-]{24,}\b'
+secret_group = 0
+entropy_group = 0
+min_entropy = 3.0
+min_length = 30
+confidence = "high"
+multiline = false
+
+[[rules]]
+id = "private-key-pem"
+description = "PEM private key block (header and footer)"
+pattern = '-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----[ \t\r\n]+([A-Za-z0-9+/=\s]{40,}?)[ \t\r\n]*-----END [A-Z0-9 ]*PRIVATE KEY-----'
+secret_group = 0
+# Entropy is measured on the base64 body (group 1), the structural header stays.
+entropy_group = 1
+min_entropy = 2.8
+min_length = 60
+confidence = "high"
+multiline = true
+
+[[rules]]
+id = "generic-assigned-secret"
+description = "high-entropy value assigned to a secret-like name"
+# Either: name = "value", or name: value / -n value; bare text is NOT matched.
+pattern = "(?i)(?:^|[^A-Za-z0-9])(api[_-]?key|secret|token|password|passwd|credential|auth[_-]?token)\\b[ \\t:]{0,6}(?:=|:)[ \\t]{0,6}[\"\\x27]?([A-Za-z0-9+/_=-]{20,})[\"\\x27]?"
+# Pattern notes:
+#  * the leading boundary consumes one non-alphanumeric character (space,
+#    quote, '/' ...) so `API_TOKEN` matches while `mytoken` does not; the '_'
+#    in `API_TOKEN` is that boundary character itself.
+#  * assignment requires '=' or ':' with spaces/tabs/quotes around it. '=' is
+#    never part of the captured value, so `token=ghp_...` leaves ghp hits to
+#    the specialised github rule rather than swallowing the prefix.
+#  * inside the value class '-' must remain last (literal).
+secret_group = 2
+entropy_group = 2
+min_entropy = 4.0
+min_length = 20
+confidence = "low"
+multiline = false
+# "password"/"token" as a literal placeholder is not a secret.
+deny_substrings = ["example", "changeme", "your-", "xxxx", "placeholder", "redacted"]

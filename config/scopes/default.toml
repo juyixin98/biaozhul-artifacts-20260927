@@ -1,0 +1,34 @@
+# Scan scope & ignore pack (versioned).
+#
+# "ignored" files are *intentional* exclusions (still listed in the inventory
+# with reason "ignored" so coverage is auditable). Files beyond max_file_bytes
+# are "skipped:oversize" — explicitly recorded as NOT SCANNED. These two
+# categories must never be confused with "scanned clean".
+
+[meta]
+name = "default scope and ignore rules"
+version = "2026.09.0-scope.1"
+
+[limits]
+# Files >= this size are not opened and are reported as unscanned (oversize).
+max_file_bytes = 1048576
+# Printable-ASCII runs shorter than this inside binaries are not inspected.
+binary_min_run = 8
+
+[ignore]
+# Gitignore-style patterns (** supported). Patterns without a slash match at
+# every directory level; trailing slash = directory only.
+patterns = [
+    ".git/",
+    ".hg/",
+    ".svn/",
+    "__pycache__/",
+    ".venv/",
+    "node_modules/",
+    "*.pyc",
+    ".secretscan/",
+    # Dependency lockfiles and vendored trees are intentionally out of scope.
+    "vendor/",
+    "dist/",
+    "build/",
+]

@@ -1,0 +1,16 @@
+# Fixed-version dependencies for the offline secret-candidate scanner.
+# Generated and verified on Python 3.12 (Debian-based environment, 2026-09-28).
+# Install with:  python -m venv .venv && .venv/bin/pip install -r requirements.txt
+#
+# Runtime dependencies
+fastapi==0.141.1
+uvicorn==0.54.0
+pydantic==2.13.5
+pydantic-core==2.46.5
+starlette==1.7.0
+cryptography==50.0.1
+anyio==4.15.1
+#
+# Test / verification dependencies
+pytest==9.1.1
+httpx==0.28.1
