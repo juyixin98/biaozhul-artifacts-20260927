@@ -1,0 +1,6 @@
+{
+  "http_addr": ":8080",
+  "database_path": "./data/coordinator.db",
+  "approval_ttl_ms": 30000,
+  "sweep_interval_ms": 5000
+}

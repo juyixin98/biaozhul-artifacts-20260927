@@ -1,0 +1,6 @@
+{
+  "http_addr": ":8081",
+  "database_path": "./data/demo.db",
+  "approval_ttl_ms": 5000,
+  "sweep_interval_ms": 1000
+}

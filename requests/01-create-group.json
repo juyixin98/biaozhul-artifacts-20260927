@@ -1,0 +1,7 @@
+{
+  "name": "web",
+  "namespace": "default",
+  "replicas": 3,
+  "budget": { "mode": "maxUnavailable", "value": 1 },
+  "selector": { "app": "web" }
+}

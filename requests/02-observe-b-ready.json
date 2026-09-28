@@ -1,0 +1,1 @@
+{ "instance": {"id": "b", "namespace": "default", "group": "web", "labels": {"app": "web"}}, "ready": true, "epoch": 1 }
