@@ -1,0 +1,35 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": {
+      "category": "BUDGET_TOTAL_BYTES",
+      "detail": "declared uncompressed total 67108864 bytes exceeds limit 10485760 bytes",
+      "entry": null
+    },
+    "files": [],
+    "format": null,
+    "input": {
+      "name": "zip-bomb.zip",
+      "sha256": "4c028f31474b7d03fd3325671424e8136bce051f8bee23db60ab1ce85a9b554b",
+      "size": 65346
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": null,
+    "run_id": "4a0540479e124b8db95044d34cd8d4dd",
+    "service": "archguard",
+    "status": "rejected",
+    "verdict": {
+      "accepted": false,
+      "category": "BUDGET_TOTAL_BYTES"
+    },
+    "version": "1.0.0"
+  },
+  "signature": "cab77cc44dbb4ea030086f210f49bea0ac5f96bcdd75c1880447af4671bd90fc"
+}

@@ -1,0 +1,35 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": {
+      "category": "HARDLINK",
+      "detail": "hard link entries are not allowed",
+      "entry": "hl"
+    },
+    "files": [],
+    "format": null,
+    "input": {
+      "name": "hardlink.tar",
+      "sha256": "66bff8bf14ff03e023c5f396409b0fb7d7b3b62b4203e2d77c2a5849a177f93e",
+      "size": 10240
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": null,
+    "run_id": "653b75a9b3fc4e6da2c4b32501b80453",
+    "service": "archguard",
+    "status": "rejected",
+    "verdict": {
+      "accepted": false,
+      "category": "HARDLINK"
+    },
+    "version": "1.0.0"
+  },
+  "signature": "caf794ec6d5a7628749d291a56452c6016f6286cd6a801ce65e853a11e605a4a"
+}

@@ -1,0 +1,35 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": {
+      "category": "SYMLINK_DANGLING",
+      "detail": "symlink 'l' points to 'missing-file', which is not provided by the archive",
+      "entry": "l"
+    },
+    "files": [],
+    "format": null,
+    "input": {
+      "name": "dangling.zip",
+      "sha256": "1eda354029094893dc72197dff7b8d6d67361be25bbebb905425f25b4359069f",
+      "size": 112
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": null,
+    "run_id": "a39b03dbbf77407cbe92bfbcaa78d190",
+    "service": "archguard",
+    "status": "rejected",
+    "verdict": {
+      "accepted": false,
+      "category": "SYMLINK_DANGLING"
+    },
+    "version": "1.0.0"
+  },
+  "signature": "de6e950b2d7ebe0a9b447f74e5224b5bb40d47b74c29689a549bbd393039f543"
+}

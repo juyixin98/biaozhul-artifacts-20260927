@@ -1,0 +1,35 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": {
+      "category": "CONTENT_CRC_MISMATCH",
+      "detail": "payload error for 'a.txt': Bad CRC-32 for file 'a.txt'",
+      "entry": "a.txt"
+    },
+    "files": [],
+    "format": null,
+    "input": {
+      "name": "bad-crc.zip",
+      "sha256": "62edbc382b2fab3c86e7ca284f2f838d22f5799b19ccac8a844f0cb6936fcd44",
+      "size": 119
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": null,
+    "run_id": "3061c048df2b4494969cf8f74fe7d67f",
+    "service": "archguard",
+    "status": "rejected",
+    "verdict": {
+      "accepted": false,
+      "category": "CONTENT_CRC_MISMATCH"
+    },
+    "version": "1.0.0"
+  },
+  "signature": "26a527ee29304ef19a300beb6ad2bce0ef7ac0bb6504e6021602f36d2f3160d5"
+}

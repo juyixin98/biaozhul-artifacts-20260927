@@ -1,0 +1,27 @@
+==> Generating synthetic fixtures under /tmp/ag-fixtures
+fixtures: ['absolute.zip', 'bad-crc.zip', 'benign.zip', 'case-collision.zip', 'dangling.zip', 'declared-size.zip', 'duplicate.zip', 'fifo.tar', 'hardlink.tar', 'link-escape.zip', 'link-loop.zip', 'not-archive.dat', 'traversal.zip', 'zip-bomb.zip']
+==> Starting service on http://127.0.0.1:8080 (fresh ./var)
+
+FIXTURE              HTTP      CATEGORY                   ENTRY
+-------              ----      --------                   -----
+benign.zip           200       ACCEPTED                   -
+traversal.zip        422       PATH_TRAVERSAL             ../../tmp/evil.sh
+absolute.zip         422       PATH_TRAVERSAL             /tmp/abs-evil
+case-collision.zip   422       CASE_COLLISION             data.txt
+duplicate.zip        422       DUPLICATE_ENTRY            a.txt
+link-loop.zip        422       SYMLINK_LOOP               a
+link-escape.zip      422       SYMLINK_ESCAPE             l
+dangling.zip         422       SYMLINK_DANGLING           l
+hardlink.tar         422       HARDLINK                   hl
+fifo.tar             422       ENTRY_SPECIAL              spooky
+declared-size.zip    422       DECLARED_SIZE_MISMATCH     a.txt
+bad-crc.zip          422       CONTENT_CRC_MISMATCH       a.txt
+zip-bomb.zip         422       BUDGET_TOTAL_BYTES         -
+not-archive.dat      422       FORMAT_UNSUPPORTED         -
+
+==> Audit hash chain:
+{"ok":true,"records":63}
+==> Materialized run dirs (rejected runs leave none):
+  7092597d2f3942e8879143071f8d5372
+==> Spool (must be empty after finalization):
+(end of list)

@@ -1,0 +1,12 @@
+{
+  "home": "./var",
+  "max_total_bytes": 10485760,
+  "max_files": 1000,
+  "max_depth": 16,
+  "max_symlink_hops": 8,
+  "max_compression_ratio": 100.0,
+  "max_upload_bytes": 52428800,
+  "keep_failed_dirs": false,
+  "host": "127.0.0.1",
+  "port": 8080
+}

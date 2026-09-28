@@ -1,0 +1,35 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": {
+      "category": "DECLARED_SIZE_MISMATCH",
+      "detail": "payload for 'a.txt' produced 5 bytes; header declared 99",
+      "entry": "a.txt"
+    },
+    "files": [],
+    "format": null,
+    "input": {
+      "name": "declared-size.zip",
+      "sha256": "ed69645a4e2522ff4334a4045b13c751bc66a04d57e1bfdf5167c398fbe444ad",
+      "size": 113
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": null,
+    "run_id": "7946416cfebe4623aa3131c305c3a853",
+    "service": "archguard",
+    "status": "rejected",
+    "verdict": {
+      "accepted": false,
+      "category": "DECLARED_SIZE_MISMATCH"
+    },
+    "version": "1.0.0"
+  },
+  "signature": "e663a08812b5776d0471f7f5503dcac177dd4d1cf4b0b23785420bd5c175d3ef"
+}

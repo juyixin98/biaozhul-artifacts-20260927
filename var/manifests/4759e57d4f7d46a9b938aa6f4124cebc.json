@@ -1,0 +1,35 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": {
+      "category": "SYMLINK_LOOP",
+      "detail": "symlink cycle detected at 'b' while resolving 'a'",
+      "entry": "a"
+    },
+    "files": [],
+    "format": null,
+    "input": {
+      "name": "link-loop.zip",
+      "sha256": "aed7688e146b2c4e31c97233dbc2844aeeed68064189c6c49e9e6220e00ad5eb",
+      "size": 180
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": null,
+    "run_id": "4759e57d4f7d46a9b938aa6f4124cebc",
+    "service": "archguard",
+    "status": "rejected",
+    "verdict": {
+      "accepted": false,
+      "category": "SYMLINK_LOOP"
+    },
+    "version": "1.0.0"
+  },
+  "signature": "7e65102b6afe4e332d3ffadff25fa1aa52aab4c98be03957684a4e3f60a22bf3"
+}

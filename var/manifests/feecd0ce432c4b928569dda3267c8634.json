@@ -1,0 +1,35 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": {
+      "category": "ENTRY_SPECIAL",
+      "detail": "special files (fifo/device/socket) are not allowed",
+      "entry": "spooky"
+    },
+    "files": [],
+    "format": null,
+    "input": {
+      "name": "fifo.tar",
+      "sha256": "7a2839be00664afc1150a07a0860406f85b063033de4ec0707d13b52d4cfd828",
+      "size": 10240
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": null,
+    "run_id": "feecd0ce432c4b928569dda3267c8634",
+    "service": "archguard",
+    "status": "rejected",
+    "verdict": {
+      "accepted": false,
+      "category": "ENTRY_SPECIAL"
+    },
+    "version": "1.0.0"
+  },
+  "signature": "507cea648dd438e3a7c16c2c8a921aa80a37edffa3580cef3713b3584c5fad22"
+}

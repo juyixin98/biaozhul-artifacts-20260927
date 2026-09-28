@@ -1,0 +1,48 @@
+{
+  "alg": "HMAC-SHA256",
+  "manifest": {
+    "budgets": {
+      "max_compression_ratio": 100.0,
+      "max_depth": 16,
+      "max_files": 1000,
+      "max_symlink_hops": 8,
+      "max_total_bytes": 10485760
+    },
+    "failure": null,
+    "files": [
+      {
+        "declared_path": "docs/readme.txt",
+        "kind": "file",
+        "physical_path": "docs/readme.txt",
+        "sha256": "f8976760708ac1d60ab4b2dd1fa3c02d3bbf9693846f1db27aa77b46f0bb4276",
+        "size": 13
+      },
+      {
+        "declared_path": "docs/sub/note.txt",
+        "kind": "file",
+        "physical_path": "docs/sub/note.txt",
+        "sha256": "448b0d710546cdd1aeacaf6a2213aeeeb869452ddd5c1ad2e995dd759a82e668",
+        "size": 11
+      }
+    ],
+    "format": "zip",
+    "input": {
+      "name": "benign.zip",
+      "sha256": "7b956b99d6c310a9809e657dd500e322935e0934a10b177c2198759e2b709452",
+      "size": 365
+    },
+    "issued_at": "2026-09-28T04:49:33Z",
+    "plan": {
+      "explicit": 3,
+      "nodes": 5
+    },
+    "run_id": "7092597d2f3942e8879143071f8d5372",
+    "service": "archguard",
+    "status": "accepted",
+    "verdict": {
+      "accepted": true
+    },
+    "version": "1.0.0"
+  },
+  "signature": "06c5fcc382715017ca7efe5d45b7c73b9250bba4c5934efb37d34bffbe70f8cf"
+}
