@@ -1,0 +1,20 @@
+# 列式文件统计审计后端 —— 独立配置文件
+# 所有键都可被环境变量覆盖，环境变量名为 COLSTATS_<SECTION>_<KEY>（大写）。
+# 例如 COLSTATS_STORE_DB_PATH=/tmp/x.db；布尔值写 1/true/yes。
+
+[service]
+host = "127.0.0.1"
+port = 8080
+db_path = "data/audit.db"
+
+[audit]
+# 审计时是否输出被审计的真实 min/max 值。false 时只输出脱敏指纹与长度。
+expose_values = false
+# 单个文件允许的页数量上限（防御性）。
+max_pages_per_file = 100000
+# 支持审计的物理类型（其余类型记 UNSUPPORTED_TYPE，不剪枝）。
+supported_physical_types = ["BOOLEAN", "INT32", "INT64", "FLOAT", "DOUBLE", "BYTE_ARRAY"]
+
+[log]
+# 诊断日志级别。
+level = "INFO"
