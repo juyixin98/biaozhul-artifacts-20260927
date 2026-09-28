@@ -1,0 +1,94 @@
+{
+  "format": "HCMP",
+  "generator": "tests/golden/generate_fixtures.py (independent Python oracle)",
+  "python": "3.12.3",
+  "vectors": [
+    {
+      "cases": 4,
+      "file": "lengths.json",
+      "kind": "lengths",
+      "name": "lengths"
+    },
+    {
+      "blocks": 1,
+      "file": "empty.bin",
+      "kind": "roundtrip",
+      "name": "empty",
+      "original_file": "empty.orig.bin"
+    },
+    {
+      "blocks": 1,
+      "file": "single_1.bin",
+      "kind": "roundtrip",
+      "name": "single_1",
+      "original_file": "single_1.orig.bin"
+    },
+    {
+      "blocks": 1,
+      "file": "single_7.bin",
+      "kind": "roundtrip",
+      "name": "single_7",
+      "original_file": "single_7.orig.bin"
+    },
+    {
+      "blocks": 1,
+      "file": "single_1000.bin",
+      "kind": "roundtrip",
+      "name": "single_1000",
+      "original_file": "single_1000.orig.bin"
+    },
+    {
+      "blocks": 1,
+      "file": "all_bytes.bin",
+      "kind": "roundtrip",
+      "name": "all_bytes",
+      "original_file": "all_bytes.orig.bin"
+    },
+    {
+      "blocks": 5,
+      "file": "extreme_skew.bin",
+      "kind": "roundtrip",
+      "name": "extreme_skew",
+      "original_file": "extreme_skew.orig.bin"
+    },
+    {
+      "blocks": 3,
+      "file": "random_12k.bin",
+      "kind": "roundtrip",
+      "name": "random_12k",
+      "original_file": "random_12k.orig.bin"
+    },
+    {
+      "blocks": 1,
+      "file": "text.bin",
+      "kind": "roundtrip",
+      "name": "text",
+      "original_file": "text.orig.bin"
+    },
+    {
+      "expect_error": "unknown_version",
+      "file": "malformed_unknown_version.bin",
+      "kind": "malformed",
+      "name": "malformed_unknown_version"
+    },
+    {
+      "expect_error": "over_subscribed_tree",
+      "file": "malformed_over_subscribed.bin",
+      "kind": "malformed",
+      "name": "malformed_over_subscribed"
+    },
+    {
+      "expect_error": "truncated_bitstream",
+      "file": "malformed_truncated_code.bin",
+      "kind": "malformed",
+      "name": "malformed_truncated_code"
+    },
+    {
+      "expect_error": "invalid_trailing_bits",
+      "file": "malformed_bad_padding.bin",
+      "kind": "malformed",
+      "name": "malformed_bad_padding"
+    }
+  ],
+  "version": 1
+}

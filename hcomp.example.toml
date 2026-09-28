@@ -1,0 +1,22 @@
+# hcomp example configuration.
+#
+# Copy to hcomp.toml and pass with `hcompd --config hcomp.toml`.
+# Every field is optional; environment variables (HCOMP_*) override TOML.
+
+# Directory where compressed objects (<id>.hcomp) are stored. Created on
+# startup if it does not exist.
+store_dir = "./data"
+
+# Maximum uncompressed size of a single independently-coded block, in bytes.
+# Larger request bodies are split into multiple blocks. Must be > 0 and may
+# not exceed max_body_len.
+max_block_len = 1048576
+
+# Maximum accepted HTTP request body size, in bytes.
+max_body_len = 16777216
+
+# Socket address the HTTP server binds to.
+bind_addr = "127.0.0.1:8787"
+
+# Log formatting: "plain" (default), "json" or "debug" (pretty, multi-line).
+log_format = "plain"
