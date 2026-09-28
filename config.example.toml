@@ -1,0 +1,43 @@
+# mus-service configuration (all fields optional; defaults shown).
+# Copy to config.toml and edit. Environment variables override file values.
+
+# HTTP bind address (MUS_BIND_ADDR)
+bind_addr = "127.0.0.1:8080"
+
+# Solver used for extraction by default (MUS_DEFAULT_SOLVER)
+default_solver = "dpll"
+
+# Independent verifier used to certify the reported core (MUS_VERIFIER_SOLVER).
+# Deliberately a different implementation from the extraction solver.
+verifier_solver = "brute"
+
+# Truth-table verifier variable cap; larger subsets make the verdict inconclusive
+# rather than trusting an unverified core (MUS_BRUTE_MAX_VARS)
+brute_max_vars = 22
+
+# Default per-request solver-call budget including the initial SAT check
+# (MUS_CALL_BUDGET). Requests may override with "max_solver_calls".
+default_call_budget = 1024
+
+# Default per-call branching-decision budget for in-process solvers
+# (MUS_DECISION_BUDGET)
+default_decision_budget = 200000
+
+# Timeout for external CLI solver invocations (MUS_EXTERNAL_TIMEOUT_MS)
+external_timeout_ms = 30000
+
+# How long finished jobs are retained in the in-memory job map (seconds)
+job_ttl_seconds = 3600
+
+# Optional: register external DIMACS SAT solver binaries. The token {in} is replaced
+# with a temporary CNF file path. Requires an executable present on PATH.
+#
+# [[solvers]]
+# kind = "external"
+# name = "kissat"
+# argv = ["kissat", "{in}"]
+#
+# [[solvers]]
+# kind = "external"
+# name = "minisat"
+# argv = ["minisat", "{in}", "/dev/stdout"]

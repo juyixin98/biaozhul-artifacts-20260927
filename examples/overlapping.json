@@ -1,0 +1,15 @@
+{
+  "clauses": [
+    {"id": "a", "literals": [1]},
+    {"id": "b", "literals": [-1, 2]},
+    {"id": "c", "literals": [-2]},
+    {"id": "d", "literals": [-1, 3]},
+    {"id": "e", "literals": [-3]},
+    {"id": "r_unit", "literals": [4]},
+    {"id": "r_dup_c", "literals": [-2]},
+    {"id": "r_taut", "literals": [1, -1]},
+    {"id": "r_weak", "literals": [1, 2]}
+  ],
+  "order": "input",
+  "verify": true
+}

@@ -1,0 +1,22 @@
+[package]
+name = "mus-service"
+version = "0.1.0"
+edition = "2021"
+description = "Subset-minimal unsatisfiable core (MUS) extraction backend with replaceable SAT solvers"
+license = "MIT"
+
+[dependencies]
+axum = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "sync", "time"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4"] }
+toml = "0.8"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+
+[profile.release]
+lto = "thin"

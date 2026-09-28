@@ -1,0 +1,7 @@
+{
+  "clauses": [
+    {"id": "secret-alpha", "literals": [1111], "sensitive": true},
+    {"id": "secret-beta", "literals": [-1111], "sensitive": true}
+  ],
+  "verify": false
+}
