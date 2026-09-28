@@ -1,0 +1,87 @@
+### fieldapply example requests (REST Client / IntelliJ / VS Code style)
+### Replace {{base}} if your port differs.
+
+@base = http://localhost:8080
+
+### health
+GET {{base}}/healthz
+
+### create a resource with collection semantics
+POST {{base}}/v1/resources
+Content-Type: application/json
+
+{
+  "id": "app",
+  "manager": "platform",
+  "body": {
+    "spec": {
+      "replicas": 3,
+      "tags": ["x", "y"],
+      "containers": [
+        {"name": "web", "image": "web:1", "port": 8080},
+        {"name": "worker", "image": "worker:1"}
+      ]
+    }
+  },
+  "schema": {
+    "lists": {".spec.tags": "set", ".spec.containers": "keyed"},
+    "keys": {".spec.containers": "name"}
+  }
+}
+
+### autoscaler adopts replicas at the current value (shares the leaf)
+POST {{base}}/v1/resources/app/apply
+Content-Type: application/json
+
+{"manager": "autoscaler", "body": {"spec": {"replicas": 3}}}
+
+### autoscaler force-scales (platform still holds a share)
+POST {{base}}/v1/resources/app/apply
+Content-Type: application/json
+
+{"manager": "autoscaler", "force": true, "reason": "scale-up",
+ "body": {"spec": {"replicas": 7}}}
+
+### platform stale write -> 409 naming autoscaler
+POST {{base}}/v1/resources/app/apply
+Content-Type: application/json
+
+{"manager": "platform", "body": {"spec": {"replicas": 11}}}
+
+### netpol adds a set element
+POST {{base}}/v1/resources/app/apply
+Content-Type: application/json
+
+{"manager": "netpol", "body": {"spec": {"tags": ["z"]}}}
+
+### netpol force-takes one leaf of a keyed-list element
+POST {{base}}/v1/resources/app/apply
+Content-Type: application/json
+
+{"manager": "netpol", "force": true,
+ "body": {"spec": {"containers": [{"name": "web", "port": 9090}]}}}
+
+### platform deletes the worker element; carries current foreign values
+POST {{base}}/v1/resources/app/apply
+Content-Type: application/json
+
+{
+  "manager": "platform",
+  "body": {"spec": {"replicas": 7, "tags": ["x", "y"],
+    "containers": [{"name": "web", "image": "web:1", "port": 9090}]}}
+}
+
+### optimistic concurrency: stale baseRevision -> 409 revision_stale
+POST {{base}}/v1/resources/app/apply
+Content-Type: application/json
+
+{"manager": "platform", "baseRevision": 1, "body": {"spec": {"replicas": 7}}}
+
+### read live state
+GET {{base}}/v1/resources/app
+
+### read the field ownership table
+GET {{base}}/v1/resources/app/owners
+
+### read the auditable history
+GET {{base}}/v1/resources/app/history?limit=20
