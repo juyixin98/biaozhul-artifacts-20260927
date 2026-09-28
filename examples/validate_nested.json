@@ -1,0 +1,22 @@
+{
+  "request_id": "demo-nested-001",
+  "schema": {
+    "name": "nested_demo",
+    "fields": [
+      {"name": "id", "type": "int64", "repetition": "required"},
+      {"name": "ids", "type": "list", "repetition": "optional",
+       "element": {"type": "list", "element": {"type": "int32"}}},
+      {"name": "tags", "type": "list", "repetition": "optional",
+       "element": {"type": "string"}}
+    ]
+  },
+  "records": [
+    {"id": 1, "ids": null, "tags": ["a", "b"]},
+    {"id": 2, "ids": [], "tags": null},
+    {"id": 3, "ids": [null, [10, 20], [], [null, 30]], "tags": ["x", null, "y"]},
+    {"id": 4, "ids": [[], []], "tags": []},
+    {"id": 5, "ids": [[40], [50]], "tags": null},
+    {"id": 6, "ids": [[60, 70]], "tags": ["only"]}
+  ],
+  "force_page_after_records": 2
+}

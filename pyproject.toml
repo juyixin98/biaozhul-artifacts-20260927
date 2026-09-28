@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "parquet-nested-validator"
+version = "1.0.0"
+description = "Read/write verification backend for restricted nested lists and nullable structs in Parquet (self-implemented def/rep level kernel, PyArrow as independent oracle)"
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
