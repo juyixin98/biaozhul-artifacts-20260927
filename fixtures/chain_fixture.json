@@ -1,0 +1,325 @@
+{
+  "scenario": "synthetic_chain_alpha",
+  "protocol_version": "synthetic-1559/1.0.0",
+  "description": "Deterministic offline chain: target/empty/full blocks, fee-cap failures, bad signature, bad nonce, insufficient balance and hard block-level rejections.",
+  "genesis": {
+    "number": 0,
+    "block_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "base_fee_per_gas": "1000000000",
+    "gas_limit": 30000000,
+    "gas_used": 0
+  },
+  "accounts": {
+    "alice": {
+      "address": "0xb46a7a1a23f3897cc83a94521a96da5c23bc58db",
+      "seed": 1,
+      "genesis_balance": "1000000000000000000000000",
+      "genesis_nonce": 0
+    },
+    "bob": {
+      "address": "0x4b389153a9e78b42b7d4a691470674e817888d4e",
+      "seed": 2,
+      "genesis_balance": "50000000000000",
+      "genesis_nonce": 0
+    },
+    "carol": {
+      "address": "0xa9ccd15806749eda134a6438dae32fc5b6601f3f",
+      "seed": 3,
+      "genesis_balance": "0",
+      "genesis_nonce": 0
+    },
+    "dave": {
+      "address": "0x49a7423b47da763bb4bbc055b1f07254dc729036",
+      "seed": 4,
+      "genesis_balance": "0",
+      "genesis_nonce": 0
+    },
+    "eve": {
+      "address": "0xd7ea00a0ad2241d6dee0509a4bf27297508870d3",
+      "seed": 5,
+      "genesis_balance": "1000000000000000000",
+      "genesis_nonce": 0
+    }
+  },
+  "genesis_balances": {
+    "0xb46a7a1a23f3897cc83a94521a96da5c23bc58db": "1000000000000000000000000",
+    "0x4b389153a9e78b42b7d4a691470674e817888d4e": "50000000000000",
+    "0xa9ccd15806749eda134a6438dae32fc5b6601f3f": "0",
+    "0x49a7423b47da763bb4bbc055b1f07254dc729036": "0",
+    "0xd7ea00a0ad2241d6dee0509a4bf27297508870d3": "1000000000000000000"
+  },
+  "genesis_nonces": {
+    "0xb46a7a1a23f3897cc83a94521a96da5c23bc58db": 0,
+    "0x4b389153a9e78b42b7d4a691470674e817888d4e": 0,
+    "0xa9ccd15806749eda134a6438dae32fc5b6601f3f": 0,
+    "0x49a7423b47da763bb4bbc055b1f07254dc729036": 0,
+    "0xd7ea00a0ad2241d6dee0509a4bf27297508870d3": 0
+  },
+  "blocks": [
+    {
+      "number": 1,
+      "parent_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "base_fee_per_gas": "1000000000",
+      "gas_limit": 30000000,
+      "gas_used": 21000,
+      "transactions": [
+        {
+          "chain_id": 15590,
+          "nonce": 0,
+          "max_fee_per_gas": "2000000000",
+          "max_priority_fee_per_gas": "100000000",
+          "gas_limit": 21000,
+          "to": "0x4b389153a9e78b42b7d4a691470674e817888d4e",
+          "value": "1000000000000",
+          "data": "0x",
+          "signature": {
+            "r": "4725665742162978045238906855922982942823428232019616027399227958311222778556",
+            "s": "27016523252712131419392482020742324941147462814118806997540851906926587907712",
+            "v": 0
+          },
+          "_meta": {
+            "sender": "0xb46a7a1a23f3897cc83a94521a96da5c23bc58db",
+            "digest": "0418a07c0a1e7b4448accdd7a5e9474c5838adf7e9c194c8f2f70c0c0a1dd91b"
+          }
+        },
+        {
+          "chain_id": 15590,
+          "nonce": 0,
+          "max_fee_per_gas": "1",
+          "max_priority_fee_per_gas": "1",
+          "gas_limit": 21000,
+          "to": "0xb46a7a1a23f3897cc83a94521a96da5c23bc58db",
+          "value": "1",
+          "data": "0x",
+          "signature": {
+            "r": "24007800285770828719347605402317016677074149661355708810619138493878148115000",
+            "s": "9818014502528713768513223156741130536304691552624210045164448435848753631675",
+            "v": 1
+          },
+          "_meta": {
+            "sender": "0x4b389153a9e78b42b7d4a691470674e817888d4e",
+            "digest": "85da4e3369b049bda510fd18a1c6170f58db7a05281f9443688d5fd2c7eed316"
+          }
+        },
+        {
+          "chain_id": 15590,
+          "nonce": 0,
+          "max_fee_per_gas": "2000000000",
+          "max_priority_fee_per_gas": "1",
+          "gas_limit": 21000,
+          "to": "0x49a7423b47da763bb4bbc055b1f07254dc729036",
+          "value": "1",
+          "data": "0x",
+          "signature": {
+            "r": "12345",
+            "s": "6311261928952362382883857684828093616215935007960326947000855103705394984194",
+            "v": 1
+          },
+          "_meta": {
+            "sender": "0xa9ccd15806749eda134a6438dae32fc5b6601f3f",
+            "digest": "c1a76bbb33281ade6eb6bf7ff7839b6acd60d756bf99baa9fefc4d8c4fa8132a"
+          }
+        }
+      ],
+      "expected": {
+        "accepted": true,
+        "valid_count": 1,
+        "invalid": [
+          {
+            "index": 1,
+            "code": "E020_MAX_FEE_BELOW_BASE"
+          },
+          {
+            "index": 2,
+            "code": "E011_SIGNATURE_INVALID"
+          }
+        ],
+        "next_base_fee": "875175000",
+        "burned": "21000000000000",
+        "tipped": "2100000000000",
+        "price": "1100000000",
+        "tip": "100000000"
+      }
+    },
+    {
+      "number": 2,
+      "parent_hash": "<computed: block 1 hash>",
+      "base_fee_per_gas": "875175000",
+      "gas_limit": 30000000,
+      "gas_used": 30000000,
+      "transactions": [
+        {
+          "chain_id": 15590,
+          "nonce": 1,
+          "max_fee_per_gas": "2000000000",
+          "max_priority_fee_per_gas": "1000000000",
+          "gas_limit": 30000000,
+          "to": "0xa9ccd15806749eda134a6438dae32fc5b6601f3f",
+          "value": "0",
+          "data": "0x",
+          "signature": {
+            "r": "64364278751751746126616114813259201876791170321199101868487822342687429297927",
+            "s": "38978428335003637444536719427223461775521799935348421607552263493779441341773",
+            "v": 1
+          },
+          "_meta": {
+            "sender": "0xb46a7a1a23f3897cc83a94521a96da5c23bc58db",
+            "digest": "0dc58cadf407a25036ddd20f326a806bf103e327630e5dac9bc473a215d84a4a"
+          }
+        },
+        {
+          "chain_id": 15590,
+          "nonce": 0,
+          "max_fee_per_gas": "2000000000",
+          "max_priority_fee_per_gas": "1000000000",
+          "gas_limit": 21000,
+          "to": "0xa9ccd15806749eda134a6438dae32fc5b6601f3f",
+          "value": "2000000000000000000",
+          "data": "0x",
+          "signature": {
+            "r": "1925989607498005847466530454182775231990170916657007116820389399005185580158",
+            "s": "15994326742108103648846565902953490780997261063354502032447286248161936714145",
+            "v": 1
+          },
+          "_meta": {
+            "sender": "0xd7ea00a0ad2241d6dee0509a4bf27297508870d3",
+            "digest": "d367d38869f2782d936362c68c77fe9123e21d335e8a7aa59eb2dd37259db006"
+          }
+        }
+      ],
+      "expected": {
+        "accepted": true,
+        "valid_count": 1,
+        "invalid": [
+          {
+            "index": 1,
+            "code": "E033_INSUFFICIENT_BALANCE"
+          }
+        ],
+        "next_base_fee": "984571875",
+        "burned": "26255250000000000",
+        "tipped": "30000000000000000",
+        "price": "1875175000",
+        "tip": "1000000000"
+      }
+    },
+    {
+      "number": 3,
+      "parent_hash": "<computed: block 2 hash>",
+      "base_fee_per_gas": "984571875",
+      "gas_limit": 30000000,
+      "gas_used": 0,
+      "transactions": [],
+      "expected": {
+        "accepted": true,
+        "valid_count": 0,
+        "invalid": [],
+        "next_base_fee": "861500391",
+        "burned": "0",
+        "tipped": "0"
+      }
+    },
+    {
+      "number": 4,
+      "parent_hash": "<computed: block 3 hash>",
+      "base_fee_per_gas": "861500391",
+      "gas_limit": 30000000,
+      "gas_used": 21000,
+      "transactions": [
+        {
+          "chain_id": 15590,
+          "nonce": 0,
+          "max_fee_per_gas": "2000000000",
+          "max_priority_fee_per_gas": "100000000",
+          "gas_limit": 21000,
+          "to": "0x49a7423b47da763bb4bbc055b1f07254dc729036",
+          "value": "1",
+          "data": "0x",
+          "signature": {
+            "r": "26816550971751241094746274889751345943165899096639025034771379622448573935933",
+            "s": "30934684028172173212655988648870850307214936798682298642095479256056023741466",
+            "v": 0
+          },
+          "_meta": {
+            "sender": "0x4b389153a9e78b42b7d4a691470674e817888d4e",
+            "digest": "98eecb440d66c1675209c781b7cb9c8f66bea2bb82475509ebb9f7ee2431c308"
+          }
+        },
+        {
+          "chain_id": 15590,
+          "nonce": 99,
+          "max_fee_per_gas": "2000000000",
+          "max_priority_fee_per_gas": "1",
+          "gas_limit": 21000,
+          "to": "0x49a7423b47da763bb4bbc055b1f07254dc729036",
+          "value": "1",
+          "data": "0x",
+          "signature": {
+            "r": "53025709252262899486958814511892823037127027965799577993724254494031012180510",
+            "s": "30762042532613391323889007682926360380907168337593228851021581178686292070997",
+            "v": 0
+          },
+          "_meta": {
+            "sender": "0xb46a7a1a23f3897cc83a94521a96da5c23bc58db",
+            "digest": "d59f4066e913e4e9d750da4e90060476fd169f634b25f65bc2d406d4a5327f5e"
+          }
+        }
+      ],
+      "expected": {
+        "accepted": true,
+        "valid_count": 1,
+        "invalid": [
+          {
+            "index": 1,
+            "code": "E031_NONCE_MISMATCH"
+          }
+        ],
+        "next_base_fee": "753963605",
+        "burned": "18091508211000",
+        "tipped": "2100000000000",
+        "price": "961500391",
+        "tip": "100000000"
+      }
+    }
+  ],
+  "rejected_blocks": [
+    {
+      "name": "gas used exceeds cap",
+      "block": {
+        "number": 5,
+        "parent_hash": "<computed: block 4 hash>",
+        "base_fee_per_gas": "753963605",
+        "gas_limit": 30000000,
+        "gas_used": 30021000,
+        "transactions": []
+      },
+      "expected_code": "E040_BLOCK_GAS_EXCEEDED"
+    },
+    {
+      "name": "declared base fee does not match parent recurrence",
+      "block": {
+        "number": 5,
+        "parent_hash": "<computed: block 4 hash>",
+        "base_fee_per_gas": "1",
+        "gas_limit": 30000000,
+        "gas_used": 0,
+        "transactions": []
+      },
+      "expected_code": "E043_BASE_FEE_MISMATCH"
+    },
+    {
+      "name": "gas_used mismatch against valid transaction gas",
+      "block": {
+        "number": 5,
+        "parent_hash": "<computed: block 4 hash>",
+        "base_fee_per_gas": "753963605",
+        "gas_limit": 30000000,
+        "gas_used": 42000,
+        "transactions": [
+          "<one 21000-gas valid tx>"
+        ]
+      },
+      "expected_code": "E041_GAS_USED_MISMATCH"
+    }
+  ]
+}

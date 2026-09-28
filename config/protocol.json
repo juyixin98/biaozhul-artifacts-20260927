@@ -1,0 +1,14 @@
+{
+  "chain_id": 15590,
+  "protocol_version": "synthetic-1559/1.0.0",
+  "genesis_number": 0,
+  "genesis_base_fee": 1000000000,
+  "genesis_gas_used": 0,
+  "genesis_gas_limit": 30000000,
+  "elasticity_multiplier": 2,
+  "base_fee_max_change_denominator": 8,
+  "intrinsic_tx_gas": 21000,
+  "min_base_fee": 0,
+  "max_fee_wei_limit": 115792089237316195423570985008687907853269984665640564039457584007913129639935,
+  "address_hex_length": 40
+}

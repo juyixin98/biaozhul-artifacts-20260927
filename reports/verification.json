@@ -1,0 +1,244 @@
+{
+  "passed": 47,
+  "failed": 0,
+  "results": [
+    {
+      "name": "fee: target-load leaves fee unchanged",
+      "passed": true,
+      "detail": "got 1000000000 dir flat"
+    },
+    {
+      "name": "fee: empty block: max downward step 1/8",
+      "passed": true,
+      "detail": "got 875000000 dir down"
+    },
+    {
+      "name": "fee: full block: max upward step 1/8",
+      "passed": true,
+      "detail": "got 1125000000 dir up"
+    },
+    {
+      "name": "fee: 75% full: half of max upward step",
+      "passed": true,
+      "detail": "got 1062500000 dir up"
+    },
+    {
+      "name": "fee: 25% full: half of max downward step",
+      "passed": true,
+      "detail": "got 937500000 dir down"
+    },
+    {
+      "name": "fee: empty at tiny fee 7: floor pin then stuck at 7",
+      "passed": true,
+      "detail": "got 7 dir down"
+    },
+    {
+      "name": "fee: above target at fee 1: minimum +1 wei increment",
+      "passed": true,
+      "detail": "got 2 dir up"
+    },
+    {
+      "name": "fee: floor-division direction pin: num not divisible by target*8",
+      "passed": true,
+      "detail": "got 103 dir up"
+    },
+    {
+      "name": "fee: below target floor pin: sub-1-wei reduction vanishes",
+      "passed": true,
+      "detail": "got 1 dir down"
+    },
+    {
+      "name": "multi-block: six-block walk full/empty/target/75/25/empty from 1e9, limit 30m",
+      "passed": true,
+      "detail": "got [1125000000, 984375000, 984375000, 1045898437, 980529785, 857963562]"
+    },
+    {
+      "name": "tx-ok: tip is min(cap, slack); base burned, tip paid",
+      "passed": true,
+      "detail": "tip 100000000 price 1100000000 burn 21000000000000"
+    },
+    {
+      "name": "tx-ok: priority capped by slack when fee cap binds",
+      "passed": true,
+      "detail": "tip 50000000 price 1050000000 burn 21000000000000"
+    },
+    {
+      "name": "tx-ok: max_fee equal to base fee: zero tip, valid",
+      "passed": true,
+      "detail": "tip 0 price 1000000000 burn 21000000000000"
+    },
+    {
+      "name": "tx-fail: max_fee below base fee rejected [E020_MAX_FEE_BELOW_BASE]",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "tx-fail: gas below intrinsic 21000 rejected [E030_GAS_LIMIT_TOO_LOW]",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "tx-ok: tip cap above fee cap is valid and auto-capped",
+      "passed": true,
+      "detail": "tip 200000000 price 1200000000 burn 21000000000000"
+    },
+    {
+      "name": "tx-fail: overflow: max_fee*gas exceeds uint256 [E032_FEE_OVERFLOW]",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "tx-ok: conservation pricing: sender pays burned+tip, no ether created",
+      "passed": true,
+      "detail": "tip 150000000 price 650000000 burn 10500000000000"
+    },
+    {
+      "name": "recurrence equivalence over fuzzed space",
+      "passed": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "name": "effective-tip equivalence over fuzzed space",
+      "passed": true,
+      "detail": "0 bad"
+    },
+    {
+      "name": "all 4 fixture blocks accepted",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "exactly 4 invalid txs recorded",
+      "passed": true,
+      "detail": "got 4"
+    },
+    {
+      "name": "block 1 next_base_fee matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 1 burned matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 1 tipped matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 2 next_base_fee matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 2 burned matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 2 tipped matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 3 next_base_fee matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 3 burned matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 3 tipped matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 4 next_base_fee matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 4 burned matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block 4 tipped matches oracle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "total balance including burn sink is conserved",
+      "passed": true,
+      "detail": "before 1000001000050000000000000 after 1000001000050000000000000"
+    },
+    {
+      "name": "spendable supply shrinks by exactly burned amount",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "burned == sum of per-block burns",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coinbase holds exactly total tips",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block1 invalid categories",
+      "passed": true,
+      "detail": "{(2, 'E011_SIGNATURE_INVALID'), (1, 'E020_MAX_FEE_BELOW_BASE')}"
+    },
+    {
+      "name": "block2 invalid category",
+      "passed": true,
+      "detail": "{(1, 'E033_INSUFFICIENT_BALANCE')}"
+    },
+    {
+      "name": "block4 invalid category",
+      "passed": true,
+      "detail": "{(1, 'E031_NONCE_MISMATCH')}"
+    },
+    {
+      "name": "replay CLI exit status",
+      "passed": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "rejected: gas used exceeds cap",
+      "passed": true,
+      "detail": "expected E040_BLOCK_GAS_EXCEEDED observed E040_BLOCK_GAS_EXCEEDED"
+    },
+    {
+      "name": "rejected: declared base fee does not match parent recurrence",
+      "passed": true,
+      "detail": "expected E043_BASE_FEE_MISMATCH observed E043_BASE_FEE_MISMATCH"
+    },
+    {
+      "name": "rejected: gas_used mismatch against valid transaction gas",
+      "passed": true,
+      "detail": "expected E041_GAS_USED_MISMATCH observed E041_GAS_USED_MISMATCH"
+    },
+    {
+      "name": "sqlite index: empty block stored",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "sqlite index: head advanced to 4",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "not_executed": [
+    "No real-chain connection is made or tested by design (boundary)."
+  ]
+}

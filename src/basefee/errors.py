@@ -1,0 +1,43 @@
+"""Stable error codes used by the kernel, API and reports.
+
+Every failure the model can produce has a stable string code so tests can assert
+the *failure category*, not just that something failed.
+"""
+
+from __future__ import annotations
+
+from enum import Enum
+
+
+class ErrorCode(str, Enum):
+    # ---- encoding / signature (encoding_and_signing) ----
+    E001_HEX_DECODE = "E001_HEX_DECODE"
+    E002_RLP_DECODE = "E002_RLP_DECODE"
+    E003_CANONICAL_ENCODING = "E003_CANONICAL_ENCODING"
+    E004_BAD_CHAIN_ID = "E004_BAD_CHAIN_ID"
+    E010_SIGNATURE_MALFORMED = "E010_SIGNATURE_MALFORMED"
+    E011_SIGNATURE_INVALID = "E011_SIGNATURE_INVALID"
+    E012_SIGNATURE_HIGH_S = "E012_SIGNATURE_HIGH_S"
+    E013_SENDER_MISMATCH = "E013_SENDER_MISMATCH"
+
+    # ---- fee caps (transaction validity) ----
+    E020_MAX_FEE_BELOW_BASE = "E020_MAX_FEE_BELOW_BASE"
+    E021_NEGATIVE_TIP = "E021_NEGATIVE_TIP"
+    E022_BAD_FIELDS = "E022_BAD_FIELDS"
+    E030_GAS_LIMIT_TOO_LOW = "E030_GAS_LIMIT_TOO_LOW"
+    E031_NONCE_MISMATCH = "E031_NONCE_MISMATCH"
+    E032_FEE_OVERFLOW = "E032_FEE_OVERFLOW"
+    E033_INSUFFICIENT_BALANCE = "E033_INSUFFICIENT_BALANCE"
+
+    # ---- block / recurrence ----
+    E040_BLOCK_GAS_EXCEEDED = "E040_BLOCK_GAS_EXCEEDED"
+    E041_GAS_USED_MISMATCH = "E041_GAS_USED_MISMATCH"
+    E042_BAD_PARENT = "E042_BAD_PARENT"
+    E043_BASE_FEE_MISMATCH = "E043_BASE_FEE_MISMATCH"
+    E044_BAD_BLOCK_HEADER = "E044_BAD_BLOCK_HEADER"
+    E045_GAS_LIMIT_INVALID = "E045_GAS_LIMIT_INVALID"
+
+    # ---- storage / replay ----
+    E050_BLOCK_EXISTS = "E050_BLOCK_EXISTS"
+    E051_PARENT_UNKNOWN = "E051_PARENT_UNKNOWN"
+    E052_REPLAY_GAP = "E052_REPLAY_GAP"

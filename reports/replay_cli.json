@@ -1,0 +1,165 @@
+{
+  "scenario": "synthetic_chain_alpha",
+  "protocol_version": "synthetic-1559/1.0.0",
+  "blocks_total": 4,
+  "blocks_accepted": 4,
+  "blocks_rejected": 0,
+  "valid_txs": 3,
+  "invalid_txs": 4,
+  "total_burned": "26294341508211000",
+  "total_tipped": "30004200000000000",
+  "head_number": 4,
+  "head_next_base_fee": "753963605",
+  "failures": [],
+  "warnings": [],
+  "blocks": [
+    {
+      "number": 1,
+      "block_hash": "0x3d68ea00613be8efa0f1843b5a57b86e5a6f1d693c3df00530ab5d4eb04359d8",
+      "gas_used": 21000,
+      "gas_limit": 30000000,
+      "base_fee_per_gas": "1000000000",
+      "next_base_fee": "875175000",
+      "fee_step": {
+        "parent_base_fee": 1000000000,
+        "gas_limit": 30000000,
+        "gas_used": 21000,
+        "target_gas": 15000000,
+        "direction": "down",
+        "delta_numerator": 14979000000000000,
+        "delta_after_first_floor": 998600000,
+        "delta_final": 124825000,
+        "applied_min_increment": false,
+        "next_base_fee": 875175000,
+        "denominator": 8,
+        "elasticity_multiplier": 2
+      },
+      "valid_txs": 1,
+      "invalid_txs": [
+        {
+          "index": 1,
+          "code": "E020_MAX_FEE_BELOW_BASE",
+          "detail": "E020_MAX_FEE_BELOW_BASE"
+        },
+        {
+          "index": 2,
+          "code": "E011_SIGNATURE_INVALID",
+          "detail": "E011_SIGNATURE_INVALID"
+        }
+      ],
+      "burned": "21000000000000",
+      "tipped": "2100000000000"
+    },
+    {
+      "number": 2,
+      "block_hash": "0x39f4b5527993039299d25518d4a528485fb49dbb0b8d82bd0d79ccffcb6284f6",
+      "gas_used": 30000000,
+      "gas_limit": 30000000,
+      "base_fee_per_gas": "875175000",
+      "next_base_fee": "984571875",
+      "fee_step": {
+        "parent_base_fee": 875175000,
+        "gas_limit": 30000000,
+        "gas_used": 30000000,
+        "target_gas": 15000000,
+        "direction": "up",
+        "delta_numerator": 13127625000000000,
+        "delta_after_first_floor": 875175000,
+        "delta_final": 109396875,
+        "applied_min_increment": false,
+        "next_base_fee": 984571875,
+        "denominator": 8,
+        "elasticity_multiplier": 2
+      },
+      "valid_txs": 1,
+      "invalid_txs": [
+        {
+          "index": 1,
+          "code": "E033_INSUFFICIENT_BALANCE",
+          "detail": "E033_INSUFFICIENT_BALANCE"
+        }
+      ],
+      "burned": "26255250000000000",
+      "tipped": "30000000000000000"
+    },
+    {
+      "number": 3,
+      "block_hash": "0x3085ab6f19e77eb72a8e4acc4886e0d46efe1bd498553b40e6e12c371e6bf582",
+      "gas_used": 0,
+      "gas_limit": 30000000,
+      "base_fee_per_gas": "984571875",
+      "next_base_fee": "861500391",
+      "fee_step": {
+        "parent_base_fee": 984571875,
+        "gas_limit": 30000000,
+        "gas_used": 0,
+        "target_gas": 15000000,
+        "direction": "down",
+        "delta_numerator": 14768578125000000,
+        "delta_after_first_floor": 984571875,
+        "delta_final": 123071484,
+        "applied_min_increment": false,
+        "next_base_fee": 861500391,
+        "denominator": 8,
+        "elasticity_multiplier": 2
+      },
+      "valid_txs": 0,
+      "invalid_txs": [],
+      "burned": "0",
+      "tipped": "0"
+    },
+    {
+      "number": 4,
+      "block_hash": "0x235cdacdae89998b0fb3825f1d9145570ceda783556106096c2c93542409df27",
+      "gas_used": 21000,
+      "gas_limit": 30000000,
+      "base_fee_per_gas": "861500391",
+      "next_base_fee": "753963605",
+      "fee_step": {
+        "parent_base_fee": 861500391,
+        "gas_limit": 30000000,
+        "gas_used": 21000,
+        "target_gas": 15000000,
+        "direction": "down",
+        "delta_numerator": 12904414356789000,
+        "delta_after_first_floor": 860294290,
+        "delta_final": 107536786,
+        "applied_min_increment": false,
+        "next_base_fee": 753963605,
+        "denominator": 8,
+        "elasticity_multiplier": 2
+      },
+      "valid_txs": 1,
+      "invalid_txs": [
+        {
+          "index": 1,
+          "code": "E031_NONCE_MISMATCH",
+          "detail": "E031_NONCE_MISMATCH"
+        }
+      ],
+      "burned": "18091508211000",
+      "tipped": "2100000000000"
+    }
+  ],
+  "rejected_block_cases": [
+    {
+      "name": "gas used exceeds cap",
+      "expected_code": "E040_BLOCK_GAS_EXCEEDED",
+      "observed_code": "E040_BLOCK_GAS_EXCEEDED",
+      "matched": true
+    },
+    {
+      "name": "declared base fee does not match parent recurrence",
+      "expected_code": "E043_BASE_FEE_MISMATCH",
+      "observed_code": "E043_BASE_FEE_MISMATCH",
+      "matched": true
+    },
+    {
+      "name": "gas_used mismatch against valid transaction gas",
+      "expected_code": "E041_GAS_USED_MISMATCH",
+      "observed_code": "E041_GAS_USED_MISMATCH",
+      "matched": true
+    }
+  ],
+  "all_rejections_matched": true
+}
