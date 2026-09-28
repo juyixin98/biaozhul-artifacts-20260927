@@ -1,0 +1,13 @@
+# build artifacts
+/bin/
+/data/
+*.db
+*.db-wal
+*.db-shm
+
+# local demo state
+/tmp/
+
+# editor/os
+*.swp
+.DS_Store
