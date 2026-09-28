@@ -1,0 +1,16 @@
+[project]
+name = "osdiff"
+version = "0.1.0"
+description = "Offline differential analysis of object-storage authorization policies over a bounded, exhaustively enumerated request space"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi==0.115.6",
+    "uvicorn[standard]==0.32.1",
+    "pydantic==2.9.2",
+    "cryptography==43.0.3",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-ra"

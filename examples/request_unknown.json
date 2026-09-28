@@ -1,0 +1,6 @@
+{
+  "principal": "alice",
+  "action": "s3:GetObject",
+  "resource": "docs/report.pdf",
+  "attributes": {"department": {"__unknown__": true}}
+}

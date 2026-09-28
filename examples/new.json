@@ -1,0 +1,27 @@
+{
+  "Version": "2026-09-01",
+  "Statement": [
+    {
+      "Sid": "read-photos",
+      "Effect": "Allow",
+      "Principal": ["alice", "bob"],
+      "Action": ["s3:GetObject"],
+      "Resource": ["photos/*"]
+    },
+    {
+      "Sid": "read-private",
+      "Effect": "Allow",
+      "Principal": ["alice"],
+      "Action": ["s3:GetObject"],
+      "Resource": ["photos/2026/private/*"]
+    },
+    {
+      "Sid": "office",
+      "Effect": "Allow",
+      "Principal": ["alice"],
+      "Action": ["s3:GetObject"],
+      "Resource": ["docs/*"],
+      "Condition": {"StringNotEquals": {"department": ["external"]}}
+    }
+  ]
+}
