@@ -1,0 +1,20 @@
+# Runtime + test dependencies (direct, version-pinned).
+# Full transitive lock with hashes is captured in requirements.lock.txt.
+#
+# Why each is here:
+#   pycryptodome - mature Keccak-256 used by the production selector/hash path
+#   eth-keys     - mature secp256k1 sign/recover for the signature kernel
+#   coincurve    - eth-keys secp256k1 backend (pinned explicitly for reproducibility)
+#   fastapi/uvicorn/pydantic - HTTP API layer
+#   eth-abi/eth-utils - TEST ORACLE ONLY; never imported by src/abibackend
+#   httpx/pytest - test client + runner
+pycryptodome==3.23.0
+eth-keys==0.8.0
+coincurve==21.0.0
+fastapi==0.141.1
+uvicorn==0.54.0
+pydantic==2.13.5
+eth-abi==6.0.0
+eth-utils==6.0.0
+httpx==0.28.1
+pytest==9.1.1

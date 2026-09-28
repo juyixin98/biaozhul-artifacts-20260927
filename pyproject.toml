@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abibackend"
+version = "1.0.0"
+description = "Restricted Ethereum ABI encode/decode backend (integers, bytes, arrays, tuples) with chain kernel, indexed storage and offline replay"
+requires-python = ">=3.10"
+dependencies = [
+    "pycryptodome==3.23.0",
+    "eth-keys==0.8.0",
+    "coincurve==21.0.0",
+    "fastapi==0.141.1",
+    "uvicorn==0.54.0",
+    "pydantic==2.13.5",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "slow: replay-ish tests that are a little slower",
+]

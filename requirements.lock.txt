@@ -1,0 +1,15 @@
+# Transitive lock file.
+#
+# This project pins DIRECT dependencies in requirements.txt. A fully resolved
+# transitive lock (including hashes) is produced by installing in a clean
+# virtualenv and freezing. Because the build sandbox used during development
+# blocked network `pip install`, the resolved transitive closure could not be
+# generated here; regenerate it with:
+#
+#     bash setup.sh
+#     . .venv/bin/activate
+#     pip freeze --all --require-virtualenv > requirements.lock.txt
+#
+# The direct pins below are known-good versions for Python 3.12 and are the
+# exact set setup.sh installs when no lock is present.
+-r requirements.txt
