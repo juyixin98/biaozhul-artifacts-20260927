@@ -1,0 +1,7 @@
+# 直接依赖（已锁定主版本，详见 requirements.lock 完整传递锁定）
+pyarrow==17.0.0
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4
+httpx==0.28.1
+pytest==8.3.4
