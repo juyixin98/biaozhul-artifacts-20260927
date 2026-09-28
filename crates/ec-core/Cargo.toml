@@ -1,0 +1,16 @@
+[package]
+name = "ec-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Reed-Solomon (Cauchy) erasure-coding kernel: configuration, GF(2^8) matrices, encode/reconstruct"
+
+[dependencies]
+ec-gf.workspace = true
+serde.workspace = true
+sha2.workspace = true
+
+[dev-dependencies]
+hex.workspace = true
+serde_json.workspace = true
+base64 = "0.22.1"

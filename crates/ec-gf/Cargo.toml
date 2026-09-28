@@ -1,0 +1,9 @@
+[package]
+name = "ec-gf"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "GF(2^8) finite-field primitives (modulus 0x11D) for the erasure-coding service"
+
+[dev-dependencies]
+hex.workspace = true

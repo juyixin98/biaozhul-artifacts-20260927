@@ -1,0 +1,233 @@
+{
+  "cases": [
+    {
+      "case_id": "k3m2_l31",
+      "covered_tlv_hex": "000101000e47463250382d30783131422d473302030302040000000b05000000000000001f0600000000000000020700075348412d32353608000f676f6c64656e2d6b336d325f6c333109000500000000002070c0d83c928fac9512f8b5cc873a8fd2d787e2092a23bae10a9efd1e1fb0c1f7000100000020f6e72afe1e5df8b2a481d551ddcb25dfad5ce405924d9d17fafe362a598c89c20002000000202ec4d86db1122610360d1c801510ffd45869f97be75feb738ad0ad747f5cdcdb000300000020ecda751f34acba4a0aa80c4c6c18e6f7caf06f8d9a4a028799459e64e338828f000400000020b58e4f8b0dbaff87041729e482d005a60b64b04a811b49683b77997f4c82e2ce",
+      "k": 3,
+      "m": 2,
+      "manifest": {
+        "covered_fields": [
+          "format_version",
+          "field_primitive",
+          "k",
+          "m",
+          "shard_len",
+          "original_len",
+          "pad_len",
+          "digest_algorithm",
+          "object_id",
+          "shard_digests"
+        ],
+        "digest_algorithm": "SHA-256",
+        "field_primitive": "GF2P8-0x11B-G3",
+        "format_version": 1,
+        "k": 3,
+        "m": 2,
+        "manifest_digest_hex": "c8354083b530d44cfe182503bf49dcc5c032a74d0ecdaa9674f6186684f4dab3",
+        "object_id": "golden-k3m2_l31",
+        "original_len": 31,
+        "pad_len": 2,
+        "shard_count": 5,
+        "shard_len": 11,
+        "shards": [
+          {
+            "digest_hex": "70c0d83c928fac9512f8b5cc873a8fd2d787e2092a23bae10a9efd1e1fb0c1f7",
+            "index": 0
+          },
+          {
+            "digest_hex": "f6e72afe1e5df8b2a481d551ddcb25dfad5ce405924d9d17fafe362a598c89c2",
+            "index": 1
+          },
+          {
+            "digest_hex": "2ec4d86db1122610360d1c801510ffd45869f97be75feb738ad0ad747f5cdcdb",
+            "index": 2
+          },
+          {
+            "digest_hex": "ecda751f34acba4a0aa80c4c6c18e6f7caf06f8d9a4a028799459e64e338828f",
+            "index": 3
+          },
+          {
+            "digest_hex": "b58e4f8b0dbaff87041729e482d005a60b64b04a811b49683b77997f4c82e2ce",
+            "index": 4
+          }
+        ]
+      },
+      "original_b64": "2fHm+oJI1Vki99J/NzPmuCrrFwONrZpwkKO6y6AYWw==",
+      "pad_len": 2,
+      "shard_digests_hex": [
+        "70c0d83c928fac9512f8b5cc873a8fd2d787e2092a23bae10a9efd1e1fb0c1f7",
+        "f6e72afe1e5df8b2a481d551ddcb25dfad5ce405924d9d17fafe362a598c89c2",
+        "2ec4d86db1122610360d1c801510ffd45869f97be75feb738ad0ad747f5cdcdb",
+        "ecda751f34acba4a0aa80c4c6c18e6f7caf06f8d9a4a028799459e64e338828f",
+        "b58e4f8b0dbaff87041729e482d005a60b64b04a811b49683b77997f4c82e2ce"
+      ],
+      "shard_len": 11,
+      "shards_b64": [
+        "2fHm+oJI1Vki99I=",
+        "fzcz5rgq6xcDja0=",
+        "mnCQo7rLoBhbAAA=",
+        "lkCvhpjm4qnJb5U=",
+        "e0qDnr7m+SsTUj4="
+      ]
+    },
+    {
+      "case_id": "k3m2_l0",
+      "covered_tlv_hex": "000101000e47463250382d30783131422d47330203030204000000010500000000000000000600000000000000030700075348412d32353608000e676f6c64656e2d6b336d325f6c30090005000000000020aa8c05777f13258da4b52435e2c480c1c8bcc94ab66dc99495b6523cae26a63700010000002013e6440cfe0358916d842e3bdded3163188a3a265cff61323f3731260332467d000200000020c619289063919f4976ec80f0ac9902fa46a9f7efbe102c9ebb7194351f20a9ef0003000000209381515217b2796e24b16dd9dcd5257cfa87fef76fbcc462c03270644e1fab2d0004000000201f2c1b18ba8881e3b5f259d95df5bee303c8510af9ceb24ae0be4752980d5b39",
+      "k": 3,
+      "m": 2,
+      "manifest": {
+        "covered_fields": [
+          "format_version",
+          "field_primitive",
+          "k",
+          "m",
+          "shard_len",
+          "original_len",
+          "pad_len",
+          "digest_algorithm",
+          "object_id",
+          "shard_digests"
+        ],
+        "digest_algorithm": "SHA-256",
+        "field_primitive": "GF2P8-0x11B-G3",
+        "format_version": 1,
+        "k": 3,
+        "m": 2,
+        "manifest_digest_hex": "b92cd39ddca08c6df1d2f726cc235e28919342dd4ca0fae1471331c41e889b7c",
+        "object_id": "golden-k3m2_l0",
+        "original_len": 0,
+        "pad_len": 3,
+        "shard_count": 5,
+        "shard_len": 1,
+        "shards": [
+          {
+            "digest_hex": "aa8c05777f13258da4b52435e2c480c1c8bcc94ab66dc99495b6523cae26a637",
+            "index": 0
+          },
+          {
+            "digest_hex": "13e6440cfe0358916d842e3bdded3163188a3a265cff61323f3731260332467d",
+            "index": 1
+          },
+          {
+            "digest_hex": "c619289063919f4976ec80f0ac9902fa46a9f7efbe102c9ebb7194351f20a9ef",
+            "index": 2
+          },
+          {
+            "digest_hex": "9381515217b2796e24b16dd9dcd5257cfa87fef76fbcc462c03270644e1fab2d",
+            "index": 3
+          },
+          {
+            "digest_hex": "1f2c1b18ba8881e3b5f259d95df5bee303c8510af9ceb24ae0be4752980d5b39",
+            "index": 4
+          }
+        ]
+      },
+      "original_b64": "",
+      "pad_len": 3,
+      "shard_digests_hex": [
+        "aa8c05777f13258da4b52435e2c480c1c8bcc94ab66dc99495b6523cae26a637",
+        "13e6440cfe0358916d842e3bdded3163188a3a265cff61323f3731260332467d",
+        "c619289063919f4976ec80f0ac9902fa46a9f7efbe102c9ebb7194351f20a9ef",
+        "9381515217b2796e24b16dd9dcd5257cfa87fef76fbcc462c03270644e1fab2d",
+        "1f2c1b18ba8881e3b5f259d95df5bee303c8510af9ceb24ae0be4752980d5b39"
+      ],
+      "shard_len": 1,
+      "shards_b64": [
+        "AA==",
+        "AA==",
+        "AA==",
+        "AA==",
+        "AA=="
+      ]
+    },
+    {
+      "case_id": "k4m2_l40",
+      "covered_tlv_hex": "000101000e47463250382d30783131422d473302040302040000000a0500000000000000280600000000000000000700075348412d32353608000f676f6c64656e2d6b346d325f6c3430090006000000000020b3e462174baa75776d5557fc26628c38d2bf6771bc1fada57c6c1aecac92857d000100000020c84422ccdc40f653e1f55b11b9182d85b9f5ef6f0b6ee3e9a2406055236025880002000000207bfff1c4ee4c61f7663e724527595a4315932f6cd0bd0cb30c31dd246e8577460003000000201d6bdd00f0c84b6a9f1dd83d2a64ef2f9bbd2dd868ce6f4e8d961f5bbe6ee1450004000000209a87c62ec03b08ec642efb6b3031d8652ca01dad89b1ed8bf64a5f86ae8a1c46000500000020fcdd6863ddee5082e9676b317848f5ca80f6e60605e626d60ea0d66ea6c21af4",
+      "k": 4,
+      "m": 2,
+      "manifest": {
+        "covered_fields": [
+          "format_version",
+          "field_primitive",
+          "k",
+          "m",
+          "shard_len",
+          "original_len",
+          "pad_len",
+          "digest_algorithm",
+          "object_id",
+          "shard_digests"
+        ],
+        "digest_algorithm": "SHA-256",
+        "field_primitive": "GF2P8-0x11B-G3",
+        "format_version": 1,
+        "k": 4,
+        "m": 2,
+        "manifest_digest_hex": "f830fbc4e53fa47860fbb8aa8a49470dcb41f874c4b009cf4cca5714e359f807",
+        "object_id": "golden-k4m2_l40",
+        "original_len": 40,
+        "pad_len": 0,
+        "shard_count": 6,
+        "shard_len": 10,
+        "shards": [
+          {
+            "digest_hex": "b3e462174baa75776d5557fc26628c38d2bf6771bc1fada57c6c1aecac92857d",
+            "index": 0
+          },
+          {
+            "digest_hex": "c84422ccdc40f653e1f55b11b9182d85b9f5ef6f0b6ee3e9a240605523602588",
+            "index": 1
+          },
+          {
+            "digest_hex": "7bfff1c4ee4c61f7663e724527595a4315932f6cd0bd0cb30c31dd246e857746",
+            "index": 2
+          },
+          {
+            "digest_hex": "1d6bdd00f0c84b6a9f1dd83d2a64ef2f9bbd2dd868ce6f4e8d961f5bbe6ee145",
+            "index": 3
+          },
+          {
+            "digest_hex": "9a87c62ec03b08ec642efb6b3031d8652ca01dad89b1ed8bf64a5f86ae8a1c46",
+            "index": 4
+          },
+          {
+            "digest_hex": "fcdd6863ddee5082e9676b317848f5ca80f6e60605e626d60ea0d66ea6c21af4",
+            "index": 5
+          }
+        ]
+      },
+      "original_b64": "wlRv10ZEvZ+6lO6Oi0HqZFwUeSEj7naAiO3gHvE1BqFL9VZvjZk7Jg==",
+      "pad_len": 0,
+      "shard_digests_hex": [
+        "b3e462174baa75776d5557fc26628c38d2bf6771bc1fada57c6c1aecac92857d",
+        "c84422ccdc40f653e1f55b11b9182d85b9f5ef6f0b6ee3e9a240605523602588",
+        "7bfff1c4ee4c61f7663e724527595a4315932f6cd0bd0cb30c31dd246e857746",
+        "1d6bdd00f0c84b6a9f1dd83d2a64ef2f9bbd2dd868ce6f4e8d961f5bbe6ee145",
+        "9a87c62ec03b08ec642efb6b3031d8652ca01dad89b1ed8bf64a5f86ae8a1c46",
+        "fcdd6863ddee5082e9676b317848f5ca80f6e60605e626d60ea0d66ea6c21af4"
+      ],
+      "shard_len": 10,
+      "shards_b64": [
+        "wlRv10ZEvZ+6lA==",
+        "7o6LQepkXBR5IQ==",
+        "I+52gIjt4B7xNQ==",
+        "BqFL9VZvjZk7Jg==",
+        "L9wTiGB3PVPa6A==",
+        "14Tfy0PYV9Se0w=="
+      ]
+    }
+  ],
+  "cauchy_known": {
+    "k3_m2_row_p0": [
+      "0xf6",
+      "0x8d",
+      "0x1"
+    ]
+  },
+  "field": "GF(2^8) mod 0x11B, generator 3",
+  "gf_kat": {
+    "inv_0x53": "0xca",
+    "mul_0x57_0x83": "0xc1",
+    "mulbyx_128": "0x1b"
+  }
+}

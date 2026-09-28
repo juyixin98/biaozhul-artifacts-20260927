@@ -1,0 +1,21 @@
+[package]
+name = "ec-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Binary launcher for the erasure-coding HTTP service"
+
+[[bin]]
+name = "ec-server"
+path = "src/main.rs"
+
+[dependencies]
+ec-api.workspace = true
+ec-core.workspace = true
+ec-gf.workspace = true
+ec-store.workspace = true
+axum = "0.8.9"
+tokio = { version = "1.53.1", features = ["rt", "rt-multi-thread", "net", "macros", "signal"] }
+tracing.workspace = true
+tracing-subscriber = "0.3.23"
+anyhow.workspace = true

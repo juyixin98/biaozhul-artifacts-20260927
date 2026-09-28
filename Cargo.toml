@@ -1,0 +1,32 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/ec-gf",
+    "crates/ec-core",
+    "crates/ec-format",
+    "crates/ec-store",
+    "crates/ec-api",
+    "crates/ec-server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.98.1"
+license = "MIT"
+
+[workspace.dependencies]
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+sha2 = "0.10.9"
+hex = "0.4.3"
+tracing = "0.1.44"
+anyhow = "1.0.104"
+ec-gf = { path = "crates/ec-gf", version = "0.1.0" }
+ec-core = { path = "crates/ec-core", version = "0.1.0" }
+ec-format = { path = "crates/ec-format", version = "0.1.0" }
+ec-store = { path = "crates/ec-store", version = "0.1.0" }
+ec-api = { path = "crates/ec-api", version = "0.1.0" }
+
+[profile.release]
+lto = true

@@ -1,0 +1,8 @@
+{
+  "listen": "127.0.0.1:8080",
+  "storage_dir": "./data/store",
+  "allow_writes": true,
+  "k": 3,
+  "m": 2,
+  "log_level": "info"
+}
