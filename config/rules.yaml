@@ -1,0 +1,68 @@
+schema_version: "1.0"
+
+# Rules + scope + ignore patterns are released together under this version.
+# Every scan persists rules_version alongside its findings, so a candidate can
+# always be traced back to the exact rule set that produced it.
+rules_version: "2026.09.01"
+
+# How result states (new / active / baseline_exempt / known_fixed) and the
+# uncertainty flag are interpreted. Bumped independently of rule contents.
+classification_version: "1.0.0"
+
+scope:
+  # Files strictly larger than this are recorded as unscanned (too_large),
+  # never partially scanned.
+  max_file_bytes: 1048576
+  follow_symlinks: false
+
+ignore:
+  # gitignore-like semantics:
+  #   "name/"   -> directory named `name` at any depth is pruned
+  #   "a/b"     -> path anchored at the snapshot root
+  #   "*.x"     -> basename glob matched at any depth
+  patterns:
+    - ".git/"
+    - "vendor/"
+    - "*.example.env"
+
+entropy:
+  # Shannon entropy floor (bits/byte) for heuristic-only candidates.
+  shannon_threshold: 4.5
+  # Tokens shorter than this are never considered by the heuristic pass.
+  min_token_length: 24
+
+rules:
+  - id: pgp_private_key
+    description: PGP private key block
+    category: cryptographic_key
+    confidence: high
+    pattern: '(?P<secret>-----BEGIN PGP PRIVATE KEY BLOCK-----[\x20-\x7e\r\n]*?-----END PGP PRIVATE KEY BLOCK-----)'
+    min_entropy: null
+
+  - id: aws_access_key_id
+    description: AWS access key identifier
+    category: cloud_credential
+    confidence: high
+    pattern: '(?P<secret>AKIA[0-9A-Z]{16})'
+    min_entropy: null
+
+  - id: github_personal_token
+    description: GitHub personal access token (classic / fine-grained prefix)
+    category: scm_token
+    confidence: high
+    pattern: '(?P<secret>gh[pousr]_[A-Za-z0-9]{36})'
+    min_entropy: null
+
+  - id: bearer_credential
+    description: Bearer credential in an Authorization header
+    category: http_credential
+    confidence: high
+    pattern: '(?i:bearer)\s+(?P<secret>[A-Za-z0-9\-\._~+/]{12,})'
+    min_entropy: null
+
+  - id: generic_assignment
+    description: Secret-looking value assigned to a sensitive variable name
+    category: config_secret
+    confidence: medium
+    pattern: '(?i)\b(?:api[_-]?key|access[_-]?token|secret[_-]?key|client[_-]?secret|auth[_-]?token|app[_-]?token|password|passwd|credential)s?\s*[:=]\s*["'']?(?P<secret>[A-Za-z0-9+/=_.\-]{8,128})'
+    min_entropy: 3.0
