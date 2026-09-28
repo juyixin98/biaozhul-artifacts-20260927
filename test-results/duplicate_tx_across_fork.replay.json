@@ -1,0 +1,81 @@
+{
+  "rebuild_check": {
+    "current": {
+      "balances": {
+        "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 8,
+        "c0ababababababababababababababababababababababababababababababab": 100
+      },
+      "canonical_chain": [
+        "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+        "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+        "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+      ],
+      "contributing_blocks": [
+        "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+        "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+      ],
+      "contribution_count": 2,
+      "tip_hash": "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+    },
+    "mismatches": [],
+    "ok": true,
+    "rebuilt": {
+      "balances": {
+        "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 8,
+        "c0ababababababababababababababababababababababababababababababab": 100
+      },
+      "canonical_chain": [
+        "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+        "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+        "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+      ],
+      "contributing_blocks": [
+        "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+        "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+      ],
+      "contribution_count": 2,
+      "tip_hash": "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+    }
+  },
+  "report": {
+    "ingested": 4,
+    "pending_final": 0,
+    "rejected": [],
+    "reorgs": [
+      {
+        "connected": [
+          "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+        ],
+        "created_at": "2026-09-28 06:26:31",
+        "disconnected": [
+          "9f6f91e8f9336320b3aba0510f2ef3992b4940b26fb9ec47faf6b8e28ec97041"
+        ],
+        "new_tip": "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688",
+        "old_tip": "9f6f91e8f9336320b3aba0510f2ef3992b4940b26fb9ec47faf6b8e28ec97041",
+        "request_id": "offline-replay",
+        "rollback_from_height": 2,
+        "rollback_to_height": 2
+      }
+    ],
+    "switched": 1
+  },
+  "state": {
+    "balances": {
+      "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 8,
+      "c0ababababababababababababababababababababababababababababababab": 100
+    },
+    "canonical_chain": [
+      "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+      "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+      "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+    ],
+    "contribution_count": 2,
+    "finality_depth": 6,
+    "finalized_height": -4,
+    "max_reorg_depth": 6,
+    "pending_count": 0,
+    "tip_cumulative_weight": 5,
+    "tip_hash": "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688",
+    "tip_height": 2
+  }
+}

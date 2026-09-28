@@ -1,0 +1,10 @@
+{
+  "dir": "fixtures",
+  "generated": [
+    "deep_fork_rejected",
+    "duplicate_tx_across_fork",
+    "pending_drain",
+    "short_fork_wins"
+  ],
+  "ok": true
+}

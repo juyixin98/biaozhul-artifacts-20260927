@@ -1,0 +1,86 @@
+{
+  "rebuild_check": {
+    "current": {
+      "balances": {
+        "1325b850c2871916eae203f0efc3c8987f64e5e3cdb27679e6d1fa97808357e6": 10,
+        "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 12
+      },
+      "canonical_chain": [
+        "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+        "dc92404d473fb839bae3e271bb4d274d0abe17361037063a63f4298aebb51c0b",
+        "f5bd99136e6e0d545ab4d930e29435cb38bd6a251fa3aed41c83455531a8a1f3",
+        "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6"
+      ],
+      "contributing_blocks": [
+        "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6",
+        "dc92404d473fb839bae3e271bb4d274d0abe17361037063a63f4298aebb51c0b",
+        "f5bd99136e6e0d545ab4d930e29435cb38bd6a251fa3aed41c83455531a8a1f3"
+      ],
+      "contribution_count": 3,
+      "tip_hash": "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6"
+    },
+    "mismatches": [],
+    "ok": true,
+    "rebuilt": {
+      "balances": {
+        "1325b850c2871916eae203f0efc3c8987f64e5e3cdb27679e6d1fa97808357e6": 10,
+        "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 12
+      },
+      "canonical_chain": [
+        "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+        "dc92404d473fb839bae3e271bb4d274d0abe17361037063a63f4298aebb51c0b",
+        "f5bd99136e6e0d545ab4d930e29435cb38bd6a251fa3aed41c83455531a8a1f3",
+        "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6"
+      ],
+      "contributing_blocks": [
+        "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6",
+        "dc92404d473fb839bae3e271bb4d274d0abe17361037063a63f4298aebb51c0b",
+        "f5bd99136e6e0d545ab4d930e29435cb38bd6a251fa3aed41c83455531a8a1f3"
+      ],
+      "contribution_count": 3,
+      "tip_hash": "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6"
+    }
+  },
+  "report": {
+    "ingested": 5,
+    "pending_final": 0,
+    "rejected": [],
+    "reorgs": [
+      {
+        "connected": [
+          "f5bd99136e6e0d545ab4d930e29435cb38bd6a251fa3aed41c83455531a8a1f3"
+        ],
+        "created_at": "2026-09-28 06:26:31",
+        "disconnected": [
+          "4a51cb9ad819c09ad1a91fa3a72e20ae52aeb4fdf2881af7b36e824fc4dac32b"
+        ],
+        "new_tip": "f5bd99136e6e0d545ab4d930e29435cb38bd6a251fa3aed41c83455531a8a1f3",
+        "old_tip": "4a51cb9ad819c09ad1a91fa3a72e20ae52aeb4fdf2881af7b36e824fc4dac32b",
+        "request_id": "offline-replay",
+        "rollback_from_height": 2,
+        "rollback_to_height": 2
+      }
+    ],
+    "switched": 1
+  },
+  "state": {
+    "balances": {
+      "1325b850c2871916eae203f0efc3c8987f64e5e3cdb27679e6d1fa97808357e6": 10,
+      "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 12
+    },
+    "canonical_chain": [
+      "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+      "dc92404d473fb839bae3e271bb4d274d0abe17361037063a63f4298aebb51c0b",
+      "f5bd99136e6e0d545ab4d930e29435cb38bd6a251fa3aed41c83455531a8a1f3",
+      "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6"
+    ],
+    "contribution_count": 3,
+    "finality_depth": 6,
+    "finalized_height": -3,
+    "max_reorg_depth": 6,
+    "pending_count": 0,
+    "tip_cumulative_weight": 6,
+    "tip_hash": "955c2344e5371faa0dd77f87310f604988365e689449c5797ac0088159ca2ba6",
+    "tip_height": 3
+  }
+}

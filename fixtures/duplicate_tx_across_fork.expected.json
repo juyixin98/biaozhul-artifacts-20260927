@@ -1,0 +1,38 @@
+{
+  "balances": {
+    "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 8,
+    "c0ababababababababababababababababababababababababababababababab": 100
+  },
+  "canonical_chain": [
+    "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+    "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+    "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+  ],
+  "contributing_blocks": [
+    "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+    "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+  ],
+  "contribution_count": 2,
+  "finality_depth": 6,
+  "finality_rejects": [],
+  "pending_remaining": 0,
+  "received_order": [
+    "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+    "7843b29a98b90d7320372bf170940986cb86caf9c67989fd322b842bddcff5e8",
+    "9f6f91e8f9336320b3aba0510f2ef3992b4940b26fb9ec47faf6b8e28ec97041",
+    "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+  ],
+  "rejected": [],
+  "switches": [
+    {
+      "connected": [
+        "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+      ],
+      "disconnected": [
+        "9f6f91e8f9336320b3aba0510f2ef3992b4940b26fb9ec47faf6b8e28ec97041"
+      ],
+      "new_tip": "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+    }
+  ],
+  "tip_hash": "938eee0d5826d55c447ce27927ef9cb0d5ed0e79a760204f308f2d13d2526688"
+}

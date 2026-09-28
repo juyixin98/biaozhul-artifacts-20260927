@@ -1,0 +1,27 @@
+{
+  "balances": {
+    "1325b850c2871916eae203f0efc3c8987f64e5e3cdb27679e6d1fa97808357e6": 11,
+    "6c8f8607dbe87077a62a2990ce07d94aaf749df76f87b98eb786a6d10f030765": 13
+  },
+  "canonical_chain": [
+    "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+    "7bb3f50372d19c0cf8a55ffc43c3476eabb46a8b953c958c6dc4ff79466e5a47",
+    "034bca5070c6dd7145ba1db0b28dabea82f248196717f36aaaf8a59fe3c00d8c"
+  ],
+  "contributing_blocks": [
+    "034bca5070c6dd7145ba1db0b28dabea82f248196717f36aaaf8a59fe3c00d8c",
+    "7bb3f50372d19c0cf8a55ffc43c3476eabb46a8b953c958c6dc4ff79466e5a47"
+  ],
+  "contribution_count": 2,
+  "finality_depth": 6,
+  "finality_rejects": [],
+  "pending_remaining": 0,
+  "received_order": [
+    "30c2e1fcde5b4adfd1f4fbf2bfd4df5a72eeb85d6c6c9143ae6f66536867e48a",
+    "7bb3f50372d19c0cf8a55ffc43c3476eabb46a8b953c958c6dc4ff79466e5a47",
+    "034bca5070c6dd7145ba1db0b28dabea82f248196717f36aaaf8a59fe3c00d8c"
+  ],
+  "rejected": [],
+  "switches": [],
+  "tip_hash": "034bca5070c6dd7145ba1db0b28dabea82f248196717f36aaaf8a59fe3c00d8c"
+}

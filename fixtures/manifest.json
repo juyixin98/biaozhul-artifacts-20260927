@@ -1,0 +1,25 @@
+{
+  "finality_depth": 6,
+  "scenarios": {
+    "deep_fork_rejected": {
+      "blocks": 10,
+      "expected": "deep_fork_rejected.expected.json",
+      "fixture": "deep_fork_rejected.jsonl"
+    },
+    "duplicate_tx_across_fork": {
+      "blocks": 4,
+      "expected": "duplicate_tx_across_fork.expected.json",
+      "fixture": "duplicate_tx_across_fork.jsonl"
+    },
+    "pending_drain": {
+      "blocks": 3,
+      "expected": "pending_drain.expected.json",
+      "fixture": "pending_drain.jsonl"
+    },
+    "short_fork_wins": {
+      "blocks": 5,
+      "expected": "short_fork_wins.expected.json",
+      "fixture": "short_fork_wins.jsonl"
+    }
+  }
+}
