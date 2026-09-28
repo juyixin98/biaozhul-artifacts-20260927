@@ -1,0 +1,32 @@
+{"batch_ids": ["b0"], "cardinality": 2, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[1]", "run_id": "final-verification", "seed": 1, "step": "fuzz", "ts": 1790555249.9477923, "width": 8}
+{"batch_ids": ["b0"], "cardinality": 1, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[2]", "run_id": "final-verification", "seed": 2, "step": "fuzz", "ts": 1790555249.9491913, "width": 8}
+{"batch_ids": ["b0", "b1"], "cardinality": 2, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[3]", "run_id": "final-verification", "seed": 3, "step": "fuzz", "ts": 1790555249.950344, "width": 8}
+{"batch_ids": ["b0", "b1", "b2"], "cardinality": 2, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[4]", "run_id": "final-verification", "seed": 4, "step": "fuzz", "ts": 1790555249.9515193, "width": 8}
+{"batch_ids": ["b0", "b1", "b2"], "cardinality": 29, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[5]", "run_id": "final-verification", "seed": 5, "step": "fuzz", "ts": 1790555249.9527924, "width": 8}
+{"cardinality": 3, "nodeid": "tests/test_kernel.py::test_same_value_different_local_codes_merge", "run_id": "final-verification", "step": "unify", "ts": 1790555249.9609234, "width": 8}
+{"gdict": ["x", "y", "z"], "nodeid": "tests/test_kernel.py::test_same_local_code_different_values_must_not_merge", "run_id": "final-verification", "step": "unify", "ts": 1790555249.9619584}
+{"actual": ["a", "b", null, "b", "a"], "batch": "b0", "expected": ["a", "b", null, "b", "a"], "nodeid": "tests/test_kernel.py::test_decode_matches_every_original_row", "run_id": "final-verification", "step": "rows-checked", "ts": 1790555249.9631016}
+{"actual": ["b", "c", "a", null, "a", null], "batch": "b1", "expected": ["b", "c", "a", null, "a", null], "nodeid": "tests/test_kernel.py::test_decode_matches_every_original_row", "run_id": "final-verification", "step": "rows-checked", "ts": 1790555249.9631963}
+{"nodeid": "tests/test_kernel.py::test_null_does_not_consume_value_semantics", "rows": ["only", null, "only"], "run_id": "final-verification", "step": "null-decode", "ts": 1790555249.9642067}
+{"cardinality": 0, "nodeid": "tests/test_kernel.py::test_empty_dictionary_with_all_null_rows", "run_id": "final-verification", "step": "empty-dict", "ts": 1790555249.9671004, "width": 8}
+{"n": 1, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[1-8]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555249.973716, "width": 8}
+{"n": 255, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[255-8]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555249.9751742, "width": 8}
+{"n": 256, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[256-16]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555249.9766347, "width": 16}
+{"n": 65535, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[65535-16]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555250.077252, "width": 16}
+{"n": 65536, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[65536-32]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555250.1764293, "width": 32}
+{"batch_ids": ["b0"], "cardinality": 2, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[1]", "run_id": "final-verification", "seed": 1, "step": "fuzz", "ts": 1790555455.1902444, "width": 8}
+{"batch_ids": ["b0"], "cardinality": 1, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[2]", "run_id": "final-verification", "seed": 2, "step": "fuzz", "ts": 1790555455.191322, "width": 8}
+{"batch_ids": ["b0", "b1"], "cardinality": 2, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[3]", "run_id": "final-verification", "seed": 3, "step": "fuzz", "ts": 1790555455.1924145, "width": 8}
+{"batch_ids": ["b0", "b1", "b2"], "cardinality": 2, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[4]", "run_id": "final-verification", "seed": 4, "step": "fuzz", "ts": 1790555455.1940043, "width": 8}
+{"batch_ids": ["b0", "b1", "b2"], "cardinality": 29, "nodeid": "tests/test_arrow.py::test_property_random_batches_match_oracle[5]", "run_id": "final-verification", "seed": 5, "step": "fuzz", "ts": 1790555455.1953084, "width": 8}
+{"cardinality": 3, "nodeid": "tests/test_kernel.py::test_same_value_different_local_codes_merge", "run_id": "final-verification", "step": "unify", "ts": 1790555455.2035587, "width": 8}
+{"gdict": ["x", "y", "z"], "nodeid": "tests/test_kernel.py::test_same_local_code_different_values_must_not_merge", "run_id": "final-verification", "step": "unify", "ts": 1790555455.2045486}
+{"actual": ["a", "b", null, "b", "a"], "batch": "b0", "expected": ["a", "b", null, "b", "a"], "nodeid": "tests/test_kernel.py::test_decode_matches_every_original_row", "run_id": "final-verification", "step": "rows-checked", "ts": 1790555455.2055912}
+{"actual": ["b", "c", "a", null, "a", null], "batch": "b1", "expected": ["b", "c", "a", null, "a", null], "nodeid": "tests/test_kernel.py::test_decode_matches_every_original_row", "run_id": "final-verification", "step": "rows-checked", "ts": 1790555455.2056978}
+{"nodeid": "tests/test_kernel.py::test_null_does_not_consume_value_semantics", "rows": ["only", null, "only"], "run_id": "final-verification", "step": "null-decode", "ts": 1790555455.2066145}
+{"cardinality": 0, "nodeid": "tests/test_kernel.py::test_empty_dictionary_with_all_null_rows", "run_id": "final-verification", "step": "empty-dict", "ts": 1790555455.2091715, "width": 8}
+{"n": 1, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[1-8]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555455.2150583, "width": 8}
+{"n": 255, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[255-8]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555455.2165015, "width": 8}
+{"n": 256, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[256-16]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555455.2178466, "width": 16}
+{"n": 65535, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[65535-16]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555455.3154066, "width": 16}
+{"n": 65536, "nodeid": "tests/test_kernel.py::test_auto_width_boundaries[65536-32]", "run_id": "final-verification", "step": "width-boundary", "ts": 1790555455.4137363, "width": 32}

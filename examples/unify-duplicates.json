@@ -1,0 +1,13 @@
+{
+  "value_type": "string",
+  "index_policy": "strict",
+  "target_width": 8,
+  "dedupe_local_dictionary": true,
+  "batches": [
+    {
+      "batch_id": "dup-batch",
+      "dictionary": ["x", "x", "y", "x"],
+      "indices": [0, 1, 2, 3, 2, 0]
+    }
+  ]
+}

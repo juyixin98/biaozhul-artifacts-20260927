@@ -1,0 +1,20 @@
+{
+  "value_type": "string",
+  "index_policy": "auto",
+  "dedupe_local_dictionary": false,
+  "client_run_id": "demo-run-001",
+  "batches": [
+    {
+      "batch_id": "batch-0",
+      "dictionary": ["apple", "banana"],
+      "indices": [0, 1, 0, 1, 0],
+      "validity": [true, true, false, true, true]
+    },
+    {
+      "batch_id": "batch-1",
+      "dictionary": ["banana", "cherry", "apple"],
+      "indices": [0, 1, 2, 0, 2],
+      "validity": [true, true, true, false, true]
+    }
+  ]
+}

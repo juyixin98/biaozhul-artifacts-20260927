@@ -1,0 +1,13 @@
+{
+  "cwd": "/home/admin/Downloads/xinbiaozhu/opp256/a",
+  "executable": "/home/admin/Downloads/xinbiaozhu/opp256/a/.venv/bin/python",
+  "fastapi": "0.115.6",
+  "git_commit": "b6640d90e62ce8d283267acb3a25fa5cc78bada8",
+  "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39",
+  "pyarrow": "18.1.0",
+  "pydantic": "2.10.4",
+  "python": "3.12.3",
+  "run_id": "final-verification",
+  "service_version": "1.0.0",
+  "start_time": "2026-09-28T08:30:54+0800"
+}

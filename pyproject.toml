@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dicunify"
+version = "1.0.0"
+description = "Multi-batch dictionary encoding unification service (FastAPI + PyArrow + SQLite)"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+packages = ["app", "app.api", "app.adapters", "app.core", "app.service", "app.store"]
+
+[tool.pytest.ini_options]
+# pytest.ini remains authoritative; this entry documents intent for IDEs that
+# only read pyproject.toml.
+testpaths = ["tests"]

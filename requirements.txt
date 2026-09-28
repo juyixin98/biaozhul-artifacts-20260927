@@ -1,0 +1,6 @@
+# Runtime dependencies (install with the locked set in requirements-lock.txt).
+# This file names the supported versions; requirements-lock.txt pins the full tree.
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pyarrow==18.1.0
