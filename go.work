@@ -1,0 +1,11 @@
+go 1.23
+
+use (
+	./compute
+	./kernel
+	./proto
+	./replay
+	./server
+	./store
+	./tests
+)
