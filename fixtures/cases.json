@@ -1,0 +1,577 @@
+{
+  "cases": {
+    "00": {
+      "digest_hex": "1f8e830eb911d448e284e4acbb088d6101fd894ce1ef164ecc3b8ff9d9f27bfd",
+      "expected": "OK",
+      "label": "p2pk_ok",
+      "prev_lock": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+      "prev_vout": 0,
+      "reason": "alice 用正确域标签对完整交易摘要签名，P2PK 验签通过",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "4730450221008d5979dc87039bb0af4f675270e05525c3fdd897ef733412528d22296838251b02206385201e2a8ce3f18bd908ffcba18320985eeebc30ed2ec20be2e3a9039a296c",
+            "vout": 0
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "0d98cfdb6685d4933db77d70c3ce2e6f445f0331808ea9390eee2f1af78ccaa3"
+    },
+    "01": {
+      "digest_hex": "37b5c2de38e44cd2a7202e8c62a4baeb7512605d6d778bf8528b496438679fe1",
+      "expected": "OK",
+      "label": "p2pkh_ok",
+      "prev_lock": "76a914f2ab8e1ee8648d3445264129bd0021f738d1fd3688ab",
+      "prev_vout": 1,
+      "reason": "bob 的 P2PKH：DUP HASH160 比对 pub，CHECKSIG 通过",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "473045022100f0dc172f137f7f46dad42a36bde74e9aef94ab0710feac15582f24b04fa6d98002200853ba595a5cf3226c17be172e3fbb92b5c1210180cefb8ff0a87c46903a5696210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f",
+            "vout": 1
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "1606403879ef787efbad11edc242f96cd89d62e8d686f8d02af3d4b94fd7fe6c"
+    },
+    "02": {
+      "digest_hex": "a07d8b99e0a5de3e0e21bb46d20b3c7c00b3c1015a58c1c45adeb34a929d5497",
+      "expected": "OK",
+      "label": "multisig_2of3_ab_ok",
+      "prev_lock": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f2103a15bed0d7504b05f42022751fd838e70850fe86567d9401eb791df9d93a432fa53ae",
+      "prev_vout": 2,
+      "reason": "alice、bob 顺序签名满足 2-of-3 门槛，两把不同公钥各计一次",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "46304402200dcb78061e7f82b91e8cef96cda1c60529487ee74bd626ab8da7ca8477db793702200ad9a8c69182fbfa45df99651655f8e7891ecd90fa020a614d4a8aaf521c8367463044022021e212b882406b475ee3f23a9d0f21e1ecc919f0b94cdeeef15dc92471dc6594022052dc9d42c19a4bc1d7fd950ac063f0ce2bef6553bec3a5539c4b8691b4ece535",
+            "vout": 2
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "112edd51defd22f054e2509f3369bafff8010539ecf6b0bd824c467c3e268021"
+    },
+    "03": {
+      "digest_hex": "205ea85e0efa70839deda85a2785e4b57a941009ed0aa12c3c8b83a482821a30",
+      "expected": "STACK_UNDERFLOW",
+      "label": "multisig_2of3_only_one",
+      "prev_lock": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f2103a15bed0d7504b05f42022751fd838e70850fe86567d9401eb791df9d93a432fa53ae",
+      "prev_vout": 3,
+      "reason": "m=2 但只提供 1 个签名，取第二个签名时栈下溢，门槛无法满足",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "4630440220506e1ff5cf70f818e98b6f7ac0f115e67e85273f10dbd644b900071fca3d8acf02201b5bd1938fd8fd03da05713f9e0c5176cea0468c9d3b324cac4b1dbe68ba67ac",
+            "vout": 3
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "09ae2e4b564fa0ab57dc55b362f5f7489d14d14fe5fdafab9a1d8b57fda404a0"
+    },
+    "04": {
+      "digest_hex": "13ffa00f09d0db2cfed1fab56862bfc726d8925c2fd4d0f3ffa0206bedfb33ce",
+      "expected": "OK",
+      "label": "multisig_1of2_boundary_ok",
+      "prev_lock": "51210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f52ae",
+      "prev_vout": 4,
+      "reason": "1-of-2 边界：只需 alice 一把，门槛满足",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "46304402205c364d4d8c9285e72092b9421de7c8d79e504d5c20ed4deefe1e75a658f01dc6022029840f14a12363bbe4aa9f9aa6848e11820a853fe7d58e3d68ce7f66abc2118a",
+            "vout": 4
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "b5c278c48805b253edb6585a8a7be97511f13166007d10e94058eae64fbb5d52"
+    },
+    "05": {
+      "digest_hex": "a51038fae871cf64f073031c2b5bc2e2e776b4287a00480699dfe4da252ba6ce",
+      "expected": "SIG_DUPLICATED",
+      "label": "multisig_duplicate_pubkey",
+      "prev_lock": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f52ae",
+      "prev_vout": 5,
+      "reason": "同一签名/公钥被提交两次，重复计数必须被拒绝",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "46304402207643ab026e55248f1af59dcfb4d814b8d644edc2b3dd20866318f1343bd1da46022045661535eb62a9178e436f34d54a63567868cb76afdc70b5709ea8ab3fdaf9d546304402207643ab026e55248f1af59dcfb4d814b8d644edc2b3dd20866318f1343bd1da46022045661535eb62a9178e436f34d54a63567868cb76afdc70b5709ea8ab3fdaf9d5",
+            "vout": 5
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "e1a32c2041df15da75e7067037faa527b4d4088d87a9d8ad8be77a7050e04e55"
+    },
+    "06": {
+      "digest_hex": "475157bfb55368ebf26b2b336181029406791e77717be4e5e0b7d21b08816f0b",
+      "expected": "THRESHOLD_NOT_MET",
+      "label": "multisig_order_swap",
+      "prev_lock": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f52ae",
+      "prev_vout": 6,
+      "reason": "两个签名均有效但顺序颠倒，有序贪心匹配无法让第二签回溯到 alice",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "463044022013ef758f5f7eb7b9e97a9dbaa9f8fd953b28c3462b65df3ec4b4ffc60b3250df02204d5e84f8ba87a81d0fef2f8a449febe4bf0ad358e471e09bf2da5deedd526e3046304402204fed4170dcd290e615ef199c5bd29343291d8d0b9e1927516e596ea4d5c95ce1022052845af25305a17a2aff4c98fbdb6145a7ee6a2af66fa85622d7cfb3c8ca2e42",
+            "vout": 6
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "2f6913d1b4d1046b04315f3161cd98b817154e8f2520892828ab305999e7e5db"
+    },
+    "07": {
+      "digest_hex": "d65a2aff153c7911cee3337e23d804030531ed666338b14b3bd47226dc25611e",
+      "expected": "SIG_INVALID",
+      "label": "p2pk_wrong_domain",
+      "prev_lock": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+      "prev_vout": 7,
+      "reason": "签名使用错误交易域标签，摘要不同，CHECKSIG 失败",
+      "signing_domain": "STACKVM.SIGHASH/WRONG-DOMAIN",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "473045022100c4036b73fef26842fdfe354a8c741d52f46f64ff3384869327d4b6995e989a9e02201cc44f134fa02c3238915f4e2d01223cf8b8c94fb969a19c821625ad1dd14aa3",
+            "vout": 7
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "5bb79075ac1b4ace63fe6405bbbdfa991bfcf0f51572556146559a92bf97bf46"
+    },
+    "08": {
+      "digest_hex": "5afb0b3ffb67e5dd078172f8927799ceac646413f40c9e8009b427fb6bc6947f",
+      "expected": "BUDGET_EXHAUSTED",
+      "label": "budget_exhausted",
+      "prev_lock": "6161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+      "prev_vout": 8,
+      "reason": "200 个 NOP 在到达 CHECKSIG 前耗尽全部 200 步预算（验签永不发生）",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "46304402207c0142fea0742fc663f5d2e116c4ba1bfec377d89a6a8cb817e7a3d0881be4a7022023b80d8d62c525d1ab78cec57b4c87b27127274940cd0556bf72375aebd04b0a",
+            "vout": 8
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "f267d00ab1b24c6740fb9495065855025153b080c9dad58eea499ccb06598f20"
+    },
+    "09": {
+      "digest_hex": "96934b4e1c4150f890e35c475da6ee7b0aeb0ac08e2f91d643533de5e5dbff30",
+      "expected": "STACK_UNDERFLOW",
+      "label": "stack_underflow",
+      "prev_lock": "7551",
+      "prev_vout": 9,
+      "reason": "解锁不压入任何元素，锁定脚本首指令 DROP 从空栈弹出",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "",
+            "vout": 9
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "a5b8ad4e0f2381414561ed8c186e713c5e3912c2a3a1076861f8f71d5da7a623"
+    },
+    "10": {
+      "digest_hex": "01432bccf2c517c5b9736858daf2360a8b6852a7038a588fa1fcea404b0b2c86",
+      "expected": "OK",
+      "label": "hashlock_ok",
+      "prev_lock": "a914d5f6793d16180a2c472d1dbe0c35342eab3bc0478851",
+      "prev_vout": 10,
+      "reason": "提供正确原像，hashlock_ok 比对通过并留下真元素",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "1c636f72726563742d686f7273652d626174746572792d737461706c65",
+            "vout": 10
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "752eace49e8b0486544d69bb5e616cddd16eded6112a35cb8058f7d82dbead2c"
+    },
+    "11": {
+      "digest_hex": "69e70dc55a03f8d9ddc2d15800a472181a7f394dea5032b30d4c7d110865814b",
+      "expected": "EVAL_FALSE",
+      "label": "hashlock_wrong_secret",
+      "prev_lock": "a914d5f6793d16180a2c472d1dbe0c35342eab3bc0478851",
+      "prev_vout": 11,
+      "reason": "提供错误原像，HASH160 结果与锁中哈希不等，EQUALVERIFY 失败",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "22636f72726563742d686f7273652d626174746572792d737461706c652d77726f6e67",
+            "vout": 11
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "1e7b5bb92f6ba3f3ae0660cb9a0da1ef681813a68ea4ab9c728795fff86af510"
+    },
+    "12": {
+      "digest_hex": "3c3159f68e989b81c7287533a0319f71e9b337d55a96f5687d0fd3f3b0108a9f",
+      "expected": "OK",
+      "label": "sha256_preimage_ok",
+      "prev_lock": "a82087cbebfeebc05f7c54ac9336c4b4bbec831227a641951a4bde7edd56020f85908851",
+      "prev_vout": 12,
+      "reason": "提供正确原像，sha256_preimage_ok 比对通过并留下真元素",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "1c636f72726563742d686f7273652d626174746572792d737461706c65",
+            "vout": 12
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "2bcb5e05fcb21ddf9723feeff8245a9733721c59f9006c7da5d867a4712102f3"
+    },
+    "13": {
+      "digest_hex": "12eb80f588fa93527a4755e4fd09e328ea3e25155082d5af6d3c09a66dee297c",
+      "expected": "OK",
+      "label": "hash256_preimage_ok",
+      "prev_lock": "aa20b880b681d0d24872d44642447e3df4efd406efc37e9c745530e4d6b5872bddee8851",
+      "prev_vout": 13,
+      "reason": "提供正确原像，hash256_preimage_ok 比对通过并留下真元素",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "1c636f72726563742d686f7273652d626174746572792d737461706c65",
+            "vout": 13
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "0f4d5499591a6d65c830c3d20c330b01bb273f702095481400639bd37affa057"
+    },
+    "14": {
+      "digest_hex": "a2c2754251f443d1d33d3534b54cbcd63aa1bfcb24686f6d72c8ada189606e0e",
+      "expected": "OK",
+      "label": "ripemd160_preimage_ok",
+      "prev_lock": "a614ee0c59de92ae9808bb7a4dedaaf19b15aaad4e328851",
+      "prev_vout": 14,
+      "reason": "提供正确原像，ripemd160_preimage_ok 比对通过并留下真元素",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "1c636f72726563742d686f7273652d626174746572792d737461706c65",
+            "vout": 14
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "8b0cf883f22edb2ef664e2a9a0ab68a31d66655d5839909b3d68a9695794eb34"
+    },
+    "15": {
+      "digest_hex": "ac3a62abf0ba93d105753f0a31befddba02d52ce009a139c80b3226b452d4dd5",
+      "expected": "ELEMENT_TOO_LARGE",
+      "label": "element_too_large",
+      "prev_lock": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+      "prev_vout": 15,
+      "reason": "解锁压入 256 字节元素，超过 255 字节上限",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "4d0001aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "vout": 15
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "bdebef7081426779a3e0506b4f72c3082f0b089315e14cf7f6163bc16c432140"
+    },
+    "16": {
+      "digest_hex": "982f2ca29190fd268de81f281ecf37f6866d44d32e90d5320933c5707130666e",
+      "expected": "UNKNOWN_OPCODE",
+      "label": "unknown_opcode",
+      "prev_lock": "62",
+      "prev_vout": 16,
+      "reason": "锁定脚本含白名单外字节 0x62，解码期即拒绝",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "0101",
+            "vout": 16
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "9cebb5c9debcf041734ea795e615df7886f82eff47ce1a75c4058567e1c7c250"
+    },
+    "17": {
+      "digest_hex": "fa681b5963ea6d8b5b2a2543de01308db77718dbd7da8a452510604795fe7bfc",
+      "expected": "UNCLEAN_STACK",
+      "label": "unclean_stack",
+      "prev_lock": "5152",
+      "prev_vout": 17,
+      "reason": "脚本结束栈上有 2 个元素，违反唯一真元素的干净栈规则",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "",
+            "vout": 17
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "456105ecddc653ab764444f30bfd1c1e3dba030c4a2212d67aae3a7110e87891"
+    },
+    "18": {
+      "digest_hex": "f76f5e7f94852cadf7dd0d84e25b4db5eb73d92c9a04f8ba8a44fdd72aa832ac",
+      "expected": "OK",
+      "label": "if_true_branch_ok",
+      "prev_lock": "6351676a68",
+      "prev_vout": 18,
+      "reason": "条件为真走 IF 分支留下 1；ELSE 中的 RETURN 在非活跃分支不执行",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "51",
+            "vout": 18
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "4f141d5d9045d02c9acbbc56c3f1ad2b9aa3a87036489c159d8b524a3fa3da8f"
+    },
+    "19": {
+      "digest_hex": "fea64971c84e8d75517e5f697c77b54e391b46ccefbb87025dc0128871a6531d",
+      "expected": "OK",
+      "label": "if_false_branch_ok",
+      "prev_lock": "636a675168",
+      "prev_vout": 19,
+      "reason": "条件为假走 ELSE 分支留下 1；IF 分支中的 RETURN 在非活跃分支不执行",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "00",
+            "vout": 19
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "ee44431bb35b2b5e2738074f94b2265abcca7db38830adf5d3df6c6c250a8a99"
+    },
+    "20": {
+      "digest_hex": "0691cd4a70a56fb98d344b78c28710337c6f5f42cd6fa9cb99b9998ad51e2d3b",
+      "expected": "OK",
+      "label": "service_demo_ok",
+      "prev_lock": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+      "prev_vout": 20,
+      "reason": "服务正常路径演示：合法 P2PK 花费；再次提交应得 TX_ALREADY_ACCEPTED，双花应得 UTXO_MISSING",
+      "signing_domain": "STACKVM.SIGHASH/1",
+      "tx": {
+        "inputs": [
+          {
+            "txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+            "unlock": "463044022001a605cd30219cf7b4cd70330e4f7ebf04e4988c2cff6ba5b71c46454bc821b202201ccdfa0657196500acae7103f769c6cc604cd820c3905c781ef2d8d64a271d05",
+            "vout": 20
+          }
+        ],
+        "locktime": 0,
+        "outputs": [
+          {
+            "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+            "value": 1000
+          }
+        ],
+        "version": 1
+      },
+      "txid": "7633a8d4458bb0afcbc7a99a1fda6aeb9f719847121586d2df674513638702e0"
+    }
+  },
+  "domain_tag": "STACKVM.SIGHASH/1",
+  "genesis_txid": "382ecb290d00a91bea3d08e8ebde6b92fd2365a0760f55942393b2b1df91f34e",
+  "note": "用例预期由工具侧手工枚举，签名由独立 ecdsa 库生成；不经过被测 VM",
+  "out_value": 1000,
+  "receive_lock": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab",
+  "wrong_domain_tag": "STACKVM.SIGHASH/WRONG-DOMAIN"
+}

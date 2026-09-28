@@ -1,0 +1,118 @@
+{
+  "note": "零输入铸币测试交易，仅由 Store.bootstrap_genesis 在空库接受",
+  "total_minted": 21000,
+  "tx": {
+    "version": 1,
+    "locktime": 0,
+    "inputs": [],
+    "outputs": [
+      {
+        "value": 1000,
+        "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab"
+      },
+      {
+        "value": 1000,
+        "script": "76a914f2ab8e1ee8648d3445264129bd0021f738d1fd3688ab"
+      },
+      {
+        "value": 1000,
+        "script": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f2103a15bed0d7504b05f42022751fd838e70850fe86567d9401eb791df9d93a432fa53ae"
+      },
+      {
+        "value": 1000,
+        "script": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f2103a15bed0d7504b05f42022751fd838e70850fe86567d9401eb791df9d93a432fa53ae"
+      },
+      {
+        "value": 1000,
+        "script": "51210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f52ae"
+      },
+      {
+        "value": 1000,
+        "script": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f52ae"
+      },
+      {
+        "value": 1000,
+        "script": "52210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907210333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f52ae"
+      },
+      {
+        "value": 1000,
+        "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab"
+      },
+      {
+        "value": 1000,
+        "script": "6161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab"
+      },
+      {
+        "value": 1000,
+        "script": "7551"
+      },
+      {
+        "value": 1000,
+        "script": "a914d5f6793d16180a2c472d1dbe0c35342eab3bc0478851"
+      },
+      {
+        "value": 1000,
+        "script": "a914d5f6793d16180a2c472d1dbe0c35342eab3bc0478851"
+      },
+      {
+        "value": 1000,
+        "script": "a82087cbebfeebc05f7c54ac9336c4b4bbec831227a641951a4bde7edd56020f85908851"
+      },
+      {
+        "value": 1000,
+        "script": "aa20b880b681d0d24872d44642447e3df4efd406efc37e9c745530e4d6b5872bddee8851"
+      },
+      {
+        "value": 1000,
+        "script": "a614ee0c59de92ae9808bb7a4dedaaf19b15aaad4e328851"
+      },
+      {
+        "value": 1000,
+        "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab"
+      },
+      {
+        "value": 1000,
+        "script": "62"
+      },
+      {
+        "value": 1000,
+        "script": "5152"
+      },
+      {
+        "value": 1000,
+        "script": "6351676a68"
+      },
+      {
+        "value": 1000,
+        "script": "636a675168"
+      },
+      {
+        "value": 1000,
+        "script": "210211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907ab"
+      }
+    ]
+  },
+  "output_labels": [
+    "p2pk_ok",
+    "p2pkh_ok",
+    "multisig_2of3_ab_ok",
+    "multisig_2of3_only_one",
+    "multisig_1of2_boundary_ok",
+    "multisig_duplicate_pubkey",
+    "multisig_order_swap",
+    "p2pk_wrong_domain",
+    "budget_exhausted",
+    "stack_underflow",
+    "hashlock_ok",
+    "hashlock_wrong_secret",
+    "sha256_preimage_ok",
+    "hash256_preimage_ok",
+    "ripemd160_preimage_ok",
+    "element_too_large",
+    "unknown_opcode",
+    "unclean_stack",
+    "if_true_branch_ok",
+    "if_false_branch_ok",
+    "service_demo_ok"
+  ]
+}

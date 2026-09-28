@@ -1,0 +1,30 @@
+{
+  "note": "确定性生成的本地测试密钥（RFC6979 种子公开），禁止用于任何真实场景",
+  "curve": "secp256k1",
+  "encoding": {
+    "private_wif_style": "32-byte scalar hex (TEST ONLY)",
+    "public": "SEC1 compressed 33-byte hex"
+  },
+  "keys": {
+    "alice": {
+      "priv_hex": "f304ebec1af2565f3abea5bdf40d2d82c6437e8561d13fa3c39b4d62f716a37d",
+      "pub_hex": "0211949e0a82699278c8e4954658eba1609def7a7e0e2a032b1771387bc0853907",
+      "seed_hex": "737461636b766d2d666978747572652d736565643a3a616c6963653a3a7631"
+    },
+    "bob": {
+      "priv_hex": "1196896604361df789a6c4e3497440cc9c8e9aefeb9d5d0178f7110acefb1812",
+      "pub_hex": "0333d23d2ae2800e2b4e998fbd30ab869d05bc66769230df72aa7de2db5457ea0f",
+      "seed_hex": "737461636b766d2d666978747572652d736565643a3a626f623a3a7631"
+    },
+    "carol": {
+      "priv_hex": "29c2511c102a3ffc33bc292de523330370b1e7c82f10531121ff6486904a815d",
+      "pub_hex": "03a15bed0d7504b05f42022751fd838e70850fe86567d9401eb791df9d93a432fa",
+      "seed_hex": "737461636b766d2d666978747572652d736565643a3a6361726f6c3a3a7631"
+    },
+    "dave": {
+      "priv_hex": "99cdee711dca7a02ff72c26a2f1296bf9f314548dbb30cf841abdb2ba15dc3a2",
+      "pub_hex": "02f6986486a21acbf6190486ef5713063ee052efd459a47d40c20699fc6cda7e48",
+      "seed_hex": "737461636b766d2d666978747572652d736565643a3a646176653a3a7631"
+    }
+  }
+}
