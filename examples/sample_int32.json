@@ -1,0 +1,20 @@
+{
+  "type": "int32",
+  "length": 10,
+  "data": "AAAAAAoAAAAUAAAAAAAAACgAAAAyAAAAAAAAAEYAAABQAAAAWgAAAA==",
+  "validity": "twM=",
+  "null_count": 2,
+  "_doc": "int32 column, 10 rows, NULLs at logical indices 3 and 6; data is little-endian int32.",
+  "expected_values": [
+    0,
+    10,
+    20,
+    null,
+    40,
+    50,
+    null,
+    70,
+    80,
+    90
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "utf8",
+  "length": 7,
+  "data": "YWxwaGFkZWx0YWdhbW1h",
+  "offsets": "AAAAAAUAAAAFAAAABQAAAAoAAAAKAAAACgAAAA8AAAA=",
+  "validity": "Ww==",
+  "null_count": 2,
+  "_doc": "utf8 column mixing empty strings (\"\") with NULLs; int32 offsets are little-endian.",
+  "expected_values": [
+    "alpha",
+    "",
+    null,
+    "delta",
+    "",
+    null,
+    "gamma"
+  ]
+}

@@ -1,0 +1,9 @@
+# Runtime dependencies for the Arrow zero-copy view service
+pyarrow>=15,<26
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2.5
+
+# Test / development dependencies
+pytest>=8
+httpx>=0.27

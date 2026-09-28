@@ -1,0 +1,10 @@
+{
+  "type": "utf8",
+  "length": 3,
+  "data": "YWJjZGVm",
+  "offsets": "AAAAAAMAAAABAAAABgAAAA==",
+  "_doc": "NEGATIVE fixture: offsets are non-monotonic; validation must return offsets_not_monotonic.",
+  "expected_failure_categories": [
+    "offsets_not_monotonic"
+  ]
+}

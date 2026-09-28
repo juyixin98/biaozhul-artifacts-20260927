@@ -1,0 +1,12 @@
+# Default configuration. Env vars (APP_*) override these values, see app/config.py.
+app_name = "arrow-zero-copy-views"
+host = "127.0.0.1"
+port = 8000
+# SQLite database for the metadata transaction layer.
+database_path = "./data/metadata.db"
+# Log level for the application logger.
+log_level = "INFO"
+# Human ("dev") or JSON lines ("prod") log rendering.
+log_format = "dev"
+# How many elements to include in column previews returned by the API.
+preview_limit = 8
