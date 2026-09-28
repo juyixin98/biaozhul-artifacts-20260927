@@ -1,0 +1,73 @@
+{
+  "schema": "pr2d-fixtures/v1",
+  "description": "手写分析的二维点增量/矩形和场景。expected_* 由人手计算，并由 scripts/check_fixtures.py 用独立稀疏映射全扫描复核；tests/fixture_cases.rs 再与 pr2d 内核比对。",
+  "cases": [
+    {
+      "name": "basic_negative_and_empty",
+      "xs_register": [1, 2, 2, 3],
+      "ys_register": [10, 20, 20],
+      "expected_register": {"nx": 3, "ny": 2, "duplicate_x": 1, "duplicate_y": 1},
+      "batches": [
+        {"updates": [{"x": 1, "y": 10, "delta": 10}, {"x": 3, "y": 20, "delta": 5}, {"x": 1, "y": 10, "delta": 2}, {"x": 2, "y": 20, "delta": -3}], "expected_version": 1},
+        {"updates": [{"x": 3, "y": 20, "delta": 8}, {"x": 1, "y": 10, "delta": -7}], "expected_version": 2}
+      ],
+      "queries": [
+        {"version": 1, "x_lo": 1, "x_hi": 1, "y_lo": 10, "y_hi": 10, "expected_sum": 12, "expected_empty": false},
+        {"version": 1, "x_lo": 1, "x_hi": 3, "y_lo": 10, "y_hi": 20, "expected_sum": 14, "expected_empty": false},
+        {"version": 1, "x_lo": 1, "x_hi": 2, "y_lo": 11, "y_hi": 19, "expected_sum": 0, "expected_empty": true},
+        {"version": 2, "x_lo": 1, "x_hi": 3, "y_lo": 10, "y_hi": 20, "expected_sum": 15, "expected_empty": false},
+        {"version": 1, "x_lo": 1, "x_hi": 3, "y_lo": 10, "y_hi": 20, "expected_sum": 14, "expected_empty": false, "note": "time travel: old version unchanged"},
+        {"version": 0, "x_lo": 1, "x_hi": 3, "y_lo": 10, "y_hi": 20, "expected_sum": 0, "expected_empty": false, "note": "baseline version is always zero"}
+      ],
+      "rejections": [
+        {"kind": "batch", "updates": [{"x": 9, "y": 10, "delta": 1}], "expected_code": "COORDINATE_NOT_REGISTERED"},
+        {"kind": "batch", "updates": [], "expected_code": "EMPTY_BATCH"},
+        {"kind": "query", "x_lo": 3, "x_hi": 1, "y_lo": 10, "y_hi": 20, "expected_code": "INVERTED_RECT"},
+        {"kind": "query", "version": 99, "x_lo": 1, "x_hi": 3, "y_lo": 10, "y_hi": 20, "expected_code": "VERSION_NOT_FOUND"}
+      ]
+    },
+    {
+      "name": "extreme_coordinates",
+      "xs_register": [-9223372036854775808, 0, 9223372036854775807],
+      "ys_register": [-9223372036854775808, 9223372036854775807],
+      "expected_register": {"nx": 3, "ny": 2, "duplicate_x": 0, "duplicate_y": 0},
+      "batches": [
+        {"updates": [
+          {"x": -9223372036854775808, "y": -9223372036854775808, "delta": 100},
+          {"x": 0, "y": 9223372036854775807, "delta": -250},
+          {"x": 9223372036854775807, "y": -9223372036854775808, "delta": 3},
+          {"x": 9223372036854775807, "y": 9223372036854775807, "delta": 7}
+        ], "expected_version": 1}
+      ],
+      "queries": [
+        {"version": 1, "x_lo": -9223372036854775808, "x_hi": 9223372036854775807, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "expected_sum": -140, "expected_empty": false},
+        {"version": 1, "x_lo": -9223372036854775807, "x_hi": -1, "y_lo": -9223372036854775808, "y_hi": 9223372036854775807, "expected_sum": 0, "expected_empty": true},
+        {"version": 1, "x_lo": -9223372036854775808, "x_hi": -9223372036854775808, "y_lo": -9223372036854775808, "y_hi": -9223372036854775808, "expected_sum": 100, "expected_empty": false},
+        {"version": 1, "x_lo": 0, "x_hi": 0, "y_lo": -9223372036854775808, "y_hi": -9223372036854775808, "expected_sum": 0, "expected_empty": false}
+      ],
+      "rejections": []
+    },
+    {
+      "name": "point_overflow_boundaries",
+      "xs_register": [1],
+      "ys_register": [1],
+      "expected_register": {"nx": 1, "ny": 1, "duplicate_x": 0, "duplicate_y": 0},
+      "batches": [
+        {"updates": [{"x": 1, "y": 1, "delta": 9223372036854775807}], "expected_version": 1}
+      ],
+      "queries": [
+        {"version": 1, "x_lo": 1, "x_hi": 1, "y_lo": 1, "y_hi": 1, "expected_sum": 9223372036854775807, "expected_empty": false}
+      ],
+      "rejections": [
+        {"kind": "batch", "updates": [{"x": 1, "y": 1, "delta": 1}], "expected_code": "POINT_OVERFLOW", "note": "MAX+1 must reject; version stays 1"},
+        {"kind": "success", "updates": [{"x": 1, "y": 1, "delta": 1}, {"x": 1, "y": 1, "delta": -1}], "expected_version": 2, "note": "aggregate delta zero after a +1/-1 pair: commit succeeds, value unchanged"},
+        {"kind": "batch", "base_version": 0, "updates": [{"x": 1, "y": 1, "delta": 0}], "expected_code": "STALE_BASE_VERSION", "note": "current is v2 at that point; zero-delta commit without explicit base on v2 also succeeds but stale explicit base still conflicts"},
+        {"kind": "success", "updates": [{"x": 1, "y": 1, "delta": 0}], "expected_version": 3, "note": "zero-delta batch publishes a new version; sum unchanged"}
+      ],
+      "post_rejection_queries": [
+        {"version": 1, "x_lo": 1, "x_hi": 1, "y_lo": 1, "y_hi": 1, "expected_sum": 9223372036854775807, "expected_empty": false},
+        {"version": 2, "x_lo": 1, "x_hi": 1, "y_lo": 1, "y_hi": 1, "expected_sum": 9223372036854775807, "expected_empty": false}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[package]
+name = "pr2d"
+version = "0.1.0"
+edition = "2021"
+description = "Offline pre-registered 2D point-increment / rectangle-sum backend (Axum + filesystem WAL)"
+
+[lib]
+name = "pr2d"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pr2d-server"
+path = "src/bin/server.rs"
+
+[dependencies]
+axum = "=0.7.9"
+tokio = { version = "=1.44.2", features = ["rt-multi-thread", "macros", "net", "signal"] }
+serde = { version = "=1.0.217", features = ["derive"] }
+serde_json = "=1.0.133"
+tracing = "=0.1.41"
+tracing-subscriber = { version = "=0.3.19", features = ["env-filter", "fmt"] }
+
+[dev-dependencies]
+ureq = { version = "=2.12.1", default-features = false, features = ["json"] }
