@@ -1,0 +1,14 @@
+{
+  "http_addr": ":18080",
+  "database": "data/placer.db",
+  "reconcile_interval_sec": 0,
+  "max_retries": 5,
+  "default_placement": {
+    "spread_topology_key": "zone",
+    "include_empty_domains": true,
+    "skew_domain_mode": "configured",
+    "max_pending_for_exact": 12,
+    "search_budget": 200000
+  },
+  "log_level": "info"
+}
