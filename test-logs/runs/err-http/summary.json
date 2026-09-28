@@ -1,0 +1,7 @@
+{
+  "run_id": "err-http",
+  "outcome": "shutdown",
+  "assertions_passed": 0,
+  "assertions_failed": 0,
+  "failed_names": []
+}

@@ -1,0 +1,3 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_u8_midpoint_encoding-1311815", "ts": 1790544909.271934}
+{"data": {"detail": {"bytes": [128, 128]}, "name": "u8 silence = 128 bytes", "passed": true, "reason": "unsigned 8-bit center convention"}, "event": "assertion", "run_id": "test-test_u8_midpoint_encoding-1311815", "ts": 1790544909.272303}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_u8_midpoint_encoding-1311815", "ts": 1790544909.272723}

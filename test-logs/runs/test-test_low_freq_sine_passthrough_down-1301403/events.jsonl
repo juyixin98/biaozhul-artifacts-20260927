@@ -1,0 +1,3 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_low_freq_sine_passthrough_down-1301403", "ts": 1790544531.19221}
+{"data": {"detail": {"gain_db": 3.328606411585269e-05}, "name": "1 kHz tone gain within +/-0.05 dB (3x down)", "passed": true, "reason": "1 kHz is well inside 7.2 kHz passband edge"}, "event": "assertion", "run_id": "test-test_low_freq_sine_passthrough_down-1301403", "ts": 1790544531.196852}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_low_freq_sine_passthrough_down-1301403", "ts": 1790544531.197277}

@@ -1,0 +1,5 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_state_conflicts-1301403", "ts": 1790544532.115316}
+{"data": {"detail": {"job_id": "s1", "state": "flushed"}, "name": "chunk after flush -> state_conflict", "passed": true, "reason": "illegal lifecycle transition"}, "event": "assertion", "run_id": "test-test_state_conflicts-1301403", "ts": 1790544532.120101}
+{"data": {"detail": {"job_id": "s1", "state": "flushed"}, "name": "double flush -> state_conflict", "passed": true, "reason": "flushed is terminal-good"}, "event": "assertion", "run_id": "test-test_state_conflicts-1301403", "ts": 1790544532.120196}
+{"data": {"detail": {"job_id": "s1", "state": "flushed"}, "name": "chunk to flushed job conflicts even with bad bytes", "passed": true, "reason": "state machine checked before media parsing"}, "event": "assertion", "run_id": "test-test_state_conflicts-1301403", "ts": 1790544532.12028}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_state_conflicts-1301403", "ts": 1790544532.122671}

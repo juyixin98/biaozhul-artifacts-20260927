@@ -1,0 +1,7 @@
+{
+  "run_id": "test-test_exact_match_scipy_upfirdn[48000-44100]-1311815",
+  "outcome": "passed",
+  "assertions_passed": 2,
+  "assertions_failed": 0,
+  "failed_names": []
+}

@@ -1,0 +1,2 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "run-20260928T053207-c6f04037", "ts": 1790544727.380253}
+{"data": {"in": {"attenuation_db": null, "input_rate": 1, "output_rate": 1000, "passband_edge": null}}, "event": "validate", "run_id": "run-20260928T053207-c6f04037", "ts": 1790544727.380342}

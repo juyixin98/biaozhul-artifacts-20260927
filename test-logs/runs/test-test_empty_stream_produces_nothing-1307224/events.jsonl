@@ -1,0 +1,3 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_empty_stream_produces_nothing-1307224", "ts": 1790544727.117177}
+{"data": {"detail": {"a": 0, "b": 0}, "name": "empty push then flush -> zero outputs", "passed": true, "reason": "no invented samples"}, "event": "assertion", "run_id": "test-test_empty_stream_produces_nothing-1307224", "ts": 1790544727.117743}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_empty_stream_produces_nothing-1307224", "ts": 1790544727.11818}

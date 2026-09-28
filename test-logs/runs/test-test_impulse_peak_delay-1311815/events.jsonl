@@ -1,0 +1,3 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_impulse_peak_delay-1311815", "ts": 1790544908.536081}
+{"data": {"detail": {"center": -0.5, "n": 50}, "name": "impulse peak at output index n with n*M == (K-1)/2", "passed": true, "reason": "L=1: nearest output sample to the impulse input time"}, "event": "assertion", "run_id": "test-test_impulse_peak_delay-1311815", "ts": 1790544908.538389}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_impulse_peak_delay-1311815", "ts": 1790544908.53885}

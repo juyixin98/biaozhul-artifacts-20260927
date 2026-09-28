@@ -1,0 +1,6 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_kaiser_beta_table_values-1311815", "ts": 1790544907.342597}
+{"data": {"detail": {"beta": 0.0, "expected": 0.0}, "name": "kaiser_beta(21.0)", "passed": true, "reason": "standard piecewise Kaiser formula"}, "event": "assertion", "run_id": "test-test_kaiser_beta_table_values-1311815", "ts": 1790544907.342951}
+{"data": {"detail": {"beta": 2.1166248611409806, "expected": 2.1166248611409806}, "name": "kaiser_beta(30.0)", "passed": true, "reason": "standard piecewise Kaiser formula"}, "event": "assertion", "run_id": "test-test_kaiser_beta_table_values-1311815", "ts": 1790544907.34302}
+{"data": {"detail": {"beta": 5.65326, "expected": 5.65326}, "name": "kaiser_beta(60.0)", "passed": true, "reason": "standard piecewise Kaiser formula"}, "event": "assertion", "run_id": "test-test_kaiser_beta_table_values-1311815", "ts": 1790544907.343063}
+{"data": {"detail": {"beta": 7.85726, "expected": 7.85726}, "name": "kaiser_beta(80.0)", "passed": true, "reason": "standard piecewise Kaiser formula"}, "event": "assertion", "run_id": "test-test_kaiser_beta_table_values-1311815", "ts": 1790544907.343099}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_kaiser_beta_table_values-1311815", "ts": 1790544907.343444}

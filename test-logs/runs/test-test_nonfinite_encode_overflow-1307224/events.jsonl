@@ -1,0 +1,3 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_nonfinite_encode_overflow-1307224", "ts": 1790544727.154679}
+{"data": {"detail": {"bad_samples": 1, "format": "f32le"}, "name": "inf float64 -> f32 rejected", "passed": true, "reason": "even float encoding has a representable range"}, "event": "assertion", "run_id": "test-test_nonfinite_encode_overflow-1307224", "ts": 1790544727.155055}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_nonfinite_encode_overflow-1307224", "ts": 1790544727.155439}

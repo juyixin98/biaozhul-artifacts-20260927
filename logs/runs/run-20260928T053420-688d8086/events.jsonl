@@ -1,0 +1,2 @@
+{"data": {"pid": 1299552}, "event": "run_started", "run_id": "run-20260928T053420-688d8086", "ts": 1790544860.762938}
+{"data": {"job_id": "6e53a4cc498f4fa2", "plan": {"attenuation_db": 80.0, "cutoff_hz": 3800.0, "down": 2, "group_delay": {"high_rate_samples": 152.5, "input_samples": 50.5, "output_samples": 75.75}, "num_taps": 306, "passband_edge_fraction": 0.9, "passband_edge_hz": 3600.0, "stopband_edge_hz": 4000.0, "taps_per_phase": 102, "up": 3}}, "event": "job_created", "run_id": "run-20260928T053420-688d8086", "ts": 1790544860.763611}

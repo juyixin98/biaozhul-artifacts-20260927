@@ -1,0 +1,7 @@
+{
+  "run_id": "test-test_bit_identical_output_across_chunkings[11025-48000]-1307224",
+  "outcome": "passed",
+  "assertions_passed": 25,
+  "assertions_failed": 0,
+  "failed_names": []
+}

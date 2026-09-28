@@ -1,0 +1,2 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "run-20260928T053207-c7988d54", "ts": 1790544727.36128}
+{"data": {"expected": 109, "job_id": "hc1", "state": {"down": 1, "flushed": true, "hist_all_finite": true, "hist_head": 0.0, "hist_tail": 0.0, "inputs_seen": 8, "next_output_index": 109, "outputs_emitted": 109, "taps_per_phase": 102, "up": 1}, "tail_samples": 101, "total_outputs": 109}, "event": "job_flushed", "run_id": "run-20260928T053207-c7988d54", "ts": 1790544727.361735}

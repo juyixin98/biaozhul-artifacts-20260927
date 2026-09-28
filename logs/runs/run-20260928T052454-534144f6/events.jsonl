@@ -1,0 +1,2 @@
+{"data": {"pid": 1294302}, "event": "run_started", "run_id": "run-20260928T052454-534144f6", "ts": 1790544294.070596}
+{"data": {"expected": 0, "job_id": "demo-err", "state": {"down": 1, "flushed": true, "hist_all_finite": true, "hist_head": 0.0, "hist_tail": 0.0, "inputs_seen": 0, "next_output_index": 0, "outputs_emitted": 0, "taps_per_phase": 102, "up": 1}, "tail_samples": 0, "total_outputs": 0}, "event": "job_flushed", "run_id": "run-20260928T052454-534144f6", "ts": 1790544294.070896}

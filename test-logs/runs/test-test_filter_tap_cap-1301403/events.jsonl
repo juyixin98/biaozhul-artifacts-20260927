@@ -1,0 +1,3 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_filter_tap_cap-1301403", "ts": 1790544529.997117}
+{"data": {"detail": {"cap": 64, "down": 1, "num_taps": 102000, "taps_per_phase": 102, "up": 1000}, "name": "tap cap surfaces ResourceExhaustedError", "passed": true, "reason": "huge ratio needs > 64 taps"}, "event": "assertion", "run_id": "test-test_filter_tap_cap-1301403", "ts": 1790544529.997437}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_filter_tap_cap-1301403", "ts": 1790544529.997803}

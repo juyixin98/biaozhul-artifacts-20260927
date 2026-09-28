@@ -1,0 +1,4 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_constant_signal_settles_to_constant-1307224", "ts": 1790544727.121765}
+{"data": {"detail": {"max_err": 7.841788968621088e-06}, "name": "DC input -> 1.0 in the interior, ripple <= 5e-5", "passed": true, "reason": "ripple is bounded by per-column truncation variation"}, "event": "assertion", "run_id": "test-test_constant_signal_settles_to_constant-1307224", "ts": 1790544727.127265}
+{"data": {"detail": {"max": 1.0000078417889686, "min": 0.9999956374200929}, "name": "DC interior finite and in (0.999, 1.001)", "passed": true, "reason": "no phase produces a wild value"}, "event": "assertion", "run_id": "test-test_constant_signal_settles_to_constant-1307224", "ts": 1790544727.127388}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_constant_signal_settles_to_constant-1307224", "ts": 1790544727.127862}

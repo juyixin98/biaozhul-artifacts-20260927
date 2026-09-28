@@ -1,0 +1,4 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_match_independent_fft_reference[8000-8000]-1301403", "ts": 1790544531.120908}
+{"data": {"detail": {"fft_ref": 301, "ours": 301}, "name": "FFT reference length parity", "passed": true, "reason": "zero-stuff/conv/decimate produces identical count"}, "event": "assertion", "run_id": "test-test_match_independent_fft_reference[8000-8000]-1301403", "ts": 1790544531.136294}
+{"data": {"detail": {"max_abs_err": 8.881784197001252e-16, "ratio": "8000->8000"}, "name": "FFT reference agreement <= 1e-10", "passed": true, "reason": "FFT round-trip tolerance (large nfft accumulation)"}, "event": "assertion", "run_id": "test-test_match_independent_fft_reference[8000-8000]-1301403", "ts": 1790544531.136392}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_match_independent_fft_reference[8000-8000]-1301403", "ts": 1790544531.136943}

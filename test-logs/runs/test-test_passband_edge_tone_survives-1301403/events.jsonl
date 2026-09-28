@@ -1,0 +1,3 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_passband_edge_tone_survives-1301403", "ts": 1790544531.209456}
+{"data": {"detail": {"gain_db": 0.0005193790771944826}, "name": "7 kHz in-band tone gain within +/-0.2 dB", "passed": true, "reason": "inside 0.9*Nyquist passband edge"}, "event": "assertion", "run_id": "test-test_passband_edge_tone_survives-1301403", "ts": 1790544531.214103}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_passband_edge_tone_survives-1301403", "ts": 1790544531.214528}

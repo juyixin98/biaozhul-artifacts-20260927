@@ -1,0 +1,4 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_exact_match_scipy_upfirdn[22050-8000]-1307224", "ts": 1790544726.20014}
+{"data": {"detail": {"ours": 194, "scipy": 194}, "name": "length equals scipy upfirdn", "passed": true, "reason": "full-conv length identity: ceil(L*(J+K-1)/M)"}, "event": "assertion", "run_id": "test-test_exact_match_scipy_upfirdn[22050-8000]-1307224", "ts": 1790544726.208812}
+{"data": {"detail": {"max_abs_err": 1.7763568394002505e-15, "ratio": "22050->8000"}, "name": "sample-wise agreement <= 4e-14 absolute", "passed": true, "reason": "differences are only float64 summation-order noise"}, "event": "assertion", "run_id": "test-test_exact_match_scipy_upfirdn[22050-8000]-1307224", "ts": 1790544726.208933}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_exact_match_scipy_upfirdn[22050-8000]-1307224", "ts": 1790544726.209396}

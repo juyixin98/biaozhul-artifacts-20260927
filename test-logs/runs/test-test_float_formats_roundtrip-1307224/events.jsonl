@@ -1,0 +1,4 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_float_formats_roundtrip-1307224", "ts": 1790544727.141434}
+{"data": {"detail": {}, "name": "f32le finite roundtrip", "passed": true, "reason": "no NaN/Inf introduced"}, "event": "assertion", "run_id": "test-test_float_formats_roundtrip-1307224", "ts": 1790544727.141789}
+{"data": {"detail": {}, "name": "f64le finite roundtrip", "passed": true, "reason": "no NaN/Inf introduced"}, "event": "assertion", "run_id": "test-test_float_formats_roundtrip-1307224", "ts": 1790544727.141907}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_float_formats_roundtrip-1307224", "ts": 1790544727.142332}

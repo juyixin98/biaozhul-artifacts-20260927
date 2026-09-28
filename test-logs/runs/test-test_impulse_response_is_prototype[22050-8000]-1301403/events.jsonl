@@ -1,0 +1,4 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_impulse_response_is_prototype[22050-8000]-1301403", "ts": 1790544531.173794}
+{"data": {"detail": {"max_abs_err": 0.0}, "name": "impulse response equals polyphase column taps", "passed": true, "reason": "y[n] on impulse = P[(nM)%L, floor(nM/L)]"}, "event": "assertion", "run_id": "test-test_impulse_response_is_prototype[22050-8000]-1301403", "ts": 1790544531.18247}
+{"data": {"detail": {"expected": 0.36281179138321995, "sum": 0.36281388659318015}, "name": "impulse response sum ~= L/M within 5e-5 truncation residual", "passed": true, "reason": "window truncation; exact equality only for infinite h"}, "event": "assertion", "run_id": "test-test_impulse_response_is_prototype[22050-8000]-1301403", "ts": 1790544531.182562}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_impulse_response_is_prototype[22050-8000]-1301403", "ts": 1790544531.182984}

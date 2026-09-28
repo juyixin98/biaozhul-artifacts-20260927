@@ -1,0 +1,3 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_nonfinite_pcm_float_rejected-1301403", "ts": 1790544531.909006}
+{"data": {"detail": {"bad_samples": 1, "format": "f32le"}, "name": "NaN f32 payload -> input_error", "passed": true, "reason": "non-finite samples never enter the kernel"}, "event": "assertion", "run_id": "test-test_nonfinite_pcm_float_rejected-1301403", "ts": 1790544531.90936}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_nonfinite_pcm_float_rejected-1301403", "ts": 1790544531.909757}

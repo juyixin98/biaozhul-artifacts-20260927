@@ -1,0 +1,2 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "run-20260928T053509-10dc72e5", "ts": 1790544909.486776}
+{"data": {"category": "input_error", "code": "invalid_input", "detail": {"bytes": 3, "format": "f64le", "job_id": "hc2", "width": 8}, "job_id": "hc2", "message": "PCM byte length not aligned to sample width"}, "event": "job_failed", "run_id": "run-20260928T053509-10dc72e5", "ts": 1790544909.486985}

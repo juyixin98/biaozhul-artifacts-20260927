@@ -1,0 +1,3 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_integer_pcm_roundtrip_levels[s32le]-1311815", "ts": 1790544909.267939}
+{"data": {"detail": {"max_err": 2.3283064365386963e-10, "tol": 4.656612873077393e-10}, "name": "s32le roundtrip within 1 LSB", "passed": true, "reason": "nearest-level encoding, symmetric int rails"}, "event": "assertion", "run_id": "test-test_integer_pcm_roundtrip_levels[s32le]-1311815", "ts": 1790544909.268349}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_integer_pcm_roundtrip_levels[s32le]-1311815", "ts": 1790544909.268773}

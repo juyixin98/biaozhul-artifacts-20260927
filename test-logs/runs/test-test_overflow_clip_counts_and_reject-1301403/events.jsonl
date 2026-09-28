@@ -1,0 +1,5 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_overflow_clip_counts_and_reject-1301403", "ts": 1790544531.910985}
+{"data": {"detail": {"clipped": 2}, "name": "clip policy counts 2 saturated samples", "passed": true, "reason": "+1.5 and -2.0 out of range"}, "event": "assertion", "run_id": "test-test_overflow_clip_counts_and_reject-1301403", "ts": 1790544531.911338}
+{"data": {"detail": {"back": [0.8999908444471572, 1.0, -1.000030518509476, 0.2999969481490524]}, "name": "saturated values at rails", "passed": true, "reason": "saturate, not wrap"}, "event": "assertion", "run_id": "test-test_overflow_clip_counts_and_reject-1301403", "ts": 1790544531.911432}
+{"data": {"detail": {"clipped": 2, "format": "s16le", "max_abs": 2.0}, "name": "reject policy -> output_overflow (422 category)", "passed": true, "reason": "distinct from input and computation failures"}, "event": "assertion", "run_id": "test-test_overflow_clip_counts_and_reject-1301403", "ts": 1790544531.911547}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_overflow_clip_counts_and_reject-1301403", "ts": 1790544531.911953}

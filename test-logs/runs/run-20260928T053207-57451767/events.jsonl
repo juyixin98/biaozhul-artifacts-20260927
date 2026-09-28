@@ -1,0 +1,2 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "run-20260928T053207-57451767", "ts": 1790544727.276175}
+{"data": {"expected": 4952, "job_id": "wav-1", "state": {"down": 2, "flushed": true, "hist_all_finite": true, "hist_head": 0.13550218207342754, "hist_tail": -0.13550218207342754, "inputs_seen": 3200, "next_output_index": 4952, "outputs_emitted": 4952, "taps_per_phase": 102, "up": 3}, "tail_samples": 152, "total_outputs": 4952}, "event": "job_flushed", "run_id": "run-20260928T053207-57451767", "ts": 1790544727.276747}

@@ -1,0 +1,6 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_resource_exhaustion-1311815", "ts": 1790544909.446424}
+{"data": {"detail": {"cap": 4, "job_id": "r1", "samples": 5}, "name": "chunk cap -> resource_exhausted", "passed": true, "reason": "5 samples > 4/chunk; distinct from bad input"}, "event": "assertion", "run_id": "test-test_resource_exhaustion-1311815", "ts": 1790544909.450814}
+{"data": {"detail": {"state": "failed"}, "name": "resource failure marks job failed", "passed": true, "reason": "terminal failed"}, "event": "assertion", "run_id": "test-test_resource_exhaustion-1311815", "ts": 1790544909.450913}
+{"data": {"detail": {"cap": 2}, "name": "max_jobs cap -> resource_exhausted", "passed": true, "reason": "global quota"}, "event": "assertion", "run_id": "test-test_resource_exhaustion-1311815", "ts": 1790544909.45137}
+{"data": {"detail": {"cap": 4, "job_id": "r4", "samples": 7}, "name": "job total cap -> resource_exhausted", "passed": true, "reason": "4+7 > 10 cumulative"}, "event": "assertion", "run_id": "test-test_resource_exhaustion-1311815", "ts": 1790544909.455865}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_resource_exhaustion-1311815", "ts": 1790544909.460335}

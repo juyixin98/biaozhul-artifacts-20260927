@@ -1,0 +1,4 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_two_tone_pack-1307224", "ts": 1790544726.455909}
+{"data": {"detail": {"gain_db": 9.185882892038436e-05}, "name": "44.1->48k: 3 kHz tone preserved", "passed": true, "reason": "inside common passband"}, "event": "assertion", "run_id": "test-test_two_tone_pack-1307224", "ts": 1790544726.585138}
+{"data": {"detail": {"probe_db": -110.7773848229236}, "name": "no spurious coherent content at 1 kHz", "passed": true, "reason": "both inputs are far from 1 kHz"}, "event": "assertion", "run_id": "test-test_two_tone_pack-1307224", "ts": 1790544726.600233}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_two_tone_pack-1307224", "ts": 1790544726.601056}

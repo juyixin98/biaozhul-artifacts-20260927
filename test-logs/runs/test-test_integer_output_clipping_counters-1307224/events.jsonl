@@ -1,0 +1,4 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_integer_output_clipping_counters-1307224", "ts": 1790544727.244503}
+{"data": {"detail": {"clipped_samples": 2, "job_id": "clip-1", "run_id": "run-20260928T053207-475e2217", "state": "flushed", "tail_samples": 101, "total_input_samples": 4, "total_output_samples": 105}, "name": "2 clipped samples reported", "passed": true, "reason": "rails counted and persisted"}, "event": "assertion", "run_id": "test-test_integer_output_clipping_counters-1307224", "ts": 1790544727.250221}
+{"data": {"detail": {"max": 32767, "min": -32768}, "name": "s16 rails present", "passed": true, "reason": "saturation, not modulo wrap"}, "event": "assertion", "run_id": "test-test_integer_output_clipping_counters-1307224", "ts": 1790544727.251605}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_integer_output_clipping_counters-1307224", "ts": 1790544727.252082}

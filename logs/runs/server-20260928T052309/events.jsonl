@@ -1,0 +1,3 @@
+{"data": {"pid": 1294302}, "event": "run_started", "run_id": "server-20260928T052309", "ts": 1790544189.508008}
+{"data": {"settings": {"db_path": "data/demo.db", "default_atten_db": 80.0, "default_passband_edge": 0.9, "log_dir": "logs", "max_filter_taps": 1048576, "max_jobs": 1000, "max_ratio_term": 1000000, "max_samples_per_chunk": 1048576, "max_total_samples": 67108864, "min_taps_per_phase": 8}}, "event": "server_started", "run_id": "server-20260928T052309", "ts": 1790544189.516135}
+{"data": {"outcome": "shutdown"}, "event": "run_finished", "run_id": "server-20260928T052309", "ts": 1790544379.656517}

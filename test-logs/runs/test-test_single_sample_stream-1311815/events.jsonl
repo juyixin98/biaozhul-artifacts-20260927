@@ -1,0 +1,3 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_single_sample_stream-1311815", "ts": 1790544909.247354}
+{"data": {"detail": {"3K": 306, "got": 306}, "name": "J=1, L=3 -> 3K outputs", "passed": true, "reason": "ceil(3*(1+K-1)/1)=3K; q=floor(n/3) is 0 over all 3K outputs"}, "event": "assertion", "run_id": "test-test_single_sample_stream-1311815", "ts": 1790544909.248255}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_single_sample_stream-1311815", "ts": 1790544909.248688}

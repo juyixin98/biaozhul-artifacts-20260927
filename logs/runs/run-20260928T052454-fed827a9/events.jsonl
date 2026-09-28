@@ -1,0 +1,3 @@
+{"data": {"pid": 1294302}, "event": "run_started", "run_id": "run-20260928T052454-fed827a9", "ts": 1790544294.308296}
+{"data": {"component": "demo-err3", "state": {"down": 1, "flushed": false, "hist_all_finite": true, "hist_head": 0.0, "hist_tail": 0.0, "inputs_seen": 0, "next_output_index": 0, "outputs_emitted": 0, "taps_per_phase": 102, "up": 1}}, "event": "state", "run_id": "run-20260928T052454-fed827a9", "ts": 1790544294.308559}
+{"data": {"category": "output_overflow", "code": "output_overflow", "detail": {"clipped": 151, "format": "s16le", "job_id": "demo-err3", "max_abs": 10.20987361090767}, "job_id": "demo-err3", "message": "samples out of s16le range"}, "event": "job_failed", "run_id": "run-20260928T052454-fed827a9", "ts": 1790544294.309199}

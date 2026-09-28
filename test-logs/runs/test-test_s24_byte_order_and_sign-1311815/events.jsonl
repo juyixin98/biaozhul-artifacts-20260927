@@ -1,0 +1,4 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_s24_byte_order_and_sign-1311815", "ts": 1790544909.273871}
+{"data": {"detail": {"bytes": "000080"}, "name": "s24 negative full scale", "passed": true, "reason": "two's complement LE"}, "event": "assertion", "run_id": "test-test_s24_byte_order_and_sign-1311815", "ts": 1790544909.274259}
+{"data": {"detail": {"bytes": "ffff7f"}, "name": "s24 positive full scale", "passed": true, "reason": "max positive 2^23-1"}, "event": "assertion", "run_id": "test-test_s24_byte_order_and_sign-1311815", "ts": 1790544909.274331}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_s24_byte_order_and_sign-1311815", "ts": 1790544909.274701}

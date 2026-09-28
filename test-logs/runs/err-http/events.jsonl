@@ -1,0 +1,14 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "err-http", "ts": 1790544532.158971}
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "err-http", "ts": 1790544532.188014}
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "err-http", "ts": 1790544727.354556}
+{"data": {"settings": {"db_path": "/tmp/pytest-of-admin/pytest-81/test_http_status_codes_per_cat0/test.db", "default_atten_db": 80.0, "default_passband_edge": 0.9, "log_dir": "/home/admin/Downloads/xinbiaozhu/opp234/b/tests/../test-logs", "max_filter_taps": 262144, "max_jobs": 8, "max_ratio_term": 1000000, "max_samples_per_chunk": 4096, "max_total_samples": 65536, "min_taps_per_phase": 8}}, "event": "server_started", "run_id": "err-http", "ts": 1790544727.355502}
+{"data": {"outcome": "shutdown"}, "event": "run_finished", "run_id": "err-http", "ts": 1790544727.372994}
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "err-http", "ts": 1790544727.378086}
+{"data": {"settings": {"db_path": "/tmp/pytest-of-admin/pytest-81/test_huge_ratio_filter_4130/test.db", "default_atten_db": 80.0, "default_passband_edge": 0.9, "log_dir": "/home/admin/Downloads/xinbiaozhu/opp234/b/tests/../test-logs", "max_filter_taps": 262144, "max_jobs": 8, "max_ratio_term": 1000000, "max_samples_per_chunk": 4096, "max_total_samples": 65536, "min_taps_per_phase": 8}}, "event": "server_started", "run_id": "err-http", "ts": 1790544727.379054}
+{"data": {"outcome": "shutdown"}, "event": "run_finished", "run_id": "err-http", "ts": 1790544727.382831}
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "err-http", "ts": 1790544909.475135}
+{"data": {"settings": {"db_path": "/tmp/pytest-of-admin/pytest-83/test_http_status_codes_per_cat0/test.db", "default_atten_db": 80.0, "default_passband_edge": 0.9, "log_dir": "/home/admin/Downloads/xinbiaozhu/opp234/b/tests/../test-logs", "max_filter_taps": 262144, "max_jobs": 8, "max_ratio_term": 1000000, "max_samples_per_chunk": 4096, "max_total_samples": 65536, "min_taps_per_phase": 8}}, "event": "server_started", "run_id": "err-http", "ts": 1790544909.47615}
+{"data": {"outcome": "shutdown"}, "event": "run_finished", "run_id": "err-http", "ts": 1790544909.493262}
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "err-http", "ts": 1790544909.497856}
+{"data": {"settings": {"db_path": "/tmp/pytest-of-admin/pytest-83/test_huge_ratio_filter_4130/test.db", "default_atten_db": 80.0, "default_passband_edge": 0.9, "log_dir": "/home/admin/Downloads/xinbiaozhu/opp234/b/tests/../test-logs", "max_filter_taps": 262144, "max_jobs": 8, "max_ratio_term": 1000000, "max_samples_per_chunk": 4096, "max_total_samples": 65536, "min_taps_per_phase": 8}}, "event": "server_started", "run_id": "err-http", "ts": 1790544909.498761}
+{"data": {"outcome": "shutdown"}, "event": "run_finished", "run_id": "err-http", "ts": 1790544909.502618}

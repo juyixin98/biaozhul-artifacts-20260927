@@ -1,0 +1,12 @@
+{
+  "db_path": "data/resampler.db",
+  "log_dir": "logs",
+  "max_samples_per_chunk": 1048576,
+  "max_total_samples": 67108864,
+  "max_jobs": 1000,
+  "max_ratio_term": 1000000,
+  "max_filter_taps": 1048576,
+  "default_atten_db": 80.0,
+  "default_passband_edge": 0.9,
+  "min_taps_per_phase": 8
+}

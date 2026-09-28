@@ -1,0 +1,4 @@
+{"data": {"pid": 1301403}, "event": "run_started", "run_id": "test-test_output_overflow_is_distinct-1301403", "ts": 1790544532.147404}
+{"data": {"detail": {"clipped": 150, "format": "s16le", "job_id": "o1", "max_abs": 5.672152006059816}, "name": "hard clip policy -> output_overflow", "passed": true, "reason": "422-class, distinct category from input/compute/resource"}, "event": "assertion", "run_id": "test-test_output_overflow_is_distinct-1301403", "ts": 1790544532.152246}
+{"data": {"detail": {"state": "failed"}, "name": "overflow failed the job", "passed": true, "reason": "no partial-success ambiguity"}, "event": "assertion", "run_id": "test-test_output_overflow_is_distinct-1301403", "ts": 1790544532.152327}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_output_overflow_is_distinct-1301403", "ts": 1790544532.154616}

@@ -1,0 +1,14 @@
+# Runtime (locked, verified on Python 3.12)
+numpy==2.5.3
+fastapi==0.141.1
+uvicorn==0.54.0
+pydantic==2.13.5
+starlette==1.7.0
+
+# Independent high-precision offline reference used by the test-suite
+# (SciPy is NOT imported by the production code path)
+scipy==1.18.1
+
+# Test / client
+pytest==9.1.1
+httpx==0.28.1

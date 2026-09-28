@@ -1,0 +1,4 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_computation_failure_nonfinite_kernel-1311815", "ts": 1790544909.461501}
+{"data": {"detail": {"bad_samples": 102, "first_bad_output": 1}, "name": "kernel non-finite output -> computation_failure", "passed": true, "reason": "arithmetic failures are distinguishable from bad input"}, "event": "assertion", "run_id": "test-test_computation_failure_nonfinite_kernel-1311815", "ts": 1790544909.462286}
+{"data": {"detail": {"bad_samples": 1, "format": "f64le"}, "name": "NaN payload at boundary -> input_error", "passed": true, "reason": "boundary validation precedes computation"}, "event": "assertion", "run_id": "test-test_computation_failure_nonfinite_kernel-1311815", "ts": 1790544909.462417}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_computation_failure_nonfinite_kernel-1311815", "ts": 1790544909.462844}

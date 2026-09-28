@@ -1,0 +1,4 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "test-test_above_new_nyquist_is_rejected_down-1311815", "ts": 1790544908.545961}
+{"data": {"detail": {"alias_gain_db": -109.74651962817407}, "name": "12 kHz alias image at 4 kHz suppressed >= 60 dB", "passed": true, "reason": "anti-alias stopband begins at 8 kHz"}, "event": "assertion", "run_id": "test-test_above_new_nyquist_is_rejected_down-1311815", "ts": 1790544908.55574}
+{"data": {"detail": {"rms_db": -112.75681914673795}, "name": "interior RMS residual of rejected tone <= -55 dB", "passed": true, "reason": "end-to-end suppression after edge trimming"}, "event": "assertion", "run_id": "test-test_above_new_nyquist_is_rejected_down-1311815", "ts": 1790544908.555889}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_above_new_nyquist_is_rejected_down-1311815", "ts": 1790544908.556304}

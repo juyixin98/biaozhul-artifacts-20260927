@@ -1,0 +1,3 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_wav_job_full_container-1307224", "ts": 1790544727.261019}
+{"data": {"detail": {"channels": 1, "n_frames": 4952, "pcm_format": "s16le", "sample_rate": 12000}, "name": "output WAV is mono at 12 kHz", "passed": true, "reason": "container rate updated on output"}, "event": "assertion", "run_id": "test-test_wav_job_full_container-1307224", "ts": 1790544727.278372}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_wav_job_full_container-1307224", "ts": 1790544727.278841}

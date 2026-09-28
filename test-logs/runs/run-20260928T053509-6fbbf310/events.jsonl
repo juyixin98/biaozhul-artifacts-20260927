@@ -1,0 +1,2 @@
+{"data": {"pid": 1311815}, "event": "run_started", "run_id": "run-20260928T053509-6fbbf310", "ts": 1790544909.372429}
+{"data": {"expected": 105, "job_id": "clip-1", "state": {"down": 1, "flushed": true, "hist_all_finite": true, "hist_head": 0.0, "hist_tail": 0.25, "inputs_seen": 4, "next_output_index": 105, "outputs_emitted": 105, "taps_per_phase": 102, "up": 1}, "tail_samples": 101, "total_outputs": 105}, "event": "job_flushed", "run_id": "run-20260928T053509-6fbbf310", "ts": 1790544909.372985}

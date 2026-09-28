@@ -1,0 +1,6 @@
+{"data": {"pid": 1307224}, "event": "run_started", "run_id": "test-test_input_error_variants-1307224", "ts": 1790544727.309762}
+{"data": {"detail": {"got": 0}, "name": "zero rate -> input_error", "passed": true, "reason": "parameter validation before state"}, "event": "assertion", "run_id": "test-test_input_error_variants-1307224", "ts": 1790544727.313437}
+{"data": {"detail": {"bytes": 3, "format": "f64le", "job_id": "j1", "width": 8}, "name": "misaligned raw bytes -> input_error + failed job", "passed": true, "reason": "boundary decode failure"}, "event": "assertion", "run_id": "test-test_input_error_variants-1307224", "ts": 1790544727.314191}
+{"data": {"detail": {"cat": "input_error", "state": "failed"}, "name": "job marked failed with category", "passed": true, "reason": "failures persist for replay"}, "event": "assertion", "run_id": "test-test_input_error_variants-1307224", "ts": 1790544727.314267}
+{"data": {"detail": {"job_id": "does-not-exist"}, "name": "unknown job -> input_error", "passed": true, "reason": "unknown id is a client error, not 404 semantics"}, "event": "assertion", "run_id": "test-test_input_error_variants-1307224", "ts": 1790544727.314348}
+{"data": {"outcome": "passed"}, "event": "run_finished", "run_id": "test-test_input_error_variants-1307224", "ts": 1790544727.316593}
