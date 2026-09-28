@@ -1,0 +1,9 @@
+# Pinned versions (exact versions installed in the reference environment).
+fastapi==0.141.1
+uvicorn==0.54.0
+pydantic==2.13.5
+grapheme==0.6.0          # UAX #29 grapheme segmentation, Unicode 13.0.0
+# Test / tooling only:
+pytest==9.1.1
+httpx==0.28.1            # used by FastAPI TestClient and tests
+regex==2026.9.10         # independent \X oracle in tests (never imported by the service)
