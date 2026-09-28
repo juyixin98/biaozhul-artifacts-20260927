@@ -1,0 +1,9 @@
+{
+  "timeout": "30s",
+  "sweep_interval": "5s",
+  "max_datagram_size": 65535,
+  "max_datagrams": 10000,
+  "max_buffered_bytes": 67108864,
+  "db_path": "reasm.db",
+  "listen": "127.0.0.1:8080"
+}

@@ -1,0 +1,136 @@
+{
+  "generated_by": "cmd/genfixture",
+  "generated_at": "2026-09-27T12:00:00Z",
+  "timeout": "30s",
+  "fixtures": [
+    {
+      "file": "basic.pcap",
+      "datagrams": [
+        {
+          "key": {
+            "src": "10.0.0.1",
+            "dst": "10.0.0.2",
+            "proto": 17,
+            "id": 4097
+          },
+          "expect": "completed",
+          "sha256": "316d2adeb92c8ab54971ec957a481c5c8bbe502d08e7b97445272babe67139e6",
+          "length": 280,
+          "frags": 3,
+          "golden_file": "golden_1001.bin"
+        },
+        {
+          "key": {
+            "src": "10.0.0.3",
+            "dst": "10.0.0.4",
+            "proto": 1,
+            "id": 4098
+          },
+          "expect": "completed",
+          "sha256": "116ee24e337beca4ceb763ee91de677386b54bbf60e66bbf27d82244108c96fa",
+          "length": 300,
+          "frags": 4,
+          "golden_file": "golden_1002.bin"
+        },
+        {
+          "key": {
+            "src": "10.0.0.5",
+            "dst": "10.0.0.6",
+            "proto": 17,
+            "id": 4099
+          },
+          "expect": "completed",
+          "sha256": "083896c5ce2c7dc57a7af2bd8d1b4ba5bf130a089288a466408fc977f51907b0",
+          "length": 256,
+          "frags": 4,
+          "duplicate_fragments": 1,
+          "golden_file": "golden_1003.bin"
+        }
+      ],
+      "notes": "in-order, last-fragment-first, shuffled+duplicate, plus 1 unfragmented packet"
+    },
+    {
+      "file": "overlap.pcap",
+      "datagrams": [
+        {
+          "key": {
+            "src": "10.0.1.1",
+            "dst": "10.0.1.2",
+            "proto": 17,
+            "id": 4353
+          },
+          "expect": "rejected",
+          "reason": "overlap"
+        }
+      ]
+    },
+    {
+      "file": "conflict_last.pcap",
+      "datagrams": [
+        {
+          "key": {
+            "src": "10.0.2.1",
+            "dst": "10.0.2.2",
+            "proto": 6,
+            "id": 4609
+          },
+          "expect": "rejected",
+          "reason": "conflicting-last"
+        }
+      ]
+    },
+    {
+      "file": "badlen.pcap",
+      "datagrams": [
+        {
+          "key": {
+            "src": "10.0.3.1",
+            "dst": "10.0.3.2",
+            "proto": 17,
+            "id": 4865
+          },
+          "expect": "rejected",
+          "reason": "bad-length"
+        }
+      ]
+    },
+    {
+      "file": "timeout_reuse.pcap",
+      "timeout": "30s",
+      "datagrams": [
+        {
+          "key": {
+            "src": "10.0.4.1",
+            "dst": "10.0.4.2",
+            "proto": 17,
+            "id": 8193
+          },
+          "expect": "expired"
+        },
+        {
+          "key": {
+            "src": "10.0.4.3",
+            "dst": "10.0.4.4",
+            "proto": 17,
+            "id": 8194
+          },
+          "expect": "expired"
+        },
+        {
+          "key": {
+            "src": "10.0.4.1",
+            "dst": "10.0.4.2",
+            "proto": 17,
+            "id": 8193
+          },
+          "expect": "completed",
+          "sha256": "1f1e2737fecdae5770e9e4b0e5b3bc535ff50e792b69495f6fc1db3b19e6f9ae",
+          "length": 200,
+          "frags": 4,
+          "golden_file": "golden_2001.bin"
+        }
+      ],
+      "notes": "old partial F and incomplete G expire; ID 0x2001 reused by a new complete datagram"
+    }
+  ]
+}
