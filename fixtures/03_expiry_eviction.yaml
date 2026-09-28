@@ -1,0 +1,136 @@
+# 过期、容量淘汰、余额截止与单账户槽位限制
+#
+# 覆盖"过期和淘汰不能破坏索引"：被驱逐/过期后，连续前缀必须仍然正确，
+# 余额承诺额与索引唯一约束不变。
+
+name: expiry_eviction_balance
+config:
+  block_gas_limit: 3000000
+  min_gas_price_wei: 1000000000
+  max_transactions: 6              # 极小全局容量，便于触发淘汰
+  max_queued_per_sender: 4
+  max_transactions_per_sender: 5
+  pending_ttl_seconds: 300         # 300 秒 = 300000 ms
+  replacement_price_bump_pct: 10
+
+transactions:
+  # alice：余额恰好只够支付 nonce 0 + nonce 1，nonce 2 触发"余额截止"
+  #   每笔 cost = 21000*10 gwei + value0 = 2.1e14
+  #   余额 5e14：够 2 笔（4.2e14），不够 3 笔（6.3e14）
+  a0: {signer: alice, nonce: 0, gas_price: 10000000000, value: 0}
+  a1: {signer: alice, nonce: 1, gas_price: 10000000000, value: 0}
+  a2_cutoff: {signer: alice, nonce: 2, gas_price: 10000000000, value: 0}
+
+  # bob：多条 queued（nonce 3/4 超前），用于容量淘汰
+  b0: {signer: bob, nonce: 0, gas_price: 8000000000, value: 0}
+  b3: {signer: bob, nonce: 3, gas_price: 2000000000, value: 0}
+  b4: {signer: bob, nonce: 4, gas_price: 1000000000, value: 0}
+
+  # carol 与 dave 用来填满全局容量（在推进时钟之前进入，过期时也会一起失效）
+  c0: {signer: carol, nonce: 0, gas_price: 4000000000, value: 0}
+  d0: {signer: dave, nonce: 0, gas_price: 3000000000, value: 0}
+  # 时钟推进后才提交的新交易：c0 已过期但账户 nonce 未前进，
+  # 因此新的 nonce 0 交易应立即成为 pending，且不被旧 TTL 牵连
+  c0_fresh: {signer: carol, nonce: 0, gas_price: 4500000000, value: 0}
+
+  # alice 第 6 条：超出 max_transactions_per_sender=5 的 queued 跨度由
+  # nonce_too_far_ahead 先拦截，这里使用 nonce 5 触发 sender_slot_limit 之外的
+  # 跨度约束（nonce 0..5 共 6 条，queued 跨度上限 4 -> nonce_too_far_ahead）
+  a_far: {signer: alice, nonce: 5, gas_price: 10000000000, value: 0}
+
+steps:
+  - step: fund
+    account: alice
+    balance: 500000000000000      # 5e14，仅够前两笔
+  - step: fund
+    account: bob
+    balance: 1000000000000000000
+  - step: fund
+    account: carol
+    balance: 1000000000000000000
+  - step: fund
+    account: dave
+    balance: 1000000000000000000
+
+  # ---------- 余额截止：nonce 连续但钱只够前 2 笔 ----------
+  - step: submit
+    tx: a0
+    expect_accepted: true
+  - step: submit
+    tx: a1
+    expect_accepted: true
+  - step: submit
+    tx: a2_cutoff
+    expect_accepted: true
+    expect:
+      # 不是 nonce 缺口，而是余额累计截止 -> queued_balance_cutoff
+      pool: {pending: [a0, a1], queued: [a2_cutoff]}
+
+  # ---------- 跨度上限 ----------
+  - step: submit
+    tx: a_far
+    expect_accepted: false
+    expect_error: nonce_too_far_ahead
+
+  # ---------- 容量淘汰：queued 先被驱逐，价低者优先 ----------
+  - step: submit
+    tx: b3
+    expect_accepted: true
+  - step: submit
+    tx: b4
+    expect_accepted: true
+    expect:
+      pool: {pending: [a0, a1], queued: [a2_cutoff, b3, b4]}
+
+  # 当前池内 5 条（容量 6），再提交 c0 -> 6 条，未触发淘汰
+  - step: submit
+    tx: c0
+    expect_accepted: true
+  # 第 7 条 d0：容量已满，先驱逐 queued 中价最低者 b4(1gwei)
+  - step: submit
+    tx: d0
+    expect_accepted: true
+    expect:
+      tx_status:
+        b4: dropped
+        b3: queued        # 2gwei 仍高于 b4，幸存
+        a2_cutoff: queued
+      pool:
+        pending: [a0, a1, c0, d0]
+        queued: [a2_cutoff, b3]
+
+  # ---------- 过期：推进时钟超过 TTL，旧 pending 失效后重新分类 ----------
+  - step: advance_ms
+    ms: 301000
+  - step: expire
+    expect:
+      tx_status:
+        a0: dropped
+        a1: dropped
+        c0: dropped
+        d0: dropped
+      pool:
+        pending: []
+        queued: [a2_cutoff, b3]
+
+  # 时钟推进后才提交的交易不被旧 TTL 牵连：立即 pending
+  - step: submit
+    tx: c0_fresh
+    expect_accepted: true
+    expect:
+      pool: {pending: [c0_fresh], queued: [a2_cutoff, b3]}
+  # 再等 299 秒（c0_fresh 才 pending 299s）：不应过期
+  - step: advance_ms
+    ms: 299000
+  - step: expire
+    expect:
+      pool: {pending: [c0_fresh], queued: [a2_cutoff, b3]}
+  # 再推进 2 秒：c0_fresh 在 pending 满 301 秒，过期
+  - step: advance_ms
+    ms: 2000
+  - step: expire
+    expect:
+      tx_status: {c0_fresh: dropped}
+      pool: {pending: [], queued: [a2_cutoff, b3]}
+
+  - step: assert_integrity

@@ -1,0 +1,21 @@
+INFO:     Started server process [1630824]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8077 (Press CTRL+C to quit)
+INFO:     127.0.0.1:36758 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37084 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37084 - "POST /accounts HTTP/1.1" 201 Created
+INFO:     127.0.0.1:37084 - "POST /accounts HTTP/1.1" 201 Created
+INFO:     127.0.0.1:37084 - "POST /transactions HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:37084 - "POST /transactions HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:37084 - "POST /transactions HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:37084 - "GET /candidate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37084 - "GET /transactions/pool HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37084 - "POST /blocks/propose HTTP/1.1" 201 Created
+INFO:     127.0.0.1:37084 - "GET /audit/requests/http_e803ac6d1b1540fb HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37084 - "POST /blocks/rollback HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37084 - "GET /transactions/pool HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1630824]

@@ -1,0 +1,140 @@
+# 区块确认深度与回滚重分类
+#
+# depth=2：区块在链头下方 2 个高度即最终确定，不可回滚。
+# 回滚会退款、退 nonce、把 applied 交易重新分类（缺口规则重新生效）。
+
+name: confirmation_and_rollback
+config:
+  block_gas_limit: 3000000
+  min_gas_price_wei: 1000000000
+  confirmation_depth: 2
+
+transactions:
+  a0: {signer: alice, nonce: 0, gas_price: 10000000000, value: 0}
+  a1: {signer: alice, nonce: 1, gas_price: 10000000000, value: 0}
+  b0: {signer: bob, nonce: 0, gas_price: 20000000000, value: 0}
+  b1: {signer: bob, nonce: 1, gas_price: 20000000000, value: 0}
+  d0: {signer: dave, nonce: 0, gas_price: 30000000000, value: 0}
+  d1: {signer: dave, nonce: 1, gas_price: 30000000000, value: 0}
+  d2: {signer: dave, nonce: 2, gas_price: 30000000000, value: 0}
+
+steps:
+  - step: fund
+    account: alice
+    balance: 1000000000000000000
+  - step: fund
+    account: bob
+    balance: 1000000000000000000
+  - step: fund
+    account: dave
+    balance: 1000000000000000000
+
+  - step: submit
+    tx: a0
+    expect_accepted: true
+  - step: submit
+    tx: a1
+    expect_accepted: true
+  - step: submit
+    tx: b0
+    expect_accepted: true
+
+  # 区块 1：b0, a0, a1
+  - step: propose
+    expect_order: [b0, a0, a1]
+    expect_applied: [b0, a0, a1]
+    expect:
+      head_height: 1
+      accounts: {alice: {nonce: 2}, bob: {nonce: 1}}
+      tx_status: {a0: proposed, a1: proposed, b0: proposed}
+
+  # b1 进入（bob nonce 1），单独成块 2
+  - step: submit
+    tx: b1
+    expect_accepted: true
+  - step: propose
+    expect_applied: [b1]
+    expect:
+      head_height: 2
+      tx_status: {b0: proposed, b1: proposed}
+
+  # 高度 2：区块 1 在链头下方 1，尚未最终确定
+  - step: confirm
+    expect:
+      tx_status: {a0: proposed, a1: proposed}
+
+  # d0 成块 3；此时区块 1 (3-2=1) 达到确认深度
+  - step: submit
+    tx: d0
+    expect_accepted: true
+  - step: propose
+    expect_applied: [d0]
+  - step: confirm
+    expect:
+      head_height: 3
+      tx_status:
+        a0: confirmed
+        a1: confirmed
+        b0: confirmed
+        b1: proposed       # 区块 2 在高度 2，仅落后 1，未最终确定
+        d0: proposed
+
+  # 回滚到高度 2：移除区块 3，d0 重入池（允许，未最终确定）
+  - step: rollback
+    target: 2
+    expect_reentered_n: 1
+    expect:
+      head_height: 2
+      pool: {pending: [d0], queued: []}
+      accounts: {dave: {nonce: 0}}
+      tx_status: {d0: pending}
+
+  # 回滚到高度 1：移除区块 2，b1 重入池
+  - step: rollback
+    target: 1
+    expect_reentered_n: 1
+    expect:
+      head_height: 1
+      pool: {pending: [b1, d0], queued: []}
+      accounts: {bob: {nonce: 1}}
+
+  # 推进到高度 3：用池中已有的 b1（20gwei）、d0（30gwei）出块 2
+  - step: propose
+    expect_order: [d0, b1]
+    expect_applied: [d0, b1]
+  # 再用 d1、d2 推进两块，使区块 1（a0/a1/b0）跨过确认深度
+  - step: submit
+    tx: d1
+    expect_accepted: true
+  - step: propose
+    expect_applied: [d1]
+  - step: submit
+    tx: d2
+    expect_accepted: true
+  - step: propose
+    expect_applied: [d2]
+  - step: confirm
+    expect:
+      head_height: 4
+      # 回滚删除了旧区块 1、2；重新出块后 d0/b1 在新区块 2，
+      # 高度 4 时恰好跨过确认深度（4-2=2）-> 已确认。
+      # d1 在区块 3、d2 在区块 4，仍为 proposed。
+      tx_status:
+        b0: confirmed
+        d0: confirmed
+        b1: confirmed
+        d1: proposed
+        d2: proposed
+
+  # 深度回滚：最终化地板 = 4-2 = 2，target < 2 一律拒绝
+  - step: rollback
+    target: 0
+    expect_error: block_rollback_finalized
+  - step: rollback
+    target: 1
+    expect_error: block_rollback_finalized
+  - step: submit
+    tx: a0          # alice nonce 已为 2（a0/a1 在重出的块 2 中已确认），旧 nonce 拒绝
+    expect_accepted: false
+    expect_error: nonce_too_low
+  - step: assert_integrity

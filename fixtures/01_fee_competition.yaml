@@ -1,0 +1,116 @@
+# 综合场景：多账户费用竞争 + nonce 缺口 + RBF 替换 + 余额变化
+#
+# 预期值全部手写（不是读取被测核心的输出）。运行时由
+# local_txpool/offline/scenario.py 同时驱动被测服务与独立预言机，
+# 每一步做差分比对；本文件中的 expect_* 是第二层（人工）断言。
+#
+# 交易名 -> 内容见 transactions 段；账户由确定性合成私钥生成（非生产账户）。
+
+name: fee_competition_gap_replacement
+config:
+  block_gas_limit: 3000000      # 足够大，排除 gas 容量干扰，专注费用/nonce 规则
+  min_gas_price_wei: 1000000000   # 1 gwei
+  replacement_price_bump_pct: 10
+  confirmation_depth: 2
+
+transactions:
+  # 账户 alice：nonce 0 初始 10 gwei，nonce 2 高价 30 gwei（缺口！）
+  a0: {signer: alice, nonce: 0, gas_price: 10000000000, value: 1000}
+  a2_gap_high: {signer: alice, nonce: 2, gas_price: 30000000000, value: 1000}
+  # 账户 bob：50 gwei 最高价
+  b0: {signer: bob, nonce: 0, gas_price: 50000000000, value: 1000}
+  # 账户 carol：5 gwei 低价
+  c0: {signer: carol, nonce: 0, gas_price: 5000000000, value: 1000}
+  # 低于最低 gas price（0.5 gwei）
+  a_dust: {signer: alice, nonce: 5, gas_price: 500000000, value: 1000}
+  # 内在 gas 不足
+  a_lowgas: {signer: alice, nonce: 6, gas_price: 2000000000, gas_limit: 2100}
+  # RBF：alice nonce 0 涨价不足（11 gwei，需 >= 11）—— 边界：恰好 11 应通过
+  a0_bump_10_9: {signer: alice, nonce: 0, gas_price: 10900000000, value: 1000}
+  a0_replaced_12: {signer: alice, nonce: 0, gas_price: 12000000000, value: 1000}
+
+steps:
+  - step: fund
+    account: alice
+    balance: 1000000000000000000   # 1 ETH，充足
+  - step: fund
+    account: bob
+    balance: 1000000000000000000
+  - step: fund
+    account: carol
+    balance: 1000000000000000000
+
+  # ---------- 准入与缺口分类 ----------
+  - step: submit
+    tx: a0
+    expect_accepted: true
+    expect:
+      pool: {pending: [a0], queued: []}
+  - step: submit
+    tx: a2_gap_high
+    expect_accepted: true
+    expect:
+      # 30 gwei 全池最高，但 nonce=2 前有缺口：必须 queued
+      pool: {pending: [a0], queued: [a2_gap_high]}
+  - step: submit
+    tx: b0
+    expect_accepted: true
+  - step: submit
+    tx: c0
+    expect_accepted: true
+    expect:
+      pool:
+        pending: [a0, b0, c0]
+        queued: [a2_gap_high]
+      candidate: [b0, a0, c0]   # 费用序：50 > 10 > 5；a2 被缺口挡住
+
+  # ---------- 入口失败的具体类别 ----------
+  - step: submit
+    tx: a_dust
+    expect_accepted: false
+    expect_error: gas_price_below_minimum
+  - step: submit
+    tx: a_lowgas
+    expect_accepted: false
+    expect_error: intrinsic_gas_too_low
+
+  # ---------- RBF：涨价不足 -> 达标 ----------
+  - step: submit
+    tx: a0_bump_10_9
+    expect_accepted: false
+    expect_error: same_nonce_lower_price
+    expect:
+      pool: {pending: [a0, b0, c0], queued: [a2_gap_high]}
+  - step: submit
+    tx: a0_replaced_12
+    expect_accepted: true
+    expect:
+      # 旧 a0 被替换；新 a0_replaced_12 占 nonce 0，12 gwei
+      tx_status: {a0: dropped, a0_replaced_12: pending}
+      candidate: [b0, a0_replaced_12, c0]
+
+  # ---------- 出块：严格费用序 + 同账户 nonce 约束 ----------
+  - step: propose
+    expect_order: [b0, a0_replaced_12, c0]
+    expect_applied: [b0, a0_replaced_12, c0]
+    expect:
+      head_height: 1
+      # a2 仍 queued（alice 已执行 nonce 0，缺 nonce 1）
+      pool: {pending: [], queued: [a2_gap_high]}
+      tx_status:
+        b0: proposed
+        a0_replaced_12: proposed
+        c0: proposed
+      accounts:
+        alice: {nonce: 1}
+        bob: {nonce: 1}
+        carol: {nonce: 1}
+
+  # ---------- 确认深度（depth=2，此时高度 1，尚无最终化） ----------
+  - step: confirm
+    expect:
+      tx_status:
+        b0: proposed
+
+  # 空池再出块应失败（具体类别），不产生区块
+  - step: assert_integrity

@@ -1,0 +1,26 @@
+# local-txpool 示例配置（默认值即本地合成链参数）。
+# 环境变量 LTXP_<SECTION>__<FIELD> 可覆盖，例如 LTXP_POOL__MAX_TRANSACTIONS=4096
+database_path: data/txpool.db
+log_level: INFO
+
+chain:
+  chain_id: 31337          # 本地合成链（EIP-155 域分离）
+  genesis_number: 0
+
+gas:
+  block_gas_limit: 30000000
+  tx_intrinsic_gas: 21000
+  data_gas_per_byte: 16
+  max_data_bytes: 16384
+  min_gas_price_wei: 1000000000   # 1 gwei
+
+pool:
+  max_transactions: 2048
+  max_queued_per_sender: 16
+  max_transactions_per_sender: 64
+  replacement_price_bump_pct: 10
+  pending_ttl_seconds: 300
+  evict_pending_as_last_resort: true
+
+finality:
+  confirmation_depth: 3

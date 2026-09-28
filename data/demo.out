@@ -1,0 +1,227 @@
+
+=== health ===
+{
+  "status": "ok",
+  "service_version": "1.0.0",
+  "chain_id": 31337,
+  "time_ms": 1790565281210
+}
+submit alice nonce0  2 gwei: HTTP 202 request_id=http_d5c226c25342429c
+submit alice nonce2 99 gwei (缺口): HTTP 202 request_id=http_ddf1da82450141d7
+submit bob   nonce0 20 gwei: HTTP 202 request_id=http_490ff5fc5e02402e
+
+=== candidate (高费不能跨缺口) ===
+{
+  "ordered": [
+    {
+      "tx_hash": "0x7e02ef265e1db72dd5c151179b4feca9cc8d1b8330c8d5813bf7fcb092ca7962",
+      "sender": "0x49f0Dd5235ABdEdD41D9a3C80045B2B36Ab9dA0b",
+      "nonce": 0,
+      "gas_price": 20000000000,
+      "gas_limit": 21000
+    },
+    {
+      "tx_hash": "0x9d8baeeb6316dd1e591498a8ee26837c4299339aba19e7fe06a8fc814e3929b3",
+      "sender": "0x1d34cf759A83bEaB9C6075a6E3d369394EFf9598",
+      "nonce": 0,
+      "gas_price": 2000000000,
+      "gas_limit": 21000
+    }
+  ],
+  "skipped": [],
+  "gas_used": 42000
+}
+
+=== pool ===
+{
+  "pending": [
+    {
+      "tx_hash": "0x9d8baeeb6316dd1e591498a8ee26837c4299339aba19e7fe06a8fc814e3929b3",
+      "sender": "0x1d34cf759A83bEaB9C6075a6E3d369394EFf9598",
+      "nonce": 0,
+      "gas_price": 2000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "pending",
+      "status_reason": "prefix_advanced",
+      "received_at_ms": 1790565281254
+    },
+    {
+      "tx_hash": "0x7e02ef265e1db72dd5c151179b4feca9cc8d1b8330c8d5813bf7fcb092ca7962",
+      "sender": "0x49f0Dd5235ABdEdD41D9a3C80045B2B36Ab9dA0b",
+      "nonce": 0,
+      "gas_price": 20000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "pending",
+      "status_reason": "prefix_advanced",
+      "received_at_ms": 1790565281260
+    }
+  ],
+  "queued": [
+    {
+      "tx_hash": "0xbd17a2866469b9ffd3972a69a7d87a18de38eced55667305e776ed90e121f185",
+      "sender": "0x1d34cf759A83bEaB9C6075a6E3d369394EFf9598",
+      "nonce": 2,
+      "gas_price": 99000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "queued",
+      "status_reason": "queued_behind_gap",
+      "received_at_ms": 1790565281257
+    }
+  ]
+}
+
+=== proposed block ===
+{
+  "request_id": "http_e803ac6d1b1540fb",
+  "service_version": "1.0.0",
+  "block_hash": "0x0094f6fbf7c952320a6ec60544a31b02a0e72b190f661f90aeb916e365057d3e",
+  "number": 1,
+  "parent_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "gas_used": 42000,
+  "ordered": [
+    {
+      "tx_hash": "0x7e02ef265e1db72dd5c151179b4feca9cc8d1b8330c8d5813bf7fcb092ca7962",
+      "sender": "0x49f0Dd5235ABdEdD41D9a3C80045B2B36Ab9dA0b",
+      "nonce": 0,
+      "gas_price": 20000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "pending",
+      "status_reason": "prefix_advanced",
+      "received_at_ms": 1790565281260
+    },
+    {
+      "tx_hash": "0x9d8baeeb6316dd1e591498a8ee26837c4299339aba19e7fe06a8fc814e3929b3",
+      "sender": "0x1d34cf759A83bEaB9C6075a6E3d369394EFf9598",
+      "nonce": 0,
+      "gas_price": 2000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "pending",
+      "status_reason": "prefix_advanced",
+      "received_at_ms": 1790565281254
+    }
+  ],
+  "applied": [
+    "0x7e02ef265e1db72dd5c151179b4feca9cc8d1b8330c8d5813bf7fcb092ca7962",
+    "0x9d8baeeb6316dd1e591498a8ee26837c4299339aba19e7fe06a8fc814e3929b3"
+  ],
+  "skipped": [],
+  "external_rejected": [],
+  "external_malformed": [],
+  "uncertainties": [
+    {
+      "kind": "block_unconfirmed",
+      "message": "区块尚未达到确认深度，可被回滚",
+      "confirmation_depth": 3
+    }
+  ],
+  "audit_query": "/audit/requests/http_e803ac6d1b1540fb"
+}
+
+=== audit trail for http_e803ac6d1b1540fb ===
+{
+  "request_id": "http_e803ac6d1b1540fb",
+  "found": true,
+  "events": [
+    {
+      "audit_id": 8,
+      "request_id": "http_e803ac6d1b1540fb",
+      "occurred_at_ms": 1790565281267,
+      "event_type": "block_proposed",
+      "tx_hash": null,
+      "block_hash": "0x0094f6fbf7c952320a6ec60544a31b02a0e72b190f661f90aeb916e365057d3e",
+      "reason": "proposed",
+      "module": "kernel",
+      "service_version": "1.0.0",
+      "detail": {
+        "applied": [
+          "0x7e02ef265e1db72dd5c151179b4feca9cc8d1b8330c8d5813bf7fcb092ca7962",
+          "0x9d8baeeb6316dd1e591498a8ee26837c4299339aba19e7fe06a8fc814e3929b3"
+        ],
+        "gas_used": 42000,
+        "number": 1,
+        "parent_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "skipped": []
+      }
+    }
+  ]
+}
+
+=== rollback to 0 ===
+{
+  "request_id": "http_35b0fbca80f14bf4",
+  "rolled_back_blocks": [
+    "0x0094f6fbf7c952320a6ec60544a31b02a0e72b190f661f90aeb916e365057d3e"
+  ],
+  "reentered": [
+    "0x9d8baeeb6316dd1e591498a8ee26837c4299339aba19e7fe06a8fc814e3929b3",
+    "0x7e02ef265e1db72dd5c151179b4feca9cc8d1b8330c8d5813bf7fcb092ca7962"
+  ],
+  "readmitted_external": [],
+  "readmit_failed": [],
+  "uncertainties": [],
+  "audit_query": "/audit/requests/http_35b0fbca80f14bf4"
+}
+
+=== pool after rollback ===
+{
+  "pending": [
+    {
+      "tx_hash": "0x9d8baeeb6316dd1e591498a8ee26837c4299339aba19e7fe06a8fc814e3929b3",
+      "sender": "0x1d34cf759A83bEaB9C6075a6E3d369394EFf9598",
+      "nonce": 0,
+      "gas_price": 2000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "pending",
+      "status_reason": "prefix_advanced",
+      "received_at_ms": 1790565281254
+    },
+    {
+      "tx_hash": "0x7e02ef265e1db72dd5c151179b4feca9cc8d1b8330c8d5813bf7fcb092ca7962",
+      "sender": "0x49f0Dd5235ABdEdD41D9a3C80045B2B36Ab9dA0b",
+      "nonce": 0,
+      "gas_price": 20000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "pending",
+      "status_reason": "prefix_advanced",
+      "received_at_ms": 1790565281260
+    }
+  ],
+  "queued": [
+    {
+      "tx_hash": "0xbd17a2866469b9ffd3972a69a7d87a18de38eced55667305e776ed90e121f185",
+      "sender": "0x1d34cf759A83bEaB9C6075a6E3d369394EFf9598",
+      "nonce": 2,
+      "gas_price": 99000000000,
+      "gas_limit": 21000,
+      "value": 1000,
+      "to": "0x2222222222222222222222222222222222222222",
+      "data_hex": "0x",
+      "status": "queued",
+      "status_reason": "queued_behind_gap",
+      "received_at_ms": 1790565281257
+    }
+  ]
+}
+
+演示完成。
