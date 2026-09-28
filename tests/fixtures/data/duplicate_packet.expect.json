@@ -1,0 +1,53 @@
+{
+  "name": "duplicate_packet",
+  "size_bytes": 1128,
+  "expectation": {
+    "duplicates": {
+      "257": 1
+    },
+    "lost": {},
+    "pes_complete": true
+  },
+  "observed": {
+    "packets_parsed": 6,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "pat_version_switch",
+      "pmt_version_switch",
+      "duplicate_packet"
+    ],
+    "programs": {
+      "pat": {
+        "version": 0,
+        "transport_stream_id": 42,
+        "programs": [
+          {
+            "program_number": 1,
+            "pid": 256
+          }
+        ]
+      },
+      "pmts": [
+        {
+          "pid": 256,
+          "version": 0,
+          "program_number": 1,
+          "pcr_pid": 257,
+          "streams": [
+            {
+              "pid": 257,
+              "stream_type": 27
+            },
+            {
+              "pid": 258,
+              "stream_type": 15
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

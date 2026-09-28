@@ -1,0 +1,23 @@
+{
+  "name": "crc_error",
+  "size_bytes": 564,
+  "expectation": {
+    "crc_errors": 1,
+    "programs": {},
+    "verdict": "rejected"
+  },
+  "observed": {
+    "packets_parsed": 3,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "table_crc_error"
+    ],
+    "programs": {
+      "pat": null,
+      "pmts": []
+    }
+  }
+}

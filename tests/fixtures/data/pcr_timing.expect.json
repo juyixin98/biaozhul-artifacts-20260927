@@ -1,0 +1,47 @@
+{
+  "name": "pcr_timing",
+  "size_bytes": 2444,
+  "expectation": {
+    "pcr_pid": 257,
+    "pcr_samples": 11,
+    "mean_interval_ms": 10.0
+  },
+  "observed": {
+    "packets_parsed": 13,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "pat_version_switch",
+      "pmt_version_switch",
+      "pes_bad_start_code"
+    ],
+    "programs": {
+      "pat": {
+        "version": 0,
+        "transport_stream_id": 42,
+        "programs": [
+          {
+            "program_number": 1,
+            "pid": 256
+          }
+        ]
+      },
+      "pmts": [
+        {
+          "pid": 256,
+          "version": 0,
+          "program_number": 1,
+          "pcr_pid": 257,
+          "streams": [
+            {
+              "pid": 257,
+              "stream_type": 27
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "name": "cross_packet_sections",
+  "size_bytes": 940,
+  "expectation": {
+    "programs": {
+      "1": 256
+    },
+    "streams": {
+      "257": 27,
+      "258": 15
+    },
+    "crc_errors": 0,
+    "section_incomplete": 0
+  },
+  "observed": {
+    "packets_parsed": 5,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "pat_version_switch",
+      "pmt_version_switch"
+    ],
+    "programs": {
+      "pat": {
+        "version": 0,
+        "transport_stream_id": 42,
+        "programs": [
+          {
+            "program_number": 1,
+            "pid": 256
+          }
+        ]
+      },
+      "pmts": [
+        {
+          "pid": 256,
+          "version": 0,
+          "program_number": 1,
+          "pcr_pid": 257,
+          "streams": [
+            {
+              "pid": 257,
+              "stream_type": 27
+            },
+            {
+              "pid": 258,
+              "stream_type": 15
+            },
+            {
+              "pid": 768,
+              "stream_type": 6
+            },
+            {
+              "pid": 769,
+              "stream_type": 6
+            },
+            {
+              "pid": 770,
+              "stream_type": 6
+            },
+            {
+              "pid": 771,
+              "stream_type": 6
+            },
+            {
+              "pid": 772,
+              "stream_type": 6
+            },
+            {
+              "pid": 773,
+              "stream_type": 6
+            },
+            {
+              "pid": 774,
+              "stream_type": 6
+            },
+            {
+              "pid": 775,
+              "stream_type": 6
+            },
+            {
+              "pid": 776,
+              "stream_type": 6
+            },
+            {
+              "pid": 777,
+              "stream_type": 6
+            },
+            {
+              "pid": 778,
+              "stream_type": 6
+            },
+            {
+              "pid": 779,
+              "stream_type": 6
+            },
+            {
+              "pid": 780,
+              "stream_type": 6
+            },
+            {
+              "pid": 781,
+              "stream_type": 6
+            },
+            {
+              "pid": 782,
+              "stream_type": 6
+            },
+            {
+              "pid": 783,
+              "stream_type": 6
+            },
+            {
+              "pid": 784,
+              "stream_type": 6
+            },
+            {
+              "pid": 785,
+              "stream_type": 6
+            },
+            {
+              "pid": 786,
+              "stream_type": 6
+            },
+            {
+              "pid": 787,
+              "stream_type": 6
+            },
+            {
+              "pid": 788,
+              "stream_type": 6
+            },
+            {
+              "pid": 789,
+              "stream_type": 6
+            },
+            {
+              "pid": 790,
+              "stream_type": 6
+            },
+            {
+              "pid": 791,
+              "stream_type": 6
+            },
+            {
+              "pid": 792,
+              "stream_type": 6
+            },
+            {
+              "pid": 793,
+              "stream_type": 6
+            },
+            {
+              "pid": 794,
+              "stream_type": 6
+            },
+            {
+              "pid": 795,
+              "stream_type": 6
+            },
+            {
+              "pid": 796,
+              "stream_type": 6
+            },
+            {
+              "pid": 797,
+              "stream_type": 6
+            },
+            {
+              "pid": 798,
+              "stream_type": 6
+            },
+            {
+              "pid": 799,
+              "stream_type": 6
+            },
+            {
+              "pid": 800,
+              "stream_type": 6
+            },
+            {
+              "pid": 801,
+              "stream_type": 6
+            },
+            {
+              "pid": 802,
+              "stream_type": 6
+            },
+            {
+              "pid": 803,
+              "stream_type": 6
+            },
+            {
+              "pid": 804,
+              "stream_type": 6
+            },
+            {
+              "pid": 805,
+              "stream_type": 6
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

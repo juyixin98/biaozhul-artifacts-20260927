@@ -1,0 +1,62 @@
+{
+  "name": "adaptation_fields",
+  "size_bytes": 1692,
+  "expectation": {
+    "codes_present": [
+      "af_only_cc_increment",
+      "discontinuity_indicator"
+    ],
+    "codes_absent": [
+      "continuity_lost",
+      "duplicate_packet"
+    ],
+    "declared_discontinuities": {
+      "257": 1
+    },
+    "pcr_pid": 257
+  },
+  "observed": {
+    "packets_parsed": 9,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "pat_version_switch",
+      "pmt_version_switch",
+      "pes_bad_start_code",
+      "af_only_cc_increment",
+      "discontinuity_indicator"
+    ],
+    "programs": {
+      "pat": {
+        "version": 0,
+        "transport_stream_id": 42,
+        "programs": [
+          {
+            "program_number": 1,
+            "pid": 256
+          }
+        ]
+      },
+      "pmts": [
+        {
+          "pid": 256,
+          "version": 0,
+          "program_number": 1,
+          "pcr_pid": 257,
+          "streams": [
+            {
+              "pid": 257,
+              "stream_type": 27
+            },
+            {
+              "pid": 258,
+              "stream_type": 15
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

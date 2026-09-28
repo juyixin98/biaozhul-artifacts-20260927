@@ -1,0 +1,22 @@
+{
+  "name": "not_current",
+  "size_bytes": 564,
+  "expectation": {
+    "programs": {},
+    "table_not_current": 1
+  },
+  "observed": {
+    "packets_parsed": 3,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "table_not_current"
+    ],
+    "programs": {
+      "pat": null,
+      "pmts": []
+    }
+  }
+}

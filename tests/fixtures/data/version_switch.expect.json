@@ -1,0 +1,62 @@
+{
+  "name": "version_switch",
+  "size_bytes": 940,
+  "expectation": {
+    "final_program": [
+      1,
+      272
+    ],
+    "final_streams": {
+      "289": 27,
+      "290": 15
+    },
+    "final_pcr_pid": 289,
+    "pat_version_switches": 2,
+    "pmt_version_switches": 2,
+    "retired_pmt_pid": 256
+  },
+  "observed": {
+    "packets_parsed": 5,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "pat_version_switch",
+      "pmt_version_switch",
+      "pat_version_switch",
+      "pmt_version_switch",
+      "pat_version_repeat"
+    ],
+    "programs": {
+      "pat": {
+        "version": 1,
+        "transport_stream_id": 42,
+        "programs": [
+          {
+            "program_number": 1,
+            "pid": 272
+          }
+        ]
+      },
+      "pmts": [
+        {
+          "pid": 272,
+          "version": 1,
+          "program_number": 1,
+          "pcr_pid": 289,
+          "streams": [
+            {
+              "pid": 289,
+              "stream_type": 27
+            },
+            {
+              "pid": 290,
+              "stream_type": 15
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "missing_packets",
+  "size_bytes": 940,
+  "expectation": {
+    "lost": {
+      "257": 2
+    },
+    "pes_gap": true,
+    "pes_complete": false
+  },
+  "observed": {
+    "packets_parsed": 5,
+    "bytes_skipped": 0,
+    "leftover_bytes": 0,
+    "fatal": null,
+    "diagnostic_codes": [
+      "sync_locked",
+      "pat_version_switch",
+      "pmt_version_switch",
+      "continuity_lost",
+      "pes_gap",
+      "pes_incomplete"
+    ],
+    "programs": {
+      "pat": {
+        "version": 0,
+        "transport_stream_id": 42,
+        "programs": [
+          {
+            "program_number": 1,
+            "pid": 256
+          }
+        ]
+      },
+      "pmts": [
+        {
+          "pid": 256,
+          "version": 0,
+          "program_number": 1,
+          "pcr_pid": 257,
+          "streams": [
+            {
+              "pid": 257,
+              "stream_type": 27
+            },
+            {
+              "pid": 258,
+              "stream_type": 15
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
