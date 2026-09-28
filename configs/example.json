@@ -1,0 +1,32 @@
+{
+  "server": {
+    "udpListen": "127.0.0.1:10067",
+    "httpListen": "127.0.0.1:18080",
+    "allowNonLoopback": false,
+    "readTimeout": "5s"
+  },
+  "pool": {
+    "rangeStart": "127.10.0.2",
+    "rangeEnd": "127.10.0.254",
+    "serverId": "127.0.0.1",
+    "netmask": "255.0.0.0",
+    "router": "127.0.0.1",
+    "dns": ["127.0.0.1"]
+  },
+  "lease": {
+    "leaseTime": "10m",
+    "t1": "5m",
+    "t2": "8m",
+    "offerTTL": "30s"
+  },
+  "options": {
+    "netmask": "255.0.0.0",
+    "router": "127.0.0.1",
+    "dns": ["127.0.0.1"]
+  },
+  "store": {
+    "dsn": "file:./dhcpv4lab.db",
+    "reset": false
+  },
+  "testMode": false
+}
