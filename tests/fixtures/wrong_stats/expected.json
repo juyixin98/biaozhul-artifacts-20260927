@@ -1,0 +1,45 @@
+{
+  "description": "数据正确但统计被故意改错（块级/页级 min/max 与 NULL）",
+  "expected_verdict": "REJECTED",
+  "expected_finding_codes": [
+    "MIN_MISMATCH",
+    "NULL_COUNT_MISMATCH",
+    "PAGE_AGGREGATION_MISMATCH",
+    "MAX_MISMATCH"
+  ],
+  "untrusted_columns": [
+    "id",
+    "code"
+  ],
+  "corrupt_locators": [
+    {
+      "row_group": 0,
+      "column": "id",
+      "page": 0
+    },
+    {
+      "row_group": 0,
+      "column": "id"
+    },
+    {
+      "row_group": 1,
+      "column": "code"
+    },
+    {
+      "row_group": 1,
+      "column": "code",
+      "page": 3
+    }
+  ],
+  "data_truth": {
+    "id": {
+      "min": 0,
+      "max": 9999
+    },
+    "code": {
+      "min": 0,
+      "max": 499,
+      "null_count": 0
+    }
+  }
+}

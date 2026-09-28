@@ -1,0 +1,32 @@
+{
+  "description": "混合 NaN：+NaN/-NaN、+0.0/-0.0、±Inf、NULL。data.parquet 的统计与数据一致（min=-Inf/max=+Inf，NaN 不在 min/max 中）；bad_nan_stats.parquet 把 max 改成 NaN，应被拒绝。",
+  "expected_verdict": "ACCEPTED",
+  "bad_file": {
+    "name": "bad_nan_stats.parquet",
+    "expected_verdict": "REJECTED",
+    "expected_finding_codes": [
+      "MAX_MISMATCH",
+      "PAGE_AGGREGATION_MISMATCH"
+    ]
+  },
+  "data_truth": {
+    "f": {
+      "min": "-Infinity",
+      "max": "Infinity",
+      "null_count": 1200,
+      "contains_nan": true,
+      "contains_negative_zero": true,
+      "total_order_present": [
+        "-Infinity",
+        -3.25,
+        "-0.0",
+        "+0.0",
+        1.5,
+        2.0,
+        "+Infinity",
+        "-NaN",
+        "+NaN"
+      ]
+    }
+  }
+}

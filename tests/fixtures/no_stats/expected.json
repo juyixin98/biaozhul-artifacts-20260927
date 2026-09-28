@@ -1,0 +1,20 @@
+{
+  "description": "文件关闭了统计写入（无 min/max/null_count）",
+  "expected_verdict": "UNDECIDABLE",
+  "expected_finding_codes": [
+    "NULL_COUNT_MISSING",
+    "MIN_MAX_MISSING"
+  ],
+  "data_truth": {
+    "id": {
+      "min": 0,
+      "max": 2499,
+      "null_count": 0
+    },
+    "name": {
+      "min": "n0",
+      "max": "n999",
+      "null_count": 0
+    }
+  }
+}

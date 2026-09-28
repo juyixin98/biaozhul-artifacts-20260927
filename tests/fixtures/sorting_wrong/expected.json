@@ -1,0 +1,12 @@
+{
+  "description": "score 数据无序，但页脚 sorting_columns 声明升序",
+  "expected_verdict": "REJECTED",
+  "expected_finding_codes": [
+    "SORTING_DECLARATION_VIOLATED"
+  ],
+  "declared": {
+    "column": "score",
+    "order": "asc"
+  },
+  "observed": "unsorted"
+}

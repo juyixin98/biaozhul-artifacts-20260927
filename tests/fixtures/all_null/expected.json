@@ -1,0 +1,31 @@
+{
+  "description": "note/amount 两列全 NULL；统计应可接受（无 min/max 合理）",
+  "expected_verdict": "ACCEPTED",
+  "columns": {
+    "id": {
+      "min": 0,
+      "max": 1499,
+      "null_count": 0
+    },
+    "note": {
+      "null_count": 1500,
+      "has_values": false
+    },
+    "amount": {
+      "null_count": 1500,
+      "has_values": false
+    }
+  },
+  "query_checks": [
+    {
+      "column": "note",
+      "predicate": "is_null",
+      "expect_all_rows_match": true
+    },
+    {
+      "column": "amount",
+      "predicate": "not_null",
+      "expect_zero_match": true
+    }
+  ]
+}

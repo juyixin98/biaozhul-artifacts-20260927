@@ -1,0 +1,52 @@
+{
+  "description": "data.parquet 的字符串统计声明截断边界 alph/b，覆盖真实区间 [alpha0000, alphazzzz]；严格外侧剪枝可用，落在截断边界上的比较必须 UNDECIDABLE。bad_truncated.parquet 的截断 max=alphab 小于真实 max，违反方向保证，应被拒绝。",
+  "expected_verdict": "ACCEPTED",
+  "bad_file": {
+    "name": "bad_truncated.parquet",
+    "expected_verdict": "REJECTED",
+    "expected_finding_codes": [
+      "TRUNCATED_BOUND_OUTSIDE"
+    ]
+  },
+  "data_truth": {
+    "word": {
+      "min": "alpha0000",
+      "max": "alphazzzz",
+      "truncated_min_claim": "alph",
+      "truncated_max_claim": "b",
+      "null_count": 0
+    }
+  },
+  "prune_expectations": [
+    {
+      "predicate": "eq",
+      "value": "aaaa",
+      "decision": "PRUNE"
+    },
+    {
+      "predicate": "eq",
+      "value": "alph",
+      "decision": "UNDECIDABLE"
+    },
+    {
+      "predicate": "lt",
+      "value": "alph",
+      "decision": "UNDECIDABLE"
+    },
+    {
+      "predicate": "lt",
+      "value": "afff",
+      "decision": "PRUNE"
+    },
+    {
+      "predicate": "gt",
+      "value": "b",
+      "decision": "UNDECIDABLE"
+    },
+    {
+      "predicate": "gt",
+      "value": "c",
+      "decision": "PRUNE"
+    }
+  ]
+}

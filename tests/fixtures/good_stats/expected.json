@@ -1,0 +1,19 @@
+{
+  "description": "数据与统计完全正确：多页、含 NULL、负数与有符号零",
+  "expected_verdict": "ACCEPTED",
+  "columns": {
+    "id": {
+      "min": 0,
+      "max": 9999,
+      "null_count": 0
+    },
+    "amount": {
+      "min": -6.0,
+      "max": 6.0,
+      "null_count": 200,
+      "contains_nan": false,
+      "contains_negative_zero": true
+    }
+  },
+  "num_row_groups": 2
+}
