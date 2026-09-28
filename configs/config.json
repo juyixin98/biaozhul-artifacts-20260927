@@ -1,0 +1,8 @@
+{
+  "listen": "127.0.0.1:8080",
+  "sqlite_dsn": "file:data/reasm.sqlite?cache=shared",
+  "reassemble_timeout": "30s",
+  "result_ttl": "5m",
+  "max_datagram_bytes": 65535,
+  "sweep_interval": "250ms"
+}

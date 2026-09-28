@@ -1,0 +1,2 @@
+{"seq":1,"run_id":"run-1790536676755029257-29619","suite":"netmodel/parse-fields","time":"2026-09-27T19:17:56.755296267Z","level":"INFO","message":"测试运行开始","detail":{"algorithm":"rfc791-rfc815-strict-no-overlap","platform":"linux/amd64"},"version":"0.1.0","go":"go1.23.4"}
+{"seq":2,"run_id":"run-1790536676755029257-29619","suite":"netmodel/parse-fields","time":"2026-09-27T19:17:56.756039327Z","level":"PASS","case":"parse-fields","input_id":"valid","message":"offset=51(408 字节), MF=1, 分组键四元组正确","detail":{"offset_bytes":408,"total":60},"version":"0.1.0","go":"go1.23.4"}

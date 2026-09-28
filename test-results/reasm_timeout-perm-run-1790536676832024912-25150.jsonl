@@ -1,0 +1,2 @@
+{"seq":1,"run_id":"run-1790536676832024912-25150","suite":"reasm/timeout-perm","time":"2026-09-27T19:17:56.832097469Z","level":"INFO","message":"测试运行开始","detail":{"algorithm":"rfc791-rfc815-strict-no-overlap","platform":"linux/amd64"},"version":"0.1.0","go":"go1.23.4"}
+{"seq":2,"run_id":"run-1790536676832024912-25150","suite":"reasm/timeout-perm","time":"2026-09-27T19:17:56.834172317Z","level":"PASS","case":"timeout-perm","input_id":"6-cases","message":"6 种排列下“缺片超时→同 ID 复用→成功”全部成立","detail":{"cases":6,"timeout":"200ms"},"version":"0.1.0","go":"go1.23.4"}

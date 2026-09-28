@@ -1,0 +1,40 @@
+{
+  "version": "0.1.0",
+  "algorithm": "rfc791-rfc815-strict-no-overlap",
+  "scenario": "conflict-last",
+  "payload_len": 60,
+  "payload_sha256": "0e48fbc8ba51fca33d6cef734a0bb063eac497a40e3e3589c971ef5f3c5f32c7",
+  "fragment_seq": [
+    {
+      "Offset8": 0,
+      "Payload": "6aJ0nBf3f9zUxnizp4sg8Q==",
+      "More": true
+    },
+    {
+      "Offset8": 2,
+      "Payload": "s6rUgIaoF8ZK3PIaTefsSw==",
+      "More": true
+    },
+    {
+      "Offset8": 4,
+      "Payload": "EgPkJ0n+cdNMjqQrdeXJFQ==",
+      "More": true
+    },
+    {
+      "Offset8": 6,
+      "Payload": "LPMov9OLgZ1Ehljh",
+      "More": false
+    }
+  ],
+  "permutation": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "expected": {
+    "error_kind": "conflicting_last_fragment",
+    "verdict": "rejected"
+  },
+  "generated_at": "2026-09-27T18:55:59.057196778Z"
+}

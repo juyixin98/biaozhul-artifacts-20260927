@@ -1,0 +1,2 @@
+{"seq":1,"run_id":"run-1790536676780750034-50395","suite":"reasm/same-range-diff","time":"2026-09-27T19:17:56.780852382Z","level":"INFO","message":"测试运行开始","detail":{"algorithm":"rfc791-rfc815-strict-no-overlap","platform":"linux/amd64"},"version":"0.1.0","go":"go1.23.4"}
+{"seq":2,"run_id":"run-1790536676780750034-50395","suite":"reasm/same-range-diff","time":"2026-09-27T19:17:56.781370553Z","level":"PASS","case":"same-range-diff","input_id":"reject","message":"同区间不同字节整组拒绝，后续片不再污染已终结组","detail":{"kind":"overlap_group_rejected"},"version":"0.1.0","go":"go1.23.4"}

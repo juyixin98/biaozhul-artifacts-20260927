@@ -1,0 +1,217 @@
+?   	ipfragreasm/cmd/reasm	[no test files]
+?   	ipfragreasm/internal/fixture	[no test files]
+=== RUN   TestHealth
+2026/09/28 03:17:56 http 200 GET /healthz
+--- PASS: TestHealth (0.00s)
+=== RUN   TestFragmentSubmissionCompleteAndLookup
+    testlog.go:147: [INFO] run=run-1790536676760801743-2190 case= input= 测试运行开始
+2026/09/28 03:17:56 http 201 POST /api/v1/fragments
+    testlog.go:147: [PASS] run=run-1790536676760801743-2190 case=fragments input=single-complete 单片完成返回 201 且字节正确
+2026/09/28 03:17:56 http 200 GET /api/v1/groups/10.1.0.1->10.1.0.2/proto=17/id=16962
+2026/09/28 03:17:56 http 409 POST /api/v1/fragments
+    testlog.go:147: [PASS] run=run-1790536676760801743-2190 case=fragments input=ttl-reuse-blocked 完成留存期复用 ID 返回 409 与具体类别
+    testlog.go:90: [testlog] 运行 run-1790536676760801743-2190 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/api_fragments-run-1790536676760801743-2190.jsonl
+--- PASS: TestFragmentSubmissionCompleteAndLookup (0.01s)
+=== RUN   TestFragmentRejectStatusCodes
+2026/09/28 03:17:56 http 400 POST /api/v1/fragments
+2026/09/28 03:17:56 http 400 POST /api/v1/fragments
+2026/09/28 03:17:56 http 422 POST /api/v1/fragments
+2026/09/28 03:17:56 http 404 GET /api/v1/groups/1.2.3.4->5.6.7.8/proto=6/id=1
+--- PASS: TestFragmentRejectStatusCodes (0.00s)
+=== RUN   TestReplayPCAPEndpoint
+2026/09/28 03:17:56 http 200 POST /api/v1/replay/pcap
+2026/09/28 03:17:56 http 400 POST /api/v1/replay/pcap
+--- PASS: TestReplayPCAPEndpoint (0.00s)
+=== RUN   TestStats
+2026/09/28 03:17:56 http 200 GET /api/v1/stats
+--- PASS: TestStats (0.00s)
+PASS
+ok  	ipfragreasm/internal/api	1.042s
+=== RUN   TestDefaultAndValidate
+--- PASS: TestDefaultAndValidate (0.00s)
+=== RUN   TestValidateRejectsBadValues
+--- PASS: TestValidateRejectsBadValues (0.00s)
+=== RUN   TestLoadJSONAndEnvOverride
+--- PASS: TestLoadJSONAndEnvOverride (0.00s)
+=== RUN   TestLoadMissingFileFallsBack
+--- PASS: TestLoadMissingFileFallsBack (0.00s)
+PASS
+ok  	ipfragreasm/internal/config	1.019s
+=== RUN   TestParseValidFragmentFields
+    testlog.go:147: [INFO] run=run-1790536676755029257-29619 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676755029257-29619 case=parse-fields input=valid offset=51(408 字节), MF=1, 分组键四元组正确
+    testlog.go:90: [testlog] 运行 run-1790536676755029257-29619 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/netmodel_parse-fields-run-1790536676755029257-29619.jsonl
+--- PASS: TestParseValidFragmentFields (0.00s)
+=== RUN   TestParseErrorsHaveKinds
+    testlog.go:147: [INFO] run=run-1790536676756367696-68047 case= input= 测试运行开始
+    testlog.go:147: [INFO] run=run-1790536676756367696-68047 case=parse-errors input=truncated 返回具体失败类别 truncated_packet
+    testlog.go:147: [INFO] run=run-1790536676756367696-68047 case=parse-errors input=bad-version 返回具体失败类别 bad_ip_version
+    testlog.go:147: [PASS] run=run-1790536676756367696-68047 case=parse-errors input=all 每类畸形报文都返回明确 ParseErrorKind
+    testlog.go:90: [testlog] 运行 run-1790536676756367696-68047 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/netmodel_parse-errors-run-1790536676756367696-68047.jsonl
+--- PASS: TestParseErrorsHaveKinds (0.00s)
+=== RUN   TestEthernetAndLoopbackExtraction
+--- PASS: TestEthernetAndLoopbackExtraction (0.00s)
+=== RUN   TestChecksumKnownVector
+--- PASS: TestChecksumKnownVector (0.00s)
+PASS
+ok  	ipfragreasm/internal/netmodel	1.023s
+=== RUN   TestOracleCompleteAndNoEarlyEmit
+--- PASS: TestOracleCompleteAndNoEarlyEmit (0.00s)
+=== RUN   TestOracleRejectClasses
+--- PASS: TestOracleRejectClasses (0.00s)
+=== RUN   TestOracleTimeout
+--- PASS: TestOracleTimeout (0.00s)
+PASS
+ok  	ipfragreasm/internal/oracle	1.022s
+=== RUN   TestAllPermutationsReassemble
+    testlog.go:147: [INFO] run=run-1790536676765469822-70178 case= input= 测试运行开始
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[0 1 2 3] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[0 1 2 3] 4 片排列 [0 1 2 3] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[1 0 2 3] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[1 0 2 3] 4 片排列 [1 0 2 3] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[2 0 1 3] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[2 0 1 3] 4 片排列 [2 0 1 3] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[0 2 1 3] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[0 2 1 3] 4 片排列 [0 2 1 3] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[1 2 0 3] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[1 2 0 3] 4 片排列 [1 2 0 3] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[2 1 0 3] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[2 1 0 3] 4 片排列 [2 1 0 3] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[3 1 0 2] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[3 1 0 2] 4 片排列 [3 1 0 2] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[1 3 0 2] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[1 3 0 2] 4 片排列 [1 3 0 2] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[0 3 1 2] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[0 3 1 2] 4 片排列 [0 3 1 2] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[3 0 1 2] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[3 0 1 2] 4 片排列 [3 0 1 2] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[1 0 3 2] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[1 0 3 2] 4 片排列 [1 0 3 2] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[0 1 3 2] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[0 1 3 2] 4 片排列 [0 1 3 2] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[0 2 3 1] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[0 2 3 1] 4 片排列 [0 2 3 1] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[2 0 3 1] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[2 0 3 1] 4 片排列 [2 0 3 1] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[3 0 2 1] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[3 0 2 1] 4 片排列 [3 0 2 1] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[0 3 2 1] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[0 3 2 1] 4 片排列 [0 3 2 1] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[2 3 0 1] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[2 3 0 1] 4 片排列 [2 3 0 1] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[3 2 0 1] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[3 2 0 1] 4 片排列 [3 2 0 1] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[3 2 1 0] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[3 2 1 0] 4 片排列 [3 2 1 0] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[2 3 1 0] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[2 3 1 0] 4 片排列 [2 3 1 0] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[1 3 2 0] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[1 3 2 0] 4 片排列 [1 3 2 0] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[3 1 2 0] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[3 1 2 0] 4 片排列 [3 1 2 0] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[2 1 3 0] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[2 1 3 0] 4 片排列 [2 1 3 0] 重组成功且字节逐位相等 len=60
+    testlog.go:147: [STEP] run=run-1790536676765469822-70178 case=perm input=perm=[1 2 3 0] 按排列喂入 4 片，oracle 与 reasm 交叉校验
+    testlog.go:147: [PASS] run=run-1790536676765469822-70178 case=perm input=perm=[1 2 3 0] 4 片排列 [1 2 3 0] 重组成功且字节逐位相等 len=60
+    testlog.go:90: [testlog] 运行 run-1790536676765469822-70178 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_permutations-run-1790536676765469822-70178.jsonl
+--- PASS: TestAllPermutationsReassemble (0.01s)
+=== RUN   TestLastFragmentFirstDoesNotEmitEarly
+    testlog.go:147: [INFO] run=run-1790536676778840373-40640 case= input= 测试运行开始
+    testlog.go:147: [STEP] run=run-1790536676778840373-40640 case=last-first input=last-only 末片先到：HasLast=true, Covered=0, 状态 pending
+    testlog.go:147: [PASS] run=run-1790536676778840373-40640 case=last-first input=last-only 末片先到不提前输出，收齐后字节正确
+    testlog.go:90: [testlog] 运行 run-1790536676778840373-40640 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_last-first-run-1790536676778840373-40640.jsonl
+--- PASS: TestLastFragmentFirstDoesNotEmitEarly (0.00s)
+=== RUN   TestExactDuplicateRecognized
+    testlog.go:147: [INFO] run=run-1790536676779671250-71535 case= input= 测试运行开始
+    testlog.go:147: [STEP] run=run-1790536676779671250-71535 case=duplicate input=dup-of-1 完全重复片识别成功，Received 不增长
+    testlog.go:147: [PASS] run=run-1790536676779671250-71535 case=duplicate input=full 完全重复幂等，重组字节与原始载荷一致
+    testlog.go:90: [testlog] 运行 run-1790536676779671250-71535 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_duplicate-run-1790536676779671250-71535.jsonl
+--- PASS: TestExactDuplicateRecognized (0.00s)
+=== RUN   TestSameRangeDifferentBytesRejectsGroup
+    testlog.go:147: [INFO] run=run-1790536676780750034-50395 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676780750034-50395 case=same-range-diff input=reject 同区间不同字节整组拒绝，后续片不再污染已终结组
+    testlog.go:90: [testlog] 运行 run-1790536676780750034-50395 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_same-range-diff-run-1790536676780750034-50395.jsonl
+--- PASS: TestSameRangeDifferentBytesRejectsGroup (0.00s)
+=== RUN   TestPartialOverlapRejectsGroup
+    testlog.go:147: [INFO] run=run-1790536676781927239-27542 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676781927239-27542 case=partial-overlap input=reject [8,24) 与 [0,16) 部分相交，整组拒绝
+    testlog.go:90: [testlog] 运行 run-1790536676781927239-27542 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_partial-overlap-run-1790536676781927239-27542.jsonl
+--- PASS: TestPartialOverlapRejectsGroup (0.00s)
+=== RUN   TestConflictingLastFragment
+    testlog.go:147: [INFO] run=run-1790536676782733299-33637 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676782733299-33637 case=conflict-last input=reject 末片终点 40 与已宣告 34 冲突，整组拒绝
+    testlog.go:90: [testlog] 运行 run-1790536676782733299-33637 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_conflict-last-run-1790536676782733299-33637.jsonl
+--- PASS: TestConflictingLastFragment (0.00s)
+=== RUN   TestFragmentBeyondDeclaredTotal
+--- PASS: TestFragmentBeyondDeclaredTotal (0.00s)
+=== RUN   TestUnalignedNonLastFragment
+    testlog.go:147: [INFO] run=run-1790536676784038637-38973 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676784038637-38973 case=unaligned input=single-fragment MF=1 长度 7 为单片非法，不污染同键后续重组
+    testlog.go:90: [testlog] 运行 run-1790536676784038637-38973 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_unaligned-run-1790536676784038637-38973.jsonl
+--- PASS: TestUnalignedNonLastFragment (0.00s)
+=== RUN   TestDatagramTooLarge
+--- PASS: TestDatagramTooLarge (0.00s)
+=== RUN   TestTimeoutAndIDReuse
+    testlog.go:147: [INFO] run=run-1790536676785473587-73915 case= input= 测试运行开始
+    testlog.go:147: [STEP] run=run-1790536676785473587-73915 case=timeout-reuse input=timed-out 首片后超时，组与分片彻底回收，键立即可复用
+    testlog.go:147: [STEP] run=run-1790536676785473587-73915 case=timeout-reuse input=reused-complete 同 ID 复用重组成功
+    testlog.go:147: [PASS] run=run-1790536676785473587-73915 case=timeout-reuse input=ttl-blocks-reuse 超时释放 ID 可复用；完成组在 TTL 内阻断过早复用
+    testlog.go:90: [testlog] 运行 run-1790536676785473587-73915 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_timeout-reuse-run-1790536676785473587-73915.jsonl
+--- PASS: TestTimeoutAndIDReuse (0.00s)
+=== RUN   TestResultTTLRecycling
+--- PASS: TestResultTTLRecycling (0.00s)
+=== RUN   TestGroupKeyDistinguishesFlow
+--- PASS: TestGroupKeyDistinguishesFlow (0.00s)
+=== RUN   TestPermutationWithDuplicateMatrix
+    testlog.go:147: [INFO] run=run-1790536676787615917-16182 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676787615917-16182 case=perm-dup-matrix input=144-cases 全排列×完成前重复片注入 144 个组合全部与 oracle 一致且字节正确
+    testlog.go:90: [testlog] 运行 run-1790536676787615917-16182 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_perm-dup-matrix-run-1790536676787615917-16182.jsonl
+--- PASS: TestPermutationWithDuplicateMatrix (0.04s)
+=== RUN   TestOverlapInjectionMatrix
+    testlog.go:147: [INFO] run=run-1790536676828934653-34999 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676828934653-34999 case=overlap-matrix input=overlap-start=0 部分重叠整组拒绝，活动资源清空，终结留存可审计
+    testlog.go:147: [PASS] run=run-1790536676828934653-34999 case=overlap-matrix input=overlap-start=16 部分重叠整组拒绝，活动资源清空，终结留存可审计
+    testlog.go:147: [PASS] run=run-1790536676828934653-34999 case=overlap-matrix input=overlap-start=32 部分重叠整组拒绝，活动资源清空，终结留存可审计
+    testlog.go:90: [testlog] 运行 run-1790536676828934653-34999 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_overlap-matrix-run-1790536676828934653-34999.jsonl
+--- PASS: TestOverlapInjectionMatrix (0.00s)
+=== RUN   TestConflictLastInjectionMatrix
+    testlog.go:147: [INFO] run=run-1790536676830666278-66608 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676830666278-66608 case=conflict-last-matrix input=inject-after=0 伪末片宣告 66，真末片终点 60，注入点不同均判冲突末片
+    testlog.go:147: [PASS] run=run-1790536676830666278-66608 case=conflict-last-matrix input=inject-after=1 伪末片宣告 66，真末片终点 60，注入点不同均判冲突末片
+    testlog.go:147: [PASS] run=run-1790536676830666278-66608 case=conflict-last-matrix input=inject-after=2 伪末片宣告 66，真末片终点 60，注入点不同均判冲突末片
+    testlog.go:90: [testlog] 运行 run-1790536676830666278-66608 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_conflict-last-matrix-run-1790536676830666278-66608.jsonl
+--- PASS: TestConflictLastInjectionMatrix (0.00s)
+=== RUN   TestTimeoutReuseAcrossPermutations
+    testlog.go:147: [INFO] run=run-1790536676832024912-25150 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536676832024912-25150 case=timeout-perm input=6-cases 6 种排列下“缺片超时→同 ID 复用→成功”全部成立
+    testlog.go:90: [testlog] 运行 run-1790536676832024912-25150 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/reasm_timeout-perm-run-1790536676832024912-25150.jsonl
+--- PASS: TestTimeoutReuseAcrossPermutations (0.00s)
+PASS
+ok  	ipfragreasm/internal/reasm	1.096s
+?   	ipfragreasm/internal/testlog	[no test files]
+?   	ipfragreasm/internal/testutil	[no test files]
+?   	ipfragreasm/internal/version	[no test files]
+=== RUN   TestReplayPCAPRoundtrip
+    testlog.go:147: [INFO] run=run-1790536677228346935-47228 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536677228346935-47228 case=roundtrip input=pcap-3frames 以太网 pcap 往返回放，末片先到仍正确重组且哈希一致
+    testlog.go:90: [testlog] 运行 run-1790536677228346935-47228 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/replay_roundtrip-run-1790536677228346935-47228.jsonl
+--- PASS: TestReplayPCAPRoundtrip (0.00s)
+=== RUN   TestReplayTimeoutAndIDReuse
+    testlog.go:147: [INFO] run=run-1790536677229670628-70928 case= input= 测试运行开始
+    testlog.go:147: [PASS] run=run-1790536677229670628-70928 case=timeout-reuse input=pcap 缺片超时回收后，同 ID 完整第二轮重组成功
+    testlog.go:90: [testlog] 运行 run-1790536677229670628-70928 的 JSONL 报告: /home/admin/Downloads/xinbiaozhu/opp224/b/test-results/replay_timeout-reuse-run-1790536677229670628-70928.jsonl
+--- PASS: TestReplayTimeoutAndIDReuse (0.00s)
+=== RUN   TestReplaySkipsNonIPv4AndBadFrames
+--- PASS: TestReplaySkipsNonIPv4AndBadFrames (0.00s)
+=== RUN   TestReassemblerRecoversFromSQLite
+--- PASS: TestReassemblerRecoversFromSQLite (0.06s)
+PASS
+ok  	ipfragreasm/internal/replay	1.083s
+=== RUN   TestMemoryStoreConformance
+--- PASS: TestMemoryStoreConformance (0.00s)
+=== RUN   TestSQLiteStoreConformance
+--- PASS: TestSQLiteStoreConformance (0.05s)
+=== RUN   TestSQLiteRecoveryAcrossReopen
+--- PASS: TestSQLiteRecoveryAcrossReopen (0.04s)
+PASS
+ok  	ipfragreasm/internal/store	1.100s

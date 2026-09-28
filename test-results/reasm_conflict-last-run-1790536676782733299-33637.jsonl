@@ -1,0 +1,2 @@
+{"seq":1,"run_id":"run-1790536676782733299-33637","suite":"reasm/conflict-last","time":"2026-09-27T19:17:56.782839133Z","level":"INFO","message":"测试运行开始","detail":{"algorithm":"rfc791-rfc815-strict-no-overlap","platform":"linux/amd64"},"version":"0.1.0","go":"go1.23.4"}
+{"seq":2,"run_id":"run-1790536676782733299-33637","suite":"reasm/conflict-last","time":"2026-09-27T19:17:56.783216645Z","level":"PASS","case":"conflict-last","input_id":"reject","message":"末片终点 40 与已宣告 34 冲突，整组拒绝","detail":{"kind":"conflicting_last_fragment"},"version":"0.1.0","go":"go1.23.4"}
