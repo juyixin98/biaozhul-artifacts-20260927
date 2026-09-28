@@ -1,0 +1,76 @@
+{
+  "net": {
+    "places": [
+      {
+        "name": "buffer",
+        "capacity": 5
+      },
+      {
+        "name": "ready_p",
+        "capacity": 1
+      },
+      {
+        "name": "ready_c",
+        "capacity": 1
+      },
+      {
+        "name": "consumed",
+        "capacity": 4
+      }
+    ],
+    "transitions": [
+      {
+        "name": "produce",
+        "inputs": [
+          {
+            "place": "ready_p",
+            "weight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "place": "ready_p",
+            "weight": 1
+          },
+          {
+            "place": "buffer",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "name": "consume",
+        "inputs": [
+          {
+            "place": "ready_c",
+            "weight": 1
+          },
+          {
+            "place": "buffer",
+            "weight": 3
+          }
+        ],
+        "outputs": [
+          {
+            "place": "ready_c",
+            "weight": 1
+          },
+          {
+            "place": "consumed",
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  },
+  "initial_marking": {
+    "ready_p": 1,
+    "ready_c": 1
+  },
+  "target_marking": {
+    "buffer": 5,
+    "consumed": 1,
+    "ready_p": 1,
+    "ready_c": 1
+  }
+}

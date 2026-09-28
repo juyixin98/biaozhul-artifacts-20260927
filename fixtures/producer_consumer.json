@@ -1,0 +1,15 @@
+{
+  "name": "producer-consumer-bounded-buffer",
+  "description": "有界缓冲生产消费网：produce 一次产出 2 个令牌，consume 一次消耗 3 个；buffer 容量 5。buffer=4/5 时再 produce 会产生 6/7 溢出，必须禁止且不得截断。",
+  "places": [
+    {"name": "buffer",  "capacity": 5},
+    {"name": "ready_p", "capacity": 1},
+    {"name": "ready_c", "capacity": 1},
+    {"name": "consumed", "capacity": 4}
+  ],
+  "transitions": [
+    {"name": "produce", "inputs": [{"place": "ready_p", "weight": 1}], "outputs": [{"place": "ready_p", "weight": 1}, {"place": "buffer", "weight": 2}]},
+    {"name": "consume", "inputs": [{"place": "ready_c", "weight": 1}, {"place": "buffer", "weight": 3}], "outputs": [{"place": "ready_c", "weight": 1}, {"place": "consumed", "weight": 1}]}
+  ],
+  "initial_marking": [0, 1, 1, 0]
+}

@@ -1,0 +1,113 @@
+{
+  "net": {
+    "places": [
+      {
+        "name": "free",
+        "capacity": 1
+      },
+      {
+        "name": "idle_a",
+        "capacity": 1
+      },
+      {
+        "name": "crit_a",
+        "capacity": 1
+      },
+      {
+        "name": "idle_b",
+        "capacity": 1
+      },
+      {
+        "name": "crit_b",
+        "capacity": 1
+      }
+    ],
+    "transitions": [
+      {
+        "name": "enter_a",
+        "inputs": [
+          {
+            "place": "idle_a",
+            "weight": 1
+          },
+          {
+            "place": "free",
+            "weight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "place": "crit_a",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "name": "leave_a",
+        "inputs": [
+          {
+            "place": "crit_a",
+            "weight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "place": "idle_a",
+            "weight": 1
+          },
+          {
+            "place": "free",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "name": "enter_b",
+        "inputs": [
+          {
+            "place": "idle_b",
+            "weight": 1
+          },
+          {
+            "place": "free",
+            "weight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "place": "crit_b",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "name": "leave_b",
+        "inputs": [
+          {
+            "place": "crit_b",
+            "weight": 1
+          }
+        ],
+        "outputs": [
+          {
+            "place": "idle_b",
+            "weight": 1
+          },
+          {
+            "place": "free",
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  },
+  "initial_marking": {
+    "free": 1,
+    "idle_a": 1,
+    "idle_b": 1
+  },
+  "target_marking": {
+    "crit_a": 1,
+    "crit_b": 1
+  }
+}

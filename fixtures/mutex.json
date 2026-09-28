@@ -1,0 +1,18 @@
+{
+  "name": "mutex-two-processes",
+  "description": "两个进程互斥访问单一资源（互斥资源网）。资源令牌 free 只能被一个进程持有。",
+  "places": [
+    {"name": "free",   "capacity": 1},
+    {"name": "idle_a", "capacity": 1},
+    {"name": "crit_a", "capacity": 1},
+    {"name": "idle_b", "capacity": 1},
+    {"name": "crit_b", "capacity": 1}
+  ],
+  "transitions": [
+    {"name": "enter_a", "inputs": [{"place": "idle_a", "weight": 1}, {"place": "free", "weight": 1}], "outputs": [{"place": "crit_a", "weight": 1}]},
+    {"name": "leave_a", "inputs": [{"place": "crit_a", "weight": 1}], "outputs": [{"place": "idle_a", "weight": 1}, {"place": "free", "weight": 1}]},
+    {"name": "enter_b", "inputs": [{"place": "idle_b", "weight": 1}, {"place": "free", "weight": 1}], "outputs": [{"place": "crit_b", "weight": 1}]},
+    {"name": "leave_b", "inputs": [{"place": "crit_b", "weight": 1}], "outputs": [{"place": "idle_b", "weight": 1}, {"place": "free", "weight": 1}]}
+  ],
+  "initial_marking": [1, 1, 0, 1, 0]
+}

@@ -1,0 +1,16 @@
+# petri-reach 默认配置。可在 config/local.toml 覆盖，或用 PETRI_* 环境变量覆盖。
+
+server_host = "127.0.0.1"
+server_port = 8080
+
+# 单次请求体上限（字节）。
+body_limit_bytes = 1048576
+
+# BFS 访问标识数上限；触顶时判定为 inconclusive（不谎称不可达）。
+solver_state_limit = 200000
+
+# P 不变量有界枚举边界与安全阀。
+invariant_coefficient_bound = 4
+invariant_max_combinations = 2000000
+
+log_level = "info"

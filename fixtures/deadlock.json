@@ -1,0 +1,23 @@
+{
+  "name": "cross-lock-deadlock",
+  "description": "两个进程交叉获取两把锁：A 先 Ra 后 Rb，B 先 Rb 后 Ra；(Wa, Wb, 0, 0, 0) 是无使能变迁的死锁标识。",
+  "places": [
+    {"name": "Ra",   "capacity": 1},
+    {"name": "Rb",   "capacity": 1},
+    {"name": "Ia",   "capacity": 1},
+    {"name": "Ib",   "capacity": 1},
+    {"name": "Wa",   "capacity": 1},
+    {"name": "Wb",   "capacity": 1},
+    {"name": "Ca",   "capacity": 1},
+    {"name": "Cb",   "capacity": 1}
+  ],
+  "transitions": [
+    {"name": "a_take_ra", "inputs": [{"place": "Ra", "weight": 1}, {"place": "Ia", "weight": 1}], "outputs": [{"place": "Wa", "weight": 1}]},
+    {"name": "a_take_rb_finish", "inputs": [{"place": "Wa", "weight": 1}, {"place": "Rb", "weight": 1}], "outputs": [{"place": "Ca", "weight": 1}, {"place": "Ra", "weight": 1}]},
+    {"name": "a_release", "inputs": [{"place": "Ca", "weight": 1}], "outputs": [{"place": "Ia", "weight": 1}, {"place": "Rb", "weight": 1}]},
+    {"name": "b_take_rb", "inputs": [{"place": "Rb", "weight": 1}, {"place": "Ib", "weight": 1}], "outputs": [{"place": "Wb", "weight": 1}]},
+    {"name": "b_take_ra_finish", "inputs": [{"place": "Wb", "weight": 1}, {"place": "Ra", "weight": 1}], "outputs": [{"place": "Cb", "weight": 1}, {"place": "Rb", "weight": 1}]},
+    {"name": "b_release", "inputs": [{"place": "Cb", "weight": 1}], "outputs": [{"place": "Ib", "weight": 1}, {"place": "Ra", "weight": 1}]}
+  ],
+  "initial_marking": [1, 1, 1, 1, 0, 0, 0, 0]
+}

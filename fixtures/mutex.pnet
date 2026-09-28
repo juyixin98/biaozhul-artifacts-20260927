@@ -1,0 +1,24 @@
+# 互斥资源网（.pnet 文本格式夹具，与 fixtures/mutex.json 同构）
+# 初始标识在请求里给；文本格式只描述结构。
+
+place free   : capacity 1;
+place idle_a : capacity 1;
+place crit_a : capacity 1;
+place idle_b : capacity 1;
+place crit_b : capacity 1;
+
+transition enter_a:
+    consumes 1 idle_a, 1 free;
+    produces 1 crit_a;
+
+transition leave_a:
+    consumes 1 crit_a;
+    produces 1 idle_a, 1 free;
+
+transition enter_b:
+    consumes 1 idle_b, 1 free;
+    produces 1 crit_b;
+
+transition leave_b:
+    consumes 1 crit_b;
+    produces 1 idle_b, 1 free;

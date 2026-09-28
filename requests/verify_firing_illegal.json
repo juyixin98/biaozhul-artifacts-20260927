@@ -1,0 +1,19 @@
+{
+  "net": {
+    "places": [
+      {"name": "free", "capacity": 1},
+      {"name": "idle_a", "capacity": 1},
+      {"name": "crit_a", "capacity": 1},
+      {"name": "idle_b", "capacity": 1},
+      {"name": "crit_b", "capacity": 1}
+    ],
+    "transitions": [
+      {"name": "enter_a", "inputs": [{"place": "idle_a"}, {"place": "free"}], "outputs": [{"place": "crit_a"}]},
+      {"name": "enter_b", "inputs": [{"place": "idle_b"}, {"place": "free"}], "outputs": [{"place": "crit_b"}]},
+      {"name": "leave_a", "inputs": [{"place": "crit_a"}], "outputs": [{"place": "idle_a"}, {"place": "free"}]},
+      {"name": "leave_b", "inputs": [{"place": "crit_b"}], "outputs": [{"place": "idle_b"}, {"place": "free"}]}
+    ]
+  },
+  "initial_marking": {"free": 1, "idle_a": 1, "idle_b": 1},
+  "transition_sequence": ["enter_a", "enter_b"]
+}
