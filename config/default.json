@@ -1,0 +1,28 @@
+{
+  "db_path": "data/spellcheck.db",
+  "seed_file": "examples/seed_words.txt",
+  "alphabet": "abcdefghijklmnopqrstuvwxyz0123456789'-",
+  "limits": {
+    "max_query_chars": 64,
+    "max_query_tokens": 8,
+    "max_candidates_scored": 5000,
+    "max_results_per_token": 10,
+    "max_search_nodes": 60000,
+    "default_threshold": 2.0
+  },
+  "costs": {
+    "insert_default": 1.0,
+    "delete_default": 1.0,
+    "substitute_default": 1.0,
+    "transpose_default": 1.0,
+    "insert": {},
+    "delete": {},
+    "substitute": {
+      "i:y": 0.5
+    },
+    "transpose": {
+      "e:i": 0.75,
+      "i:e": 0.75
+    }
+  }
+}
