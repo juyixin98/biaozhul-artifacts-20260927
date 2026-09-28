@@ -1,0 +1,11 @@
+{
+  "label": "dense-seed777",
+  "distribution": "dense",
+  "seed": 777,
+  "cardinality": 90000,
+  "chunks": 3,
+  "array_containers": 0,
+  "bitmap_containers": 3,
+  "min": 0,
+  "max": 3000029999
+}

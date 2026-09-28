@@ -1,0 +1,10 @@
+# hbs configuration example. Copy to hbs.conf and edit as needed.
+# Every key can additionally be overridden by HBS_<KEY> environment vars
+# (HBS_DATA_DIR, HBS_BIND_ADDR, HBS_MAX_REQUEST_BYTES,
+# HBS_SYNC_WRITES, HBS_LOG_LEVEL).
+
+data_dir = "./data"
+bind_addr = "127.0.0.1:8080"
+max_request_bytes = 1048576
+sync_writes = true
+log_level = "info"

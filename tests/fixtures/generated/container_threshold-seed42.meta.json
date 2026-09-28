@@ -1,0 +1,11 @@
+{
+  "label": "container_threshold-seed42",
+  "distribution": "container_threshold",
+  "seed": 42,
+  "cardinality": 12288,
+  "chunks": 3,
+  "array_containers": 2,
+  "bitmap_containers": 1,
+  "min": 0,
+  "max": 139264
+}

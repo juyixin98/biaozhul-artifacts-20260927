@@ -1,0 +1,9 @@
+[package]
+name = "hbs-format"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+hbs-core = { path = "../hbs-core", version = "0.1.0" }

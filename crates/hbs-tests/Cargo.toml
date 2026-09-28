@@ -1,0 +1,18 @@
+[package]
+name = "hbs-tests"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+hbs-core = { path = "../hbs-core", version = "0.1.0" }
+hbs-format = { path = "../hbs-format", version = "0.1.0" }
+hbs-store = { path = "../hbs-store", version = "0.1.0" }
+hbs-testkit = { path = "../hbs-testkit", version = "0.1.0" }
+hbs-server = { path = "../hbs-server", version = "0.1.0" }
+hbs-config = { path = "../hbs-config", version = "0.1.0" }
+axum = { workspace = true }
+tower = { workspace = true }
+http-body-util = { workspace = true }
+tokio = { workspace = true }

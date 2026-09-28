@@ -1,0 +1,11 @@
+{
+  "label": "interleaved-seed777",
+  "distribution": "interleaved",
+  "seed": 777,
+  "cardinality": 72240,
+  "chunks": 24,
+  "array_containers": 12,
+  "bitmap_containers": 12,
+  "min": 3683,
+  "max": 1513327
+}

@@ -1,0 +1,11 @@
+{
+  "label": "sparse-seed1",
+  "distribution": "sparse",
+  "seed": 1,
+  "cardinality": 200,
+  "chunks": 200,
+  "array_containers": 200,
+  "bitmap_containers": 0,
+  "min": 3494849,
+  "max": 4269929070
+}

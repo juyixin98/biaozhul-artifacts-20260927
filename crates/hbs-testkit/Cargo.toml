@@ -1,0 +1,10 @@
+[package]
+name = "hbs-testkit"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+hbs-core = { path = "../hbs-core", version = "0.1.0" }
+hbs-format = { path = "../hbs-format", version = "0.1.0" }
