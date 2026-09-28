@@ -1,0 +1,10 @@
+# Pinned runtime dependencies (Python 3.12, linux).
+# Time-zone database version is pinned via tzdata; transforms refuse to treat a
+# different IANA tzdb version as the same partitioning (see prune/transforms.py).
+pyarrow==20.0.0
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4
+pytest==8.3.4
+httpx==0.28.1
+tzdata==2024.2

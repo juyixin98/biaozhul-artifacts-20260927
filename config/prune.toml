@@ -1,0 +1,31 @@
+# Two-level pruning backend — local synthetic configuration.
+# All paths are relative to this file's directory.
+
+base_dir = "../data"
+catalog_db = "../data/catalog.db"
+
+[[tables]]
+name = "events"
+path = "events"
+# Month partitioning in a FIXED zone; tzdata is pinned in requirements.txt.
+[tables.partition]
+kind = "month_tz"
+source_column = "ts"
+tz = "Asia/Shanghai"
+null_label = "__null__"
+
+[[tables.columns]]
+name = "id"
+type = "int"
+
+[[tables.columns]]
+name = "ts"
+type = "datetime"
+
+[[tables.columns]]
+name = "name"
+type = "str"
+
+[[tables.columns]]
+name = "amount"
+type = "int"
