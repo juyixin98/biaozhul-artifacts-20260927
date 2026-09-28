@@ -1,0 +1,7 @@
+{
+  "listen": "127.0.0.1:8080",
+  "index_path": "data/index.mph",
+  "default_seed": 1592079361,
+  "default_max_attempts": 128,
+  "max_keys": 1000000
+}
