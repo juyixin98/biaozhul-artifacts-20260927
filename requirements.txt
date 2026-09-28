@@ -1,0 +1,10 @@
+# Composite-Key MERGE Decision Engine - pinned runtime + test versions
+# Python >= 3.10 (developed and verified on CPython 3.12.3)
+pyarrow==18.1.0
+fastapi==0.115.6
+pydantic==2.10.4
+uvicorn==0.34.0
+
+# test / local verification
+pytest==8.3.4
+httpx==0.28.1

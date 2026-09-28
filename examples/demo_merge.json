@@ -1,0 +1,50 @@
+{
+  "merge": {
+    "target_table": "accounts",
+    "key_columns": ["region", "id"],
+    "update_columns": ["name", "status", "score", "balance", "tier"],
+    "insert_columns": ["name", "status", "score", "balance", "tier"],
+    "null_policy": "NULLS_NOT_DISTINCT",
+    "when_clauses": [
+      {
+        "matched": true,
+        "action": "update",
+        "condition": "S.delta >= 0",
+        "assignments": {
+          "name": "S.name",
+          "status": "'active'",
+          "score": "S.score",
+          "balance": "T.balance + S.delta",
+          "tier": "S.tier"
+        }
+      },
+      {
+        "matched": true,
+        "action": "delete",
+        "condition": "S.delta < 0",
+        "assignments": {}
+      },
+      {
+        "matched": false,
+        "action": "insert",
+        "condition": "S.delta >= 0",
+        "assignments": {
+          "name": "S.name",
+          "status": "'active'",
+          "score": "S.score",
+          "balance": "S.delta",
+          "tier": "S.tier"
+        }
+      }
+    ]
+  },
+  "source": {
+    "format": "records",
+    "records": [
+      {"region": "cn", "id": 1, "name": "alpha2", "score": 11, "delta": 25.0, "tier": "gold"},
+      {"region": "cn", "id": 2, "name": "beta2",  "score": 6,  "delta": -10.0, "tier": "silver"},
+      {"region": "cn", "id": 4, "name": "zeta",   "score": 3,  "delta": 7.0,  "tier": "bronze"},
+      {"region": "us", "id": 1, "name": "delta2", "score": 8,  "delta": 0.0,  "tier": "bronze"}
+    ]
+  }
+}
