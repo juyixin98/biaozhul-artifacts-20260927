@@ -1,0 +1,11 @@
+# 测试/开发依赖（在 requirements.txt 之上）
+# pip install -r requirements.txt -r requirements-dev.txt
+#
+# rlp 是测试专用的**独立预言机**：与运行时自带的手写 RLP 编解码互编互解交叉核验。
+# 运行时代码绝不 import 它，保证参考答案不是被测实现自己生成的。
+-r requirements.txt
+httpx==0.28.1
+iniconfig==2.3.0
+pluggy==1.6.0
+pytest==8.3.4
+rlp==4.0.1

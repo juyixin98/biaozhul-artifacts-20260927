@@ -1,0 +1,141 @@
+{
+  "scenario": "01-fee-competition",
+  "description": "多账户费用竞争：候选顺序按队首 gas_price 降序，但 Alice 的 nonce1 不得越过 nonce0；确认后余额/nonce/手续费正确落账。期望值为人工推导。",
+  "expect": [
+    {
+      "index": 5,
+      "ok": true,
+      "result": {
+        "label": "a1",
+        "status": "pending",
+        "reason": "EXECUTABLE"
+      }
+    },
+    {
+      "index": 6,
+      "ok": true,
+      "result": {
+        "label": "a2",
+        "status": "pending",
+        "reason": "EXECUTABLE"
+      }
+    },
+    {
+      "index": 7,
+      "ok": true,
+      "result": {
+        "label": "b1",
+        "status": "pending",
+        "reason": "EXECUTABLE"
+      }
+    },
+    {
+      "index": 8,
+      "ok": true,
+      "result": {
+        "label": "c1",
+        "status": "pending",
+        "reason": "EXECUTABLE"
+      }
+    },
+    {
+      "index": 9,
+      "ok": true,
+      "result": {
+        "label": "d1",
+        "status": "pending",
+        "reason": "EXECUTABLE"
+      }
+    },
+    {
+      "snapshot_after_index": 10,
+      "head_number": 0,
+      "counts": {
+        "pending": 5,
+        "queued": 0,
+        "included": 0,
+        "mined": 0
+      }
+    },
+    {
+      "index": 11,
+      "ok": true,
+      "result": {
+        "number": 1,
+        "gas_used": 105000,
+        "transactions": [
+          "0x4bcaa3451533e78ff316a704fdf3a83b9c1ce01d866b2ff389cd1220d3f8deb3",
+          "0x625e3bef9a2d95822f8efc247e0be8a2a03992ab7ec832b110975b23182f0f91",
+          "0x174aa205fb4231875753eedbb72e2420706f4eea7767fce168877c3d6ed0f530",
+          "0x90f70e4651bef80fae9df165265ebb327e4f9a08b9a09320127a95ae42328bb7",
+          "0x60c84c334b3538103400c12a701f6ac633390637d0003a1d61342c71aa4188b5"
+        ]
+      },
+      "_note": "顺序：c1(100) > b1(40) > a1(10) > a2(90,受nonce约束) > d1(5)；a2 价高也不能跳过 a1 的 nonce0"
+    },
+    {
+      "snapshot_after_index": 12,
+      "head_number": 0,
+      "counts": {
+        "included": 5,
+        "pending": 0,
+        "queued": 0
+      }
+    },
+    {
+      "index": 13,
+      "ok": true,
+      "result": {
+        "number": 1,
+        "total_fees": "5145000",
+        "transactions": [
+          "0x4bcaa3451533e78ff316a704fdf3a83b9c1ce01d866b2ff389cd1220d3f8deb3",
+          "0x625e3bef9a2d95822f8efc247e0be8a2a03992ab7ec832b110975b23182f0f91",
+          "0x174aa205fb4231875753eedbb72e2420706f4eea7767fce168877c3d6ed0f530",
+          "0x90f70e4651bef80fae9df165265ebb327e4f9a08b9a09320127a95ae42328bb7",
+          "0x60c84c334b3538103400c12a701f6ac633390637d0003a1d61342c71aa4188b5"
+        ]
+      }
+    },
+    {
+      "snapshot_after_index": 14,
+      "head_number": 1,
+      "counts": {
+        "mined": 5,
+        "pending": 0,
+        "queued": 0,
+        "included": 0,
+        "expired": 0,
+        "replaced": 0,
+        "evicted": 0
+      },
+      "accounts": [
+        {
+          "address": "alice",
+          "balance": "999999999997897100",
+          "nonce": 2
+        },
+        {
+          "address": "bob",
+          "balance": "499999999999160500",
+          "nonce": 1
+        },
+        {
+          "address": "carol",
+          "balance": "99999999997902400",
+          "nonce": 1
+        },
+        {
+          "address": "dave",
+          "balance": "199999999999895000",
+          "nonce": 1
+        },
+        {
+          "address": "miner",
+          "balance": "5145000",
+          "nonce": 0
+        }
+      ]
+    }
+  ]
+}

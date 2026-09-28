@@ -1,0 +1,63 @@
+{
+  "scenario": "02-gaps-replace-expiry",
+  "description": "nonce 缺口/余额断裂、同 nonce 替换涨价条件、TTL 过期不破坏索引、候选区块丢弃后重回池。期望值为人工推导。",
+  "expect": [
+    {"index": 3, "ok": true, "result": {"label": "a_gap", "status": "queued", "reason": "NONCE_GAP"}},
+    {"index": 4, "ok": true, "result": {"label": "a_poor", "status": "queued", "reason": "INSUFFICIENT_FUNDS"}},
+
+    {"snapshot_after_index": 5,
+     "counts": {"pending": 0, "queued": 2},
+     "transactions": [
+       {"label": "a_gap", "status": "queued", "reason": "GAP_AFFORDABILITY"},
+       {"label": "a_poor", "status": "queued", "reason": "INSUFFICIENT_FUNDS"}
+     ]},
+
+    {"index": 6, "ok": true, "result": {"label": "b0", "status": "pending", "reason": "EXECUTABLE"}},
+    {"index": 7, "ok": true, "result": {"label": "b1", "status": "pending", "reason": "EXECUTABLE"}},
+    {"index": 8, "ok": false, "result": {"label": "b0_same_hash", "error": "ALREADY_KNOWN"}},
+    {"index": 9, "ok": false, "result": {"label": "b0_underbid", "error": "REPLACEMENT_UNDERPRICED",
+      "details": {"required_gas_price": 11, "old_gas_price": 10, "new_gas_price": 10}}},
+
+    {"snapshot_after_index": 11,
+     "counts": {"pending": 2, "queued": 2, "replaced": 1, "expired": 0, "evicted": 0},
+     "transactions": [
+       {"label": "b0", "status": "replaced", "reason": "REPLACED_PRICE_BUMP",
+        "replaced_by": "0x5aa81bbf1a3910ec954a15bd84fde92bb43209b586e5ecb95a6afec644ad1d3b"}
+     ]},
+
+    {"index": 10, "ok": true, "result": {"label": "b0_new", "status": "pending", "reason": "EXECUTABLE"}},
+    {"index": 12, "ok": false, "result": {"label": "b0_replay", "error": "ALREADY_KNOWN"}},
+    {"index": 13, "ok": true, "result": {"label": "c0", "status": "pending", "reason": "EXECUTABLE"}},
+
+    {"index": 14, "ok": true,
+     "result": {"number": 1,
+       "transactions": [
+         "0x5aa81bbf1a3910ec954a15bd84fde92bb43209b586e5ecb95a6afec644ad1d3b",
+         "0xcbb371fbd5a98b1fb2a8883f07d068068e6c4f8af25ffb62da08a32504ec0075",
+         "0xa4d4dedaeb5c500e44b9027df02a654f738692fe11e758b66018d3b740c46883"
+       ]},
+     "_note": "Alice 两笔因缺口/余额断裂全部不入选；候选只含 Bob(11), Bob nonce1(10), Carol(5)"},
+
+    {"snapshot_after_index": 15,
+     "counts": {"included": 3, "queued": 2, "pending": 0}},
+
+    {"snapshot_after_index": 17,
+     "counts": {"included": 0, "pending": 3, "queued": 2},
+     "transactions": [
+       {"hash": "0x5aa81bbf1a3910ec954a15bd84fde92bb43209b586e5ecb95a6afec644ad1d3b",
+        "status": "pending", "reason": "EXECUTABLE"},
+       {"hash": "0xa4d4dedaeb5c500e44b9027df02a654f738692fe11e758b66018d3b740c46883",
+        "status": "pending", "reason": "EXECUTABLE"}
+     ],
+     "_note": "discard 后 included 交易重回池中重新分类为 pending；Alice 两笔仍 queued"},
+
+    {"snapshot_after_index": 20,
+     "counts": {"expired": 5, "replaced": 1, "pending": 0, "queued": 0, "included": 0, "mined": 0},
+     "_note": "TTL 到期只改状态与理由，唯一索引/替换指针不被破坏"},
+
+    {"snapshot_after_index": 22,
+     "counts": {"expired": 5, "replaced": 1},
+     "accounts": [{"address": "alice", "nonce": 0}],
+     "_note": "充值后 nonce 仍为0；a_poor 已过期不会被复活，a_gap 也保持 expired——过期不回滚"}
+  ]
+}

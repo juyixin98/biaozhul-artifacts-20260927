@@ -1,0 +1,36 @@
+# 场景 3：区块确认后的回滚重新分类
+# 顺序：两个区块确认 -> 深度过大回滚失败 -> 清空到空池（EMPTY_BLOCK）
+#       -> 重发后提议未决时回滚被拒（BLOCK_CONFLICT）-> 丢弃 -> 正确回滚 -> 重新提议
+{"at": 1000, "type": "fund", "account": "alice", "key": "0x4ccdaaedd8447b0e39d1de94324d02b033925062cbb07a69c41d2c341c4e7edc", "balance": 1000000000000000000}
+{"at": 1000, "type": "fund", "account": "bob",   "key": "0xd8a40a40c55a027c519ae103de5974275f7a97d85467b5f4f3967323db4da1da", "balance": 1000000000000000000}
+{"at": 1000, "type": "fund", "account": "carol", "key": "0x8f7f8f62c85ee8a74b3c7b2517c9c237f11cd328290ccdffd361e33dfb29672e", "balance": 1000000000000000000}
+{"at": 1010, "type": "tx", "label": "a0", "account": "alice", "nonce": 0, "to": "carol", "gas_price": 10, "value": 1000}
+{"at": 1011, "type": "tx", "label": "b0", "account": "bob",   "nonce": 0, "to": "carol", "gas_price": 20, "value": 2000}
+{"at": 1012, "type": "tx", "label": "c0", "account": "carol", "nonce": 0, "to": "alice", "gas_price": 5,  "value": 0}
+{"at": 1013, "type": "tx", "label": "c1", "account": "carol", "nonce": 1, "to": "alice", "gas_price": 6,  "value": 0}
+# 每个区块 gas 只够两笔：块1 = b0(20), a0(10)；块2 = c0(5)->c1(6)（同账户 nonce 约束）
+{"at": 1020, "type": "propose", "gas_limit": 42000}
+{"at": 1021, "type": "confirm"}
+{"at": 1022, "type": "snapshot"}
+{"at": 1030, "type": "propose", "gas_limit": 42000}
+{"at": 1031, "type": "confirm"}
+{"at": 1032, "type": "snapshot"}
+# 深度 5 > 链高 2 -> ROLLBACK_TOO_DEEP
+{"at": 1040, "type": "rollback", "n": 5}
+# 空池提议 -> EMPTY_BLOCK
+{"at": 1041, "type": "propose", "gas_limit": 42000}
+# 重发 Alice nonce2（此刻链上 nonce=1，缺 nonce1 先充值不足以修复，
+# 因此先把 nonce 直接校准用于构造一笔 pending 交易）
+{"at": 1050, "type": "fund", "account": "alice", "balance": 0, "nonce": 2}
+{"at": 1051, "type": "tx", "label": "a2_new", "account": "alice", "nonce": 2, "to": "carol", "gas_price": 9, "value": 0}
+{"at": 1052, "type": "propose", "gas_limit": 42000}
+# 有 proposed 未决时回滚 -> BLOCK_CONFLICT
+{"at": 1053, "type": "rollback", "n": 1}
+# 丢弃该未决区块
+{"at": 1054, "type": "discard"}
+# 正确回滚 2 个区块：四笔已确认交易全部重回池（同时 Alice nonce 被快照恢复为1）
+{"at": 1060, "type": "rollback", "n": 2}
+{"at": 1061, "type": "snapshot"}
+# 回滚后重新提议，前两笔顺序与块1完全一致
+{"at": 1070, "type": "propose", "gas_limit": 42000}
+{"at": 1071, "type": "snapshot"}

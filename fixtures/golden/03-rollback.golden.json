@@ -1,0 +1,75 @@
+{
+  "scenario": "03-rollback",
+  "description": "区块确认后回滚：余额/nonce/手续费按快照逆向恢复，mined 交易重回池并重新分类；失败类别逐一断言。期望值为人工推导。",
+  "expect": [
+    {"index": 7, "ok": true,
+     "result": {"number": 1,
+       "transactions": [
+         "0xf4cf05f30d2e972fe87a7d0f3b730ddf8afbcd09d96d64d812fa08d2ea1987ca",
+         "0x077246f25d600e4245dba21757ed211b4c1d6c28aea2981a3617e2854d4531be"
+       ]},
+     "_note": "块1：b0(gp20) 先于 a0(gp10)；gas 只够两笔，Carol 两笔留待块2"},
+    {"index": 8, "ok": true, "result": {"number": 1, "total_fees": "630000"}},
+
+    {"snapshot_after_index": 9, "head_number": 1,
+     "counts": {"mined": 2, "pending": 2},
+     "accounts": [
+       {"address": "alice", "balance": "999999999999789000", "nonce": 1},
+       {"address": "bob",   "balance": "999999999999578000", "nonce": 1},
+       {"address": "carol", "balance": "1000000000000003000", "nonce": 0}
+     ]},
+
+    {"index": 10, "ok": true,
+     "result": {"number": 2,
+       "transactions": [
+         "0x69becb0eec9ba5c660b70d64e2baba5f04588e7cb062f0ab0d3820d4fac1a3be",
+         "0xa0184f0b07fbba3ecca6d3cad7fcb227441c0bba5e79f4b5df3163fccf62c8ba"
+       ]},
+     "_note": "块2：Carol nonce0 必须在 nonce1 之前（同账户连续），尽管 nonce1 gas_price 更高"},
+    {"index": 11, "ok": true, "result": {"number": 2, "total_fees": "231000"}},
+
+    {"snapshot_after_index": 12, "head_number": 2,
+     "counts": {"mined": 4, "pending": 0, "queued": 0},
+     "accounts": [
+       {"address": "carol", "balance": "999999999999772000", "nonce": 2},
+       {"address": "0x0000000000000000000000000000000000000000", "balance": "861000", "nonce": 0}
+     ],
+     "_note": "未指定 coinbase，手续费记入零地址；累计 630000+231000=861000"},
+
+    {"index": 13, "ok": false, "result": {"error": "ROLLBACK_TOO_DEEP"}},
+    {"index": 14, "ok": false, "result": {"error": "EMPTY_BLOCK"}},
+    {"index": 16, "ok": true, "result": {"label": "a2_new", "status": "pending", "reason": "EXECUTABLE"}},
+    {"index": 17, "ok": true,
+     "result": {"number": 3,
+       "transactions": ["0x0e420bd948fec198571d7581e1ef5e3c996abeb5f3fb5a2a34419221476a0f94"]}},
+    {"index": 18, "ok": false, "result": {"error": "BLOCK_CONFLICT"}},
+    {"index": 19, "ok": true,
+     "result": {"discarded_number": 3,
+       "transactions": ["0x0e420bd948fec198571d7581e1ef5e3c996abeb5f3fb5a2a34419221476a0f94"]}},
+
+    {"index": 20, "ok": true, "result": {"reverted_blocks": [2, 1]}},
+
+    {"snapshot_after_index": 21, "head_number": 0,
+     "counts": {"mined": 0, "pending": 4, "queued": 1, "included": 0, "expired": 0},
+     "accounts": [
+       {"address": "alice", "balance": "1000000000000000000", "nonce": 0},
+       {"address": "bob",   "balance": "1000000000000000000", "nonce": 0},
+       {"address": "carol", "balance": "1000000000000000000", "nonce": 0}
+     ],
+     "transactions": [
+       {"hash": "0x077246f25d600e4245dba21757ed211b4c1d6c28aea2981a3617e2854d4531be", "status": "pending", "reason": "EXECUTABLE"},
+       {"hash": "0xf4cf05f30d2e972fe87a7d0f3b730ddf8afbcd09d96d64d812fa08d2ea1987ca", "status": "pending", "reason": "EXECUTABLE"},
+       {"hash": "0x69becb0eec9ba5c660b70d64e2baba5f04588e7cb062f0ab0d3820d4fac1a3be", "status": "pending", "reason": "EXECUTABLE"},
+       {"hash": "0xa0184f0b07fbba3ecca6d3cad7fcb227441c0bba5e79f4b5df3163fccf62c8ba", "status": "pending", "reason": "EXECUTABLE"}
+     ],
+     "_note": "回滚恢复链前状态：nonce 归0、余额归还、coinbase 归零；a2_new 因 nonce 缺口回到 queued"},
+
+    {"index": 22, "ok": true,
+     "result": {"number": 1,
+       "transactions": [
+         "0xf4cf05f30d2e972fe87a7d0f3b730ddf8afbcd09d96d64d812fa08d2ea1987ca",
+         "0x077246f25d600e4245dba21757ed211b4c1d6c28aea2981a3617e2854d4531be"
+       ]},
+     "_note": "回滚后重新提议，候选与块1完全一致（确定性可复现）"}
+  ]
+}

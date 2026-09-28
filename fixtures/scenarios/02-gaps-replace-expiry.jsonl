@@ -1,0 +1,37 @@
+# 场景 2：nonce 缺口、余额断裂、同 nonce 替换、TTL 过期、丢弃候选区块
+# 时间必须单调不减（虚拟时钟不能倒退）。
+{"at": 1000, "type": "fund", "account": "alice", "key": "0x4ccdaaedd8447b0e39d1de94324d02b033925062cbb07a69c41d2c341c4e7edc", "balance": 100000}
+{"at": 1000, "type": "fund", "account": "bob",   "key": "0xd8a40a40c55a027c519ae103de5974275f7a97d85467b5f4f3967323db4da1da", "balance": 1000000000000000000}
+{"at": 1000, "type": "fund", "account": "carol", "key": "0x8f7f8f62c85ee8a74b3c7b2517c9c237f11cd328290ccdffd361e33dfb29672e", "balance": 1000000000000000000}
+# Alice 先发 nonce2：前面缺 0、1，必须等待（费用再高也不能跳过缺口）
+{"at": 1010, "type": "tx", "label": "a_gap", "account": "alice", "nonce": 2, "to": "bob", "gas_price": 1000, "value": 0}
+# Alice nonce0 本身余额不足（成本 21000，余额 100000 够吗？100000 > 21000 — 够）。
+# 为制造余额断裂，给 nonce0 设置更高价值使其负担不起：
+{"at": 1011, "type": "tx", "label": "a_poor", "account": "alice", "nonce": 0, "to": "bob", "gas_price": 10, "value": 1000000000000000000}
+{"at": 1012, "type": "snapshot"}
+# Bob 发 nonce0（gas_price=10）和 nonce1
+{"at": 1020, "type": "tx", "label": "b0", "account": "bob", "nonce": 0, "to": "carol", "gas_price": 10, "value": 0}
+{"at": 1021, "type": "tx", "label": "b1", "account": "bob", "nonce": 1, "to": "carol", "gas_price": 10, "value": 0}
+# 同哈希重放（与 b0 完全相同字段+签名）-> ALREADY_KNOWN
+{"at": 1022, "type": "tx", "label": "b0_same_hash", "account": "bob", "nonce": 0, "to": "carol", "gas_price": 10, "value": 0}
+# 同 nonce 不同交易（不同 value => 不同哈希），但涨价不足：10 < ceil(10*1.1)=11
+{"at": 1023, "type": "tx", "label": "b0_underbid", "account": "bob", "nonce": 0, "to": "carol", "gas_price": 10, "value": 7}
+# 恰好满足涨价：ceil(10*1.1)=11 -> 替换成功，旧 b0 -> replaced（新交易 value=3 哈希不同）
+{"at": 1024, "type": "tx", "label": "b0_new", "account": "bob", "nonce": 0, "to": "carol", "gas_price": 11, "value": 3}
+{"at": 1025, "type": "snapshot"}
+# b0_new 自身的同哈希重放 -> ALREADY_KNOWN
+{"at": 1026, "type": "tx", "label": "b0_replay", "account": "bob", "nonce": 0, "to": "carol", "gas_price": 11, "value": 3}
+# Carol 交易将在 1030+3600=4630 过期
+{"at": 1030, "type": "tx", "label": "c0", "account": "carol", "nonce": 0, "to": "bob", "gas_price": 5, "value": 0}
+# 在任何交易过期前（b0_new 4624、c0 4630），提议一个只含 Bob 两笔的区块并丢弃
+{"at": 4600, "type": "propose"}
+{"at": 4601, "type": "snapshot"}
+{"at": 4602, "type": "discard"}
+{"at": 4603, "type": "snapshot"}
+# 越过全部 ttl：所有 1000 秒后收到的交易都已过期
+{"at": 5000, "type": "clock"}
+{"at": 5001, "type": "reap"}
+{"at": 5002, "type": "snapshot"}
+# 给 Alice 充值，让其 nonce0 变得负担得起：缺口仍在（缺 nonce1）
+{"at": 5100, "type": "fund", "account": "alice", "balance": 1000000000000000000}
+{"at": 5101, "type": "snapshot"}
