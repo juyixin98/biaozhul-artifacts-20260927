@@ -1,0 +1,8 @@
+# 默认配置; 任一项可被环境变量 COLAUDIT_<NAME> 覆盖
+# 例: COLAUDIT_PORT=9000 COLAUDIT_MASK_SENSITIVE=false
+home: .colaudit
+fixtures_dir: fixtures
+host: 127.0.0.1
+port: 8000
+mask_sensitive: true
+log_level: INFO

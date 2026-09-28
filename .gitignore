@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.colaudit/
+fixtures/
+.pytest_cache/
+*.db
