@@ -1,0 +1,20 @@
+[smoke] config=/tmp/tmp.oF9zopoWgR/lab.json http=127.0.0.1:54067
+time=2026-09-28T04:52:56.357+08:00 level=INFO msg="configuration loaded" component=main version=1.0.0 listen_udp=127.0.0.1:54068 admin_http=127.0.0.1:54067 network=192.0.2.0/24 pool=192.0.2.10-192.0.2.40 lease_time=2m0s offer_ttl=30s
+time=2026-09-28T04:52:56.373+08:00 level=INFO msg="udp listener bound" component=udpserver run_id=run-592867f1 addr=127.0.0.1:54068
+time=2026-09-28T04:52:56.373+08:00 level=INFO msg="admin http listening" component=main run_id=run-592867f1 addr=127.0.0.1:54067
+[smoke] PASS DISCOVER yields OFFER (http=200, action=offer)
+[smoke] PASS OFFER yiaddr in subnet: 192.0.2.10
+[smoke] PASS OFFER option54 == server id
+[smoke] PASS OFFER option51 == 120s
+[smoke] PASS no leased row after OFFER (rows=0)
+[smoke] PASS SELECTING REQUEST yields ACK (action=ack, reason=)
+[smoke] PASS lease_state=leased (got leased)
+[smoke] PASS ACK lease_ip matches OFFER
+[smoke] PASS ACK yiaddr matches OFFER
+[smoke] PASS ACK carries netmask
+[smoke] PASS duplicate REQUEST flagged duplicate
+[smoke] PASS duplicate ACK does NOT extend lease (2026-09-27T20:54:56.56351841Z == 2026-09-27T20:54:56.56351841Z)
+[smoke] PASS RELEASE yields 'released' with no reply (action=released, reply_bytes=0)
+[smoke] PASS truncated datagram -> 422 classified (http=422, cat=message_too_short)
+[smoke] PASS version reports identity: 1.0.0 dhcp4-subset/rfc2131
+[smoke] ALL SMOKE ASSERTIONS PASSED

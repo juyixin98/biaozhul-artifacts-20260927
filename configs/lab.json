@@ -1,0 +1,16 @@
+{
+  "listen_udp": "127.0.0.1:10067",
+  "admin_http": "127.0.0.1:18067",
+  "allow_non_loopback": false,
+  "server_id": "192.0.2.1",
+  "network": "192.0.2.0/24",
+  "pool_start": "192.0.2.10",
+  "pool_end": "192.0.2.250",
+  "netmask": "255.255.255.0",
+  "router": "192.0.2.1",
+  "dns": ["192.0.2.53"],
+  "lease_time": 120,
+  "offer_ttl": 30,
+  "sweep_interval": 1,
+  "database": "file:dhcp4lab.db?_pragma=busy_timeout(5000)&_pragma=journal_mode(WAL)"
+}

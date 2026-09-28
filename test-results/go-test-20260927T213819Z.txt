@@ -1,0 +1,282 @@
+?   	dhcp4lab/cmd/dhcp4d	[no test files]
+?   	dhcp4lab/internal/ippool	[no test files]
+?   	dhcp4lab/internal/version	[no test files]
+?   	dhcp4lab/testfixture/dhclient	[no test files]
+?   	dhcp4lab/testfixture/testhelp	[no test files]
+?   	dhcp4lab/testfixture/testlog	[no test files]
+?   	dhcp4lab/testfixture/wirekit	[no test files]
+=== RUN   TestUDPFourWayFlow
+2026/09/28 05:38:21 INFO udp listener bound component=udpserver run_id=run-a94602f9 addr=127.0.0.1:49747
+{"ts_utc":"2026-09-27T21:38:21.272629615Z","run_id":"test-TestUDPFourWayFlow-1df4785e","test":"TestUDPFourWayFlow","step":1,"phase":"progress","input":{"server":"127.0.0.1:49747","version":"1.0.0"},"msg":"starting four-way exchange"}
+{"ts_utc":"2026-09-27T21:38:21.273208139Z","run_id":"test-TestUDPFourWayFlow-1df4785e","test":"TestUDPFourWayFlow","step":2,"phase":"step","xid":"01010101","chaddr":"02:00:00:00:00:01","client":"alpha","msg":"send DISCOVER"}
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-a94602f9 seq=1 peer=127.0.0.1:49992 xid=01010101 recv_type=DISCOVER chaddr=02:00:00:00:00:01 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:21.29140805Z","run_id":"test-TestUDPFourWayFlow-1df4785e","test":"TestUDPFourWayFlow","step":3,"phase":"verdict","xid":"01010101","chaddr":"02:00:00:00:00:01","client":"alpha","input":{"yiaddr":"192.0.2.10"},"verdict":"PASS","msg":"received OFFER"}
+{"ts_utc":"2026-09-27T21:38:21.293035662Z","run_id":"test-TestUDPFourWayFlow-1df4785e","test":"TestUDPFourWayFlow","step":4,"phase":"expect","xid":"01010101","chaddr":"02:00:00:00:00:01","client":"alpha","expected":"option53=OFFER option54=192.0.2.1 option51=120 yiaddr in pool","msg":"RFC 2131 OFFER field requirements"}
+{"ts_utc":"2026-09-27T21:38:21.293178749Z","run_id":"test-TestUDPFourWayFlow-1df4785e","test":"TestUDPFourWayFlow","step":5,"phase":"verdict","xid":"01010101","chaddr":"02:00:00:00:00:01","client":"alpha","verdict":"PASS","msg":"OFFER fields verified and no lease row exists yet"}
+{"ts_utc":"2026-09-27T21:38:21.293243048Z","run_id":"test-TestUDPFourWayFlow-1df4785e","test":"TestUDPFourWayFlow","step":6,"phase":"step","xid":"01010101","chaddr":"02:00:00:00:00:01","client":"alpha","input":{"requested":"192.0.2.10"},"msg":"send SELECTING REQUEST"}
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-a94602f9 seq=2 peer=127.0.0.1:49992 xid=01010101 recv_type=REQUEST chaddr=02:00:00:00:00:01 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:21.313974119Z","run_id":"test-TestUDPFourWayFlow-1df4785e","test":"TestUDPFourWayFlow","step":7,"phase":"verdict","xid":"01010101","chaddr":"02:00:00:00:00:01","client":"alpha","input":{"ip":"192.0.2.10"},"verdict":"PASS","msg":"ACK received and lease committed"}
+--- PASS: TestUDPFourWayFlow (0.10s)
+=== RUN   TestUDPConcurrentContention
+2026/09/28 05:38:21 INFO udp listener bound component=udpserver run_id=run-d449368e addr=127.0.0.1:52675
+{"ts_utc":"2026-09-27T21:38:21.368755644Z","run_id":"test-TestUDPConcurrentContention-efd2b482","test":"TestUDPConcurrentContention","step":1,"phase":"progress","input":{"clients":25,"pool_size":25},"msg":"starting concurrent contention"}
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=1 peer=127.0.0.1:60766 xid=c0ffee01 recv_type=DISCOVER chaddr=02:00:00:00:00:01 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=8 peer=127.0.0.1:59379 xid=c0ffee06 recv_type=DISCOVER chaddr=02:00:00:00:00:06 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=8 peer=127.0.0.1:57187 xid=c0ffee03 recv_type=DISCOVER chaddr=02:00:00:00:00:03 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=8 peer=127.0.0.1:34594 xid=c0ffee07 recv_type=DISCOVER chaddr=02:00:00:00:00:07 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=7 peer=127.0.0.1:35570 xid=c0ffee04 recv_type=DISCOVER chaddr=02:00:00:00:00:04 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:49564 xid=c0ffee16 recv_type=DISCOVER chaddr=02:00:00:00:00:16 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=28 peer=127.0.0.1:57187 xid=c0ffee03 recv_type=REQUEST chaddr=02:00:00:00:00:03 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=25 peer=127.0.0.1:36811 xid=c0ffee08 recv_type=DISCOVER chaddr=02:00:00:00:00:08 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=23 peer=127.0.0.1:58570 xid=c0ffee17 recv_type=DISCOVER chaddr=02:00:00:00:00:17 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=25 peer=127.0.0.1:54058 xid=c0ffee12 recv_type=DISCOVER chaddr=02:00:00:00:00:12 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=22 peer=127.0.0.1:48632 xid=c0ffee11 recv_type=DISCOVER chaddr=02:00:00:00:00:11 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:53323 xid=c0ffee0b recv_type=DISCOVER chaddr=02:00:00:00:00:0b result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=8 peer=127.0.0.1:58602 xid=c0ffee02 recv_type=DISCOVER chaddr=02:00:00:00:00:02 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:34984 xid=c0ffee0c recv_type=DISCOVER chaddr=02:00:00:00:00:0c result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=20 peer=127.0.0.1:42872 xid=c0ffee15 recv_type=DISCOVER chaddr=02:00:00:00:00:15 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=30 peer=127.0.0.1:35570 xid=c0ffee04 recv_type=REQUEST chaddr=02:00:00:00:00:04 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:49867 xid=c0ffee0d recv_type=DISCOVER chaddr=02:00:00:00:00:0d result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=36 peer=127.0.0.1:53323 xid=c0ffee0b recv_type=REQUEST chaddr=02:00:00:00:00:0b result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=37 peer=127.0.0.1:58602 xid=c0ffee02 recv_type=REQUEST chaddr=02:00:00:00:00:02 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=8 peer=127.0.0.1:36722 xid=c0ffee09 recv_type=DISCOVER chaddr=02:00:00:00:00:09 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=25 peer=127.0.0.1:50920 xid=c0ffee14 recv_type=DISCOVER chaddr=02:00:00:00:00:14 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=40 peer=127.0.0.1:49867 xid=c0ffee0d recv_type=REQUEST chaddr=02:00:00:00:00:0d result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=34 peer=127.0.0.1:54058 xid=c0ffee12 recv_type=REQUEST chaddr=02:00:00:00:00:12 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=29 peer=127.0.0.1:34594 xid=c0ffee07 recv_type=REQUEST chaddr=02:00:00:00:00:07 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:36489 xid=c0ffee13 recv_type=DISCOVER chaddr=02:00:00:00:00:13 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=35 peer=127.0.0.1:48632 xid=c0ffee11 recv_type=REQUEST chaddr=02:00:00:00:00:11 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=20 peer=127.0.0.1:49949 xid=c0ffee10 recv_type=DISCOVER chaddr=02:00:00:00:00:10 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=42 peer=127.0.0.1:50920 xid=c0ffee14 recv_type=REQUEST chaddr=02:00:00:00:00:14 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=33 peer=127.0.0.1:58570 xid=c0ffee17 recv_type=REQUEST chaddr=02:00:00:00:00:17 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:39558 xid=c0ffee0e recv_type=DISCOVER chaddr=02:00:00:00:00:0e result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:45594 xid=c0ffee19 recv_type=DISCOVER chaddr=02:00:00:00:00:19 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=27 peer=127.0.0.1:59379 xid=c0ffee06 recv_type=REQUEST chaddr=02:00:00:00:00:06 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:43890 xid=c0ffee0f recv_type=DISCOVER chaddr=02:00:00:00:00:0f result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=32 peer=127.0.0.1:36811 xid=c0ffee08 recv_type=REQUEST chaddr=02:00:00:00:00:08 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=39 peer=127.0.0.1:42872 xid=c0ffee15 recv_type=REQUEST chaddr=02:00:00:00:00:15 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=26 peer=127.0.0.1:60766 xid=c0ffee01 recv_type=REQUEST chaddr=02:00:00:00:00:01 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=45 peer=127.0.0.1:39558 xid=c0ffee0e recv_type=REQUEST chaddr=02:00:00:00:00:0e result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=43 peer=127.0.0.1:36489 xid=c0ffee13 recv_type=REQUEST chaddr=02:00:00:00:00:13 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=8 peer=127.0.0.1:37004 xid=c0ffee05 recv_type=DISCOVER chaddr=02:00:00:00:00:05 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=44 peer=127.0.0.1:49949 xid=c0ffee10 recv_type=REQUEST chaddr=02:00:00:00:00:10 result=reply reply_bytes=300
+2026/09/28 05:38:21 INFO datagram processed component=udpserver run_id=run-d449368e seq=46 peer=127.0.0.1:45594 xid=c0ffee19 recv_type=REQUEST chaddr=02:00:00:00:00:19 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=31 peer=127.0.0.1:49564 xid=c0ffee16 recv_type=REQUEST chaddr=02:00:00:00:00:16 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=21 peer=127.0.0.1:50377 xid=c0ffee0a recv_type=DISCOVER chaddr=02:00:00:00:00:0a result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=41 peer=127.0.0.1:36722 xid=c0ffee09 recv_type=REQUEST chaddr=02:00:00:00:00:09 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=48 peer=127.0.0.1:37004 xid=c0ffee05 recv_type=REQUEST chaddr=02:00:00:00:00:05 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=38 peer=127.0.0.1:34984 xid=c0ffee0c recv_type=REQUEST chaddr=02:00:00:00:00:0c result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=49 peer=127.0.0.1:50377 xid=c0ffee0a recv_type=REQUEST chaddr=02:00:00:00:00:0a result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=24 peer=127.0.0.1:49438 xid=c0ffee18 recv_type=DISCOVER chaddr=02:00:00:00:00:18 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=47 peer=127.0.0.1:43890 xid=c0ffee0f recv_type=REQUEST chaddr=02:00:00:00:00:0f result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-d449368e seq=50 peer=127.0.0.1:49438 xid=c0ffee18 recv_type=REQUEST chaddr=02:00:00:00:00:18 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.118472298Z","run_id":"test-TestUDPConcurrentContention-efd2b482","test":"TestUDPConcurrentContention","step":2,"phase":"verdict","input":{"unique_leases":25},"verdict":"PASS","msg":"all clients hold unique addresses"}
+--- PASS: TestUDPConcurrentContention (0.80s)
+=== RUN   TestUDPDuplicateACKDoesNotExtend
+2026/09/28 05:38:22 INFO udp listener bound component=udpserver run_id=run-dace4dfd addr=127.0.0.1:37106
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-dace4dfd seq=1 peer=127.0.0.1:34299 xid=dead0001 recv_type=DISCOVER chaddr=02:00:00:00:00:02 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-dace4dfd seq=2 peer=127.0.0.1:34299 xid=dead0001 recv_type=REQUEST chaddr=02:00:00:00:00:02 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.186272278Z","run_id":"test-TestUDPDuplicateACKDoesNotExtend-c1d6dca4","test":"TestUDPDuplicateACKDoesNotExtend","step":1,"phase":"step","xid":"dead0001","chaddr":"02:00:00:00:00:02","client":"replayer","input":{"option51":120},"msg":"first ACK"}
+{"ts_utc":"2026-09-27T21:38:22.187534898Z","run_id":"test-TestUDPDuplicateACKDoesNotExtend-c1d6dca4","test":"TestUDPDuplicateACKDoesNotExtend","step":2,"phase":"progress","input":{"advanced_s":45},"msg":"replaying identical REQUEST after clock advance"}
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-dace4dfd seq=3 peer=127.0.0.1:48486 xid=dead0001 recv_type=REQUEST chaddr=02:00:00:00:00:02 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.193595524Z","run_id":"test-TestUDPDuplicateACKDoesNotExtend-c1d6dca4","test":"TestUDPDuplicateACKDoesNotExtend","step":3,"phase":"verdict","xid":"dead0001","chaddr":"02:00:00:00:00:02","client":"replayer","input":{"option51_first":120,"option51_replay":75},"verdict":"PASS","msg":"replay answered, lease unchanged"}
+--- PASS: TestUDPDuplicateACKDoesNotExtend (0.07s)
+=== RUN   TestUDPClientRestart
+2026/09/28 05:38:22 INFO udp listener bound component=udpserver run_id=run-81fbc3c1 addr=127.0.0.1:33246
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-81fbc3c1 seq=1 peer=127.0.0.1:51709 xid=beef0001 recv_type=DISCOVER chaddr=02:00:00:00:00:03 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-81fbc3c1 seq=2 peer=127.0.0.1:51709 xid=beef0001 recv_type=REQUEST chaddr=02:00:00:00:00:03 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.25770449Z","run_id":"test-TestUDPClientRestart-84ba63ae","test":"TestUDPClientRestart","step":1,"phase":"progress","msg":"client closed its socket; restarting with a fresh one"}
+{"ts_utc":"2026-09-27T21:38:22.257913606Z","run_id":"test-TestUDPClientRestart-84ba63ae","test":"TestUDPClientRestart","step":2,"phase":"step","chaddr":"02:00:00:00:00:03","client":"restarted","input":{"remembered":"192.0.2.10"},"msg":"INIT-REBOOT with remembered IP"}
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-81fbc3c1 seq=3 peer=127.0.0.1:43628 xid=beef0002 recv_type=REQUEST chaddr=02:00:00:00:00:03 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.268040891Z","run_id":"test-TestUDPClientRestart-84ba63ae","test":"TestUDPClientRestart","step":3,"phase":"verdict","chaddr":"02:00:00:00:00:03","client":"restarted","input":{"ip":"192.0.2.10"},"verdict":"PASS","msg":"reboot confirmed lease"}
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-81fbc3c1 seq=4 peer=127.0.0.1:43628 xid=beef0003 recv_type=REQUEST chaddr=02:00:00:00:00:03 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.275856061Z","run_id":"test-TestUDPClientRestart-84ba63ae","test":"TestUDPClientRestart","step":4,"phase":"verdict","chaddr":"02:00:00:00:00:03","client":"restarted","verdict":"PASS","msg":"wrong-IP reboot produced a minimal NAK"}
+--- PASS: TestUDPClientRestart (0.08s)
+=== RUN   TestUDPReleaseFreesAddress
+2026/09/28 05:38:22 INFO udp listener bound component=udpserver run_id=run-acd4e8fe addr=127.0.0.1:56129
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-acd4e8fe seq=1 peer=127.0.0.1:60866 xid=5a5a0001 recv_type=DISCOVER chaddr=02:00:00:00:00:04 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-acd4e8fe seq=2 peer=127.0.0.1:60866 xid=5a5a0001 recv_type=REQUEST chaddr=02:00:00:00:00:04 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.337164462Z","run_id":"test-TestUDPReleaseFreesAddress-caf35af0","test":"TestUDPReleaseFreesAddress","step":1,"phase":"step","xid":"5a5a0001","chaddr":"02:00:00:00:00:04","client":"holder","msg":"send RELEASE; RFC 2131 mandates no reply"}
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-acd4e8fe seq=3 peer=127.0.0.1:60866 xid=5a5a0002 recv_type=RELEASE chaddr=02:00:00:00:00:04 result=no_reply
+{"ts_utc":"2026-09-27T21:38:22.739542016Z","run_id":"test-TestUDPReleaseFreesAddress-caf35af0","test":"TestUDPReleaseFreesAddress","step":2,"phase":"verdict","xid":"5a5a0001","chaddr":"02:00:00:00:00:04","client":"holder","verdict":"PASS","msg":"lease recorded as released, no datagram returned"}
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-acd4e8fe seq=4 peer=127.0.0.1:60866 xid=5a5a0003 recv_type=DISCOVER chaddr=02:00:00:00:00:04 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-acd4e8fe seq=5 peer=127.0.0.1:60866 xid=5a5a0003 recv_type=REQUEST chaddr=02:00:00:00:00:04 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.775890654Z","run_id":"test-TestUDPReleaseFreesAddress-caf35af0","test":"TestUDPReleaseFreesAddress","step":3,"phase":"verdict","xid":"5a5a0001","chaddr":"02:00:00:00:00:04","client":"holder","input":{"ip":"192.0.2.10"},"verdict":"PASS","msg":"released address successfully re-leased"}
+--- PASS: TestUDPReleaseFreesAddress (0.50s)
+=== RUN   TestUDPExpiryThenRediscover
+2026/09/28 05:38:22 INFO udp listener bound component=udpserver run_id=run-cb1b7e0b addr=127.0.0.1:35449
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-cb1b7e0b seq=1 peer=127.0.0.1:33377 xid=eeee0001 recv_type=DISCOVER chaddr=02:00:00:00:00:05 result=reply reply_bytes=300
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-cb1b7e0b seq=2 peer=127.0.0.1:33377 xid=eeee0001 recv_type=REQUEST chaddr=02:00:00:00:00:05 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:22.868457939Z","run_id":"test-TestUDPExpiryThenRediscover-03f74559","test":"TestUDPExpiryThenRediscover","step":1,"phase":"progress","msg":"lease passed TTL and sweep marked it expired"}
+{"ts_utc":"2026-09-27T21:38:22.868588768Z","run_id":"test-TestUDPExpiryThenRediscover-03f74559","test":"TestUDPExpiryThenRediscover","step":2,"phase":"step","xid":"eeee0001","chaddr":"02:00:00:00:00:05","client":"ephemeral","msg":"RENEW past expiry must stay silent"}
+2026/09/28 05:38:22 INFO datagram processed component=udpserver run_id=run-cb1b7e0b seq=3 peer=127.0.0.1:33377 xid=eeee0002 recv_type=REQUEST chaddr=02:00:00:00:00:05 result=no_reply
+{"ts_utc":"2026-09-27T21:38:23.271246081Z","run_id":"test-TestUDPExpiryThenRediscover-03f74559","test":"TestUDPExpiryThenRediscover","step":3,"phase":"verdict","xid":"eeee0001","chaddr":"02:00:00:00:00:05","client":"ephemeral","verdict":"PASS","msg":"no renewal after expiry and state is expired"}
+2026/09/28 05:38:23 INFO datagram processed component=udpserver run_id=run-cb1b7e0b seq=4 peer=127.0.0.1:33377 xid=eeee0003 recv_type=DISCOVER chaddr=02:00:00:00:00:05 result=reply reply_bytes=300
+--- PASS: TestUDPExpiryThenRediscover (0.51s)
+=== RUN   TestUDPMalformedDatagramsDropped
+2026/09/28 05:38:23 INFO udp listener bound component=udpserver run_id=run-179dea61 addr=127.0.0.1:58134
+{"ts_utc":"2026-09-27T21:38:23.327062309Z","run_id":"test-TestUDPMalformedDatagramsDropped-37dc4554","test":"TestUDPMalformedDatagramsDropped","step":1,"phase":"step","xid":"00000000","client":"fuzzer","input":{"index":0,"len":50},"msg":"send malformed datagram"}
+2026/09/28 05:38:23 WARN malformed datagram dropped component=udpserver run_id=run-179dea61 seq=1 peer=127.0.0.1:50059 xid=00000000 bytes=50 fail_category=message_too_short detail="got 50 bytes, need at least 240"
+{"ts_utc":"2026-09-27T21:38:23.727414868Z","run_id":"test-TestUDPMalformedDatagramsDropped-37dc4554","test":"TestUDPMalformedDatagramsDropped","step":2,"phase":"verdict","xid":"00000000","client":"fuzzer","input":{"index":0},"verdict":"PASS","msg":"no reply for malformed input"}
+{"ts_utc":"2026-09-27T21:38:23.727543132Z","run_id":"test-TestUDPMalformedDatagramsDropped-37dc4554","test":"TestUDPMalformedDatagramsDropped","step":3,"phase":"step","xid":"01020304","client":"fuzzer","input":{"index":1,"len":8},"msg":"send malformed datagram"}
+2026/09/28 05:38:23 WARN malformed datagram dropped component=udpserver run_id=run-179dea61 seq=2 peer=127.0.0.1:50059 xid=01020304 bytes=8 fail_category=message_too_short detail="got 8 bytes, need at least 240"
+{"ts_utc":"2026-09-27T21:38:24.128295333Z","run_id":"test-TestUDPMalformedDatagramsDropped-37dc4554","test":"TestUDPMalformedDatagramsDropped","step":4,"phase":"verdict","xid":"01020304","client":"fuzzer","input":{"index":1},"verdict":"PASS","msg":"no reply for malformed input"}
+{"ts_utc":"2026-09-27T21:38:24.128426216Z","run_id":"test-TestUDPMalformedDatagramsDropped-37dc4554","test":"TestUDPMalformedDatagramsDropped","step":5,"phase":"step","xid":"000000f1","client":"fuzzer","input":{"index":2,"len":300},"msg":"send malformed datagram"}
+2026/09/28 05:38:24 WARN malformed datagram dropped component=udpserver run_id=run-179dea61 seq=3 peer=127.0.0.1:50059 xid=000000f1 bytes=300 fail_category=bad_magic_cookie detail="vendor magic cookie is 00 82 53 63"
+{"ts_utc":"2026-09-27T21:38:24.5289621Z","run_id":"test-TestUDPMalformedDatagramsDropped-37dc4554","test":"TestUDPMalformedDatagramsDropped","step":6,"phase":"verdict","xid":"000000f1","client":"fuzzer","input":{"index":2},"verdict":"PASS","msg":"no reply for malformed input"}
+--- PASS: TestUDPMalformedDatagramsDropped (1.24s)
+=== RUN   TestUDPZeroCIAddrReleaseDoesNotCrashServer
+2026/09/28 05:38:24 INFO udp listener bound component=udpserver run_id=run-9da72e7d addr=127.0.0.1:54038
+{"ts_utc":"2026-09-27T21:38:24.577337065Z","run_id":"test-TestUDPZeroCIAddrReleaseDoesNotCrashServer-6a412001","test":"TestUDPZeroCIAddrReleaseDoesNotCrashServer","step":1,"phase":"progress","msg":"sending RELEASE with ciaddr=0 (formerly a panic)"}
+2026/09/28 05:38:24 INFO datagram processed component=udpserver run_id=run-9da72e7d seq=1 peer=127.0.0.1:41953 xid=fade0001 recv_type=RELEASE chaddr=02:00:00:00:00:07 result=no_reply
+2026/09/28 05:38:24 INFO datagram processed component=udpserver run_id=run-9da72e7d seq=2 peer=127.0.0.1:49584 xid=fade0002 recv_type=DISCOVER chaddr=02:00:00:00:00:08 result=reply reply_bytes=300
+2026/09/28 05:38:25 INFO datagram processed component=udpserver run_id=run-9da72e7d seq=3 peer=127.0.0.1:49584 xid=fade0002 recv_type=REQUEST chaddr=02:00:00:00:00:08 result=reply reply_bytes=300
+{"ts_utc":"2026-09-27T21:38:25.013633272Z","run_id":"test-TestUDPZeroCIAddrReleaseDoesNotCrashServer-6a412001","test":"TestUDPZeroCIAddrReleaseDoesNotCrashServer","step":2,"phase":"verdict","verdict":"PASS","msg":"server survived malformed RELEASE and still serves clients"}
+--- PASS: TestUDPZeroCIAddrReleaseDoesNotCrashServer (0.48s)
+PASS
+ok  	dhcp4lab/integration	4.820s
+=== RUN   TestDefaultIsValid
+--- PASS: TestDefaultIsValid (0.00s)
+=== RUN   TestParseAppliesDefaults
+--- PASS: TestParseAppliesDefaults (0.00s)
+=== RUN   TestDurationForms
+--- PASS: TestDurationForms (0.00s)
+=== RUN   TestRejectsNonLoopback
+--- PASS: TestRejectsNonLoopback (0.00s)
+=== RUN   TestRejectsPrivilegedPort
+--- PASS: TestRejectsPrivilegedPort (0.00s)
+=== RUN   TestRejectsPoolOutsideNetwork
+--- PASS: TestRejectsPoolOutsideNetwork (0.00s)
+=== RUN   TestRejectsServerIDInPool
+--- PASS: TestRejectsServerIDInPool (0.00s)
+=== RUN   TestRejectsOfferLongerThanLease
+--- PASS: TestRejectsOfferLongerThanLease (0.00s)
+=== RUN   TestRejectsUnknownField
+--- PASS: TestRejectsUnknownField (0.00s)
+PASS
+ok  	dhcp4lab/internal/config	1.028s
+=== RUN   TestCodecRoundTrip
+=== RUN   TestCodecRoundTrip/discover
+=== RUN   TestCodecRoundTrip/request_select
+=== RUN   TestCodecRoundTrip/release
+--- PASS: TestCodecRoundTrip (0.00s)
+    --- PASS: TestCodecRoundTrip/discover (0.00s)
+    --- PASS: TestCodecRoundTrip/request_select (0.00s)
+    --- PASS: TestCodecRoundTrip/release (0.00s)
+=== RUN   TestParseFailures
+=== RUN   TestParseFailures/truncated
+=== RUN   TestParseFailures/bad_cookie
+=== RUN   TestParseFailures/bad_op
+=== RUN   TestParseFailures/unsupported_type
+=== RUN   TestParseFailures/missing_type
+=== RUN   TestParseFailures/bad_htype
+=== RUN   TestParseFailures/option_overrun
+=== RUN   TestParseFailures/zero_chaddr
+=== RUN   TestParseFailures/relay_giaddr
+--- PASS: TestParseFailures (0.00s)
+    --- PASS: TestParseFailures/truncated (0.00s)
+    --- PASS: TestParseFailures/bad_cookie (0.00s)
+    --- PASS: TestParseFailures/bad_op (0.00s)
+    --- PASS: TestParseFailures/unsupported_type (0.00s)
+    --- PASS: TestParseFailures/missing_type (0.00s)
+    --- PASS: TestParseFailures/bad_htype (0.00s)
+    --- PASS: TestParseFailures/option_overrun (0.00s)
+    --- PASS: TestParseFailures/zero_chaddr (0.00s)
+    --- PASS: TestParseFailures/relay_giaddr (0.00s)
+=== RUN   TestIdentityKey
+--- PASS: TestIdentityKey (0.00s)
+=== RUN   TestHexOfBaseline
+--- PASS: TestHexOfBaseline (0.00s)
+PASS
+ok  	dhcp4lab/internal/dhcp4	1.024s
+=== RUN   TestInjectDiscoverThenRequest
+--- PASS: TestInjectDiscoverThenRequest (0.07s)
+=== RUN   TestInjectReplayDoesNotExtend
+--- PASS: TestInjectReplayDoesNotExtend (0.08s)
+=== RUN   TestInjectMalformedIs422WithCategory
+--- PASS: TestInjectMalformedIs422WithCategory (0.04s)
+=== RUN   TestForeignServerSilenceAndNAK
+--- PASS: TestForeignServerSilenceAndNAK (0.04s)
+=== RUN   TestLeasesAndJournalEndpoints
+--- PASS: TestLeasesAndJournalEndpoints (0.06s)
+=== RUN   TestMethodNotAllowed
+--- PASS: TestMethodNotAllowed (0.04s)
+PASS
+ok  	dhcp4lab/internal/replay	1.359s
+=== RUN   TestClassifyRequest
+=== RUN   TestClassifyRequest/selecting
+=== RUN   TestClassifyRequest/init_reboot
+=== RUN   TestClassifyRequest/renew
+--- PASS: TestClassifyRequest (0.00s)
+    --- PASS: TestClassifyRequest/selecting (0.00s)
+    --- PASS: TestClassifyRequest/init_reboot (0.00s)
+    --- PASS: TestClassifyRequest/renew (0.00s)
+=== RUN   TestClassifyRequestMalformed
+=== RUN   TestClassifyRequestMalformed/server_id_without_50
+=== RUN   TestClassifyRequestMalformed/server_id_with_ciaddr
+=== RUN   TestClassifyRequestMalformed/50_with_ciaddr
+=== RUN   TestClassifyRequestMalformed/nothing
+--- PASS: TestClassifyRequestMalformed (0.00s)
+    --- PASS: TestClassifyRequestMalformed/server_id_without_50 (0.00s)
+    --- PASS: TestClassifyRequestMalformed/server_id_with_ciaddr (0.00s)
+    --- PASS: TestClassifyRequestMalformed/50_with_ciaddr (0.00s)
+    --- PASS: TestClassifyRequestMalformed/nothing (0.00s)
+PASS
+ok  	dhcp4lab/internal/server	1.022s
+=== RUN   TestMigratesRepliesRefColumns
+--- PASS: TestMigratesRepliesRefColumns (0.11s)
+=== RUN   TestPersistenceAcrossRestart
+--- PASS: TestPersistenceAcrossRestart (0.11s)
+=== RUN   TestPersistenceFreshProcess
+--- PASS: TestPersistenceFreshProcess (1.12s)
+=== RUN   TestReleaseZeroCIAddrNoPanic
+--- PASS: TestReleaseZeroCIAddrNoPanic (0.04s)
+=== RUN   TestNAKDedupDoesNotPoisonLaterValidRequest
+--- PASS: TestNAKDedupDoesNotPoisonLaterValidRequest (0.07s)
+=== RUN   TestOfferGenerationStaleAfterNewerDiscover
+--- PASS: TestOfferGenerationStaleAfterNewerDiscover (0.06s)
+=== RUN   TestACKGenerationStaleAfterLeaseEndedAndReacquired
+--- PASS: TestACKGenerationStaleAfterLeaseEndedAndReacquired (0.09s)
+=== RUN   TestAdapterReleaseZeroCIAddrDrop
+--- PASS: TestAdapterReleaseZeroCIAddrDrop (0.03s)
+=== RUN   TestOfferIsReservationNotLease
+--- PASS: TestOfferIsReservationNotLease (0.04s)
+=== RUN   TestSelectingFlowCommitsLease
+--- PASS: TestSelectingFlowCommitsLease (0.06s)
+=== RUN   TestSelectingNAKCategories
+--- PASS: TestSelectingNAKCategories (0.07s)
+=== RUN   TestInitReboot
+--- PASS: TestInitReboot (0.08s)
+=== RUN   TestRenewSemantics
+--- PASS: TestRenewSemantics (0.08s)
+=== RUN   TestDuplicateDiscoverDoesNotExtend
+--- PASS: TestDuplicateDiscoverDoesNotExtend (0.05s)
+=== RUN   TestNewDiscoverSupersedesOldOffer
+--- PASS: TestNewDiscoverSupersedesOldOffer (0.05s)
+=== RUN   TestDuplicateACKDoesNotExtendLease
+--- PASS: TestDuplicateACKDoesNotExtendLease (0.06s)
+=== RUN   TestDuplicateNAKRepeated
+--- PASS: TestDuplicateNAKRepeated (0.05s)
+=== RUN   TestOfferExpiryReleasesAddress
+--- PASS: TestOfferExpiryReleasesAddress (0.08s)
+=== RUN   TestLeaseExpiry
+--- PASS: TestLeaseExpiry (0.09s)
+=== RUN   TestReleaseSemantics
+--- PASS: TestReleaseSemantics (0.07s)
+=== RUN   TestConcurrentContention
+--- PASS: TestConcurrentContention (1.04s)
+=== RUN   TestPoolExhaustion
+--- PASS: TestPoolExhaustion (0.11s)
+=== RUN   TestOldTransactionAfterExpiry
+--- PASS: TestOldTransactionAfterExpiry (0.08s)
+=== RUN   TestRediscoverWhileLeasedKeepsAddress
+--- PASS: TestRediscoverWhileLeasedKeepsAddress (0.09s)
+PASS
+ok  	dhcp4lab/internal/storage	4.786s
+=== RUN   TestRefusesNonLoopbackBind
+--- PASS: TestRefusesNonLoopbackBind (0.00s)
+=== RUN   TestLoopbackServeAndClose
+2026/09/28 05:38:22 INFO udp listener bound component=udpserver run_id=run-4c5878a4 addr=127.0.0.1:60115
+--- PASS: TestLoopbackServeAndClose (0.05s)
+PASS
+ok  	dhcp4lab/internal/udpserver	1.066s

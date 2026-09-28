@@ -1,0 +1,3 @@
+[smoke] config=/tmp/tmp.yDKOn7KpWw/lab.json http=127.0.0.1:41653
+time=2026-09-28T05:36:39.418+08:00 level=INFO msg="configuration loaded" component=main version=1.0.0 listen_udp=127.0.0.1:41654 admin_http=127.0.0.1:41653 network=192.0.2.0/24 pool=192.0.2.10-192.0.2.40 lease_time=2m0s offer_ttl=30s
+time=2026-09-28T05:36:39.440+08:00 level=ERROR msg=fatal component=main err="udpserver: bind 127.0.0.1:41654: listen udp4 127.0.0.1:41654: bind: address already in use"

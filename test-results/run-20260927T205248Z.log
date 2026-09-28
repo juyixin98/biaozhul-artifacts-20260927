@@ -1,0 +1,86 @@
+[verify] dhcp4lab verification run 20260927T205248Z
+[verify] go: go version go1.23.4 linux/amd64
+[verify] repo: /home/admin/Downloads/xinbiaozhu/opp228/b
+[verify] goproxy: off (deps are vendored; network not required)
+[verify] step 1/4: reproducible offline build
+[verify] built: dhcp4d 1.0.0 (dhcp4-subset/rfc2131)
+[verify] step 2/4: go vet
+[verify] step 3/4: full test suite (-race, -count=1)
+--- PASS: TestUDPFourWayFlow (0.10s)
+--- PASS: TestUDPConcurrentContention (0.69s)
+--- PASS: TestUDPDuplicateACKDoesNotExtend (0.06s)
+--- PASS: TestUDPClientRestart (0.07s)
+--- PASS: TestUDPReleaseFreesAddress (0.48s)
+--- PASS: TestUDPExpiryThenRediscover (0.47s)
+--- PASS: TestUDPMalformedDatagramsDropped (1.23s)
+ok  	dhcp4lab/integration	4.144s
+--- PASS: TestDefaultIsValid (0.00s)
+--- PASS: TestParseAppliesDefaults (0.00s)
+--- PASS: TestDurationForms (0.00s)
+--- PASS: TestRejectsNonLoopback (0.00s)
+--- PASS: TestRejectsPrivilegedPort (0.00s)
+--- PASS: TestRejectsPoolOutsideNetwork (0.00s)
+--- PASS: TestRejectsServerIDInPool (0.00s)
+--- PASS: TestRejectsOfferLongerThanLease (0.00s)
+--- PASS: TestRejectsUnknownField (0.00s)
+ok  	dhcp4lab/internal/config	1.036s
+--- PASS: TestCodecRoundTrip (0.00s)
+--- PASS: TestParseFailures (0.00s)
+--- PASS: TestIdentityKey (0.00s)
+--- PASS: TestHexOfBaseline (0.00s)
+ok  	dhcp4lab/internal/dhcp4	1.024s
+--- PASS: TestInjectDiscoverThenRequest (0.07s)
+--- PASS: TestInjectReplayDoesNotExtend (0.07s)
+--- PASS: TestInjectMalformedIs422WithCategory (0.04s)
+--- PASS: TestForeignServerSilenceAndNAK (0.04s)
+--- PASS: TestLeasesAndJournalEndpoints (0.05s)
+--- PASS: TestMethodNotAllowed (0.03s)
+ok  	dhcp4lab/internal/replay	1.323s
+--- PASS: TestClassifyRequest (0.00s)
+--- PASS: TestClassifyRequestMalformed (0.00s)
+ok  	dhcp4lab/internal/server	1.021s
+--- PASS: TestPersistenceAcrossRestart (0.10s)
+--- PASS: TestPersistenceFreshProcess (1.11s)
+--- PASS: TestOfferIsReservationNotLease (0.04s)
+--- PASS: TestSelectingFlowCommitsLease (0.05s)
+--- PASS: TestSelectingNAKCategories (0.07s)
+--- PASS: TestInitReboot (0.07s)
+--- PASS: TestRenewSemantics (0.07s)
+--- PASS: TestDuplicateDiscoverDoesNotExtend (0.04s)
+--- PASS: TestNewDiscoverSupersedesOldOffer (0.05s)
+--- PASS: TestDuplicateACKDoesNotExtendLease (0.06s)
+--- PASS: TestDuplicateNAKRepeated (0.04s)
+--- PASS: TestOfferExpiryReleasesAddress (0.08s)
+--- PASS: TestLeaseExpiry (0.09s)
+--- PASS: TestReleaseSemantics (0.07s)
+--- PASS: TestConcurrentContention (0.87s)
+--- PASS: TestPoolExhaustion (0.10s)
+--- PASS: TestOldTransactionAfterExpiry (0.07s)
+--- PASS: TestRediscoverWhileLeasedKeepsAddress (0.08s)
+ok  	dhcp4lab/internal/storage	4.092s
+--- PASS: TestRefusesNonLoopbackBind (0.00s)
+--- PASS: TestLoopbackServeAndClose (0.05s)
+ok  	dhcp4lab/internal/udpserver	1.066s
+[verify] step 4/4: live loopback smoke test via HTTP replay API
+[smoke] config=/tmp/tmp.oF9zopoWgR/lab.json http=127.0.0.1:54067
+time=2026-09-28T04:52:56.357+08:00 level=INFO msg="configuration loaded" component=main version=1.0.0 listen_udp=127.0.0.1:54068 admin_http=127.0.0.1:54067 network=192.0.2.0/24 pool=192.0.2.10-192.0.2.40 lease_time=2m0s offer_ttl=30s
+time=2026-09-28T04:52:56.373+08:00 level=INFO msg="udp listener bound" component=udpserver run_id=run-592867f1 addr=127.0.0.1:54068
+time=2026-09-28T04:52:56.373+08:00 level=INFO msg="admin http listening" component=main run_id=run-592867f1 addr=127.0.0.1:54067
+[smoke] PASS DISCOVER yields OFFER (http=200, action=offer)
+[smoke] PASS OFFER yiaddr in subnet: 192.0.2.10
+[smoke] PASS OFFER option54 == server id
+[smoke] PASS OFFER option51 == 120s
+[smoke] PASS no leased row after OFFER (rows=0)
+[smoke] PASS SELECTING REQUEST yields ACK (action=ack, reason=)
+[smoke] PASS lease_state=leased (got leased)
+[smoke] PASS ACK lease_ip matches OFFER
+[smoke] PASS ACK yiaddr matches OFFER
+[smoke] PASS ACK carries netmask
+[smoke] PASS duplicate REQUEST flagged duplicate
+[smoke] PASS duplicate ACK does NOT extend lease (2026-09-27T20:54:56.56351841Z == 2026-09-27T20:54:56.56351841Z)
+[smoke] PASS RELEASE yields 'released' with no reply (action=released, reply_bytes=0)
+[smoke] PASS truncated datagram -> 422 classified (http=422, cat=message_too_short)
+[smoke] PASS version reports identity: 1.0.0 dhcp4-subset/rfc2131
+[smoke] ALL SMOKE ASSERTIONS PASSED
+[verify] ALL CHECKS PASSED
+[verify] artifacts: /home/admin/Downloads/xinbiaozhu/opp228/b/test-results

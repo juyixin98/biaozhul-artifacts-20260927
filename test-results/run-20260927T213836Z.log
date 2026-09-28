@@ -1,0 +1,93 @@
+[verify] dhcp4lab verification run 20260927T213836Z
+[verify] go: go version go1.23.4 linux/amd64
+[verify] repo: /home/admin/Downloads/xinbiaozhu/opp228/b
+[verify] goproxy: off (deps are vendored; network not required)
+[verify] step 1/4: reproducible offline build
+[verify] built: dhcp4d 1.0.0 (dhcp4-subset/rfc2131)
+[verify] step 2/4: go vet
+[verify] step 3/4: full test suite (-race, -count=1)
+--- PASS: TestUDPFourWayFlow (0.08s)
+--- PASS: TestUDPConcurrentContention (0.77s)
+--- PASS: TestUDPDuplicateACKDoesNotExtend (0.07s)
+--- PASS: TestUDPClientRestart (0.08s)
+--- PASS: TestUDPReleaseFreesAddress (0.49s)
+--- PASS: TestUDPExpiryThenRediscover (0.51s)
+--- PASS: TestUDPMalformedDatagramsDropped (1.25s)
+--- PASS: TestUDPZeroCIAddrReleaseDoesNotCrashServer (0.47s)
+ok  	dhcp4lab/integration	4.745s
+--- PASS: TestDefaultIsValid (0.00s)
+--- PASS: TestParseAppliesDefaults (0.00s)
+--- PASS: TestDurationForms (0.00s)
+--- PASS: TestRejectsNonLoopback (0.00s)
+--- PASS: TestRejectsPrivilegedPort (0.00s)
+--- PASS: TestRejectsPoolOutsideNetwork (0.00s)
+--- PASS: TestRejectsServerIDInPool (0.00s)
+--- PASS: TestRejectsOfferLongerThanLease (0.00s)
+--- PASS: TestRejectsUnknownField (0.00s)
+ok  	dhcp4lab/internal/config	1.022s
+--- PASS: TestCodecRoundTrip (0.00s)
+--- PASS: TestParseFailures (0.00s)
+--- PASS: TestIdentityKey (0.00s)
+--- PASS: TestHexOfBaseline (0.00s)
+ok  	dhcp4lab/internal/dhcp4	1.023s
+--- PASS: TestInjectDiscoverThenRequest (0.07s)
+--- PASS: TestInjectReplayDoesNotExtend (0.08s)
+--- PASS: TestInjectMalformedIs422WithCategory (0.04s)
+--- PASS: TestForeignServerSilenceAndNAK (0.06s)
+--- PASS: TestLeasesAndJournalEndpoints (0.05s)
+--- PASS: TestMethodNotAllowed (0.04s)
+ok  	dhcp4lab/internal/replay	1.348s
+--- PASS: TestClassifyRequest (0.00s)
+--- PASS: TestClassifyRequestMalformed (0.00s)
+ok  	dhcp4lab/internal/server	1.019s
+--- PASS: TestMigratesRepliesRefColumns (0.11s)
+--- PASS: TestPersistenceAcrossRestart (0.11s)
+--- PASS: TestPersistenceFreshProcess (1.14s)
+--- PASS: TestReleaseZeroCIAddrNoPanic (0.04s)
+--- PASS: TestNAKDedupDoesNotPoisonLaterValidRequest (0.06s)
+--- PASS: TestOfferGenerationStaleAfterNewerDiscover (0.06s)
+--- PASS: TestACKGenerationStaleAfterLeaseEndedAndReacquired (0.09s)
+--- PASS: TestAdapterReleaseZeroCIAddrDrop (0.03s)
+--- PASS: TestOfferIsReservationNotLease (0.05s)
+--- PASS: TestSelectingFlowCommitsLease (0.06s)
+--- PASS: TestSelectingNAKCategories (0.07s)
+--- PASS: TestInitReboot (0.08s)
+--- PASS: TestRenewSemantics (0.08s)
+--- PASS: TestDuplicateDiscoverDoesNotExtend (0.05s)
+--- PASS: TestNewDiscoverSupersedesOldOffer (0.06s)
+--- PASS: TestDuplicateACKDoesNotExtendLease (0.06s)
+--- PASS: TestDuplicateNAKRepeated (0.05s)
+--- PASS: TestOfferExpiryReleasesAddress (0.08s)
+--- PASS: TestLeaseExpiry (0.09s)
+--- PASS: TestReleaseSemantics (0.07s)
+--- PASS: TestConcurrentContention (1.01s)
+--- PASS: TestPoolExhaustion (0.11s)
+--- PASS: TestOldTransactionAfterExpiry (0.07s)
+--- PASS: TestRediscoverWhileLeasedKeepsAddress (0.09s)
+ok  	dhcp4lab/internal/storage	4.749s
+--- PASS: TestRefusesNonLoopbackBind (0.00s)
+--- PASS: TestLoopbackServeAndClose (0.05s)
+ok  	dhcp4lab/internal/udpserver	1.067s
+[verify] step 4/4: live loopback smoke test via HTTP replay API
+[smoke] config=/tmp/tmp.fYxtma2qeJ/lab.json http=127.0.0.1:48977
+time=2026-09-28T05:38:43.776+08:00 level=INFO msg="configuration loaded" component=main version=1.0.0 listen_udp=127.0.0.1:60949 admin_http=127.0.0.1:48977 network=192.0.2.0/24 pool=192.0.2.10-192.0.2.40 lease_time=2m0s offer_ttl=30s
+time=2026-09-28T05:38:43.794+08:00 level=INFO msg="udp listener bound" component=udpserver run_id=run-6049d836 addr=127.0.0.1:60949
+time=2026-09-28T05:38:43.794+08:00 level=INFO msg="admin http listening" component=main run_id=run-6049d836 addr=127.0.0.1:48977
+[smoke] PASS DISCOVER yields OFFER (http=200, action=offer)
+[smoke] PASS OFFER yiaddr in subnet: 192.0.2.10
+[smoke] PASS OFFER option54 == server id
+[smoke] PASS OFFER option51 == 120s
+[smoke] PASS no leased row after OFFER (rows=0)
+[smoke] PASS SELECTING REQUEST yields ACK (action=ack, reason=)
+[smoke] PASS lease_state=leased (got leased)
+[smoke] PASS ACK lease_ip matches OFFER
+[smoke] PASS ACK yiaddr matches OFFER
+[smoke] PASS ACK carries netmask
+[smoke] PASS duplicate REQUEST flagged duplicate
+[smoke] PASS duplicate ACK does NOT extend lease (2026-09-27T21:40:43.982804019Z == 2026-09-27T21:40:43.982804019Z)
+[smoke] PASS RELEASE yields 'released' with no reply (action=released, reply_bytes=0)
+[smoke] PASS truncated datagram -> 422 classified (http=422, cat=message_too_short)
+[smoke] PASS version reports identity: 1.0.0 dhcp4-subset/rfc2131
+[smoke] ALL SMOKE ASSERTIONS PASSED
+[verify] ALL CHECKS PASSED
+[verify] artifacts: /home/admin/Downloads/xinbiaozhu/opp228/b/test-results

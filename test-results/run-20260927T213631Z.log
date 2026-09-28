@@ -1,0 +1,72 @@
+[verify] dhcp4lab verification run 20260927T213631Z
+[verify] go: go version go1.23.4 linux/amd64
+[verify] repo: /home/admin/Downloads/xinbiaozhu/opp228/b
+[verify] goproxy: off (deps are vendored; network not required)
+[verify] step 1/4: reproducible offline build
+[verify] built: dhcp4d 1.0.0 (dhcp4-subset/rfc2131)
+[verify] step 2/4: go vet
+[verify] step 3/4: full test suite (-race, -count=1)
+--- PASS: TestUDPFourWayFlow (0.08s)
+--- PASS: TestUDPConcurrentContention (0.83s)
+--- PASS: TestUDPDuplicateACKDoesNotExtend (0.07s)
+--- PASS: TestUDPClientRestart (0.08s)
+--- PASS: TestUDPReleaseFreesAddress (0.50s)
+--- PASS: TestUDPExpiryThenRediscover (0.50s)
+--- PASS: TestUDPMalformedDatagramsDropped (1.26s)
+--- PASS: TestUDPZeroCIAddrReleaseDoesNotCrashServer (0.47s)
+ok  	dhcp4lab/integration	4.807s
+--- PASS: TestDefaultIsValid (0.00s)
+--- PASS: TestParseAppliesDefaults (0.00s)
+--- PASS: TestDurationForms (0.00s)
+--- PASS: TestRejectsNonLoopback (0.00s)
+--- PASS: TestRejectsPrivilegedPort (0.00s)
+--- PASS: TestRejectsPoolOutsideNetwork (0.00s)
+--- PASS: TestRejectsServerIDInPool (0.00s)
+--- PASS: TestRejectsOfferLongerThanLease (0.00s)
+--- PASS: TestRejectsUnknownField (0.00s)
+ok  	dhcp4lab/internal/config	1.023s
+--- PASS: TestCodecRoundTrip (0.00s)
+--- PASS: TestParseFailures (0.00s)
+--- PASS: TestIdentityKey (0.00s)
+--- PASS: TestHexOfBaseline (0.00s)
+ok  	dhcp4lab/internal/dhcp4	1.021s
+--- PASS: TestInjectDiscoverThenRequest (0.08s)
+--- PASS: TestInjectReplayDoesNotExtend (0.08s)
+--- PASS: TestInjectMalformedIs422WithCategory (0.04s)
+--- PASS: TestForeignServerSilenceAndNAK (0.05s)
+--- PASS: TestLeasesAndJournalEndpoints (0.06s)
+--- PASS: TestMethodNotAllowed (0.04s)
+ok  	dhcp4lab/internal/replay	1.368s
+--- PASS: TestClassifyRequest (0.00s)
+--- PASS: TestClassifyRequestMalformed (0.00s)
+ok  	dhcp4lab/internal/server	1.019s
+--- PASS: TestMigratesRepliesRefColumns (0.13s)
+--- PASS: TestPersistenceAcrossRestart (0.11s)
+--- PASS: TestPersistenceFreshProcess (1.13s)
+--- PASS: TestReleaseZeroCIAddrNoPanic (0.11s)
+--- PASS: TestNAKDedupDoesNotPoisonLaterValidRequest (0.08s)
+--- PASS: TestOfferGenerationStaleAfterNewerDiscover (0.07s)
+--- PASS: TestACKGenerationStaleAfterLeaseEndedAndReacquired (0.10s)
+--- PASS: TestAdapterReleaseZeroCIAddrDrop (0.03s)
+--- PASS: TestOfferIsReservationNotLease (0.05s)
+--- PASS: TestSelectingFlowCommitsLease (0.06s)
+--- PASS: TestSelectingNAKCategories (0.08s)
+--- PASS: TestInitReboot (0.07s)
+--- PASS: TestRenewSemantics (0.08s)
+--- PASS: TestDuplicateDiscoverDoesNotExtend (0.05s)
+--- PASS: TestNewDiscoverSupersedesOldOffer (0.06s)
+--- PASS: TestDuplicateACKDoesNotExtendLease (0.07s)
+--- PASS: TestDuplicateNAKRepeated (0.05s)
+--- PASS: TestOfferExpiryReleasesAddress (0.09s)
+--- PASS: TestLeaseExpiry (0.10s)
+--- PASS: TestReleaseSemantics (0.08s)
+--- PASS: TestConcurrentContention (1.09s)
+--- PASS: TestPoolExhaustion (0.11s)
+--- PASS: TestOldTransactionAfterExpiry (0.08s)
+--- PASS: TestRediscoverWhileLeasedKeepsAddress (0.10s)
+ok  	dhcp4lab/internal/storage	4.976s
+--- PASS: TestRefusesNonLoopbackBind (0.00s)
+--- PASS: TestLoopbackServeAndClose (0.05s)
+ok  	dhcp4lab/internal/udpserver	1.068s
+[verify] step 4/4: live loopback smoke test via HTTP replay API
+[verify][FAIL] live smoke test failed (see /home/admin/Downloads/xinbiaozhu/opp228/b/test-results/smoke-20260927T213631Z.log)
