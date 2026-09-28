@@ -1,0 +1,16 @@
+{
+  "service_name": "igmpv2-offline-timer",
+  "http_addr": "127.0.0.1:8022",
+  "sqlite_path": "data/igmpv2.sqlite",
+  "timing": {
+    "query_interval_ms": 125000,
+    "query_response_interval_ms": 10000,
+    "group_membership_interval_ms": 135000,
+    "last_member_query_interval_ms": 1000,
+    "last_member_query_count": 2
+  },
+  "interfaces": [
+    {"name": "eth0", "subnet": "192.0.2.0/24", "comment": "synthetic LAN segment A"},
+    {"name": "eth1", "subnet": "198.51.100.0/24", "comment": "synthetic LAN segment B"}
+  ]
+}

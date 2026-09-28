@@ -1,0 +1,63 @@
+{
+  "name": "s2_query_loss_and_stale_round",
+  "summary": "A general query is lost in transit; after the membership interval the forwarding entry is deleted at the exact boundary; a later report answering the superseded round must be STALE and never recreate state.",
+  "iface": "eth0",
+  "group": "239.1.8.8",
+  "timing_override": {
+    "query_interval_ms": 1000000,
+    "query_response_interval_ms": 200,
+    "group_membership_interval_ms": 300,
+    "last_member_query_interval_ms": 100,
+    "last_member_query_count": 2
+  },
+  "members": [
+    {"name": "hostA", "addr": "192.0.2.21", "general_delay_ms": 50, "lmq_delay_ms": 20}
+  ],
+  "events": [
+    {"at_ms": 100, "kind": "report", "member": "hostA", "request_id": "join-A"},
+    {"at_ms": 200, "kind": "force_query", "request_id": "gq-1"},
+    {"at_ms": 399, "kind": "checkpoint", "request_id": "cp-399"},
+    {"at_ms": 549, "kind": "checkpoint", "request_id": "cp-549"},
+    {"at_ms": 550, "kind": "checkpoint", "request_id": "cp-550"},
+    {"at_ms": 450, "kind": "force_query", "request_id": "gq-2"},
+    {"at_ms": 700, "kind": "report", "member": "hostA", "ref_general_n": 1,
+     "request_id": "late-answer-r1"},
+    {"at_ms": 800, "kind": "checkpoint", "request_id": "cp-800"}
+  ],
+  "drop_rules": [
+    {"packet": "QUERY_GENERAL", "iface": "eth0", "from_ms": 450, "count": 1}
+  ],
+  "until_ms": 900,
+  "assertions": [
+    {"id": "S2-created-deadline", "check": "diag_matches",
+     "target": {"at_ms": 100, "member": "hostA", "verdict": "ACCEPTED",
+                "reason": "membership_created", "deadline_ms": 400}},
+    {"id": "S2-r1-refresh", "check": "diag_matches",
+     "target": {"at_ms": 250, "member": "hostA", "verdict": "ACCEPTED",
+                "reason": "membership_refreshed", "gen_active": 1, "gen_applied": 1,
+                "deadline_ms": 550}},
+    {"id": "S2-gq2-dropped", "check": "diag_matches",
+     "target": {"at_ms": 450, "verdict": "DROPPED",
+                "reason": "query_lost_in_transit", "gen_active": 2}},
+    {"id": "S2-present-at-399", "check": "present_at", "at_ms": 399,
+     "iface_p": "eth0", "group_p": "239.1.8.8"},
+    {"id": "S2-present-at-549", "check": "present_at", "at_ms": 549,
+     "iface_p": "eth0", "group_p": "239.1.8.8"},
+    {"id": "S2-absent-at-550-boundary", "check": "absent_at", "at_ms": 550,
+     "iface_p": "eth0", "group_p": "239.1.8.8"},
+    {"id": "S2-absent-at-800", "check": "absent_at", "at_ms": 800,
+     "iface_p": "eth0", "group_p": "239.1.8.8"},
+    {"id": "S2-timeout-reason", "check": "diag_matches",
+     "target": {"at_ms": 550, "verdict": "TIMEOUT",
+                "reason": "membership_interval_expired"}},
+    {"id": "S2-stale-answer-r1", "check": "diag_matches",
+     "target": {"at_ms": 700, "member": "hostA", "verdict": "STALE",
+                "reason": "stale_query_round", "gen_active": 2, "gen_applied": 1}},
+    {"id": "S2-generation-guard", "check": "generation_guard",
+     "target": {"at_ms": 700, "member": "hostA", "verdict": "STALE",
+                "reason": "stale_query_round"}},
+    {"id": "S2-retention-100to550", "check": "interval_equals",
+     "iface_p": "eth0", "group_p": "239.1.8.8",
+     "start_ms": 100, "end_ms": 550}
+  ]
+}
