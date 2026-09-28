@@ -1,0 +1,40 @@
+[1] 摄取三方快照: base=snap_d3489fdbd0a640a7 dev=snap_5e2ad592873b4554 main=snap_db28fd6e5d0346d8
+[2] 建立 main 与 dev 两条提交线（共同祖先是 base 提交）
+
+[3] 合并计划的内核计算步骤：
+    step 1/4: index rows by primary key ['id'] (base=6, dev=7, main=7)
+    step 2/4: partition 9 keys by presence in base / dev / main
+    step 3/4: classified 9 keys -> 6 auto-resolved, 3 conflicts
+    step 4/4: non-conflict partitions queued for auto-merge; conflict rows held back pending three-way-bound resolutions
+
+[4] 每个主键的判定与依据：
+    [auto    ] key=[1] UNCHANGED                key [1]: neither side changed relative to base
+    [auto    ] key=[2] FIELD_MERGE              key [2]: disjoint field edits merged (dev=['city', 'score'], main=['active'])
+    [auto    ] key=[3] FAST_FORWARD             key [3]: dev kept it unchanged, other side deleted -> fast-forward deletion
+    [auto    ] key=[5] FAST_FORWARD             key [5]: only dev changed fields ['city', 'score']
+    [auto    ] key=[7] FAST_FORWARD             key [7]: added only on dev
+    [auto    ] key=[8] FAST_FORWARD             key [8]: added only on main
+    [CONFLICT] key=[4] DELETE_MODIFY_CONFLICT   key [4]: one side deleted while main modified fields ['city', 'score']
+    [CONFLICT] key=[6] SAME_FIELD_CONFLICT      key [6]: both sides changed same field(s) ['score'] to different values
+    [CONFLICT] key=[9] ADD_ADD_CONFLICT         key [9]: added on both sides with different content
+
+[5] 判定计数: {'UNCHANGED': 1, 'FIELD_MERGE': 1, 'FAST_FORWARD': 4, 'DELETE_MODIFY_CONFLICT': 1, 'SAME_FIELD_CONFLICT': 1, 'ADD_ADD_CONFLICT': 1}
+[6] 保存解决结果（绑定三方快照）: {'plan_id': 'plan_09ecafc863095ecb', 'saved': 3, 'resolved_keys': ['[4]', '[6]', '[9]'], 'total_conflicts': 3}
+
+[7] 合并后的行集：
+    {"id": 1, "name": "Alice", "city": "Beijing", "score": 10.0, "active": true}
+    {"id": 2, "name": "Bob", "city": "Beijing", "score": 25.0, "active": false}
+    {"id": 4, "name": "Dan", "city": "Hefei", "score": 41.0, "active": true}
+    {"id": 5, "name": "Eve", "city": "Xian", "score": 55.0, "active": true}
+    {"id": 6, "name": "Frank", "city": "Wuhan", "score": 99.0, "active": false}
+    {"id": 7, "name": "Grace", "city": "Suzhou", "score": 70.0, "active": true}
+    {"id": 8, "name": "Heidi", "city": "Tianjin", "score": 80.0, "active": true}
+    {"id": 9, "name": "Ivan", "city": "Nanjing", "score": 90.0, "active": true}
+
+[8] 合并提交血缘（必须含两条父引用）：
+    merge_commit = merge_098696c8439d41d9
+    parent_commit_ids = ['commit_93f50b8b09b941c1', 'commit_bdff101386b84821']
+    base_commit = commit_5741bc4cb0e04017
+    resolution_summary = {"plan_id": "plan_09ecafc863095ecb", "counts": {"UNCHANGED": 1, "FIELD_MERGE": 1, "FAST_FORWARD": 4, "DELETE_MODIFY_CONFLICT": 1, "SAME_FIELD_CONFLICT": 1, "ADD_ADD_CONFLICT": 1}, "resolution_actions": {"USE_MAIN": 2, "USE_DEV": 1}, "final_row_count": 8}
+
+DEMO OK: 自动合并分区、三类冲突、血缘双亲引用均已验证。

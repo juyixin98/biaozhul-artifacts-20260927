@@ -1,0 +1,51 @@
+{
+  "schema": {
+    "table": "employees",
+    "columns": [
+      {"name": "id", "type": "int64"},
+      {"name": "name", "type": "string"},
+      {"name": "city", "type": "string"},
+      {"name": "score", "type": "float64"},
+      {"name": "active", "type": "bool"}
+    ],
+    "primary_key": ["id"]
+  },
+  "base": [
+    {"id": 1, "name": "Alice", "city": "Beijing",  "score": 10.0, "active": true},
+    {"id": 2, "name": "Bob",   "city": "Shanghai", "score": 20.0, "active": true},
+    {"id": 3, "name": "Carol", "city": "Shenzhen", "score": 30.0, "active": true},
+    {"id": 4, "name": "Dan",   "city": "Hangzhou", "score": 40.0, "active": true},
+    {"id": 5, "name": "Eve",   "city": "Chengdu",  "score": 50.0, "active": true},
+    {"id": 6, "name": "Frank", "city": "Wuhan",    "score": 60.0, "active": true}
+  ],
+  "dev": [
+    {"id": 1, "name": "Alice", "city": "Beijing",  "score": 10.0, "active": true},
+    {"id": 2, "name": "Bob",   "city": "Beijing",  "score": 25.0, "active": true},
+    {"id": 3, "name": "Carol", "city": "Shenzhen", "score": 30.0, "active": true},
+    {"id": 5, "name": "Eve",   "city": "Xian",     "score": 55.0, "active": true},
+    {"id": 6, "name": "Frank", "city": "Wuhan",    "score": 66.0, "active": false},
+    {"id": 7, "name": "Grace", "city": "Suzhou",   "score": 70.0, "active": true},
+    {"id": 9, "name": "Ivan",  "city": "Nanjing",  "score": 90.0, "active": true}
+  ],
+  "main": [
+    {"id": 1, "name": "Alice", "city": "Beijing",   "score": 10.0, "active": true},
+    {"id": 2, "name": "Bob",   "city": "Shanghai",  "score": 20.0, "active": false},
+    {"id": 4, "name": "Dan",   "city": "Hefei",     "score": 41.0, "active": true},
+    {"id": 5, "name": "Eve",   "city": "Chengdu",   "score": 50.0, "active": true},
+    {"id": 6, "name": "Frank", "city": "Wuhan",     "score": 99.0, "active": false},
+    {"id": 8, "name": "Heidi", "city": "Tianjin",   "score": 80.0, "active": true},
+    {"id": 9, "name": "Ivan",  "city": "Nanjing",   "score": 99.0, "active": true}
+  ],
+  "expected_decisions": {
+    "1": "UNCHANGED（双方都未动）",
+    "2": "FIELD_MERGE（dev 改 city/score，main 改 active，字段不相交）",
+    "3": "FAST_FORWARD（删除快进：main 删除 3，dev 原样保留）",
+    "4": "DELETE_MODIFY_CONFLICT（dev 删除 4，main 把 city/score 改成 Hefei/41）",
+    "5": "FAST_FORWARD（仅 dev 修改 city/score）",
+    "6": "SAME_FIELD_CONFLICT（两侧都改 score：66 vs 99；active 都改成 false 已收敛）",
+    "7": "FAST_FORWARD（仅 dev 新增）",
+    "8": "FAST_FORWARD（仅 main 新增）",
+    "9": "ADD_ADD_CONFLICT（两侧都新增 id=9，score 90 vs 99）"
+  },
+  "_note": "四类验收场景在此样例中全部出现：相同修改(1/6 的 active 收敛)、互斥新增(7/8)、同键不同字段(2 不相交合并 / 6 同字段冲突)、删改冲突(4)。另一方向的删改冲突(main 删/dev 改)由 tests/test_merge_kernel.py 覆盖。"
+}

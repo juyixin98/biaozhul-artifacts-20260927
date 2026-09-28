@@ -1,0 +1,17 @@
+# 不可变表快照三方合并后端 — 本地开发配置
+# 所有 TABLE_MERGE_ 前缀的环境变量可覆盖这里的值，例如：
+# TABLE_MERGE_SERVER__PORT=9000 TABLE_MERGE_STORAGE__ROOT_DIR=/tmp/store
+storage:
+  root_dir: ./data/store
+
+server:
+  host: 127.0.0.1
+  port: 8000
+
+kernel:
+  strict_schema: true
+  max_conflicts: 100000
+
+logging:
+  level: INFO
+  file: null

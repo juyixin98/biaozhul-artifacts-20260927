@@ -1,0 +1,15 @@
+version: 1
+disable_existing_loggers: false
+formatters:
+  default:
+    format: "%(asctime)s %(levelname)-5s %(name)s %(message)s"
+    datefmt: "%Y-%m-%dT%H:%M:%S"
+handlers:
+  stderr:
+    class: logging.StreamHandler
+    formatter: default
+    stream: ext://sys.stderr
+loggers:
+  table_merge:
+    level: INFO
+    propagate: true
