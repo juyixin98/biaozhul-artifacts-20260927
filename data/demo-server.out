@@ -1,0 +1,2 @@
+infrastructure planner listening on http://127.0.0.1:18090 (db=./data/demo90.db logs=./data/demo90-logs)
+server stopped

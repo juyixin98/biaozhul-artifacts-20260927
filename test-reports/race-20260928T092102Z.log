@@ -1,0 +1,10 @@
+# race run 20260928T092237Z
+?   	infraplanner/cmd/server	[no test files]
+?   	infraplanner/internal/logging	[no test files]
+?   	infraplanner/internal/model	[no test files]
+ok  	infraplanner/internal/httpapi	1.243s
+ok  	infraplanner/internal/journal	1.135s
+ok  	infraplanner/internal/planner	1.023s
+ok  	infraplanner/internal/provider	1.016s
+ok  	infraplanner/internal/reconciler	1.982s
+ok  	infraplanner/internal/spec	1.022s

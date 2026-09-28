@@ -1,0 +1,12 @@
+{"time":"2026-09-28T09:20:26.184052997Z","run":"plan","run_seq":1,"level":"info","stage":"observe","msg":"world observed","fields":{"resources":0}}
+{"time":"2026-09-28T09:20:26.196155404Z","run":"plan","run_seq":2,"level":"info","stage":"plan","msg":"plan persisted","fields":{"fingerprint":"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945","guarded":0,"ops":4,"run_id":"run-9808d570f933962d7dabe8d8"}}
+{"time":"2026-09-28T09:20:26.264778741Z","run":"plan","run_seq":1,"level":"info","stage":"observe","msg":"world observed","fields":{"resources":4}}
+{"time":"2026-09-28T09:20:26.28210057Z","run":"plan","run_seq":2,"level":"info","stage":"plan","msg":"plan persisted","fields":{"fingerprint":"e57ff0ca528b7aebfa7f80d2cb5fa7e7a0dfdcecd02000c7bfd090149b67f3c2","guarded":0,"ops":6,"run_id":"run-4833f5ed8be8eaea7a820939"}}
+{"time":"2026-09-28T09:20:26.383271915Z","run":"plan","run_seq":1,"level":"info","stage":"observe","msg":"world observed","fields":{"resources":5}}
+{"time":"2026-09-28T09:20:26.383369248Z","run":"plan","run_seq":2,"level":"error","stage":"plan","msg":"destruction guard held","fields":{"error":"state_conflict/guard_held: plan blocked: 1 protected resource(s) require explicit guard release: [vpc/critical]","error_cat":"state_conflict","error_code":"guard_held"}}
+{"time":"2026-09-28T09:20:26.390601858Z","run":"plan","run_seq":1,"level":"info","stage":"observe","msg":"world observed","fields":{"resources":5}}
+{"time":"2026-09-28T09:20:26.405650128Z","run":"plan","run_seq":2,"level":"info","stage":"plan","msg":"plan persisted","fields":{"fingerprint":"1750ccdc2d9cb4eba143fb32bfccf6e75d9fa96f4cff81a4e09a67ba288e5515","guarded":0,"ops":5,"run_id":"run-5b123120e98e53ac658b2d45"}}
+{"time":"2026-09-28T09:20:26.490293967Z","run":"plan","run_seq":1,"level":"info","stage":"observe","msg":"world observed","fields":{"resources":0}}
+{"time":"2026-09-28T09:20:26.502265228Z","run":"plan","run_seq":2,"level":"info","stage":"plan","msg":"plan persisted","fields":{"fingerprint":"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945","guarded":0,"ops":4,"run_id":"run-e4bb2fab81a1842235d8d732"}}
+{"time":"2026-09-28T09:20:26.534652578Z","run":"plan","run_seq":1,"level":"info","stage":"observe","msg":"world observed","fields":{"resources":0}}
+{"time":"2026-09-28T09:20:26.541150791Z","run":"plan","run_seq":2,"level":"info","stage":"plan","msg":"plan persisted","fields":{"fingerprint":"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945","guarded":0,"ops":1,"run_id":"run-fff0db482a634deeb048d113"}}

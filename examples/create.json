@@ -1,0 +1,29 @@
+{
+  "resources": [
+    {
+      "kind": "vpc",
+      "name": "main",
+      "attrs": { "cidr": "10.0.0.0/8", "region": "east" }
+    },
+    {
+      "kind": "subnet",
+      "name": "web",
+      "attrs": { "cidr": "10.1.0.0/16", "zone": "z1" },
+      "refs": {
+        "network_ref": { "kind": "vpc", "name": "main" }
+      }
+    },
+    {
+      "kind": "instance",
+      "name": "api",
+      "attrs": { "image": "img-1", "shape": "small", "state": "running" },
+      "refs": {
+        "subnet_ref": { "kind": "subnet", "name": "web" }
+      }
+    },
+    {
+      "kind": "bucket",
+      "name": "artifacts"
+    }
+  ]
+}
