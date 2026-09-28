@@ -1,0 +1,3 @@
+cidrsvc dev starting: listen=127.0.0.1:8080 db=data/demo.db log=data/demo.log max_prefixes=4096 strict=false shutdown=5s
+
+received terminated, shutting down...

@@ -1,0 +1,35 @@
+
+===== 1) health =====
+{"status":"ok","version":"dev"}
+
+
+===== 2) IPv4: carve one /25 out of a /24 (minimal cover) =====
+{"request_id":"demo-ipv4-hole","family":"ipv4","width":32,"status":"ok","prefixes":["10.0.0.0/25"],"empty":false,"proof":{"width":32,"target_address_count":"128","cover_address_count":"128","block_count":1,"exactly_equivalent":true},"warnings":[],"steps":[{"name":"resolve_family","detail":"family=ipv4 width=32","duration_us":6,"location":"internal/netmodel/engine.go:Compute"},{"name":"parse_allow","detail":"parsed=1 prefixes","duration_us":6,"location":"internal/netmodel/engine.go:Compute"},{"name":"parse_exclude","detail":"parsed=1 prefixes","duration_us":1,"location":"internal/netmodel/engine.go:Compute"},{"name":"union_and_subtract","detail":"target_ranges=1 target_addresses=128","duration_us":12,"location":"internal/netmodel/engine.go:Compute"},{"name":"greedy_cover","detail":"emitted=1 prefixes","duration_us":2,"location":"internal/netmodel/engine.go:Compute"},{"name":"convert_and_format","detail":"formatted=1 cidrs","duration_us":1,"location":"internal/netmodel/engine.go:Compute"},{"name":"independent_verification","detail":"equivalent=true blocks=1 mergeable_siblings=0","duration_us":11,"location":"internal/netmodel/engine.go:Compute"}],"version":"dev"}
+
+
+===== 3) full IPv6 space minus the lowest address (extreme boundary) =====
+{"request_id":"demo-v6-extreme","family":"ipv6","width":128,"status":"ok","prefixes":["::1/128","::2/127","::4/126","::8/125","::10/124","::20/123","::40/122","::80/121","::100/120","::200/119","::400/118","::800/117","::1000/116","::2000/115","::4000/114","::8000/113","::1:0/112","::2:0/111","::4:0/110","::8:0/109","::10:0/108","::20:0/107","::40:0/106","::80:0/105","::100:0/104","::200:0/103","::400:0/102","::800:0/101","::1000:0/100","::2000:0/99","::4000:0/98","::8000:0/97","::1:0:0/96","::2:0:0/95","::4:0:0/94","::8:0:0/93","::10:0:0/92","::20:0:0/91","::40:0:0/90","::80:0:0/89","::100:0:0/88","::200:0:0/87","::400:0:0/86","::800:0:0/85","::1000:0:0/84","::2000:0:0/83","::4000:0:0/82","
+
+===== 4) empty set: exclude the whole universe =====
+{"request_id":"demo-empty","family":"ipv4","width":32,"status":"ok","prefixes":[],"empty":true,"proof":{"width":32,"target_address_count":"0","cover_address_count":"0","block_count":0,"exactly_equivalent":true},"warnings":[],"steps":[{"name":"resolve_family","detail":"family=ipv4 width=32","duration_us":3,"location":"internal/netmodel/engine.go:Compute"},{"name":"parse_allow","detail":"parsed=1 prefixes","duration_us":2,"location":"internal/netmodel/engine.go:Compute"},{"name":"parse_exclude","detail":"parsed=1 prefixes","duration_us":1,"location":"internal/netmodel/engine.go:Compute"},{"name":"union_and_subtract","detail":"target_ranges=0 target_addresses=0","duration_us":11,"location":"internal/netmodel/engine.go:Compute"},{"name":"greedy_cover","detail":"emitted=0 prefixes","duration_us":0,"location":"internal/netmodel/engine.go:Compute"},{"name":"convert_and_format","detail":"formatted=0 cidrs","duration_us":0,"location":"internal/netmodel/engine.go:Compute"},{"name":"independent_verification","detail":"equivalent=true blocks=0 mergeable_siblings=0","duration_us":2,"location":"internal/netmodel/engine.go:Compute"}],"version":"dev"}
+
+
+===== 5) error case: prefix length too long (typed failure) =====
+{"request_id":"demo-bad-prefix","status":"error","error_code":"prefix_length_too_long","error":"prefix_length_too_long: \"10.0.0.0/33\": netip.ParsePrefix(\"10.0.0.0/33\"): prefix length out of range","location":"internal/service/service.go:208","version":"dev"}
+
+
+===== 6) error case: mixed address families =====
+{"request_id":"demo-mixed","status":"error","error_code":"family_mismatch","error":"family_mismatch: \"\": request mixes IPv4 and IPv6 prefixes; split into two requests","location":"internal/service/service.go:208","version":"dev"}
+
+
+===== 7) replay one known request by correlation id =====
+{"allow":["10.0.0.0/24"],"client_ref":"runbook-example-2","correlation":"req_06f36bedbed625ea74e09c465e38063a","created_at":"2026-09-27T20:28:58.825775117Z","exclude":["10.0.0.128/25"],"family":"ipv4","prefixes":["10.0.0.0/25"],"request_id":"demo-ipv4-hole","status":"ok","steps":[{"name":"resolve_family","detail":"family=ipv4 width=32","duration_us":6,"location":"internal/netmodel/engine.go:Compute"},{"name":"parse_allow","detail":"parsed=1 prefixes","duration_us":6,"location":"internal/netmodel/engine.go:Compute"},{"name":"parse_exclude","detail":"parsed=1 prefixes","duration_us":1,"location":"internal/netmodel/engine.go:Compute"},{"name":"union_and_subtract","detail":"target_ranges=1 target_addresses=128","duration_us":12,"location":"internal/netmodel/engine.go:Compute"},{"name":"greedy_cover","detail":"emitted=1 prefixes","duration_us":2,"location":"internal/netmodel/engine.go:Compute"},{"name":"convert_and_format","detail":"formatted=1 cidrs","duration_us":1,"location":"internal/netmodel/engine.go:Compute"},{"name":"independent_verification","detail":"equivalent=true blocks=1 mergeable_siblings=0","duration_us":11,"location":"internal/netmodel/engine.go:Compute"}],"warnings":[],"width":32}
+
+
+===== 8) list recent failed requests =====
+{"count":2,"records":[{"allow":["10.0.0.0/8"],"client_ref":"","correlation":"req_eef5d98f76d4eb5a9ef9d7b9a8c1820f","created_at":"2026-09-27T20:28:58.860452929Z","error":"family_mismatch: \"\": request mixes IPv4 and IPv6 prefixes; split into two requests","error_code":"family_mismatch","exclude":["2001:db8::/32"],"family":"","prefixes":[],"request_id":"demo-mixed","status":"error","warnings":null,"width":0},{"allow":["10.0.0.0/33"],"client_ref":"","correlation":"req_eef5d98f76d4eb5a9ef9d7b9a8c1820f","created_at":"2026-09-27T20:28:58.852906873Z","error":"prefix_length_too_long: \"10.0.0.0/33\": netip.ParsePrefix(\"10.0.0.0/33\"): prefix length out of range","error_code":"prefix_length_too_long","exclude":[],"family":"ipv4","prefixes":[],"request_id":"demo-bad-prefix","status":"error","warnings":null,"width":0}],"request_id":"req_eef5d98f76d4eb5a9ef9d7b9a8c1820f"}
+
+
+===== 9) aggregate stats =====
+{"request_id":"req_b454c1c1c4ab4124a9fe9aafd6b9a8e9","status_counts":{"error":2,"ok":3},"version":"dev"}
+

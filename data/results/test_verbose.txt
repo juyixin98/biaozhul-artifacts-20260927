@@ -1,0 +1,189 @@
+?   	cidrsvc/cmd/cidrsvc	[no test files]
+?   	cidrsvc/cmd/dumpdb	[no test files]
+?   	cidrsvc/internal/config	[no test files]
+=== RUN   TestGoldenFixtures
+=== RUN   TestGoldenFixtures/ipv4_full_space
+=== RUN   TestGoldenFixtures/ipv4_empty_allow
+=== RUN   TestGoldenFixtures/ipv4_exclude_entire_universe
+=== RUN   TestGoldenFixtures/ipv4_single_prefix_passthrough
+=== RUN   TestGoldenFixtures/ipv4_carve_first_address
+=== RUN   TestGoldenFixtures/ipv4_carve_broadcast_address
+=== RUN   TestGoldenFixtures/ipv4_sibling_merge
+=== RUN   TestGoldenFixtures/ipv4_hole_in_middle
+=== RUN   TestGoldenFixtures/ipv4_slash31_two_addresses
+=== RUN   TestGoldenFixtures/ipv6_full_space
+=== RUN   TestGoldenFixtures/ipv6_lowest_and_highest_only
+=== RUN   TestGoldenFixtures/ipv6_allocation_difference
+--- PASS: TestGoldenFixtures (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_full_space (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_empty_allow (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_exclude_entire_universe (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_single_prefix_passthrough (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_carve_first_address (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_carve_broadcast_address (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_sibling_merge (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_hole_in_middle (0.00s)
+    --- PASS: TestGoldenFixtures/ipv4_slash31_two_addresses (0.00s)
+    --- PASS: TestGoldenFixtures/ipv6_full_space (0.00s)
+    --- PASS: TestGoldenFixtures/ipv6_lowest_and_highest_only (0.00s)
+    --- PASS: TestGoldenFixtures/ipv6_allocation_difference (0.00s)
+=== RUN   TestGoldenErrorFixtures
+=== RUN   TestGoldenErrorFixtures/malformed_cidr
+=== RUN   TestGoldenErrorFixtures/prefix_length_too_long
+=== RUN   TestGoldenErrorFixtures/host_bits_present_strict
+=== RUN   TestGoldenErrorFixtures/family_mismatch
+--- PASS: TestGoldenErrorFixtures (0.00s)
+    --- PASS: TestGoldenErrorFixtures/malformed_cidr (0.00s)
+    --- PASS: TestGoldenErrorFixtures/prefix_length_too_long (0.00s)
+    --- PASS: TestGoldenErrorFixtures/host_bits_present_strict (0.00s)
+    --- PASS: TestGoldenErrorFixtures/family_mismatch (0.00s)
+=== RUN   TestBoundaryPolicyDocumented
+--- PASS: TestBoundaryPolicyDocumented (0.00s)
+PASS
+ok  	cidrsvc	0.004s
+=== RUN   TestExhaustiveWidth3
+--- PASS: TestExhaustiveWidth3 (0.01s)
+=== RUN   TestExhaustiveWidth4
+--- PASS: TestExhaustiveWidth4 (2.20s)
+=== RUN   TestTrieOracleAgreesWithEnumeration
+--- PASS: TestTrieOracleAgreesWithEnumeration (0.87s)
+=== RUN   TestSubtractWidth3AllowSubsets
+--- PASS: TestSubtractWidth3AllowSubsets (2.93s)
+=== RUN   TestSubtractSinglePrefixPairsWidth5
+--- PASS: TestSubtractSinglePrefixPairsWidth5 (0.04s)
+=== RUN   TestSubtractFuzzed
+--- PASS: TestSubtractFuzzed (0.64s)
+=== RUN   TestConcreteSmallWidthCovers
+=== RUN   TestConcreteSmallWidthCovers/empty
+=== RUN   TestConcreteSmallWidthCovers/full_space
+=== RUN   TestConcreteSmallWidthCovers/single_low_address
+=== RUN   TestConcreteSmallWidthCovers/single_middle_address
+=== RUN   TestConcreteSmallWidthCovers/single_high_address
+=== RUN   TestConcreteSmallWidthCovers/two_adjacent
+=== RUN   TestConcreteSmallWidthCovers/classic_1_to_8
+=== RUN   TestConcreteSmallWidthCovers/classic_7_to_15
+=== RUN   TestConcreteSmallWidthCovers/two_runs
+=== RUN   TestConcreteSmallWidthCovers/overlapping_input_ranges_union
+=== RUN   TestConcreteSmallWidthCovers/all_but_corners
+--- PASS: TestConcreteSmallWidthCovers (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/empty (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/full_space (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/single_low_address (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/single_middle_address (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/single_high_address (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/two_adjacent (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/classic_1_to_8 (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/classic_7_to_15 (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/two_runs (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/overlapping_input_ranges_union (0.00s)
+    --- PASS: TestConcreteSmallWidthCovers/all_but_corners (0.00s)
+=== RUN   TestVerificationFailureCategories
+=== RUN   TestVerificationFailureCategories/overlap
+=== RUN   TestVerificationFailureCategories/gap_missing_address
+=== RUN   TestVerificationFailureCategories/extra_address
+=== RUN   TestVerificationFailureCategories/misaligned_block
+=== RUN   TestVerificationFailureCategories/mergeable_siblings_present
+=== RUN   TestVerificationFailureCategories/invalid_prefix_length
+=== RUN   TestVerificationFailureCategories/out_of_universe
+--- PASS: TestVerificationFailureCategories (0.00s)
+    --- PASS: TestVerificationFailureCategories/overlap (0.00s)
+    --- PASS: TestVerificationFailureCategories/gap_missing_address (0.00s)
+    --- PASS: TestVerificationFailureCategories/extra_address (0.00s)
+    --- PASS: TestVerificationFailureCategories/misaligned_block (0.00s)
+    --- PASS: TestVerificationFailureCategories/mergeable_siblings_present (0.00s)
+    --- PASS: TestVerificationFailureCategories/invalid_prefix_length (0.00s)
+    --- PASS: TestVerificationFailureCategories/out_of_universe (0.00s)
+=== RUN   TestVerifyCleanCoverHasNoViolations
+--- PASS: TestVerifyCleanCoverHasNoViolations (0.00s)
+=== RUN   TestParseErrorCategories
+--- PASS: TestParseErrorCategories (0.00s)
+=== RUN   TestLenientMasksHostBitsWithWarning
+--- PASS: TestLenientMasksHostBitsWithWarning (0.00s)
+=== RUN   TestIPv4ConcreteCovers
+=== RUN   TestIPv4ConcreteCovers/full_space
+=== RUN   TestIPv4ConcreteCovers/exclude_everything
+=== RUN   TestIPv4ConcreteCovers/single_/24
+=== RUN   TestIPv4ConcreteCovers/carve_first_address_out_of_/24
+=== RUN   TestIPv4ConcreteCovers/carve_last_address_out_of_/24_(broadcast_included_in_allow)
+=== RUN   TestIPv4ConcreteCovers/adjacent_/25_siblings_merge_to_/24
+=== RUN   TestIPv4ConcreteCovers/four_/26_merge_to_/24
+=== RUN   TestIPv4ConcreteCovers/hole_in_middle
+=== RUN   TestIPv4ConcreteCovers/overlapping_allows;_sibling_blocks_must_merge_after_carve
+--- PASS: TestIPv4ConcreteCovers (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/full_space (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/exclude_everything (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/single_/24 (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/carve_first_address_out_of_/24 (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/carve_last_address_out_of_/24_(broadcast_included_in_allow) (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/adjacent_/25_siblings_merge_to_/24 (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/four_/26_merge_to_/24 (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/hole_in_middle (0.00s)
+    --- PASS: TestIPv4ConcreteCovers/overlapping_allows;_sibling_blocks_must_merge_after_carve (0.00s)
+=== RUN   TestBoundaryPolicyNetworkAndBroadcastInclusive
+--- PASS: TestBoundaryPolicyNetworkAndBroadcastInclusive (0.00s)
+=== RUN   TestIPv6Extremes
+=== RUN   TestIPv6Extremes/full_v6_space_is_one_/0
+=== RUN   TestIPv6Extremes/carve_::_out_of_full_space_(lowest_address)
+=== RUN   TestIPv6Extremes/carve_highest_address_ffff...ffff_out
+=== RUN   TestIPv6Extremes/only_lowest_and_highest_addresses_remain
+=== RUN   TestIPv6Extremes/typical_v6_allocation_difference
+--- PASS: TestIPv6Extremes (0.00s)
+    --- PASS: TestIPv6Extremes/full_v6_space_is_one_/0 (0.00s)
+    --- PASS: TestIPv6Extremes/carve_::_out_of_full_space_(lowest_address) (0.00s)
+    --- PASS: TestIPv6Extremes/carve_highest_address_ffff...ffff_out (0.00s)
+    --- PASS: TestIPv6Extremes/only_lowest_and_highest_addresses_remain (0.00s)
+    --- PASS: TestIPv6Extremes/typical_v6_allocation_difference (0.00s)
+=== RUN   TestFamilyMismatch
+--- PASS: TestFamilyMismatch (0.00s)
+=== RUN   TestEmptyInputSets
+--- PASS: TestEmptyInputSets (0.00s)
+=== RUN   TestStepsAndProofArePopulated
+--- PASS: TestStepsAndProofArePopulated (0.00s)
+PASS
+ok  	cidrsvc/internal/netmodel	6.702s
+=== RUN   TestComputeSuccessAndProof
+--- PASS: TestComputeSuccessAndProof (0.00s)
+=== RUN   TestClientRequestIDIsHonored
+--- PASS: TestClientRequestIDIsHonored (0.00s)
+=== RUN   TestComputeErrorCategories
+=== RUN   TestComputeErrorCategories/malformed
+=== RUN   TestComputeErrorCategories/no_slash
+=== RUN   TestComputeErrorCategories/prefix_too_long
+=== RUN   TestComputeErrorCategories/host_bits_strict_default_lenient
+=== RUN   TestComputeErrorCategories/family_mismatch
+=== RUN   TestComputeErrorCategories/invalid_json
+=== RUN   TestComputeErrorCategories/too_many_prefixes
+--- PASS: TestComputeErrorCategories (0.00s)
+    --- PASS: TestComputeErrorCategories/malformed (0.00s)
+    --- PASS: TestComputeErrorCategories/no_slash (0.00s)
+    --- PASS: TestComputeErrorCategories/prefix_too_long (0.00s)
+    --- PASS: TestComputeErrorCategories/host_bits_strict_default_lenient (0.00s)
+    --- PASS: TestComputeErrorCategories/family_mismatch (0.00s)
+    --- PASS: TestComputeErrorCategories/invalid_json (0.00s)
+    --- PASS: TestComputeErrorCategories/too_many_prefixes (0.00s)
+=== RUN   TestLenientHostBitsProducesWarning
+--- PASS: TestLenientHostBitsProducesWarning (0.00s)
+=== RUN   TestReplayEndpoints
+--- PASS: TestReplayEndpoints (0.00s)
+=== RUN   TestFullSpaceAndEmptySet
+--- PASS: TestFullSpaceAndEmptySet (0.00s)
+=== RUN   TestOversizedBodyRejected
+--- PASS: TestOversizedBodyRejected (0.54s)
+=== RUN   TestRequestAppearsInLogs
+--- PASS: TestRequestAppearsInLogs (0.01s)
+=== RUN   TestHealth
+--- PASS: TestHealth (0.00s)
+PASS
+ok  	cidrsvc/internal/service	0.574s
+=== RUN   TestSaveAndGetRoundTrip
+--- PASS: TestSaveAndGetRoundTrip (0.00s)
+=== RUN   TestGetMissingReturnsErrNotFound
+--- PASS: TestGetMissingReturnsErrNotFound (0.00s)
+=== RUN   TestListFiltersAndOrdering
+--- PASS: TestListFiltersAndOrdering (0.00s)
+=== RUN   TestCountByStatus
+--- PASS: TestCountByStatus (0.00s)
+=== RUN   TestReopenPersists
+--- PASS: TestReopenPersists (0.01s)
+PASS
+ok  	cidrsvc/internal/store	0.024s

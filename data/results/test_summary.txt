@@ -1,0 +1,11 @@
+# cidrsvc full test run
+# date: 2026-09-27T20:26:25Z
+# go: go version go1.23.4 linux/amd64
+
+?   	cidrsvc/cmd/cidrsvc	[no test files]
+?   	cidrsvc/cmd/dumpdb	[no test files]
+ok  	cidrsvc	0.005s
+ok  	cidrsvc/internal/config	0.006s
+ok  	cidrsvc/internal/netmodel	7.118s
+ok  	cidrsvc/internal/service	0.575s
+ok  	cidrsvc/internal/store	0.021s

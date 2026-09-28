@@ -1,0 +1,115 @@
+{
+  "description": "Golden fixtures for the CIDR cover service. Each expected_prefixes list is a hand-derived answer (independently reconstructed from address ordinals), then machine-verified for no overlap/gap/extra/mergeable-sibling by the test harness.",
+  "boundary_policy": "CIDR intervals are inclusive of BOTH the network address and the directed-broadcast address. /31 covers 2 addresses, /32 covers 1.",
+  "cases": [
+    {
+      "name": "ipv4_full_space",
+      "request": {"family": "ipv4", "allow": ["0.0.0.0/0"], "exclude": []},
+      "expected_prefixes": ["0.0.0.0/0"],
+      "expected_address_count": "4294967296"
+    },
+    {
+      "name": "ipv4_empty_allow",
+      "request": {"family": "ipv4", "allow": [], "exclude": []},
+      "expected_prefixes": [],
+      "expected_address_count": "0"
+    },
+    {
+      "name": "ipv4_exclude_entire_universe",
+      "request": {"family": "ipv4", "allow": ["0.0.0.0/0"], "exclude": ["0.0.0.0/0"]},
+      "expected_prefixes": [],
+      "expected_address_count": "0"
+    },
+    {
+      "name": "ipv4_single_prefix_passthrough",
+      "request": {"family": "ipv4", "allow": ["10.0.0.0/24"], "exclude": []},
+      "expected_prefixes": ["10.0.0.0/24"],
+      "expected_address_count": "256"
+    },
+    {
+      "name": "ipv4_carve_first_address",
+      "request": {"family": "ipv4", "allow": ["10.0.0.0/24"], "exclude": ["10.0.0.0/32"]},
+      "expected_prefixes": [
+        "10.0.0.1/32", "10.0.0.2/31", "10.0.0.4/30", "10.0.0.8/29",
+        "10.0.0.16/28", "10.0.0.32/27", "10.0.0.64/26", "10.0.0.128/25"
+      ],
+      "expected_address_count": "255"
+    },
+    {
+      "name": "ipv4_carve_broadcast_address",
+      "request": {"family": "ipv4", "allow": ["10.0.0.0/24"], "exclude": ["10.0.0.255/32"]},
+      "expected_prefixes": [
+        "10.0.0.0/25", "10.0.0.128/26", "10.0.0.192/27", "10.0.0.224/28",
+        "10.0.0.240/29", "10.0.0.248/30", "10.0.0.252/31", "10.0.0.254/32"
+      ],
+      "expected_address_count": "255"
+    },
+    {
+      "name": "ipv4_sibling_merge",
+      "request": {"family": "ipv4", "allow": ["192.168.1.0/25", "192.168.1.128/25"], "exclude": []},
+      "expected_prefixes": ["192.168.1.0/24"],
+      "expected_address_count": "256"
+    },
+    {
+      "name": "ipv4_hole_in_middle",
+      "request": {"family": "ipv4", "allow": ["10.1.0.0/16"], "exclude": ["10.1.1.0/24"]},
+      "expected_prefixes": [
+        "10.1.0.0/24", "10.1.2.0/23", "10.1.4.0/22", "10.1.8.0/21",
+        "10.1.16.0/20", "10.1.32.0/19", "10.1.64.0/18", "10.1.128.0/17"
+      ],
+      "expected_address_count": "65280"
+    },
+    {
+      "name": "ipv4_slash31_two_addresses",
+      "request": {"family": "ipv4", "allow": ["198.51.100.0/31"], "exclude": []},
+      "expected_prefixes": ["198.51.100.0/31"],
+      "expected_address_count": "2"
+    },
+    {
+      "name": "ipv6_full_space",
+      "request": {"family": "ipv6", "allow": ["::/0"], "exclude": []},
+      "expected_prefixes": ["::/0"],
+      "expected_address_count": "340282366920938463463374607431768211456"
+    },
+    {
+      "name": "ipv6_lowest_and_highest_only",
+      "request": {"family": "ipv6", "allow": ["::/128", "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128"], "exclude": []},
+      "expected_prefixes": ["::/128", "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128"],
+      "expected_address_count": "2"
+    },
+    {
+      "name": "ipv6_allocation_difference",
+      "request": {"family": "ipv6", "allow": ["2001:db8::/32"], "exclude": ["2001:db8:1::/48"]},
+      "expected_prefixes": [
+        "2001:db8::/48", "2001:db8:2::/47", "2001:db8:4::/46", "2001:db8:8::/45",
+        "2001:db8:10::/44", "2001:db8:20::/43", "2001:db8:40::/42", "2001:db8:80::/41",
+        "2001:db8:100::/40", "2001:db8:200::/39", "2001:db8:400::/38",
+        "2001:db8:800::/37", "2001:db8:1000::/36", "2001:db8:2000::/35",
+        "2001:db8:4000::/34", "2001:db8:8000::/33"
+      ],
+      "expected_address_count": "79226953588444722964369244160"
+    }
+  ],
+  "error_cases": [
+    {
+      "name": "malformed_cidr",
+      "request": {"family": "ipv4", "allow": ["not-a-cidr"], "exclude": []},
+      "expected_error_code": "malformed_cidr"
+    },
+    {
+      "name": "prefix_length_too_long",
+      "request": {"family": "ipv4", "allow": ["10.0.0.0/33"], "exclude": []},
+      "expected_error_code": "prefix_length_too_long"
+    },
+    {
+      "name": "host_bits_present_strict",
+      "request": {"family": "ipv4", "allow": ["10.0.0.5/24"], "exclude": [], "strict": true},
+      "expected_error_code": "host_bits_present"
+    },
+    {
+      "name": "family_mismatch",
+      "request": {"family": "ipv4", "allow": ["10.0.0.0/8"], "exclude": ["2001:db8::/32"]},
+      "expected_error_code": "family_mismatch"
+    }
+  ]
+}

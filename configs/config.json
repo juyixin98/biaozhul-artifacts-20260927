@@ -1,0 +1,8 @@
+{
+  "http_listen": "127.0.0.1:8080",
+  "database_path": "data/cidrsvc.db",
+  "log_path": "-",
+  "max_input_prefixes": 4096,
+  "shutdown_timeout": "5s",
+  "strict_cidr": false
+}
