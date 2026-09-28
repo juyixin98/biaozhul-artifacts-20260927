@@ -1,0 +1,18 @@
+{
+  "_comment": "夹具：容量池恰好容纳 3 个旧副本，maxUnavailable=0 禁止牺牲可用性。期望以 insufficient_capacity 终态。",
+  "http_addr": "127.0.0.1:18083",
+  "data_dir": "./data/scenario-capacity",
+  "tick_interval": "300ms",
+  "default_max_surge": 1,
+  "default_max_unavailable": 0,
+  "default_ready_threshold": 1,
+  "default_failure_limit": 9,
+  "default_progress_ticks": 10,
+  "fixture": {
+    "capacity": 3,
+    "behaviors": {
+      "v1": {"behavior": "always_ok"},
+      "v2": {"behavior": "always_ok"}
+    }
+  }
+}

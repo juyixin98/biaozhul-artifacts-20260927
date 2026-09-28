@@ -1,0 +1,18 @@
+{
+  "_comment": "夹具：新版本 v2 启动即失败（start_error）。期望发布以 start_failure 终态，旧版本不受影响。",
+  "http_addr": "127.0.0.1:18081",
+  "data_dir": "./data/scenario-start-failure",
+  "tick_interval": "500ms",
+  "default_max_surge": 1,
+  "default_max_unavailable": 0,
+  "default_ready_threshold": 1,
+  "default_failure_limit": 2,
+  "default_progress_ticks": 40,
+  "fixture": {
+    "capacity": 0,
+    "behaviors": {
+      "v1": {"behavior": "always_ok"},
+      "v2": {"behavior": "fail_start"}
+    }
+  }
+}

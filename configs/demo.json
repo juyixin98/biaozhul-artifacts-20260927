@@ -1,0 +1,19 @@
+{
+  "http_addr": "127.0.0.1:18080",
+  "data_dir": "./data/demo",
+  "tick_interval": "500ms",
+  "default_max_surge": 1,
+  "default_max_unavailable": 0,
+  "default_ready_threshold": 2,
+  "default_failure_limit": 2,
+  "default_progress_ticks": 60,
+  "auto_rollback_on_failure": false,
+  "fixture": {
+    "capacity": 0,
+    "behaviors": {
+      "v1": {"behavior": "always_ok"},
+      "v2": {"behavior": "always_ok"},
+      "v3": {"behavior": "always_ok"}
+    }
+  }
+}

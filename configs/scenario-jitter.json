@@ -1,0 +1,18 @@
+{
+  "_comment": "夹具：v2 探针每 3 次抖动 1 次；需要连续 2 次成功才就绪。期望经历 ready_demoted 后最终成功。",
+  "http_addr": "127.0.0.1:18082",
+  "data_dir": "./data/scenario-jitter",
+  "tick_interval": "300ms",
+  "default_max_surge": 1,
+  "default_max_unavailable": 0,
+  "default_ready_threshold": 2,
+  "default_failure_limit": 9,
+  "default_progress_ticks": 120,
+  "fixture": {
+    "capacity": 0,
+    "behaviors": {
+      "v1": {"behavior": "always_ok"},
+      "v2": {"behavior": "flaky", "parameter": 3}
+    }
+  }
+}
