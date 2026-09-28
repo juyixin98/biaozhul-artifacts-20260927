@@ -1,0 +1,43 @@
+# StackVM 独立配置文件。环境变量可覆盖（前缀 STACKVM_），见 stackvm/config.py。
+
+[limits]
+# 每次脚本执行的加权操作步数预算
+op_budget = 200
+# 单栈元素最大字节数
+max_element_bytes = 255
+# 单栈最大元素个数
+max_stack_items = 100
+# 单段脚本最大字节数（解锁/锁定各自计算）
+max_script_bytes = 4096
+# IF/NOTIF 最大嵌套深度
+max_if_depth = 16
+# 脚本上下文深度：解锁段=1，锁定段=2；无 OP_EVAL 等动态求值
+max_script_depth = 2
+# OP_CHECKMULTISIG 的 N 上限
+max_multisig_n = 16
+# 解锁脚本仅允许压入操作
+push_only_unlock = true
+# 执行结束要求栈上恰好一个为真的元素
+require_clean_stack = true
+# ScriptNum 最大字节宽度
+max_script_num_bytes = 4
+
+[sighash]
+# 签名域标签：绑定到本本地测试协议；错误域标签的签名必然失败
+domain_tag = "STACKVM.SIGHASH/1"
+
+[chain]
+# 创世铸币上限（本地测试，仅 genesis 引导时允许零输入铸币）
+mint_total_cap = 2100000000
+# 交易必须 输入金额合计 == 输出金额合计（无费模型）
+balance_exact = true
+
+[service]
+host = "127.0.0.1"
+port = 8332
+
+[storage]
+# 相对路径相对于项目根目录
+db_path = "data/stackvm.db"
+runlog_dir = "runlogs"
+genesis_fixture = "fixtures/genesis.json"

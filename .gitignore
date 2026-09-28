@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 虚拟环境
+.venv/
+venv/
+
+# 运行时数据库（可由 genesis 夹具与日志重建；不入库）
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# 运行日志：保留最近一次会话与全部用例日志入库（旧会话用脚本清理即可）
+# 临时服务测试日志与软链接不入库
+runlogs/service-tests/
+runlogs/test-runs/LATEST
