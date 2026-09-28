@@ -1,0 +1,103 @@
+{
+  "applied": 4,
+  "failure_index": 4,
+  "ok": false,
+  "run_id": "replay-20260928T042251Z",
+  "status": "stopped",
+  "steps": [
+    {
+      "decision": "accepted",
+      "detail": {
+        "participant_count": 2,
+        "quorum_weight": 2,
+        "signed_weight": 2
+      },
+      "digest": "478a06664865bbc12afd45c7adf2472f748fc023fe9931f898029770ed8f3770",
+      "error_category": null,
+      "error_code": null,
+      "height": 1,
+      "index": 0,
+      "reason": null,
+      "source": "block-1"
+    },
+    {
+      "decision": "accepted",
+      "detail": {
+        "participant_count": 2,
+        "quorum_weight": 2,
+        "signed_weight": 2
+      },
+      "digest": "5a822d75abde71aeaead494a7b2638379c64c9c27f2603e7f051c0be32070042",
+      "error_category": null,
+      "error_code": null,
+      "height": 2,
+      "index": 1,
+      "reason": null,
+      "source": "block-2"
+    },
+    {
+      "decision": "accepted",
+      "detail": {
+        "participant_count": 2,
+        "quorum_weight": 2,
+        "signed_weight": 2
+      },
+      "digest": "d2b0ffecf2f51df66ec2e391b612948b1575a9f73f407b035bd46785f54e01c1",
+      "error_category": null,
+      "error_code": null,
+      "height": 3,
+      "index": 2,
+      "reason": null,
+      "source": "block-3"
+    },
+    {
+      "decision": "accepted",
+      "detail": {
+        "participant_count": 2,
+        "quorum_weight": 2,
+        "signed_weight": 2
+      },
+      "digest": "e668da50447bfcfaa09a75299133a029e9f20b2e91a1d962eb33bf91de75328f",
+      "error_category": null,
+      "error_code": null,
+      "height": 4,
+      "index": 3,
+      "reason": null,
+      "source": "block-4"
+    },
+    {
+      "decision": "rejected",
+      "detail": {
+        "participant_count": 1,
+        "quorum_weight": 2,
+        "signed_weight": 1
+      },
+      "digest": "23a7bb005d0c4a6d74f149064123a5fb5d8669199de6beb34b58868854e16e59",
+      "error_category": "state",
+      "error_code": "WEIGHT_BELOW_QUORUM",
+      "height": 5,
+      "index": 4,
+      "reason": "certificate weight below quorum",
+      "source": "block-5"
+    }
+  ],
+  "tip_after": {
+    "digest": "e668da50447bfcfaa09a75299133a029e9f20b2e91a1d962eb33bf91de75328f",
+    "epoch": 1,
+    "height": 4,
+    "pending_committee_id": null,
+    "pending_epoch": null,
+    "round": 4,
+    "timestamp": 1000040
+  },
+  "tip_before_run": {
+    "digest": "fa7528cfb6e6539123bf86fbb9ed1907df824129c52b213b428e0dd586a64688",
+    "epoch": 0,
+    "height": 0,
+    "pending_committee_id": null,
+    "pending_epoch": null,
+    "round": 0,
+    "timestamp": 1000000
+  },
+  "total": 6
+}
