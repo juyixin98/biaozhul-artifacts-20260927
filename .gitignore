@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.db
+*.db-wal
+*.db-shm
+*.egg-info/
+.pytest_cache/
+# replay logs are local artifacts; regenerated on every test run
+test-runs/run-*
+!test-runs/.gitkeep

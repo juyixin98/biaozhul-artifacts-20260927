@@ -1,0 +1,10 @@
+# Pinned to versions used during development (Python 3.12).
+fastapi==0.141.1
+google-re2==1.1.20251105
+httpx==0.28.1
+pytest==9.1.1
+uvicorn==0.54.0
+# transitive, listed for reproducibility:
+pydantic==2.13.5
+starlette==1.7.0
+anyio==4.15.1
