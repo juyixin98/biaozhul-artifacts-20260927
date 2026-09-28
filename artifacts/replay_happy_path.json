@@ -1,0 +1,73 @@
+{
+  "bundle_id": "happy-path",
+  "network": "rsv-local",
+  "accepted_count": 3,
+  "rejected_count": 0,
+  "final_state_root": "6ec753ca5be1c1af5022e86287b6f0691494ff28673afde11b444d92841968a1",
+  "final_utxos": [
+    {
+      "txid": "45d66df526959100405f5c96abdf04f4ea13d98d0140988f468ec878c3c08f74",
+      "index": 0,
+      "value": 1000,
+      "domain": "rsv-test-domain-v1",
+      "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+    },
+    {
+      "txid": "927edb708095c321b4dc7439a2432187a8e5cbe03169b58dcc915030143ba541",
+      "index": 0,
+      "value": 2000,
+      "domain": "rsv-test-domain-v1",
+      "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+    },
+    {
+      "txid": "c487d257777c1b4d9cf40cc2eae11dca97c2e9367553adb9f4df2ba2bd689c2e",
+      "index": 0,
+      "value": 500,
+      "domain": "rsv-other-domain-v2",
+      "pubkey_script": "21025d045857332d5b9e541514731622af8d60c180165d971a61e06b70a9b3834765ac"
+    },
+    {
+      "txid": "d8dc54c6d9d2bea4ca00a758fce1d988522f54f43827581f45bdc8df491f950a",
+      "index": 0,
+      "value": 3000,
+      "domain": "rsv-test-domain-v1",
+      "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+    }
+  ],
+  "results": [
+    {
+      "seq": 0,
+      "phase": "bootstrap",
+      "bootstrapped": true,
+      "genesis_id": "85bf304fdfb6acf97db7ee40aed82e04b5ac90fb3a657c54f9cca5057658f7ab",
+      "utxos": 4
+    },
+    {
+      "seq": 1,
+      "accepted": true,
+      "run_id": "replay-20260928T033149-1646130-0002-c4cb4877",
+      "txid": "45d66df526959100405f5c96abdf04f4ea13d98d0140988f468ec878c3c08f74",
+      "reason": "all inputs verified; UTXOs spent and outputs added atomically",
+      "steps_used": 3,
+      "message32": "ee99153db63887ea8cbb472d154edc0be328454d138460672d0f3cf74fa51ca3"
+    },
+    {
+      "seq": 2,
+      "accepted": true,
+      "run_id": "replay-20260928T033149-1646130-0003-8edd438a",
+      "txid": "927edb708095c321b4dc7439a2432187a8e5cbe03169b58dcc915030143ba541",
+      "reason": "all inputs verified; UTXOs spent and outputs added atomically",
+      "steps_used": 7,
+      "message32": "5d2e2344026567c723db837ace3b8bbb4c3e8ce7a70703ee7f212ac0087c9fbc"
+    },
+    {
+      "seq": 3,
+      "accepted": true,
+      "run_id": "replay-20260928T033149-1646130-0004-339fbdc0",
+      "txid": "d8dc54c6d9d2bea4ca00a758fce1d988522f54f43827581f45bdc8df491f950a",
+      "reason": "all inputs verified; UTXOs spent and outputs added atomically",
+      "steps_used": 8,
+      "message32": "a8b9b4bb36b4cd097a46804048664eadfe57907ebe2a41daec5228aa9f9784a1"
+    }
+  ]
+}

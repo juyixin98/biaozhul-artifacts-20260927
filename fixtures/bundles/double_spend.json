@@ -1,0 +1,94 @@
+{
+  "bundle_id": "double-spend-order",
+  "description": "同一 outpoint 连交两次：先接受，后 state.already_spent",
+  "genesis": {
+    "genesis_id": "85bf304fdfb6acf97db7ee40aed82e04b5ac90fb3a657c54f9cca5057658f7ab",
+    "network": "rsv-local",
+    "utxos": [
+      {
+        "txid": "ec1a50c2aca14454e28909bb8fcdeec8e3d7a92b28722d10246a52b2928f7c29",
+        "index": 0,
+        "value": 1000,
+        "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac",
+        "domain": "rsv-test-domain-v1"
+      },
+      {
+        "txid": "91b1e406084f38e6a807aa783c4b7e07e45490db4a19e155e43f74a5673064aa",
+        "index": 0,
+        "value": 2000,
+        "pubkey_script": "76a914aa2e99eb9e6a61dded3caa3d5d5e21db34c79c2188ac",
+        "domain": "rsv-test-domain-v1"
+      },
+      {
+        "txid": "48ea1e1a402b2e173105f86ae8e3498fcfd55bb15c0f32135eda476819998de0",
+        "index": 0,
+        "value": 3000,
+        "pubkey_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+        "domain": "rsv-test-domain-v1"
+      },
+      {
+        "txid": "c487d257777c1b4d9cf40cc2eae11dca97c2e9367553adb9f4df2ba2bd689c2e",
+        "index": 0,
+        "value": 500,
+        "pubkey_script": "21025d045857332d5b9e541514731622af8d60c180165d971a61e06b70a9b3834765ac",
+        "domain": "rsv-other-domain-v2"
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "version": 1,
+      "domain": "rsv-test-domain-v1",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "ec1a50c2aca14454e28909bb8fcdeec8e3d7a92b28722d10246a52b2928f7c29",
+            "index": 0
+          },
+          "value": 1000,
+          "witness_script": "463044022042909c4aadc0e436ed8b40311aa53733f3d0f0a10362d3cb1a79fa241cdae19f022037311584298d68c225dae5b552c99c7226eea593546a14a12e42e5a760b6bcb5"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 1000,
+          "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+        }
+      ],
+      "locktime": 0
+    },
+    {
+      "version": 1,
+      "domain": "rsv-test-domain-v1",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "ec1a50c2aca14454e28909bb8fcdeec8e3d7a92b28722d10246a52b2928f7c29",
+            "index": 0
+          },
+          "value": 1000,
+          "witness_script": "46304402206570d4379d4754c343019012e60ad3c64be2f83ef89cf57d0d703d2690073ec5022063ffd596c2f0eb429b4bda98f563c2b76171e87e28cc44fb99ac243279db7f14"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 1000,
+          "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+        }
+      ],
+      "locktime": 0
+    }
+  ],
+  "expected": [
+    {
+      "seq": 1,
+      "accepted": true,
+      "code": "accepted"
+    },
+    {
+      "seq": 2,
+      "accepted": false,
+      "code": "state.already_spent"
+    }
+  ]
+}

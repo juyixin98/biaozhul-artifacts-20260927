@@ -1,0 +1,198 @@
+{
+  "bundle_id": "failure-catalog",
+  "description": "重复签名、阈值不足、错误交易域、错误域签名、金额不守恒、未知 outpoint",
+  "genesis": {
+    "genesis_id": "85bf304fdfb6acf97db7ee40aed82e04b5ac90fb3a657c54f9cca5057658f7ab",
+    "network": "rsv-local",
+    "utxos": [
+      {
+        "txid": "ec1a50c2aca14454e28909bb8fcdeec8e3d7a92b28722d10246a52b2928f7c29",
+        "index": 0,
+        "value": 1000,
+        "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac",
+        "domain": "rsv-test-domain-v1"
+      },
+      {
+        "txid": "91b1e406084f38e6a807aa783c4b7e07e45490db4a19e155e43f74a5673064aa",
+        "index": 0,
+        "value": 2000,
+        "pubkey_script": "76a914aa2e99eb9e6a61dded3caa3d5d5e21db34c79c2188ac",
+        "domain": "rsv-test-domain-v1"
+      },
+      {
+        "txid": "48ea1e1a402b2e173105f86ae8e3498fcfd55bb15c0f32135eda476819998de0",
+        "index": 0,
+        "value": 3000,
+        "pubkey_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+        "domain": "rsv-test-domain-v1"
+      },
+      {
+        "txid": "c487d257777c1b4d9cf40cc2eae11dca97c2e9367553adb9f4df2ba2bd689c2e",
+        "index": 0,
+        "value": 500,
+        "pubkey_script": "21025d045857332d5b9e541514731622af8d60c180165d971a61e06b70a9b3834765ac",
+        "domain": "rsv-other-domain-v2"
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "version": 1,
+      "domain": "rsv-test-domain-v1",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "48ea1e1a402b2e173105f86ae8e3498fcfd55bb15c0f32135eda476819998de0",
+            "index": 0
+          },
+          "value": 3000,
+          "witness_script": "46304402201a06b27159b6fbf83412c9d5fa8527e4ba7aac237dceb13e271c0017e4058a9302204dd7a86081abee581196213c44df807bf0af5d4d86647503221345ec554d07b646304402201a06b27159b6fbf83412c9d5fa8527e4ba7aac237dceb13e271c0017e4058a9302204dd7a86081abee581196213c44df807bf0af5d4d86647503221345ec554d07b6"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 3000,
+          "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+        }
+      ],
+      "locktime": 0
+    },
+    {
+      "version": 1,
+      "domain": "rsv-test-domain-v1",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "48ea1e1a402b2e173105f86ae8e3498fcfd55bb15c0f32135eda476819998de0",
+            "index": 0
+          },
+          "value": 3000,
+          "witness_script": "4830460221009e32d4eab53505823f1f8643423b3e1cd9fbc78aa0dafa0b39d50f39dc317723022100999745e6a31f4553f94407f40656c96f4ea45d121f5c84b3a60070f435ba3594463044022078f1d0a055a8cd1088fa3c607c9607e34b8835e7981b9502b005a039a25b5ddd0220177cb06364523b28e0797492971d628f78db5aced033895f7aae8c129248c0f6"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 3000,
+          "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+        }
+      ],
+      "locktime": 0
+    },
+    {
+      "version": 1,
+      "domain": "rsv-test-domain-v1",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "c487d257777c1b4d9cf40cc2eae11dca97c2e9367553adb9f4df2ba2bd689c2e",
+            "index": 0
+          },
+          "value": 500,
+          "witness_script": "473045022100b46e1d0f82745f9a7e699f5303243c2b052008e04ab6ad69d19162c4a6e8b3610220545d102a72e3f462348468ba3ee15f0451570b8da07b8f81e4883da3cfa9996e"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 500,
+          "pubkey_script": "21025d045857332d5b9e541514731622af8d60c180165d971a61e06b70a9b3834765ac"
+        }
+      ],
+      "locktime": 0
+    },
+    {
+      "version": 1,
+      "domain": "rsv-other-domain-v2",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "c487d257777c1b4d9cf40cc2eae11dca97c2e9367553adb9f4df2ba2bd689c2e",
+            "index": 0
+          },
+          "value": 500,
+          "witness_script": "473045022041d46787f9128e87a145e2427f3fd7cc5e44a2f5bfe3cc2ce142d1ec6724363d022100abb01e64df951651ced34432e446a0d3aafdae299cd872dcdbcca5e21d6b5912"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 500,
+          "pubkey_script": "21025d045857332d5b9e541514731622af8d60c180165d971a61e06b70a9b3834765ac"
+        }
+      ],
+      "locktime": 0
+    },
+    {
+      "version": 1,
+      "domain": "rsv-test-domain-v1",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "ec1a50c2aca14454e28909bb8fcdeec8e3d7a92b28722d10246a52b2928f7c29",
+            "index": 0
+          },
+          "value": 1000,
+          "witness_script": "473045022100f9f244cccd24e0f16ef53fedf36087e9142927e81752748b9b14a2c4005549b40220556f6766f4fbc374dccf99569760318d32f26341a013a24a106ee836896a9db2"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 999,
+          "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+        }
+      ],
+      "locktime": 0
+    },
+    {
+      "version": 1,
+      "domain": "rsv-test-domain-v1",
+      "inputs": [
+        {
+          "outpoint": {
+            "txid": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "index": 0
+          },
+          "value": 1000,
+          "witness_script": "473045022033ecfe7a40a607d94f20f4be6452ce3063b566f28b355b84de42d1f740561906022100aaa8f1eff9c24f7f8ced8a873b3a8716a06c168c0d3b81b69839ad526b3e7e1f"
+        }
+      ],
+      "outputs": [
+        {
+          "value": 1000,
+          "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+        }
+      ],
+      "locktime": 0
+    }
+  ],
+  "expected": [
+    {
+      "seq": 1,
+      "accepted": false,
+      "code": "compute.crypto.threshold_invalid"
+    },
+    {
+      "seq": 2,
+      "accepted": false,
+      "code": "compute.crypto.threshold"
+    },
+    {
+      "seq": 3,
+      "accepted": false,
+      "code": "state.domain_conflict"
+    },
+    {
+      "seq": 4,
+      "accepted": false,
+      "code": "compute.crypto.sig"
+    },
+    {
+      "seq": 5,
+      "accepted": false,
+      "code": "state.imbalance"
+    },
+    {
+      "seq": 6,
+      "accepted": false,
+      "code": "state.unknown_outpoint"
+    }
+  ]
+}

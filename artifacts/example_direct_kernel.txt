@@ -1,0 +1,21 @@
+bootstrap: {'bootstrapped': True, 'genesis_id': '85bf304fdfb6acf97db7ee40aed82e04b5ac90fb3a657c54f9cca5057658f7ab', 'utxos': 4}
+happy tx#1: accepted=True steps=3 run=submit-20260928T032502-1640102-0002-45961daa
+happy tx#2: accepted=True steps=7 run=submit-20260928T032502-1640102-0003-90019919
+happy tx#3: accepted=True steps=8 run=submit-20260928T032502-1640102-0004-1eb21e74
+
+-- 失败目录（每条都不改状态）--
+fail tx#1: [state] state.already_spent -- input #0 48ea1e1a402b:0
+fail tx#2: [state] state.already_spent -- input #0 48ea1e1a402b:0
+fail tx#3: [state] state.domain_conflict -- input #0 utxo domain='rsv-other-domain-v2' != tx domain='rsv
+fail tx#4: [compute] compute.crypto.sig -- ECDSA verify returned false
+fail tx#5: [state] state.already_spent -- input #0 ec1a50c2aca1:0
+fail tx#6: [state] state.unknown_outpoint -- input #0 ffffffffffff:0
+
+-- 离线 replay（独立内存状态）--
+  seq1: compute.crypto.threshold_invalid
+  seq2: compute.crypto.threshold
+  seq3: state.domain_conflict
+  seq4: compute.crypto.sig
+  seq5: state.imbalance
+  seq6: state.unknown_outpoint
+final root: 6219a4148fa9f2ef92a45a6296aaefbc42414eacc722b544ce2451f324bb93ed

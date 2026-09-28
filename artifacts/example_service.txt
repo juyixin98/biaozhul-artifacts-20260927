@@ -1,0 +1,64 @@
+== health ==
+{
+    "status": "ok",
+    "network": "rsv-local",
+    "default_domain": "rsv-test-domain-v1",
+    "limits": {
+        "max_element_size": 520,
+        "max_stack_items": 64,
+        "max_op_steps": 128,
+        "max_script_depth": 8,
+        "max_script_bytes": 2048,
+        "max_multisig_pubkeys": 16,
+        "max_trace_items": 200
+    },
+    "state_root": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+}
+== bootstrap ==
+{
+    "accepted": true,
+    "bootstrapped": true,
+    "genesis_id": "85bf304fdfb6acf97db7ee40aed82e04b5ac90fb3a657c54f9cca5057658f7ab",
+    "utxos": 4
+}
+== dry-run verify（不改状态，可重复）==
+{
+  "accepted": true,
+  "run_id": "verify-20260928T032316-1638579-0002-81e4b2ec",
+  "txid": "45d66df526959100405f5c96abdf04f4ea13d98d0140988f468ec878c3c08f74",
+  "failure": null,
+  "message32": "ee99153db63887ea8cbb472d154edc0be328454d138460672d0f3cf74fa51ca3",
+  "per_input": [
+    {
+      "index": 0,
+      "outpoint": "ec1a50c2aca14454e28909bb8fcdeec8e3d7a92b28722d10246a52b2928f7c29:0",
+      "steps_used": 3,
+      "final_stack": [
+        "01"
+      ],
+      "trace": [
+        "step=1   op=0x46 stack_depth=1   top=3044022042909c4a",
+        "step=2   op=0x21 stack_depth=2   top=03774ae7f858a941",
+        "step=3   op=0xAC stack_depth=1   top=01"
+      ]
+    }
+  ],
+  "steps_used": 3,
+  "state_root_after": "6219a4148fa9f2ef92a45a6296aaefbc42414eacc722b544ce2451f324bb93ed",
+  "reason": "dry-run verified: all inputs passed; no state change performed"
+}
+== submit：同一 outpoint 连交两次（先接受，后 state.already_spent）==
+tx#1: accepted=True run_id=submit-20260928T032317-1638579-0003-ced4eac4 failure=None
+tx#2: accepted=False run_id=submit-20260928T032317-1638579-0004-569a6cd9 failure={'category': 'state', 'code': 'state.already_spent', 'message': 'UTXO 已被花费（双花）', 'detail': 'input #0 ec1a50c2aca1:0', 'pc': None}
+== utxos / state root ==
+count= 4 root= 1a35eab1c7814c4abdbbbbc305e4168271106a39267ee1887a9bccd9520e805a
+== 离线 replay（不经服务，内存状态）==
+accepted: 0 rejected: 6
+final root: 6219a4148fa9f2ef92a45a6296aaefbc42414eacc722b544ce2451f324bb93ed
+ seq 0 -> bootstrap 85bf304fdfb6
+ seq 1 -> compute compute.crypto.threshold_invalid
+ seq 2 -> compute compute.crypto.threshold
+ seq 3 -> state state.domain_conflict
+ seq 4 -> compute compute.crypto.sig
+ seq 5 -> state state.imbalance
+ seq 6 -> state state.unknown_outpoint

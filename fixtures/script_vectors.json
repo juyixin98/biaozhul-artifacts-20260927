@@ -1,0 +1,720 @@
+{
+  "network": "rsv-local",
+  "vectors": [
+    {
+      "id": "p2pk_ok",
+      "description": "P2PK 正确签名",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100be32815c0879f258ddc44e7fcc562969df742fa563604efc052c97de3c14681802204d84182e2d47b7f93d49733c16b3b37ccebdf97b0e788a33649672f3a1c1fbc7",
+      "lock_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": {
+        "lib_verify": true,
+        "lib_verify_wrong_msg": false
+      }
+    },
+    {
+      "id": "p2pk_wrong_key",
+      "description": "用 b 的签名配 a 的公钥 -> compute.crypto.sig",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "483046022100af50bfaf3962fd8f96f80768770b122a7f53330d12e00a6cca1a6a1658dc1762022100a578d821db2bfe9bd8dac7546d0986777a32905add219811d7018c6039ac0583",
+      "lock_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.crypto.sig"
+      },
+      "cross_check": {
+        "lib_verify": false
+      }
+    },
+    {
+      "id": "p2pk_wrong_domain_msg",
+      "description": "签名针对 domain B，栈机在 domain A 摘要上验 -> sig",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "483046022100f4a319dc699adbeabd4481ce0628f166442e7e59f7989bd9773c78ba380374a6022100fe5a99df04b29418be59ddba7d138551ee0afb71926d0b2a924728903afef296",
+      "lock_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.crypto.sig"
+      },
+      "cross_check": {
+        "lib_verify_correct_domain": true,
+        "lib_verify_wrong_domain": false
+      }
+    },
+    {
+      "id": "p2pkh_ok",
+      "description": "P2PKH 正确签名+公钥",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "46304402200e439b8c5ddf997d1ed00443b7654842f9e90210e13b00611c57b3a41670439e02201491c9cad29a00bd434000a1e7cb7cf5d948f339d5bfd6fb213b7010a71a99612103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc",
+      "lock_script": "76a914aa2e99eb9e6a61dded3caa3d5d5e21db34c79c2188ac",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": {
+        "hash160_pub": "aa2e99eb9e6a61dded3caa3d5d5e21db34c79c21"
+      }
+    },
+    {
+      "id": "p2pkh_other_pub",
+      "description": "P2PKH 携带不匹配的公钥 -> equalverify",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100e9306925765f9565303ee3c83f53d4d9dc0e9525f18b8a448b6adb0559b3da77022044ada3bfe5023b7e3c8e5806311e4abded79e4b054838f83e399e8dd97b32e2a2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb",
+      "lock_script": "76a914aa2e99eb9e6a61dded3caa3d5d5e21db34c79c2188ac",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.equalverify"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_2of3_order_ca",
+      "description": "2-of-3：提供 c,a（逆序），顺序无关 -> 接受",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100c592ff2e29e770221e6ba97281bd490756508315c5da832e7cc0c8762aa96f9902204c727236e215b4b5576fd772ed9340062b08f34568e50b3f09880c654d1eee7146304402207a073ae9084ea141eca55b6b6b3860803717fb86902ce655d79423e2dff83d0d02207f1f681e9b1a2afc6837a7af0f82624173152fd479cbdfe854b32e12b923bbb5",
+      "lock_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_2of3_order_ac",
+      "description": "2-of-3：提供 a,c（顺序互换）-> 接受且与逆序结果一致",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100a25caf1fa783434b2e0620ea5fd89913c4c3455e933cfd8f6318a131b9bf621702204edb71aa0a78e8c2417c23cb79ea6b629e536a215da69816e107eb927f9f0b83473045022100fc6188d7b46ecff7934b6cc77e65fde723a75a881cb92068bfbcb01bc62821bb022026e612005ba6d5b09566f6dd43cde18e70c3b09029667aeb3ce0488205b1c033",
+      "lock_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_2of3_ab",
+      "description": "2-of-3：a,b -> 接受",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "4730450220329c45a3f3085e8e0fbaa552f22a9b21e82c94fd382cfc6fbfce4881f8a2cf230221008e5ce80f1e6452856f7be06e56209b095b07bca8723b1b52eb13fee40b919391473045022100c6a038ce081bac6ca8ea07f5d693300a4250156b87f4ded353e46c4c244207c602203ba84f227b0b726faee87ca94f7451f232393ee4f12e73b3f8a15c67c46500da",
+      "lock_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_1of3_one_valid",
+      "description": "门槛边界：1-of-3 只给 a -> 接受",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "4830460221008a6c78bba029236ff934c628bb62d6d74b7d95aabb98c3da374cef965775976d022100c60bd0b22c6a784470a206dfe590c138ee263a9f65ade4e04a5cb71e594847ac",
+      "lock_script": "01012103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_duplicate_signature",
+      "description": "同一签名推两次凑 m=2 -> 禁止重复计数",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100be32815c0879f258ddc44e7fcc562969df742fa563604efc052c97de3c14681802204d84182e2d47b7f93d49733c16b3b37ccebdf97b0e788a33649672f3a1c1fbc7473045022100be32815c0879f258ddc44e7fcc562969df742fa563604efc052c97de3c14681802204d84182e2d47b7f93d49733c16b3b37ccebdf97b0e788a33649672f3a1c1fbc7",
+      "lock_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.crypto.threshold_invalid"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_duplicate_pubkey_policy",
+      "description": "策略公钥 [a,a,b] 重复 -> 拒绝",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "483046022100b2bfd58f2f5d6c631261c190c39a8b00456830c3d1333b53ae04a71831af0187022100be00e223a06575a1478855e22f41c9043bcfc3dc57c31037c578e1dbc2772f23463044022037790709c8f2f1b85e71c2c987bc815c277dd2feaa7fd0d82f8e657d450e347002205a5f7611d2c7bf9c13d1dd5a876c28a294783a747d7bdf7b3014149cc807cd8e",
+      "lock_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc0103ae",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.crypto.threshold_invalid"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_threshold_not_met",
+      "description": "a 有效 + d 不在策略公钥中 -> 有效数不足 2",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "47304502207adf508cfced3651ee84c630ceb0b55755402e58ad0a88de993027ae33e6cc8b022100b1c3090d21224083150e2ce7f1601e9538d957015bf65f4f09a9425586c1cd1347304502205248c15b3ade070054d7d10fd233e7243cf1399fff4b182fda32dd04c4a09361022100f34e79d4460cda5149995d11e0b135b0da83d092b6771c6e595d909d758c6e80",
+      "lock_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.crypto.threshold"
+      },
+      "cross_check": {
+        "lib_verify_d_against_a": false
+      }
+    },
+    {
+      "id": "ms_m_zero",
+      "description": "m=0 非法策略 -> threshold_invalid",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "01002103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc0102ae",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.crypto.threshold_invalid"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "ms_m_gt_n",
+      "description": "m=3,n=2 非法策略 -> threshold_invalid",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100ce75f46a686e89e618f89cd6e0b7ff2eb0882a654d0b427ac6653bda597cefea02201f46423a89cd89384e2a77b6e2a241c0265d0927beb5d52bb231cece4442c1a7483046022100a252c095af63c2f63277f19ebe669488715d61483b174f4dafc8af46bfb3d1020221009d43cc208ddb4897872ed10bebf58d939b0399441c7840c9a3fc33a9d21d1055483046022100c39635f562fe833c264b3ef0cf1831a7678bb532c0bab5d7fcfb2b3770d974ee0221008dd357dc469c396b8fa9584fe5f6b2b95082a8e5e37e1bee135c15a76172d29f",
+      "lock_script": "01032103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc0102ae",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.crypto.threshold_invalid"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "bad_push_truncated",
+      "description": "0x02 直接推送但只剩 1 字节 -> malformed_push",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "02ab",
+      "expected": {
+        "accepted": false,
+        "category": "input",
+        "code": "input.malformed_push"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "bad_push_nonminimal",
+      "description": "5 字节数据用 PUSHDATA1 -> 非最小编码",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "4c056162636465",
+      "expected": {
+        "accepted": false,
+        "category": "input",
+        "code": "input.malformed_push"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "unknown_opcode",
+      "description": "白名单外操作码 0xEF -> unknown_opcode",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "ef",
+      "expected": {
+        "accepted": false,
+        "category": "input",
+        "code": "input.unknown_opcode"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "reserved_opcode",
+      "description": "经典保留字节 0x50 -> reserved_opcode",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "50",
+      "expected": {
+        "accepted": false,
+        "category": "input",
+        "code": "input.reserved_opcode"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "unbalanced_if",
+      "description": "IF 没有 ENDIF -> unbalanced_if",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "516351",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.unbalanced_if"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "oversized_script",
+      "description": "脚本超过 2048 字节 -> script_too_large",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161",
+      "expected": {
+        "accepted": false,
+        "category": "input",
+        "code": "input.script_too_large"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "oversized_element",
+      "description": "witness 推送 521 字节元素 -> element_too_large",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "4d0902aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "lock_script": "",
+      "expected": {
+        "accepted": false,
+        "category": "resource",
+        "code": "resource.element_too_large"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "stack_overflow",
+      "description": "连续压 65 个元素 -> stack_overflow(64)",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101",
+      "lock_script": "",
+      "expected": {
+        "accepted": false,
+        "category": "resource",
+        "code": "resource.stack_overflow"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "nested_if_too_deep",
+      "description": "9 层嵌套 IF -> script_depth_exceeded(8)",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "51635163516351635163516351635163516351686868686868686868",
+      "expected": {
+        "accepted": false,
+        "category": "resource",
+        "code": "resource.script_depth_exceeded"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "stack_underflow_drop",
+      "description": "空栈 OP_DROP -> stack_underflow",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "75",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.stack_underflow"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "stack_underflow_swap",
+      "description": "单元素 OP_SWAP -> stack_underflow",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "517c",
+      "lock_script": "",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.stack_underflow"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "budget_exhausted",
+      "description": "129 条 NOP 超过 128 步预算 -> op_budget_exhausted",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161616161",
+      "expected": {
+        "accepted": false,
+        "category": "resource",
+        "code": "resource.op_budget_exhausted"
+      },
+      "cross_check": {
+        "instruction_count": 129,
+        "budget": 128
+      }
+    },
+    {
+      "id": "op_return_hit",
+      "description": "OP_RETURN -> compute.op_return",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "6a",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.op_return"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "verify_false",
+      "description": "OP_0 OP_VERIFY -> compute.verify",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "0069",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.verify"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "equalverify_fail",
+      "description": "1 与 2 OP_EQUALVERIFY -> equalverify",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "515288",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.equalverify"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "final_false",
+      "description": "只剩 OP_0 -> script_false",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "00",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.script_false"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "final_empty",
+      "description": "空解锁+空锁定 -> script_empty",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.script_empty"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "dirty_stack",
+      "description": "留下两个真元素 -> dirty_stack",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "5151",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.dirty_stack"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "if_true_branch",
+      "description": "OP_1 IF 1 ELSE 0 ENDIF -> 接受",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "516351670068",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "if_false_branch",
+      "description": "OP_0 IF 0 ELSE 1 ENDIF -> 接受（走 ELSE）",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "",
+      "lock_script": "006300675168",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "hash_sha256",
+      "description": "OP_SHA256 与 hashlib 对拍",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "20ac64ff524096d4ffc34762d34835ee6be6a729239156690e77a327fe3057c934117273762d686173682d707265696d616765",
+      "lock_script": "a88851",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": {
+        "expected_sha256": "ac64ff524096d4ffc34762d34835ee6be6a729239156690e77a327fe3057c934"
+      }
+    },
+    {
+      "id": "hash_sha256_negative",
+      "description": "错误预期摘要 -> equalverify",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "200000000000000000000000000000000000000000000000000000000000000000117273762d686173682d707265696d616765",
+      "lock_script": "a88851",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.equalverify"
+      },
+      "cross_check": {
+        "expected_sha256": "ac64ff524096d4ffc34762d34835ee6be6a729239156690e77a327fe3057c934"
+      }
+    },
+    {
+      "id": "hash_hash256",
+      "description": "OP_HASH256 = sha256(sha256(x))",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "204df636cb6c74f81090f9ef261cc2ba86aba55cb62dec755ba0cfa288655a65ad117273762d686173682d707265696d616765",
+      "lock_script": "aa8851",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": {
+        "expected_hash256": "4df636cb6c74f81090f9ef261cc2ba86aba55cb62dec755ba0cfa288655a65ad"
+      }
+    },
+    {
+      "id": "hash_hash160",
+      "description": "OP_HASH160 = ripemd160(sha256(x))",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "1479ba8599d37f45d282149ea945493b93caf3ae5b117273762d686173682d707265696d616765",
+      "lock_script": "a98851",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": {
+        "expected_hash160": "79ba8599d37f45d282149ea945493b93caf3ae5b"
+      }
+    },
+    {
+      "id": "hash_ripemd160",
+      "description": "OP_RIPEMD160",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "14b29c22e15fe46b5f6b63df93c34f72d6cbd29d90117273762d686173682d707265696d616765",
+      "lock_script": "a68851",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": {
+        "expected_ripemd160": "b29c22e15fe46b5f6b63df93c34f72d6cbd29d90"
+      }
+    },
+    {
+      "id": "hashlock_ok",
+      "description": "哈希锁：正确原像+正确签名 -> 接受",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "4630440220677f271d876f742ca52fb8e5392d52ad32ae4d2278d71652b471360065eb97a4022018f08edfae0c08030fba27f62c9315a926b103af45ae2470278718e756f60c441c636f72726563742d686f7273652d626174746572792d737461706c65",
+      "lock_script": "a82087cbebfeebc05f7c54ac9336c4b4bbec831227a641951a4bde7edd56020f8590882103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac",
+      "expected": {
+        "accepted": true,
+        "category": null,
+        "code": "accepted"
+      },
+      "cross_check": {
+        "expected_sha256": "87cbebfeebc05f7c54ac9336c4b4bbec831227a641951a4bde7edd56020f8590"
+      }
+    },
+    {
+      "id": "hashlock_bad_preimage",
+      "description": "哈希锁原像错误 -> equalverify，不进入验签",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100e8706c0a9b6eb7e135ffaa57f6dcee2de3b9e69f03db008e30309d60db6846eb02206794170cef793715a228c751c71a8efc0403735daca5c71c3900efc49374eb010c77726f6e672d736563726574",
+      "lock_script": "a82087cbebfeebc05f7c54ac9336c4b4bbec831227a641951a4bde7edd56020f8590882103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac",
+      "expected": {
+        "accepted": false,
+        "category": "compute",
+        "code": "compute.equalverify"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "bad_pubkey_bytes",
+      "description": "33 字节非法公钥 -> input.crypto.pubkey",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "473045022100be32815c0879f258ddc44e7fcc562969df742fa563604efc052c97de3c14681802204d84182e2d47b7f93d49733c16b3b37ccebdf97b0e788a33649672f3a1c1fbc721020000000000000000000000000000000000000000000000000000000000000000",
+      "lock_script": "ac",
+      "expected": {
+        "accepted": false,
+        "category": "input",
+        "code": "input.crypto.pubkey"
+      },
+      "cross_check": null
+    },
+    {
+      "id": "bad_signature_der",
+      "description": "签名不是合法 DER -> input.crypto.sig_encoding",
+      "network": "rsv-local",
+      "domain": "rsv-test-domain-v1",
+      "canonical_tx": "0000000000000000",
+      "message32": "e8cba6ab90479dfc5f2e26d3d1b4f66dde3d762d79e54218560a41d5281fb6db",
+      "unlock_script": "0230002103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb",
+      "lock_script": "ac",
+      "expected": {
+        "accepted": false,
+        "category": "input",
+        "code": "input.crypto.sig_encoding"
+      },
+      "cross_check": null
+    }
+  ]
+}

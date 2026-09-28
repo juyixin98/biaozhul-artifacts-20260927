@@ -1,0 +1,130 @@
+{
+  "bundle_id": "failure-catalog",
+  "network": "rsv-local",
+  "accepted_count": 0,
+  "rejected_count": 6,
+  "final_state_root": "6219a4148fa9f2ef92a45a6296aaefbc42414eacc722b544ce2451f324bb93ed",
+  "final_utxos": [
+    {
+      "txid": "48ea1e1a402b2e173105f86ae8e3498fcfd55bb15c0f32135eda476819998de0",
+      "index": 0,
+      "value": 3000,
+      "domain": "rsv-test-domain-v1",
+      "pubkey_script": "01022103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb2103421f5fc9a21065445c96fdb91c0c1e2f2431741c72713b4b99ddcb316f31e9fc21021697ffa6fd9de627c077e3d2fe541084ce13300b0bec1146f95ae57f0d0bd6a50103ae"
+    },
+    {
+      "txid": "91b1e406084f38e6a807aa783c4b7e07e45490db4a19e155e43f74a5673064aa",
+      "index": 0,
+      "value": 2000,
+      "domain": "rsv-test-domain-v1",
+      "pubkey_script": "76a914aa2e99eb9e6a61dded3caa3d5d5e21db34c79c2188ac"
+    },
+    {
+      "txid": "c487d257777c1b4d9cf40cc2eae11dca97c2e9367553adb9f4df2ba2bd689c2e",
+      "index": 0,
+      "value": 500,
+      "domain": "rsv-other-domain-v2",
+      "pubkey_script": "21025d045857332d5b9e541514731622af8d60c180165d971a61e06b70a9b3834765ac"
+    },
+    {
+      "txid": "ec1a50c2aca14454e28909bb8fcdeec8e3d7a92b28722d10246a52b2928f7c29",
+      "index": 0,
+      "value": 1000,
+      "domain": "rsv-test-domain-v1",
+      "pubkey_script": "2103774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cbac"
+    }
+  ],
+  "results": [
+    {
+      "seq": 0,
+      "phase": "bootstrap",
+      "bootstrapped": true,
+      "genesis_id": "85bf304fdfb6acf97db7ee40aed82e04b5ac90fb3a657c54f9cca5057658f7ab",
+      "utxos": 4
+    },
+    {
+      "seq": 1,
+      "accepted": false,
+      "run_id": "replay-20260928T033149-1646096-0002-19da7c8d",
+      "txid": "d8dc54c6d9d2bea4ca00a758fce1d988522f54f43827581f45bdc8df491f950a",
+      "reason": "计算失败：脚本执行判定不通过，未转账；判定码 compute.crypto.threshold_invalid：duplicate signatures supplied; one pubkey may not be counted twice",
+      "failure": {
+        "category": "compute",
+        "code": "compute.crypto.threshold_invalid",
+        "message": "m/n 非法或重复公钥",
+        "detail": "duplicate signatures supplied; one pubkey may not be counted twice",
+        "pc": 5
+      }
+    },
+    {
+      "seq": 2,
+      "accepted": false,
+      "run_id": "replay-20260928T033149-1646096-0003-de5b8b29",
+      "txid": "d8dc54c6d9d2bea4ca00a758fce1d988522f54f43827581f45bdc8df491f950a",
+      "reason": "计算失败：脚本执行判定不通过，未转账；判定码 compute.crypto.threshold：valid signatures below m-of-n threshold",
+      "failure": {
+        "category": "compute",
+        "code": "compute.crypto.threshold",
+        "message": "CHECKMULTISIG：有效签名数未达到 m-of-n 门槛",
+        "detail": "valid signatures below m-of-n threshold",
+        "pc": 5
+      }
+    },
+    {
+      "seq": 3,
+      "accepted": false,
+      "run_id": "replay-20260928T033149-1646096-0004-55c0bdd9",
+      "txid": "d991b774d3e4124e153dec987e7b5b8db5bde682311088c389675835cb42cc00",
+      "reason": "状态冲突：链状态前置检查未通过，未执行脚本、未转账；判定码 state.domain_conflict：input #0 utxo domain='rsv-other-domain-v2' != tx domain='rsv-test-domain-v1'",
+      "failure": {
+        "category": "state",
+        "code": "state.domain_conflict",
+        "message": "交易域标签与 UTXO 所在域不一致",
+        "detail": "input #0 utxo domain='rsv-other-domain-v2' != tx domain='rsv-test-domain-v1'",
+        "pc": null
+      }
+    },
+    {
+      "seq": 4,
+      "accepted": false,
+      "run_id": "replay-20260928T033149-1646096-0005-7e9eaba3",
+      "txid": "d29069f9df3ab1f91def3a3b3be322eec846a9745840b88adc07b688554d3617",
+      "reason": "计算失败：脚本执行判定不通过，未转账；判定码 compute.crypto.sig：ECDSA verify returned false",
+      "failure": {
+        "category": "compute",
+        "code": "compute.crypto.sig",
+        "message": "验签失败：签名与交易摘要/公钥不匹配（含错误交易域）",
+        "detail": "ECDSA verify returned false",
+        "pc": null
+      }
+    },
+    {
+      "seq": 5,
+      "accepted": false,
+      "run_id": "replay-20260928T033149-1646096-0006-d739361c",
+      "txid": "b3339ea16f90a2897c5c8ce4d275bde257448e73aa3fabbb8cbd5bbbf8dc9b03",
+      "reason": "状态冲突：链状态前置检查未通过，未执行脚本、未转账；判定码 state.imbalance：sum(inputs)=1000 != sum(outputs)=999",
+      "failure": {
+        "category": "state",
+        "code": "state.imbalance",
+        "message": "输入金额之和不等于输出金额之和",
+        "detail": "sum(inputs)=1000 != sum(outputs)=999",
+        "pc": null
+      }
+    },
+    {
+      "seq": 6,
+      "accepted": false,
+      "run_id": "replay-20260928T033149-1646096-0007-69c92c1e",
+      "txid": "28892ab5a47cfba58e9b45b23795353ef6c552981531d937a5d3d81f1ea72569",
+      "reason": "状态冲突：链状态前置检查未通过，未执行脚本、未转账；判定码 state.unknown_outpoint：input #0 ffffffffffff:0",
+      "failure": {
+        "category": "state",
+        "code": "state.unknown_outpoint",
+        "message": "引用的 UTXO 不存在",
+        "detail": "input #0 ffffffffffff:0",
+        "pc": null
+      }
+    }
+  ]
+}
