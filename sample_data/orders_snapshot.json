@@ -1,0 +1,56 @@
+{
+  "table": "orders",
+  "primary_key": ["id"],
+  "fields": [
+    {"name": "id", "type": "int64", "nullable": false},
+    {"name": "status", "type": "string"},
+    {"name": "amount", "type": "int64"},
+    {"name": "owner", "type": "string"}
+  ],
+  "description": "orders 表三方夹具。每条记录刻意覆盖一种判定分区：id1 同字段不同值冲突；id2 两边改不同字段自动合并；id3 不变；id4 仅主分支删除；id5 两边独立新增相同行；id6 仅主分支新增；id7 主分支删除而开发分支修改（删除/修改冲突）；id8 两边都删除。",
+  "base": [
+    {"id": 1, "status": "new", "amount": 100, "owner": "alice"},
+    {"id": 2, "status": "new", "amount": 200, "owner": "bob"},
+    {"id": 3, "status": "paid", "amount": 300, "owner": "carol"},
+    {"id": 4, "status": "new", "amount": 400, "owner": "dave"},
+    {"id": 7, "status": "new", "amount": 700, "owner": "gina"},
+    {"id": 8, "status": "new", "amount": 800, "owner": "hank"}
+  ],
+  "develop": [
+    {"id": 1, "status": "paid", "amount": 100, "owner": "alice"},
+    {"id": 2, "status": "new", "amount": 200, "owner": "bob-temp"},
+    {"id": 3, "status": "paid", "amount": 300, "owner": "carol"},
+    {"id": 4, "status": "new", "amount": 400, "owner": "dave"},
+    {"id": 5, "status": "new", "amount": 500, "owner": "erin"},
+    {"id": 7, "status": "shipped", "amount": 710, "owner": "gina"}
+  ],
+  "main": [
+    {"id": 1, "status": "void", "amount": 100, "owner": "alice"},
+    {"id": 2, "status": "new", "amount": 220, "owner": "bob"},
+    {"id": 3, "status": "paid", "amount": 300, "owner": "carol"},
+    {"id": 5, "status": "new", "amount": 500, "owner": "erin"},
+    {"id": 6, "status": "new", "amount": 600, "owner": "frank"}
+  ],
+  "expected_classifications": {
+    "1": "field_value_conflict",
+    "2": "field_merge",
+    "3": "unchanged",
+    "4": "theirs_deleted",
+    "5": "add_add_identical",
+    "6": "theirs_added",
+    "7": "delete_modify_conflict",
+    "8": "both_deleted"
+  },
+  "resolutions_in_demo": {
+    "1": {"kind": "value", "custom_row": {"status": "reconciled-paid"}},
+    "7": {"kind": "keep"}
+  },
+  "expected_final_rows_after_demo": [
+    {"id": 1, "status": "reconciled-paid", "amount": 100, "owner": "alice"},
+    {"id": 2, "status": "new", "amount": 220, "owner": "bob-temp"},
+    {"id": 3, "status": "paid", "amount": 300, "owner": "carol"},
+    {"id": 5, "status": "new", "amount": 500, "owner": "erin"},
+    {"id": 6, "status": "new", "amount": 600, "owner": "frank"},
+    {"id": 7, "status": "shipped", "amount": 710, "owner": "gina"}
+  ]
+}
