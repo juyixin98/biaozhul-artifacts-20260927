@@ -1,0 +1,47 @@
+{
+  "description": "Synthetic fixtures for the wavelet-matrix service. No business data; all arrays hand-authored to exercise duplicate, signed and bit-width boundary cases.",
+  "semantics": {
+    "interval": "half-open [l, r), 0-based endpoints",
+    "k": "0-based: k=0 is the minimum of the window"
+  },
+  "arrays": {
+    "mixed_small": {
+      "values": [5, -3, 7, 7, 0, -3, 42, 1],
+      "sorted_window_0_8": [-3, -3, 0, 1, 5, 7, 7, 42],
+      "hand_checked_answers": {
+        "kth_smallest[0,8],k=0": -3,
+        "kth_smallest[0,8],k=3": 1,
+        "kth_smallest[0,8],k=7": 42,
+        "kth_smallest[2,6)=[7,7,0,-3],k=1": 0,
+        "count_lt[0,8),bound=0": 2,
+        "count_lt[0,8),bound=8": 7,
+        "count_range[0,8),[0,8)": 5,
+        "predecessor[0,8),bound=7": 5,
+        "predecessor[0,8),bound=-3": null,
+        "successor[0,8),bound=7": 7,
+        "successor[0,8),bound=43": null
+      }
+    },
+    "all_same": {
+      "values": [9, 9, 9, 9, 9, 9],
+      "note": "all elements identical: every k-th answer is 9, pred/succ degenerate"
+    },
+    "negatives": {
+      "values": [-5, -1, -7, -3, -3, -1, -9],
+      "sorted": [-9, -7, -5, -3, -3, -1, -1],
+      "hand_checked_answers": {
+        "kth_smallest[0,7),k=0": -9,
+        "kth_smallest[0,7),k=6": -1,
+        "count_range[0,7),[-5,-1)": 3,
+        "successor[0,7),bound=-4": -3
+      }
+    },
+    "signed_extremes": {
+      "values": [-9223372036854775808, 9223372036854775807, 0, -1, 1, -9223372036854775808],
+      "note": "i64::MIN / i64::MAX must round-trip through compression and the binary format"
+    },
+    "ascending": {
+      "values": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    }
+  }
+}

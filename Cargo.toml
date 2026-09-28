@@ -1,0 +1,18 @@
+[package]
+name = "wavelet-matrix-service"
+version = "0.1.0"
+edition = "2021"
+description = "Wavelet Matrix index for integer sequences: range k-th smallest, range counting, predecessor/successor"
+license = "MIT"
+
+[dependencies]
+axum = "0.8"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter"] }
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }

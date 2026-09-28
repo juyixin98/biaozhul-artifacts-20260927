@@ -1,0 +1,122 @@
+================================================================
+Live HTTP smoke transcript (release binary, port 18099, 2026-09-28)
+Reproduce with: examples/query_examples.sh (default port 18080)
+================================================================
+
+--- normal paths ---
+$ curl -s -H "X-Request-Id: verify-01-health" http://127.0.0.1:18099/health
+{
+    "request_id": "verify-01-health",
+    "ok": true,
+    "result": {
+        "indexes_loaded": 0,
+        "service": "wavelet-matrix-service",
+        "status": "ok",
+        "version": "0.1.0"
+    }
+}
+
+$ POST /v1/indexes  {"name":"demo","values":[5,-3,7,7,0,-3,42,1]}
+{
+    "request_id": "verify-02-create",
+    "ok": true,
+    "result": {
+        "distinct": 6,
+        "format_version": 1,
+        "height": 3,
+        "len": 8,
+        "name": "demo",
+        "persisted_bytes": 164,
+        "persisted_path": "./data/demo.wmx"
+    }
+}
+
+$ POST demo/queries kth_smallest [0,8) k=3   (sorted: [-3,-3,0,1,5,7,7,42])
+{
+    "request_id": "req-6f748023ec934db3b27e576f28ffbd66",
+    "ok": true,
+    "result": {
+        "k": 3,
+        "l": 0,
+        "op": "kth_smallest",
+        "r": 8,
+        "value": 1
+    }
+}
+
+$ count_lt bound=8  -> 7
+{
+    "request_id": "req-6241e9bf452b4245b0251401ae7f1d52",
+    "ok": true,
+    "result": {
+        "bound": 8,
+        "count": 7,
+        "l": 0,
+        "op": "count_lt",
+        "r": 8
+    }
+}
+
+$ count_range [0,8) -> 5
+{
+    "request_id": "req-5481212f0d1c4eeab7bd74287da148f0",
+    "ok": true,
+    "result": {
+        "count": 5,
+        "hi": 8,
+        "l": 0,
+        "lo": 0,
+        "op": "count_range",
+        "r": 8
+    }
+}
+
+$ predecessor bound=7 -> 5
+{
+    "request_id": "req-415bca19f1dc4316933df9fe5027be65",
+    "ok": true,
+    "result": {
+        "bound": 7,
+        "found": true,
+        "l": 0,
+        "op": "predecessor",
+        "r": 8,
+        "value": 5
+    }
+}
+
+$ successor bound=43 -> not found
+{
+    "request_id": "req-bfa0cc1a14d542a599ede24bffd7c83c",
+    "ok": true,
+    "result": {
+        "bound": 43,
+        "found": false,
+        "l": 0,
+        "op": "successor",
+        "r": 8,
+        "value": null
+    }
+}
+
+--- abnormal paths ---
+## k out of bounds
+{"request_id":"req-a0b8b0d788ae4dda888fff1b3d33a539","ok":false,"error":{"kind":"k_out_of_bounds","message":"k = 8 is out of bounds for a window of length 8 (k is 0-based)"}}   HTTP 400
+## empty window [3,3)
+{"request_id":"req-ec66d84be3154718aecef1338d5c3515","ok":false,"error":{"kind":"empty_range","message":"window [3, 3) is empty; queries require l < r"}}   HTTP 400
+## invalid range r>len
+{"request_id":"req-f279c7b3e112437eb3d4745f54e21f93","ok":false,"error":{"kind":"invalid_range","message":"window [0, 99) does not fit inside a sequence of length 8"}}   HTTP 400
+## missing k
+{"request_id":"req-fd8e88e8bc114a99a8d0f9a6b5d2e8de","ok":false,"error":{"kind":"bad_request","message":"bad request: op kth_smallest requires `k`"}}   HTTP 400
+## unknown op median
+{"request_id":"req-c42bdd54731546dd87949381f9dcedb9","ok":false,"error":{"kind":"bad_request","message":"bad request: unknown op \"median\"; expected one of kth_smallest, count_lt, count_range, predecessor, successor"}}   HTTP 400
+## index not found: /v1/indexes/ghost/queries
+{"request_id":"req-62f01ea922d74d65abd28cfd57ea9a85","ok":false,"error":{"kind":"index_not_found","message":"index \"ghost\" not found"}}   HTTP 404
+## empty input create
+{"request_id":"req-d1692a5e21054fc4b43b40d5ded4aef2","ok":false,"error":{"kind":"empty_input","message":"cannot build an index over an empty sequence"}}   HTTP 400
+## duplicate name
+{"request_id":"req-48b27c574f284bb6b851e0acdb8f340b","ok":false,"error":{"kind":"duplicate_index","message":"index \"demo\" already exists"}}   HTTP 409
+## path-traversal name
+{"request_id":"req-3c2b4c11711f42e2bc972153831aa340","ok":false,"error":{"kind":"invalid_index_name","message":"invalid index name \"../evil\"; expected [A-Za-z0-9][A-Za-z0-9_-]{0,63}"}}   HTTP 400
+## malformed JSON
+{"request_id":"req-65631b2bdda54f75bdefe85eb3618b72","ok":false,"error":{"kind":"bad_request","message":"bad request: invalid JSON body: Failed to parse the request body as JSON: key must be a string at line 1 column 3"}}   HTTP 400

@@ -1,0 +1,11 @@
+# Wavelet Matrix service configuration.
+# Flat key = value format (see src/config.rs); # starts a comment.
+
+# Bind address for the Axum validation HTTP interface.
+listen = "127.0.0.1:18080"
+
+# Directory where <name>.wmx index files are stored and restored from.
+data_dir = "./data"
+
+# tracing filter (error, warn, info, debug, trace)
+log_level = "info"

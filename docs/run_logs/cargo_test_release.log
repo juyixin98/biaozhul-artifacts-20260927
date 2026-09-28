@@ -1,0 +1,61 @@
+   Compiling wavelet-matrix-service v0.1.0 (/home/admin/Downloads/xinbiaozhu/opp219/b)
+    Finished `release` profile [optimized] target(s) in 12.95s
+     Running unittests src/lib.rs (target/release/deps/wavelet_matrix_service-2bae3d4ceb5fad49)
+
+running 8 tests
+test bitvector::tests::rank_matches_naive_count ... ok
+test bitvector::tests::word_roundtrip ... ok
+test config::tests::empty_text_gives_defaults ... ok
+test compress::tests::rank_order_matches_value_order_with_extremes ... ok
+test config::tests::parses_full_config_with_comments_and_quotes ... ok
+test config::tests::unknown_key_and_bad_value_are_errors ... ok
+test format::tests::known_fnv_vector ... ok
+test format::tests::truncation_and_flipped_byte_are_rejected ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/release/deps/wavelet_matrix_service-27e303f59bbc2884)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/api_tests.rs (target/release/deps/api_tests-46d3c31d883c6564)
+
+running 4 tests
+test request_id_is_echoed_or_generated ... ok
+test health_and_index_lifecycle ... ok
+test queries_return_hand_computed_values ... ok
+test failure_paths_report_specific_kinds_and_statuses ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/persistence.rs (target/release/deps/persistence-de6142b521dd874b)
+
+running 4 tests
+test missing_index_and_invalid_names_have_distinct_errors ... ok
+test corrupt_truncated_and_unknown_version_files_fail ... ok
+test list_finds_only_valid_index_files ... ok
+test save_load_roundtrip_answers_identically ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/wm_reference.rs (target/release/deps/wm_reference-cd4fa00ea856fe16)
+
+running 7 tests
+test hand_computed_answers_on_a_fixed_array ... ok
+test invalid_inputs_are_rejected_with_specific_categories ... ok
+test singleton_and_strictly_sorted_inputs ... ok
+test random_small_value_domain_with_duplicates ... ok
+test signed_extremes_and_bit_width_boundaries ... ok
+test all_identical_values_including_extremes ... ok
+test random_medium_value_domain ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.79s
+
+   Doc-tests wavelet_matrix_service
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
