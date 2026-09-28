@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "workspace_root": "./.runs",
+  "audit_db": "./.audit/audit.db",
+  "max_upload_bytes": 52428800,
+  "budgets": {
+    "max_total_uncompressed_bytes": 67108864,
+    "max_file_size_bytes": 16777216,
+    "max_entries": 500,
+    "max_depth": 20,
+    "max_compression_ratio": 100,
+    "symlink_resolution_steps": 40
+  },
+  "policy": {
+    "allow_case_collisions": false,
+    "allow_symlinks": true
+  }
+}

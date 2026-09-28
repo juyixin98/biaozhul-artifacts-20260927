@@ -1,0 +1,13 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+log_cli = false
+filterwarnings = [
+    "ignore:Duplicate name:UserWarning",  # deliberate same-name overwrite fixture
+]
+
+[project]
+name = "archiveguard"
+version = "1.0.0"
+description = "Local archive security inspection and controlled extraction service (ZIP/TAR restricted subset)"
+requires-python = ">=3.12"
