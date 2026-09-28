@@ -1,0 +1,18 @@
+{
+  "description": "Hand-written expected verdicts for unreachable.isl. x in [0,5] makes x>100 infeasible; the then-branch is unreachable and y is exactly 2 at exit.",
+  "checks": [
+    { "kind": "unreachable_stmt", "line": 6, "verdict": "unreachable" }
+  ],
+  "unreachable": [6],
+  "exit": {
+    "vars": {
+      "x": "[0, 5]",
+      "y": "[2, 2]"
+    },
+    "arrays": {}
+  },
+  "observations": {
+    "y": ["[2, 2]"]
+  },
+  "loops": 0
+}

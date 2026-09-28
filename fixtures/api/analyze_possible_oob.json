@@ -1,0 +1,3 @@
+{
+  "source": "let i: [0, 20];\narray a[10];\nx := a[i];\n"
+}

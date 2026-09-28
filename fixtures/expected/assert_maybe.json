@@ -1,0 +1,19 @@
+{
+  "description": "Hand-written expected verdicts for assert_maybe.isl. 3 of 5 concrete inputs satisfy the assertion, 2 fail; static verdict is possible, not definite.",
+  "checks": [
+    { "kind": "assert", "line": 6, "verdict": "maybe_violated" },
+    { "kind": "overflow", "line": 7, "verdict": "safe" }
+  ],
+  "unreachable": [],
+  "exit": {
+    "vars": {
+      "x": "[0, 2]",
+      "y": "[1, 3]"
+    },
+    "arrays": {}
+  },
+  "observations": {
+    "y": ["[1, 3]"]
+  },
+  "loops": 0
+}

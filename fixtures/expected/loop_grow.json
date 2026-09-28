@@ -1,0 +1,22 @@
+{
+  "description": "Hand-written expected verdicts for loop_grow.isl. i grows 0..n with n in [0,10]; loop head narrows to [0,10]; all checks safe.",
+  "checks": [
+    { "kind": "array_index", "line": 11, "verdict": "safe" },
+    { "kind": "overflow", "line": 11, "verdict": "safe" },
+    { "kind": "overflow", "line": 12, "verdict": "safe" }
+  ],
+  "unreachable": [],
+  "exit": {
+    "vars": {
+      "i": "[0, 10]",
+      "n": "[0, 10]"
+    },
+    "arrays": {
+      "a": { "len": 10, "elem": "[0, inf]" }
+    }
+  },
+  "observations": {
+    "i": ["[0, 0]", "[1, 10]"]
+  },
+  "loops": 1
+}

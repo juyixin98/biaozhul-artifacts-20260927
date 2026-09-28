@@ -1,0 +1,21 @@
+{
+  "description": "Hand-written expected verdicts for overflow.isl. x*x in [1e12,4e12] safe; x*4000 in [4e9,8e9] safe; b*b straddles 9223372036854775807 so POSSIBLE (not definite); big*big always exceeds i64 so definite overflow; statement after it unreachable.",
+  "checks": [
+    { "kind": "overflow", "line": 9, "verdict": "safe" },
+    { "kind": "overflow", "line": 10, "verdict": "safe" },
+    { "kind": "overflow", "line": 12, "verdict": "maybe_violated" },
+    { "kind": "overflow", "line": 14, "verdict": "violated" },
+    { "kind": "unreachable_stmt", "line": 17, "verdict": "unreachable" }
+  ],
+  "unreachable": [17],
+  "exit": {
+    "vars_bottom": true,
+    "arrays": {}
+  },
+  "observations": {
+    "y": ["[1000000000000, 4000000000000]"],
+    "w": ["[4000000000, 8000000000]"],
+    "p": ["[9223372030926249001, 9223372036854775807]"]
+  },
+  "loops": 0
+}

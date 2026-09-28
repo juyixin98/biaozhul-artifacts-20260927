@@ -1,0 +1,26 @@
+{
+  "description": "Hand-written expected verdicts for array_oob.isl. i in [0,20] vs len 10 partially in bounds -> POSSIBLE out-of-bounds; j=-5 always outside -> definite.",
+  "checks": [
+    { "kind": "array_index", "line": 7, "verdict": "maybe_violated" },
+    { "kind": "overflow", "line": 8, "verdict": "safe" },
+    { "kind": "array_index", "line": 9, "verdict": "violated" }
+  ],
+  "unreachable": [],
+  "exit": {
+    "vars": {
+      "i": "[0, 20]",
+      "j": "[-5, -5]",
+      "x": "[0, 0]",
+      "y": "[0, 0]"
+    },
+    "arrays": {
+      "a": { "len": 10, "elem": "[0, 0]" }
+    }
+  },
+  "observations": {
+    "x": ["[0, 0]"],
+    "j": ["[-5, -5]"],
+    "y": ["[0, 0]"]
+  },
+  "loops": 0
+}

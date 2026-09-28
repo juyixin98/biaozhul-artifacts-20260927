@@ -1,0 +1,24 @@
+[package]
+name = "interval-analyzer"
+version = "0.1.0"
+edition = "2021"
+description = "Static interval analysis (abstract interpretation) for a small integer language, with an Axum backend"
+license = "MIT"
+
+[dependencies]
+axum = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net"] }
+tower = { version = "0.5", features = ["util"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+uuid = { version = "1", features = ["v4"] }
+toml = "0.8"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+
+[profile.release]
+opt-level = 2

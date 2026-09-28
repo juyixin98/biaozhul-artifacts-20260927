@@ -1,0 +1,4 @@
+{
+  "source": "let n: [0, 10];\narray a[10];\ni := 0;\nwhile i < n {\n  a[i] := i * 2;\n  i := i + 1;\n}\n",
+  "config": { "enable_narrowing": true, "narrow_iters": 2 }
+}

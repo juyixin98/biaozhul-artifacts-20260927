@@ -1,0 +1,16 @@
+# Default fixpoint / interpreter configuration.
+# Consumed by src/config.rs; the HTTP API may override individual fields.
+
+# Plain join iterations before widening starts at a loop head.
+widen_delay = 1
+
+# Narrowing passes after the widened fixpoint stabilises (0 disables when
+# enable_narrowing = false).
+narrow_iters = 2
+enable_narrowing = true
+
+# Safety valve for chaotic iteration.
+max_iterations = 200
+
+# Statement+iteration fuel for the bounded concrete interpreter.
+concrete_fuel = 200000

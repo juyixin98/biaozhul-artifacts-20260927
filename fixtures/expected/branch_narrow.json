@@ -1,0 +1,23 @@
+{
+  "description": "Hand-written expected verdicts for branch_narrow.isl. Then-branch: y in [1,11]; else-branch: y in [1,10]; joined y in [1,11], z in [2,22]; assertion always holds.",
+  "checks": [
+    { "kind": "overflow", "line": 7, "verdict": "safe" },
+    { "kind": "overflow", "line": 9, "verdict": "safe" },
+    { "kind": "overflow", "line": 11, "verdict": "safe" },
+    { "kind": "assert", "line": 12, "verdict": "safe" }
+  ],
+  "unreachable": [],
+  "exit": {
+    "vars": {
+      "x": "[-10, 10]",
+      "y": "[1, 11]",
+      "z": "[2, 22]"
+    },
+    "arrays": {}
+  },
+  "observations": {
+    "y": ["[0, 0]", "[1, 11]", "[1, 10]"],
+    "z": ["[2, 22]"]
+  },
+  "loops": 0
+}
