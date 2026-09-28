@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "default": "deny",
+  "_comment": "有序规则：首条命中生效。默认 deny；演示放行仅通过运行期 grant 注入到本文件规则之前。这里预置对内部地址段的显式 deny 作为纵深防御与证据可读性。",
+  "rules": [
+    {
+      "id": "deny-loopback",
+      "action": "deny",
+      "tag_any": ["loopback", "unspecified"],
+      "note": "回环与 0.0.0.0/8 禁止作为出站目标"
+    },
+    {
+      "id": "deny-link-local",
+      "action": "deny",
+      "tag_any": ["link-local"],
+      "note": "链路本地（含云元数据 169.254.169.254）禁止"
+    },
+    {
+      "id": "deny-private",
+      "action": "deny",
+      "tag_any": ["private", "cgnat"],
+      "note": "RFC1918 与 CGNAT 禁止"
+    },
+    {
+      "id": "deny-other-special",
+      "action": "deny",
+      "tag_any": [
+        "multicast",
+        "reserved",
+        "broadcast",
+        "documentation",
+        "benchmark",
+        "special-service",
+        "discard-prefix",
+        "tail-router",
+        "6to4",
+        "unique-local",
+        "teredo"
+      ],
+      "note": "其余所有特殊用途段禁止"
+    },
+    {
+      "id": "deny-public-default",
+      "action": "deny",
+      "note": "演示内核默认不允许任意外联：未被运行期 grant 精确放行的公网地址同样拒绝"
+    }
+  ]
+}

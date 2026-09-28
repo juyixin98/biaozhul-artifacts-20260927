@@ -1,0 +1,125 @@
+{
+  "total": 12,
+  "runs": [
+    {
+      "run_id": "run-20260928T045644Z-000001",
+      "requested_url": "http://demo.local:37555/ok",
+      "verdict": "allow",
+      "status": "completed",
+      "failure_kind": null,
+      "failure_reason": null,
+      "hops": 1,
+      "evidence_count": 9
+    },
+    {
+      "run_id": "run-20260928T045644Z-000002",
+      "requested_url": "http://demo.local:37555/redirect?to=/ok",
+      "verdict": "allow",
+      "status": "completed",
+      "failure_kind": null,
+      "failure_reason": null,
+      "hops": 2,
+      "evidence_count": 17
+    },
+    {
+      "run_id": "run-20260928T045644Z-000003",
+      "requested_url": "http://demo.local:37555/redirect?to=http://169.254.169.254/latest/meta-data/",
+      "verdict": "deny",
+      "status": "denied",
+      "failure_kind": "policy_denied",
+      "failure_reason": "ip.blocked",
+      "hops": 2,
+      "evidence_count": 14
+    },
+    {
+      "run_id": "run-20260928T045644Z-000004",
+      "requested_url": "http://demo.local:37555/loop-a",
+      "verdict": "deny",
+      "status": "error",
+      "failure_kind": "state_conflict",
+      "failure_reason": "redirect.loop",
+      "hops": 2,
+      "evidence_count": 17
+    },
+    {
+      "run_id": "run-20260928T045644Z-000005",
+      "requested_url": "http://demo.local:37555/chain?n=9",
+      "verdict": "deny",
+      "status": "error",
+      "failure_kind": "resource_exhausted",
+      "failure_reason": "redirect.limit",
+      "hops": 6,
+      "evidence_count": 50
+    },
+    {
+      "run_id": "run-20260928T045644Z-000006",
+      "requested_url": "http://demo.local:37555/file-redirect",
+      "verdict": "deny",
+      "status": "error",
+      "failure_kind": "input_error",
+      "failure_reason": "redirect.scheme_unsupported",
+      "hops": 1,
+      "evidence_count": 9
+    },
+    {
+      "run_id": "run-20260928T045644Z-000007",
+      "requested_url": "http://rebind-meta-then-public.test/",
+      "verdict": "deny",
+      "status": "denied",
+      "failure_kind": "policy_denied",
+      "failure_reason": "ip.blocked",
+      "hops": 1,
+      "evidence_count": 6
+    },
+    {
+      "run_id": "run-20260928T045644Z-000008",
+      "requested_url": "http://[::ffff:169.254.169.254]/",
+      "verdict": "deny",
+      "status": "denied",
+      "failure_kind": "policy_denied",
+      "failure_reason": "ip.blocked",
+      "hops": 1,
+      "evidence_count": 6
+    },
+    {
+      "run_id": "run-20260928T045644Z-000009",
+      "requested_url": "http://user:pw@demo.local/ok",
+      "verdict": "deny",
+      "status": "error",
+      "failure_kind": "input_error",
+      "failure_reason": "userinfo.forbidden",
+      "hops": 0,
+      "evidence_count": 2
+    },
+    {
+      "run_id": "run-20260928T045644Z-000010",
+      "requested_url": "http://2130706433/",
+      "verdict": "deny",
+      "status": "error",
+      "failure_kind": "input_error",
+      "failure_reason": "host.integer_ip",
+      "hops": 0,
+      "evidence_count": 2
+    },
+    {
+      "run_id": "run-20260928T045644Z-000011",
+      "requested_url": "http://nxdomain.test/",
+      "verdict": "deny",
+      "status": "error",
+      "failure_kind": "computation_failed",
+      "failure_reason": "dns.name_not_found",
+      "hops": 0,
+      "evidence_count": 3
+    },
+    {
+      "run_id": "run-20260928T045644Z-000012",
+      "requested_url": "http://demo.local:37555/large?bytes=2000000",
+      "verdict": "deny",
+      "status": "error",
+      "failure_kind": "resource_exhausted",
+      "failure_reason": "response.too_large",
+      "hops": 1,
+      "evidence_count": 8
+    }
+  ]
+}

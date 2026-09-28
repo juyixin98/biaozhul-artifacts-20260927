@@ -1,0 +1,471 @@
+{
+  "_provenance": "本文件由测试作者手工编写，是被测内核之外的独立参考答案（oracle）。条目均不来自 app/ 实现；内核行为变更不得反向修改这些期望。url_template 中的 {port} 在测试中替换为本机演示上游实际端口。",
+  "_grant_semantics": "grants 为 per-run 注入，一律排在静态文件规则之前，首条命中生效。grant 通过 host+scheme+port 精确匹配（部分条目额外带 tag_any）。静态策略对所有特殊用途段显式 deny，并以 default deny 收尾。",
+  "cases": [
+    {
+      "id": "rebind-first-good-then-bad-second-run-uses-fresh-snapshot",
+      "url": "http://rebind-public-then-meta.test/",
+      "grants": [
+        {
+          "id": "g-rebind-host",
+          "host": "rebind-public-then-meta.test",
+          "scheme": "http",
+          "port": 80,
+          "records": [
+            "203.0.113.10"
+          ],
+          "note": "脚本首帧 203.0.113.10(documentation) 被精确 grant 放行；连接固定在该快照。"
+        }
+      ],
+      "expect_run_1": {
+        "verdict": "allow",
+        "status": "completed",
+        "pinned_ip": "203.0.113.10",
+        "single_resolution": true,
+        "note": "grant 精确放行该 host；文档地址不产生真实外联时连接会在 TCP 阶段失败，但策略与 pinning 断言成立。集成场景用指向 127.0.0.1 的 grant 版本。"
+      },
+      "expect_run_2_fresh_kernel_same_resolver": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "connect_attempts": 0,
+        "denied_ip": "169.254.169.254",
+        "note": "脚本推进到第二帧返回元数据地址：策略拒绝。系统绝不能在同一跳内二次解析以‘换回好地址’。"
+      }
+    },
+    {
+      "id": "rebind-meta-first-never-connected",
+      "url": "http://rebind-meta-then-public.test/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "connect_attempts": 0,
+        "denied_ip": "169.254.169.254",
+        "tags_include": "link-local"
+      }
+    },
+    {
+      "id": "mixed-set-one-bad-denies-whole-hop",
+      "url": "http://mixed-allow-deny.test/",
+      "grants": [
+        {
+          "id": "g-mixed-host",
+          "host": "mixed-allow-deny.test",
+          "scheme": "http",
+          "port": 80
+        }
+      ],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.mixed_candidates",
+        "connect_attempts": 0,
+        "candidate_actions": {
+          "203.0.113.10": "allow",
+          "10.0.0.5": "deny"
+        },
+        "note": "精确 host grant 不区分 IP 标签；因此 203.0.113.10 与 10.0.0.5 都会被 grant 命中——要构造混合集合，grant 必须带 tag_any=[documentation]，见测试夹具 override。oracle 记录规则语义：allow 与 deny 并存 => mixed_candidates。"
+      }
+    },
+    {
+      "id": "all-meta-multi-denied",
+      "url": "http://multi-meta.test/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "connect_attempts": 0,
+        "denied_ips": [
+          "169.254.169.254",
+          "169.254.170.2"
+        ]
+      }
+    },
+    {
+      "id": "mapped-ipv6-metadata-unwrapped-and-denied",
+      "url": "http://[::ffff:169.254.169.254]/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "connect_attempts": 0,
+        "canonical_ip": "169.254.169.254",
+        "family": "ipv4",
+        "unwrapped_from_present": true,
+        "tags_include": "link-local"
+      }
+    },
+    {
+      "id": "mapped-ipv6-public-classified-as-ipv4",
+      "url": "http://mapped-public.test/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "canonical_ip": "203.0.113.10",
+        "family": "ipv4",
+        "tags_include": "documentation",
+        "connect_attempts": 0,
+        "note": "解包等价性断言：::ffff:203.0.113.10 与 203.0.113.10 得到相同标签集合；静态 documentation deny 生效。"
+      }
+    },
+    {
+      "id": "ipv6-ula-denied",
+      "url": "http://ipv6-ula.test/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "canonical_ip": "fd00::1",
+        "tags_include": "unique-local",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "public-default-denied",
+      "url": "http://public-a.test/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "connect_attempts": 0,
+        "note": "198.51.100.7 无特殊标签，命中静态 deny-public-default（id 记录在证据中）"
+      }
+    },
+    {
+      "id": "userinfo-forbidden",
+      "url": "http://user:pass@demo.local/ok",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "input_error",
+        "failure_reason": "userinfo.forbidden",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "userinfo-confusing-host-forbidden",
+      "url": "http://169.254.169.254@demo.local/ok",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "input_error",
+        "failure_reason": "userinfo.forbidden",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "integer-ip-forbidden",
+      "url": "http://2130706433/latest/meta-data/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "input_error",
+        "failure_reason": "host.integer_ip",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "octal-segment-ip-forbidden",
+      "url": "http://0177.0.0.1/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "input_error",
+        "failure_reason": "host.ambiguous_numeric",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "scheme-file-forbidden",
+      "url": "file:///etc/passwd",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "input_error",
+        "failure_reason": "scheme.unsupported",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "backslash-confusion-forbidden",
+      "url": "http://127.0.0.1\\@evil.com/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "input_error",
+        "failure_reason": "url.bad_character",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "redirect-loop-detected",
+      "url_template": "http://demo.local:{port}/loop-a",
+      "server_routes": {
+        "loop-a": "302 -> /loop-b",
+        "loop-b": "302 -> /loop-a"
+      },
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "state_conflict",
+        "failure_reason": "redirect.loop",
+        "requests": 2,
+        "connect_attempts": 2,
+        "all_peers_loopback": true,
+        "note": "A->B 两次请求后，B->A 的 Location 命中已访问集合；第三跳在解析/连接之前即拒绝（pre-connect loop detection），故连接 2 次。每个被访问地址都在grant 允许集合内，禁止地址始终零连接。"
+      }
+    },
+    {
+      "id": "redirect-chain-over-limit",
+      "url_template": "http://demo.local:{port}/chain?n=9",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "resource_exhausted",
+        "failure_reason": "redirect.limit",
+        "requests": 6,
+        "max_redirects": 5
+      }
+    },
+    {
+      "id": "redirect-to-file-scheme-denied-at-hop",
+      "url_template": "http://demo.local:{port}/file-redirect",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "input_error",
+        "failure_reason": "redirect.scheme_unsupported",
+        "requests": 1,
+        "connect_attempts": 1
+      }
+    },
+    {
+      "id": "redirect-to-metadata-denied-at-hop",
+      "url_template": "http://demo.local:{port}/redirect?to=http://169.254.169.254/latest/meta-data/",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "requests": 1,
+        "connect_attempts": 1,
+        "connect_attempts_to_denied": 0
+      }
+    },
+    {
+      "id": "redirect-to-rebind-host-denied-at-hop",
+      "url_template": "http://demo.local:{port}/redirect?to=http://rebind-meta-then-public.test/",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "policy_denied",
+        "failure_reason": "ip.blocked",
+        "requests": 1,
+        "connect_attempts": 1,
+        "connect_attempts_to_denied": 0
+      }
+    },
+    {
+      "id": "demo-ok-allowed-pinned",
+      "url_template": "http://demo.local:{port}/ok",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "allow",
+        "status": "completed",
+        "http_status": 200,
+        "peer_ip": "127.0.0.1",
+        "pinned_ip": "127.0.0.1",
+        "connect_attempts": 1
+      }
+    },
+    {
+      "id": "demo-redirect-then-ok-revalidated",
+      "url_template": "http://demo.local:{port}/redirect?to=/ok",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "allow",
+        "status": "completed",
+        "http_status": 200,
+        "requests": 2,
+        "per_hop_stages": [
+          "url_parse",
+          "dns_resolve",
+          "ip_classify",
+          "policy",
+          "connect"
+        ],
+        "all_peers_loopback": true
+      }
+    },
+    {
+      "id": "nxdomain-computation-failed",
+      "url": "http://nxdomain.test/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "computation_failed",
+        "failure_reason": "dns.name_not_found",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "dns-temporary-computation-failed",
+      "url": "http://temporary-dns.test/",
+      "grants": [],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "computation_failed",
+        "failure_reason": "dns.temporary",
+        "connect_attempts": 0
+      }
+    },
+    {
+      "id": "connection-refused-computation-failed",
+      "url_template": "http://refused.local:{closed_port}/",
+      "grants": [
+        {
+          "id": "g-refused",
+          "host": "refused.local",
+          "scheme": "http",
+          "port": "{closed_port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "computation_failed",
+        "failure_reason": "connect.refused",
+        "connect_attempts": 1
+      }
+    },
+    {
+      "id": "response-too-large-resource-exhausted",
+      "url_template": "http://demo.local:{port}/large?bytes=2000000",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "kernel": {
+        "max_bytes": 4096
+      },
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "resource_exhausted",
+        "failure_reason": "response.too_large",
+        "connect_attempts": 1,
+        "http_status_seen": 200
+      }
+    },
+    {
+      "id": "pin-mismatch-state-conflict",
+      "url_template": "http://demo.local:{port}/ok",
+      "grants": [
+        {
+          "id": "g-demo",
+          "host": "demo.local",
+          "scheme": "http",
+          "port": "{port}",
+          "records": [
+            "127.0.0.1"
+          ]
+        }
+      ],
+      "fault_injection": {
+        "connector_reports_peer": "10.0.0.9"
+      },
+      "expect": {
+        "verdict": "deny",
+        "failure_kind": "state_conflict",
+        "failure_reason": "connect.pin_mismatch",
+        "connect_attempts": 1
+      }
+    }
+  ]
+}

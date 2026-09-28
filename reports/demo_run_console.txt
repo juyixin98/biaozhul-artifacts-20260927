@@ -1,0 +1,395 @@
+演示上游已启动（仅 127.0.0.1）: http://demo.local:37555
+审计状态目录: state/demo/audit
+
+==============================================================================
+# 允许：精确 grant 访问本机 /ok
+==============================================================================
+run_id      : run-20260928T045644Z-000001
+request     : http://demo.local:37555/ok
+verdict     : allow  status=completed  hops=1  duration_ms=2.27
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/ok"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1}
+05 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 1}
+06 [allow]   connect       
+    {"hop": 1, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+07 [*]       request_sent  
+    {"hop": 1}
+08 [*]       response_read 
+    {"hop": 1, "status": 200}
+09 [allow]   finish        
+------------------------------------------------------------------------------
+response: {"status": 200, "body_bytes": 96, "peer_ip": "127.0.0.1", "body_preview": "{\"ok\": true, \"service\": \"demo-upstream\", \"host_header\": \"demo.local:37555\", \"peer\": \"127.0.0.1\"}"}
+connections : 1 opened -> ['127.0.0.1']
+
+==============================================================================
+# 重定向：/redirect -> /ok，每跳重新校验
+==============================================================================
+run_id      : run-20260928T045644Z-000002
+request     : http://demo.local:37555/redirect?to=/ok
+verdict     : allow  status=completed  hops=2  duration_ms=2.52
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/redirect?to=/ok"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1}
+05 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 1}
+06 [allow]   connect       
+    {"hop": 1, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+07 [*]       request_sent  
+    {"hop": 1}
+08 [*]       response_read 
+    {"hop": 1, "status": 302}
+09 [*]       redirect      
+    {"from": "http://demo.local:37555/redirect?to=/ok", "hop": 1, "to": "http://demo.local:37555/ok"}
+10 [allow]   url_parse     
+    {"hop": 2, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/ok"}
+11 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 2, "source": "controlled_dns"}
+12 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 2}
+13 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 2}
+14 [allow]   connect       
+    {"hop": 2, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+15 [*]       request_sent  
+    {"hop": 2}
+16 [*]       response_read 
+    {"hop": 2, "status": 200}
+17 [allow]   finish        
+------------------------------------------------------------------------------
+response: {"status": 200, "body_bytes": 96, "peer_ip": "127.0.0.1", "body_preview": "{\"ok\": true, \"service\": \"demo-upstream\", \"host_header\": \"demo.local:37555\", \"peer\": \"127.0.0.1\"}"}
+connections : 2 opened -> ['127.0.0.1', '127.0.0.1']
+
+==============================================================================
+# 攻击：重定向跳到云元数据 169.254.169.254（禁止、零连接）
+==============================================================================
+run_id      : run-20260928T045644Z-000003
+request     : http://demo.local:37555/redirect?to=http://169.254.169.254/latest/meta-data/
+verdict     : deny  status=denied  hops=2  duration_ms=1.727
+failure     : [policy_denied] ip.blocked -- 策略拒绝 http://169.254.169.254:80/latest/meta-data/: ip.blocked
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/redirect?to=http://169.254.169.254/latest/meta-data/"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1}
+05 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 1}
+06 [allow]   connect       
+    {"hop": 1, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+07 [*]       request_sent  
+    {"hop": 1}
+08 [*]       response_read 
+    {"hop": 1, "status": 302}
+09 [*]       redirect      
+    {"from": "http://demo.local:37555/redirect?to=http://169.254.169.254/latest/meta-data/", "hop": 1, "to": "http://169.254.169.254/latest/meta-data/"}
+10 [allow]   url_parse     
+    {"hop": 2, "host": "169.254.169.254", "host_kind": "ipv4", "normalized_url": "http://169.254.169.254:80/latest/meta-data/"}
+11 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "169.254.169.254", "family": "ipv4", "ip": "169.254.169.254", "tags": ["link-local"], "unwrapped_from": null}], "hop": 2, "source": "literal"}
+12 [*]       ip_classify   
+    {"addresses": [{"ip": "169.254.169.254", "tags": ["link-local"], "unwrapped_from": null}], "hop": 2}
+13 [deny]    policy         ip.blocked
+    {"decision": {"addresses": [{"action": "deny", "family": "ipv4", "ip": "169.254.169.254", "rule_id": "deny-link-local", "tags": ["link-local"], "unwrapped_from": null}], "allowed": false, "chosen": null, "reason": "ip.blocked"}, "hop": 2}
+14 [deny]    finish         ip.blocked
+    {"decision": {"addresses": [{"action": "deny", "family": "ipv4", "ip": "169.254.169.254", "rule_id": "deny-link-local", "tags": ["link-local"], "unwrapped_from": null}], "allowed": false, "chosen": null, "reason": "ip.blocked"}, "hop": 2}
+connections : 1 opened -> ['127.0.0.1']
+
+==============================================================================
+# 攻击：重定向环 /loop-a <-> /loop-b（state_conflict）
+==============================================================================
+run_id      : run-20260928T045644Z-000004
+request     : http://demo.local:37555/loop-a
+verdict     : deny  status=error  hops=2  duration_ms=2.144
+failure     : [state_conflict] redirect.loop -- 重定向回到此前已访问的规范化 URL
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/loop-a"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1}
+05 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 1}
+06 [allow]   connect       
+    {"hop": 1, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+07 [*]       request_sent  
+    {"hop": 1}
+08 [*]       response_read 
+    {"hop": 1, "status": 302}
+09 [*]       redirect      
+    {"from": "http://demo.local:37555/loop-a", "hop": 1, "to": "http://demo.local:37555/loop-b"}
+10 [allow]   url_parse     
+    {"hop": 2, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/loop-b"}
+11 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 2, "source": "controlled_dns"}
+12 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 2}
+13 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 2}
+14 [allow]   connect       
+    {"hop": 2, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+15 [*]       request_sent  
+    {"hop": 2}
+16 [*]       response_read 
+    {"hop": 2, "status": 302}
+17 [deny]    finish         redirect.loop
+connections : 2 opened -> ['127.0.0.1', '127.0.0.1']
+
+==============================================================================
+# 攻击：跳数耗尽 /chain?n=9（resource_exhausted）
+==============================================================================
+run_id      : run-20260928T045644Z-000005
+request     : http://demo.local:37555/chain?n=9
+verdict     : deny  status=error  hops=6  duration_ms=5.029
+failure     : [resource_exhausted] redirect.limit -- 重定向跳数超过上限 5
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/chain?n=9"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1}
+05 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 1}
+06 [allow]   connect       
+    {"hop": 1, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+07 [*]       request_sent  
+    {"hop": 1}
+08 [*]       response_read 
+    {"hop": 1, "status": 302}
+09 [*]       redirect      
+    {"from": "http://demo.local:37555/chain?n=9", "hop": 1, "to": "http://demo.local:37555/chain?n=8"}
+10 [allow]   url_parse     
+    {"hop": 2, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/chain?n=8"}
+11 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 2, "source": "controlled_dns"}
+12 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 2}
+13 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 2}
+14 [allow]   connect       
+    {"hop": 2, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+15 [*]       request_sent  
+    {"hop": 2}
+16 [*]       response_read 
+    {"hop": 2, "status": 302}
+17 [*]       redirect      
+    {"from": "http://demo.local:37555/chain?n=8", "hop": 2, "to": "http://demo.local:37555/chain?n=7"}
+18 [allow]   url_parse     
+    {"hop": 3, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/chain?n=7"}
+19 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 3, "source": "controlled_dns"}
+20 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 3}
+21 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 3}
+22 [allow]   connect       
+    {"hop": 3, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+23 [*]       request_sent  
+    {"hop": 3}
+24 [*]       response_read 
+    {"hop": 3, "status": 302}
+25 [*]       redirect      
+    {"from": "http://demo.local:37555/chain?n=7", "hop": 3, "to": "http://demo.local:37555/chain?n=6"}
+26 [allow]   url_parse     
+    {"hop": 4, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/chain?n=6"}
+27 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 4, "source": "controlled_dns"}
+28 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 4}
+29 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 4}
+30 [allow]   connect       
+    {"hop": 4, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+31 [*]       request_sent  
+    {"hop": 4}
+32 [*]       response_read 
+    {"hop": 4, "status": 302}
+33 [*]       redirect      
+    {"from": "http://demo.local:37555/chain?n=6", "hop": 4, "to": "http://demo.local:37555/chain?n=5"}
+34 [allow]   url_parse     
+    {"hop": 5, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/chain?n=5"}
+35 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 5, "source": "controlled_dns"}
+36 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 5}
+37 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 5}
+38 [allow]   connect       
+    {"hop": 5, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+39 [*]       request_sent  
+    {"hop": 5}
+40 [*]       response_read 
+    {"hop": 5, "status": 302}
+41 [*]       redirect      
+    {"from": "http://demo.local:37555/chain?n=5", "hop": 5, "to": "http://demo.local:37555/chain?n=4"}
+42 [allow]   url_parse     
+    {"hop": 6, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/chain?n=4"}
+43 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 6, "source": "controlled_dns"}
+44 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 6}
+45 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 6}
+46 [allow]   connect       
+    {"hop": 6, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+47 [*]       request_sent  
+    {"hop": 6}
+48 [*]       response_read 
+    {"hop": 6, "status": 302}
+49 [*]       redirect      
+    {"from": "http://demo.local:37555/chain?n=4", "hop": 6, "to": "http://demo.local:37555/chain?n=3"}
+50 [deny]    finish         redirect.limit
+connections : 6 opened -> ['127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1', '127.0.0.1']
+
+==============================================================================
+# 攻击：跳转到 file:// 方案（input_error）
+==============================================================================
+run_id      : run-20260928T045644Z-000006
+request     : http://demo.local:37555/file-redirect
+verdict     : deny  status=error  hops=1  duration_ms=1.587
+failure     : [input_error] redirect.scheme_unsupported -- 重定向到非 http(s) 方案: file:///etc/passwd
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/file-redirect"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1}
+05 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 1}
+06 [allow]   connect       
+    {"hop": 1, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+07 [*]       request_sent  
+    {"hop": 1}
+08 [*]       response_read 
+    {"hop": 1, "status": 302}
+09 [deny]    finish         redirect.scheme_unsupported
+    {"hop": 1}
+connections : 1 opened -> ['127.0.0.1']
+
+==============================================================================
+# 攻击：DNS 重绑定首帧即元数据（policy_denied、零连接）
+==============================================================================
+run_id      : run-20260928T045644Z-000007
+request     : http://rebind-meta-then-public.test/
+verdict     : deny  status=denied  hops=1  duration_ms=0.919
+failure     : [policy_denied] ip.blocked -- 策略拒绝 http://rebind-meta-then-public.test:80/: ip.blocked
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "rebind-meta-then-public.test", "host_kind": "dns", "normalized_url": "http://rebind-meta-then-public.test:80/"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "169.254.169.254", "family": "ipv4", "ip": "169.254.169.254", "tags": ["link-local"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "169.254.169.254", "tags": ["link-local"], "unwrapped_from": null}], "hop": 1}
+05 [deny]    policy         ip.blocked
+    {"decision": {"addresses": [{"action": "deny", "family": "ipv4", "ip": "169.254.169.254", "rule_id": "deny-link-local", "tags": ["link-local"], "unwrapped_from": null}], "allowed": false, "chosen": null, "reason": "ip.blocked"}, "hop": 1}
+06 [deny]    finish         ip.blocked
+    {"decision": {"addresses": [{"action": "deny", "family": "ipv4", "ip": "169.254.169.254", "rule_id": "deny-link-local", "tags": ["link-local"], "unwrapped_from": null}], "allowed": false, "chosen": null, "reason": "ip.blocked"}, "hop": 1}
+connections : 0 opened -> []
+
+==============================================================================
+# 攻击：mapped IPv6 元数据 [::ffff:169.254.169.254]
+==============================================================================
+run_id      : run-20260928T045644Z-000008
+request     : http://[::ffff:169.254.169.254]/
+verdict     : deny  status=denied  hops=1  duration_ms=1.089
+failure     : [policy_denied] ip.blocked -- 策略拒绝 http://[::ffff:a9fe:a9fe]:80/: ip.blocked
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "::ffff:a9fe:a9fe", "host_kind": "ipv6", "normalized_url": "http://[::ffff:a9fe:a9fe]:80/"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "169.254.169.254", "family": "ipv4", "ip": "169.254.169.254", "tags": ["link-local"], "unwrapped_from": "::ffff:a9fe:a9fe"}], "hop": 1, "source": "literal"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "169.254.169.254", "tags": ["link-local"], "unwrapped_from": "::ffff:a9fe:a9fe"}], "hop": 1}
+05 [deny]    policy         ip.blocked
+    {"decision": {"addresses": [{"action": "deny", "family": "ipv4", "ip": "169.254.169.254", "rule_id": "deny-link-local", "tags": ["link-local"], "unwrapped_from": "::ffff:a9fe:a9fe"}], "allowed": false, "chosen": null, "reason": "ip.blocked"}, "hop": 1}
+06 [deny]    finish         ip.blocked
+    {"decision": {"addresses": [{"action": "deny", "family": "ipv4", "ip": "169.254.169.254", "rule_id": "deny-link-local", "tags": ["link-local"], "unwrapped_from": "::ffff:a9fe:a9fe"}], "allowed": false, "chosen": null, "reason": "ip.blocked"}, "hop": 1}
+connections : 0 opened -> []
+
+==============================================================================
+# 攻击：URL userinfo 片段（input_error）
+==============================================================================
+run_id      : run-20260928T045644Z-000009
+request     : http://user:pw@demo.local/ok
+verdict     : deny  status=error  hops=0  duration_ms=0.939
+failure     : [input_error] userinfo.forbidden -- URL 中禁止出现用户名/密码片段（userinfo）
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [deny]    finish         userinfo.forbidden
+connections : 0 opened -> []
+
+==============================================================================
+# 攻击：整数 IP 2130706433（input_error）
+==============================================================================
+run_id      : run-20260928T045644Z-000010
+request     : http://2130706433/
+verdict     : deny  status=error  hops=0  duration_ms=0.835
+failure     : [input_error] host.integer_ip -- 禁止使用整数/多进制形式的 IP 主机名
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [deny]    finish         host.integer_ip
+connections : 0 opened -> []
+
+==============================================================================
+# 解析失败：NXDOMAIN 夹具（computation_failed）
+==============================================================================
+run_id      : run-20260928T045644Z-000011
+request     : http://nxdomain.test/
+verdict     : deny  status=error  hops=0  duration_ms=0.891
+failure     : [computation_failed] dns.name_not_found -- DNS 夹具注入错误: name_not_found
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "nxdomain.test", "host_kind": "dns", "normalized_url": "http://nxdomain.test:80/"}
+03 [deny]    finish         dns.name_not_found
+    {"host": "nxdomain.test"}
+connections : 0 opened -> []
+
+==============================================================================
+# 资源耗尽：超大响应体（resource_exhausted）
+==============================================================================
+run_id      : run-20260928T045644Z-000012
+request     : http://demo.local:37555/large?bytes=2000000
+verdict     : deny  status=error  hops=1  duration_ms=1.369
+failure     : [resource_exhausted] response.too_large -- 声明响应体 2000000 字节超过上限 4096
+------------------------------------------------------------------------------
+01 [*]       run_start     
+02 [allow]   url_parse     
+    {"hop": 1, "host": "demo.local", "host_kind": "dns", "normalized_url": "http://demo.local:37555/large?bytes=2000000"}
+03 [*]       dns_resolve   
+    {"addresses": [{"canonical_ip": "127.0.0.1", "family": "ipv4", "ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1, "source": "controlled_dns"}
+04 [*]       ip_classify   
+    {"addresses": [{"ip": "127.0.0.1", "tags": ["loopback"], "unwrapped_from": null}], "hop": 1}
+05 [allow]   policy        
+    {"decision": {"addresses": [{"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}], "allowed": true, "chosen": {"action": "allow", "family": "ipv4", "ip": "127.0.0.1", "rule_id": "grant-demo.local-37555", "tags": ["loopback"], "unwrapped_from": null}, "reason": null}, "hop": 1}
+06 [allow]   connect       
+    {"hop": 1, "peer_ip": "127.0.0.1", "pinned_ip": "127.0.0.1"}
+07 [*]       request_sent  
+    {"hop": 1}
+08 [deny]    finish         response.too_large
+connections : 1 opened -> ['127.0.0.1']
+
+==============================================================================
+审计 runs: [{"run_id": "run-20260928T045644Z-000012", "requested_url": "http://demo.local:37555/large?bytes=2000000", "verdict": "deny", "status": "error", "start_ts": 1790571404.5871732, "end_ts": 1790571404.5885427, "failure_kind": "resource_exhausted", "failure_reason": "response.too_large", "hops": 1, "evidence_count": 8}, {"run_id": "run-20260928T045644Z-000011", "requested_url": "http://nxdomain.test/", "verdict": "deny", "status": "error", "start_ts": 1790571404.584006, "end_ts": 1790571404.5848975, "failure_kind": "computation_failed", "failure_reason": "dns.name_not_found", "hops": 0, "evidence_count": 3}, {"run_id": "run-20260928T045644Z-000010", "requested_url": "http://2130706433/", "verdict": "deny", "status": "error", "start_ts": 1790571404.5813625, "end_ts": 1790571404.582198, "failure_kind": "input_error", "failure_reason": "host.integer_ip", "hops": 0, "evidence_count": 2}]
+事件流文件: state/demo/audit/events.jsonl

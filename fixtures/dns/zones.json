@@ -1,0 +1,48 @@
+{
+  "zones": {
+    "rebind-public-then-meta.test": {
+      "note": "经典 DNS rebinding：先应答公网文档地址（再由 grant 放行），同一主机第二次解析应答云元数据地址。内核一跳只解析一次，第二次应答无人消费。",
+      "script": [
+        {"records": ["203.0.113.10"]},
+        {"records": ["169.254.169.254"]}
+      ]
+    },
+    "rebind-meta-then-public.test": {
+      "note": "反向脚本：首次即内网，必须在策略阶段拒绝且从未连接。",
+      "script": [
+        {"records": ["169.254.169.254"]},
+        {"records": ["203.0.113.10"]}
+      ]
+    },
+    "mixed-allow-deny.test": {
+      "note": "一次应答混合集合：一个 grant 可放行的地址 + 一个内网地址。规则：任意候选禁止则整跳拒绝（mixed_candidates）。",
+      "records": ["203.0.113.10", "10.0.0.5"]
+    },
+    "mixed-two-allowed.test": {
+      "note": "两个均被 grant 覆盖的候选 -> 允许，连接首个候选。",
+      "records": ["203.0.113.10", "198.51.100.20"]
+    },
+    "multi-meta.test": {
+      "note": "多记录全部为链路本地。",
+      "records": ["169.254.169.254", "169.254.170.2"]
+    },
+    "mapped-meta.test": {
+      "note": "IPv4-mapped IPv6 形式的元数据地址，必须解包为 169.254.169.254 后按 link-local 拒绝。",
+      "records": ["::ffff:169.254.169.254"]
+    },
+    "mapped-public.test": {
+      "note": "mapped 公网地址：解包后与原生 IPv4 等价分类。",
+      "records": ["::ffff:203.0.113.10"]
+    },
+    "ipv6-ula.test": {
+      "note": "IPv6 唯一本地地址 fc00::/7。",
+      "records": ["fd00::1"]
+    },
+    "public-a.test": {
+      "note": "普通公网地址（文档段，不产生真实外联；内核默认 deny）。",
+      "records": ["198.51.100.7"]
+    },
+    "nxdomain.test": {"error": "name_not_found", "note": "模拟 NXDOMAIN"},
+    "temporary-dns.test": {"error": "temporary", "note": "模拟 DNS 临时故障"}
+  }
+}
