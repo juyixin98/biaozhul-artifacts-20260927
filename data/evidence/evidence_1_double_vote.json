@@ -1,0 +1,80 @@
+{
+  "chain_id": 4242,
+  "evidence_id": "c9b19564c91f36ebd41c0683601e99b0de71fab5fd0272e7950cc7ab3e782077",
+  "slashable_weight": {
+    "epochs": [
+      {
+        "epoch": 1,
+        "weight": 1
+      }
+    ],
+    "total_weight": 1
+  },
+  "type": "double_vote",
+  "validator_pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97",
+  "version": 1,
+  "vote_1": {
+    "chain_id": 4242,
+    "signature": "2af11e3fb3e2f88fbf4c1cc735b60c4da2445ebe071d81e8b8ecac26ed97fa6219315b5bfe85d1f313fc389e56cee6f940d1ffb2896f94ebd80cb680cae0c802",
+    "source_epoch": 0,
+    "source_root": "1111111111111111111111111111111111111111111111111111111111111111",
+    "target_epoch": 1,
+    "target_root": "0101010101010101010101010101010101010101010101010101010101010101",
+    "validator_pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97"
+  },
+  "vote_1_snapshot": {
+    "chain_id": 4242,
+    "epoch": 1,
+    "members": [
+      {
+        "pubkey": "4ef03a52071b570fba562619eef15158699b183dfd8831110a5c4a49c1ea578e",
+        "weight": 1
+      },
+      {
+        "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee",
+        "weight": 1
+      },
+      {
+        "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a",
+        "weight": 1
+      },
+      {
+        "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97",
+        "weight": 1
+      }
+    ],
+    "root": "9ef1eb74628ffaf8d4aba851f1f17d3fba11dce31646626853fd94d85239a1f2"
+  },
+  "vote_2": {
+    "chain_id": 4242,
+    "signature": "a4f7731b693b5a9aabd999384ab9520212c2d5e7be8d5d5ba8000dd75ea700d73b50d334e425721cbb7aa47ff4d7c477ef01fbfd6e1f994e35b46da79c8c4709",
+    "source_epoch": 0,
+    "source_root": "1111111111111111111111111111111111111111111111111111111111111111",
+    "target_epoch": 1,
+    "target_root": "7777777777777777777777777777777777777777777777777777777777777777",
+    "validator_pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97"
+  },
+  "vote_2_snapshot": {
+    "chain_id": 4242,
+    "epoch": 1,
+    "members": [
+      {
+        "pubkey": "4ef03a52071b570fba562619eef15158699b183dfd8831110a5c4a49c1ea578e",
+        "weight": 1
+      },
+      {
+        "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee",
+        "weight": 1
+      },
+      {
+        "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a",
+        "weight": 1
+      },
+      {
+        "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97",
+        "weight": 1
+      }
+    ],
+    "root": "9ef1eb74628ffaf8d4aba851f1f17d3fba11dce31646626853fd94d85239a1f2"
+  }
+}

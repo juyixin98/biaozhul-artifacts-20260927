@@ -1,0 +1,84 @@
+{
+  "chain_id": 4242,
+  "evidence_id": "2bbbca1ca05451cbd01496d0aeaac9394456ec90e042552d6067bf45729e24b2",
+  "slashable_weight": {
+    "epochs": [
+      {
+        "epoch": 3,
+        "weight": 1
+      },
+      {
+        "epoch": 4,
+        "weight": 1
+      }
+    ],
+    "total_weight": 2
+  },
+  "type": "surround_vote",
+  "validator_pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee",
+  "version": 1,
+  "vote_1": {
+    "chain_id": 4242,
+    "signature": "bcf6bf00cebfb11d476815fa2cb3a48553529fbcc46fe7a3b69baddd2a1c932c82fb0b4067714f0425d9fe34bcc5571f897b0aeaba48538b32495b221f0b6a0f",
+    "source_epoch": 1,
+    "source_root": "0101010101010101010101010101010101010101010101010101010101010101",
+    "target_epoch": 4,
+    "target_root": "0404040404040404040404040404040404040404040404040404040404040404",
+    "validator_pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee"
+  },
+  "vote_1_snapshot": {
+    "chain_id": 4242,
+    "epoch": 4,
+    "members": [
+      {
+        "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee",
+        "weight": 1
+      },
+      {
+        "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a",
+        "weight": 1
+      },
+      {
+        "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97",
+        "weight": 1
+      },
+      {
+        "pubkey": "f1bdca3c501614769d1ad09bf6c7d753df031249612b10bbeac7e9c7d7eadf62",
+        "weight": 1
+      }
+    ],
+    "root": "6c887300b78342615b0592579a3432244ebc5d9c14d0c32e03f5ad10089eeef8"
+  },
+  "vote_2": {
+    "chain_id": 4242,
+    "signature": "9af753178b8a286870f7fcf97a36ac2830c62c496a4d1a38101f14197bfc8b6da8f4ee51e0ea8278d3eb074608f461833663e45d4a92d6990557c675bf697602",
+    "source_epoch": 2,
+    "source_root": "0202020202020202020202020202020202020202020202020202020202020202",
+    "target_epoch": 3,
+    "target_root": "0303030303030303030303030303030303030303030303030303030303030303",
+    "validator_pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee"
+  },
+  "vote_2_snapshot": {
+    "chain_id": 4242,
+    "epoch": 3,
+    "members": [
+      {
+        "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee",
+        "weight": 1
+      },
+      {
+        "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a",
+        "weight": 1
+      },
+      {
+        "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97",
+        "weight": 1
+      },
+      {
+        "pubkey": "f1bdca3c501614769d1ad09bf6c7d753df031249612b10bbeac7e9c7d7eadf62",
+        "weight": 1
+      }
+    ],
+    "root": "4c0eb064d9804609ea55b9725c593707d14b9e18b0ff09c78db289d1bdd27b6b"
+  }
+}

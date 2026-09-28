@@ -1,0 +1,108 @@
+{
+  "chain_id": 4242,
+  "genesis_root": "1111111111111111111111111111111111111111111111111111111111111111",
+  "database": "data/demo.sqlite3",
+  "log_dir": "logs",
+  "epochs": [
+    {
+      "epoch": 1,
+      "validators": [
+        {
+          "derive": "alpha",
+          "weight": 1,
+          "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a"
+        },
+        {
+          "derive": "bravo",
+          "weight": 1,
+          "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee"
+        },
+        {
+          "derive": "charlie",
+          "weight": 1,
+          "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97"
+        },
+        {
+          "derive": "delta",
+          "weight": 1,
+          "pubkey": "4ef03a52071b570fba562619eef15158699b183dfd8831110a5c4a49c1ea578e"
+        }
+      ]
+    },
+    {
+      "epoch": 2,
+      "validators": [
+        {
+          "derive": "alpha",
+          "weight": 1,
+          "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a"
+        },
+        {
+          "derive": "bravo",
+          "weight": 1,
+          "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee"
+        },
+        {
+          "derive": "charlie",
+          "weight": 1,
+          "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97"
+        },
+        {
+          "derive": "delta",
+          "weight": 1,
+          "pubkey": "4ef03a52071b570fba562619eef15158699b183dfd8831110a5c4a49c1ea578e"
+        }
+      ]
+    },
+    {
+      "epoch": 3,
+      "validators": [
+        {
+          "derive": "alpha",
+          "weight": 1,
+          "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a"
+        },
+        {
+          "derive": "bravo",
+          "weight": 1,
+          "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee"
+        },
+        {
+          "derive": "charlie",
+          "weight": 1,
+          "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97"
+        },
+        {
+          "derive": "echo",
+          "weight": 1,
+          "pubkey": "f1bdca3c501614769d1ad09bf6c7d753df031249612b10bbeac7e9c7d7eadf62"
+        }
+      ]
+    },
+    {
+      "epoch": 4,
+      "validators": [
+        {
+          "derive": "alpha",
+          "weight": 1,
+          "pubkey": "92a0cd25ae8b3b3f3d668100577acc4b47be57fe5f983a0f355a813fde24f92a"
+        },
+        {
+          "derive": "bravo",
+          "weight": 1,
+          "pubkey": "73930aaa68cdf739da727a8a3c866a9680a44cd1fd6050402ad2bae4c898e3ee"
+        },
+        {
+          "derive": "charlie",
+          "weight": 1,
+          "pubkey": "cd7199ca94f715081e571bc6d27c07647452d95fccbda840d73db88a8251ec97"
+        },
+        {
+          "derive": "echo",
+          "weight": 1,
+          "pubkey": "f1bdca3c501614769d1ad09bf6c7d753df031249612b10bbeac7e9c7d7eadf62"
+        }
+      ]
+    }
+  ]
+}
