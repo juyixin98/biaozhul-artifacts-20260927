@@ -1,0 +1,3 @@
+[console_scripts]
+teaching-chain = teaching_chain.cli:main
+teaching-chain-replay = teaching_chain.replay:main

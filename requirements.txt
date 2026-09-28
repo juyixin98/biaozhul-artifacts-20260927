@@ -1,0 +1,8 @@
+# 顶层直接依赖（主版本锁定）。完整可复现锁定见 requirements.lock
+fastapi==0.115.*
+uvicorn[standard]==0.32.*
+pydantic==2.9.*
+cryptography==44.0.*
+# 测试 / 示例脚本
+httpx==0.28.*
+pytest==8.3.*

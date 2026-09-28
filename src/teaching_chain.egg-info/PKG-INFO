@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: teaching-chain
+Version: 1.0.0
+Summary: 教学链：确定性小型状态机与 gas 计费（VM / 编码验签 / 链状态内核 / 索引存储 / 离线回放）
+Requires-Python: >=3.11
+Requires-Dist: fastapi<0.116,>=0.115
+Requires-Dist: uvicorn[standard]<0.33,>=0.32
+Requires-Dist: pydantic<2.10,>=2.9
+Requires-Dist: cryptography<45.0,>=44.0
+Provides-Extra: test
+Requires-Dist: pytest<8.4,>=8.3; extra == "test"
+Requires-Dist: httpx<0.29,>=0.28; extra == "test"

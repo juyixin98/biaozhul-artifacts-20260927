@@ -1,0 +1,26 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.3.5, pluggy-1.6.0
+rootdir: /home/admin/Downloads/xinbiaozhu/opp269/a
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collected 158 items
+
+tests/test_api.py ..............                                         [  8%]
+tests/test_determinism.py ..............                                 [ 17%]
+tests/test_encoding_assembler.py ........                                [ 22%]
+tests/test_gas_critical.py .......................                       [ 37%]
+tests/test_kernel.py .............                                       [ 45%]
+tests/test_store_replay.py ...........                                   [ 52%]
+tests/test_vm_arithmetic.py ............................................ [ 80%]
+.........                                                                [ 86%]
+tests/test_vm_nested_calls.py .........                                  [ 91%]
+tests/test_vm_state_rollback.py .............                            [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/starlette/testclient.py:37
+  /home/admin/Downloads/xinbiaozhu/opp269/a/.venv/lib/python3.12/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 158 passed, 1 warning in 1.71s ========================
