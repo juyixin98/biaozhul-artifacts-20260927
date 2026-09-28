@@ -1,0 +1,13 @@
+{
+  "uid": "demo-create-0001",
+  "operation": "CREATE",
+  "object": {
+    "apiVersion": "v1",
+    "kind": "Widget",
+    "metadata": {
+      "name": "orders",
+      "namespace": "shop"
+    },
+    "spec": {}
+  }
+}

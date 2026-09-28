@@ -1,0 +1,15 @@
+{
+  "uid": "demo-bad-0003",
+  "operation": "CREATE",
+  "object": {
+    "apiVersion": "v1",
+    "kind": "Widget",
+    "metadata": {
+      "name": "too-big",
+      "namespace": "shop"
+    },
+    "spec": {
+      "replicas": 99
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "uid": "demo-update-0004",
+  "operation": "UPDATE",
+  "object": {
+    "apiVersion": "v1",
+    "kind": "Widget",
+    "metadata": {
+      "name": "orders",
+      "namespace": "shop"
+    },
+    "spec": {
+      "replicas": 4
+    }
+  },
+  "oldObject": {
+    "apiVersion": "v1",
+    "kind": "Widget",
+    "metadata": {
+      "name": "orders",
+      "namespace": "shop"
+    },
+    "spec": {
+      "replicas": 3
+    }
+  }
+}

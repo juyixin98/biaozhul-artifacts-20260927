@@ -1,0 +1,9 @@
+{
+  "Widget": {
+    "replicas": 1,
+    "schedule": "always"
+  },
+  "Gadget": {
+    "replicas": 2
+  }
+}

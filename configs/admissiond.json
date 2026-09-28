@@ -1,0 +1,20 @@
+{
+  "listen": "127.0.0.1:8080",
+  "databasePath": "data/admission.db",
+  "logDir": "data/runs",
+  "defaultsFile": "configs/defaults.json",
+  "maxPasses": 5,
+  "reconcileIntervalMs": 500,
+  "quotaLimits": {
+    "Widget": 7
+  },
+  "mutators": [
+    { "type": "defaults",  "failPolicy": "closed", "timeoutMs": 200 },
+    { "type": "capacity",  "failPolicy": "closed", "timeoutMs": 200, "perReplica": 100 },
+    { "type": "stamp-uid", "failPolicy": "closed", "timeoutMs": 200 }
+  ],
+  "validators": [
+    { "type": "schema", "failPolicy": "closed", "timeoutMs": 200, "maxReplicas": 5 },
+    { "type": "quota",  "failPolicy": "closed", "timeoutMs": 500 }
+  ]
+}
