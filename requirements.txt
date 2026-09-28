@@ -1,0 +1,10 @@
+# Pinned dependency versions (resolved 2026-09-28 on Python 3.12.3, Linux)
+# Install: python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+fastapi==0.141.1
+uvicorn[standard]==0.54.0
+cryptography==50.0.1
+pydantic==2.13.5
+starlette==1.7.0
+anyio==4.15.1
+httpx==0.28.1
+pytest==9.1.1

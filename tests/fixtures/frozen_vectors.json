@@ -1,0 +1,50 @@
+{
+  "commitments": {
+    "amount_r0_salted": "a48eb5e3f5eb9827b40737c51b4154de4eee149290c3c5c28de78dd23cf4f73c",
+    "amount_r1_same_value_other_cell": "091cd3e199f7665c6cc9b029eea158efda95010e880d6ee3c75c9a18b24dcb60",
+    "int7_quantity": "a340f49ab9e932abcedb43a5ea24d9cf1698e56eb05dcc4deac2eda0499288e3",
+    "merchant_r0_salted": "aa849a00d2392b35ff218b329b8b31f81af413f39158204fe26de18c9b07dbef",
+    "merchant_r1_same_value_other_cell": "f26fb0a7fa7a39f579e076c0f0e45d3ea14f8b794d545be7b6f21a659725395b",
+    "note_empty_r0": "c146fabe118542813d157d5d7b9b01c702cfbd95ab5f425f20761d284443bbd8",
+    "note_null_r1": "16e53df60e460828fe4a5141fe664b789fe1b2ae31c8c0faad08c07107200c29",
+    "status_missing_r1": "ef627fc263ca2ac6e7348d3699c09bd29f48a6fb29013287b66b5bc2cc4fc071",
+    "status_paid_unsalted": "cef12e93961f81dd6d953aee7282c64ec8b076aa046a2b162f15d748330ef9d8",
+    "string7_note": "50aec06d95618ca7da7115ffb7db8f63bcad44e43c3ec0ebeb3ab04bf3936afe"
+  },
+  "domains": {
+    "commitment": "audit-commit-v1",
+    "merkle": "audit-merkle-v1"
+  },
+  "encoded_hex": {
+    "bool_false": "1300",
+    "bool_true": "1301",
+    "date_2026-03-01": "1407ea00030001",
+    "decimal_12.30": "1200000000000004ce00000002",
+    "decimal_7_str": "12000000000000000700000000",
+    "int_7": "110000000000000007",
+    "missing": "ffff",
+    "null": "1f",
+    "string_7": "100000000137",
+    "string_blue_kiosk": "100000000a426c7565204b696f736b",
+    "string_empty": "1000000000",
+    "ts_zulu": "1500064bf2b1f42400"
+  },
+  "generated_by": "scripts/generate_vectors.py (stdlib only)",
+  "identity_binding": {
+    "baseline": "aa849a00d2392b35ff218b329b8b31f81af413f39158204fe26de18c9b07dbef",
+    "name_swapped_to_note": "00b253c4d47c0a5b0808c85d5d84862d6dcf8b52f77f472efbf00e2a081abbdf",
+    "position_swapped": "394f38dad5d03d0348032f528aefec0ab594b4e63dae8f4650dc4620b26f4fa1",
+    "record_swapped": "7bbd369c5413b63e62001c63e9f31a7d209ebf2d301a6b563f88c14013a88661",
+    "wrong_salt": "c56f1a34adb8b5b4465468cb271c59b0112cd953bb571cdbe3b1e7a825b62741"
+  },
+  "merkle_roots": {
+    "empty": "57467e807521d528b7fce907a8bd8c64f239f3c1c352686132310344f89e9675",
+    "four_leaves": "c908ae7b514c12e0bfef65e8b3fb302bc23d1a620af08709a37268399f8c93e3",
+    "tampered_last_leaf": "c62de1f015d0e1eb1f58255d97a3178c220b9e4f10f242619bc60b532e639379",
+    "three_leaves_odd": "c189be032ab4e06caf842a0540c25494f00b8ecd21ee294281c6df1dbcda9862"
+  },
+  "salts": {
+    "salt16": "0102030405060708090a0b0c0d0e0f10",
+    "salt16b": "1112131415161718191a1b1c1d1e1f20"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": [
+    {"name": "merchant", "type": "string", "salted": true},
+    {"name": "amount", "type": "decimal", "salted": true},
+    {"name": "quantity", "type": "int", "salted": true},
+    {"name": "approved", "type": "bool", "salted": true},
+    {"name": "invoice_date", "type": "date", "salted": true},
+    {"name": "submitted_at", "type": "timestamp", "salted": true},
+    {"name": "note", "type": "string", "salted": true},
+    {"name": "status", "type": "string", "salted": false}
+  ],
+  "records": [
+    {
+      "merchant": "Blue Kiosk",
+      "amount": "12.30",
+      "quantity": 3,
+      "approved": true,
+      "invoice_date": "2026-03-01",
+      "submitted_at": "2026-03-01T09:00:00+00:00",
+      "note": "",
+      "status": "PAID"
+    },
+    {
+      "merchant": "Blue Kiosk",
+      "amount": "12.30",
+      "quantity": 3,
+      "approved": true,
+      "invoice_date": "2026-03-01",
+      "submitted_at": "2026-03-01T09:00:00Z",
+      "note": null
+    },
+    {
+      "merchant": "Cafe Seven",
+      "amount": "7",
+      "quantity": 7,
+      "approved": false,
+      "invoice_date": "2026-03-02",
+      "submitted_at": "2026-03-02T12:30:00+08:00",
+      "note": "7",
+      "status": "PAID"
+    }
+  ]
+}

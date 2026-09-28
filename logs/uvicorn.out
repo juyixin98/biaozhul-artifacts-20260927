@@ -1,0 +1,15 @@
+INFO:     Started server process [2168161]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8077 (Press CTRL+C to quit)
+INFO:     127.0.0.1:34914 - "GET /health HTTP/1.1" 200 OK
+{"batch_id": "batch-cf76f0a2e83b61cd", "detail": {"commitment_version": "audit-commit-v1", "fields": 8, "merkle_version": "audit-merkle-v1", "records": 3}, "level": "INFO", "logger": "audit_commitments", "message": "creating batch", "run_id": "run::demo-1790589624", "step": "batch.create.begin", "ts": "2026-09-28T10:00:24.986830+00:00"}
+{"batch_id": "batch-cf76f0a2e83b61cd", "detail": {"cells": 24, "root": "fa9f2d295b3a29963ed7c48a140b67118274834185f48b29a2bc870e134bc1a4"}, "level": "INFO", "logger": "audit_commitments", "message": "batch committed", "run_id": "run::demo-1790589624", "step": "batch.create.done", "ts": "2026-09-28T10:00:24.992569+00:00", "verdict": "CREATED"}
+INFO:     127.0.0.1:50120 - "POST /api/v1/batches HTTP/1.1" 200 OK
+{"batch_id": "batch-cf76f0a2e83b61cd", "detail": {"cells": [[0, "amount"], [2, "quantity"], [1, "status"]], "count": 3}, "level": "INFO", "logger": "audit_commitments", "message": "disclosure package issued", "run_id": "run::demo-1790589624", "step": "disclosure.issue", "ts": "2026-09-28T10:00:25.053182+00:00", "verdict": "ISSUED"}
+INFO:     127.0.0.1:50128 - "POST /api/v1/batches/batch-cf76f0a2e83b61cd/disclose HTTP/1.1" 200 OK
+{"batch_id": "batch-cf76f0a2e83b61cd", "level": "INFO", "logger": "audit_commitments", "message": "verify step: OK   (0, 'amount'): commitment + merkle path verified", "run_id": "run::demo-1790589624", "ts": "2026-09-28T10:00:25.114865+00:00"}
+{"batch_id": "batch-cf76f0a2e83b61cd", "level": "INFO", "logger": "audit_commitments", "message": "verify step: OK   (2, 'quantity'): commitment + merkle path verified", "run_id": "run::demo-1790589624", "ts": "2026-09-28T10:00:25.115036+00:00"}
+{"batch_id": "batch-cf76f0a2e83b61cd", "level": "INFO", "logger": "audit_commitments", "message": "verify step: OK   (1, 'status'): commitment + merkle path verified", "run_id": "run::demo-1790589624", "ts": "2026-09-28T10:00:25.115128+00:00"}
+{"batch_id": "batch-cf76f0a2e83b61cd", "level": "INFO", "logger": "audit_commitments", "message": "verify step: OK   package valid; root fa9f2d295b3a29963ed7c48a140b67118274834185f48b29a2bc870e134bc1a4", "run_id": "run::demo-1790589624", "ts": "2026-09-28T10:00:25.115281+00:00"}
+INFO:     127.0.0.1:50136 - "POST /api/v1/verify HTTP/1.1" 200 OK
