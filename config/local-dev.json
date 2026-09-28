@@ -1,0 +1,11 @@
+{
+  "bind_addr": "127.0.0.1:8080",
+  "storage_dir": "./data/jobs",
+  "frequency_bound": 16384,
+  "alphabet": 256,
+  "chunk_target": 256,
+  "max_symbols": 10000000,
+  "max_bytes": 67108864,
+  "max_alphabet": 1024,
+  "expose_data": true
+}
