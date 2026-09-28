@@ -1,0 +1,16 @@
+{
+  "listen_addr": "127.0.0.1:8080",
+  "db_path": "./natlab.db",
+  "log_path": "./logs/natlab-access.log",
+  "public_ip": "203.0.113.1",
+  "private_cidrs": ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"],
+  "port_pool_low": 40000,
+  "port_pool_high": 60000,
+  "timeouts": {
+    "tcp_syn_sent": "30s",
+    "tcp_transient": "60s",
+    "tcp_established": "7440s",
+    "udp": "180s"
+  },
+  "close_frees_port": true
+}

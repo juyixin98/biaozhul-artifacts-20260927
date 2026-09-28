@@ -1,0 +1,3 @@
+[RUN-0003] === RUN-0003 :: TestReuseAfterTimeout started 2026-09-27T20:11:28.419624339Z ===
+[RUN-0003] swept=1 at t=20; port 40000 released (late return rejected, event id 5)
+[RUN-0003] === RUN-0003 PASS duration=162.734µs log=../../testdata/runs/nat/run-RUN-0003.log ===

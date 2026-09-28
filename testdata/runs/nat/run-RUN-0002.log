@@ -1,0 +1,7 @@
+[RUN-0002] === RUN-0002 :: TestBidirectionalFlow started 2026-09-27T20:11:28.419279139Z ===
+[RUN-0002] step=0 syn_sent -> accepted=true verdict=accepted detail=port=40000
+[RUN-0002] step=1 syn_ack_rcvd -> accepted=true verdict=accepted detail=port=40000
+[RUN-0002] step=2 established -> accepted=true verdict=accepted detail=port=40000
+[RUN-0002] step=3 established -> accepted=true verdict=accepted detail=port=40000
+[RUN-0002] step=4 established -> accepted=true verdict=accepted detail=port=40000
+[RUN-0002] === RUN-0002 PASS duration=153.628µs log=../../testdata/runs/nat/run-RUN-0002.log ===

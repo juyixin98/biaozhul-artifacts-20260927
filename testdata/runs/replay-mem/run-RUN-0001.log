@@ -1,0 +1,25 @@
+[RUN-0001] === RUN-0001 :: TestFixtures_Mem/05_concurrent_first_packets started 2026-09-27T20:10:46.392122834Z ===
+[RUN-0001] fixture=concurrent_first_packets backend=mem packets=21
+[RUN-0001] step=0 mem -> accepted=true verdict=accepted detail=match=true port=40008 why=
+[RUN-0001] step=1 mem -> accepted=true verdict=accepted detail=match=true port=40018 why=
+[RUN-0001] step=2 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0001] step=3 mem -> accepted=true verdict=accepted detail=match=true port=40002 why=
+[RUN-0001] step=4 mem -> accepted=true verdict=accepted detail=match=true port=40003 why=
+[RUN-0001] step=5 mem -> accepted=true verdict=accepted detail=match=true port=40004 why=
+[RUN-0001] step=6 mem -> accepted=true verdict=accepted detail=match=true port=40005 why=
+[RUN-0001] step=7 mem -> accepted=true verdict=accepted detail=match=true port=40006 why=
+[RUN-0001] step=8 mem -> accepted=true verdict=accepted detail=match=true port=40007 why=
+[RUN-0001] step=9 mem -> accepted=true verdict=accepted detail=match=true port=40011 why=
+[RUN-0001] step=10 mem -> accepted=true verdict=accepted detail=match=true port=40010 why=
+[RUN-0001] step=11 mem -> accepted=true verdict=accepted detail=match=true port=40012 why=
+[RUN-0001] step=12 mem -> accepted=true verdict=accepted detail=match=true port=40014 why=
+[RUN-0001] step=13 mem -> accepted=true verdict=accepted detail=match=true port=40016 why=
+[RUN-0001] step=14 mem -> accepted=true verdict=accepted detail=match=true port=40009 why=
+[RUN-0001] step=15 mem -> accepted=true verdict=accepted detail=match=true port=40013 why=
+[RUN-0001] step=16 mem -> accepted=true verdict=accepted detail=match=true port=40015 why=
+[RUN-0001] step=17 mem -> accepted=true verdict=accepted detail=match=true port=40017 why=
+[RUN-0001] step=18 mem -> accepted=true verdict=accepted detail=match=true port=40019 why=
+[RUN-0001] step=19 mem -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0001] step=20 mem -> accepted=true verdict=accepted detail=match=true port=40008 why=
+[RUN-0001] fixture=concurrent_first_packets passed=true failures=0
+[RUN-0001] === RUN-0001 PASS duration=1.006061ms log=../../testdata/runs/replay-mem/run-RUN-0001.log ===

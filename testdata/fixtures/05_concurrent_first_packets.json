@@ -1,0 +1,369 @@
+{
+  "name": "concurrent_first_packets",
+  "description": "20 UDP first-packets in one concurrent group (identical timestamp) get 20 distinct ports; no port is double-allocated. Ports are asserted only as a multiset because scheduling is nondeterministic.",
+  "port_pool_low": 40000,
+  "port_pool_high": 40050,
+  "packets": [
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10001,
+        "dst_ip": "198.51.100.101",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10002,
+        "dst_ip": "198.51.100.102",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10003,
+        "dst_ip": "198.51.100.103",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10004,
+        "dst_ip": "198.51.100.104",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10005,
+        "dst_ip": "198.51.100.105",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10006,
+        "dst_ip": "198.51.100.106",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10007,
+        "dst_ip": "198.51.100.107",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10008,
+        "dst_ip": "198.51.100.108",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10009,
+        "dst_ip": "198.51.100.109",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10010,
+        "dst_ip": "198.51.100.110",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10011,
+        "dst_ip": "198.51.100.111",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10012,
+        "dst_ip": "198.51.100.112",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10013,
+        "dst_ip": "198.51.100.113",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10014,
+        "dst_ip": "198.51.100.114",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10015,
+        "dst_ip": "198.51.100.115",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10016,
+        "dst_ip": "198.51.100.116",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10017,
+        "dst_ip": "198.51.100.117",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10018,
+        "dst_ip": "198.51.100.118",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10019,
+        "dst_ip": "198.51.100.119",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10020,
+        "dst_ip": "198.51.100.120",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "state": "open"
+      }
+    },
+    {
+      "group": 2,
+      "packet": {
+        "ts": "2026-01-01T00:00:01Z",
+        "src_ip": "10.0.0.50",
+        "src_port": 10001,
+        "dst_ip": "198.51.100.101",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true
+      }
+    }
+  ],
+  "invariants": {
+    "accepted_count": 21,
+    "mapped_ports": [
+      40000,
+      40001,
+      40002,
+      40003,
+      40004,
+      40005,
+      40006,
+      40007,
+      40008,
+      40009,
+      40010,
+      40011,
+      40012,
+      40013,
+      40014,
+      40015,
+      40016,
+      40017,
+      40018,
+      40019
+    ],
+    "final_active_unique": true
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "name": "clock_rewind_no_revival",
+  "description": "UDP TTL 10s. At t=12 the first mapping is swept and its port is reused by fresh flows; the pool is refilled. Packets carrying older timestamps (t=5,t=6) are evaluated against the high-water clock (t=12), never reviving the expired mapping: the stale outbound cannot create a mapping (PORT_EXHAUSTED) and the stale return hits the reused port and fails the endpoint-dependent filter.",
+  "port_pool_low": 40000,
+  "port_pool_high": 40002,
+  "timeouts": {
+    "tcp_syn_sent": "30s",
+    "tcp_transient": "60s",
+    "tcp_established": "7440s",
+    "udp": "10s"
+  },
+  "packets": [
+    {
+      "group": 0,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.60",
+        "src_port": 8000,
+        "dst_ip": "198.51.100.200",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:12Z",
+        "src_ip": "10.0.0.61",
+        "src_port": 8001,
+        "dst_ip": "198.51.100.201",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "open",
+        "swept": 1
+      }
+    },
+    {
+      "group": 2,
+      "packet": {
+        "ts": "2026-01-01T00:00:12.1Z",
+        "src_ip": "10.0.0.62",
+        "src_port": 8002,
+        "dst_ip": "198.51.100.202",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40001,
+        "state": "open"
+      }
+    },
+    {
+      "group": 3,
+      "packet": {
+        "ts": "2026-01-01T00:00:12.2Z",
+        "src_ip": "10.0.0.63",
+        "src_port": 8003,
+        "dst_ip": "198.51.100.203",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40002,
+        "state": "open"
+      }
+    },
+    {
+      "group": 4,
+      "packet": {
+        "ts": "2026-01-01T00:00:05Z",
+        "src_ip": "10.0.0.60",
+        "src_port": 8000,
+        "dst_ip": "198.51.100.200",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "resource_exhausted",
+        "code": "PORT_EXHAUSTED",
+        "clock_rewind": true
+      }
+    },
+    {
+      "group": 5,
+      "packet": {
+        "ts": "2026-01-01T00:00:06Z",
+        "src_ip": "198.51.100.200",
+        "src_port": 53,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "UDP",
+        "direction": "inbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "state_conflict",
+        "code": "ENDPOINT_FILTERED",
+        "clock_rewind": true
+      }
+    }
+  ],
+  "invariants": {
+    "accepted_count": 4,
+    "code_counts": {
+      "PORT_EXHAUSTED": 1,
+      "ENDPOINT_FILTERED": 1
+    },
+    "final_active_unique": true
+  }
+}

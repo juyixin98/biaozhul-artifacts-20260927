@@ -1,0 +1,10 @@
+[RUN-0009] === RUN-0009 :: TestFixtures_SQLite/09_udp_endpoint_dependence started 2026-09-27T20:11:29.235018072Z ===
+[RUN-0009] fixture=udp_endpoint_dependence backend=sqlite packets=6
+[RUN-0009] step=0 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0009] step=1 sqlite -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0009] step=2 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0009] step=3 sqlite -> accepted=false verdict=state_conflict/ENDPOINT_FILTERED detail=match=true port=- why=
+[RUN-0009] step=4 sqlite -> accepted=false verdict=state_conflict/ENDPOINT_FILTERED detail=match=true port=- why=
+[RUN-0009] step=5 sqlite -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0009] fixture=udp_endpoint_dependence passed=true failures=0
+[RUN-0009] === RUN-0009 PASS duration=49.502459ms log=../../testdata/runs/replay-sqlite/run-RUN-0009.log ===

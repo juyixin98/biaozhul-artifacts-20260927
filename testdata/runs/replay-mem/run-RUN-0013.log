@@ -1,0 +1,9 @@
+[RUN-0013] === RUN-0013 :: TestFixtures_Mem/04_late_returns started 2026-09-27T20:11:29.286022309Z ===
+[RUN-0013] fixture=late_returns backend=mem packets=5
+[RUN-0013] step=0 mem -> accepted=false verdict=state_conflict/INBOUND_NO_MAPPING detail=match=true port=- why=
+[RUN-0013] step=1 mem -> accepted=false verdict=invalid_input/INBOUND_DST_MISMATCH detail=match=true port=- why=
+[RUN-0013] step=2 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0013] step=3 mem -> accepted=false verdict=state_conflict/LATE_RETURN_EXPIRED detail=match=true port=- why=
+[RUN-0013] step=4 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0013] fixture=late_returns passed=true failures=0
+[RUN-0013] === RUN-0013 PASS duration=103.258µs log=../../testdata/runs/replay-mem/run-RUN-0013.log ===

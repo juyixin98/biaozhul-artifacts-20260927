@@ -1,0 +1,8 @@
+[RUN-0010] === RUN-0010 :: TestFixtures_Mem/01_port_exhaustion started 2026-09-27T20:11:29.285058612Z ===
+[RUN-0010] fixture=port_exhaustion backend=mem packets=4
+[RUN-0010] step=0 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0010] step=1 mem -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0010] step=2 mem -> accepted=true verdict=accepted detail=match=true port=40002 why=
+[RUN-0010] step=3 mem -> accepted=false verdict=resource_exhausted/PORT_EXHAUSTED detail=match=true port=- why=
+[RUN-0010] fixture=port_exhaustion passed=true failures=0
+[RUN-0010] === RUN-0010 PASS duration=91.437µs log=../../testdata/runs/replay-mem/run-RUN-0010.log ===

@@ -1,0 +1,203 @@
+{
+  "name": "tcp_state_and_rst",
+  "description": "Non-SYN first packet is rejected and allocates no port; a handshake in progress rejects a stray bare ACK (TCP_BAD_STATE); RST from the peer tears the mapping down and frees the port, after which a return to that port is a late arrival (LATE_RETURN_EXPIRED); a new SYN then reuses the released lowest port.",
+  "port_pool_low": 40000,
+  "port_pool_high": 40010,
+  "timeouts": {
+    "tcp_syn_sent": "30s",
+    "tcp_transient": "60s",
+    "tcp_established": "7440s",
+    "udp": "180s"
+  },
+  "packets": [
+    {
+      "group": 0,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.70",
+        "src_port": 9000,
+        "dst_ip": "198.51.100.30",
+        "dst_port": 80,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "state_conflict",
+        "code": "TCP_NON_SYN_OUTBOUND"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:01Z",
+        "src_ip": "10.0.0.70",
+        "src_port": 9000,
+        "dst_ip": "198.51.100.30",
+        "dst_port": 80,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_sent"
+      }
+    },
+    {
+      "group": 2,
+      "packet": {
+        "ts": "2026-01-01T00:00:02Z",
+        "src_ip": "198.51.100.30",
+        "src_port": 80,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "state_conflict",
+        "code": "TCP_BAD_STATE"
+      }
+    },
+    {
+      "group": 3,
+      "packet": {
+        "ts": "2026-01-01T00:00:03Z",
+        "src_ip": "198.51.100.30",
+        "src_port": 80,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "RST"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "closed"
+      }
+    },
+    {
+      "group": 4,
+      "packet": {
+        "ts": "2026-01-01T00:00:03.1Z",
+        "src_ip": "198.51.100.30",
+        "src_port": 80,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "state_conflict",
+        "code": "LATE_RETURN_EXPIRED"
+      }
+    },
+    {
+      "group": 5,
+      "packet": {
+        "ts": "2026-01-01T00:00:04Z",
+        "src_ip": "10.0.0.71",
+        "src_port": 9001,
+        "dst_ip": "198.51.100.31",
+        "dst_port": 80,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_sent"
+      }
+    },
+    {
+      "group": 6,
+      "packet": {
+        "ts": "2026-01-01T00:00:05Z",
+        "src_ip": "198.51.100.31",
+        "src_port": 80,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "SYN+ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_ack_rcvd"
+      }
+    },
+    {
+      "group": 7,
+      "packet": {
+        "ts": "2026-01-01T00:00:06Z",
+        "src_ip": "10.0.0.71",
+        "src_port": 9001,
+        "dst_ip": "198.51.100.31",
+        "dst_port": 80,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "established"
+      }
+    },
+    {
+      "group": 8,
+      "packet": {
+        "ts": "2026-01-01T00:00:07Z",
+        "src_ip": "10.0.0.71",
+        "src_port": 9001,
+        "dst_ip": "198.51.100.31",
+        "dst_port": 80,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "RST"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "closed"
+      }
+    },
+    {
+      "group": 9,
+      "packet": {
+        "ts": "2026-01-01T00:00:08Z",
+        "src_ip": "10.0.0.72",
+        "src_port": 9002,
+        "dst_ip": "198.51.100.32",
+        "dst_port": 80,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_sent"
+      }
+    }
+  ],
+  "invariants": {
+    "accepted_count": 7,
+    "code_counts": {
+      "TCP_NON_SYN_OUTBOUND": 1,
+      "TCP_BAD_STATE": 1,
+      "LATE_RETURN_EXPIRED": 1
+    },
+    "final_active_unique": true
+  }
+}

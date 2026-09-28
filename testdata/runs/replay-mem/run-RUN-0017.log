@@ -1,0 +1,14 @@
+[RUN-0017] === RUN-0017 :: TestFixtures_Mem/08_tcp_state_and_rst started 2026-09-27T20:11:29.287948882Z ===
+[RUN-0017] fixture=tcp_state_and_rst backend=mem packets=10
+[RUN-0017] step=0 mem -> accepted=false verdict=state_conflict/TCP_NON_SYN_OUTBOUND detail=match=true port=- why=
+[RUN-0017] step=1 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0017] step=2 mem -> accepted=false verdict=state_conflict/TCP_BAD_STATE detail=match=true port=- why=
+[RUN-0017] step=3 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0017] step=4 mem -> accepted=false verdict=state_conflict/LATE_RETURN_EXPIRED detail=match=true port=- why=
+[RUN-0017] step=5 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0017] step=6 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0017] step=7 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0017] step=8 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0017] step=9 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0017] fixture=tcp_state_and_rst passed=true failures=0
+[RUN-0017] === RUN-0017 PASS duration=154.702µs log=../../testdata/runs/replay-mem/run-RUN-0017.log ===

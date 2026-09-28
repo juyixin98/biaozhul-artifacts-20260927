@@ -1,0 +1,188 @@
+{
+  "name": "input_validation",
+  "description": "Structural input errors are rejected with distinct invalid_input codes; no mappings are ever created.",
+  "port_pool_low": 40000,
+  "port_pool_high": 40010,
+  "packets": [
+    {
+      "group": 0,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "sideways"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "BAD_DIRECTION"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "ICMP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "UNSUPPORTED_PROTOCOL"
+      }
+    },
+    {
+      "group": 2,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "UDP_FLAGS_NOT_ALLOWED"
+      }
+    },
+    {
+      "group": 3,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "PSH"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "BAD_FLAG"
+      }
+    },
+    {
+      "group": 4,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN+FIN"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "BAD_FLAG"
+      }
+    },
+    {
+      "group": 5,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "999.1.1.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "BAD_SRC_IP"
+      }
+    },
+    {
+      "group": 6,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 0,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "BAD_SRC_PORT"
+      }
+    },
+    {
+      "group": 7,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 0,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "BAD_DST_PORT"
+      }
+    },
+    {
+      "group": 8,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.1",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound",
+        "fragment": {
+          "offset": 16,
+          "more_fragments": true
+        }
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "FRAGMENT_NOT_REASSEMBLED"
+      }
+    },
+    {
+      "group": 9,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "8.8.8.8",
+        "src_port": 1,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "SRC_NOT_PRIVATE"
+      }
+    }
+  ],
+  "invariants": {
+    "accepted_count": 0
+  }
+}

@@ -1,0 +1,14 @@
+[RUN-0008] === RUN-0008 :: TestFixtures_SQLite/08_tcp_state_and_rst started 2026-09-27T20:11:29.165243735Z ===
+[RUN-0008] fixture=tcp_state_and_rst backend=sqlite packets=10
+[RUN-0008] step=0 sqlite -> accepted=false verdict=state_conflict/TCP_NON_SYN_OUTBOUND detail=match=true port=- why=
+[RUN-0008] step=1 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0008] step=2 sqlite -> accepted=false verdict=state_conflict/TCP_BAD_STATE detail=match=true port=- why=
+[RUN-0008] step=3 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0008] step=4 sqlite -> accepted=false verdict=state_conflict/LATE_RETURN_EXPIRED detail=match=true port=- why=
+[RUN-0008] step=5 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0008] step=6 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0008] step=7 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0008] step=8 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0008] step=9 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0008] fixture=tcp_state_and_rst passed=true failures=0
+[RUN-0008] === RUN-0008 PASS duration=69.245918ms log=../../testdata/runs/replay-sqlite/run-RUN-0008.log ===

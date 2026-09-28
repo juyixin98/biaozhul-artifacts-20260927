@@ -1,0 +1,10 @@
+[RUN-0018] === RUN-0018 :: TestFixtures_Mem/09_udp_endpoint_dependence started 2026-09-27T20:11:29.28830005Z ===
+[RUN-0018] fixture=udp_endpoint_dependence backend=mem packets=6
+[RUN-0018] step=0 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0018] step=1 mem -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0018] step=2 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0018] step=3 mem -> accepted=false verdict=state_conflict/ENDPOINT_FILTERED detail=match=true port=- why=
+[RUN-0018] step=4 mem -> accepted=false verdict=state_conflict/ENDPOINT_FILTERED detail=match=true port=- why=
+[RUN-0018] step=5 mem -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0018] fixture=udp_endpoint_dependence passed=true failures=0
+[RUN-0018] === RUN-0018 PASS duration=113.386µs log=../../testdata/runs/replay-mem/run-RUN-0018.log ===

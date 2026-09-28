@@ -1,0 +1,88 @@
+{
+  "name": "port_exhaustion",
+  "description": "Pool of 3 ports: four first-packets to distinct peers; first three get unique ports, fourth is rejected with PORT_EXHAUSTED.",
+  "port_pool_low": 40000,
+  "port_pool_high": 40002,
+  "packets": [
+    {
+      "group": 0,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.10",
+        "src_port": 5001,
+        "dst_ip": "198.51.100.1",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "open"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:01Z",
+        "src_ip": "10.0.0.10",
+        "src_port": 5002,
+        "dst_ip": "198.51.100.2",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40001,
+        "state": "open"
+      }
+    },
+    {
+      "group": 2,
+      "packet": {
+        "ts": "2026-01-01T00:00:02Z",
+        "src_ip": "10.0.0.10",
+        "src_port": 5003,
+        "dst_ip": "198.51.100.3",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40002,
+        "state": "open"
+      }
+    },
+    {
+      "group": 3,
+      "packet": {
+        "ts": "2026-01-01T00:00:03Z",
+        "src_ip": "10.0.0.10",
+        "src_port": 5004,
+        "dst_ip": "198.51.100.4",
+        "dst_port": 53,
+        "protocol": "UDP",
+        "direction": "outbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "resource_exhausted",
+        "code": "PORT_EXHAUSTED"
+      }
+    }
+  ],
+  "invariants": {
+    "accepted_count": 3,
+    "code_counts": {
+      "PORT_EXHAUSTED": 1
+    },
+    "mapped_ports": [
+      40000,
+      40001,
+      40002
+    ],
+    "final_active_unique": true
+  }
+}

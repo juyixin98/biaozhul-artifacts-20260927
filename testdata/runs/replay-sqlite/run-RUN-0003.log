@@ -1,0 +1,11 @@
+[RUN-0003] === RUN-0003 :: TestFixtures_SQLite/03_reuse_after_timeout started 2026-09-27T20:11:28.848355207Z ===
+[RUN-0003] fixture=reuse_after_timeout backend=sqlite packets=7
+[RUN-0003] step=0 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0003] step=1 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0003] step=2 sqlite -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0003] step=3 sqlite -> accepted=false verdict=state_conflict/LATE_RETURN_EXPIRED detail=match=true port=- why=
+[RUN-0003] step=4 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0003] step=5 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0003] step=6 sqlite -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0003] fixture=reuse_after_timeout passed=true failures=0
+[RUN-0003] === RUN-0003 PASS duration=64.687711ms log=../../testdata/runs/replay-sqlite/run-RUN-0003.log ===

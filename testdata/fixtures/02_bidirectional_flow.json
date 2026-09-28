@@ -1,0 +1,177 @@
+{
+  "name": "bidirectional_flow_tcp",
+  "description": "Full TCP handshake, bidirectional data, endpoint-dependent filtering of an impostor inbound packet, graceful FIN close freeing the port.",
+  "port_pool_low": 40000,
+  "port_pool_high": 40010,
+  "packets": [
+    {
+      "group": 0,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "10.0.0.20",
+        "src_port": 41000,
+        "dst_ip": "198.51.100.50",
+        "dst_port": 443,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_sent"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:00.1Z",
+        "src_ip": "198.51.100.50",
+        "src_port": 443,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "SYN+ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_ack_rcvd"
+      }
+    },
+    {
+      "group": 2,
+      "packet": {
+        "ts": "2026-01-01T00:00:00.2Z",
+        "src_ip": "10.0.0.20",
+        "src_port": 41000,
+        "dst_ip": "198.51.100.50",
+        "dst_port": 443,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "established"
+      }
+    },
+    {
+      "group": 3,
+      "packet": {
+        "ts": "2026-01-01T00:00:01Z",
+        "src_ip": "10.0.0.20",
+        "src_port": 41000,
+        "dst_ip": "198.51.100.50",
+        "dst_port": 443,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "established"
+      }
+    },
+    {
+      "group": 4,
+      "packet": {
+        "ts": "2026-01-01T00:00:02Z",
+        "src_ip": "198.51.100.50",
+        "src_port": 443,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "established"
+      }
+    },
+    {
+      "group": 5,
+      "packet": {
+        "ts": "2026-01-01T00:00:03Z",
+        "src_ip": "198.51.100.99",
+        "src_port": 443,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "state_conflict",
+        "code": "ENDPOINT_FILTERED"
+      }
+    },
+    {
+      "group": 6,
+      "packet": {
+        "ts": "2026-01-01T00:00:04Z",
+        "src_ip": "198.51.100.50",
+        "src_port": 443,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "FIN+ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "fin_wait"
+      }
+    },
+    {
+      "group": 7,
+      "packet": {
+        "ts": "2026-01-01T00:00:04.1Z",
+        "src_ip": "10.0.0.20",
+        "src_port": 41000,
+        "dst_ip": "198.51.100.50",
+        "dst_port": 443,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "ACK"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "closed"
+      }
+    },
+    {
+      "group": 8,
+      "packet": {
+        "ts": "2026-01-01T00:00:05Z",
+        "src_ip": "10.0.0.20",
+        "src_port": 41000,
+        "dst_ip": "198.51.100.50",
+        "dst_port": 443,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_sent"
+      }
+    }
+  ],
+  "invariants": {
+    "accepted_count": 8,
+    "code_counts": {
+      "ENDPOINT_FILTERED": 1
+    },
+    "final_active_unique": true
+  }
+}

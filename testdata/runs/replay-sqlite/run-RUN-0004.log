@@ -1,0 +1,9 @@
+[RUN-0004] === RUN-0004 :: TestFixtures_SQLite/04_late_returns started 2026-09-27T20:11:28.913526055Z ===
+[RUN-0004] fixture=late_returns backend=sqlite packets=5
+[RUN-0004] step=0 sqlite -> accepted=false verdict=state_conflict/INBOUND_NO_MAPPING detail=match=true port=- why=
+[RUN-0004] step=1 sqlite -> accepted=false verdict=invalid_input/INBOUND_DST_MISMATCH detail=match=true port=- why=
+[RUN-0004] step=2 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0004] step=3 sqlite -> accepted=false verdict=state_conflict/LATE_RETURN_EXPIRED detail=match=true port=- why=
+[RUN-0004] step=4 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0004] fixture=late_returns passed=true failures=0
+[RUN-0004] === RUN-0004 PASS duration=46.035669ms log=../../testdata/runs/replay-sqlite/run-RUN-0004.log ===

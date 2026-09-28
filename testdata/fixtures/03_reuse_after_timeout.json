@@ -1,0 +1,24 @@
+{
+  "name": "reuse_after_timeout",
+  "description": "UDP TTL 10s. Mapping A created t=0 is refreshed by a return at t=1 (expires t=11). Flow B created t=6 stays alive until t=16. At t=15 exactly A is swept (swept=1) and its late return is LATE_RETURN_EXPIRED while B survives; the freed lowest port 40000 is reused by a fresh flow to the same private endpoint and its matching return is forwarded.",
+  "port_pool_low": 40000,
+  "port_pool_high": 40010,
+  "timeouts": {"tcp_syn_sent": "30s", "tcp_transient": "60s", "tcp_established": "7440s", "udp": "10s"},
+  "packets": [
+    {"group": 0, "packet": {"ts": "2026-01-01T00:00:00Z", "src_ip": "10.0.0.30", "src_port": 6000, "dst_ip": "198.51.100.70", "dst_port": 53, "protocol": "UDP", "direction": "outbound"},
+      "expect": {"accepted": true, "mapped_port": 40000, "state": "open"}},
+    {"group": 1, "packet": {"ts": "2026-01-01T00:00:01Z", "src_ip": "198.51.100.70", "src_port": 53, "dst_ip": "203.0.113.1", "dst_port": 40000, "protocol": "UDP", "direction": "inbound"},
+      "expect": {"accepted": true, "mapped_port": 40000, "state": "open"}},
+    {"group": 2, "packet": {"ts": "2026-01-01T00:00:06Z", "src_ip": "10.0.0.30", "src_port": 6001, "dst_ip": "198.51.100.80", "dst_port": 53, "protocol": "UDP", "direction": "outbound"},
+      "expect": {"accepted": true, "mapped_port": 40001, "state": "open"}},
+    {"group": 3, "packet": {"ts": "2026-01-01T00:00:15Z", "src_ip": "198.51.100.70", "src_port": 53, "dst_ip": "203.0.113.1", "dst_port": 40000, "protocol": "UDP", "direction": "inbound"},
+      "expect": {"accepted": false, "category": "state_conflict", "code": "LATE_RETURN_EXPIRED", "swept": 1}},
+    {"group": 4, "packet": {"ts": "2026-01-01T00:00:15.1Z", "src_ip": "10.0.0.30", "src_port": 6000, "dst_ip": "198.51.100.70", "dst_port": 53, "protocol": "UDP", "direction": "outbound"},
+      "expect": {"accepted": true, "mapped_port": 40000, "state": "open"}},
+    {"group": 5, "packet": {"ts": "2026-01-01T00:00:15.2Z", "src_ip": "198.51.100.70", "src_port": 53, "dst_ip": "203.0.113.1", "dst_port": 40000, "protocol": "UDP", "direction": "inbound"},
+      "expect": {"accepted": true, "mapped_port": 40000, "state": "open"}},
+    {"group": 6, "packet": {"ts": "2026-01-01T00:00:15.3Z", "src_ip": "10.0.0.30", "src_port": 6001, "dst_ip": "198.51.100.80", "dst_port": 53, "protocol": "UDP", "direction": "outbound"},
+      "expect": {"accepted": true, "mapped_port": 40001, "state": "open"}}
+  ],
+  "invariants": {"accepted_count": 6, "code_counts": {"LATE_RETURN_EXPIRED": 1}, "mapped_ports": [40000, 40000, 40001], "mapped_ports_note": "40000 appears twice on purpose: two non-overlapping mapping generations reuse it after expiry; final_active_unique guarantees no overlap", "final_active_unique": true}
+}

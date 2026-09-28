@@ -1,0 +1,3 @@
+[RUN-0004] === RUN-0004 :: TestConcurrentFirstPackets started 2026-09-27T20:11:28.420089782Z ===
+[RUN-0004] concurrent: accepted=3 exhausted=22 unique-ports=3 run=RUN-0004
+[RUN-0004] === RUN-0004 PASS duration=983.011µs log=../../testdata/runs/nat/run-RUN-0004.log ===

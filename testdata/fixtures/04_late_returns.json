@@ -1,0 +1,111 @@
+{
+  "name": "late_returns",
+  "description": "Rejected inbound traffic categories: port never owned (INBOUND_NO_MAPPING), return after expiry (LATE_RETURN_EXPIRED), wrong destination IP (INBOUND_DST_MISMATCH).",
+  "port_pool_low": 40000,
+  "port_pool_high": 40010,
+  "timeouts": {
+    "tcp_syn_sent": "5s",
+    "tcp_transient": "60s",
+    "tcp_established": "7440s",
+    "udp": "10s"
+  },
+  "packets": [
+    {
+      "group": 0,
+      "packet": {
+        "ts": "2026-01-01T00:00:00Z",
+        "src_ip": "198.51.100.77",
+        "src_port": 8080,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 55555,
+        "protocol": "UDP",
+        "direction": "inbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "state_conflict",
+        "code": "INBOUND_NO_MAPPING"
+      }
+    },
+    {
+      "group": 1,
+      "packet": {
+        "ts": "2026-01-01T00:00:01Z",
+        "src_ip": "198.51.100.77",
+        "src_port": 8080,
+        "dst_ip": "203.0.113.9",
+        "dst_port": 40000,
+        "protocol": "UDP",
+        "direction": "inbound"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "invalid_input",
+        "code": "INBOUND_DST_MISMATCH"
+      }
+    },
+    {
+      "group": 2,
+      "packet": {
+        "ts": "2026-01-01T00:00:02Z",
+        "src_ip": "10.0.0.40",
+        "src_port": 7000,
+        "dst_ip": "198.51.100.90",
+        "dst_port": 22,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_sent"
+      }
+    },
+    {
+      "group": 3,
+      "packet": {
+        "ts": "2026-01-01T00:00:08Z",
+        "src_ip": "198.51.100.90",
+        "src_port": 22,
+        "dst_ip": "203.0.113.1",
+        "dst_port": 40000,
+        "protocol": "TCP",
+        "direction": "inbound",
+        "flags": "SYN+ACK"
+      },
+      "expect": {
+        "accepted": false,
+        "category": "state_conflict",
+        "code": "LATE_RETURN_EXPIRED",
+        "swept": 1
+      }
+    },
+    {
+      "group": 4,
+      "packet": {
+        "ts": "2026-01-01T00:00:09Z",
+        "src_ip": "10.0.0.40",
+        "src_port": 7001,
+        "dst_ip": "198.51.100.91",
+        "dst_port": 22,
+        "protocol": "TCP",
+        "direction": "outbound",
+        "flags": "SYN"
+      },
+      "expect": {
+        "accepted": true,
+        "mapped_port": 40000,
+        "state": "syn_sent"
+      }
+    }
+  ],
+  "invariants": {
+    "accepted_count": 2,
+    "code_counts": {
+      "INBOUND_NO_MAPPING": 1,
+      "INBOUND_DST_MISMATCH": 1,
+      "LATE_RETURN_EXPIRED": 1
+    }
+  }
+}

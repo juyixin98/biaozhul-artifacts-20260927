@@ -1,0 +1,14 @@
+[RUN-0006] === RUN-0006 :: TestFixtures_SQLite/06_input_validation started 2026-09-27T20:11:29.077087795Z ===
+[RUN-0006] fixture=input_validation backend=sqlite packets=10
+[RUN-0006] step=0 sqlite -> accepted=false verdict=invalid_input/BAD_DIRECTION detail=match=true port=- why=
+[RUN-0006] step=1 sqlite -> accepted=false verdict=invalid_input/UNSUPPORTED_PROTOCOL detail=match=true port=- why=
+[RUN-0006] step=2 sqlite -> accepted=false verdict=invalid_input/UDP_FLAGS_NOT_ALLOWED detail=match=true port=- why=
+[RUN-0006] step=3 sqlite -> accepted=false verdict=invalid_input/BAD_FLAG detail=match=true port=- why=
+[RUN-0006] step=4 sqlite -> accepted=false verdict=invalid_input/BAD_FLAG detail=match=true port=- why=
+[RUN-0006] step=5 sqlite -> accepted=false verdict=invalid_input/BAD_SRC_IP detail=match=true port=- why=
+[RUN-0006] step=6 sqlite -> accepted=false verdict=invalid_input/BAD_SRC_PORT detail=match=true port=- why=
+[RUN-0006] step=7 sqlite -> accepted=false verdict=invalid_input/BAD_DST_PORT detail=match=true port=- why=
+[RUN-0006] step=8 sqlite -> accepted=false verdict=invalid_input/FRAGMENT_NOT_REASSEMBLED detail=match=true port=- why=
+[RUN-0006] step=9 sqlite -> accepted=false verdict=invalid_input/SRC_NOT_PRIVATE detail=match=true port=- why=
+[RUN-0006] fixture=input_validation passed=true failures=0
+[RUN-0006] === RUN-0006 PASS duration=37.620722ms log=../../testdata/runs/replay-sqlite/run-RUN-0006.log ===

@@ -1,0 +1,6 @@
+[RUN-0001] === RUN-0001 :: TestPortExhaustion started 2026-09-27T20:11:28.418746585Z ===
+[RUN-0001] step=0 udp-out -> accepted=true verdict=accepted detail=port=40000
+[RUN-0001] step=1 udp-out -> accepted=true verdict=accepted detail=port=40001
+[RUN-0001] step=2 udp-out -> accepted=true verdict=accepted detail=port=40002
+[RUN-0001] step=3 udp-out -> accepted=false verdict=PORT_EXHAUSTED detail=pool 40000-40002 full
+[RUN-0001] === RUN-0001 PASS duration=300.167µs log=../../testdata/runs/nat/run-RUN-0001.log ===

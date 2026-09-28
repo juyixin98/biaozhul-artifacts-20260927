@@ -1,0 +1,25 @@
+[RUN-0005] === RUN-0005 :: TestFixtures_SQLite/05_concurrent_first_packets started 2026-09-27T20:11:28.960185718Z ===
+[RUN-0005] fixture=concurrent_first_packets backend=sqlite packets=21
+[RUN-0005] step=0 sqlite -> accepted=true verdict=accepted detail=match=true port=40018 why=
+[RUN-0005] step=1 sqlite -> accepted=true verdict=accepted detail=match=true port=40019 why=
+[RUN-0005] step=2 sqlite -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0005] step=3 sqlite -> accepted=true verdict=accepted detail=match=true port=40014 why=
+[RUN-0005] step=4 sqlite -> accepted=true verdict=accepted detail=match=true port=40011 why=
+[RUN-0005] step=5 sqlite -> accepted=true verdict=accepted detail=match=true port=40002 why=
+[RUN-0005] step=6 sqlite -> accepted=true verdict=accepted detail=match=true port=40003 why=
+[RUN-0005] step=7 sqlite -> accepted=true verdict=accepted detail=match=true port=40004 why=
+[RUN-0005] step=8 sqlite -> accepted=true verdict=accepted detail=match=true port=40005 why=
+[RUN-0005] step=9 sqlite -> accepted=true verdict=accepted detail=match=true port=40006 why=
+[RUN-0005] step=10 sqlite -> accepted=true verdict=accepted detail=match=true port=40007 why=
+[RUN-0005] step=11 sqlite -> accepted=true verdict=accepted detail=match=true port=40008 why=
+[RUN-0005] step=12 sqlite -> accepted=true verdict=accepted detail=match=true port=40009 why=
+[RUN-0005] step=13 sqlite -> accepted=true verdict=accepted detail=match=true port=40010 why=
+[RUN-0005] step=14 sqlite -> accepted=true verdict=accepted detail=match=true port=40012 why=
+[RUN-0005] step=15 sqlite -> accepted=true verdict=accepted detail=match=true port=40013 why=
+[RUN-0005] step=16 sqlite -> accepted=true verdict=accepted detail=match=true port=40015 why=
+[RUN-0005] step=17 sqlite -> accepted=true verdict=accepted detail=match=true port=40016 why=
+[RUN-0005] step=18 sqlite -> accepted=true verdict=accepted detail=match=true port=40017 why=
+[RUN-0005] step=19 sqlite -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0005] step=20 sqlite -> accepted=true verdict=accepted detail=match=true port=40018 why=
+[RUN-0005] fixture=concurrent_first_packets passed=true failures=0
+[RUN-0005] === RUN-0005 PASS duration=116.172005ms log=../../testdata/runs/replay-sqlite/run-RUN-0005.log ===

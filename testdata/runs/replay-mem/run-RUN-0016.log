@@ -1,0 +1,10 @@
+[RUN-0016] === RUN-0016 :: TestFixtures_Mem/07_clock_rewind started 2026-09-27T20:11:29.287587863Z ===
+[RUN-0016] fixture=clock_rewind_no_revival backend=mem packets=6
+[RUN-0016] step=0 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0016] step=1 mem -> accepted=true verdict=accepted detail=match=true port=40000 why=
+[RUN-0016] step=2 mem -> accepted=true verdict=accepted detail=match=true port=40001 why=
+[RUN-0016] step=3 mem -> accepted=true verdict=accepted detail=match=true port=40002 why=
+[RUN-0016] step=4 mem -> accepted=false verdict=resource_exhausted/PORT_EXHAUSTED detail=match=true port=- why=
+[RUN-0016] step=5 mem -> accepted=false verdict=state_conflict/ENDPOINT_FILTERED detail=match=true port=- why=
+[RUN-0016] fixture=clock_rewind_no_revival passed=true failures=0
+[RUN-0016] === RUN-0016 PASS duration=109.041µs log=../../testdata/runs/replay-mem/run-RUN-0016.log ===
