@@ -1,0 +1,2 @@
+[console_scripts]
+teachchain = teachchain.cli:main

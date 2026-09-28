@@ -1,0 +1,13 @@
+{
+  "tx": {
+    "type": "deploy",
+    "from": "0x37d880d29be2a7ba",
+    "nonce": 0,
+    "gas_limit": 500000,
+    "to": null,
+    "code_b64": "IAAAAAAAAAAAQCAAAAAAAAAAAGABIAAAAAAAAAABYSAAAAAAAAAAASAAAAAAAAAAAFEgAAAAAAAAAAEgAAAAAAAAAADz",
+    "input": []
+  },
+  "pub_b64": "ejjCD1KuBJHUTUtdJ0ZVRFm7IebwvouorqDbLcVKEQs=",
+  "sig_b64": "td2J9lT+WkdHcwDgu48YhssOnUdO1PiUrzBg032ms5b1ijCKuxMreryrRviAIznrZm7k48J3AAcefJjgCO6XCA=="
+}
