@@ -1,0 +1,99 @@
+{
+  "name": "unique_signatures",
+  "description": "5 行合成表：即使最粗泛化（顶层），行 5 仍唯一（35-50/other）。k=2 在最粗层级仍不可达。",
+  "columns": [
+    {
+      "name": "age_band",
+      "role": "quasi_identifier",
+      "hierarchy": {
+        "levels": [
+          {
+            "18-24": "18-24",
+            "25-34": "25-34",
+            "35-50": "35-50",
+            "51+": "51+"
+          },
+          {
+            "18-24": "under35",
+            "25-34": "under35",
+            "35-50": "35+",
+            "51+": "35+"
+          }
+        ]
+      }
+    },
+    {
+      "name": "region",
+      "role": "quasi_identifier",
+      "hierarchy": {
+        "levels": [
+          {
+            "north": "north",
+            "south": "south",
+            "east": "east",
+            "west": "west",
+            "other": "other"
+          },
+          {
+            "north": "inland",
+            "south": "coastal",
+            "east": "coastal",
+            "west": "inland",
+            "other": "other"
+          }
+        ]
+      }
+    },
+    {
+      "name": "diagnosis",
+      "role": "sensitive"
+    }
+  ],
+  "rows": [
+    {
+      "age_band": "18-24",
+      "region": "north",
+      "diagnosis": "a"
+    },
+    {
+      "age_band": "18-24",
+      "region": "west",
+      "diagnosis": "b"
+    },
+    {
+      "age_band": "25-34",
+      "region": "south",
+      "diagnosis": "a"
+    },
+    {
+      "age_band": "25-34",
+      "region": "east",
+      "diagnosis": "c"
+    },
+    {
+      "age_band": "35-50",
+      "region": "other",
+      "diagnosis": "a"
+    }
+  ],
+  "k": 2,
+  "l": 1,
+  "expected": {
+    "n_rows": 5,
+    "k2_l1": {
+      "outcome": "K_UNREACHABLE",
+      "top_levels": {
+        "age_band": 1,
+        "region": 1
+      },
+      "top_class_sizes": [
+        2,
+        2,
+        1
+      ],
+      "blocking_class_sizes": [
+        1
+      ]
+    }
+  }
+}

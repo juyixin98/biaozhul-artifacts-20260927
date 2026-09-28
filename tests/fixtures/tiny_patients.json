@@ -1,0 +1,138 @@
+{
+  "name": "tiny_patients",
+  "description": "6 行合成患者小表：2 个 QI(age,city)+1 个敏感字段(diagnosis)。用于对 9 种泛化组合做完全穷举核验。",
+  "columns": [
+    {
+      "name": "age",
+      "role": "quasi_identifier",
+      "hierarchy": {
+        "levels": [
+          {
+            "22": "22",
+            "25": "25",
+            "31": "31",
+            "34": "34",
+            "46": "46",
+            "51": "51"
+          },
+          {
+            "22": "20-29",
+            "25": "20-29",
+            "31": "30-39",
+            "34": "30-39",
+            "46": "40-49",
+            "51": "50-59"
+          },
+          {
+            "22": "<40",
+            "25": "<40",
+            "31": "<40",
+            "34": "<40",
+            "46": "40+",
+            "51": "40+"
+          }
+        ]
+      }
+    },
+    {
+      "name": "city",
+      "role": "quasi_identifier",
+      "hierarchy": {
+        "levels": [
+          {
+            "Haidian": "Haidian",
+            "Xicheng": "Xicheng",
+            "Pudong": "Pudong",
+            "Xuhui": "Xuhui",
+            "Nanshan": "Nanshan",
+            "Tianhe": "Tianhe"
+          },
+          {
+            "Haidian": "Beijing",
+            "Xicheng": "Beijing",
+            "Pudong": "Shanghai",
+            "Xuhui": "Shanghai",
+            "Nanshan": "Shenzhen",
+            "Tianhe": "Guangzhou"
+          },
+          {
+            "Haidian": "China",
+            "Xicheng": "China",
+            "Pudong": "China",
+            "Xuhui": "China",
+            "Nanshan": "China",
+            "Tianhe": "China"
+          }
+        ]
+      }
+    },
+    {
+      "name": "diagnosis",
+      "role": "sensitive"
+    }
+  ],
+  "rows": [
+    {
+      "age": 22,
+      "city": "Haidian",
+      "diagnosis": "flu"
+    },
+    {
+      "age": 25,
+      "city": "Xicheng",
+      "diagnosis": "flu"
+    },
+    {
+      "age": 31,
+      "city": "Pudong",
+      "diagnosis": "diabetes"
+    },
+    {
+      "age": 34,
+      "city": "Xuhui",
+      "diagnosis": "flu"
+    },
+    {
+      "age": 46,
+      "city": "Nanshan",
+      "diagnosis": "hypertension"
+    },
+    {
+      "age": 51,
+      "city": "Tianhe",
+      "diagnosis": "diabetes"
+    }
+  ],
+  "k": 2,
+  "l": 2,
+  "expected": {
+    "space_size": 9,
+    "k2_l2": {
+      "optimal_levels": {
+        "age": 2,
+        "city": 2
+      },
+      "info_loss": 0.733333,
+      "class_sizes": [
+        4,
+        2
+      ],
+      "class_distinct_sensitive": [
+        2,
+        2
+      ],
+      "n_classes": 2
+    },
+    "k6_l1": {
+      "outcome": "K_UNREACHABLE",
+      "top_levels": {
+        "age": 2,
+        "city": 2
+      },
+      "top_class_sizes": [
+        4,
+        2
+      ]
+    }
+  }
+}

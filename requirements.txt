@@ -1,0 +1,11 @@
+# Runtime dependencies — pinned and frozen via requirements.lock
+# Python >= 3.11 (developed/verified on 3.12)
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.1
+cryptography==41.0.7
+
+# Test dependencies
+httpx==0.28.1
+pytest==8.3.4

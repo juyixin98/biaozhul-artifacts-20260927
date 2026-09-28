@@ -1,0 +1,39 @@
+{
+  "name": "homogeneous_dx",
+  "description": "4 行合成表，敏感字段 diagnosis 全部相同。k=2 可通过泛化满足，但 l=2 在数学上不可达。",
+  "columns": [
+    {
+      "name": "age",
+      "role": "quasi_identifier",
+      "hierarchy": {
+        "levels": [
+          {"21": "21", "24": "24", "41": "41", "45": "45"},
+          {"21": "young", "24": "young", "41": "old", "45": "old"}
+        ]
+      }
+    },
+    {"name": "diagnosis", "role": "sensitive"}
+  ],
+  "rows": [
+    {"age": 21, "diagnosis": "flu"},
+    {"age": 24, "diagnosis": "flu"},
+    {"age": 41, "diagnosis": "flu"},
+    {"age": 45, "diagnosis": "flu"}
+  ],
+  "k": 2,
+  "l": 2,
+  "expected": {
+    "n_rows": 4,
+    "k2_l1": {
+      "optimal_levels": {"age": 1},
+      "info_loss": 0.333333,
+      "class_sizes": [2, 2]
+    },
+    "k2_l2": {
+      "outcome": "L_UNREACHABLE",
+      "top_levels": {"age": 1},
+      "blocking_class_sizes": [2, 2],
+      "blocking_distinct_sensitive": [1, 1]
+    }
+  }
+}

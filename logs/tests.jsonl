@@ -1,0 +1,2 @@
+{"event": "session_start", "level": "info", "log_path": "/home/admin/Downloads/xinbiaozhu/opp276/a/logs/tests.jsonl", "logger": "anon.pytest", "message": "test session logging configured", "service": "anon-risk", "service_version": "1.0.0", "ts": "2026-09-28T07:57:56.017483+00:00"}
+{"event": "session_start", "level": "info", "log_path": "/home/admin/Downloads/xinbiaozhu/opp276/a/logs/tests.jsonl", "logger": "anon.pytest", "message": "test session logging configured", "service": "anon-risk", "service_version": "1.0.0", "ts": "2026-09-28T08:00:54.228876+00:00"}

@@ -1,0 +1,125 @@
+{
+  "name": "null_patients",
+  "description": "7 行合成表，age 含 2 个 NULL。验证 NULL 不被移出样本：两行 NULL 在所有层级独立成组且保留计数。",
+  "columns": [
+    {
+      "name": "age",
+      "role": "quasi_identifier",
+      "hierarchy": {
+        "levels": [
+          {
+            "20": "20",
+            "23": "23",
+            "41": "41",
+            "48": "48",
+            "60": "60"
+          },
+          {
+            "20": "20-29",
+            "23": "20-29",
+            "41": "40-49",
+            "48": "40-49",
+            "60": "60+"
+          },
+          {
+            "20": "<40",
+            "23": "<40",
+            "41": "40+",
+            "48": "40+",
+            "60": "40+"
+          }
+        ]
+      }
+    },
+    {
+      "name": "city",
+      "role": "quasi_identifier",
+      "hierarchy": {
+        "levels": [
+          {
+            "Haidian": "Haidian",
+            "Xicheng": "Xicheng",
+            "Pudong": "Pudong",
+            "Xuhui": "Xuhui",
+            "Nanshan": "Nanshan"
+          },
+          {
+            "Haidian": "Beijing",
+            "Xicheng": "Beijing",
+            "Pudong": "Shanghai",
+            "Xuhui": "Shanghai",
+            "Nanshan": "Shenzhen"
+          },
+          {
+            "Haidian": "China",
+            "Xicheng": "China",
+            "Pudong": "China",
+            "Xuhui": "China",
+            "Nanshan": "China"
+          }
+        ]
+      }
+    },
+    {
+      "name": "diagnosis",
+      "role": "sensitive"
+    }
+  ],
+  "rows": [
+    {
+      "age": 20,
+      "city": "Haidian",
+      "diagnosis": "flu"
+    },
+    {
+      "age": 23,
+      "city": "Xicheng",
+      "diagnosis": "cold"
+    },
+    {
+      "age": 41,
+      "city": "Pudong",
+      "diagnosis": "flu"
+    },
+    {
+      "age": 48,
+      "city": "Xuhui",
+      "diagnosis": "gout"
+    },
+    {
+      "age": 60,
+      "city": "Nanshan",
+      "diagnosis": "flu"
+    },
+    {
+      "age": null,
+      "city": "Haidian",
+      "diagnosis": "flu"
+    },
+    {
+      "age": null,
+      "city": "Xicheng",
+      "diagnosis": "diabetes"
+    }
+  ],
+  "k": 2,
+  "l": 2,
+  "expected": {
+    "n_rows": 7,
+    "n_null_qi_rows": 2,
+    "k2_l2": {
+      "optimal_levels": {
+        "age": 2,
+        "city": 2
+      },
+      "info_loss": 0.642857,
+      "class_sizes": [
+        3,
+        2,
+        2
+      ],
+      "null_class_size": 2,
+      "null_class_distinct_sensitive": 2
+    }
+  }
+}
