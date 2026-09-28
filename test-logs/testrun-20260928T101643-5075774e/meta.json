@@ -1,0 +1,15 @@
+{
+  "run_id": "testrun-20260928T101643-5075774e",
+  "started_at": 1790561803.4538171,
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "cwd": "/home/admin/Downloads/xinbiaozhu/opp250/a",
+  "package_versions": {
+    "fastapi": "0.141.1",
+    "pydantic": "2.13.5",
+    "pytest": "8.4.2",
+    "httpx": "0.28.1",
+    "re2": "unknown"
+  }
+}

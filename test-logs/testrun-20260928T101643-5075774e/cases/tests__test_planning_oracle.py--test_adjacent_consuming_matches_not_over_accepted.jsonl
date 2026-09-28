@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_adjacent_consuming_matches_not_over_accepted", "ts": 1790561803.754781, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "相邻两个消耗型都应入选", "ts": 1790561803.755188, "data": {"name": "spans", "value": [[0, 3], [3, 6]]}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.755327, "data": {"status": "passed", "detail": ""}}

@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_storage_apply.py::test_plan_bound_to_source_digest_and_version", "ts": 1790561806.142136, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "计划必须绑定创建时的版本号与源摘要", "ts": 1790561806.144219, "data": {"name": "binding", "value": {"plan_version": 1, "sha256": "9cf14100dad58a294f10d3777a69562c85f642e0bb717c4323c79b4efc419255"}}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561806.144395, "data": {"status": "passed", "detail": ""}}

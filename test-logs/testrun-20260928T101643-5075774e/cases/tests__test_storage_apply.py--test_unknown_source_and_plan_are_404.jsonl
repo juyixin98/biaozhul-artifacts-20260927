@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_storage_apply.py::test_unknown_source_and_plan_are_404", "ts": 1790561806.157427, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561806.158604, "data": {"status": "passed", "detail": ""}}

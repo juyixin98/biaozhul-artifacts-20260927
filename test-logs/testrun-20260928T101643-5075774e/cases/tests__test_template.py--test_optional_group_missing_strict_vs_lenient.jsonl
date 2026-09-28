@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_template.py::test_optional_group_missing_strict_vs_lenient", "ts": 1790561806.16628, "data": {}}
+{"seq": 2, "event": "failure_category", "message": "expect failure COMPUTE_CAPTURE_UNAVAILABLE", "ts": 1790561806.166853, "data": {"code": "COMPUTE_CAPTURE_UNAVAILABLE", "category": "compute", "http_status": 422}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561806.167037, "data": {"status": "passed", "detail": ""}}

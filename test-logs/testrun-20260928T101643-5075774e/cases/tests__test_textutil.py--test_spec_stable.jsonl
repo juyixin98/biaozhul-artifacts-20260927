@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_textutil.py::test_spec_stable", "ts": 1790561806.17134, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "字节长度应严格大于码点长度（含中文/希腊字母）", "ts": 1790561806.171665, "data": {"name": "spec", "value": {"sha256": "98f862bd7962c7ed79a3645188fc43b2f1f2ec3296f62b09329d19664784c362", "byte_len": 67, "char_len": 34}}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561806.171779, "data": {"status": "passed", "detail": ""}}

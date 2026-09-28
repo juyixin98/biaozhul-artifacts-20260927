@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_template.py::test_undefined_named_ref_rejected_before_matching", "ts": 1790561806.162804, "data": {}}
+{"seq": 2, "event": "failure_category", "message": "expect failure INPUT_INVALID_TEMPLATE", "ts": 1790561806.163177, "data": {"code": "INPUT_INVALID_TEMPLATE", "category": "input", "http_status": 422}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561806.163306, "data": {"status": "passed", "detail": ""}}

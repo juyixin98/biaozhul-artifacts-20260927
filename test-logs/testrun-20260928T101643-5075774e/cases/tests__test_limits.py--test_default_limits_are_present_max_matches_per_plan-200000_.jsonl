@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_limits.py::test_default_limits_are_present[max_matches_per_plan-200000]", "ts": 1790561803.742874, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.743259, "data": {"status": "passed", "detail": ""}}

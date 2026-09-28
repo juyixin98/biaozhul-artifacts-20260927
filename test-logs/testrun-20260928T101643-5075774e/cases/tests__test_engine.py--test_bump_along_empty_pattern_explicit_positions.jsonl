@@ -1,0 +1,4 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_engine.py::test_bump_along_empty_pattern_explicit_positions", "ts": 1790561803.71962, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "空模式应在 0,1,2 各命中一次（含串尾）", "ts": 1790561803.720042, "data": {"name": "empty_pattern_spans", "value": [[0, 0], [1, 1], [2, 2]]}}
+{"seq": 3, "event": "assertion", "message": "span list equals [(0,0),(1,1),(2,2)]", "ts": 1790561803.720082, "data": {"ok": true, "expected": [[0, 0], [1, 1], [2, 2]], "actual": [[0, 0], [1, 1], [2, 2]]}}
+{"seq": 4, "event": "case_end", "message": "", "ts": 1790561803.720218, "data": {"status": "passed", "detail": ""}}

@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_template.py::test_undefined_numeric_ref_rejected", "ts": 1790561806.164014, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561806.164416, "data": {"status": "passed", "detail": ""}}

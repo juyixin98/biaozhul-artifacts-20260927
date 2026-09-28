@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_api.py::test_collect_apply_returns_new_version", "ts": 1790561803.603842, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.619052, "data": {"status": "passed", "detail": ""}}

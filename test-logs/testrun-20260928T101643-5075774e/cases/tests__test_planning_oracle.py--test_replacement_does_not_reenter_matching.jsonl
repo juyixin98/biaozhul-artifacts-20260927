@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_replacement_does_not_reenter_matching", "ts": 1790561803.765109, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "替换出的 xx 不得在同轮再次触发规则", "ts": 1790561803.76554, "data": {"name": "output", "value": "xx"}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.765679, "data": {"status": "passed", "detail": ""}}

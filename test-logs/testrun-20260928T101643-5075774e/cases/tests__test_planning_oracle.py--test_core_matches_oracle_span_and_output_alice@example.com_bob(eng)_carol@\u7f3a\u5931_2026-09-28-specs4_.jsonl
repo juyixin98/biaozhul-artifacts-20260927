@@ -1,0 +1,7 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_core_matches_oracle_span_and_output[alice@example.com bob(eng) carol@\\u7f3a\\u5931 2026-09-28-specs4]", "ts": 1790561803.751984, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "core_spans", "ts": 1790561803.7527, "data": {"name": "core_spans", "value": [[0, 13, "mail", "<alice@example>", false]]}}
+{"seq": 3, "event": "intermediate_state", "message": "oracle_spans", "ts": 1790561803.752732, "data": {"name": "oracle_spans", "value": [[0, 13, "mail", "<alice@example>", false]]}}
+{"seq": 4, "event": "assertion", "message": "chosen spans identical to independent oracle", "ts": 1790561803.752753, "data": {"ok": true, "expected": [[0, 13, "mail", "<alice@example>", false]], "actual": [[0, 13, "mail", "<alice@example>", false]]}}
+{"seq": 5, "event": "assertion", "message": "displaced identical", "ts": 1790561803.752773, "data": {"ok": true, "expected": [], "actual": []}}
+{"seq": 6, "event": "assertion", "message": "applied text identical", "ts": 1790561803.752835, "data": {"ok": true, "expected": "<alice@example>.com bob(eng) carol@缺失 2026-09-28", "actual": "<alice@example>.com bob(eng) carol@缺失 2026-09-28"}}
+{"seq": 7, "event": "case_end", "message": "", "ts": 1790561803.752992, "data": {"status": "passed", "detail": ""}}

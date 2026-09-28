@@ -1,0 +1,14 @@
+{
+  "run_id": "testrun-20260928T101643-5075774e",
+  "run_dir": "test-logs/testrun-20260928T101643-5075774e",
+  "exit_status": 0,
+  "counts": {
+    "passed": 71,
+    "failed": 0,
+    "skipped": 0,
+    "error": 0
+  },
+  "total": 71,
+  "failed_cases": [],
+  "log_note": "cases/*.jsonl 含 seq 编号的关键中间状态与判断理由，可用 scripts/replay.py 重放"
+}

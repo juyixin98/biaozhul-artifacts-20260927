@@ -1,0 +1,10 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_textutil.py::test_large_map_consistent_with_naive", "ts": 1790561806.17429, "data": {}}
+{"seq": 2, "event": "assertion", "message": "offset@0", "ts": 1790561806.20885, "data": {"ok": true, "expected": 0, "actual": 0}}
+{"seq": 3, "event": "assertion", "message": "offset@1", "ts": 1790561806.208888, "data": {"ok": true, "expected": 3, "actual": 3}}
+{"seq": 4, "event": "assertion", "message": "offset@99", "ts": 1790561806.208908, "data": {"ok": true, "expected": 166, "actual": 166}}
+{"seq": 5, "event": "assertion", "message": "offset@1024", "ts": 1790561806.208941, "data": {"ok": true, "expected": 1683, "actual": 1683}}
+{"seq": 6, "event": "assertion", "message": "offset@1025", "ts": 1790561806.208962, "data": {"ok": true, "expected": 1686, "actual": 1686}}
+{"seq": 7, "event": "assertion", "message": "offset@12345", "ts": 1790561806.209042, "data": {"ok": true, "expected": 20233, "actual": 20233}}
+{"seq": 8, "event": "assertion", "message": "offset@33333", "ts": 1790561806.209234, "data": {"ok": true, "expected": 54701, "actual": 54701}}
+{"seq": 9, "event": "assertion", "message": "offset@50047", "ts": 1790561806.209536, "data": {"ok": true, "expected": 82058, "actual": 82058}}
+{"seq": 10, "event": "case_end", "message": "", "ts": 1790561806.210021, "data": {"status": "passed", "detail": ""}}

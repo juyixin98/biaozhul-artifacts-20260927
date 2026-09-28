@@ -1,0 +1,5 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_byte_ranges_verified_for_multibyte_matches", "ts": 1790561803.763822, "data": {}}
+{"seq": 2, "event": "assertion", "message": "byte slice for code@0", "ts": 1790561803.764277, "data": {"ok": true, "expected": "编号A-1", "actual": "编号A-1"}}
+{"seq": 3, "event": "assertion", "message": "byte slice for code@12", "ts": 1790561803.764318, "data": {"ok": true, "expected": "编号B-2", "actual": "编号B-2"}}
+{"seq": 4, "event": "assertion", "message": "byte slice for code@25", "ts": 1790561803.764338, "data": {"ok": true, "expected": "编号C-3", "actual": "编号C-3"}}
+{"seq": 5, "event": "case_end", "message": "", "ts": 1790561803.764493, "data": {"status": "passed", "detail": ""}}

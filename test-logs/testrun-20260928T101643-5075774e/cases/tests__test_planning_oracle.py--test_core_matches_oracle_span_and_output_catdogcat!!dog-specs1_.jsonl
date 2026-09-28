@@ -1,0 +1,7 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_core_matches_oracle_span_and_output[catdogcat!!dog-specs1]", "ts": 1790561803.746403, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "core_spans", "ts": 1790561803.747033, "data": {"name": "core_spans", "value": [[0, 3, "pet", "X", false], [3, 6, "pet", "X", false], [6, 9, "pet", "X", false], [11, 14, "pet", "X", false]]}}
+{"seq": 3, "event": "intermediate_state", "message": "oracle_spans", "ts": 1790561803.747066, "data": {"name": "oracle_spans", "value": [[0, 3, "pet", "X", false], [3, 6, "pet", "X", false], [6, 9, "pet", "X", false], [11, 14, "pet", "X", false]]}}
+{"seq": 4, "event": "assertion", "message": "chosen spans identical to independent oracle", "ts": 1790561803.747093, "data": {"ok": true, "expected": [[0, 3, "pet", "X", false], [3, 6, "pet", "X", false], [6, 9, "pet", "X", false], [11, 14, "pet", "X", false]], "actual": [[0, 3, "pet", "X", false], [3, 6, "pet", "X", false], [6, 9, "pet", "X", false], [11, 14, "pet", "X", false]]}}
+{"seq": 5, "event": "assertion", "message": "displaced identical", "ts": 1790561803.747118, "data": {"ok": true, "expected": [], "actual": []}}
+{"seq": 6, "event": "assertion", "message": "applied text identical", "ts": 1790561803.747195, "data": {"ok": true, "expected": "XXX!!X", "actual": "XXX!!X"}}
+{"seq": 7, "event": "case_end", "message": "", "ts": 1790561803.747337, "data": {"status": "passed", "detail": ""}}

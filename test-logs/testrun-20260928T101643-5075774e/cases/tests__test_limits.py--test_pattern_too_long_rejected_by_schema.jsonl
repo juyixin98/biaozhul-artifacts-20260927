@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_limits.py::test_pattern_too_long_rejected_by_schema", "ts": 1790561803.73861, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.739006, "data": {"status": "passed", "detail": ""}}

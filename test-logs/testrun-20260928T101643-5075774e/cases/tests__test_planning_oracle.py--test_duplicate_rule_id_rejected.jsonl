@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_duplicate_rule_id_rejected", "ts": 1790561803.766229, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.766797, "data": {"status": "passed", "detail": ""}}

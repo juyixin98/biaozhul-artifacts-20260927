@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_api.py::test_double_apply_conflict_over_http", "ts": 1790561803.658075, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.67602, "data": {"status": "passed", "detail": ""}}

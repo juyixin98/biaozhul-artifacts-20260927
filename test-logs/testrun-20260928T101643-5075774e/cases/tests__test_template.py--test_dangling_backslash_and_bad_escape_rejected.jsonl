@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_template.py::test_dangling_backslash_and_bad_escape_rejected", "ts": 1790561806.165041, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561806.165574, "data": {"status": "passed", "detail": ""}}

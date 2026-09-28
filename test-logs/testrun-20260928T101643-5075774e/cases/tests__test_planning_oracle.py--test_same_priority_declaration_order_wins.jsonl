@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_same_priority_declaration_order_wins", "ts": 1790561803.758557, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.759156, "data": {"status": "passed", "detail": ""}}

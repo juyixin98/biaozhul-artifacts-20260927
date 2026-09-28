@@ -1,0 +1,7 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_core_matches_oracle_span_and_output[ab-specs0]", "ts": 1790561803.744915, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "core_spans", "ts": 1790561803.74554, "data": {"name": "core_spans", "value": [[0, 0, "ins", "|", true], [1, 1, "ins", "|", true], [2, 2, "ins", "|", true]]}}
+{"seq": 3, "event": "intermediate_state", "message": "oracle_spans", "ts": 1790561803.745575, "data": {"name": "oracle_spans", "value": [[0, 0, "ins", "|", true], [1, 1, "ins", "|", true], [2, 2, "ins", "|", true]]}}
+{"seq": 4, "event": "assertion", "message": "chosen spans identical to independent oracle", "ts": 1790561803.745602, "data": {"ok": true, "expected": [[0, 0, "ins", "|", true], [1, 1, "ins", "|", true], [2, 2, "ins", "|", true]], "actual": [[0, 0, "ins", "|", true], [1, 1, "ins", "|", true], [2, 2, "ins", "|", true]]}}
+{"seq": 5, "event": "assertion", "message": "displaced identical", "ts": 1790561803.745625, "data": {"ok": true, "expected": [], "actual": []}}
+{"seq": 6, "event": "assertion", "message": "applied text identical", "ts": 1790561803.745696, "data": {"ok": true, "expected": "|a|b|", "actual": "|a|b|"}}
+{"seq": 7, "event": "case_end", "message": "", "ts": 1790561803.745833, "data": {"status": "passed", "detail": ""}}

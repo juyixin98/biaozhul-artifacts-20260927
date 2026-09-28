@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_engine.py::test_bad_syntax_rejected_with_reason", "ts": 1790561803.73083, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "compile_reason", "ts": 1790561803.731173, "data": {"name": "compile_reason", "value": "missing ]: [["}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.731306, "data": {"status": "passed", "detail": ""}}

@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_api.py::test_unknown_source_404_category", "ts": 1790561803.688663, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.694156, "data": {"status": "passed", "detail": ""}}

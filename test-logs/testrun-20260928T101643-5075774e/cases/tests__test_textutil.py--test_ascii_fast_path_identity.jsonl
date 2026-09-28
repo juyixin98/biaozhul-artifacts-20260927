@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_textutil.py::test_ascii_fast_path_identity", "ts": 1790561806.210612, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561806.21093, "data": {"status": "passed", "detail": ""}}

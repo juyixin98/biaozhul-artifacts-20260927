@@ -1,0 +1,5 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_large_text_performance_and_self_consistency", "ts": 1790561804.501531, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "120k 多字节规划应在数秒内", "ts": 1790561805.95909, "data": {"name": "elapsed_seconds", "value": 1.397}}
+{"seq": 3, "event": "intermediate_state", "message": "displaced", "ts": 1790561806.116998, "data": {"name": "chosen", "value": 130720}}
+{"seq": 4, "event": "intermediate_state", "message": "displaced", "ts": 1790561806.117048, "data": {"name": "displaced", "value": 2209}}
+{"seq": 5, "event": "case_end", "message": "", "ts": 1790561806.141151, "data": {"status": "passed", "detail": ""}}

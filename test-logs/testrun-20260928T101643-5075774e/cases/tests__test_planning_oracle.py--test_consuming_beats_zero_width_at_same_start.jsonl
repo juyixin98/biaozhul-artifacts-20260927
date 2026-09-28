@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_consuming_beats_zero_width_at_same_start", "ts": 1790561803.759754, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "同点消耗型必须先于零宽", "ts": 1790561803.760262, "data": {"name": "first_action", "value": ["eat", 0, 2]}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.760427, "data": {"status": "passed", "detail": ""}}

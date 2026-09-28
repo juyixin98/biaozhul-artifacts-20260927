@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_api.py::test_rules_validate_reports_each", "ts": 1790561803.696039, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.699812, "data": {"status": "passed", "detail": ""}}

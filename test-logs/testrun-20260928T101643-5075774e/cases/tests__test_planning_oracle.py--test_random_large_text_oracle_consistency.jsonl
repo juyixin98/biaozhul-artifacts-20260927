@@ -1,0 +1,4 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_random_large_text_oracle_consistency", "ts": 1790561803.767377, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "chosen_count", "ts": 1790561804.186958, "data": {"name": "chosen_count", "value": 8723}}
+{"seq": 3, "event": "intermediate_state", "message": "displaced_count", "ts": 1790561804.187027, "data": {"name": "displaced_count", "value": 164}}
+{"seq": 4, "event": "case_end", "message": "", "ts": 1790561804.500408, "data": {"status": "passed", "detail": ""}}

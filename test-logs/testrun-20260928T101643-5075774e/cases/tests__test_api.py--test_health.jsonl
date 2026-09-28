@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_api.py::test_health", "ts": 1790561803.555589, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561803.574642, "data": {"status": "passed", "detail": ""}}

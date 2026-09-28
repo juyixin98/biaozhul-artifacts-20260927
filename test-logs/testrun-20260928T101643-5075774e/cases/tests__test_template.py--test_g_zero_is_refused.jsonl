@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_template.py::test_g_zero_is_refused", "ts": 1790561806.169194, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561806.169684, "data": {"status": "passed", "detail": ""}}

@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_limits.py::test_program_too_large_distinct_from_syntax_error", "ts": 1790561803.739565, "data": {}}
+{"seq": 2, "event": "failure_category", "message": "expect failure COMPUTE_REGEX_PROGRAM_TOO_LARGE", "ts": 1790561803.739987, "data": {"code": "COMPUTE_REGEX_PROGRAM_TOO_LARGE", "category": "compute", "http_status": 413}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.740127, "data": {"status": "passed", "detail": ""}}

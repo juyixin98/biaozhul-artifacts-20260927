@@ -1,0 +1,4 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_lenient_capture_missing_renders_empty_and_matches_oracle", "ts": 1790561803.762542, "data": {}}
+{"seq": 2, "event": "assertion", "message": "lenient output vs oracle", "ts": 1790561803.763101, "data": {"ok": true, "expected": "[][ab9]", "actual": "[][ab9]"}}
+{"seq": 3, "event": "intermediate_state", "message": "output", "ts": 1790561803.76313, "data": {"name": "output", "value": "[][ab9]"}}
+{"seq": 4, "event": "case_end", "message": "", "ts": 1790561803.763255, "data": {"status": "passed", "detail": ""}}

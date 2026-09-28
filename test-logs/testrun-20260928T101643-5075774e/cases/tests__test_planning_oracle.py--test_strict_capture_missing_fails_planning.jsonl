@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_strict_capture_missing_fails_planning", "ts": 1790561803.761025, "data": {}}
+{"seq": 2, "event": "failure_category", "message": "expect failure COMPUTE_CAPTURE_UNAVAILABLE", "ts": 1790561803.761701, "data": {"code": "COMPUTE_CAPTURE_UNAVAILABLE", "category": "compute", "http_status": 422}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.761909, "data": {"status": "passed", "detail": ""}}

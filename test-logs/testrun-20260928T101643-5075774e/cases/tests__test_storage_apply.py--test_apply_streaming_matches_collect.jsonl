@@ -1,0 +1,6 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_storage_apply.py::test_apply_streaming_matches_collect", "ts": 1790561806.145856, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "3 码点分片应产生多块", "ts": 1790561806.148134, "data": {"name": "chunk_count", "value": 2}}
+{"seq": 3, "event": "intermediate_state", "message": "streamed", "ts": 1790561806.148163, "data": {"name": "streamed", "value": "[a@x.com] [b@y.org]"}}
+{"seq": 4, "event": "assertion", "message": "new current version is 2", "ts": 1790561806.148215, "data": {"ok": true, "expected": 2, "actual": 2}}
+{"seq": 5, "event": "intermediate_state", "message": "diag_events", "ts": 1790561806.148308, "data": {"name": "diag_events", "value": [["apply", "guard_ok"], ["apply", "output_built"], ["apply", "committed"]]}}
+{"seq": 6, "event": "case_end", "message": "", "ts": 1790561806.148488, "data": {"status": "passed", "detail": ""}}

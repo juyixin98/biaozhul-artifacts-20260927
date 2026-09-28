@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_engine.py::test_bump_along_adjacent_star_matches", "ts": 1790561803.720812, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "消耗后从 end 继续；零宽前进一码点", "ts": 1790561803.721215, "data": {"name": "star_spans", "value": [[0, 2], [2, 2], [3, 3]]}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.721368, "data": {"status": "passed", "detail": ""}}

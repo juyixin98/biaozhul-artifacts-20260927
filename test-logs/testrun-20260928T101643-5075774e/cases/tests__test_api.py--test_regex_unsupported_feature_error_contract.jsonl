@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_api.py::test_regex_unsupported_feature_error_contract", "ts": 1790561803.62149, "data": {}}
+{"seq": 2, "event": "failure_category", "message": "expect failure COMPUTE_REGEX_COMPILE", "ts": 1790561803.628917, "data": {"code": "COMPUTE_REGEX_COMPILE", "category": "compute", "http_status": 422}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.629088, "data": {"status": "passed", "detail": ""}}

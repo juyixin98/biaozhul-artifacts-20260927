@@ -1,0 +1,7 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_textutil.py::test_multibyte_byte_spans", "ts": 1790561806.172297, "data": {}}
+{"seq": 2, "event": "assertion", "message": "byte span [0,1)", "ts": 1790561806.172626, "data": {"ok": true, "expected": [0, 1], "actual": [0, 1]}}
+{"seq": 3, "event": "assertion", "message": "byte span [1,2)", "ts": 1790561806.172661, "data": {"ok": true, "expected": [1, 4], "actual": [1, 4]}}
+{"seq": 4, "event": "assertion", "message": "byte span [3,4)", "ts": 1790561806.172681, "data": {"ok": true, "expected": [5, 8], "actual": [5, 8]}}
+{"seq": 5, "event": "assertion", "message": "byte span [0,5)", "ts": 1790561806.172699, "data": {"ok": true, "expected": [0, 9], "actual": [0, 9]}}
+{"seq": 6, "event": "assertion", "message": "byte span [2,3)", "ts": 1790561806.172717, "data": {"ok": true, "expected": [4, 5], "actual": [4, 5]}}
+{"seq": 7, "event": "case_end", "message": "", "ts": 1790561806.17282, "data": {"status": "passed", "detail": ""}}

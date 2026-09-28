@@ -1,0 +1,3 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_multi_rule_overlap_crossing_priority", "ts": 1790561803.757212, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "chosen", "ts": 1790561803.757806, "data": {"name": "chosen", "value": [["long", 0, 4]]}}
+{"seq": 3, "event": "case_end", "message": "", "ts": 1790561803.757963, "data": {"status": "passed", "detail": ""}}

@@ -1,0 +1,9 @@
+# 已验证的本地依赖集（PyPI 预编译 wheel，无需系统库/生产账号）。
+# 实际安装版本由 `pip freeze` 核对；测试在这些版本上 71 passed。
+fastapi==0.141.1
+starlette==1.7.0
+uvicorn==0.54.0
+pydantic==2.13.5
+google-re2==1.1.20251105   # Google RE2：线性时间、无回溯正则引擎（manylinux wheel）
+pytest==8.4.2
+httpx==0.28.1

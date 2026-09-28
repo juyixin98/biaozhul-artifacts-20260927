@@ -1,0 +1,2 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_template.py::test_g_numeric_form", "ts": 1790561806.167768, "data": {}}
+{"seq": 2, "event": "case_end", "message": "", "ts": 1790561806.168458, "data": {"status": "passed", "detail": ""}}

@@ -1,0 +1,4 @@
+{"seq": 1, "event": "case_start", "message": "tests/test_planning_oracle.py::test_multi_rule_overlap_priority_resolution", "ts": 1790561803.755917, "data": {}}
+{"seq": 2, "event": "intermediate_state", "message": "chosen", "ts": 1790561803.756459, "data": {"name": "chosen", "value": [["high", 0, 2], ["high", 2, 4]]}}
+{"seq": 3, "event": "intermediate_state", "message": "displaced", "ts": 1790561803.756491, "data": {"name": "displaced", "value": [["low", 0, 3, "covered_by_higher_priority"]]}}
+{"seq": 4, "event": "case_end", "message": "", "ts": 1790561803.75666, "data": {"status": "passed", "detail": ""}}
