@@ -1,0 +1,65 @@
+[
+    {
+        "record_id": "cln-de13ba1e6fdb4f97909d64e88f9f3440",
+        "request_id": "req-demo-ovw-stale",
+        "table_name": "demo_events",
+        "kind": "STALE_STAGED_FILE",
+        "path": "req-demo-ovw-stale__13d686bccfb9__us_v2.parquet",
+        "status": "REMOVED",
+        "error": null
+    },
+    {
+        "record_id": "cln-e485e94a98a644d5a047e37e6ea63078",
+        "request_id": "req-demo-us",
+        "table_name": "demo_events",
+        "kind": "STALE_STAGED_FILE",
+        "path": "req-demo-us__c8e59b230787__us.parquet",
+        "status": "REMOVED",
+        "error": null
+    },
+    {
+        "record_id": "cln-6e6dcb4e3fe142e8acd13f1c877b795c",
+        "request_id": "req-demo-us",
+        "table_name": "demo_events",
+        "kind": "STALE_STAGED_FILE",
+        "path": "req-demo-us__c8e59b230787__us.parquet",
+        "status": "REMOVED",
+        "error": null
+    },
+    {
+        "record_id": "cln-6acee45f9f9e46d88329d2b7d85e66df",
+        "request_id": "req-reconcile",
+        "table_name": "_warehouse",
+        "kind": "WAREHOUSE_ORPHAN",
+        "path": "stray.parquet",
+        "status": "REMOVED",
+        "error": null
+    },
+    {
+        "record_id": "cln-62a5c49a6aa14cc8a6de3f771810a37a",
+        "request_id": "req-reconcile",
+        "table_name": "_warehouse",
+        "kind": "WAREHOUSE_ORPHAN",
+        "path": "_orphan_demo",
+        "status": "REMOVED",
+        "error": null
+    },
+    {
+        "record_id": "cln-15656f43a2024c6eb273feb2d048f4fa",
+        "request_id": "req-curl-dup",
+        "table_name": "curl_events_1790557025",
+        "kind": "STALE_STAGED_FILE",
+        "path": "req-curl-dup__991325d1d564__us_20240101_v2.parquet",
+        "status": "REMOVED",
+        "error": null
+    },
+    {
+        "record_id": "cln-670fec112ca040f5affbe3fac77d0104",
+        "request_id": "req-curl-us",
+        "table_name": "curl_events_1790557025",
+        "kind": "STALE_STAGED_FILE",
+        "path": "req-curl-us__6f48552ddbb4__us_20240101.parquet",
+        "status": "REMOVED",
+        "error": null
+    }
+]

@@ -1,0 +1,11 @@
+=== A. non-parquet file -> 422 STAGING_FAILED, caller request_id preserved
+{"error":"STAGING_FAILED","message":"cannot read parquet file not_parquet.parquet: Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.","request_id":"req-abnormal-bad","details":{"file":"not_parquet.parquet","cause":"ArrowInvalid"}}
+HTTP 422
+
+=== B. retry same bad file (lost response) -> same category, replayed=true
+{"error":"STAGING_FAILED","message":"cannot read parquet file not_parquet.parquet: Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file.","request_id":"req-abnormal-bad","details":{"replayed":true}}
+HTTP 422
+
+=== C. unknown table -> 404 NOT_FOUND
+{"error":"NOT_FOUND","message":"table 'nope' does not exist","request_id":"req-a97b60cc7e31","details":{"table":"nope"}}
+HTTP 404

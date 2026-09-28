@@ -1,0 +1,98 @@
+[
+    {
+        "request_id": "req-demo-eu",
+        "table": "demo_events",
+        "operation": "APPEND",
+        "status": "COMMITTED",
+        "base_snapshot_id": 1,
+        "final_snapshot_id": 2,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": null,
+        "error_message": null
+    },
+    {
+        "request_id": "req-demo-us",
+        "table": "demo_events",
+        "operation": "APPEND",
+        "status": "COMMITTED",
+        "base_snapshot_id": 1,
+        "final_snapshot_id": 3,
+        "rebased": true,
+        "attempts": 1,
+        "error_category": null,
+        "error_message": null
+    },
+    {
+        "request_id": "req-demo-ovw-ok",
+        "table": "demo_events",
+        "operation": "OVERWRITE",
+        "status": "COMMITTED",
+        "base_snapshot_id": 3,
+        "final_snapshot_id": 4,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": null,
+        "error_message": null
+    },
+    {
+        "request_id": "req-demo-ovw-stale",
+        "table": "demo_events",
+        "operation": "OVERWRITE",
+        "status": "REJECTED",
+        "base_snapshot_id": 1,
+        "final_snapshot_id": null,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": "CONFLICT_OVERLAPPING_PARTITION",
+        "error_message": "OVERWRITE conflicts: partition(s) ['region=us/day=2024-01-01'] changed since base snapshot 1; HEAD is now 4"
+    },
+    {
+        "request_id": "req-curl-us",
+        "table": "curl_events_1790557025",
+        "operation": "APPEND",
+        "status": "COMMITTED",
+        "base_snapshot_id": 5,
+        "final_snapshot_id": 6,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": null,
+        "error_message": null
+    },
+    {
+        "request_id": "req-curl-eu",
+        "table": "curl_events_1790557025",
+        "operation": "APPEND",
+        "status": "COMMITTED",
+        "base_snapshot_id": 5,
+        "final_snapshot_id": 7,
+        "rebased": true,
+        "attempts": 1,
+        "error_category": null,
+        "error_message": null
+    },
+    {
+        "request_id": "req-curl-dup",
+        "table": "curl_events_1790557025",
+        "operation": "APPEND",
+        "status": "REJECTED",
+        "base_snapshot_id": 5,
+        "final_snapshot_id": null,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": "CONFLICT_OVERLAPPING_PARTITION",
+        "error_message": "APPEND conflicts: partition(s) ['region=us/day=2024-01-01'] changed since base snapshot 5; HEAD is now 7"
+    },
+    {
+        "request_id": "req-abnormal-bad",
+        "table": "demo_events",
+        "operation": "APPEND",
+        "status": "FAILED",
+        "base_snapshot_id": 1,
+        "final_snapshot_id": null,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": "STAGING_FAILED",
+        "error_message": "cannot read parquet file not_parquet.parquet: Parquet magic bytes not found in footer. Either the file is corrupted or this is not a parquet file."
+    }
+]

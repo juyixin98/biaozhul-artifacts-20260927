@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+pyarrow
+httpx<0.29
+pytest
+pydantic

@@ -1,0 +1,180 @@
+--- create table partitioned by region,day
+table=curl_events_1790557025 root_snapshot_id=5
+--- append us/2024-01-01 at root
+{
+    "request_id": "req-curl-us",
+    "table": "curl_events_1790557025",
+    "operation": "APPEND",
+    "status": "COMMITTED",
+    "base_snapshot_id": 5,
+    "head_before_snapshot_id": 5,
+    "snapshot_id": 6,
+    "rebased": false,
+    "replayed": false,
+    "attempts": 1,
+    "files": [
+        {
+            "relpath": "curl_events_1790557025/req-curl-us/000-us_20240101.parquet",
+            "source": "us_20240101.parquet",
+            "fingerprint": "6f48552ddbb4",
+            "row_count": 3,
+            "partition_keys": [
+                "region=us/day=2024-01-01"
+            ]
+        }
+    ],
+    "total_row_count": 3,
+    "partition_keys": [
+        "region=us/day=2024-01-01"
+    ],
+    "error_category": null,
+    "error_message": null
+}
+--- stale append of a DIFFERENT partition (eu) from root: rebased/accepted
+{
+    "request_id": "req-curl-eu",
+    "table": "curl_events_1790557025",
+    "operation": "APPEND",
+    "status": "COMMITTED",
+    "base_snapshot_id": 5,
+    "head_before_snapshot_id": 6,
+    "snapshot_id": 7,
+    "rebased": true,
+    "replayed": false,
+    "attempts": 1,
+    "files": [
+        {
+            "relpath": "curl_events_1790557025/req-curl-eu/000-eu_20240101.parquet",
+            "source": "eu_20240101.parquet",
+            "fingerprint": "826f38d7bb97",
+            "row_count": 2,
+            "partition_keys": [
+                "region=eu/day=2024-01-01"
+            ]
+        }
+    ],
+    "total_row_count": 5,
+    "partition_keys": [
+        "region=eu/day=2024-01-01"
+    ],
+    "error_category": null,
+    "error_message": null
+}
+--- stale append of the SAME partition from root: 409 hard conflict
+{
+    "error": "CONFLICT_OVERLAPPING_PARTITION",
+    "message": "APPEND conflicts: partition(s) ['region=us/day=2024-01-01'] changed since base snapshot 5; HEAD is now 7",
+    "request_id": "req-curl-dup",
+    "details": {
+        "table": "curl_events_1790557025",
+        "base_snapshot_id": 5,
+        "head_snapshot_id": 7,
+        "overlapping_partitions": [
+            "region=us/day=2024-01-01"
+        ],
+        "changed_partitions": [
+            "region=eu/day=2024-01-01",
+            "region=us/day=2024-01-01"
+        ],
+        "requested_partitions": [
+            "region=us/day=2024-01-01"
+        ]
+    }
+}
+--- replay the first request (lost response): same snapshot, replayed=true
+{
+    "request_id": "req-curl-us",
+    "table": "curl_events_1790557025",
+    "operation": "APPEND",
+    "status": "COMMITTED",
+    "base_snapshot_id": 5,
+    "head_before_snapshot_id": 5,
+    "snapshot_id": 6,
+    "rebased": false,
+    "replayed": true,
+    "attempts": 1,
+    "files": [
+        {
+            "relpath": "curl_events_1790557025/req-curl-us/000-us_20240101.parquet",
+            "source": "us_20240101.parquet",
+            "fingerprint": "6f48552ddbb4",
+            "row_count": 3,
+            "partition_keys": [
+                "region=us/day=2024-01-01"
+            ]
+        }
+    ],
+    "total_row_count": 3,
+    "partition_keys": [
+        "region=us/day=2024-01-01"
+    ],
+    "error_category": null,
+    "error_message": null
+}
+--- inspect latest snapshot rowset and the commit log
+{
+    "snapshot_id": 7,
+    "parent_snapshot_id": 6,
+    "operation": "APPEND",
+    "commit_id": "req-curl-eu",
+    "created_at": 1790557025.6062586,
+    "row_count": 5,
+    "files": [
+        {
+            "relpath": "curl_events_1790557025/req-curl-eu/000-eu_20240101.parquet",
+            "source": "000-eu_20240101.parquet",
+            "fingerprint": "",
+            "row_count": 2,
+            "partition_keys": [
+                "region=eu/day=2024-01-01"
+            ]
+        },
+        {
+            "relpath": "curl_events_1790557025/req-curl-us/000-us_20240101.parquet",
+            "source": "000-us_20240101.parquet",
+            "fingerprint": "",
+            "row_count": 3,
+            "partition_keys": [
+                "region=us/day=2024-01-01"
+            ]
+        }
+    ]
+}
+[
+    {
+        "request_id": "req-curl-us",
+        "table": "curl_events_1790557025",
+        "operation": "APPEND",
+        "status": "COMMITTED",
+        "base_snapshot_id": 5,
+        "final_snapshot_id": 6,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": null,
+        "error_message": null
+    },
+    {
+        "request_id": "req-curl-eu",
+        "table": "curl_events_1790557025",
+        "operation": "APPEND",
+        "status": "COMMITTED",
+        "base_snapshot_id": 5,
+        "final_snapshot_id": 7,
+        "rebased": true,
+        "attempts": 1,
+        "error_category": null,
+        "error_message": null
+    },
+    {
+        "request_id": "req-curl-dup",
+        "table": "curl_events_1790557025",
+        "operation": "APPEND",
+        "status": "REJECTED",
+        "base_snapshot_id": 5,
+        "final_snapshot_id": null,
+        "rebased": false,
+        "attempts": 1,
+        "error_category": "CONFLICT_OVERLAPPING_PARTITION",
+        "error_message": "APPEND conflicts: partition(s) ['region=us/day=2024-01-01'] changed since base snapshot 5; HEAD is now 7"
+    }
+]

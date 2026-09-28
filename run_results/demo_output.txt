@@ -1,0 +1,247 @@
+
+=== 1a concurrent APPEND us/0101 (base=1) -> HTTP 201
+{
+  "request_id": "req-demo-us",
+  "table": "demo_events",
+  "operation": "APPEND",
+  "status": "COMMITTED",
+  "base_snapshot_id": 1,
+  "head_before_snapshot_id": 2,
+  "snapshot_id": 3,
+  "rebased": true,
+  "replayed": false,
+  "attempts": 1,
+  "files": [
+    {
+      "relpath": "demo_events/req-demo-us/000-us.parquet",
+      "source": "us.parquet",
+      "fingerprint": "c8e59b230787",
+      "row_count": 2,
+      "partition_keys": [
+        "region=us/day=2024-01-01"
+      ]
+    }
+  ],
+  "total_row_count": 3,
+  "partition_keys": [
+    "region=us/day=2024-01-01"
+  ],
+  "error_category": null,
+  "error_message": null
+}
+
+=== 1b concurrent APPEND eu/0101 (base=1, disjoint -> rebased) -> HTTP 201
+{
+  "request_id": "req-demo-eu",
+  "table": "demo_events",
+  "operation": "APPEND",
+  "status": "COMMITTED",
+  "base_snapshot_id": 1,
+  "head_before_snapshot_id": 1,
+  "snapshot_id": 2,
+  "rebased": false,
+  "replayed": false,
+  "attempts": 1,
+  "files": [
+    {
+      "relpath": "demo_events/req-demo-eu/000-eu.parquet",
+      "source": "eu.parquet",
+      "fingerprint": "8255a860aadf",
+      "row_count": 1,
+      "partition_keys": [
+        "region=eu/day=2024-01-01"
+      ]
+    }
+  ],
+  "total_row_count": 1,
+  "partition_keys": [
+    "region=eu/day=2024-01-01"
+  ],
+  "error_category": null,
+  "error_message": null
+}
+
+=== 2a OVERWRITE us/0101 from current HEAD -> HTTP 201
+{
+  "request_id": "req-demo-ovw-ok",
+  "table": "demo_events",
+  "operation": "OVERWRITE",
+  "status": "COMMITTED",
+  "base_snapshot_id": 3,
+  "head_before_snapshot_id": 3,
+  "snapshot_id": 4,
+  "rebased": false,
+  "replayed": false,
+  "attempts": 1,
+  "files": [
+    {
+      "relpath": "demo_events/req-demo-ovw-ok/000-us_v2.parquet",
+      "source": "us_v2.parquet",
+      "fingerprint": "13d686bccfb9",
+      "row_count": 1,
+      "partition_keys": [
+        "region=us/day=2024-01-01"
+      ]
+    }
+  ],
+  "total_row_count": 2,
+  "partition_keys": [
+    "region=us/day=2024-01-01"
+  ],
+  "error_category": null,
+  "error_message": null
+}
+
+=== 2b OVERWRITE us/0101 from stale base=1 -> 409 conflict -> HTTP 409
+{
+  "error": "CONFLICT_OVERLAPPING_PARTITION",
+  "message": "OVERWRITE conflicts: partition(s) ['region=us/day=2024-01-01'] changed since base snapshot 1; HEAD is now 4",
+  "request_id": "req-demo-ovw-stale",
+  "details": {
+    "table": "demo_events",
+    "base_snapshot_id": 1,
+    "head_snapshot_id": 4,
+    "overlapping_partitions": [
+      "region=us/day=2024-01-01"
+    ],
+    "changed_partitions": [
+      "region=eu/day=2024-01-01",
+      "region=us/day=2024-01-01"
+    ],
+    "requested_partitions": [
+      "region=us/day=2024-01-01"
+    ]
+  }
+}
+
+=== 3a first call (already committed earlier -> stored outcome) -> HTTP 201
+{
+  "request_id": "req-demo-us",
+  "table": "demo_events",
+  "operation": "APPEND",
+  "status": "COMMITTED",
+  "base_snapshot_id": 1,
+  "head_before_snapshot_id": 1,
+  "snapshot_id": 3,
+  "rebased": true,
+  "replayed": true,
+  "attempts": 1,
+  "files": [
+    {
+      "relpath": "demo_events/req-demo-us/000-us.parquet",
+      "source": "us.parquet",
+      "fingerprint": "c8e59b230787",
+      "row_count": 2,
+      "partition_keys": [
+        "region=us/day=2024-01-01"
+      ]
+    }
+  ],
+  "total_row_count": 3,
+  "partition_keys": [
+    "region=eu/day=2024-01-01",
+    "region=us/day=2024-01-01"
+  ],
+  "error_category": null,
+  "error_message": null
+}
+
+=== 3b identical retry (same request_id + same bytes) -> HTTP 201
+{
+  "request_id": "req-demo-us",
+  "table": "demo_events",
+  "operation": "APPEND",
+  "status": "COMMITTED",
+  "base_snapshot_id": 1,
+  "head_before_snapshot_id": 1,
+  "snapshot_id": 3,
+  "rebased": true,
+  "replayed": true,
+  "attempts": 1,
+  "files": [
+    {
+      "relpath": "demo_events/req-demo-us/000-us.parquet",
+      "source": "us.parquet",
+      "fingerprint": "c8e59b230787",
+      "row_count": 2,
+      "partition_keys": [
+        "region=us/day=2024-01-01"
+      ]
+    }
+  ],
+  "total_row_count": 3,
+  "partition_keys": [
+    "region=eu/day=2024-01-01",
+    "region=us/day=2024-01-01"
+  ],
+  "error_category": null,
+  "error_message": null
+}
+
+=== 4a orphan scan -> HTTP 200
+{
+  "orphan_files": [
+    "_orphan_demo/stray.parquet"
+  ],
+  "orphan_directories": [
+    "_orphan_demo"
+  ],
+  "referenced_file_count": 3
+}
+
+=== 4b orphan reconcile -> HTTP 200
+{
+  "removed_files": [
+    "_orphan_demo/stray.parquet"
+  ],
+  "removed_directories": [
+    "_orphan_demo"
+  ],
+  "scan": {
+    "orphan_files": [
+      "_orphan_demo/stray.parquet"
+    ],
+    "orphan_directories": [
+      "_orphan_demo"
+    ],
+    "referenced_file_count": 3
+  }
+}
+
+=== FINAL latest snapshot
+{
+  "snapshot_id": 4,
+  "parent_snapshot_id": 3,
+  "operation": "OVERWRITE",
+  "commit_id": "req-demo-ovw-ok",
+  "created_at": 1790557025.4175823,
+  "row_count": 2,
+  "files": [
+    {
+      "relpath": "demo_events/req-demo-eu/000-eu.parquet",
+      "source": "000-eu.parquet",
+      "fingerprint": "",
+      "row_count": 1,
+      "partition_keys": [
+        "region=eu/day=2024-01-01"
+      ]
+    },
+    {
+      "relpath": "demo_events/req-demo-ovw-ok/000-us_v2.parquet",
+      "source": "000-us_v2.parquet",
+      "fingerprint": "",
+      "row_count": 1,
+      "partition_keys": [
+        "region=us/day=2024-01-01"
+      ]
+    }
+  ]
+}
+
+=== FINAL commit log
+  req-demo-eu            COMMITTED op=APPEND    snap=2 err=None
+  req-demo-us            COMMITTED op=APPEND    snap=3 err=None
+  req-demo-ovw-ok        COMMITTED op=OVERWRITE snap=4 err=None
+  req-demo-ovw-stale     REJECTED  op=OVERWRITE snap=None err=CONFLICT_OVERLAPPING_PARTITION
+
+Demo finished successfully.

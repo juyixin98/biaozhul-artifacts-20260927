@@ -1,0 +1,72 @@
+{
+  "after_append_all": {
+    "partitions": [
+      "region=eu/day=2024-01-01",
+      "region=us/day=2024-01-01",
+      "region=us/day=2024-01-02"
+    ],
+    "row_count": 7
+  },
+  "after_overwrite_us_0101": {
+    "amount_sum": 520,
+    "files_for_partition": {
+      "region=us/day=2024-01-01": [
+        "events/us_20240101_v2.parquet"
+      ]
+    },
+    "partitions": [
+      "region=eu/day=2024-01-01",
+      "region=us/day=2024-01-01",
+      "region=us/day=2024-01-02"
+    ],
+    "row_count": 6
+  },
+  "bad_files": [
+    "bad/not_parquet.parquet",
+    "bad/wrong_schema.parquet",
+    "bad/missing_partition_col.parquet"
+  ],
+  "files": {
+    "events/eu_20240101.parquet": {
+      "amount_sum": 130,
+      "partitions": [
+        "region=eu/day=2024-01-01"
+      ],
+      "row_count": 2
+    },
+    "events/us_20240101.parquet": {
+      "amount_sum": 60,
+      "partitions": [
+        "region=us/day=2024-01-01"
+      ],
+      "row_count": 3
+    },
+    "events/us_20240101_v2.parquet": {
+      "amount_sum": 300,
+      "partitions": [
+        "region=us/day=2024-01-01"
+      ],
+      "row_count": 2
+    },
+    "events/us_20240102.parquet": {
+      "amount_sum": 90,
+      "partitions": [
+        "region=us/day=2024-01-02"
+      ],
+      "row_count": 2
+    }
+  },
+  "orphan_fixture_relpath": "_orphan_demo/stray.parquet",
+  "partition_spec": [
+    "region",
+    "day"
+  ],
+  "schema_columns": [
+    "sale_id",
+    "region",
+    "day",
+    "amount",
+    "owner"
+  ],
+  "table": "events"
+}

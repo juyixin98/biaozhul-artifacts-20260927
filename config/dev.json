@@ -1,0 +1,8 @@
+{
+  "warehouse_dir": "warehouse",
+  "db_path": "run_results/metadata.sqlite3",
+  "staging_dir": "run_results/staging",
+  "orphan_prefix": "_orphan_demo",
+  "max_retry_attempts": 3,
+  "log_full_paths": false
+}
