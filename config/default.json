@@ -1,0 +1,16 @@
+{
+  "data_root": "data",
+  "chunk_size": 5000,
+  "query": {
+    "default_interval_budget": 256,
+    "max_interval_budget": 1000000
+  },
+  "storage": {
+    "arrow_compression": "zstd",
+    "code_uint64_when_fit": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/zcluster.log"
+  }
+}

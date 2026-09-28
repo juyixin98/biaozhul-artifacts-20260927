@@ -1,0 +1,304 @@
+{
+  "started_at": "20260928T033420Z",
+  "workdir": "/tmp/zcluster-acceptance-20260928T033420Z-dmg3k41n",
+  "python": "3.12.3",
+  "pytest": {
+    "returncode": 0,
+    "summary_tail": "..................................                                       [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.12/site-packages/starlette/testclient.py:40\n  /home/admin/Downloads/xinbiaozhu/opp259/b/.venv/lib/python3.12/site-packages/starlette/testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n34 passed, 1 warning in 1.60s"
+  },
+  "in_process_verify": {
+    "version": 1,
+    "ok": true,
+    "checks": [
+      {
+        "name": "roundtrip",
+        "ok": true,
+        "failure_category": null,
+        "detail": {
+          "cases": 9,
+          "total_bits": 15
+        }
+      },
+      {
+        "name": "box_coverage",
+        "ok": true,
+        "failure_category": null,
+        "detail": {
+          "boxes": 3,
+          "budgets": 3
+        }
+      },
+      {
+        "name": "zero_miss",
+        "ok": true,
+        "failure_category": null,
+        "detail": {
+          "2d_b1": null,
+          "5d_b1": null,
+          "2d_b8": null,
+          "5d_b8": null,
+          "2d_b256": null,
+          "5d_b256": null,
+          "2d_stats_exact": {
+            "intervals": 4,
+            "intervals_exact": 4,
+            "intervals_inexact": 0,
+            "interval_budget": 256,
+            "budget_exhausted": false,
+            "intervals_merged_away": 4,
+            "nodes_emitted": 8,
+            "chunks_total": 38,
+            "chunks_read": 4,
+            "chunks_skipped": 34,
+            "bytes_read": 6928,
+            "candidate_rows": 8,
+            "result_rows": 8,
+            "false_positive_rows": 0,
+            "candidate_inflation_ratio": 1.0
+          },
+          "2d_stats_budget1": {
+            "intervals": 1,
+            "intervals_exact": 0,
+            "intervals_inexact": 1,
+            "interval_budget": 1,
+            "budget_exhausted": true,
+            "intervals_merged_away": 0,
+            "nodes_emitted": 2,
+            "chunks_total": 38,
+            "chunks_read": 38,
+            "chunks_skipped": 0,
+            "bytes_read": 65724,
+            "candidate_rows": 152,
+            "result_rows": 8,
+            "false_positive_rows": 144,
+            "candidate_inflation_ratio": 19.0
+          }
+        }
+      },
+      {
+        "name": "rowid_stability",
+        "ok": true,
+        "failure_category": null,
+        "detail": {
+          "rows": 100,
+          "chunks_before": 34,
+          "chunks_after": 15,
+          "compact": {
+            "chunks_before": 34,
+            "chunks_after": 15,
+            "rows_before": 100,
+            "rows_after": 100,
+            "row_ids_preserved": true
+          }
+        }
+      }
+    ],
+    "failure_categories": []
+  },
+  "server_smoke": {
+    "ok": true,
+    "transcript": [
+      {
+        "step": "schema",
+        "status": 200
+      },
+      {
+        "step": "ingest",
+        "status": 200,
+        "accepted": 2006,
+        "chunks": 11
+      },
+      {
+        "step": "query_exact",
+        "stats": {
+          "intervals": 7,
+          "intervals_exact": 7,
+          "intervals_inexact": 0,
+          "interval_budget": 256,
+          "budget_exhausted": false,
+          "intervals_merged_away": 8,
+          "nodes_emitted": 15,
+          "chunks_total": 11,
+          "chunks_read": 4,
+          "chunks_skipped": 7,
+          "bytes_read": 10360,
+          "candidate_rows": 34,
+          "result_rows": 33,
+          "false_positive_rows": 1,
+          "candidate_inflation_ratio": 1.0303
+        },
+        "uncertainties": []
+      },
+      {
+        "step": "full_scan",
+        "stats": {
+          "chunks_read": 11,
+          "chunks_skipped": 0,
+          "bytes_read": 27686,
+          "result_rows": 33
+        }
+      },
+      {
+        "step": "zero_miss_crosscheck",
+        "result_rows": 33
+      },
+      {
+        "step": "query_budget1",
+        "stats": {
+          "intervals": 1,
+          "intervals_exact": 0,
+          "intervals_inexact": 1,
+          "interval_budget": 1,
+          "budget_exhausted": true,
+          "intervals_merged_away": 0,
+          "nodes_emitted": 2,
+          "chunks_total": 11,
+          "chunks_read": 11,
+          "chunks_skipped": 0,
+          "bytes_read": 27686,
+          "candidate_rows": 2006,
+          "result_rows": 33,
+          "false_positive_rows": 1973,
+          "candidate_inflation_ratio": 60.7879
+        },
+        "uncertainties": [
+          "interval budget exhausted before the box was fully decomposed; the full code domain was used conservatively (no misses, but candidate inflation is expected)"
+        ]
+      },
+      {
+        "step": "compact",
+        "stats": {
+          "chunks_before": 11,
+          "chunks_after": 11,
+          "rows_before": 2006,
+          "rows_after": 2006,
+          "row_ids_preserved": true
+        }
+      },
+      {
+        "step": "post_compact_zero_miss",
+        "result_rows": 33
+      },
+      {
+        "step": "verify",
+        "ok": true,
+        "failures": []
+      },
+      {
+        "step": "request_audit_lookup"
+      }
+    ]
+  },
+  "scale_demo": {
+    "rows": 90000,
+    "regimes": {
+      "clustered_3d": {
+        "truth_rows": 171,
+        "full_scan_bytes": 252424,
+        "budgets": [
+          {
+            "intervals": 1,
+            "interval_budget": 1,
+            "budget_exhausted": true,
+            "chunks_total": 20,
+            "chunks_read": 20,
+            "chunks_skipped": 0,
+            "bytes_read": 252424,
+            "candidate_rows": 40000,
+            "result_rows": 171,
+            "false_positive_rows": 39829,
+            "candidate_inflation_ratio": 233.9181
+          },
+          {
+            "intervals": 1,
+            "interval_budget": 64,
+            "budget_exhausted": true,
+            "chunks_total": 20,
+            "chunks_read": 20,
+            "chunks_skipped": 0,
+            "bytes_read": 252424,
+            "candidate_rows": 40000,
+            "result_rows": 171,
+            "false_positive_rows": 39829,
+            "candidate_inflation_ratio": 233.9181
+          },
+          {
+            "intervals": 179,
+            "interval_budget": 4096,
+            "budget_exhausted": false,
+            "chunks_total": 20,
+            "chunks_read": 1,
+            "chunks_skipped": 19,
+            "bytes_read": 12578,
+            "candidate_rows": 217,
+            "result_rows": 171,
+            "false_positive_rows": 46,
+            "candidate_inflation_ratio": 1.269
+          }
+        ],
+        "zero_miss": true
+      },
+      "sparse_4d": {
+        "truth_rows": 61,
+        "full_scan_bytes": 609130,
+        "budgets": [
+          {
+            "intervals": 1,
+            "interval_budget": 1,
+            "budget_exhausted": true,
+            "chunks_total": 25,
+            "chunks_read": 25,
+            "chunks_skipped": 0,
+            "bytes_read": 609130,
+            "candidate_rows": 50000,
+            "result_rows": 61,
+            "false_positive_rows": 49939,
+            "candidate_inflation_ratio": 819.6721
+          },
+          {
+            "intervals": 1,
+            "interval_budget": 256,
+            "budget_exhausted": true,
+            "chunks_total": 25,
+            "chunks_read": 25,
+            "chunks_skipped": 0,
+            "bytes_read": 609130,
+            "candidate_rows": 50000,
+            "result_rows": 61,
+            "false_positive_rows": 49939,
+            "candidate_inflation_ratio": 819.6721
+          },
+          {
+            "intervals": 1,
+            "interval_budget": 100000,
+            "budget_exhausted": true,
+            "chunks_total": 25,
+            "chunks_read": 25,
+            "chunks_skipped": 0,
+            "bytes_read": 609130,
+            "candidate_rows": 50000,
+            "result_rows": 61,
+            "false_positive_rows": 49939,
+            "candidate_inflation_ratio": 819.6721
+          }
+        ],
+        "zero_miss": true
+      }
+    },
+    "post_compaction": {
+      "intervals": 1,
+      "interval_budget": 256,
+      "budget_exhausted": true,
+      "chunks_total": 25,
+      "chunks_read": 25,
+      "chunks_skipped": 0,
+      "bytes_read": 609130,
+      "candidate_rows": 50000,
+      "result_rows": 61,
+      "false_positive_rows": 49939,
+      "candidate_inflation_ratio": 819.6721
+    }
+  },
+  "ok": true,
+  "finished_at": "20260928T033435Z"
+}

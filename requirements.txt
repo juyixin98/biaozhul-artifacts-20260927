@@ -1,0 +1,7 @@
+# Pinned, verified on Python 3.12 (Linux). Wheels include Arrow's zstd codec.
+pyarrow==18.1.0
+fastapi==0.115.6
+pydantic==2.10.4
+uvicorn==0.34.0
+httpx==0.28.1
+pytest==8.3.4
