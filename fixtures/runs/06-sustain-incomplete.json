@@ -1,0 +1,27 @@
+{
+  "run_id": "case-06-sustain-incomplete",
+  "description": "Sustain window [2,5] never fails but the trace is ended at t3 with only t2,t3 observed. Open verdict is wait; strict close marks it closed_incomplete (distinct from condition_failed).",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "sustain": [
+      {
+        "id": "cool_window",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "start" } ] },
+        "sustain": { "all": [ { "field": "temp", "op": "lt", "value": 30 } ] },
+        "after": 1,
+        "duration": 4,
+        "on_close": "strict"
+      }
+    ]
+  },
+  "events": [
+    { "kind": "ignite" },
+    { "kind": "start", "temp": 20 },
+    { "kind": "tick", "temp": 22 },
+    { "kind": "tick", "temp": 25, "note": "trace ends at t3, window [2,5] incomplete" }
+  ],
+  "open_checks": [
+    { "after_events": 4, "global_verdict": "wait" }
+  ]
+}

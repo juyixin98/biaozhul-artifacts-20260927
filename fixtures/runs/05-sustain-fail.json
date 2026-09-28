@@ -1,0 +1,29 @@
+{
+  "run_id": "case-05-sustain-fail",
+  "description": "Sustain-for-K: temp must stay < 30 for 4 consecutive steps [2,5]. It holds at t2,t3 then fails at t4 -> condition_failed violation, even though the window would have continued. While the window is merely incomplete (t2..t3 only) the verdict is wait.",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "sustain": [
+      {
+        "id": "cool_window",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "start" } ] },
+        "sustain": { "all": [ { "field": "temp", "op": "lt", "value": 30 } ] },
+        "after": 1,
+        "duration": 4
+      }
+    ]
+  },
+  "events": [
+    { "kind": "ignite" },
+    { "kind": "start", "temp": 20 },
+    { "kind": "tick", "temp": 22 },
+    { "kind": "tick", "temp": 25 },
+    { "kind": "tick", "temp": 41, "note": "condition fails at t4" },
+    { "kind": "tick", "temp": 21 }
+  ],
+  "open_checks": [
+    { "after_events": 4, "global_verdict": "wait" },
+    { "after_events": 5, "global_verdict": "viol" }
+  ]
+}

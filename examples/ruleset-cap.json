@@ -1,0 +1,13 @@
+{
+  "version": "cap-v1",
+  "response": [
+    {
+      "id": "r",
+      "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "t" } ] },
+      "response": { "field": "kind", "op": "eq", "value": "a" },
+      "after": 0,
+      "within": 50,
+      "on_close": "strict"
+    }
+  ]
+}

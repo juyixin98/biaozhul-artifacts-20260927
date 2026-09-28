@@ -1,0 +1,24 @@
+{
+  "run_id": "case-07-satisfy-one-ok",
+  "description": "satisfy=one, disjoint windows: requests at t0 and t2, acks at t1 and t3. Each event discharges exactly one earliest-eligible obligation (t0<-t1, t2<-t3); both satisfied.",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "response": [
+      {
+        "id": "ack",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "req" } ] },
+        "response": { "field": "kind", "op": "eq", "value": "ack" },
+        "after": 0,
+        "within": 2,
+        "satisfy": "one"
+      }
+    ]
+  },
+  "events": [
+    { "kind": "req", "note": "t0: instance window [0,1]" },
+    { "kind": "ack", "note": "t1: consumed by instance t0" },
+    { "kind": "req", "note": "t2: instance window [2,3]" },
+    { "kind": "ack", "note": "t3: consumed by instance t2" }
+  ]
+}

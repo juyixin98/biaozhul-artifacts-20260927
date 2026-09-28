@@ -1,0 +1,31 @@
+[package]
+name = "btmon"
+version = "0.1.0"
+edition = "2021"
+description = "Bounded temporal rule monitor over finite traces (respond-within-N, sustain-for-K), three-valued verdicts"
+license = "MIT"
+
+[lib]
+name = "btmon"
+path = "src/lib.rs"
+
+[[bin]]
+name = "btmon"
+path = "src/main.rs"
+
+[dependencies]
+axum = "0.8"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal", "net"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4"] }
+sha2 = "0.10"
+hex = "0.4"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+
+[profile.test]
+# keep replay logs small but allow full debug assertions
+opt-level = 0

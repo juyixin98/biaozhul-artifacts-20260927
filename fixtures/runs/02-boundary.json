@@ -1,0 +1,39 @@
+{
+  "run_id": "case-02-boundary",
+  "description": "Boundary responses: same-step (trigger event itself carries ack=true, after=0 within=1), first-window-step (after=1 fulfilled immediately), and a trigger whose deadline falls on the final observed step with no response -> genuine deadline miss (distinct from premature close).",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "response": [
+      {
+        "id": "same_step",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "a0" } ] },
+        "response": { "field": "ack", "op": "eq", "value": true },
+        "after": 0,
+        "within": 1
+      },
+      {
+        "id": "delayed",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "a1" } ] },
+        "response": { "field": "kind", "op": "eq", "value": "r1" },
+        "after": 1,
+        "within": 3
+      },
+      {
+        "id": "never_answered",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "z" } ] },
+        "response": { "field": "kind", "op": "eq", "value": "rz" },
+        "after": 0,
+        "within": 1
+      }
+    ]
+  },
+  "events": [
+    { "kind": "a0", "ack": true, "note": "t0: same_step window [0,0] fulfilled on the trigger event itself" },
+    { "kind": "filler" },
+    { "kind": "a1", "note": "t2: delayed window [3,5]" },
+    { "kind": "r1", "note": "t3: fulfilled at first window step" },
+    { "kind": "filler" },
+    { "kind": "z", "note": "t5: never_answered window [5,5]; rz absent => deadline missed at t5" }
+  ]
+}

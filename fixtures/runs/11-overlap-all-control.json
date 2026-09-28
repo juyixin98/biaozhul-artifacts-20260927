@@ -1,0 +1,24 @@
+{
+  "run_id": "case-11-overlap-all-control",
+  "description": "Control for case-08: identical trace (requests t0,t1; one ack t2) but satisfy=all. The single shared ack at t2 lies in both windows and discharges BOTH obligations. Comparing 08 and 11 shows exactly which obligations one response satisfies under each mode.",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "response": [
+      {
+        "id": "ack",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "req" } ] },
+        "response": { "field": "kind", "op": "eq", "value": "ack" },
+        "after": 0,
+        "within": 3,
+        "satisfy": "all"
+      }
+    ]
+  },
+  "events": [
+    { "kind": "req", "note": "t0: window [0,2]" },
+    { "kind": "req", "note": "t1: window [1,3]" },
+    { "kind": "ack", "note": "t2: one event discharges both pending obligations under satisfy=all" },
+    { "kind": "idle", "note": "t3: nothing pending; identical trace to case-08" }
+  ]
+}

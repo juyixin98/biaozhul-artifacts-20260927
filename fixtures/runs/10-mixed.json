@@ -1,0 +1,55 @@
+{
+  "run_id": "case-10-mixed",
+  "description": "One ruleset combining response and sustain rules plus conjunctive atoms. Outcomes coexist: escalate fulfilled, stable_short fulfilled, stable condition-failed mid-window, log_after still pending at the strict close -> global viol. The level<2 alarm at t0 must NOT trigger escalate.",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "response": [
+      {
+        "id": "escalate",
+        "trigger": { "all": [
+          { "field": "kind", "op": "eq", "value": "alarm" },
+          { "field": "level", "op": "ge", "value": 2 }
+        ] },
+        "response": { "field": "kind", "op": "eq", "value": "page" },
+        "after": 0,
+        "within": 2
+      },
+      {
+        "id": "log_after",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "page" } ] },
+        "response": { "field": "kind", "op": "eq", "value": "logged" },
+        "after": 0,
+        "within": 3,
+        "on_close": "strict"
+      }
+    ],
+    "sustain": [
+      {
+        "id": "stable",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "arm" } ] },
+        "sustain": { "all": [ { "field": "armed", "op": "eq", "value": true } ] },
+        "after": 1,
+        "duration": 4
+      },
+      {
+        "id": "stable_short",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "arm" } ] },
+        "sustain": { "all": [ { "field": "armed", "op": "eq", "value": true } ] },
+        "after": 0,
+        "duration": 2
+      }
+    ]
+  },
+  "events": [
+    { "kind": "alarm", "level": 1, "note": "level<2: escalate trigger must NOT fire" },
+    { "kind": "arm", "armed": true, "note": "stable_short window [1,2] starts; stable window [2,5]" },
+    { "kind": "alarm", "level": 3, "armed": true, "note": "escalate window [2,3]; both sustains hold here" },
+    { "kind": "page", "armed": true, "note": "escalate fulfilled at t3; log_after spawns [3,5]; stable holds at t3" },
+    { "kind": "tick", "armed": false, "note": "stable fails at t4 (condition_failed); log_after still pending when trace ends" }
+  ],
+  "open_checks": [
+    { "after_events": 3, "global_verdict": "wait" },
+    { "after_events": 5, "global_verdict": "viol" }
+  ]
+}

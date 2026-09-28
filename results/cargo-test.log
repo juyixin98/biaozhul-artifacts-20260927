@@ -1,0 +1,104 @@
+   Compiling btmon v0.1.0 (/home/admin/Downloads/xinbiaozhu/opp206/a)
+    Finished `release` profile [optimized] target(s) in 2.51s
+     Running unittests src/lib.rs (target/release/deps/btmon-8c6fa622bade8dbf)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/release/deps/btmon-d2cd8c2d2392931f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/crosscheck.rs (target/release/deps/crosscheck-f364eab71b876522)
+
+running 5 tests
+test random_traces_with_rotation ... ok
+test random_traces_one_modes_open ... ok
+test random_traces_all_modes_closed_strict ... ok
+test random_traces_all_modes_open ... ok
+test random_traces_one_modes_closed_lenient ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/errors.rs (target/release/deps/errors-0fe35665e828452b)
+
+running 12 tests
+test bad_window_is_input_error ... ok
+test duplicate_rule_id_is_input_error ... ok
+test append_after_close_is_state_conflict ... ok
+test empty_ruleset_is_input_error ... ok
+test empty_event_is_input_error ... ok
+test epoch_limit_is_resource_error ... ok
+test invalid_sustain_window_input_error ... ok
+test log_budget_is_resource_error ... ok
+test forged_next_seq_is_computation_error ... ok
+test step_gap_is_input_error ... ok
+test step_regression_is_state_conflict ... ok
+test obligation_limit_is_resource_error ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/evidence.rs (target/release/deps/evidence-ed9d94c12fdfebe9)
+
+running 11 tests
+test end_with_zero_events_is_vacuous_sat ... ok
+test obligations_carry_epoch_and_versions_never_mix ... ok
+test chain_is_hash_linked ... ok
+test rotate_before_any_event_then_track_new_epoch ... ok
+test rotation_cannot_reuse_version_and_seals_old_state ... ok
+test snapshot_digest_changes_when_state_changes ... ok
+test tampered_snapshot_content_is_rejected ... ok
+test wrong_version_restore_is_state_conflict ... ok
+test tampered_snapshot_with_recomputed_digest_still_fails_chain ... ok
+test snapshot_roundtrip_preserves_state ... ok
+test restore_after_close_is_stable ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/fixtures.rs (target/release/deps/fixtures-a0650818199b88ce)
+
+running 13 tests
+test case_01_overlap_all ... ok
+test case_03_missing_response_strict ... ok
+test case_04_missing_response_lenient ... ok
+test case_02_boundary ... ok
+test case_05_sustain_condition_fails ... ok
+test case_06_sustain_incomplete ... ok
+test wait_is_not_pass_while_open ... ok
+test case_08_satisfy_one_miss ... ok
+test case_09_rotation_seals_epochs ... ok
+test case_07_satisfy_one_ok ... ok
+test case_11_overlap_all_control ... ok
+test case_10_mixed_rules ... ok
+test prefix_verdicts_are_three_valued ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/http.rs (target/release/deps/http-7e17967a7ae1e67a)
+
+running 13 tests
+test error_bodies_are_classified ... ok
+test duplicate_create_is_state_conflict ... ok
+test health_ok ... ok
+test batch_is_atomic ... ok
+test create_get_append_end_full_flow ... ok
+test decisions_journal_and_verify ... ok
+test missing_response_violates_on_end_but_waits_before ... ok
+test resource_limit_over_http ... ok
+test run_id_is_generated_when_absent_and_echoed ... ok
+test state_conflict_after_close ... ok
+test rotate_endpoint_and_version_mismatch ... ok
+test tampered_snapshot_rejected_over_http ... ok
+test snapshot_restore_then_continue_agrees ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests btmon
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

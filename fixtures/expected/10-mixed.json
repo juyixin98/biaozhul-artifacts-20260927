@@ -1,0 +1,12 @@
+{
+  "run_id": "case-10-mixed",
+  "open_verdict": "viol",
+  "closed_verdict": "viol",
+  "instances": [
+    { "id": "0:stable:1", "status": "violated", "reason": "condition_failed", "window": [2, 5], "satisfied_at": null, "failed_at": 4 },
+    { "id": "0:stable_short:1", "status": "satisfied", "reason": "fulfilled", "window": [1, 2], "satisfied_at": 2, "failed_at": null },
+    { "id": "0:escalate:2", "status": "satisfied", "reason": "fulfilled", "window": [2, 3], "satisfied_at": 3, "failed_at": null },
+    { "id": "0:log_after:3", "status": "violated", "reason": "closed_pending", "window": [3, 5], "satisfied_at": null, "failed_at": 4 }
+  ],
+  "note": "level=1 alarm at t0 must not spawn escalate. Mixed coexisting outcomes across response+sustain rules."
+}

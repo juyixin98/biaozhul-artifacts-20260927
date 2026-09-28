@@ -1,0 +1,33 @@
+{
+  "version": "v1",
+  "response": [
+    {
+      "id": "pay_after_order",
+      "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "order" } ] },
+      "response": { "field": "kind", "op": "eq", "value": "payment" },
+      "after": 0,
+      "within": 3,
+      "satisfy": "all",
+      "on_close": "strict"
+    },
+    {
+      "id": "receipt_after_payment",
+      "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "payment" } ] },
+      "response": { "field": "kind", "op": "eq", "value": "receipt" },
+      "after": 1,
+      "within": 2,
+      "satisfy": "one",
+      "on_close": "lenient"
+    }
+  ],
+  "sustain": [
+    {
+      "id": "temp_safe_after_arm",
+      "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "arm" } ] },
+      "sustain": { "all": [ { "field": "temp", "op": "lt", "value": 80 } ] },
+      "after": 0,
+      "duration": 3,
+      "on_close": "strict"
+    }
+  ]
+}

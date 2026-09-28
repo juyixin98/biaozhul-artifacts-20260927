@@ -1,0 +1,26 @@
+{
+  "run_id": "case-04-lenient",
+  "description": "Same premature end as case 03 but on_close=lenient: the pending obligation is accepted at close (closed_accepted) instead of violated. Open verdict must still be wait; closed verdict is sat.",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "response": [
+      {
+        "id": "receipt_after_send",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "send" } ] },
+        "response": { "field": "kind", "op": "eq", "value": "receipt" },
+        "after": 0,
+        "within": 3,
+        "on_close": "lenient"
+      }
+    ]
+  },
+  "events": [
+    { "kind": "boot" },
+    { "kind": "send" },
+    { "kind": "other" }
+  ],
+  "open_checks": [
+    { "after_events": 3, "global_verdict": "wait" }
+  ]
+}

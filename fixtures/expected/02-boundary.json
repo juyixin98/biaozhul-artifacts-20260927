@@ -1,0 +1,10 @@
+{
+  "run_id": "case-02-boundary",
+  "open_verdict": "viol",
+  "closed_verdict": "viol",
+  "instances": [
+    { "id": "0:same_step:0", "status": "satisfied", "reason": "fulfilled", "window": [0, 0], "satisfied_at": 0, "failed_at": null },
+    { "id": "0:delayed:2", "status": "satisfied", "reason": "fulfilled", "window": [3, 5], "satisfied_at": 3, "failed_at": null },
+    { "id": "0:never_answered:5", "status": "violated", "reason": "deadline_missed", "window": [5, 5], "satisfied_at": null, "failed_at": 5 }
+  ]
+}

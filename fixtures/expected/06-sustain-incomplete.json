@@ -1,0 +1,8 @@
+{
+  "run_id": "case-06-sustain-incomplete",
+  "open_verdict": "wait",
+  "closed_verdict": "viol",
+  "instances": [
+    { "id": "0:cool_window:1", "status": "violated", "reason": "closed_incomplete", "window": [2, 5], "satisfied_at": null, "failed_at": 3 }
+  ]
+}

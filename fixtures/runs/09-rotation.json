@@ -1,0 +1,53 @@
+{
+  "run_id": "case-09-rotation",
+  "description": "Version rotation without mixing states. v1 (strict): order at t0 spawns obligation window [0,2]. Rotate to v2 at the boundary after t1 while it is still pending: the epoch-0 obligation is sealed closed_pending immediately and must never match v2 events. v2 has different rules (ship strict + keep lenient); its obligations are tagged epoch 1.",
+  "closed": true,
+  "segments": [
+    {
+      "ruleset": {
+        "version": "v1",
+        "response": [
+          {
+            "id": "pay",
+            "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "order" } ] },
+            "response": { "field": "kind", "op": "eq", "value": "payment" },
+            "after": 0,
+            "within": 3,
+            "on_close": "strict"
+          }
+        ]
+      },
+      "events": [
+        { "kind": "order" },
+        { "kind": "noise", "note": "rotate after this step; v1 obligation [0,2] still pending" }
+      ]
+    },
+    {
+      "ruleset": {
+        "version": "v2",
+        "response": [
+          {
+            "id": "ship",
+            "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "order" } ] },
+            "response": { "field": "kind", "op": "in", "value": ["ship", "payment"] },
+            "after": 0,
+            "within": 2,
+            "on_close": "strict"
+          },
+          {
+            "id": "keep",
+            "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "order" } ] },
+            "response": { "field": "kind", "op": "eq", "value": "receipt" },
+            "after": 0,
+            "within": 2,
+            "on_close": "lenient"
+          }
+        ]
+      },
+      "events": [
+        { "kind": "payment", "note": "epoch1 t2: would have matched v1 pay (window [0,2]) but epoch0 is sealed, so it discharges nothing" },
+        { "kind": "order", "note": "epoch1 t3: spawns ship [3,4] (strict) and keep [3,4] (lenient); trace ends here before either deadline" }
+      ]
+    }
+  ]
+}

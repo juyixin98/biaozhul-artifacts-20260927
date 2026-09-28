@@ -1,0 +1,26 @@
+{
+  "run_id": "case-03-missing-early",
+  "description": "Missing response under the default strict close policy: the trace ends at t2 while the obligation born at t1 still has a live window [1,3]. Wait must be reported while open; closing seals it as a closed_pending violation (not a deadline miss).",
+  "closed": true,
+  "ruleset": {
+    "version": "v1",
+    "response": [
+      {
+        "id": "receipt_after_send",
+        "trigger": { "all": [ { "field": "kind", "op": "eq", "value": "send" } ] },
+        "response": { "field": "kind", "op": "eq", "value": "receipt" },
+        "after": 0,
+        "within": 3,
+        "on_close": "strict"
+      }
+    ]
+  },
+  "events": [
+    { "kind": "boot" },
+    { "kind": "send" },
+    { "kind": "other", "note": "trace ends here; window [1,3] still open" }
+  ],
+  "open_checks": [
+    { "after_events": 2, "global_verdict": "wait" }
+  ]
+}
