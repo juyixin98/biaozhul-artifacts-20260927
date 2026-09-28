@@ -1,0 +1,22 @@
+
+==================== ACCEPTANCE VERIFICATION ====================
+SCENARIO                   STEP             ACTION       GOT  WANT  REASONS / NOTE
+----------------------------------------------------------------------------------------------------
+load-step                  step-up-to-6     scale_up       6     6  [PASS] 
+rate-cap                   rate-capped-4    scale_up       4     4  [PASS] SCALE_UP_RATE_LIMITED
+missing-instance           missing-hold     none           3     3  [PASS] MISSING_INSTANCE_BLOCKS_DOWNSCALE,DESIRED_EQUALS_CURRENT
+delayed-stale              stale-hold       none           3     3  [PASS] ALL_METRICS_STALE_HOLD,STALE_INSTANCES_PRESENT
+short-spike-and-restart    spike-up-6       scale_up       6     6  [PASS] SCALE_UP_RATE_LIMITED
+short-spike-and-restart    dip-hold-6       none           6     6  [PASS] CLAMPED_TO_MIN_REPLICAS,DOWNSCALE_FIRST_OBSERVATION_DEFER
+short-spike-and-restart    shrink-to-1      scale_down     1     1  [PASS] CLAMPED_TO_MIN_REPLICAS
+short-spike-and-restart    restart-fleet    restart        1     1  [PASS] 
+short-spike-and-restart    post-restart-grow scale_up       2     2  [PASS] SCALE_UP_RATE_LIMITED
+short-spike-and-restart    post-restart-ids restart        2     2  [PASS] 
+scale-from-zero            zero-no-demand   none           0     0  [PASS] ZERO_NO_FRESH_DEMAND
+scale-from-zero            zero-expired-demand none           0     0  [PASS] ZERO_NO_FRESH_DEMAND
+scale-from-zero            zero-bootstrap   scale_up       1     1  [PASS] ZERO_BOOTSTRAPPED
+----------------------------------------------------------------------------------------------------
+TOTAL: 13 passed, 0 failed
+================================================================
+
+verification summary: 13 passed, 0 failed

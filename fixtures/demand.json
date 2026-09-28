@@ -1,0 +1,6 @@
+{
+  "_comment": "External scale-from-zero work signal (a local fixture, not a real queue). At zero replicas the controller bootstraps only when pending > 0 and the signal is fresher than demand_freshness.",
+  "fresh_positive": {"pending": 7, "observed_at": "now"},
+  "expired": {"pending": 7, "observed_age": "90s"},
+  "zero_pending": {"pending": 0, "observed_at": "now"}
+}

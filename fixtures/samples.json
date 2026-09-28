@@ -1,0 +1,37 @@
+{
+  "_comment": "Minimal synthetic fixture: one load sample per active instance. values are requests_per_second. observed_at is RFC3339; omit it at ingest time to mean 'now'.",
+  "metric": "requests_per_second",
+  "target_load_per_instance": 100,
+  "scenarios": {
+    "load_step_up": {
+      "_comment": "3 fresh * 200 = 600 -> ceil(600/100) = 6 (under rate cap 6) => scale 3 -> 6",
+      "samples": [
+        {"instance_id": "ins-0001", "value": 200},
+        {"instance_id": "ins-0002", "value": 200},
+        {"instance_id": "ins-0003", "value": 200}
+      ]
+    },
+    "missing_instance": {
+      "_comment": "ins-0002 sends nothing: measured 20 + imputed 100 = 120; shrink refused",
+      "samples": [
+        {"instance_id": "ins-0001", "value": 10},
+        {"instance_id": "ins-0003", "value": 10}
+      ],
+      "missing": ["ins-0002"]
+    },
+    "delayed_or_stale": {
+      "_comment": "high values reported with observed_at 90s in the past (> 60s freshness): must NOT scale up",
+      "observed_age": "90s",
+      "samples": [
+        {"instance_id": "ins-0001", "value": 900},
+        {"instance_id": "ins-0002", "value": 900},
+        {"instance_id": "ins-0003", "value": 900}
+      ]
+    },
+    "short_spike": {
+      "_comment": "brief 300 load grows to rate cap 6; an immediate return to 10 cannot shrink until the 5m window elapses",
+      "spike_value": 300,
+      "recovery_value": 10
+    }
+  }
+}

@@ -1,0 +1,12 @@
+?   	replicactl/cmd/acceptance	[no test files]
+?   	replicactl/cmd/replicactl	[no test files]
+ok  	replicactl/internal/accept	0.003s [no tests to run]
+?   	replicactl/internal/app	[no test files]
+?   	replicactl/internal/config	[no test files]
+?   	replicactl/internal/model	[no test files]
+?   	replicactl/internal/oracle	[no test files]
+ok  	replicactl/internal/adapter	0.050s
+ok  	replicactl/internal/controller	0.003s
+ok  	replicactl/internal/fault	0.003s
+?   	replicactl/internal/testkit	[no test files]
+ok  	replicactl/internal/store	0.052s
