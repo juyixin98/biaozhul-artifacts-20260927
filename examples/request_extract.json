@@ -1,0 +1,14 @@
+{
+  "nvars": 4,
+  "mode": "find_one",
+  "verify": true,
+  "constraints": [
+    {"id": "u",  "literals": [1]},
+    {"id": "v",  "literals": [-1]},
+    {"id": "p",  "literals": [2]},
+    {"id": "q",  "literals": [-2]},
+    {"id": "d",  "literals": [-1, 2, 3]},
+    {"id": "e",  "literals": [-1, 2, -3]},
+    {"id": "r1", "literals": [4, -4]}
+  ]
+}

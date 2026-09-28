@@ -1,0 +1,26 @@
+[package]
+name = "mus-core"
+version = "0.1.0"
+edition = "2021"
+description = "Subset-minimal unsatisfiable core extraction service with pluggable SAT solvers"
+
+[lib]
+name = "mus_core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mus-server"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.7.9", default-features = false, features = ["http1", "json", "tokio", "matched-path", "form"] }
+tokio = { version = "1.53", features = ["rt-multi-thread", "macros", "sync", "time", "net"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"

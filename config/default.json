@@ -1,0 +1,12 @@
+{
+  "bind": "127.0.0.1:8080",
+  "log_level": "info",
+  "solver_kind": "builtin",
+  "external_binary": null,
+  "external_args": [],
+  "max_budget": 100000,
+  "default_budget": 0,
+  "max_jobs": 256,
+  "log_formulas": false,
+  "independent_verification": true
+}
