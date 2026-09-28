@@ -1,0 +1,5 @@
+#EXTM3U
+#EXT-X-TARGETDURATION:4
+#EXT-X-KEY:METHOD=AES-128,URI="https://keys.example.com/k?session=SECRETKEY"
+#EXTINF:4.0,
+enc0.ts
