@@ -1,0 +1,86 @@
+{
+  "name": "parallel",
+  "description": "Two snapshot rounds S1 (initiator n1) and S2 (initiator n2) overlap. t1 is sent after n1 recorded S1 and is post-cut for S1's n1->n2 channel (the S1 marker sits ahead of t1 in the same FIFO outbox). For S2, n2 records local state before t1 but only closes the n1->n2 channel when n1's S2 marker arrives — which happens AFTER t1 — so S2 legitimately captures t1=12 on that channel. t2 is sent after n3 recorded S1 but while n3 is still recording S2 on n1->n3, so S2 captures exactly t2=5 there. The two rounds keep isolated local states (n1: 50 vs 33, n2: 40 vs 40, n3: 10 vs 10); S1 globals 100+0, S2 globals 83+17=100. Derivation in docs/SCENARIOS.md.",
+  "nodes": ["n1", "n2", "n3"],
+  "accounts": [
+    {"id": "a", "owner": "n1", "balance": 40},
+    {"id": "b", "owner": "n1", "balance": 10},
+    {"id": "d", "owner": "n2", "balance": 30},
+    {"id": "e", "owner": "n2", "balance": 10},
+    {"id": "g", "owner": "n3", "balance": 10},
+    {"id": "h", "owner": "n3", "balance": 0}
+  ],
+  "steps": [
+    {"kind": "snapshot", "node": "n1", "snapshot": "S1", "note": "S1: n1 records (a40,b10)=50; S1 markers queued in both outboxes"},
+    {"kind": "flush", "src": "n1", "dst": "n2", "note": "S1 marker n1->n2 (position 1)"},
+    {"kind": "flush", "src": "n1", "dst": "n3", "note": "S1 marker n1->n3 (position 1)"},
+
+    {"kind": "transfer", "node": "n1", "note": "t1 sent after n1 recorded S1 (a 40->28)",
+     "transfer": {"ref": "t1", "from": "a", "to": "d", "amount": 12}},
+    {"kind": "flush", "src": "n1", "dst": "n2", "note": "t1 n1->n2 (position 2, behind S1 marker)"},
+
+    {"kind": "snapshot", "node": "n2", "snapshot": "S2", "note": "S2: n2 records (d30,e10)=40 before t1 or markers arrive; S2 markers queued"},
+    {"kind": "flush", "src": "n2", "dst": "n1", "note": "S2 marker n2->n1 (position 1)"},
+    {"kind": "flush", "src": "n2", "dst": "n3", "note": "S2 marker n2->n3 (position 1)"},
+
+    {"kind": "pump", "src": "n1", "dst": "n2", "n": 1, "note": "S1 marker first: n2 records S1 local (d30,e10)=40, closes n1->n2 EMPTY for S1, queues S1 markers"},
+    {"kind": "flush", "src": "n2", "dst": "n1", "note": "S1 marker n2->n1 queued behind S2 marker on that channel"},
+    {"kind": "flush", "src": "n2", "dst": "n3", "note": "S1 marker n2->n3 queued behind S2 marker on that channel"},
+    {"kind": "pump", "src": "n1", "dst": "n2", "n": 1, "note": "t1 delivered: channel n1->n2 already closed for S1 and n2 had already recorded S2 -> captured by NEITHER; d 30->42"},
+
+    {"kind": "pump", "src": "n1", "dst": "n3", "n": 1, "note": "S1 marker: n3 records S1 local (g10,h0)=10, closes n1->n3 EMPTY for S1"},
+    {"kind": "pump", "src": "n2", "dst": "n3", "n": 1, "note": "S2 marker: n3 records S2 local (g10,h0)=10, closes n2->n3 EMPTY for S2"},
+
+    {"kind": "transfer", "node": "n1", "note": "t2 (a 28->23)",
+     "transfer": {"ref": "t2", "from": "a", "to": "h", "amount": 5}},
+    {"kind": "flush", "src": "n1", "dst": "n3", "note": "t2 in flight: behind S1 marker (closed for S1); S2 marker from n1 not yet sent (n1 has not heard S2)"},
+
+    {"kind": "pump", "src": "n2", "dst": "n1", "n": 1, "note": "S2 marker at n1: n1 records S2 local (a23,b10)=33, closes n2->n1 EMPTY; queues S2 markers"},
+    {"kind": "pump", "src": "n2", "dst": "n1", "n": 1, "note": "S1 marker then closes S1 n2->n1 EMPTY: n1 completes S1"},
+    {"kind": "flush", "src": "n1", "dst": "n2", "note": "S2 marker n1->n2"},
+    {"kind": "flush", "src": "n1", "dst": "n3", "note": "S2 marker n1->n3 queued BEHIND t2 (FIFO)"},
+
+    {"kind": "pump", "src": "n1", "dst": "n3", "n": 1, "note": "t2 head: S1 channel closed; S2 still recording n1->n3 -> captured 5, h 0->5"},
+    {"kind": "pump", "src": "n1", "dst": "n3", "n": 1, "note": "S2 marker closes n1->n3 with [t2]=5: n3 completes S2"},
+
+    {"kind": "pump", "src": "n1", "dst": "n2", "n": -1, "note": "S2 marker closes n1->n2 EMPTY for S2: n2 completes S2"},
+    {"kind": "pump", "src": "n2", "dst": "n3", "n": 1, "note": "S1 marker closes S1 n2->n3 EMPTY: n3 completes S1"},
+
+    {"kind": "flush", "src": "n3", "dst": "n1", "note": "n3 markers S1/S2 -> n1"},
+    {"kind": "flush", "src": "n3", "dst": "n2", "note": "n3 markers S1/S2 -> n2"},
+    {"kind": "pump", "src": "n3", "dst": "n1", "n": -1, "note": "n1 closes n3->n1 for S2"},
+    {"kind": "pump", "src": "n3", "dst": "n2", "n": -1, "note": "n2 closes n3->n2 for S1 and S2"}
+  ],
+  "expect": {
+    "initial_total": 100,
+    "final_live_total": 100,
+    "snapshots": {
+      "S1": {
+        "complete": true,
+        "global_total": 100,
+        "local_totals": {"n1": 50, "n2": 40, "n3": 10},
+        "in_flight": {
+          "n1->n2": 0,
+          "n1->n3": 0,
+          "n2->n1": 0,
+          "n2->n3": 0,
+          "n3->n1": 0,
+          "n3->n2": 0
+        }
+      },
+      "S2": {
+        "complete": true,
+        "global_total": 100,
+        "local_totals": {"n1": 33, "n2": 40, "n3": 10},
+        "in_flight": {
+          "n1->n2": 12,
+          "n1->n3": 5,
+          "n2->n1": 0,
+          "n2->n3": 0,
+          "n3->n1": 0,
+          "n3->n2": 0
+        }
+      }
+    }
+  }
+}

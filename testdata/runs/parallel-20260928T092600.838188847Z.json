@@ -1,0 +1,858 @@
+{
+  "run_id": "parallel-20260928T092600.838188847Z",
+  "scenario": "parallel",
+  "started_at": "2026-09-28T09:26:00.838195575Z",
+  "finished_at": "2026-09-28T09:26:00.838554499Z",
+  "events": [
+    {
+      "seq": 1,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "scenario_started",
+      "detail": {
+        "nodes": [
+          "n1",
+          "n2",
+          "n3"
+        ],
+        "steps": 28
+      },
+      "at": "2026-09-28T09:26:00.838215349Z"
+    },
+    {
+      "seq": 2,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "state_recorded",
+      "node": "n1",
+      "snapshot": "S1",
+      "detail": {
+        "accounts": 2,
+        "lamport": 0,
+        "total": 50
+      },
+      "at": "2026-09-28T09:26:00.838233478Z"
+    },
+    {
+      "seq": 3,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 1,
+      "at": "2026-09-28T09:26:00.838241004Z"
+    },
+    {
+      "seq": 4,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 2,
+      "at": "2026-09-28T09:26:00.838241843Z"
+    },
+    {
+      "seq": 5,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "transfer_accepted",
+      "node": "n1",
+      "peer": "n2",
+      "lamport": 3,
+      "detail": {
+        "amount": 12,
+        "lamport": 3,
+        "ref": "t1",
+        "seq": 1,
+        "to_account": "d"
+      },
+      "at": "2026-09-28T09:26:00.838248526Z"
+    },
+    {
+      "seq": 6,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "state_recorded",
+      "node": "n2",
+      "snapshot": "S2",
+      "detail": {
+        "accounts": 2,
+        "lamport": 0,
+        "total": 40
+      },
+      "at": "2026-09-28T09:26:00.838258122Z"
+    },
+    {
+      "seq": 7,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n2",
+      "snapshot": "S2",
+      "peer": "n1",
+      "lamport": 1,
+      "at": "2026-09-28T09:26:00.838259124Z"
+    },
+    {
+      "seq": 8,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n2",
+      "snapshot": "S2",
+      "peer": "n3",
+      "lamport": 2,
+      "at": "2026-09-28T09:26:00.838260194Z"
+    },
+    {
+      "seq": 9,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "state_recorded",
+      "node": "n2",
+      "snapshot": "S1",
+      "lamport": 3,
+      "detail": {
+        "accounts": 2,
+        "lamport": 3,
+        "total": 40
+      },
+      "at": "2026-09-28T09:26:00.838272383Z"
+    },
+    {
+      "seq": 10,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 4,
+      "at": "2026-09-28T09:26:00.838273589Z"
+    },
+    {
+      "seq": 11,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 5,
+      "at": "2026-09-28T09:26:00.838274459Z"
+    },
+    {
+      "seq": 12,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 5,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838277112Z"
+    },
+    {
+      "seq": 13,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 5,
+      "detail": {
+        "first": true
+      },
+      "at": "2026-09-28T09:26:00.838277482Z"
+    },
+    {
+      "seq": 14,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "transfer_delivered",
+      "node": "n2",
+      "peer": "n1",
+      "lamport": 6,
+      "detail": {
+        "amount": 12,
+        "lamport": 3,
+        "ref": "t1"
+      },
+      "at": "2026-09-28T09:26:00.838292557Z"
+    },
+    {
+      "seq": 15,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "state_recorded",
+      "node": "n3",
+      "snapshot": "S1",
+      "lamport": 3,
+      "detail": {
+        "accounts": 2,
+        "lamport": 3,
+        "total": 10
+      },
+      "at": "2026-09-28T09:26:00.838296552Z"
+    },
+    {
+      "seq": 16,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 4,
+      "at": "2026-09-28T09:26:00.838297176Z"
+    },
+    {
+      "seq": 17,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 5,
+      "at": "2026-09-28T09:26:00.838297899Z"
+    },
+    {
+      "seq": 18,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 5,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838305253Z"
+    },
+    {
+      "seq": 19,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 5,
+      "detail": {
+        "first": true
+      },
+      "at": "2026-09-28T09:26:00.838305718Z"
+    },
+    {
+      "seq": 20,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "state_recorded",
+      "node": "n3",
+      "snapshot": "S2",
+      "lamport": 6,
+      "detail": {
+        "accounts": 2,
+        "lamport": 6,
+        "total": 10
+      },
+      "at": "2026-09-28T09:26:00.838324841Z"
+    },
+    {
+      "seq": 21,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n3",
+      "snapshot": "S2",
+      "peer": "n1",
+      "lamport": 7,
+      "at": "2026-09-28T09:26:00.838325642Z"
+    },
+    {
+      "seq": 22,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n3",
+      "snapshot": "S2",
+      "peer": "n2",
+      "lamport": 8,
+      "at": "2026-09-28T09:26:00.838326314Z"
+    },
+    {
+      "seq": 23,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n3",
+      "snapshot": "S2",
+      "peer": "n2",
+      "lamport": 8,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838328006Z"
+    },
+    {
+      "seq": 24,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n3",
+      "snapshot": "S2",
+      "peer": "n2",
+      "lamport": 8,
+      "detail": {
+        "first": true
+      },
+      "at": "2026-09-28T09:26:00.838328338Z"
+    },
+    {
+      "seq": 25,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "transfer_accepted",
+      "node": "n1",
+      "peer": "n3",
+      "lamport": 4,
+      "detail": {
+        "amount": 5,
+        "lamport": 4,
+        "ref": "t2",
+        "seq": 1,
+        "to_account": "h"
+      },
+      "at": "2026-09-28T09:26:00.838331358Z"
+    },
+    {
+      "seq": 26,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "state_recorded",
+      "node": "n1",
+      "snapshot": "S2",
+      "lamport": 5,
+      "detail": {
+        "accounts": 2,
+        "lamport": 5,
+        "total": 33
+      },
+      "at": "2026-09-28T09:26:00.838343118Z"
+    },
+    {
+      "seq": 27,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n1",
+      "snapshot": "S2",
+      "peer": "n2",
+      "lamport": 6,
+      "at": "2026-09-28T09:26:00.838344034Z"
+    },
+    {
+      "seq": 28,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_sent",
+      "node": "n1",
+      "snapshot": "S2",
+      "peer": "n3",
+      "lamport": 7,
+      "at": "2026-09-28T09:26:00.838344902Z"
+    },
+    {
+      "seq": 29,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n1",
+      "snapshot": "S2",
+      "peer": "n2",
+      "lamport": 7,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838370309Z"
+    },
+    {
+      "seq": 30,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n1",
+      "snapshot": "S2",
+      "peer": "n2",
+      "lamport": 7,
+      "detail": {
+        "first": true
+      },
+      "at": "2026-09-28T09:26:00.838370711Z"
+    },
+    {
+      "seq": 31,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 8,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838374632Z"
+    },
+    {
+      "seq": 32,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 8,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.838374995Z"
+    },
+    {
+      "seq": 33,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "transfer_delivered",
+      "node": "n3",
+      "peer": "n1",
+      "lamport": 9,
+      "detail": {
+        "amount": 5,
+        "lamport": 4,
+        "ref": "t2"
+      },
+      "at": "2026-09-28T09:26:00.838384519Z"
+    },
+    {
+      "seq": 34,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n3",
+      "snapshot": "S2",
+      "peer": "n1",
+      "lamport": 10,
+      "detail": {
+        "captured": 1,
+        "sum": 5
+      },
+      "at": "2026-09-28T09:26:00.83840003Z"
+    },
+    {
+      "seq": 35,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n3",
+      "snapshot": "S2",
+      "peer": "n1",
+      "lamport": 10,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.838400657Z"
+    },
+    {
+      "seq": 36,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "round_complete",
+      "node": "n3",
+      "snapshot": "S2",
+      "lamport": 10,
+      "detail": {
+        "in_flight_total": 5,
+        "local_total": 10
+      },
+      "at": "2026-09-28T09:26:00.838407714Z"
+    },
+    {
+      "seq": 37,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n2",
+      "snapshot": "S2",
+      "peer": "n1",
+      "lamport": 7,
+      "detail": {
+        "captured": 1,
+        "sum": 12
+      },
+      "at": "2026-09-28T09:26:00.838430434Z"
+    },
+    {
+      "seq": 38,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n2",
+      "snapshot": "S2",
+      "peer": "n1",
+      "lamport": 7,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.838430975Z"
+    },
+    {
+      "seq": 39,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 11,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838438901Z"
+    },
+    {
+      "seq": 40,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 11,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.83843946Z"
+    },
+    {
+      "seq": 41,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "round_complete",
+      "node": "n3",
+      "snapshot": "S1",
+      "lamport": 11,
+      "detail": {
+        "in_flight_total": 0,
+        "local_total": 10
+      },
+      "at": "2026-09-28T09:26:00.838442897Z"
+    },
+    {
+      "seq": 42,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 9,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838447446Z"
+    },
+    {
+      "seq": 43,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 9,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.838447772Z"
+    },
+    {
+      "seq": 44,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "round_complete",
+      "node": "n1",
+      "snapshot": "S1",
+      "lamport": 9,
+      "detail": {
+        "in_flight_total": 0,
+        "local_total": 50
+      },
+      "at": "2026-09-28T09:26:00.838454732Z"
+    },
+    {
+      "seq": 45,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n1",
+      "snapshot": "S2",
+      "peer": "n3",
+      "lamport": 10,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838467118Z"
+    },
+    {
+      "seq": 46,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n1",
+      "snapshot": "S2",
+      "peer": "n3",
+      "lamport": 10,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.838467477Z"
+    },
+    {
+      "seq": 47,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "round_complete",
+      "node": "n1",
+      "snapshot": "S2",
+      "lamport": 10,
+      "detail": {
+        "in_flight_total": 0,
+        "local_total": 33
+      },
+      "at": "2026-09-28T09:26:00.838469401Z"
+    },
+    {
+      "seq": 48,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 8,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838474379Z"
+    },
+    {
+      "seq": 49,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 8,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.8384747Z"
+    },
+    {
+      "seq": 50,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "round_complete",
+      "node": "n2",
+      "snapshot": "S1",
+      "lamport": 8,
+      "detail": {
+        "in_flight_total": 0,
+        "local_total": 40
+      },
+      "at": "2026-09-28T09:26:00.838476581Z"
+    },
+    {
+      "seq": 51,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "channel_closed",
+      "node": "n2",
+      "snapshot": "S2",
+      "peer": "n3",
+      "lamport": 9,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:26:00.838479189Z"
+    },
+    {
+      "seq": 52,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "marker_received",
+      "node": "n2",
+      "snapshot": "S2",
+      "peer": "n3",
+      "lamport": 9,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:26:00.83847953Z"
+    },
+    {
+      "seq": 53,
+      "run_id": "parallel-20260928T092600.838188847Z",
+      "kind": "round_complete",
+      "node": "n2",
+      "snapshot": "S2",
+      "lamport": 9,
+      "detail": {
+        "in_flight_total": 12,
+        "local_total": 40
+      },
+      "at": "2026-09-28T09:26:00.838497723Z"
+    }
+  ],
+  "verdicts": [
+    {
+      "name": "live ledger total conserved after scenario",
+      "passed": true,
+      "reason": "sum of live balances 100 vs expected final total 100",
+      "expected": 100,
+      "observed": 100
+    },
+    {
+      "name": "live ledger total equals initial total (no token creation)",
+      "passed": true,
+      "reason": "no process was paused; complete transfers still conserve",
+      "expected": 100,
+      "observed": 100
+    },
+    {
+      "name": "snapshot S1 global token conservation",
+      "passed": true,
+      "reason": "independent global sum 100 vs expected 100 (local totals 100, captured in-flight 0)",
+      "expected": 100,
+      "observed": 100
+    },
+    {
+      "name": "snapshot S1 local total @n1",
+      "passed": true,
+      "reason": "recorded local total 50 vs expected 50",
+      "expected": 50,
+      "observed": 50
+    },
+    {
+      "name": "snapshot S1 local total @n2",
+      "passed": true,
+      "reason": "recorded local total 40 vs expected 40",
+      "expected": 40,
+      "observed": 40
+    },
+    {
+      "name": "snapshot S1 local total @n3",
+      "passed": true,
+      "reason": "recorded local total 10 vs expected 10",
+      "expected": 10,
+      "observed": 10
+    },
+    {
+      "name": "snapshot S1 captured in-flight n1-\u003en2 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n1-\u003en2",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S1 captured in-flight n1-\u003en3 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n1-\u003en3",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S1 captured in-flight n2-\u003en1 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n2-\u003en1",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S1 captured in-flight n2-\u003en3 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n2-\u003en3",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S1 captured in-flight n3-\u003en1 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n3-\u003en1",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S1 captured in-flight n3-\u003en2 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n3-\u003en2",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "replay.Conservation(S1)",
+      "passed": true,
+      "reason": "global snapshot sum equals initial token supply",
+      "expected": 100,
+      "observed": 100
+    },
+    {
+      "name": "snapshot S2 global token conservation",
+      "passed": true,
+      "reason": "independent global sum 100 vs expected 100 (local totals 83, captured in-flight 17)",
+      "expected": 100,
+      "observed": 100
+    },
+    {
+      "name": "snapshot S2 local total @n1",
+      "passed": true,
+      "reason": "recorded local total 33 vs expected 33",
+      "expected": 33,
+      "observed": 33
+    },
+    {
+      "name": "snapshot S2 local total @n2",
+      "passed": true,
+      "reason": "recorded local total 40 vs expected 40",
+      "expected": 40,
+      "observed": 40
+    },
+    {
+      "name": "snapshot S2 local total @n3",
+      "passed": true,
+      "reason": "recorded local total 10 vs expected 10",
+      "expected": 10,
+      "observed": 10
+    },
+    {
+      "name": "snapshot S2 captured in-flight n1-\u003en2 (1 msgs)",
+      "passed": false,
+      "reason": "captured sum 12 vs expected 0 on n1-\u003en2",
+      "expected": 0,
+      "observed": 12
+    },
+    {
+      "name": "snapshot S2 captured in-flight n1-\u003en3 (1 msgs)",
+      "passed": true,
+      "reason": "captured sum 5 vs expected 5 on n1-\u003en3",
+      "expected": 5,
+      "observed": 5
+    },
+    {
+      "name": "snapshot S2 captured in-flight n2-\u003en1 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n2-\u003en1",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S2 captured in-flight n2-\u003en3 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n2-\u003en3",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S2 captured in-flight n3-\u003en1 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n3-\u003en1",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "snapshot S2 captured in-flight n3-\u003en2 (0 msgs)",
+      "passed": true,
+      "reason": "captured sum 0 vs expected 0 on n3-\u003en2",
+      "expected": 0,
+      "observed": 0
+    },
+    {
+      "name": "replay.Conservation(S2)",
+      "passed": true,
+      "reason": "global snapshot sum equals initial token supply",
+      "expected": 100,
+      "observed": 100
+    }
+  ],
+  "passed": false,
+  "summary": "scenario parallel executed; verdicts carry the concrete conservation and ordering judgments"
+}

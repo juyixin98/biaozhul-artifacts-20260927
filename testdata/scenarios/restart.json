@@ -1,0 +1,42 @@
+{
+  "name": "restart",
+  "description": "Restart safety. S1 starts at n1, markers are delivered to n2 (which records) but deliberately never reach n3 and n3 never closes, so n1 and n2 are left mid-round. The harness then simulates a process restart (epoch bump + RecoverAbortedRounds). Requirements verified in tests/restart_test.go rather than only here: the old round is aborted state_conflict/round_stale_after_restart, stale markers from epoch 1 are rejected, and a completed verification refuses to stitch states across the restart. This fixture keeps the round incomplete and declares it so.",
+  "nodes": ["n1", "n2", "n3"],
+  "accounts": [
+    {"id": "a", "owner": "n1", "balance": 50},
+    {"id": "d", "owner": "n2", "balance": 30},
+    {"id": "g", "owner": "n3", "balance": 20}
+  ],
+  "steps": [
+    {"kind": "snapshot", "node": "n1", "snapshot": "S1", "note": "n1 records local 50 and queues markers"},
+    {"kind": "flush", "src": "n1", "dst": "n2", "note": "S1 marker n1->n2 in flight"},
+    {"kind": "transfer", "node": "n1", "note": "t1 crosses n1->n2 while the round is open",
+     "transfer": {"ref": "t1", "from": "a", "to": "d", "amount": 8}},
+    {"kind": "flush", "src": "n1", "dst": "n2", "note": "t1 behind marker on n1->n2"},
+    {"kind": "pump", "src": "n1", "dst": "n2", "n": 1, "note": "n2 records local 30 on S1 marker, closes n1->n2 empty; queues its markers"},
+    {"kind": "pump", "src": "n1", "dst": "n2", "n": 1, "note": "t1 delivered post-marker: credited d 30->38, not captured"},
+    {"kind": "flush", "src": "n2", "dst": "n1", "note": "S1 marker n2->n1 in flight"},
+    {"kind": "pump", "src": "n2", "dst": "n1", "n": 1, "note": "n1 closes inbound n2->n1; n1 still WAITING on n3 and n2 still waiting on n3 -> round intentionally left recording"
+    }
+  ],
+  "expect": {
+    "initial_total": 100,
+    "final_live_total": 100,
+    "snapshots": {
+      "S1": {
+        "complete": false,
+        "global_total": 100,
+        "local_totals": {"n1": 50, "n2": 30, "n3": 20},
+        "in_flight": {
+          "n1->n2": 0,
+          "n1->n3": 0,
+          "n2->n1": 0,
+          "n2->n3": 0,
+          "n3->n1": 0,
+          "n3->n2": 0
+        },
+        "aborted": ["n1", "n2"]
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "name": "inflight",
+  "description": "One snapshot S1 initiated at n1 while transfers are genuinely in flight. The marker interleaving places t1 on the n1->n2 channel AHEAD of n2 recording (so t1 is already credited and the channel capture is empty), t2 on n2->n3 BEFORE n3 records (captured 5), and t3 on n1->n3 AFTER n3 already closed that channel on the marker (post-cut, not captured). No process is ever paused: n2 issues t2 after the round opens. Hand-derived numbers: locals 30+45+20=95, captured in-flight 5, global cut 95+5=100. See docs/SCENARIOS.md.",
+  "nodes": ["n1", "n2", "n3"],
+  "accounts": [
+    {"id": "a", "owner": "n1", "balance": 30},
+    {"id": "b", "owner": "n1", "balance": 10},
+    {"id": "d", "owner": "n2", "balance": 30},
+    {"id": "e", "owner": "n2", "balance": 10},
+    {"id": "g", "owner": "n3", "balance": 10},
+    {"id": "h", "owner": "n3", "balance": 10}
+  ],
+  "steps": [
+    {"kind": "transfer", "node": "n1", "note": "t1: n1 debits a 30->20; envelope enters durable outbox n1->n2",
+     "transfer": {"ref": "t1", "from": "a", "to": "d", "amount": 10}},
+    {"kind": "flush", "src": "n1", "dst": "n2", "note": "t1 IN FLIGHT n1->n2"},
+
+    {"kind": "snapshot", "node": "n1", "snapshot": "S1", "note": "n1 records local (a20,b10)=30, markers queued in outbox"},
+    {"kind": "flush", "src": "n1", "dst": "n2", "note": "marker S1 IN FLIGHT n1->n2, strictly behind t1 (same outbox, FIFO)"},
+    {"kind": "flush", "src": "n1", "dst": "n3", "note": "marker S1 IN FLIGHT n1->n3"},
+
+    {"kind": "transfer", "node": "n2", "note": "t2: the system stays live while S1 is open (no global pause)",
+     "transfer": {"ref": "t2", "from": "d", "to": "g", "amount": 5}},
+    {"kind": "flush", "src": "n2", "dst": "n3", "note": "t2 IN FLIGHT n2->n3 before n3 records"},
+
+    {"kind": "pump", "src": "n1", "dst": "n2", "n": 1, "note": "FIFO head t1 delivered: n2 credits d 30->40"},
+    {"kind": "pump", "src": "n1", "dst": "n2", "n": 1, "note": "marker now: n2 FIRST hears of S1, records local (d40,e10)=50, closes n1->n2 EMPTY, queues its markers"},
+
+    {"kind": "transfer", "node": "n1", "note": "t3: n1 keeps transacting after recording; marker to n3 already in flight so t3 is enqueued AFTER it",
+     "transfer": {"ref": "t3", "from": "a", "to": "h", "amount": 4}},
+    {"kind": "flush", "src": "n1", "dst": "n3", "note": "t3 IN FLIGHT n1->n3 behind the S1 marker"},
+
+    {"kind": "flush", "src": "n2", "dst": "n1", "note": "marker S1 n2->n1 in flight"},
+    {"kind": "flush", "src": "n2", "dst": "n3", "note": "marker S1 n2->n3 in flight behind t2"},
+
+    {"kind": "pump", "src": "n1", "dst": "n3", "n": 1, "note": "marker first on n1->n3: n3 records local (g10,h10)=20, closes n1->n3 EMPTY"},
+    {"kind": "pump", "src": "n1", "dst": "n3", "n": 1, "note": "t3 then: channel n1->n3 ALREADY CLOSED by the marker, so t3 is post-cut (not captured) and simply credits h 10->14"},
+    {"kind": "pump", "src": "n2", "dst": "n3", "n": 1, "note": "t2: captured in n2->n3 (5) and credited g 10->15"},
+    {"kind": "pump", "src": "n2", "dst": "n3", "n": 1, "note": "marker closes n2->n3 with [t2]=5"},
+
+    {"kind": "pump", "src": "n2", "dst": "n1", "n": -1, "note": "n1 closes inbound n2->n1"},
+
+    {"kind": "flush", "src": "n3", "dst": "n1", "note": "marker n3->n1 in flight"},
+    {"kind": "flush", "src": "n3", "dst": "n2", "note": "marker n3->n2 in flight"},
+    {"kind": "pump", "src": "n3", "dst": "n1", "n": -1, "note": "n1 closes inbound n3->n1: n1 complete"},
+    {"kind": "pump", "src": "n3", "dst": "n2", "n": -1, "note": "n2 closes inbound n3->n2: n2 complete"}
+  ],
+  "expect": {
+    "initial_total": 100,
+    "final_live_total": 100,
+    "snapshots": {
+      "S1": {
+        "complete": true,
+        "global_total": 100,
+        "local_totals": {"n1": 30, "n2": 45, "n3": 20},
+        "in_flight": {
+          "n1->n2": 0,
+          "n1->n3": 0,
+          "n2->n1": 0,
+          "n2->n3": 5,
+          "n3->n1": 0,
+          "n3->n2": 0
+        }
+      }
+    }
+  }
+}

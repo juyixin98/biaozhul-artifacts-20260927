@@ -1,0 +1,498 @@
+{
+  "run_id": "inflight-20260928T092130.435109647Z",
+  "scenario": "inflight",
+  "started_at": "2026-09-28T09:21:30.435121664Z",
+  "finished_at": "2026-09-28T09:21:30.435427658Z",
+  "events": [
+    {
+      "seq": 1,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "scenario_started",
+      "detail": {
+        "nodes": [
+          "n1",
+          "n2",
+          "n3"
+        ],
+        "steps": 22
+      },
+      "at": "2026-09-28T09:21:30.435145524Z"
+    },
+    {
+      "seq": 2,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "transfer_accepted",
+      "node": "n1",
+      "peer": "n2",
+      "lamport": 1,
+      "detail": {
+        "amount": 10,
+        "lamport": 1,
+        "ref": "t1",
+        "seq": 1,
+        "to_account": "d"
+      },
+      "at": "2026-09-28T09:21:30.435162739Z"
+    },
+    {
+      "seq": 3,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "state_recorded",
+      "node": "n1",
+      "snapshot": "S1",
+      "lamport": 1,
+      "detail": {
+        "accounts": 2,
+        "lamport": 1,
+        "total": 30
+      },
+      "at": "2026-09-28T09:21:30.435186377Z"
+    },
+    {
+      "seq": 4,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_sent",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 2,
+      "at": "2026-09-28T09:21:30.435187407Z"
+    },
+    {
+      "seq": 5,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_sent",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 3,
+      "at": "2026-09-28T09:21:30.435188216Z"
+    },
+    {
+      "seq": 6,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "transfer_accepted",
+      "node": "n2",
+      "peer": "n3",
+      "lamport": 1,
+      "detail": {
+        "amount": 5,
+        "lamport": 1,
+        "ref": "t2",
+        "seq": 1,
+        "to_account": "g"
+      },
+      "at": "2026-09-28T09:21:30.435197537Z"
+    },
+    {
+      "seq": 7,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "transfer_delivered",
+      "node": "n2",
+      "peer": "n1",
+      "lamport": 2,
+      "detail": {
+        "amount": 10,
+        "lamport": 1,
+        "ref": "t1"
+      },
+      "at": "2026-09-28T09:21:30.435200612Z"
+    },
+    {
+      "seq": 8,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "state_recorded",
+      "node": "n2",
+      "snapshot": "S1",
+      "lamport": 3,
+      "detail": {
+        "accounts": 2,
+        "lamport": 3,
+        "total": 45
+      },
+      "at": "2026-09-28T09:21:30.435206241Z"
+    },
+    {
+      "seq": 9,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_sent",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 4,
+      "at": "2026-09-28T09:21:30.435207169Z"
+    },
+    {
+      "seq": 10,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_sent",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 5,
+      "at": "2026-09-28T09:21:30.435208092Z"
+    },
+    {
+      "seq": 11,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "channel_closed",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 5,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:21:30.435214365Z"
+    },
+    {
+      "seq": 12,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_received",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 5,
+      "detail": {
+        "first": true
+      },
+      "at": "2026-09-28T09:21:30.435214965Z"
+    },
+    {
+      "seq": 13,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "transfer_accepted",
+      "node": "n1",
+      "peer": "n3",
+      "lamport": 4,
+      "detail": {
+        "amount": 4,
+        "lamport": 4,
+        "ref": "t3",
+        "seq": 1,
+        "to_account": "h"
+      },
+      "at": "2026-09-28T09:21:30.435218341Z"
+    },
+    {
+      "seq": 14,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "state_recorded",
+      "node": "n3",
+      "snapshot": "S1",
+      "lamport": 4,
+      "detail": {
+        "accounts": 2,
+        "lamport": 4,
+        "total": 20
+      },
+      "at": "2026-09-28T09:21:30.435224483Z"
+    },
+    {
+      "seq": 15,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_sent",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 5,
+      "at": "2026-09-28T09:21:30.435225288Z"
+    },
+    {
+      "seq": 16,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_sent",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 6,
+      "at": "2026-09-28T09:21:30.435226014Z"
+    },
+    {
+      "seq": 17,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "channel_closed",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 6,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:21:30.43522863Z"
+    },
+    {
+      "seq": 18,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_received",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n1",
+      "lamport": 6,
+      "detail": {
+        "first": true
+      },
+      "at": "2026-09-28T09:21:30.435235381Z"
+    },
+    {
+      "seq": 19,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "transfer_delivered",
+      "node": "n3",
+      "peer": "n1",
+      "lamport": 7,
+      "detail": {
+        "amount": 4,
+        "lamport": 4,
+        "ref": "t3"
+      },
+      "at": "2026-09-28T09:21:30.435250858Z"
+    },
+    {
+      "seq": 20,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "transfer_delivered",
+      "node": "n3",
+      "peer": "n2",
+      "lamport": 8,
+      "detail": {
+        "amount": 5,
+        "lamport": 1,
+        "ref": "t2"
+      },
+      "at": "2026-09-28T09:21:30.435254501Z"
+    },
+    {
+      "seq": 21,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "channel_closed",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 9,
+      "detail": {
+        "captured": 1,
+        "sum": 5
+      },
+      "at": "2026-09-28T09:21:30.435258393Z"
+    },
+    {
+      "seq": 22,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_received",
+      "node": "n3",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 9,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:21:30.435258977Z"
+    },
+    {
+      "seq": 23,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "round_complete",
+      "node": "n3",
+      "snapshot": "S1",
+      "lamport": 9,
+      "detail": {
+        "in_flight_total": 5,
+        "local_total": 20
+      },
+      "at": "2026-09-28T09:21:30.435281373Z"
+    },
+    {
+      "seq": 24,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "channel_closed",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 5,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:21:30.435285638Z"
+    },
+    {
+      "seq": 25,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_received",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n2",
+      "lamport": 5,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:21:30.43528616Z"
+    },
+    {
+      "seq": 26,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "channel_closed",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 6,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:21:30.435308518Z"
+    },
+    {
+      "seq": 27,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_received",
+      "node": "n1",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 6,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:21:30.435309017Z"
+    },
+    {
+      "seq": 28,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "round_complete",
+      "node": "n1",
+      "snapshot": "S1",
+      "lamport": 6,
+      "detail": {
+        "in_flight_total": 0,
+        "local_total": 30
+      },
+      "at": "2026-09-28T09:21:30.435327749Z"
+    },
+    {
+      "seq": 29,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "channel_closed",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 7,
+      "detail": {
+        "captured": 0,
+        "sum": 0
+      },
+      "at": "2026-09-28T09:21:30.435331977Z"
+    },
+    {
+      "seq": 30,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "marker_received",
+      "node": "n2",
+      "snapshot": "S1",
+      "peer": "n3",
+      "lamport": 7,
+      "detail": {
+        "closing": true
+      },
+      "at": "2026-09-28T09:21:30.435332493Z"
+    },
+    {
+      "seq": 31,
+      "run_id": "inflight-20260928T092130.435109647Z",
+      "kind": "round_complete",
+      "node": "n2",
+      "snapshot": "S1",
+      "lamport": 7,
+      "detail": {
+        "in_flight_total": 0,
+        "local_total": 45
+      },
+      "at": "2026-09-28T09:21:30.435337561Z"
+    }
+  ],
+  "verdicts": [
+    {
+      "name": "live ledger total conserved after scenario",
+      "passed": true,
+      "reason": "sum of live balances 100 vs expected final total 100",
+      "expected": 100,
+      "observed": 100
+    },
+    {
+      "name": "live ledger total equals initial total (no token creation)",
+      "passed": true,
+      "reason": "no process was paused; complete transfers still conserve",
+      "expected": 100,
+      "observed": 100
+    },
+    {
+      "name": "snapshot S1 global token conservation",
+      "passed": false,
+      "reason": "independent global sum 90 vs expected 100 (local totals 95, captured in-flight 5)",
+      "expected": 100,
+      "observed": 90
+    },
+    {
+      "name": "snapshot S1 local total @n1",
+      "passed": true,
+      "reason": "recorded local total 30 vs expected 30",
+      "expected": 30,
+      "observed": 30
+    },
+    {
+      "name": "snapshot S1 local total @n2",
+      "passed": false,
+      "reason": "recorded local total 45 vs expected 50",
+      "expected": 50,
+      "observed": 45
+    },
+    {
+      "name": "snapshot S1 local total @n3",
+      "passed": true,
+      "reason": "recorded local total 20 vs expected 20",
+      "expected": 20,
+      "observed": 20
+    },
+    {
+      "name": "in-flight key n1-\u003en2",
+      "passed": false,
+      "reason": "bad key, want src-\u003edst"
+    },
+    {
+      "name": "in-flight key n1-\u003en3",
+      "passed": false,
+      "reason": "bad key, want src-\u003edst"
+    },
+    {
+      "name": "in-flight key n2-\u003en1",
+      "passed": false,
+      "reason": "bad key, want src-\u003edst"
+    },
+    {
+      "name": "in-flight key n2-\u003en3",
+      "passed": false,
+      "reason": "bad key, want src-\u003edst"
+    },
+    {
+      "name": "in-flight key n3-\u003en1",
+      "passed": false,
+      "reason": "bad key, want src-\u003edst"
+    },
+    {
+      "name": "in-flight key n3-\u003en2",
+      "passed": false,
+      "reason": "bad key, want src-\u003edst"
+    },
+    {
+      "name": "replay.Conservation(S1)",
+      "passed": false,
+      "reason": "computation_failure/replay_checksum_mismatch at replay.Conservation: tokens not conserved: global snapshot sum 90 != expected 100 (local 95, in-flight 5)",
+      "expected": 100,
+      "observed": 90
+    }
+  ],
+  "passed": false,
+  "summary": "scenario inflight executed; verdicts carry the concrete conservation and ordering judgments"
+}
