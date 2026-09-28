@@ -1,0 +1,12 @@
+[package]
+name = "wm-store"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Filesystem persistence adapter for wavelet matrix indexes"
+
+[dependencies]
+wm-core = { workspace = true }
+wm-format = { workspace = true }
+thiserror = { workspace = true }

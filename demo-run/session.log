@@ -1,0 +1,44 @@
+== 1. service info ==
+{"data":{"endpoints":{"DELETE /indexes/{name}":"remove an index","GET /":"this document","GET /health":"liveness and metadata","GET /indexes":"list persisted indexes (corrupt entries listed separately)","GET /indexes/{name}":"index metadata","POST /indexes/{name}":"build and persist an index: {values:[i64...], overwrite:bool}","POST /query":"tagged body {op} in {quantile,count,predecessor,successor}"},"format_version":1,"semantics":{"index_range":"half-open [l, r), requires l < r","k":"0-based order statistic: 0 <= k < r-l","value_range":"half-open [lo, hi)","values":"i64; coordinate compressi
+
+== 2. build index 'demo' (duplicates, negatives, signed extremes) ==
+{"data":{"bit_len":3,"distinct_count":7,"len":10,"max":9223372036854775807,"min":-9223372036854775808,"name":"demo","size_bytes":172},"diagnostics":{"index":{"bit_len":3,"format_version":1,"index":"demo","levels":3,"location":"./demo-run/data/demo.wmi","semantics":{"k":"zero-based order statistic index","range":"half-open [l, r)","value_range":"half-open [lo, hi)"}},"steps":[{"action":"collect_distinct","distinct":7,"step":1},{"action":"order_preserving_compression","ids":10,"max_id":6,"step":2},{"action":"build_wavelet_levels","levels":3,"step":3},{"action":"encode_versioned_container","format_version":1,"step":4},{"action":"atomic_rename_into_place","step":5}]},"ok":true,"request_id":"demo-002"}
+
+== 3. list indexes ==
+{"data":{"corrupt_entries":[],"data_dir":"./demo-run/data","indexes":[{"bit_len":3,"distinct_count":7,"len":10,"max":9223372036854775807,"min":-9223372036854775808,"name":"demo","size_bytes":172}]},"ok":true,"request_id":"demo-003"}
+
+== 4. k-th smallest of [0,10), k=3 (0-based); sorted [MIN,-3,-1,-1,0,2,2,5,5,MAX] -> -1 ==
+{"data":{"k":3,"l":0,"op":"quantile","r":10,"value":-1},"diagnostics":{"index":{"bit_len":3,"format_version":1,"index":"demo","levels":3,"location":"./demo-run/data/demo.wmi","semantics":{"k":"zero-based order statistic index","range":"half-open [l, r)","value_range":"half-open [lo, hi)"}},"op":"quantile","trace":{"compressed_id":2,"query":{"k":3,"l":0,"r":10},"result_value":-1,"steps":[{"chosen_branch":"zero(left)","inspected_bit_position":2,"k_before":3,"level":0,"range_after":[0,5],"range_before":[0,10],"zeros_in_range":5},{"chosen_branch":"one(right)","inspected_bit_position":1,"k_before":3,"level":1,"range_after":[6,9],"range_before":[0,5],"zeros_in_range":2},{"chosen_branch":"zero(left)","inspected_bit_position":0,"k_before":1,"level":2,"range_after":[3,5],"range_before":[6,9],"zeros_in_range":2}]}},"ok":true,"request_id":"demo-004"}
+
+== 5. value range count [-1, 5) -> -1 twice, 0 once, 2 twice = 5 ==
+{"data":{"count":5,"hi":5,"l":0,"lo":-1,"op":"count","r":10},"diagnostics":{"index":{"bit_len":3,"format_version":1,"index":"demo","levels":3,"location":"./demo-run/data/demo.wmi","semantics":{"k":"zero-based order statistic index","range":"half-open [l, r)","value_range":"half-open [lo, hi)"}},"op":"count","trace":{"below_hi":{"count":7,"distinct_values_below_target":5,"label":"count(< hi)","steps":[{"bound_bit":1,"inspected_bit_position":2,"level":0,"matched_zeros_here":5,"range_after":[5,10],"range_before":[0,10]},{"bound_bit":0,"inspected_bit_position":1,"level":1,"matched_zeros_here":0,"range_after":[2,6],"range_before":[5,10]},{"bound_bit":1,"inspected_bit_position":0,"level":2,"matched_zeros_here":2,"range_after":[7,9],"range_before":[2,6]}],"target":5},"below_lo":{"count":2,"distinct_values_below_target":2,"label":"count(< lo)","steps":[{"bound_bit":0,"inspected_bit_position":2,"level":0,"matched_zeros_here":0,"range_after":[0,5],"range_before":[0,10]},{"bound_bit":1,"inspected_bit_position":1,"level":1,"matched_zeros_here":2,"range_after":[6,9],"range_before":[0,5]},{"bound_bit":0,"inspected_bit_position":0,"level":2,"matched_zeros_here":0,"range_after":[3,5],"range_before":[6,9]}],"target":-1},"count":5,"note":null,"subtraction":{"count_below_hi":7,"count_below_lo":2,"formula":"count([lo,hi)) = count(< hi) - count(< lo)"},"value_range":{"hi":5,"lo":-1,"shape":"half-open"}}},"ok":true,"request_id":"demo-005"}
+
+== 6. predecessor of 5 -> 2; successor of 5 -> 9223372036854775807 ==
+{"data":{"exists":true,"l":0,"op":"predecessor","present":true,"r":10,"value":2,"x":5},"diagnostics":{"index":{"bit_len":3,"format_version":1,"index":"demo","levels":3,"location":"./demo-run/data/demo.wmi","semantics":{"k":"zero-based order statistic index","range":"half-open [l, r)","value_range":"half-open [lo, hi)"}},"op":"predecessor","trace":{"count_less_or_equal_x":9,"count_less_than_x":7,"kind":"predecessor","neighbor_exists":true,"selection_trace":{"compressed_id":4,"query":{"k":6,"l":0,"r":10},"result_value":2,"steps":[{"chosen_branch":"one(right)","inspected_bit_position":2,"k_before":6,"level":0,"range_after":[5,10],"range_before":[0,10],"zeros_in_range":5},{"chosen_branch":"zero(left)","inspected_bit_position":1,"k_before":1,"level":1,"range_after":[2,6],"range_before":[5,10],"zeros_in_range":4},{"chosen_branch":"zero(left)","inspected_bit_position":0,"k_before":1,"level":2,"range_after":[1,3],"range_before":[2,6],"zeros_in_range":2}]},"uncertain":[],"value":2,"x":5,"x_present_in_range":true}},"ok":true,"request_id":"demo-006"}
+{"data":{"exists":true,"l":0,"op":"successor","present":true,"r":10,"value":9223372036854775807,"x":5},"diagnostics":{"index":{"bit_len":3,"format_version":1,"index":"demo","levels":3,"location":"./demo-run/data/demo.wmi","semantics":{"k":"zero-based order statistic index","range":"half-open [l, r)","value_range":"half-open [lo, hi)"}},"op":"successor","trace":{"count_less_or_equal_x":9,"count_less_than_x":7,"kind":"successor","neighbor_exists":true,"selection_trace":{"compressed_id":6,"query":{"k":9,"l":0,"r":10},"result_value":9223372036854775807,"steps":[{"chosen_branch":"one(right)","inspected_bit_position":2,"k_before":9,"level":0,"range_after":[5,10],"range_before":[0,10],"zeros_in_range":5},{"chosen_branch":"one(right)","inspected_bit_position":1,"k_before":4,"level":1,"range_after":[9,10],"range_before":[5,10],"zeros_in_range":4},{"chosen_branch":"zero(left)","inspected_bit_position":0,"k_before":0,"level":2,"range_after":[5,6],"range_before":[9,10],"zeros_in_range":1}]},"uncertain":[],"value":9223372036854775807,"x":5,"x_present_in_range":true}},"ok":true,"request_id":"demo-007"}
+
+== 7. ERROR: empty range [3,3) -> 422 EMPTY_RANGE ==
+HTTP/1.1 422 Unprocessable Entity
+{"ok":false,"request_id":"demo-009","error":{"kind":"EMPTY_RANGE","message":"range [3, 3) is empty; queries require a non-empty half-open range"}}
+
+== 8. ERROR: k out of bounds k=10, len 10 -> 422 K_OUT_OF_BOUNDS ==
+{"ok":false,"request_id":"demo-010","error":{"kind":"K_OUT_OF_BOUNDS","message":"k = 10 is out of bounds for range [0, 10) of length 10; k is 0-based"}}
+
+== 9. ERROR: index range beyond n -> 422 RANGE_OUT_OF_BOUNDS ==
+{"ok":false,"request_id":"demo-011","error":{"kind":"RANGE_OUT_OF_BOUNDS","message":"range [0, 99) is out of bounds for sequence length 10"}}
+
+== 10. ERROR: unknown index -> 404 INDEX_NOT_FOUND ==
+{"ok":false,"request_id":"demo-012","error":{"kind":"INDEX_NOT_FOUND","message":"index \"ghost\" not found"}}
+
+== 11. duplicate create without overwrite -> 409 INDEX_ALREADY_EXISTS ==
+{"ok":false,"request_id":"demo-013","error":{"kind":"INDEX_ALREADY_EXISTS","message":"index \"demo\" already exists"}}
+
+== 12. build empty index -> 400 EMPTY_VALUES ==
+{"ok":false,"request_id":"demo-014","error":{"kind":"EMPTY_VALUES","message":"cannot build index from an empty value sequence"}}
+
+== 13. malformed JSON -> 400 INVALID_JSON ==
+{"ok":false,"request_id":"demo-015","error":{"kind":"INVALID_JSON","message":"request body is not valid for the endpoint schema: Failed to parse the request body as JSON: key must be a string at line 1 column 2"}}
+
+== 14. delete and confirm 404 ==
+{"data":{"deleted":"demo"},"ok":true,"request_id":"demo-016"}
+{"ok":false,"request_id":"demo-017","error":{"kind":"INDEX_NOT_FOUND","message":"index \"demo\" not found"}}

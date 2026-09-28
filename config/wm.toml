@@ -1,0 +1,14 @@
+# Wavelet matrix verification service — example configuration.
+# Precedence: CLI flags > WM_* environment variables > this file > defaults.
+
+[data]
+# Directory where <name>.wmi index files live (created on startup).
+dir = "./data"
+
+[server]
+host = "127.0.0.1"
+port = 8080
+
+[log]
+# tracing filter directive; JSON log lines to stdout.
+level = "info"

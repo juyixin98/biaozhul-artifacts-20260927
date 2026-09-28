@@ -1,0 +1,17 @@
+# Wavelet matrix demo fixture: mixed duplicates, negatives, gaps.
+# One i64 per line. Comments start with '#'.
+12
+-7
+42
+0
+12
+100
+-7
+3
+42
+42
+512
+1
+9
+9
+-1000

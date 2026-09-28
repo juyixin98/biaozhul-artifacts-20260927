@@ -1,0 +1,24 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/wm-core",
+    "crates/wm-format",
+    "crates/wm-store",
+    "crates/wm-server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+license = "MIT"
+
+[workspace.dependencies]
+wm-core = { path = "crates/wm-core", version = "0.1.0" }
+wm-format = { path = "crates/wm-format", version = "0.1.0" }
+wm-store = { path = "crates/wm-store", version = "0.1.0" }
+thiserror = "2.0"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1

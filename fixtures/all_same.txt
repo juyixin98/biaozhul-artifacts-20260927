@@ -1,0 +1,9 @@
+# All-same fixture: forces the zero-level (single distinct id) path.
+-7
+-7
+-7
+-7
+-7
+-7
+-7
+-7

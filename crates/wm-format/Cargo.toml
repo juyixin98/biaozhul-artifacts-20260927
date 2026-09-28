@@ -1,0 +1,11 @@
+[package]
+name = "wm-format"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Versioned binary serialization format for wavelet matrix indexes"
+
+[dependencies]
+wm-core = { workspace = true }
+thiserror = { workspace = true }
