@@ -1,0 +1,23 @@
+# Default configuration for the se-server. Every value here can be overridden by
+# environment variables (SE_BIND, SE_PORT, SE_Z3_BIN, SE_Z3_TIMEOUT_MS,
+# SE_MAX_PATHS, SE_MAX_LOOP_UNROLL) or by CLI flags.
+
+[server]
+bind = "127.0.0.1"
+port = 8080
+max_body_bytes = 1048576
+log_format = "text"   # "text" or "json"
+
+[solver]
+bin = "z3"
+timeout_ms = 5000     # soft per-query timeout passed to Z3 (:timeout)
+
+[engine]
+max_paths = 256       # exploration budget (terminal paths)
+max_loop_unroll = 64  # bounded loop unrolling cap (iterations per path)
+enforce_domains = true
+record_limit = 500
+
+[verify]
+replay_step_limit = 200000
+oracle_cap = 4096     # default bound on small-domain exhaustive enumeration

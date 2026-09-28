@@ -1,0 +1,32 @@
+{
+  "request_id": "doc-analyze-wrap",
+  "max_paths": 256,
+  "max_loop_unroll": 64,
+  "enforce_domains": true,
+  "with_oracle": true,
+  "oracle_cap": 4096,
+  "program": {
+    "width": 8,
+    "overflow": "wrap",
+    "inputs": [{ "name": "x", "low": 0, "high": 255 }],
+    "body": [
+      {
+        "stmt": "assign",
+        "target": "y",
+        "expr": {
+          "expr": "add",
+          "lhs": { "expr": "var", "name": "x" },
+          "rhs": { "expr": "int", "value": 100 }
+        }
+      },
+      {
+        "stmt": "assert",
+        "cond": {
+          "expr": "ugt",
+          "lhs": { "expr": "var", "name": "y" },
+          "rhs": { "expr": "int", "value": 200 }
+        }
+      }
+    ]
+  }
+}

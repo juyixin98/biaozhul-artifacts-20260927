@@ -1,0 +1,35 @@
+{
+  "width": 8,
+  "overflow": "wrap",
+  "inputs": [{ "name": "x", "low": 0, "high": 20 }],
+  "body": [
+    {
+      "stmt": "if",
+      "cond": {
+        "expr": "ult",
+        "lhs": { "expr": "var", "name": "x" },
+        "rhs": { "expr": "int", "value": 5 }
+      },
+      "then": [
+        {
+          "stmt": "assert",
+          "cond": {
+            "expr": "ult",
+            "lhs": { "expr": "var", "name": "x" },
+            "rhs": { "expr": "int", "value": 10 }
+          }
+        }
+      ],
+      "else": [
+        {
+          "stmt": "assert",
+          "cond": {
+            "expr": "uge",
+            "lhs": { "expr": "var", "name": "x" },
+            "rhs": { "expr": "int", "value": 5 }
+          }
+        }
+      ]
+    }
+  ]
+}

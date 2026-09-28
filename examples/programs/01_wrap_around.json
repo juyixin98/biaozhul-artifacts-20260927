@@ -1,0 +1,24 @@
+{
+  "width": 8,
+  "overflow": "wrap",
+  "inputs": [{ "name": "x", "low": 0, "high": 255 }],
+  "body": [
+    {
+      "stmt": "assign",
+      "target": "y",
+      "expr": {
+        "expr": "add",
+        "lhs": { "expr": "var", "name": "x" },
+        "rhs": { "expr": "int", "value": 100 }
+      }
+    },
+    {
+      "stmt": "assert",
+      "cond": {
+        "expr": "ugt",
+        "lhs": { "expr": "var", "name": "y" },
+        "rhs": { "expr": "int", "value": 200 }
+      }
+    }
+  ]
+}

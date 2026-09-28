@@ -1,0 +1,12 @@
+[package]
+name = "se-verify"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+se-lang = { workspace = true }
+se-solver = { path = "../se-solver" }
+se-engine = { path = "../se-engine" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }

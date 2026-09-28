@@ -1,0 +1,36 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/se-lang",
+    "crates/se-solver",
+    "crates/se-engine",
+    "crates/se-verify",
+    "crates/se-server",
+    "crates/se-integration",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT"
+
+[workspace.dependencies]
+# Pinned exact versions; Cargo.lock is committed alongside the project.
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.151"
+thiserror = "=2.0.21"
+axum = "=0.8.9"
+tokio = { version = "=1.53.1", features = ["rt-multi-thread", "macros", "net", "time", "sync", "signal"] }
+tracing = "=0.1.44"
+tracing-subscriber = { version = "=0.3.23", features = ["env-filter", "fmt", "json"] }
+toml = "=0.8.23"
+clap = { version = "=4.6.7", features = ["derive"] }
+
+se-lang = { path = "crates/se-lang" }
+se-solver = { path = "crates/se-solver" }
+se-engine = { path = "crates/se-engine" }
+se-verify = { path = "crates/se-verify" }
+
+[profile.release]
+lto = "thin"

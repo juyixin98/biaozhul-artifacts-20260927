@@ -1,0 +1,19 @@
+[package]
+name = "se-integration"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+se-lang = { workspace = true }
+se-solver = { path = "../se-solver" }
+se-engine = { path = "../se-engine" }
+se-verify = { path = "../se-verify" }
+se-server = { path = "../se-server" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+axum = { workspace = true }
+body-util = { package = "http-body-util", version = "=0.1.5" }
+tower = { version = "=0.5.3", features = ["util"] }
+
+[dev-dependencies]

@@ -1,0 +1,24 @@
+{
+  "width": 8,
+  "inputs": [{ "name": "x", "low": 0, "high": 10 }],
+  "body": [
+    {
+      "stmt": "assign",
+      "target": "d",
+      "expr": {
+        "expr": "sub",
+        "lhs": { "expr": "var", "name": "x" },
+        "rhs": { "expr": "int", "value": 3 }
+      }
+    },
+    {
+      "stmt": "assign",
+      "target": "q",
+      "expr": {
+        "expr": "udiv",
+        "lhs": { "expr": "int", "value": 42 },
+        "rhs": { "expr": "var", "name": "d" }
+      }
+    }
+  ]
+}

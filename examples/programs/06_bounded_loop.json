@@ -1,0 +1,34 @@
+{
+  "width": 8,
+  "inputs": [{ "name": "n", "low": 0, "high": 10 }],
+  "vars": [{ "name": "i", "value": 0 }],
+  "body": [
+    {
+      "stmt": "while",
+      "cond": {
+        "expr": "ult",
+        "lhs": { "expr": "var", "name": "i" },
+        "rhs": { "expr": "var", "name": "n" }
+      },
+      "body": [
+        {
+          "stmt": "assign",
+          "target": "i",
+          "expr": {
+            "expr": "add",
+            "lhs": { "expr": "var", "name": "i" },
+            "rhs": { "expr": "int", "value": 1 }
+          }
+        }
+      ]
+    },
+    {
+      "stmt": "assert",
+      "cond": {
+        "expr": "eq",
+        "lhs": { "expr": "var", "name": "i" },
+        "rhs": { "expr": "var", "name": "n" }
+      }
+    }
+  ]
+}

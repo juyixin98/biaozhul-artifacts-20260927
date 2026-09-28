@@ -1,0 +1,16 @@
+{
+  "width": 8,
+  "overflow": "trap",
+  "inputs": [{ "name": "x", "low": 0, "high": 255 }],
+  "body": [
+    {
+      "stmt": "assign",
+      "target": "y",
+      "expr": {
+        "expr": "add",
+        "lhs": { "expr": "var", "name": "x" },
+        "rhs": { "expr": "int", "value": 200 }
+      }
+    }
+  ]
+}

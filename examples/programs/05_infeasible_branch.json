@@ -1,0 +1,24 @@
+{
+  "width": 8,
+  "inputs": [{ "name": "x", "low": 0, "high": 255 }],
+  "body": [
+    {
+      "stmt": "assume",
+      "cond": {
+        "expr": "ult",
+        "lhs": { "expr": "var", "name": "x" },
+        "rhs": { "expr": "int", "value": 3 }
+      }
+    },
+    {
+      "stmt": "if",
+      "cond": {
+        "expr": "ugt",
+        "lhs": { "expr": "var", "name": "x" },
+        "rhs": { "expr": "int", "value": 10 }
+      },
+      "then": [{ "stmt": "assert", "cond": { "expr": "int", "value": 0 } }],
+      "else": []
+    }
+  ]
+}

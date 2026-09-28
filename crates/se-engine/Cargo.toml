@@ -1,0 +1,13 @@
+[package]
+name = "se-engine"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+se-lang = { workspace = true }
+se-solver = { path = "../se-solver" }
+serde = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }
