@@ -1,0 +1,4 @@
+{
+  "expr": "(a & b) | (!a & c)",
+  "root_name": "mux"
+}

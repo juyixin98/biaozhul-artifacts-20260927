@@ -1,0 +1,210 @@
+== 1) health ==
+{
+    "data": {
+        "managers": 0,
+        "status": "ok"
+    },
+    "request_id": "req-60f75feca4026b15"
+}
+
+== 2) create manager(a,b,c) ==
+{
+    "data": {
+        "manager_id": 1,
+        "seq": 1,
+        "variable_order": [
+            "a",
+            "b",
+            "c"
+        ]
+    },
+    "request_id": "req-60f75eeca4026962"
+}
+manager_id=1
+
+== 3) build  mux = (a & b) | (!a & c)  as root 'mux' ==
+{
+    "data": {
+        "edge": "m1-e2147483654",
+        "live_nodes": 6,
+        "top_var": "a",
+        "value": null
+    },
+    "request_id": "req-60f759eca40260e3"
+}
+
+== 4) same function, different syntax (!a|b)&(a|c) — canonical edge must be equal ==
+{
+    "data": {
+        "edge": "m1-e2147483654",
+        "live_nodes": 8,
+        "top_var": "a",
+        "value": null
+    },
+    "request_id": "req-60f758eca4025f30"
+}
+
+== 5) apply: mux xor a  (root 'mux_xor_a') ==
+{
+    "data": {
+        "edge": "m1-e2147483657",
+        "live_nodes": 9,
+        "top_var": "a",
+        "value": null
+    },
+    "request_id": "req-60f765eca4027547"
+}
+
+== 6) restrict mux with a=true  =>  c ==
+{
+    "data": {
+        "edge": "m1-e2147483650",
+        "live_nodes": 9,
+        "top_var": "b",
+        "value": null
+    },
+    "request_id": "req-60f764eca4027394"
+}
+
+== 7) evaluate mux at a=0,b=0,c=1 (expect true: !a&c) ==
+{
+    "data": {
+        "value": true
+    },
+    "request_id": "req-c6b8b21ab012f9a4"
+}
+
+== 8) equivalence: equivalent pair, oracle + kernel cross-check ==
+{
+    "data": {
+        "cross_check": {
+            "assignments_checked": 8,
+            "canonical_equal": true,
+            "truth_table_equivalent": true,
+            "witness": null
+        },
+        "left_nodes": 6,
+        "result": {
+            "assignments_checked": 8,
+            "identities": [
+                "a",
+                "b",
+                "c"
+            ],
+            "verdict": "equivalent"
+        },
+        "right_nodes": 8,
+        "verdict": "equivalent"
+    },
+    "request_id": "req-c6b8b31ab012fb57"
+}
+
+== 9) equivalence: non-equivalent pair returns concrete witness ==
+{
+    "data": {
+        "cross_check": {
+            "assignments_checked": 8,
+            "canonical_equal": false,
+            "truth_table_equivalent": false,
+            "witness": {
+                "assignment": {
+                    "a": true,
+                    "b": false,
+                    "c": false
+                },
+                "left_value": false,
+                "right_value": true
+            }
+        },
+        "left_nodes": 5,
+        "result": {
+            "identities": [
+                "a",
+                "b",
+                "c"
+            ],
+            "verdict": "not_equivalent",
+            "witness": {
+                "assignment": {
+                    "a": true,
+                    "b": false,
+                    "c": false
+                },
+                "left_value": false,
+                "right_value": true
+            }
+        },
+        "right_nodes": 7,
+        "verdict": "not_equivalent"
+    },
+    "request_id": "req-c6b8b41ab012fd0a"
+}
+
+== 10) equivalence: rename x,y,z -> p,q,r ==
+{
+    "data": {
+        "cross_check": {
+            "assignments_checked": 8,
+            "canonical_equal": true,
+            "truth_table_equivalent": true,
+            "witness": null
+        },
+        "left_nodes": 6,
+        "result": {
+            "assignments_checked": 8,
+            "identities": [
+                "x",
+                "y",
+                "z"
+            ],
+            "verdict": "equivalent"
+        },
+        "right_nodes": 6,
+        "verdict": "equivalent"
+    },
+    "request_id": "req-c6b8b51ab012febd"
+}
+
+== 11) garbage collection keeps roots ==
+{
+    "data": {
+        "report": {
+            "after_nodes": 4,
+            "before_nodes": 12,
+            "marked": 5,
+            "roots": 2,
+            "swept": 8
+        },
+        "roots": [
+            "mux_xor_a",
+            "mux"
+        ]
+    },
+    "request_id": "req-c6b8af1ab012f48b"
+}
+
+== 12) sensitive build with unknown variable: raw secret must not appear ==
+{
+    "diag": {
+        "expr_fp": "fnv1a:eb1e41db66d6cdb6"
+    },
+    "error": {
+        "code": "unknown_variable",
+        "message": "unknown_variable (details redacted; see expr fingerprint)"
+    },
+    "request_id": "req-c6b8b01ab012f63e"
+}
+
+== 13) cross-manager edge rejection ==
+{
+    "diag": {
+        "expr_fp": null
+    },
+    "error": {
+        "code": "foreign_manager",
+        "message": "edge belongs to manager 5 but was used with manager 1"
+    },
+    "request_id": "req-c6b8ab1ab012edbf"
+}
+
+demo complete

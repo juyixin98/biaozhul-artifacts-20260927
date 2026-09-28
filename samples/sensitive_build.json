@@ -1,0 +1,4 @@
+{
+  "expr": "secret_password_flag & user_consent",
+  "sensitive": true
+}

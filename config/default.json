@@ -1,0 +1,6 @@
+{
+  "bind": "127.0.0.1:8080",
+  "var_cap": 20,
+  "log_level": "info",
+  "redact_by_default": false
+}

@@ -1,0 +1,5 @@
+{
+  "left_expr": "(a & b) | (!a & c)",
+  "right_expr": "(!a | b) & (a | c)",
+  "mapping": {}
+}

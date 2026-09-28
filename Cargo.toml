@@ -1,0 +1,29 @@
+[package]
+name = "robdd-service"
+version = "0.1.0"
+edition = "2021"
+description = "布尔函数 ROBDD 后端：固定变量序、补集边、apply、限制变量与等价查询"
+license = "MIT"
+
+[lib]
+name = "robdd"
+path = "src/lib.rs"
+
+[[bin]]
+name = "robdd-service"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.8", features = ["macros"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "sync", "time"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
+
+[profile.release]
+lto = "thin"

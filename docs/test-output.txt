@@ -1,0 +1,78 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.10s
+     Running unittests src/lib.rs (target/debug/deps/robdd-9306a155a7de6bcf)
+
+running 30 tests
+test backend::config::tests::defaults_are_safe ... ok
+test backend::config::tests::cli_overrides_are_parsed_and_validated ... ok
+test backend::diag::tests::request_id_header_validation ... ok
+test backend::diag::tests::fnv1a_known_vector_and_redaction_hides_content ... ok
+test core::apply::tests::apply_checks_ownership ... ok
+test backend::state::tests::edge_token_roundtrip_and_foreign_manager_rejection ... ok
+test core::apply::tests::iff_equals_negated_xor_without_extra_nodes ... ok
+test core::apply::tests::terminal_shortcuts_do_not_build_nodes ... ok
+test core::apply::tests::de_morgan_holds_via_canonical_equality ... ok
+test core::edge::tests::constants_and_flip_roundtrip ... ok
+test core::gc::tests::gc_keeps_roots_and_reclaims_unreachable_nodes ... ok
+test core::gc::tests::rebuild_after_gc_yields_same_canonical_structure ... ok
+test core::edge::tests::owner_guard_detects_foreign_edges ... ok
+test core::restrict::tests::restrict_majority3_collapses_correctly ... ok
+test core::gc::tests::reclaimed_edge_is_rejected_on_use ... ok
+test core::restrict::tests::restrict_preserves_complement_and_matches_interpreter ... ok
+test core::tests::duplicate_variable_order_rejected ... ok
+test core::restrict::tests::restrict_unknown_variable_and_foreign_edge_rejected ... ok
+test core::tests::single_variable_function_has_one_node ... ok
+test lang::parser::tests::parser_eval_matches_hand_checked_truth_table ... ok
+test core::tests::and_chain_collapses_to_n_nodes_and_evaluates_like_interpreter ... ok
+test lang::parser::tests::parses_implies_left_associative_with_xor_above_it ... ok
+test verify::tests::assignment_count_is_power_of_two_in_variable_order ... ok
+test core::tests::xor_parity_has_n_nodes_with_complement_edges ... ok
+test lang::parser::tests::parses_precedence_and_constants ... ok
+test verify::tests::non_bijective_mapping_is_rejected ... ok
+test lang::parser::tests::rejects_bad_inputs_with_positions ... ok
+test verify::tests::edge_equiv_agrees_kernel_and_oracle_and_catches_disagreement ... ok
+test verify::tests::different_syntax_same_function_is_equivalent_with_witness_on_mismatch ... ok
+test verify::tests::renaming_across_managers_equivalent_via_identity_mapping ... ok
+
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/robdd_service-bfa7ff201cb68204)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/exhaustive.rs (target/debug/deps/exhaustive-a709847a61eacf67)
+
+running 9 tests
+test different_syntaxes_same_function_share_canonical_edge ... ok
+test rebuild_after_gc_preserves_roots_and_reproduces_canonical_edges ... ok
+test renaming_across_managers_is_equivalent_only_under_identity_mapping ... ok
+test exhaustive_3var_restrict_cofactors_match_independent_tables ... ok
+test exhaustive_3var_node_counts_match_independent_minimum_reference ... ok
+test exhaustive_3var_canonical_edge_equality_iff_truth_table_equality ... ok
+test exhaustive_3var_every_function_matches_independent_truth_table ... ok
+test independent_oracle_and_kernel_disagree_only_if_kernel_is_broken ... ok
+test exhaustive_3var_apply_all_pairs_all_ops_against_truth_tables ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.14s
+
+     Running tests/http_api.rs (target/debug/deps/http_api-a64c3cae65c198ec)
+
+running 8 tests
+test request_id_is_generated_when_absent_and_present_on_errors ... ok
+test sensitive_request_redacts_expression_from_error_text ... ok
+test health_reports_managers_and_echoes_request_id ... ok
+test gc_keeps_roots_and_dangling_edges_return_410 ... ok
+test equivalence_endpoint_cross_checks_kernel_and_oracle_with_witness ... ok
+test cross_manager_edges_are_rejected_over_http ... ok
+test full_workflow_build_apply_restrict_evaluate_and_node_counts ... ok
+test rejects_unknown_variable_parse_error_and_malformed_token ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests robdd
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

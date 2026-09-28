@@ -1,0 +1,5 @@
+{
+  "left_expr": "x & y -> z",
+  "right_expr": "p & q -> r",
+  "mapping": { "x": "p", "y": "q", "z": "r" }
+}

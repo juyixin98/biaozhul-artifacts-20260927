@@ -1,0 +1,7 @@
+{
+  "_comment": "本地开发覆盖配置样例：复制为 config/local.json 后用 ROBDD_CONFIG 指向。端口 0 表示由系统分配，适合 CI 烟雾测试。",
+  "bind": "127.0.0.1:0",
+  "var_cap": 8,
+  "log_level": "debug",
+  "redact_by_default": false
+}
