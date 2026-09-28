@@ -1,0 +1,46 @@
+{
+  "binary": "oracle_crosscheck",
+  "cases": [
+    {
+      "binary": "oracle_crosscheck",
+      "case": "self_overlap_rle",
+      "judgement": "PASS",
+      "reason": "length 258 > distance 1 produced exactly 259 'a' bytes (run semantics)",
+      "state": {
+        "distance": 1,
+        "first_8": [
+          97,
+          97,
+          97,
+          97,
+          97,
+          97,
+          97,
+          97
+        ],
+        "len": 259,
+        "match_length": 258,
+        "naive_slice_copy_would_yield": "aaaaaaaa with duplicated prefix garbage / panic"
+      },
+      "wall_ns": 1790528851275013814
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 1,
+    "skip": 0,
+    "total": 1
+  },
+  "generated_at_unix_ms": 1790528851323,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "self_overlap_long_match_expands_byte_by_byte"
+}

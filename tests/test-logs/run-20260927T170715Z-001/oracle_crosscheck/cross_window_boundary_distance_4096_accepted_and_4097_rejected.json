@@ -1,0 +1,46 @@
+{
+  "binary": "oracle_crosscheck",
+  "cases": [
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_window_boundary",
+      "judgement": "PASS",
+      "reason": "match at distance exactly 4096 accepted; bytes at both offsets equal XYZ",
+      "state": {
+        "distance": 4096,
+        "window_bytes": 4096
+      },
+      "wall_ns": 1790528848827334593
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "distance_4097_with_full_dictionary",
+      "judgement": "PASS",
+      "reason": "even with valid binding/history, distance 4097 is rejected as input_error",
+      "state": {
+        "category": "input_error",
+        "detail": "match distance 4097 exceeds fixed window 4096",
+        "distance": 4097
+      },
+      "wall_ns": 1790528848827962257
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 2,
+    "skip": 0,
+    "total": 2
+  },
+  "generated_at_unix_ms": 1790528848827,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "cross_window_boundary_distance_4096_accepted_and_4097_rejected"
+}

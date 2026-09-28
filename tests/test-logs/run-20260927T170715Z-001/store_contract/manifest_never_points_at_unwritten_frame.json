@@ -1,0 +1,35 @@
+{
+  "binary": "store_contract",
+  "cases": [
+    {
+      "binary": "store_contract",
+      "case": "atomic_commit",
+      "judgement": "PASS",
+      "reason": "2 manifest entries <-> 2 frame files, zero .tmp leftovers",
+      "state": {
+        "entries": 2,
+        "frames": 2,
+        "leftovers": []
+      },
+      "wall_ns": 1790528852638041233
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 1,
+    "skip": 0,
+    "total": 1
+  },
+  "generated_at_unix_ms": 1790528852638,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "manifest_never_points_at_unwritten_frame"
+}

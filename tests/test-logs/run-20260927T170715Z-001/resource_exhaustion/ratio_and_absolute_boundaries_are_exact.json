@@ -1,0 +1,56 @@
+{
+  "binary": "resource_exhaustion",
+  "cases": [
+    {
+      "binary": "resource_exhaustion",
+      "case": "ratio_boundary_envelope_allows_token_check_denies",
+      "judgement": "PASS",
+      "reason": "declared ratio exactly 100x passes the resource gate, then fails as input_error when zero bytes are actually produced",
+      "state": {
+        "category": "input_error",
+        "detail": "stream produced 0 bytes but data_len declares 100"
+      },
+      "wall_ns": 1790528851427049133
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "ratio_101x_refused",
+      "judgement": "PASS",
+      "reason": "declared 101 bytes for 1 payload byte is resource_exhausted",
+      "state": {
+        "detail": "declared expansion 1->101 bytes exceeds ratio 100x"
+      },
+      "wall_ns": 1790528851427056901
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "absolute_cap_boundary",
+      "judgement": "PASS",
+      "reason": "declared length == 8 MiB passes envelope, 8 MiB + 1 is resource_exhausted",
+      "state": {
+        "at_cap_envelope_ok": true,
+        "cap": 8388608,
+        "over_detail": "declared output 8388609 bytes exceeds per-block cap 8388608"
+      },
+      "wall_ns": 1790528851435178069
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 3,
+    "skip": 0,
+    "total": 3
+  },
+  "generated_at_unix_ms": 1790528851435,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "ratio_and_absolute_boundaries_are_exact"
+}

@@ -1,0 +1,104 @@
+{
+  "binary": "oracle_crosscheck",
+  "cases": [
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_short",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 11,
+        "independently_encoded_frames_differ": false,
+        "python_frame_len": 81,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 81,
+        "rust_to_python_ok": true
+      },
+      "wall_ns": 1790528849332075657
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_repetitive",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 1500,
+        "independently_encoded_frames_differ": true,
+        "python_frame_len": 89,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 89,
+        "rust_to_python_ok": true
+      },
+      "wall_ns": 1790528849432196324
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_mixed",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 5457,
+        "independently_encoded_frames_differ": true,
+        "python_frame_len": 3555,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 3555,
+        "rust_to_python_ok": true
+      },
+      "wall_ns": 1790528849766221360
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_empty",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 0,
+        "independently_encoded_frames_differ": true,
+        "python_frame_len": 59,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 59,
+        "rust_to_python_ok": true
+      },
+      "wall_ns": 1790528849871129123
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_dependent_over_window",
+      "judgement": "PASS",
+      "reason": "Rust dependent frame (>1-window history) decoded by reference",
+      "state": {
+        "history_len": 9000,
+        "oracle_category": null
+      },
+      "wall_ns": 1790528849933310887
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_dependent_py_to_rust",
+      "judgement": "PASS",
+      "reason": "reference dependent frame decoded by Rust against long history",
+      "state": {
+        "frame_len": 91
+      },
+      "wall_ns": 1790528849981960998
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 6,
+    "skip": 0,
+    "total": 6
+  },
+  "generated_at_unix_ms": 1790528849981,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "frames_cross_produced_by_each_implementation_are_accepted"
+}

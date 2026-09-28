@@ -1,0 +1,69 @@
+{
+  "binary": "resource_exhaustion",
+  "cases": [
+    {
+      "binary": "resource_exhaustion",
+      "case": "bomb_declared_1gib",
+      "judgement": "PASS",
+      "reason": "Rust and reference refuse with the identical failure category",
+      "state": {
+        "declared": 1073741824,
+        "note": "rejected while parsing header; decoder never allocates",
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "payload_len": 1,
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "want_category": "resource_exhausted"
+      },
+      "wall_ns": 1790528851380170213
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "bomb_expansion_ratio",
+      "judgement": "PASS",
+      "reason": "Rust and reference refuse with the identical failure category",
+      "state": {
+        "declared": 20000000,
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 20000000 bytes exceeds per-block cap 8388608",
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 20000000 bytes exceeds per-block cap 8388608",
+        "want_category": "resource_exhausted"
+      },
+      "wall_ns": 1790528851426222551
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "no_giant_allocation",
+      "judgement": "PASS",
+      "reason": "200 decodes of the 1 GiB-declaration frame grow RSS by < 16 MiB",
+      "state": {
+        "attempts": 200,
+        "input_bytes_seen": 11800,
+        "rss_growth_kb": 0,
+        "rss_kb_after": 3328,
+        "rss_kb_before": 3328
+      },
+      "wall_ns": 1790528851426461315
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 3,
+    "skip": 0,
+    "total": 3
+  },
+  "generated_at_unix_ms": 1790528851426,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "malicious_lengths_are_refused_before_token_decoding"
+}

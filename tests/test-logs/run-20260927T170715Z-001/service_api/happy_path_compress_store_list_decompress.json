@@ -1,0 +1,129 @@
+{
+  "binary": "service_api",
+  "cases": [
+    {
+      "binary": "service_api",
+      "case": "health_empty",
+      "judgement": "PASS",
+      "reason": "health reports zero blocks",
+      "state": {
+        "body": {
+          "blocks": 0,
+          "status": "ok",
+          "tip": null
+        }
+      },
+      "wall_ns": 1790528852440456984
+    },
+    {
+      "binary": "service_api",
+      "case": "create_independent",
+      "judgement": "PASS",
+      "reason": "201 + metadata, payload smaller than data",
+      "state": {
+        "compressed": true,
+        "data_len": 29,
+        "id": "blk-00000000",
+        "payload_len": 17,
+        "status": 201
+      },
+      "wall_ns": 1790528852440710065
+    },
+    {
+      "binary": "service_api",
+      "case": "create_dependent",
+      "judgement": "PASS",
+      "reason": "201 dependent block bound to prev_id",
+      "state": {
+        "id": "blk-00000001",
+        "prev_id": "blk-00000000"
+      },
+      "wall_ns": 1790528852441103629
+    },
+    {
+      "binary": "service_api",
+      "case": "list_ordered",
+      "judgement": "PASS",
+      "reason": "two blocks listed root-first",
+      "state": {
+        "list": [
+          {
+            "created_at_unix_ms": 1790528852440,
+            "data_len": 29,
+            "id": "blk-00000000",
+            "mode": "independent",
+            "payload_len": 17,
+            "prev_id": null,
+            "sequence": 0
+          },
+          {
+            "created_at_unix_ms": 1790528852440,
+            "data_len": 30,
+            "id": "blk-00000001",
+            "mode": "dependent",
+            "payload_len": 29,
+            "prev_id": "blk-00000000",
+            "sequence": 1
+          }
+        ]
+      },
+      "wall_ns": 1790528852441254902
+    },
+    {
+      "binary": "service_api",
+      "case": "raw_child",
+      "judgement": "PASS",
+      "reason": "single-block raw returns exactly the child bytes",
+      "state": {
+        "len": 30
+      },
+      "wall_ns": 1790528852441381554
+    },
+    {
+      "binary": "service_api",
+      "case": "chain_raw",
+      "judgement": "PASS",
+      "reason": "chain concatenation equals source order",
+      "state": {
+        "len": 59
+      },
+      "wall_ns": 1790528852441492532
+    },
+    {
+      "binary": "service_api",
+      "case": "frame_oracle",
+      "judgement": "PASS",
+      "reason": "downloaded frame accepted by Python reference",
+      "state": {
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 12,
+          "match_bytes": 18,
+          "max_distance": 23,
+          "overlap_copies": 0,
+          "tokens_literal": 12,
+          "tokens_match": 1
+        }
+      },
+      "wall_ns": 1790528852489340470
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 7,
+    "skip": 0,
+    "total": 7
+  },
+  "generated_at_unix_ms": 1790528852489,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "happy_path_compress_store_list_decompress"
+}

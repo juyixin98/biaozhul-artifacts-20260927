@@ -1,0 +1,146 @@
+{
+  "binary": "service_api",
+  "cases": [
+    {
+      "binary": "service_api",
+      "case": "bad_json",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "body": {
+          "error": {
+            "category": "input_error",
+            "detail": "request body is not valid JSON: key must be a string at line 1 column 2"
+          }
+        },
+        "status": 400
+      },
+      "wall_ns": 1790528852437376676
+    },
+    {
+      "binary": "service_api",
+      "case": "bad_base64",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "detail": "data is not valid base64: Invalid symbol 64, offset 0.",
+        "status": 400
+      },
+      "wall_ns": 1790528852437466265
+    },
+    {
+      "binary": "service_api",
+      "case": "dependent_empty",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "detail": "cannot append dependent block: store has no root block",
+        "status": 409
+      },
+      "wall_ns": 1790528852437550323
+    },
+    {
+      "binary": "service_api",
+      "case": "stale_pin",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "status": 409
+      },
+      "wall_ns": 1790528852438421220
+    },
+    {
+      "binary": "service_api",
+      "case": "not_found",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "status": 404
+      },
+      "wall_ns": 1790528852438523161
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_bomb_413",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "reason": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "status": 413
+      },
+      "wall_ns": 1790528852438666313
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_bad_crc_400",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "reason": "payload CRC mismatch: frame 0xe58cf634, computed 0x3b2148db",
+        "status": 400
+      },
+      "wall_ns": 1790528852438799166
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_missing_dict_field_400",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "detail": "dependent validation requires a base64 \"dictionary\" field",
+        "note": "missing 'dictionary' FIELD is caller input error",
+        "status": 400
+      },
+      "wall_ns": 1790528852438936693
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_digest_mismatch_409",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "reason": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status": 409
+      },
+      "wall_ns": 1790528852439085638
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_good_200",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "body": {
+          "crc32": "653e5fab",
+          "data_len": 259,
+          "dict_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+          "dictionary_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "error_category": null,
+          "mode": "independent",
+          "payload_len": 7,
+          "reason": "decoded 259 bytes and passed all binding checks",
+          "valid": true
+        }
+      },
+      "wall_ns": 1790528852439266967
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 10,
+    "skip": 0,
+    "total": 10
+  },
+  "generated_at_unix_ms": 1790528852439,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "failure_classes_map_to_distinct_status_and_category"
+}

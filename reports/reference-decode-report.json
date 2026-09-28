@@ -1,0 +1,20 @@
+{
+  "crc32": "653e5fab",
+  "data_len": 259,
+  "dict_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+  "mode": "independent",
+  "out_len": 259,
+  "payload_len": 7,
+  "python_implementation": "reference/ref_lz77.py (brute-force, zlib, hashlib)",
+  "sha256": "d6288d9845c1376a9bd040a90dd5fefa3ef287de340d076d6c284c365f840321",
+  "stats": {
+    "boundary_copies": 0,
+    "literal_bytes": 1,
+    "match_bytes": 258,
+    "max_distance": 1,
+    "overlap_copies": 1,
+    "tokens_literal": 1,
+    "tokens_match": 1
+  },
+  "valid": true
+}

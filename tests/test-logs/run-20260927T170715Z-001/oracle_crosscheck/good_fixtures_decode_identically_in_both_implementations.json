@@ -1,0 +1,420 @@
+{
+  "binary": "oracle_crosscheck",
+  "cases": [
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_0",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          0,
+          7000
+        ],
+        "fixture": "good/chain/0.frame",
+        "mode": "independent",
+        "oracle_category": null,
+        "oracle_sha256": "2235620efab7473fe203ac1f6c806f902b491ac8437f48df081da543e10b3566",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 1106,
+          "match_bytes": 5894,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 1106,
+          "tokens_match": 114
+        },
+        "oracle_valid": true,
+        "rust_len": 7000,
+        "rust_sha256": "2235620efab7473fe203ac1f6c806f902b491ac8437f48df081da543e10b3566"
+      },
+      "wall_ns": 1790528850034405898
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_1",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          7000,
+          13500
+        ],
+        "fixture": "good/chain/1.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "c13cd10663c914572c616c901c4ba4692de7a441feb5280017d47d03f6dea1f6",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 5054,
+          "match_bytes": 1446,
+          "max_distance": 1291,
+          "overlap_copies": 1,
+          "tokens_literal": 5054,
+          "tokens_match": 6
+        },
+        "oracle_valid": true,
+        "rust_len": 6500,
+        "rust_sha256": "c13cd10663c914572c616c901c4ba4692de7a441feb5280017d47d03f6dea1f6"
+      },
+      "wall_ns": 1790528850086574050
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_2",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          13500,
+          20000
+        ],
+        "fixture": "good/chain/2.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "aebd19cbb0147f143b35e29ec68ca2a1277425b5f5c048ad14c77e0087651e58",
+        "oracle_stats": {
+          "boundary_copies": 15,
+          "literal_bytes": 0,
+          "match_bytes": 6500,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 0,
+          "tokens_match": 26
+        },
+        "oracle_valid": true,
+        "rust_len": 6500,
+        "rust_sha256": "aebd19cbb0147f143b35e29ec68ca2a1277425b5f5c048ad14c77e0087651e58"
+      },
+      "wall_ns": 1790528850137470491
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_0",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          0,
+          3333
+        ],
+        "fixture": "good/chain_alt/0.frame",
+        "mode": "independent",
+        "oracle_category": null,
+        "oracle_sha256": "20c59fa3c4ebe2e8398e4e5f1dd6d9f6fed62e8ed52bd7ba2ea1fe470ea0fa07",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 103,
+          "match_bytes": 3230,
+          "max_distance": 2749,
+          "overlap_copies": 0,
+          "tokens_literal": 103,
+          "tokens_match": 62
+        },
+        "oracle_valid": true,
+        "rust_len": 3333,
+        "rust_sha256": "20c59fa3c4ebe2e8398e4e5f1dd6d9f6fed62e8ed52bd7ba2ea1fe470ea0fa07"
+      },
+      "wall_ns": 1790528850186327533
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_1",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          3333,
+          8000
+        ],
+        "fixture": "good/chain_alt/1.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "7806d4ffa564cb502ef614529c268d2a8e92418fb95566ca66a3478f0f4b969f",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 2004,
+          "match_bytes": 2663,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 2004,
+          "tokens_match": 52
+        },
+        "oracle_valid": true,
+        "rust_len": 4667,
+        "rust_sha256": "7806d4ffa564cb502ef614529c268d2a8e92418fb95566ca66a3478f0f4b969f"
+      },
+      "wall_ns": 1790528850236482458
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_2",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          8000,
+          12123
+        ],
+        "fixture": "good/chain_alt/2.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "3ffd939382219833134354ec765815575b671c434c606dc8d6dd655a7d064cca",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 4054,
+          "match_bytes": 69,
+          "max_distance": 1,
+          "overlap_copies": 1,
+          "tokens_literal": 4054,
+          "tokens_match": 1
+        },
+        "oracle_valid": true,
+        "rust_len": 4123,
+        "rust_sha256": "3ffd939382219833134354ec765815575b671c434c606dc8d6dd655a7d064cca"
+      },
+      "wall_ns": 1790528850292461756
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_3",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          12123,
+          16777
+        ],
+        "fixture": "good/chain_alt/3.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "c406f2413e5ae189e854f4205dc0c45ff8744e67e7ad01b5dc5efac3aabe6754",
+        "oracle_stats": {
+          "boundary_copies": 3,
+          "literal_bytes": 0,
+          "match_bytes": 4654,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 0,
+          "tokens_match": 19
+        },
+        "oracle_valid": true,
+        "rust_len": 4654,
+        "rust_sha256": "c406f2413e5ae189e854f4205dc0c45ff8744e67e7ad01b5dc5efac3aabe6754"
+      },
+      "wall_ns": 1790528850342525732
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_4",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          16777,
+          20000
+        ],
+        "fixture": "good/chain_alt/4.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "36b70cd7c0d74fe322edbc5633eece9f9623b87d8d0ea3308704ce6c28d93220",
+        "oracle_stats": {
+          "boundary_copies": 13,
+          "literal_bytes": 0,
+          "match_bytes": 3223,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 0,
+          "tokens_match": 13
+        },
+        "oracle_valid": true,
+        "rust_len": 3223,
+        "rust_sha256": "36b70cd7c0d74fe322edbc5633eece9f9623b87d8d0ea3308704ce6c28d93220"
+      },
+      "wall_ns": 1790528850391112240
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_window_boundary",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": null,
+        "fixture": "good/cross_window_boundary.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "b7bc1a54932925cddeaef59bc7a784d70182215bc0c73f59b9c814cddd52beeb",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 8,
+          "match_bytes": 4095,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 8,
+          "tokens_match": 17
+        },
+        "oracle_valid": true,
+        "rust_len": 4103,
+        "rust_sha256": "b7bc1a54932925cddeaef59bc7a784d70182215bc0c73f59b9c814cddd52beeb"
+      },
+      "wall_ns": 1790528850441328212
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "one_independent",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": null,
+        "fixture": "good/one_independent.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "oracle_stats": {
+          "boundary_copies": 16,
+          "literal_bytes": 6160,
+          "match_bytes": 13840,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 6160,
+          "tokens_match": 145
+        },
+        "oracle_valid": true,
+        "rust_len": 20000,
+        "rust_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "wall_ns": 1790528850496872828
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "self_overlap_rle",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": null,
+        "fixture": "good/self_overlap_rle.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "d6288d9845c1376a9bd040a90dd5fefa3ef287de340d076d6c284c365f840321",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 1,
+          "match_bytes": 258,
+          "max_distance": 1,
+          "overlap_copies": 1,
+          "tokens_literal": 1,
+          "tokens_match": 1
+        },
+        "oracle_valid": true,
+        "rust_len": 259,
+        "rust_sha256": "d6288d9845c1376a9bd040a90dd5fefa3ef287de340d076d6c284c365f840321"
+      },
+      "wall_ns": 1790528850543772961
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent_0",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          0,
+          6666
+        ],
+        "fixture": "good/three_independent/0.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "b8e30b83a47f04c0eb65cc7ac1351531473d74ba688ee203d343db2ee533cf85",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 772,
+          "match_bytes": 5894,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 772,
+          "tokens_match": 114
+        },
+        "oracle_valid": true,
+        "rust_len": 6666,
+        "rust_sha256": "b8e30b83a47f04c0eb65cc7ac1351531473d74ba688ee203d343db2ee533cf85"
+      },
+      "wall_ns": 1790528850595019497
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent_1",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          6666,
+          13333
+        ],
+        "fixture": "good/three_independent/1.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "53439c321ea7257519a460cedd00d28b999c04c0094bfbb262eec8824b69c9ff",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 5388,
+          "match_bytes": 1279,
+          "max_distance": 1033,
+          "overlap_copies": 1,
+          "tokens_literal": 5388,
+          "tokens_match": 5
+        },
+        "oracle_valid": true,
+        "rust_len": 6667,
+        "rust_sha256": "53439c321ea7257519a460cedd00d28b999c04c0094bfbb262eec8824b69c9ff"
+      },
+      "wall_ns": 1790528850649373278
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent_2",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          13333,
+          20000
+        ],
+        "fixture": "good/three_independent/2.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "30a79c1fcb2954d2afd1736b623cf07ca4fab0afecbd651fbabf232d13fa70a7",
+        "oracle_stats": {
+          "boundary_copies": 10,
+          "literal_bytes": 1,
+          "match_bytes": 6666,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 1,
+          "tokens_match": 26
+        },
+        "oracle_valid": true,
+        "rust_len": 6667,
+        "rust_sha256": "30a79c1fcb2954d2afd1736b623cf07ca4fab0afecbd651fbabf232d13fa70a7"
+      },
+      "wall_ns": 1790528850699524869
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 14,
+    "skip": 0,
+    "total": 14
+  },
+  "generated_at_unix_ms": 1790528850699,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "good_fixtures_decode_identically_in_both_implementations"
+}

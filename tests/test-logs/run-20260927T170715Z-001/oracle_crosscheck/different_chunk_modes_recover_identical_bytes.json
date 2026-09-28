@@ -1,0 +1,95 @@
+{
+  "binary": "oracle_crosscheck",
+  "cases": [
+    {
+      "binary": "oracle_crosscheck",
+      "case": "one_independent",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "wall_ns": 1790528848837024099
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "wall_ns": 1790528848839651952
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_chain_3",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "wall_ns": 1790528848842357256
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_chain_5",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "wall_ns": 1790528848845141967
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "oracle_chain_3",
+      "judgement": "PASS",
+      "reason": "independent reference streams the chain to identical bytes",
+      "state": {
+        "len": 20000
+      },
+      "wall_ns": 1790528848996464883
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "oracle_chain_5",
+      "judgement": "PASS",
+      "reason": "independent reference streams the chain to identical bytes",
+      "state": {
+        "len": 20000
+      },
+      "wall_ns": 1790528849235577160
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 6,
+    "skip": 0,
+    "total": 6
+  },
+  "generated_at_unix_ms": 1790528849235,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "different_chunk_modes_recover_identical_bytes"
+}

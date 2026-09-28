@@ -1,0 +1,54 @@
+{
+  "binary": "resource_exhaustion",
+  "cases": [
+    {
+      "binary": "resource_exhaustion",
+      "case": "stable_category_strings",
+      "judgement": "PASS",
+      "reason": "input/state/resource/not-found/compute categories keep their stable wire names",
+      "state": {
+        "pairs": [
+          [
+            "input_error",
+            "input_error"
+          ],
+          [
+            "state_conflict",
+            "state_conflict"
+          ],
+          [
+            "resource_exhausted",
+            "resource_exhausted"
+          ],
+          [
+            "not_found",
+            "not_found"
+          ],
+          [
+            "compute_failure",
+            "compute_failure"
+          ]
+        ]
+      },
+      "wall_ns": 1790528851330140471
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 1,
+    "skip": 0,
+    "total": 1
+  },
+  "generated_at_unix_ms": 1790528851330,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "error_categories_are_distinct_and_stable"
+}

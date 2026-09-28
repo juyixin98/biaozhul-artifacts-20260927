@@ -1,0 +1,46 @@
+{
+  "binary": "resource_exhaustion",
+  "cases": [
+    {
+      "binary": "resource_exhaustion",
+      "case": "chain_depth_limit",
+      "judgement": "PASS",
+      "reason": "a 65-block chain is resource_exhausted even though every frame is well-formed",
+      "state": {
+        "detail": "dependency chain of 65 blocks exceeds depth limit 64",
+        "frames": 65,
+        "limit": 64
+      },
+      "wall_ns": 1790528851329186424
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "chain_at_depth_limit",
+      "judgement": "PASS",
+      "reason": "exactly 64 blocks decode (limit is exclusive beyond it)",
+      "state": {
+        "blocks": 64,
+        "bytes": 64
+      },
+      "wall_ns": 1790528851329736764
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 2,
+    "skip": 0,
+    "total": 2
+  },
+  "generated_at_unix_ms": 1790528851329,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "dependency_chain_depth_is_limited"
+}

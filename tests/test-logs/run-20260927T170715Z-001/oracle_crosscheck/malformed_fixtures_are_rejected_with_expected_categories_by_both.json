@@ -1,0 +1,227 @@
+{
+  "binary": "oracle_crosscheck",
+  "cases": [
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bad_crc",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/bad_crc.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "payload CRC mismatch: frame 0xe58cf634, computed 0x3b2148db",
+        "rust_category": "input_error",
+        "rust_detail": "payload CRC mismatch: frame 0xe58cf634, computed 0x3b2148db"
+      },
+      "wall_ns": 1790528850750067921
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bad_distance_before_start",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/bad_distance_before_start.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "match distance 10 points before start of stream (available history 0 bytes)",
+        "rust_category": "input_error",
+        "rust_detail": "match distance 10 points before start of stream (available history 0 bytes)"
+      },
+      "wall_ns": 1790528850794850935
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bad_magic",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/bad_magic.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "bad magic: b'XXXX'",
+        "rust_category": "input_error",
+        "rust_detail": "bad magic: [58, 58, 58, 58] (want [4c, 5a, 37, 31])"
+      },
+      "wall_ns": 1790528850842765257
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bomb_declared_size",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "resource_exhausted",
+        "fixture": "malformed/bomb_declared_size.frame",
+        "intermediate": null,
+        "manifest_rationale": "declared output exceeds 8 MiB absolute cap; no allocation allowed",
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 1073741824 bytes exceeds per-block cap 8388608"
+      },
+      "wall_ns": 1790528850888908638
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bomb_expansion_ratio",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "resource_exhausted",
+        "fixture": "malformed/bomb_expansion_ratio.frame",
+        "intermediate": null,
+        "manifest_rationale": "declared ratio exceeds 100x; rejected from header fields alone",
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 20000000 bytes exceeds per-block cap 8388608",
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 20000000 bytes exceeds per-block cap 8388608"
+      },
+      "wall_ns": 1790528850937419831
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_missing_predecessor",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "state_conflict",
+        "fixture": "malformed/dependent_missing_predecessor.frame",
+        "intermediate": null,
+        "manifest_rationale": "nonzero bound digest presented against empty dictionary",
+        "oracle_category": "state_conflict",
+        "oracle_reason": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rust_category": "state_conflict",
+        "rust_detail": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "wall_ns": 1790528850985573036
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_wrong_dictionary",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "state_conflict",
+        "fixture": "malformed/dependent_wrong_dictionary.frame",
+        "intermediate": null,
+        "manifest_rationale": "same length dictionary, different bytes -> digest mismatch",
+        "oracle_category": "state_conflict",
+        "oracle_reason": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rust_category": "state_conflict",
+        "rust_detail": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "wall_ns": 1790528851033054196
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "distance_beyond_window",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/distance_beyond_window.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "match distance 4097 exceeds fixed window 4096",
+        "rust_category": "input_error",
+        "rust_detail": "match distance 4097 exceeds fixed window 4096"
+      },
+      "wall_ns": 1790528851081066253
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "overproduces",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/overproduces.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "stream produces more bytes than data_len declares",
+        "rust_category": "input_error",
+        "rust_detail": "stream produces more bytes than data_len declares"
+      },
+      "wall_ns": 1790528851129233254
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "trailing_bytes",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/trailing_bytes.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "1 trailing octets after end marker",
+        "rust_category": "input_error",
+        "rust_detail": "1 trailing octets after end-of-stream marker"
+      },
+      "wall_ns": 1790528851177554524
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "truncated_header",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/truncated_header.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "frame too short: 6 bytes < header 58",
+        "rust_category": "input_error",
+        "rust_detail": "frame too short: 6 bytes < header 58"
+      },
+      "wall_ns": 1790528851225108776
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "unknown_control",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/unknown_control.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "unknown control byte 0x07 at offset 0",
+        "rust_category": "input_error",
+        "rust_detail": "unknown control byte 0x07 at offset 0"
+      },
+      "wall_ns": 1790528851273900134
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 12,
+    "skip": 0,
+    "total": 12
+  },
+  "generated_at_unix_ms": 1790528851273,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both"
+}

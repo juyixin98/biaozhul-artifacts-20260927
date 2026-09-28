@@ -1,0 +1,85 @@
+==> [run-20260927T170715Z-001] run number 1
+==> regenerating deterministic fixtures
+==> cargo test
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s
+     Running unittests src/lib.rs (target/debug/deps/lz77_blocks-a1fe21640a91d950)
+
+running 15 tests
+test codec::tests::chain_modes_enforced ... ok
+test codec::tests::dependent_digest_binding_roundtrip ... ok
+test codec::tests::dependent_with_wrong_dictionary_is_state_conflict ... ok
+test codec::tests::independent_decoded_with_dictionary_is_state_conflict ... ok
+test codec::tests::independent_roundtrip ... ok
+test format::tests::crc32_known_vectors ... ok
+test format::tests::flags_roundtrip_and_reserved_bits ... ok
+test format::tests::frame_roundtrip_and_corruption ... ok
+test lz77::tests::bad_distance_before_stream ... ok
+test lz77::tests::dictionary_references_roundtrip ... ok
+test lz77::tests::distance_beyond_window ... ok
+test lz77::tests::empty_and_literals ... ok
+test lz77::tests::encoder_compresses_repetition ... ok
+test lz77::tests::self_overlap_longer_period ... ok
+test lz77::tests::self_overlap_rle ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/lz77_blocks-0d24aaaaa45dc778)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/oracle_crosscheck.rs (target/debug/deps/oracle_crosscheck-776de12f1c38f86d)
+
+running 6 tests
+test cross_window_boundary_distance_4096_accepted_and_4097_rejected ... ok
+test different_chunk_modes_recover_identical_bytes ... ok
+test frames_cross_produced_by_each_implementation_are_accepted ... ok
+test good_fixtures_decode_identically_in_both_implementations ... ok
+test malformed_fixtures_are_rejected_with_expected_categories_by_both ... ok
+test self_overlap_long_match_expands_byte_by_byte ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.50s
+
+     Running tests/resource_exhaustion.rs (target/debug/deps/resource_exhaustion-21f403a5be3eead6)
+
+running 5 tests
+test dependency_chain_depth_is_limited ... ok
+test error_categories_are_distinct_and_stable ... ok
+test malicious_lengths_are_refused_before_token_decoding ... ok
+test ratio_and_absolute_boundaries_are_exact ... ok
+test self_overlap_bomb_is_capped_at_8mib ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.11s
+
+     Running tests/service_api.rs (target/debug/deps/service_api-3008a2f113883152)
+
+running 2 tests
+test failure_classes_map_to_distinct_status_and_category ... ok
+test happy_path_compress_store_list_decompress ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/store_contract.rs (target/debug/deps/store_contract-ed8ed628ef9733c2)
+
+running 5 tests
+test dependent_without_predecessor_is_state_conflict ... ok
+test independent_root_then_dependent_chain_persists_and_reloads ... ok
+test manifest_never_points_at_unwritten_frame ... ok
+test stale_prev_id_pin_is_state_conflict ... ok
+test unknown_block_is_not_found_and_broken_chain_is_state_conflict ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+   Doc-tests lz77_blocks
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+==> aggregating logs
+==> summary: tests/test-logs/run-20260927T170715Z-001/summary.json
+run run-20260927T170715Z-001 (#1): total=78 pass=78 fail=0 skip=0
+  oracle_crosscheck      pass=41 fail= 0 skip= 0
+  resource_exhaustion    pass=10 fail= 0 skip= 0
+  service_api            pass=17 fail= 0 skip= 0
+  store_contract         pass=10 fail= 0 skip= 0

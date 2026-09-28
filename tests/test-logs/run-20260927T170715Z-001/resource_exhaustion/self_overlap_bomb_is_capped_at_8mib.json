@@ -1,0 +1,38 @@
+{
+  "binary": "resource_exhaustion",
+  "cases": [
+    {
+      "binary": "resource_exhaustion",
+      "case": "rle_bomb_at_cap",
+      "judgement": "PASS",
+      "reason": "maximal self-overlap stream expands to exactly 8 MiB in both implementations, bounded memory",
+      "state": {
+        "all_z": true,
+        "compression_ratio": 64.49848145841503,
+        "oracle_valid": true,
+        "output_len": 8388608,
+        "payload_len": 130059,
+        "rss_growth_kb": 8192
+      },
+      "wall_ns": 1790528852432673994
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 1,
+    "skip": 0,
+    "total": 1
+  },
+  "generated_at_unix_ms": 1790528852432,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "self_overlap_bomb_is_capped_at_8mib"
+}

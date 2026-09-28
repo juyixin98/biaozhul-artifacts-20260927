@@ -1,0 +1,51 @@
+
+[1m=== 1. service description ===[0m
+{"max_match":258,"min_match":3,"routes":["GET  /health","POST /blocks","GET  /blocks","GET  /blocks/:id","GET  /blocks/:id/frame","GET  /blocks/:id/raw","GET  /chain/raw","POST /validate"],"service":"lz77-blocks","version":"0.1.0","window_bytes":4096}
+
+[1m=== 2. health (empty store) ===[0m
+{"blocks":0,"status":"ok","tip":null}
+
+[1m=== 3. POST /blocks independent (201) ===[0m
+{"id":"blk-00000000","mode":"independent","prev_id":null,"sequence":0,"data_len":41,"payload_len":17,"created_at_unix_ms":1790528852945}
+201
+
+[1m=== 4. POST /blocks dependent with prev_id pin (201) ===[0m
+{"id":"blk-00000001","mode":"dependent","prev_id":"blk-00000000","sequence":1,"data_len":43,"payload_len":33,"created_at_unix_ms":1790528852961}
+201
+
+[1m=== 5. GET /blocks (ordered list) ===[0m
+[{"id":"blk-00000000","mode":"independent","prev_id":null,"sequence":0,"data_len":41,"payload_len":17,"created_at_unix_ms":1790528852945},{"id":"blk-00000001","mode":"dependent","prev_id":"blk-00000000","sequence":1,"data_len":43,"payload_len":33,"created_at_unix_ms":1790528852961}]
+
+[1m=== 6. GET /blocks/:id/raw (decompress child only) ===[0m
+alpha alpha alpha continuation continuation
+
+[1m=== 7. GET /chain/raw (concatenated decompression) ===[0m
+alpha alpha alpha alpha alpha alpha alphaalpha alpha alpha continuation continuation
+
+[1m=== 8. POST /validate good frame (200) ===[0m
+{"crc32":"428f7996","data_len":43,"dict_digest":"a29518502c824e73dd086af21af839c42a474e6b751450807df9881d4683bc89","dictionary_digest":"a29518502c824e73dd086af21af839c42a474e6b751450807df9881d4683bc89","error_category":null,"mode":"dependent","payload_len":33,"reason":"decoded 43 bytes and passed all binding checks","valid":true}
+
+[1m=== 9. ABNORMAL: dependent block on empty chain would be 409 (fresh store) -> stale pin here ===[0m
+{"error":{"category":"state_conflict","detail":"chain tip advanced: client pinned blk-00000000, current tip is blk-00000001"}}
+HTTP 409
+
+[1m=== 10. ABNORMAL: bad JSON (400 input_error) ===[0m
+{"error":{"category":"input_error","detail":"request body is not valid JSON: key must be a string at line 1 column 2"}}
+HTTP 400
+
+[1m=== 11. ABNORMAL: unknown block id (404 not_found) ===[0m
+{"error":{"category":"not_found","detail":"block blk-00000099 not found"}}
+HTTP 404
+
+[1m=== 12. ABNORMAL: validate 1 GiB declaration bomb (413 resource_exhausted) ===[0m
+{"crc32":null,"data_len":null,"dict_digest":null,"dictionary_digest":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","error_category":"resource_exhausted","mode":null,"payload_len":null,"reason":"declared output 1073741824 bytes exceeds per-block cap 8388608","valid":false}
+HTTP 413
+
+[1m=== 13. ABNORMAL: validate CRC-corrupt frame (400 input_error) ===[0m
+{"crc32":null,"data_len":null,"dict_digest":null,"dictionary_digest":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","error_category":"input_error","mode":null,"payload_len":null,"reason":"payload CRC mismatch: frame 0xe58cf634, computed 0x3b2148db","valid":false}
+HTTP 400
+
+[1m=== 14. ABNORMAL: dependent frame with empty dictionary (409 state_conflict) ===[0m
+{"crc32":null,"data_len":null,"dict_digest":null,"dictionary_digest":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","error_category":"state_conflict","mode":null,"payload_len":null,"reason":"dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","valid":false}
+HTTP 409
+(server log: target/smoke-server.log)

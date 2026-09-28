@@ -1,0 +1,1496 @@
+{
+  "cases": [
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_window_boundary",
+      "judgement": "PASS",
+      "reason": "match at distance exactly 4096 accepted; bytes at both offsets equal XYZ",
+      "state": {
+        "distance": 4096,
+        "window_bytes": 4096
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "cross_window_boundary_distance_4096_accepted_and_4097_rejected",
+      "wall_ns": 1790528848827334593
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "distance_4097_with_full_dictionary",
+      "judgement": "PASS",
+      "reason": "even with valid binding/history, distance 4097 is rejected as input_error",
+      "state": {
+        "category": "input_error",
+        "detail": "match distance 4097 exceeds fixed window 4096",
+        "distance": 4097
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "cross_window_boundary_distance_4096_accepted_and_4097_rejected",
+      "wall_ns": 1790528848827962257
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "one_independent",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "different_chunk_modes_recover_identical_bytes",
+      "wall_ns": 1790528848837024099
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "different_chunk_modes_recover_identical_bytes",
+      "wall_ns": 1790528848839651952
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_chain_3",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "different_chunk_modes_recover_identical_bytes",
+      "wall_ns": 1790528848842357256
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_chain_5",
+      "judgement": "PASS",
+      "reason": "recovered bytes identical to source.bin",
+      "state": {
+        "len": 20000,
+        "sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "source_len": 20000,
+        "source_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "different_chunk_modes_recover_identical_bytes",
+      "wall_ns": 1790528848845141967
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "oracle_chain_3",
+      "judgement": "PASS",
+      "reason": "independent reference streams the chain to identical bytes",
+      "state": {
+        "len": 20000
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "different_chunk_modes_recover_identical_bytes",
+      "wall_ns": 1790528848996464883
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "oracle_chain_5",
+      "judgement": "PASS",
+      "reason": "independent reference streams the chain to identical bytes",
+      "state": {
+        "len": 20000
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "different_chunk_modes_recover_identical_bytes",
+      "wall_ns": 1790528849235577160
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_short",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 11,
+        "independently_encoded_frames_differ": false,
+        "python_frame_len": 81,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 81,
+        "rust_to_python_ok": true
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "frames_cross_produced_by_each_implementation_are_accepted",
+      "wall_ns": 1790528849332075657
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_repetitive",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 1500,
+        "independently_encoded_frames_differ": true,
+        "python_frame_len": 89,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 89,
+        "rust_to_python_ok": true
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "frames_cross_produced_by_each_implementation_are_accepted",
+      "wall_ns": 1790528849432196324
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_mixed",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 5457,
+        "independently_encoded_frames_differ": true,
+        "python_frame_len": 3555,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 3555,
+        "rust_to_python_ok": true
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "frames_cross_produced_by_each_implementation_are_accepted",
+      "wall_ns": 1790528849766221360
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_empty",
+      "judgement": "PASS",
+      "reason": "both implementations decode each other's frames to identical bytes",
+      "state": {
+        "data_len": 0,
+        "independently_encoded_frames_differ": true,
+        "python_frame_len": 59,
+        "python_to_rust_ok": true,
+        "rust_frame_len": 59,
+        "rust_to_python_ok": true
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "frames_cross_produced_by_each_implementation_are_accepted",
+      "wall_ns": 1790528849871129123
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_dependent_over_window",
+      "judgement": "PASS",
+      "reason": "Rust dependent frame (>1-window history) decoded by reference",
+      "state": {
+        "history_len": 9000,
+        "oracle_category": null
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "frames_cross_produced_by_each_implementation_are_accepted",
+      "wall_ns": 1790528849933310887
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_dependent_py_to_rust",
+      "judgement": "PASS",
+      "reason": "reference dependent frame decoded by Rust against long history",
+      "state": {
+        "frame_len": 91
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "frames_cross_produced_by_each_implementation_are_accepted",
+      "wall_ns": 1790528849981960998
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_0",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          0,
+          7000
+        ],
+        "fixture": "good/chain/0.frame",
+        "mode": "independent",
+        "oracle_category": null,
+        "oracle_sha256": "2235620efab7473fe203ac1f6c806f902b491ac8437f48df081da543e10b3566",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 1106,
+          "match_bytes": 5894,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 1106,
+          "tokens_match": 114
+        },
+        "oracle_valid": true,
+        "rust_len": 7000,
+        "rust_sha256": "2235620efab7473fe203ac1f6c806f902b491ac8437f48df081da543e10b3566"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850034405898
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_1",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          7000,
+          13500
+        ],
+        "fixture": "good/chain/1.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "c13cd10663c914572c616c901c4ba4692de7a441feb5280017d47d03f6dea1f6",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 5054,
+          "match_bytes": 1446,
+          "max_distance": 1291,
+          "overlap_copies": 1,
+          "tokens_literal": 5054,
+          "tokens_match": 6
+        },
+        "oracle_valid": true,
+        "rust_len": 6500,
+        "rust_sha256": "c13cd10663c914572c616c901c4ba4692de7a441feb5280017d47d03f6dea1f6"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850086574050
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_2",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          13500,
+          20000
+        ],
+        "fixture": "good/chain/2.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "aebd19cbb0147f143b35e29ec68ca2a1277425b5f5c048ad14c77e0087651e58",
+        "oracle_stats": {
+          "boundary_copies": 15,
+          "literal_bytes": 0,
+          "match_bytes": 6500,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 0,
+          "tokens_match": 26
+        },
+        "oracle_valid": true,
+        "rust_len": 6500,
+        "rust_sha256": "aebd19cbb0147f143b35e29ec68ca2a1277425b5f5c048ad14c77e0087651e58"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850137470491
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_0",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          0,
+          3333
+        ],
+        "fixture": "good/chain_alt/0.frame",
+        "mode": "independent",
+        "oracle_category": null,
+        "oracle_sha256": "20c59fa3c4ebe2e8398e4e5f1dd6d9f6fed62e8ed52bd7ba2ea1fe470ea0fa07",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 103,
+          "match_bytes": 3230,
+          "max_distance": 2749,
+          "overlap_copies": 0,
+          "tokens_literal": 103,
+          "tokens_match": 62
+        },
+        "oracle_valid": true,
+        "rust_len": 3333,
+        "rust_sha256": "20c59fa3c4ebe2e8398e4e5f1dd6d9f6fed62e8ed52bd7ba2ea1fe470ea0fa07"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850186327533
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_1",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          3333,
+          8000
+        ],
+        "fixture": "good/chain_alt/1.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "7806d4ffa564cb502ef614529c268d2a8e92418fb95566ca66a3478f0f4b969f",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 2004,
+          "match_bytes": 2663,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 2004,
+          "tokens_match": 52
+        },
+        "oracle_valid": true,
+        "rust_len": 4667,
+        "rust_sha256": "7806d4ffa564cb502ef614529c268d2a8e92418fb95566ca66a3478f0f4b969f"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850236482458
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_2",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          8000,
+          12123
+        ],
+        "fixture": "good/chain_alt/2.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "3ffd939382219833134354ec765815575b671c434c606dc8d6dd655a7d064cca",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 4054,
+          "match_bytes": 69,
+          "max_distance": 1,
+          "overlap_copies": 1,
+          "tokens_literal": 4054,
+          "tokens_match": 1
+        },
+        "oracle_valid": true,
+        "rust_len": 4123,
+        "rust_sha256": "3ffd939382219833134354ec765815575b671c434c606dc8d6dd655a7d064cca"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850292461756
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_3",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          12123,
+          16777
+        ],
+        "fixture": "good/chain_alt/3.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "c406f2413e5ae189e854f4205dc0c45ff8744e67e7ad01b5dc5efac3aabe6754",
+        "oracle_stats": {
+          "boundary_copies": 3,
+          "literal_bytes": 0,
+          "match_bytes": 4654,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 0,
+          "tokens_match": 19
+        },
+        "oracle_valid": true,
+        "rust_len": 4654,
+        "rust_sha256": "c406f2413e5ae189e854f4205dc0c45ff8744e67e7ad01b5dc5efac3aabe6754"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850342525732
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "chain_alt_4",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          16777,
+          20000
+        ],
+        "fixture": "good/chain_alt/4.frame",
+        "mode": "dependent",
+        "oracle_category": null,
+        "oracle_sha256": "36b70cd7c0d74fe322edbc5633eece9f9623b87d8d0ea3308704ce6c28d93220",
+        "oracle_stats": {
+          "boundary_copies": 13,
+          "literal_bytes": 0,
+          "match_bytes": 3223,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 0,
+          "tokens_match": 13
+        },
+        "oracle_valid": true,
+        "rust_len": 3223,
+        "rust_sha256": "36b70cd7c0d74fe322edbc5633eece9f9623b87d8d0ea3308704ce6c28d93220"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850391112240
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "cross_window_boundary",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": null,
+        "fixture": "good/cross_window_boundary.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "b7bc1a54932925cddeaef59bc7a784d70182215bc0c73f59b9c814cddd52beeb",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 8,
+          "match_bytes": 4095,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 8,
+          "tokens_match": 17
+        },
+        "oracle_valid": true,
+        "rust_len": 4103,
+        "rust_sha256": "b7bc1a54932925cddeaef59bc7a784d70182215bc0c73f59b9c814cddd52beeb"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850441328212
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "one_independent",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": null,
+        "fixture": "good/one_independent.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+        "oracle_stats": {
+          "boundary_copies": 16,
+          "literal_bytes": 6160,
+          "match_bytes": 13840,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 6160,
+          "tokens_match": 145
+        },
+        "oracle_valid": true,
+        "rust_len": 20000,
+        "rust_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850496872828
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "self_overlap_rle",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": null,
+        "fixture": "good/self_overlap_rle.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "d6288d9845c1376a9bd040a90dd5fefa3ef287de340d076d6c284c365f840321",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 1,
+          "match_bytes": 258,
+          "max_distance": 1,
+          "overlap_copies": 1,
+          "tokens_literal": 1,
+          "tokens_match": 1
+        },
+        "oracle_valid": true,
+        "rust_len": 259,
+        "rust_sha256": "d6288d9845c1376a9bd040a90dd5fefa3ef287de340d076d6c284c365f840321"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850543772961
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent_0",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          0,
+          6666
+        ],
+        "fixture": "good/three_independent/0.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "b8e30b83a47f04c0eb65cc7ac1351531473d74ba688ee203d343db2ee533cf85",
+        "oracle_stats": {
+          "boundary_copies": 1,
+          "literal_bytes": 772,
+          "match_bytes": 5894,
+          "max_distance": 4096,
+          "overlap_copies": 0,
+          "tokens_literal": 772,
+          "tokens_match": 114
+        },
+        "oracle_valid": true,
+        "rust_len": 6666,
+        "rust_sha256": "b8e30b83a47f04c0eb65cc7ac1351531473d74ba688ee203d343db2ee533cf85"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850595019497
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent_1",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          6666,
+          13333
+        ],
+        "fixture": "good/three_independent/1.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "53439c321ea7257519a460cedd00d28b999c04c0094bfbb262eec8824b69c9ff",
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 5388,
+          "match_bytes": 1279,
+          "max_distance": 1033,
+          "overlap_copies": 1,
+          "tokens_literal": 5388,
+          "tokens_match": 5
+        },
+        "oracle_valid": true,
+        "rust_len": 6667,
+        "rust_sha256": "53439c321ea7257519a460cedd00d28b999c04c0094bfbb262eec8824b69c9ff"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850649373278
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "three_independent_2",
+      "judgement": "PASS",
+      "reason": "both implementations decoded identical bytes; digest matches manifest",
+      "state": {
+        "declared_data_len": [
+          13333,
+          20000
+        ],
+        "fixture": "good/three_independent/2.frame",
+        "mode": null,
+        "oracle_category": null,
+        "oracle_sha256": "30a79c1fcb2954d2afd1736b623cf07ca4fab0afecbd651fbabf232d13fa70a7",
+        "oracle_stats": {
+          "boundary_copies": 10,
+          "literal_bytes": 1,
+          "match_bytes": 6666,
+          "max_distance": 4096,
+          "overlap_copies": 1,
+          "tokens_literal": 1,
+          "tokens_match": 26
+        },
+        "oracle_valid": true,
+        "rust_len": 6667,
+        "rust_sha256": "30a79c1fcb2954d2afd1736b623cf07ca4fab0afecbd651fbabf232d13fa70a7"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "good_fixtures_decode_identically_in_both_implementations",
+      "wall_ns": 1790528850699524869
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bad_crc",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/bad_crc.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "payload CRC mismatch: frame 0xe58cf634, computed 0x3b2148db",
+        "rust_category": "input_error",
+        "rust_detail": "payload CRC mismatch: frame 0xe58cf634, computed 0x3b2148db"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528850750067921
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bad_distance_before_start",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/bad_distance_before_start.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "match distance 10 points before start of stream (available history 0 bytes)",
+        "rust_category": "input_error",
+        "rust_detail": "match distance 10 points before start of stream (available history 0 bytes)"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528850794850935
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bad_magic",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/bad_magic.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "bad magic: b'XXXX'",
+        "rust_category": "input_error",
+        "rust_detail": "bad magic: [58, 58, 58, 58] (want [4c, 5a, 37, 31])"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528850842765257
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bomb_declared_size",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "resource_exhausted",
+        "fixture": "malformed/bomb_declared_size.frame",
+        "intermediate": null,
+        "manifest_rationale": "declared output exceeds 8 MiB absolute cap; no allocation allowed",
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 1073741824 bytes exceeds per-block cap 8388608"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528850888908638
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "bomb_expansion_ratio",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "resource_exhausted",
+        "fixture": "malformed/bomb_expansion_ratio.frame",
+        "intermediate": null,
+        "manifest_rationale": "declared ratio exceeds 100x; rejected from header fields alone",
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 20000000 bytes exceeds per-block cap 8388608",
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 20000000 bytes exceeds per-block cap 8388608"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528850937419831
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_missing_predecessor",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "state_conflict",
+        "fixture": "malformed/dependent_missing_predecessor.frame",
+        "intermediate": null,
+        "manifest_rationale": "nonzero bound digest presented against empty dictionary",
+        "oracle_category": "state_conflict",
+        "oracle_reason": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rust_category": "state_conflict",
+        "rust_detail": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528850985573036
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "dependent_wrong_dictionary",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "state_conflict",
+        "fixture": "malformed/dependent_wrong_dictionary.frame",
+        "intermediate": null,
+        "manifest_rationale": "same length dictionary, different bytes -> digest mismatch",
+        "oracle_category": "state_conflict",
+        "oracle_reason": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rust_category": "state_conflict",
+        "rust_detail": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528851033054196
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "distance_beyond_window",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/distance_beyond_window.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "match distance 4097 exceeds fixed window 4096",
+        "rust_category": "input_error",
+        "rust_detail": "match distance 4097 exceeds fixed window 4096"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528851081066253
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "overproduces",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/overproduces.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "stream produces more bytes than data_len declares",
+        "rust_category": "input_error",
+        "rust_detail": "stream produces more bytes than data_len declares"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528851129233254
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "trailing_bytes",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/trailing_bytes.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "1 trailing octets after end marker",
+        "rust_category": "input_error",
+        "rust_detail": "1 trailing octets after end-of-stream marker"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528851177554524
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "truncated_header",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/truncated_header.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "frame too short: 6 bytes < header 58",
+        "rust_category": "input_error",
+        "rust_detail": "frame too short: 6 bytes < header 58"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528851225108776
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "unknown_control",
+      "judgement": "PASS",
+      "reason": "Rust and independent reference agree on the failure category",
+      "state": {
+        "expected_category": "input_error",
+        "fixture": "malformed/unknown_control.frame",
+        "intermediate": null,
+        "manifest_rationale": null,
+        "oracle_category": "input_error",
+        "oracle_reason": "unknown control byte 0x07 at offset 0",
+        "rust_category": "input_error",
+        "rust_detail": "unknown control byte 0x07 at offset 0"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "malformed_fixtures_are_rejected_with_expected_categories_by_both",
+      "wall_ns": 1790528851273900134
+    },
+    {
+      "binary": "oracle_crosscheck",
+      "case": "self_overlap_rle",
+      "judgement": "PASS",
+      "reason": "length 258 > distance 1 produced exactly 259 'a' bytes (run semantics)",
+      "state": {
+        "distance": 1,
+        "first_8": [
+          97,
+          97,
+          97,
+          97,
+          97,
+          97,
+          97,
+          97
+        ],
+        "len": 259,
+        "match_length": 258,
+        "naive_slice_copy_would_yield": "aaaaaaaa with duplicated prefix garbage / panic"
+      },
+      "suite": "oracle_crosscheck",
+      "test_name": "self_overlap_long_match_expands_byte_by_byte",
+      "wall_ns": 1790528851275013814
+    },
+    {
+      "binary": "store_contract",
+      "case": "dependent_on_empty_store",
+      "judgement": "PASS",
+      "reason": "append to empty store must be state_conflict (missing predecessor)",
+      "state": {
+        "category": "state_conflict",
+        "detail": "cannot append dependent block: store has no root block"
+      },
+      "suite": "store_contract",
+      "test_name": "dependent_without_predecessor_is_state_conflict",
+      "wall_ns": 1790528852492341048
+    },
+    {
+      "binary": "store_contract",
+      "case": "read_block_0",
+      "judgement": "PASS",
+      "reason": "per-block decompression returns that block's bytes only",
+      "state": {
+        "data_len": 21,
+        "id": "blk-00000000",
+        "mode": "independent",
+        "payload_len": 43,
+        "roundtrip_equal": true
+      },
+      "suite": "store_contract",
+      "test_name": "independent_root_then_dependent_chain_persists_and_reloads",
+      "wall_ns": 1790528852493500457
+    },
+    {
+      "binary": "store_contract",
+      "case": "read_block_1",
+      "judgement": "PASS",
+      "reason": "per-block decompression returns that block's bytes only",
+      "state": {
+        "data_len": 27,
+        "id": "blk-00000001",
+        "mode": "dependent",
+        "payload_len": 21,
+        "roundtrip_equal": true
+      },
+      "suite": "store_contract",
+      "test_name": "independent_root_then_dependent_chain_persists_and_reloads",
+      "wall_ns": 1790528852493576024
+    },
+    {
+      "binary": "store_contract",
+      "case": "read_block_2",
+      "judgement": "PASS",
+      "reason": "per-block decompression returns that block's bytes only",
+      "state": {
+        "data_len": 40,
+        "id": "blk-00000002",
+        "mode": "dependent",
+        "payload_len": 29,
+        "roundtrip_equal": true
+      },
+      "suite": "store_contract",
+      "test_name": "independent_root_then_dependent_chain_persists_and_reloads",
+      "wall_ns": 1790528852493664596
+    },
+    {
+      "binary": "store_contract",
+      "case": "reload_durability",
+      "judgement": "PASS",
+      "reason": "after reopening the store the chain decodes identically",
+      "state": {
+        "files_on_disk": 3,
+        "store_dir": "/home/admin/Downloads/xinbiaozhu/opp214/a/target/test-tmp/stores/chain-741881-1790528852492678180"
+      },
+      "suite": "store_contract",
+      "test_name": "independent_root_then_dependent_chain_persists_and_reloads",
+      "wall_ns": 1790528852493917752
+    },
+    {
+      "binary": "store_contract",
+      "case": "oracle_stored_chain",
+      "judgement": "PASS",
+      "reason": "Python reference streams all three stored frames to identical bytes",
+      "state": {},
+      "suite": "store_contract",
+      "test_name": "independent_root_then_dependent_chain_persists_and_reloads",
+      "wall_ns": 1790528852636613753
+    },
+    {
+      "binary": "store_contract",
+      "case": "atomic_commit",
+      "judgement": "PASS",
+      "reason": "2 manifest entries <-> 2 frame files, zero .tmp leftovers",
+      "state": {
+        "entries": 2,
+        "frames": 2,
+        "leftovers": []
+      },
+      "suite": "store_contract",
+      "test_name": "manifest_never_points_at_unwritten_frame",
+      "wall_ns": 1790528852638041233
+    },
+    {
+      "binary": "store_contract",
+      "case": "stale_pin",
+      "judgement": "PASS",
+      "reason": "optimistic pin against a non-tip predecessor is a state conflict",
+      "state": {
+        "category": "state_conflict",
+        "detail": "chain tip advanced: client pinned blk-00000000, current tip is blk-00000001",
+        "pinned": "blk-00000000",
+        "tip": "blk-00000001"
+      },
+      "suite": "store_contract",
+      "test_name": "stale_prev_id_pin_is_state_conflict",
+      "wall_ns": 1790528852638940718
+    },
+    {
+      "binary": "store_contract",
+      "case": "unknown_id",
+      "judgement": "PASS",
+      "reason": "unknown block id is not_found",
+      "state": {
+        "category": "not_found"
+      },
+      "suite": "store_contract",
+      "test_name": "unknown_block_is_not_found_and_broken_chain_is_state_conflict",
+      "wall_ns": 1790528852639772953
+    },
+    {
+      "binary": "store_contract",
+      "case": "missing_root_frame",
+      "judgement": "PASS",
+      "reason": "dependent block whose predecessor frame vanished is state_conflict",
+      "state": {
+        "deleted": "/home/admin/Downloads/xinbiaozhu/opp214/a/target/test-tmp/stores/broken-741881-1790528852639315550/blocks/blk-00000000.lz71",
+        "detail": "frame file for blk-00000000 is missing on disk: chain is broken",
+        "queried": "blk-00000001"
+      },
+      "suite": "store_contract",
+      "test_name": "unknown_block_is_not_found_and_broken_chain_is_state_conflict",
+      "wall_ns": 1790528852639878776
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "chain_depth_limit",
+      "judgement": "PASS",
+      "reason": "a 65-block chain is resource_exhausted even though every frame is well-formed",
+      "state": {
+        "detail": "dependency chain of 65 blocks exceeds depth limit 64",
+        "frames": 65,
+        "limit": 64
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "dependency_chain_depth_is_limited",
+      "wall_ns": 1790528851329186424
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "chain_at_depth_limit",
+      "judgement": "PASS",
+      "reason": "exactly 64 blocks decode (limit is exclusive beyond it)",
+      "state": {
+        "blocks": 64,
+        "bytes": 64
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "dependency_chain_depth_is_limited",
+      "wall_ns": 1790528851329736764
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "stable_category_strings",
+      "judgement": "PASS",
+      "reason": "input/state/resource/not-found/compute categories keep their stable wire names",
+      "state": {
+        "pairs": [
+          [
+            "input_error",
+            "input_error"
+          ],
+          [
+            "state_conflict",
+            "state_conflict"
+          ],
+          [
+            "resource_exhausted",
+            "resource_exhausted"
+          ],
+          [
+            "not_found",
+            "not_found"
+          ],
+          [
+            "compute_failure",
+            "compute_failure"
+          ]
+        ]
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "error_categories_are_distinct_and_stable",
+      "wall_ns": 1790528851330140471
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "bomb_declared_1gib",
+      "judgement": "PASS",
+      "reason": "Rust and reference refuse with the identical failure category",
+      "state": {
+        "declared": 1073741824,
+        "note": "rejected while parsing header; decoder never allocates",
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "payload_len": 1,
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "want_category": "resource_exhausted"
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "malicious_lengths_are_refused_before_token_decoding",
+      "wall_ns": 1790528851380170213
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "bomb_expansion_ratio",
+      "judgement": "PASS",
+      "reason": "Rust and reference refuse with the identical failure category",
+      "state": {
+        "declared": 20000000,
+        "oracle_category": "resource_exhausted",
+        "oracle_reason": "declared output 20000000 bytes exceeds per-block cap 8388608",
+        "rust_category": "resource_exhausted",
+        "rust_detail": "declared output 20000000 bytes exceeds per-block cap 8388608",
+        "want_category": "resource_exhausted"
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "malicious_lengths_are_refused_before_token_decoding",
+      "wall_ns": 1790528851426222551
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "no_giant_allocation",
+      "judgement": "PASS",
+      "reason": "200 decodes of the 1 GiB-declaration frame grow RSS by < 16 MiB",
+      "state": {
+        "attempts": 200,
+        "input_bytes_seen": 11800,
+        "rss_growth_kb": 0,
+        "rss_kb_after": 3328,
+        "rss_kb_before": 3328
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "malicious_lengths_are_refused_before_token_decoding",
+      "wall_ns": 1790528851426461315
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "ratio_boundary_envelope_allows_token_check_denies",
+      "judgement": "PASS",
+      "reason": "declared ratio exactly 100x passes the resource gate, then fails as input_error when zero bytes are actually produced",
+      "state": {
+        "category": "input_error",
+        "detail": "stream produced 0 bytes but data_len declares 100"
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "ratio_and_absolute_boundaries_are_exact",
+      "wall_ns": 1790528851427049133
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "ratio_101x_refused",
+      "judgement": "PASS",
+      "reason": "declared 101 bytes for 1 payload byte is resource_exhausted",
+      "state": {
+        "detail": "declared expansion 1->101 bytes exceeds ratio 100x"
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "ratio_and_absolute_boundaries_are_exact",
+      "wall_ns": 1790528851427056901
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "absolute_cap_boundary",
+      "judgement": "PASS",
+      "reason": "declared length == 8 MiB passes envelope, 8 MiB + 1 is resource_exhausted",
+      "state": {
+        "at_cap_envelope_ok": true,
+        "cap": 8388608,
+        "over_detail": "declared output 8388609 bytes exceeds per-block cap 8388608"
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "ratio_and_absolute_boundaries_are_exact",
+      "wall_ns": 1790528851435178069
+    },
+    {
+      "binary": "resource_exhaustion",
+      "case": "rle_bomb_at_cap",
+      "judgement": "PASS",
+      "reason": "maximal self-overlap stream expands to exactly 8 MiB in both implementations, bounded memory",
+      "state": {
+        "all_z": true,
+        "compression_ratio": 64.49848145841503,
+        "oracle_valid": true,
+        "output_len": 8388608,
+        "payload_len": 130059,
+        "rss_growth_kb": 8192
+      },
+      "suite": "resource_exhaustion",
+      "test_name": "self_overlap_bomb_is_capped_at_8mib",
+      "wall_ns": 1790528852432673994
+    },
+    {
+      "binary": "service_api",
+      "case": "bad_json",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "body": {
+          "error": {
+            "category": "input_error",
+            "detail": "request body is not valid JSON: key must be a string at line 1 column 2"
+          }
+        },
+        "status": 400
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852437376676
+    },
+    {
+      "binary": "service_api",
+      "case": "bad_base64",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "detail": "data is not valid base64: Invalid symbol 64, offset 0.",
+        "status": 400
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852437466265
+    },
+    {
+      "binary": "service_api",
+      "case": "dependent_empty",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "detail": "cannot append dependent block: store has no root block",
+        "status": 409
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852437550323
+    },
+    {
+      "binary": "service_api",
+      "case": "stale_pin",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "status": 409
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852438421220
+    },
+    {
+      "binary": "service_api",
+      "case": "not_found",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "status": 404
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852438523161
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_bomb_413",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "reason": "declared output 1073741824 bytes exceeds per-block cap 8388608",
+        "status": 413
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852438666313
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_bad_crc_400",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "reason": "payload CRC mismatch: frame 0xe58cf634, computed 0x3b2148db",
+        "status": 400
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852438799166
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_missing_dict_field_400",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "detail": "dependent validation requires a base64 \"dictionary\" field",
+        "note": "missing 'dictionary' FIELD is caller input error",
+        "status": 400
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852438936693
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_digest_mismatch_409",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "reason": "dictionary digest mismatch: block expects cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9, receiver has e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status": 409
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852439085638
+    },
+    {
+      "binary": "service_api",
+      "case": "validate_good_200",
+      "judgement": "PASS",
+      "reason": "status code and error category match the contract",
+      "state": {
+        "body": {
+          "crc32": "653e5fab",
+          "data_len": 259,
+          "dict_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+          "dictionary_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "error_category": null,
+          "mode": "independent",
+          "payload_len": 7,
+          "reason": "decoded 259 bytes and passed all binding checks",
+          "valid": true
+        }
+      },
+      "suite": "service_api",
+      "test_name": "failure_classes_map_to_distinct_status_and_category",
+      "wall_ns": 1790528852439266967
+    },
+    {
+      "binary": "service_api",
+      "case": "health_empty",
+      "judgement": "PASS",
+      "reason": "health reports zero blocks",
+      "state": {
+        "body": {
+          "blocks": 0,
+          "status": "ok",
+          "tip": null
+        }
+      },
+      "suite": "service_api",
+      "test_name": "happy_path_compress_store_list_decompress",
+      "wall_ns": 1790528852440456984
+    },
+    {
+      "binary": "service_api",
+      "case": "create_independent",
+      "judgement": "PASS",
+      "reason": "201 + metadata, payload smaller than data",
+      "state": {
+        "compressed": true,
+        "data_len": 29,
+        "id": "blk-00000000",
+        "payload_len": 17,
+        "status": 201
+      },
+      "suite": "service_api",
+      "test_name": "happy_path_compress_store_list_decompress",
+      "wall_ns": 1790528852440710065
+    },
+    {
+      "binary": "service_api",
+      "case": "create_dependent",
+      "judgement": "PASS",
+      "reason": "201 dependent block bound to prev_id",
+      "state": {
+        "id": "blk-00000001",
+        "prev_id": "blk-00000000"
+      },
+      "suite": "service_api",
+      "test_name": "happy_path_compress_store_list_decompress",
+      "wall_ns": 1790528852441103629
+    },
+    {
+      "binary": "service_api",
+      "case": "list_ordered",
+      "judgement": "PASS",
+      "reason": "two blocks listed root-first",
+      "state": {
+        "list": [
+          {
+            "created_at_unix_ms": 1790528852440,
+            "data_len": 29,
+            "id": "blk-00000000",
+            "mode": "independent",
+            "payload_len": 17,
+            "prev_id": null,
+            "sequence": 0
+          },
+          {
+            "created_at_unix_ms": 1790528852440,
+            "data_len": 30,
+            "id": "blk-00000001",
+            "mode": "dependent",
+            "payload_len": 29,
+            "prev_id": "blk-00000000",
+            "sequence": 1
+          }
+        ]
+      },
+      "suite": "service_api",
+      "test_name": "happy_path_compress_store_list_decompress",
+      "wall_ns": 1790528852441254902
+    },
+    {
+      "binary": "service_api",
+      "case": "raw_child",
+      "judgement": "PASS",
+      "reason": "single-block raw returns exactly the child bytes",
+      "state": {
+        "len": 30
+      },
+      "suite": "service_api",
+      "test_name": "happy_path_compress_store_list_decompress",
+      "wall_ns": 1790528852441381554
+    },
+    {
+      "binary": "service_api",
+      "case": "chain_raw",
+      "judgement": "PASS",
+      "reason": "chain concatenation equals source order",
+      "state": {
+        "len": 59
+      },
+      "suite": "service_api",
+      "test_name": "happy_path_compress_store_list_decompress",
+      "wall_ns": 1790528852441492532
+    },
+    {
+      "binary": "service_api",
+      "case": "frame_oracle",
+      "judgement": "PASS",
+      "reason": "downloaded frame accepted by Python reference",
+      "state": {
+        "oracle_stats": {
+          "boundary_copies": 0,
+          "literal_bytes": 12,
+          "match_bytes": 18,
+          "max_distance": 23,
+          "overlap_copies": 0,
+          "tokens_literal": 12,
+          "tokens_match": 1
+        }
+      },
+      "suite": "service_api",
+      "test_name": "happy_path_compress_store_list_decompress",
+      "wall_ns": 1790528852489340470
+    }
+  ],
+  "counts": {
+    "fail": 0,
+    "pass": 78,
+    "skip": 0,
+    "total": 78
+  },
+  "failures": [],
+  "fixture_coverage": {
+    "exercised": 26,
+    "fixture_cases": 26,
+    "missing_case_names": []
+  },
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "suites": {
+    "oracle_crosscheck": {
+      "fail": 0,
+      "pass": 41,
+      "skip": 0,
+      "total": 41
+    },
+    "resource_exhaustion": {
+      "fail": 0,
+      "pass": 10,
+      "skip": 0,
+      "total": 10
+    },
+    "service_api": {
+      "fail": 0,
+      "pass": 17,
+      "skip": 0,
+      "total": 17
+    },
+    "store_contract": {
+      "fail": 0,
+      "pass": 10,
+      "skip": 0,
+      "total": 10
+    }
+  }
+}

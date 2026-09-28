@@ -1,0 +1,416 @@
+{
+  "cases": [
+    {
+      "expect": {
+        "valid": true
+      },
+      "file": "good/one_independent.frame",
+      "frame_len": 12959,
+      "frame_sha256": "61eecb99392ebdd546920a3d8ccd20ab036ba3595e7c7429cd1dad16faac6bb7",
+      "kind": "good",
+      "name": "one_independent",
+      "output_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+      "stats": {
+        "boundary_copies": 16,
+        "literal_bytes": 6160,
+        "match_bytes": 13840,
+        "max_distance": 4096,
+        "overlap_copies": 1,
+        "tokens_literal": 6160,
+        "tokens_match": 145
+      }
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "file": "good/three_independent/0.frame",
+      "kind": "good",
+      "name": "three_independent_0",
+      "output_sha256": "b8e30b83a47f04c0eb65cc7ac1351531473d74ba688ee203d343db2ee533cf85",
+      "slice": [
+        0,
+        6666
+      ],
+      "stats": {
+        "boundary_copies": 1,
+        "literal_bytes": 772,
+        "match_bytes": 5894,
+        "max_distance": 4096,
+        "overlap_copies": 0,
+        "tokens_literal": 772,
+        "tokens_match": 114
+      }
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "file": "good/three_independent/1.frame",
+      "kind": "good",
+      "name": "three_independent_1",
+      "output_sha256": "53439c321ea7257519a460cedd00d28b999c04c0094bfbb262eec8824b69c9ff",
+      "slice": [
+        6666,
+        13333
+      ],
+      "stats": {
+        "boundary_copies": 0,
+        "literal_bytes": 5388,
+        "match_bytes": 1279,
+        "max_distance": 1033,
+        "overlap_copies": 1,
+        "tokens_literal": 5388,
+        "tokens_match": 5
+      }
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "file": "good/three_independent/2.frame",
+      "kind": "good",
+      "name": "three_independent_2",
+      "output_sha256": "30a79c1fcb2954d2afd1736b623cf07ca4fab0afecbd651fbabf232d13fa70a7",
+      "slice": [
+        13333,
+        20000
+      ],
+      "stats": {
+        "boundary_copies": 10,
+        "literal_bytes": 1,
+        "match_bytes": 6666,
+        "max_distance": 4096,
+        "overlap_copies": 1,
+        "tokens_literal": 1,
+        "tokens_match": 26
+      }
+    },
+    {
+      "dict_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dict_len": 0,
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain/0.frame",
+      "frame_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+      "kind": "good",
+      "mode": "independent",
+      "name": "chain_0",
+      "output_sha256": "2235620efab7473fe203ac1f6c806f902b491ac8437f48df081da543e10b3566",
+      "slice": [
+        0,
+        7000
+      ],
+      "stats": {
+        "boundary_copies": 1,
+        "literal_bytes": 1106,
+        "match_bytes": 5894,
+        "max_distance": 4096,
+        "overlap_copies": 0,
+        "tokens_literal": 1106,
+        "tokens_match": 114
+      }
+    },
+    {
+      "dict_digest": "21fd25b55dd4bb1345099550bb5ba6aab5b029060bbce2d4d23ef74aef47ddd9",
+      "dict_len": 4096,
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain/1.frame",
+      "frame_digest": "21fd25b55dd4bb1345099550bb5ba6aab5b029060bbce2d4d23ef74aef47ddd9",
+      "kind": "good",
+      "mode": "dependent",
+      "name": "chain_1",
+      "output_sha256": "c13cd10663c914572c616c901c4ba4692de7a441feb5280017d47d03f6dea1f6",
+      "slice": [
+        7000,
+        13500
+      ],
+      "stats": {
+        "boundary_copies": 0,
+        "literal_bytes": 5054,
+        "match_bytes": 1446,
+        "max_distance": 1291,
+        "overlap_copies": 1,
+        "tokens_literal": 5054,
+        "tokens_match": 6
+      }
+    },
+    {
+      "dict_digest": "c324167580f0b3550ce283b4cfe42f18a790663497ae23b68558f2d30f5e08d2",
+      "dict_len": 4096,
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain/2.frame",
+      "frame_digest": "c324167580f0b3550ce283b4cfe42f18a790663497ae23b68558f2d30f5e08d2",
+      "kind": "good",
+      "mode": "dependent",
+      "name": "chain_2",
+      "output_sha256": "aebd19cbb0147f143b35e29ec68ca2a1277425b5f5c048ad14c77e0087651e58",
+      "slice": [
+        13500,
+        20000
+      ],
+      "stats": {
+        "boundary_copies": 15,
+        "literal_bytes": 0,
+        "match_bytes": 6500,
+        "max_distance": 4096,
+        "overlap_copies": 0,
+        "tokens_literal": 0,
+        "tokens_match": 26
+      }
+    },
+    {
+      "dict_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain_alt/0.frame",
+      "kind": "good",
+      "mode": "independent",
+      "name": "chain_alt_0",
+      "slice": [
+        0,
+        3333
+      ]
+    },
+    {
+      "dict_digest": "20c59fa3c4ebe2e8398e4e5f1dd6d9f6fed62e8ed52bd7ba2ea1fe470ea0fa07",
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain_alt/1.frame",
+      "kind": "good",
+      "mode": "dependent",
+      "name": "chain_alt_1",
+      "slice": [
+        3333,
+        8000
+      ]
+    },
+    {
+      "dict_digest": "8e2b1a6f5268918ad3260c2353832cdb6718a7c509a1da97e47c6dd5ec270e8b",
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain_alt/2.frame",
+      "kind": "good",
+      "mode": "dependent",
+      "name": "chain_alt_2",
+      "slice": [
+        8000,
+        12123
+      ]
+    },
+    {
+      "dict_digest": "bed0e2d12152f225bdfb3710f357c4890f32455f4c63fb6d8f57310d01882cc2",
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain_alt/3.frame",
+      "kind": "good",
+      "mode": "dependent",
+      "name": "chain_alt_3",
+      "slice": [
+        12123,
+        16777
+      ]
+    },
+    {
+      "dict_digest": "7b962f03e77f96fa63cc31c4a1b7f1f6e0e977abb65a19e51d93fe5b74907213",
+      "expect": {
+        "valid": true
+      },
+      "file": "good/chain_alt/4.frame",
+      "kind": "good",
+      "mode": "dependent",
+      "name": "chain_alt_4",
+      "slice": [
+        16777,
+        20000
+      ]
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "file": "good/self_overlap_rle.frame",
+      "kind": "good",
+      "name": "self_overlap_rle",
+      "output_sha256": "d6288d9845c1376a9bd040a90dd5fefa3ef287de340d076d6c284c365f840321",
+      "rationale": "match length 258 > distance 1: byte-at-a-time copy repeats 'a'",
+      "stats": {
+        "boundary_copies": 0,
+        "literal_bytes": 1,
+        "match_bytes": 258,
+        "max_distance": 1,
+        "overlap_copies": 1,
+        "tokens_literal": 1,
+        "tokens_match": 1
+      }
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "file": "good/cross_window_boundary.frame",
+      "kind": "good",
+      "name": "cross_window_boundary",
+      "output_sha256": "b7bc1a54932925cddeaef59bc7a784d70182215bc0c73f59b9c814cddd52beeb",
+      "rationale": "second XYZ is matched at distance exactly 4096",
+      "stats": {
+        "boundary_copies": 1,
+        "literal_bytes": 8,
+        "match_bytes": 4095,
+        "max_distance": 4096,
+        "overlap_copies": 1,
+        "tokens_literal": 8,
+        "tokens_match": 17
+      }
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "rationale": "fewer than 58 header bytes",
+        "valid": false
+      },
+      "file": "malformed/truncated_header.frame",
+      "kind": "bad",
+      "name": "truncated_header"
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "valid": false
+      },
+      "file": "malformed/bad_magic.frame",
+      "kind": "bad",
+      "name": "bad_magic"
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "rationale": "CRC field corrupted",
+        "valid": false
+      },
+      "file": "malformed/bad_crc.frame",
+      "kind": "bad",
+      "name": "bad_crc"
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "intermediate": {
+          "distance": 10,
+          "history": 0
+        },
+        "rationale": "first token copies from 10 bytes back but history is empty",
+        "valid": false
+      },
+      "file": "malformed/bad_distance_before_start.frame",
+      "kind": "bad",
+      "name": "bad_distance_before_start"
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "intermediate": {
+          "distance": 4097,
+          "window": 4096
+        },
+        "rationale": "u16 distance field can encode 4097 but fixed window is 4096",
+        "valid": false
+      },
+      "file": "malformed/distance_beyond_window.frame",
+      "kind": "bad",
+      "name": "distance_beyond_window"
+    },
+    {
+      "expect": {
+        "category": "state_conflict",
+        "valid": false
+      },
+      "file": "malformed/dependent_missing_predecessor.frame",
+      "frame_digest": "cd4f526fccc661e7a39aae2ed603e6d92d00e355978af71c889b7c106e96c8d9",
+      "kind": "bad",
+      "name": "dependent_missing_predecessor",
+      "rationale": "nonzero bound digest presented against empty dictionary"
+    },
+    {
+      "expect": {
+        "category": "state_conflict",
+        "decode_with_dictionary_b64": "cm9vdCBoaXN0b3J5IEJZVEVT",
+        "valid": false
+      },
+      "file": "malformed/dependent_wrong_dictionary.frame",
+      "kind": "bad",
+      "name": "dependent_wrong_dictionary",
+      "rationale": "same length dictionary, different bytes -> digest mismatch"
+    },
+    {
+      "declared_data_len": 1073741824,
+      "expect": {
+        "category": "resource_exhausted",
+        "valid": false
+      },
+      "file": "malformed/bomb_declared_size.frame",
+      "kind": "bad",
+      "name": "bomb_declared_size",
+      "payload_len": 1,
+      "rationale": "declared output exceeds 8 MiB absolute cap; no allocation allowed"
+    },
+    {
+      "declared_data_len": 20000000,
+      "expect": {
+        "category": "resource_exhausted",
+        "valid": false
+      },
+      "file": "malformed/bomb_expansion_ratio.frame",
+      "kind": "bad",
+      "name": "bomb_expansion_ratio",
+      "payload_len": 163,
+      "ratio": 122699.38650306748,
+      "rationale": "declared ratio exceeds 100x; rejected from header fields alone"
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "rationale": "data_len says 0 bytes but payload emits a literal",
+        "valid": false
+      },
+      "file": "malformed/overproduces.frame",
+      "kind": "bad",
+      "name": "overproduces"
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "valid": false
+      },
+      "file": "malformed/trailing_bytes.frame",
+      "kind": "bad",
+      "name": "trailing_bytes"
+    },
+    {
+      "expect": {
+        "category": "input_error",
+        "valid": false
+      },
+      "file": "malformed/unknown_control.frame",
+      "kind": "bad",
+      "name": "unknown_control"
+    }
+  ],
+  "chain_output_sha256": "7e11b5380cc55c02e883b689539a7e275822b555a67e3cd3ccd0a4843e38216e",
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  }
+}

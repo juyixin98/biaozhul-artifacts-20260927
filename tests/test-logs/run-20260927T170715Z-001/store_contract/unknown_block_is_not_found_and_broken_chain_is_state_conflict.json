@@ -1,0 +1,45 @@
+{
+  "binary": "store_contract",
+  "cases": [
+    {
+      "binary": "store_contract",
+      "case": "unknown_id",
+      "judgement": "PASS",
+      "reason": "unknown block id is not_found",
+      "state": {
+        "category": "not_found"
+      },
+      "wall_ns": 1790528852639772953
+    },
+    {
+      "binary": "store_contract",
+      "case": "missing_root_frame",
+      "judgement": "PASS",
+      "reason": "dependent block whose predecessor frame vanished is state_conflict",
+      "state": {
+        "deleted": "/home/admin/Downloads/xinbiaozhu/opp214/a/target/test-tmp/stores/broken-741881-1790528852639315550/blocks/blk-00000000.lz71",
+        "detail": "frame file for blk-00000000 is missing on disk: chain is broken",
+        "queried": "blk-00000001"
+      },
+      "wall_ns": 1790528852639878776
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 2,
+    "skip": 0,
+    "total": 2
+  },
+  "generated_at_unix_ms": 1790528852639,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "unknown_block_is_not_found_and_broken_chain_is_state_conflict"
+}

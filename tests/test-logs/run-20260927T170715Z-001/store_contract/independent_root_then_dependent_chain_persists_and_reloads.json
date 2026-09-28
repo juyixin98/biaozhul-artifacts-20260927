@@ -1,0 +1,84 @@
+{
+  "binary": "store_contract",
+  "cases": [
+    {
+      "binary": "store_contract",
+      "case": "read_block_0",
+      "judgement": "PASS",
+      "reason": "per-block decompression returns that block's bytes only",
+      "state": {
+        "data_len": 21,
+        "id": "blk-00000000",
+        "mode": "independent",
+        "payload_len": 43,
+        "roundtrip_equal": true
+      },
+      "wall_ns": 1790528852493500457
+    },
+    {
+      "binary": "store_contract",
+      "case": "read_block_1",
+      "judgement": "PASS",
+      "reason": "per-block decompression returns that block's bytes only",
+      "state": {
+        "data_len": 27,
+        "id": "blk-00000001",
+        "mode": "dependent",
+        "payload_len": 21,
+        "roundtrip_equal": true
+      },
+      "wall_ns": 1790528852493576024
+    },
+    {
+      "binary": "store_contract",
+      "case": "read_block_2",
+      "judgement": "PASS",
+      "reason": "per-block decompression returns that block's bytes only",
+      "state": {
+        "data_len": 40,
+        "id": "blk-00000002",
+        "mode": "dependent",
+        "payload_len": 29,
+        "roundtrip_equal": true
+      },
+      "wall_ns": 1790528852493664596
+    },
+    {
+      "binary": "store_contract",
+      "case": "reload_durability",
+      "judgement": "PASS",
+      "reason": "after reopening the store the chain decodes identically",
+      "state": {
+        "files_on_disk": 3,
+        "store_dir": "/home/admin/Downloads/xinbiaozhu/opp214/a/target/test-tmp/stores/chain-741881-1790528852492678180"
+      },
+      "wall_ns": 1790528852493917752
+    },
+    {
+      "binary": "store_contract",
+      "case": "oracle_stored_chain",
+      "judgement": "PASS",
+      "reason": "Python reference streams all three stored frames to identical bytes",
+      "state": {},
+      "wall_ns": 1790528852636613753
+    }
+  ],
+  "constants": {
+    "max_expansion_ratio": 100,
+    "max_match": 258,
+    "max_output_bytes": 8388608,
+    "min_match": 3,
+    "window_bytes": 4096
+  },
+  "counts": {
+    "fail": 0,
+    "pass": 5,
+    "skip": 0,
+    "total": 5
+  },
+  "generated_at_unix_ms": 1790528852636,
+  "oracle": "reference/ref_lz77.py (independent brute-force + zlib + hashlib)",
+  "run_id": "run-20260927T170715Z-001",
+  "run_number": 1,
+  "test_name": "independent_root_then_dependent_chain_persists_and_reloads"
+}
