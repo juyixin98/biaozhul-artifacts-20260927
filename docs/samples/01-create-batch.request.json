@@ -1,0 +1,75 @@
+{
+  "batch_id": "batch-synthetic-0001",
+  "fields": [
+    {
+      "path": "subject.id",
+      "type": "text"
+    },
+    {
+      "path": "subject.name_primary",
+      "type": "text"
+    },
+    {
+      "path": "subject.name_secondary",
+      "type": "text"
+    },
+    {
+      "path": "subject.age",
+      "type": "int"
+    },
+    {
+      "path": "subject.is_adult",
+      "type": "bool",
+      "value_space": 2
+    },
+    {
+      "path": "subject.score",
+      "type": "decimal"
+    },
+    {
+      "path": "subject.birth_date",
+      "type": "date"
+    },
+    {
+      "path": "subject.audited_at",
+      "type": "timestamp"
+    },
+    {
+      "path": "subject.remark",
+      "type": "text"
+    },
+    {
+      "path": "subject.optional_code",
+      "type": "text"
+    }
+  ],
+  "records": [
+    {
+      "subject.id": "PERSON-0001",
+      "subject.name_primary": "Liu Ming",
+      "subject.name_secondary": "Liu Ming",
+      "subject.age": 29,
+      "subject.is_adult": true,
+      "subject.score": "87.50",
+      "subject.birth_date": "1997-04-12",
+      "subject.audited_at": "2026-09-27T10:15:43+08:00",
+      "subject.remark": "",
+      "subject.optional_code": {
+        "state": "null"
+      }
+    },
+    {
+      "subject.id": "PERSON-0002",
+      "subject.name_primary": "Chen Wei",
+      "subject.age": 17,
+      "subject.is_adult": false,
+      "subject.score": "0",
+      "subject.birth_date": "2009-01-30",
+      "subject.audited_at": "2026-09-27T02:15:43Z",
+      "subject.remark": {
+        "state": "missing"
+      },
+      "subject.optional_code": "X-7"
+    }
+  ]
+}

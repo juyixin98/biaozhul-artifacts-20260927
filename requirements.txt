@@ -1,0 +1,10 @@
+# Pinned runtime dependencies (Python 3.10+)
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4
+pydantic-settings==2.7.1
+cryptography==44.0.0
+anyio==4.6.2.post1
+# Test / local tooling only
+httpx==0.28.1
+pytest==8.3.4

@@ -1,0 +1,31 @@
+{
+  "run_id": "run-demo-0001",
+  "valid": true,
+  "category": null,
+  "reason": "accepted: commitment and both Merkle paths verify against the trusted batch root and the requested field identity",
+  "checked_steps": [
+    "trusted_root_decoded",
+    "protocol_and_digest_accepted",
+    "proof_root_decoded",
+    "claim_identity_well_formed",
+    "claim_identity_matches_request",
+    "indices_within_declared_tree_bounds",
+    "reveal_material_decoded",
+    "field_commitment_recomputed",
+    "commitment_matches_claimed_leaf",
+    "field_merkle_path_verified",
+    "record_merkle_path_verified",
+    "batch_root_matches_trusted_root"
+  ],
+  "trusted_root_hex": "ccf8ae95e4cec9d40a59c8265debf54b65a393420ad6b0067048e91d58d9cdc9",
+  "proof_root_hex": "ccf8ae95e4cec9d40a59c8265debf54b65a393420ad6b0067048e91d58d9cdc9",
+  "claim": {
+    "batch_id": "batch-synthetic-0001",
+    "record_index": 0,
+    "position": 0,
+    "path": "subject.age",
+    "field_type": "int",
+    "state": "present",
+    "value": 29
+  }
+}

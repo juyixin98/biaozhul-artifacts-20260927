@@ -1,0 +1,39 @@
+{
+  "run_id": "run-demo-0001",
+  "proof": {
+    "protocol_version": "audit-commit-v1",
+    "digest": "sha256",
+    "batch_id": "batch-synthetic-0001",
+    "batch_root_hex": "ccf8ae95e4cec9d40a59c8265debf54b65a393420ad6b0067048e91d58d9cdc9",
+    "record_count": 2,
+    "field_count": 10,
+    "claim": {
+      "record_index": 0,
+      "position": 0,
+      "path": "subject.age",
+      "field_type": "int",
+      "state": "present",
+      "commitment_hex": "6022c235b8acdb57100881ac3fcc9b0a64dc0fe428884c544d144652bb08dfb6"
+    },
+    "field_tree": {
+      "leaf_count": 10,
+      "siblings_hex": [
+        "c66d4c5feba78624026f8419a9fbade5266aafe90c2a7454ab1d339cc2350161",
+        "2de6af7dab8ac33536534202e3043f7379f1aea70a73a4f0da87f36becafc3bb",
+        "97c88e13f97f3ae9ad6d99abf7e42526eb61570505f457331c597003e108677a",
+        "3f8af9c00f72a4a8c6d12af372bc44679b61a1fab496173a85d34ec2cd0678ce"
+      ],
+      "record_root_hex": "944e669421f9e41b6e38579226f1423bef833ed5722f62d060c07bda04d665b0"
+    },
+    "record_tree": {
+      "leaf_count": 2,
+      "siblings_hex": [
+        "0e08022bdaa6e5e8fad71c8ea17acca3ce4b5f4e71ab94f48c974ed5c3a06236"
+      ]
+    },
+    "reveal": {
+      "value": 29,
+      "salt_hex": "3e51e19f2bed5f9f4877f8b48bbdc692"
+    }
+  }
+}

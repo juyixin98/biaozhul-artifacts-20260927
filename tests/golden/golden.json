@@ -1,0 +1,213 @@
+{
+  "generator": "scripts/generate_golden.py",
+  "digest": "sha256",
+  "batch_id": "batch-synthetic-0001",
+  "salt_derivation": "deterministic (see app/parsing/fixtures.py)",
+  "batch_root_hex": "2ee2d86a5abf6b231a0c574b1b3193e59676f322289d967ffc49107e1201f2a1",
+  "records": [
+    {
+      "record_index": 0,
+      "record_root_hex": "6cd91efa3e633c2ec051c80374748652e2ddb2cd5e9b1b2d2aa4bc49d38ee1b5",
+      "fields": [
+        {
+          "position": 0,
+          "path": "subject.id",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "a2daa4a474f6fefb50938f535458beeffad114a4ad0fbab7b18db0206a623508"
+        },
+        {
+          "position": 1,
+          "path": "subject.name_primary",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "d9b0edac40e1f0f21db35816594c1b3dacd00d96e881fc8644b4eff8dd281dc5"
+        },
+        {
+          "position": 2,
+          "path": "subject.name_secondary",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "fa7dd796a8b46cc1dcc78b01a43f2fc4559106f9cdda494623de1e9b2278466b"
+        },
+        {
+          "position": 3,
+          "path": "subject.age",
+          "field_type": "int",
+          "state": "present",
+          "commitment_hex": "705160f113ea2956520736498d313d46e65d8c63b2bedf6a2cb4dcd4a23edea1"
+        },
+        {
+          "position": 4,
+          "path": "subject.is_adult",
+          "field_type": "bool",
+          "state": "present",
+          "commitment_hex": "b0a8927bdd0af50b7b343839b46ac0de2e3e6f36ca6232c86a948e08ccae435a"
+        },
+        {
+          "position": 5,
+          "path": "subject.score",
+          "field_type": "decimal",
+          "state": "present",
+          "commitment_hex": "ab561832f582015d8787faf1a09f33d12a1ffb1957b403baab11f203d3e05a14"
+        },
+        {
+          "position": 6,
+          "path": "subject.birth_date",
+          "field_type": "date",
+          "state": "present",
+          "commitment_hex": "b15acf671d011924dd9d40f5224fd9d3594e32f6b58437e775d58dd53ca447a2"
+        },
+        {
+          "position": 7,
+          "path": "subject.audited_at",
+          "field_type": "timestamp",
+          "state": "present",
+          "commitment_hex": "1c8152f2f8a06e3dbafe51fc24df66488a865ab353db605355b9149dc8b5d3ef"
+        },
+        {
+          "position": 8,
+          "path": "subject.remark",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "5beebc5f59784baf61cc9fd3dbe72cf026db667e0281006d4fc6d27cab88b6ff"
+        },
+        {
+          "position": 9,
+          "path": "subject.optional_code",
+          "field_type": "text",
+          "state": "null",
+          "commitment_hex": "041defcb1312b210b4fe646b8ac0f1b5a92feff4f75d0c19d4a3acc605449d4b"
+        }
+      ]
+    },
+    {
+      "record_index": 1,
+      "record_root_hex": "15469e121459ee1c3b4ed4bfda20d4f1c08499f582808a993bb7df88cd87a395",
+      "fields": [
+        {
+          "position": 0,
+          "path": "subject.id",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "59272fec73c62d7ec6b68b6474badc11c139793cf594a86e90ea3a124b60e334"
+        },
+        {
+          "position": 1,
+          "path": "subject.name_primary",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "4a5e05a72d6986796bb9e4c53133bb54b9cd55ba174d207206db53631b7a0992"
+        },
+        {
+          "position": 2,
+          "path": "subject.name_secondary",
+          "field_type": "text",
+          "state": "missing",
+          "commitment_hex": "fb5cbb6717c076b567caca2fd8fd40b451b5d0dd753ae530cac94d1b2e54d7db"
+        },
+        {
+          "position": 3,
+          "path": "subject.age",
+          "field_type": "int",
+          "state": "present",
+          "commitment_hex": "e88935d7d72ed4b73cb7a9e478e39f9411773d47e7cd1587d185b0248deb8e32"
+        },
+        {
+          "position": 4,
+          "path": "subject.is_adult",
+          "field_type": "bool",
+          "state": "present",
+          "commitment_hex": "63116d929ab0f7a3b9b46da37c0c38742cb6f98cadfcd7839a97d8a436e291b0"
+        },
+        {
+          "position": 5,
+          "path": "subject.score",
+          "field_type": "decimal",
+          "state": "present",
+          "commitment_hex": "0cd47ab95868b9f07cb3614dd7af90af43e23d7c0a54d0a23b10ea942482f9cc"
+        },
+        {
+          "position": 6,
+          "path": "subject.birth_date",
+          "field_type": "date",
+          "state": "present",
+          "commitment_hex": "e06c8849bca379eb64658fb092b69a450abdf0f80a000066903c1ff5357fab1c"
+        },
+        {
+          "position": 7,
+          "path": "subject.audited_at",
+          "field_type": "timestamp",
+          "state": "present",
+          "commitment_hex": "4f426b4558ea9399ef918dbee23d3ce04600a84f8d1ab67cd251df41542be738"
+        },
+        {
+          "position": 8,
+          "path": "subject.remark",
+          "field_type": "text",
+          "state": "missing",
+          "commitment_hex": "d41934849d6e03122e2ad5012e00427089e4bdde49458f598188eee2251827fe"
+        },
+        {
+          "position": 9,
+          "path": "subject.optional_code",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "4b966da1fe7b1a603174f7f46f1a79b82c1efd7c718a38eb07215c7da00fc042"
+        }
+      ]
+    }
+  ],
+  "sample_proof": {
+    "protocol_version": "audit-commit-v1",
+    "digest": "sha256",
+    "batch_id": "batch-synthetic-0001",
+    "batch_root_hex": "2ee2d86a5abf6b231a0c574b1b3193e59676f322289d967ffc49107e1201f2a1",
+    "record_count": 2,
+    "field_count": 10,
+    "claim": {
+      "record_index": 0,
+      "position": 3,
+      "path": "subject.age",
+      "field_type": "int",
+      "state": "present",
+      "commitment_hex": "705160f113ea2956520736498d313d46e65d8c63b2bedf6a2cb4dcd4a23edea1"
+    },
+    "field_tree": {
+      "leaf_count": 10,
+      "siblings_hex": [
+        "2c8e1dc5fc65f51f94246556e5563fbc875b2472c8d4622f2ccd69c1f0d630f8",
+        "8b12550c55ed192d4a6f0ddcb7e47984b1b184628f9ae4f8a950b1e726d5ea74",
+        "e14f4b7c995352de176d61074896f874245b9f9119656ac629de7b2c1262d41f",
+        "8de27a1843119f25c1b68ee8804ac7002c2f4efda9a8985495200c923eb680ff"
+      ],
+      "record_root_hex": "6cd91efa3e633c2ec051c80374748652e2ddb2cd5e9b1b2d2aa4bc49d38ee1b5"
+    },
+    "record_tree": {
+      "leaf_count": 2,
+      "siblings_hex": [
+        "390745a4740adefd3872083876df9e736b7aa8c18a5d9e05928ca154c2f5daac"
+      ]
+    },
+    "reveal": {
+      "value": 29,
+      "salt_hex": "d8af959bbe08b16b22b290ae0e1b8f9c"
+    }
+  },
+  "independent_verifier_result": {
+    "valid": true,
+    "category": null,
+    "reason": "accepted by independent verifier",
+    "steps": [
+      "trusted_root_decoded",
+      "root_decoded",
+      "identity_checked",
+      "bounds_checked",
+      "reveal_decoded",
+      "commitment_matches",
+      "field_path_ok",
+      "record_path_ok",
+      "root_accepted"
+    ]
+  }
+}

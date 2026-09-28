@@ -1,0 +1,171 @@
+{
+  "run_id": "run-demo-0001",
+  "batch_id": "batch-synthetic-0001",
+  "digest": "sha256",
+  "batch_root_hex": "ccf8ae95e4cec9d40a59c8265debf54b65a393420ad6b0067048e91d58d9cdc9",
+  "record_count": 2,
+  "field_count": 10,
+  "records": [
+    {
+      "record_index": 0,
+      "record_root_hex": "944e669421f9e41b6e38579226f1423bef833ed5722f62d060c07bda04d665b0",
+      "fields": [
+        {
+          "position": 0,
+          "path": "subject.age",
+          "field_type": "int",
+          "state": "present",
+          "commitment_hex": "6022c235b8acdb57100881ac3fcc9b0a64dc0fe428884c544d144652bb08dfb6"
+        },
+        {
+          "position": 1,
+          "path": "subject.audited_at",
+          "field_type": "timestamp",
+          "state": "present",
+          "commitment_hex": "525efbaeaa5d936060b1339a480de5cbefc42f9f0e06fd86245f8d6ed403a47d"
+        },
+        {
+          "position": 2,
+          "path": "subject.birth_date",
+          "field_type": "date",
+          "state": "present",
+          "commitment_hex": "1dec84d4cfcece131c6ed0a42c8351781f911e3b274301713461073152d9b428"
+        },
+        {
+          "position": 3,
+          "path": "subject.id",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "f74035f1e79713aba11c7b3375d1630612f09db524961a635e677c3353ca1c39"
+        },
+        {
+          "position": 4,
+          "path": "subject.is_adult",
+          "field_type": "bool",
+          "state": "present",
+          "commitment_hex": "e8c494c1ab3420e592bf87bf818bad183116ee0fcc26a2aa425018085887389a"
+        },
+        {
+          "position": 5,
+          "path": "subject.name_primary",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "72033a8925119c89f2cb28eb67f2cfe235cea13de1aedc2852b84ed14a09f700"
+        },
+        {
+          "position": 6,
+          "path": "subject.name_secondary",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "7dd6b0a44c572562e7ba81b11c945a82027c2495bdfd1f8867d5eb043f76288b"
+        },
+        {
+          "position": 7,
+          "path": "subject.optional_code",
+          "field_type": "text",
+          "state": "null",
+          "commitment_hex": "36dd033607282fa9b2652908a49bcf8f444d5e954676ba59d565e869abaeaec5"
+        },
+        {
+          "position": 8,
+          "path": "subject.remark",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "b3f3d383ed8f7da2b8aff47201d69ad456a3fd86dbb7e920434f8338399c884c"
+        },
+        {
+          "position": 9,
+          "path": "subject.score",
+          "field_type": "decimal",
+          "state": "present",
+          "commitment_hex": "1d7c1e97f6b8a5a3db41169b60ee68371bb5b96f3a8507247f50c25ddacd5603"
+        }
+      ]
+    },
+    {
+      "record_index": 1,
+      "record_root_hex": "e7d2975c72346daa5d314f6b15958ec8565b2b74580d2df3055ba5584923fa30",
+      "fields": [
+        {
+          "position": 0,
+          "path": "subject.age",
+          "field_type": "int",
+          "state": "present",
+          "commitment_hex": "e7ef9997061d0db1db9bd3e9ad2bb52df450abf2f0134eccebcc3479c9ecfde1"
+        },
+        {
+          "position": 1,
+          "path": "subject.audited_at",
+          "field_type": "timestamp",
+          "state": "present",
+          "commitment_hex": "80f591a0101ba78de238a39b7d9858e43fc1cdd9f138c7e94bdc586db9afa2d7"
+        },
+        {
+          "position": 2,
+          "path": "subject.birth_date",
+          "field_type": "date",
+          "state": "present",
+          "commitment_hex": "36ecccf04270f0e0539bbe52f9b2d11af206489c9df91dd20e4058ddae10a4ee"
+        },
+        {
+          "position": 3,
+          "path": "subject.id",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "8831c00d0ee9af0fcce759c4e643379bb1756897298f5104ac6e063c49c943c4"
+        },
+        {
+          "position": 4,
+          "path": "subject.is_adult",
+          "field_type": "bool",
+          "state": "present",
+          "commitment_hex": "77994b2515a46f749b695fcdc4f3be846bc38d7e7120d61026b53f0b544f6977"
+        },
+        {
+          "position": 5,
+          "path": "subject.name_primary",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "343078b2c5ea6419859468ec622019becb756e37964d6e8adee1726da69f500c"
+        },
+        {
+          "position": 6,
+          "path": "subject.name_secondary",
+          "field_type": "text",
+          "state": "missing",
+          "commitment_hex": "8e318fae2ca324773824087de574d6764b29302256d74194f3fd845d82193e92"
+        },
+        {
+          "position": 7,
+          "path": "subject.optional_code",
+          "field_type": "text",
+          "state": "present",
+          "commitment_hex": "f389cde9b6349e5ad6b2a6c4c678f899d016eec67607ffde2a3384f2f1bc3f5b"
+        },
+        {
+          "position": 8,
+          "path": "subject.remark",
+          "field_type": "text",
+          "state": "missing",
+          "commitment_hex": "d41934849d6e03122e2ad5012e00427089e4bdde49458f598188eee2251827fe"
+        },
+        {
+          "position": 9,
+          "path": "subject.score",
+          "field_type": "decimal",
+          "state": "present",
+          "commitment_hex": "7b96cd86f0377e55667a6f9cf04a1dd1353a19fbf381ab036b3c836c5bd9df62"
+        }
+      ]
+    }
+  ],
+  "advisories": [
+    {
+      "severity": "warning",
+      "code": "LOW_ENTROPY_FIELD",
+      "path": "subject.is_adult",
+      "field_type": "bool",
+      "message": "field has a small value space; commitments hide it only while the per-field salt stays private and do not prevent enumeration if the salt is exposed"
+    }
+  ]
+}
