@@ -1,0 +1,33 @@
+{
+  "name": "v6-mini",
+  "default_action": { "ipv4": "deny", "ipv6": "deny" },
+  "rules": [
+    {
+      "id": "v6-allow-broad",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "2001:db8::/126",
+      "dst_cidr": "2001:db8:1::/126",
+      "src_port": "0-3",
+      "dst_port": "443"
+    },
+    {
+      "id": "v6-full-shadow",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "2001:db8::/127",
+      "dst_cidr": "2001:db8:1::/127",
+      "src_port": "0-1",
+      "dst_port": "443"
+    },
+    {
+      "id": "v6-tail-deny-echo",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "2001:db8::/126",
+      "dst_cidr": "2001:db8:1::/126",
+      "src_port": "0-3",
+      "dst_port": "0-65535"
+    }
+  ]
+}

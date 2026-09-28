@@ -1,0 +1,94 @@
+{
+  "name": "exhaustive-mini",
+  "default_action": { "ipv4": "deny", "ipv6": "deny" },
+  "rules": [
+    {
+      "id": "a-broad-allow",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30",
+      "src_port": "0-3",
+      "dst_port": "0-3"
+    },
+    {
+      "id": "b-full-shadow",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/31",
+      "dst_cidr": "192.168.0.0/31",
+      "src_port": "0-1",
+      "dst_port": "0-1"
+    },
+    {
+      "id": "c-partial-shadow",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30",
+      "src_port": "2-3",
+      "dst_port": "2-4"
+    },
+    {
+      "id": "d-narrow-allow",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30",
+      "src_port": "0-1",
+      "dst_port": "4"
+    },
+    {
+      "id": "e-broader-allow",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30",
+      "src_port": "0-3",
+      "dst_port": "4-5"
+    },
+    {
+      "id": "f-cross-allow",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "172.16.0.0/30",
+      "dst_cidr": "192.168.1.0/30",
+      "src_port": "0-4",
+      "dst_port": "1-2"
+    },
+    {
+      "id": "g-cross-deny",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "172.16.0.0/30",
+      "dst_cidr": "192.168.1.0/30",
+      "src_port": "0-4",
+      "dst_port": "0-1"
+    },
+    {
+      "id": "h-udp-allow",
+      "action": "allow",
+      "protocol": "udp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30",
+      "src_port": "0-3",
+      "dst_port": "3"
+    },
+    {
+      "id": "i-icmp-allow",
+      "action": "allow",
+      "protocol": "icmp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30"
+    },
+    {
+      "id": "j-tail-deny-default-echo",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30",
+      "src_port": "0-3",
+      "dst_port": "0-9"
+    }
+  ]
+}

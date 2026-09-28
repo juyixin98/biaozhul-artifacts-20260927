@@ -1,0 +1,124 @@
+{
+  "name": "demo-policy",
+  "default_action": { "ipv4": "deny", "ipv6": "deny" },
+  "rules": [
+    {
+      "id": "r01-web-allow",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/16",
+      "dst_cidr": "192.168.1.0/24",
+      "src_port": "any",
+      "dst_port": "80-443"
+    },
+    {
+      "id": "r02-web-full-shadow",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/16",
+      "dst_cidr": "192.168.1.0/25",
+      "src_port": "1024-65535",
+      "dst_port": "443"
+    },
+    {
+      "id": "r03-web-partial-shadow",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/24",
+      "dst_cidr": "192.168.1.0/24",
+      "src_port": "any",
+      "dst_port": "80-8080"
+    },
+    {
+      "id": "r04-dns-allow",
+      "action": "allow",
+      "protocol": "udp",
+      "src_cidr": "10.0.0.0/16",
+      "dst_cidr": "192.168.1.10/32",
+      "src_port": "any",
+      "dst_port": "53"
+    },
+    {
+      "id": "r05-dns-redundant",
+      "action": "allow",
+      "protocol": "udp",
+      "src_cidr": "10.0.5.0/24",
+      "dst_cidr": "192.168.1.10/32",
+      "src_port": "any",
+      "dst_port": "53"
+    },
+    {
+      "id": "r06-cross-intervals",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "172.16.0.0/12",
+      "dst_cidr": "192.168.2.0/24",
+      "src_port": "any",
+      "dst_port": "1000-2000"
+    },
+    {
+      "id": "r07-cross-partner",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "172.16.0.0/12",
+      "dst_cidr": "192.168.2.0/24",
+      "src_port": "any",
+      "dst_port": "1500-2500"
+    },
+    {
+      "id": "r08-cross-narrow",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "172.16.0.0/12",
+      "dst_cidr": "192.168.2.0/24",
+      "src_port": "any",
+      "dst_port": "1800-1900"
+    },
+    {
+      "id": "r09-v6-web",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "2001:db8::/32",
+      "dst_cidr": "2001:db8:1::/48",
+      "src_port": "any",
+      "dst_port": "443"
+    },
+    {
+      "id": "r10-v6-shadow",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "2001:db8::/48",
+      "dst_cidr": "2001:db8:1::/64",
+      "src_port": "any",
+      "dst_port": "443"
+    },
+    {
+      "id": "r11-unknown-proto",
+      "action": "allow",
+      "protocol": "99",
+      "src_cidr": "10.0.0.0/16",
+      "dst_cidr": "192.168.1.0/24"
+    },
+    {
+      "id": "r12-family-mismatch",
+      "action": "deny",
+      "protocol": "tcp",
+      "src_cidr": "10.1.0.0/16",
+      "dst_cidr": "2001:db8:9::/64"
+    },
+    {
+      "id": "r13-icmp-v4",
+      "action": "allow",
+      "protocol": "icmp",
+      "src_cidr": "10.0.0.0/8",
+      "dst_cidr": "0.0.0.0/0"
+    },
+    {
+      "id": "r14-broad-deny",
+      "action": "deny",
+      "protocol": "any",
+      "src_cidr": "10.0.0.0/8",
+      "dst_cidr": "0.0.0.0/0"
+    }
+  ]
+}

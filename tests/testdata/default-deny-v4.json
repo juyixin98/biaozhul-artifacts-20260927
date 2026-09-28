@@ -1,0 +1,15 @@
+{
+  "name": "default-deny-v4",
+  "default_action": { "ipv4": "deny" },
+  "rules": [
+    {
+      "id": "only-allow-80",
+      "action": "allow",
+      "protocol": "tcp",
+      "src_cidr": "10.0.0.0/30",
+      "dst_cidr": "192.168.0.0/30",
+      "src_port": "0-3",
+      "dst_port": "80"
+    }
+  ]
+}
