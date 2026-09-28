@@ -1,0 +1,107 @@
+{
+  "name": "04_filter_projection",
+  "description": "过滤与列裁剪不改变删除语义：先删后过滤；被删行不参与过滤；投影不含键列时删除仍生效。",
+  "schema": {
+    "columns": [
+      {"name": "id", "type": "long"},
+      {"name": "name", "type": "string"},
+      {"name": "age", "type": "int"}
+    ],
+    "primary_key": ["id"]
+  },
+  "versions": [
+    {
+      "note": "v1: 五行，含 name 为 NULL 的行",
+      "operations": [
+        {"op": "append", "ref": "p1", "rows": [
+          {"id": 1, "name": "a", "age": 10},
+          {"id": 2, "name": "b", "age": 20},
+          {"id": 3, "name": "c", "age": 30},
+          {"id": 4, "name": null, "age": 40},
+          {"id": 5, "name": "e", "age": 50}
+        ]}
+      ],
+      "expect": {
+        "files": ["p1"],
+        "dispositions": [
+          {"file_ref": "p1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 3, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 4, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v2: 等值删除 id=4（其 name 为 NULL）",
+      "operations": [
+        {"op": "equality_delete", "predicates": [{"key": {"id": 4}}]}
+      ],
+      "expect": {
+        "files": ["p1"],
+        "dispositions": [
+          {"file_ref": "p1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 3, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "p1", "position": 4, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v3: 位置删除 id=1（position 0）",
+      "operations": [
+        {"op": "position_delete", "target_file": "p1", "positions": [0]}
+      ],
+      "expect": {
+        "files": ["p1"],
+        "dispositions": [
+          {"file_ref": "p1", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "POSITION", "seq": 3}]},
+          {"file_ref": "p1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "p1", "position": 3, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "p1", "position": 4, "disposition": "KEPT"}
+        ]
+      }
+    }
+  ],
+  "explain_cases": [
+    {
+      "note": "过滤 age>=30：被删的 id=4（age40）不出现在 FILTERED，仍为 DELETED；id=5 KEPT，id=3 KEPT",
+      "filter": {"column": "age", "op": ">=", "value": 30},
+      "expect": [
+        {"file_ref": "p1", "position": 0, "disposition": "DELETED"},
+        {"file_ref": "p1", "position": 1, "disposition": "FILTERED"},
+        {"file_ref": "p1", "position": 2, "disposition": "KEPT"},
+        {"file_ref": "p1", "position": 3, "disposition": "DELETED"},
+        {"file_ref": "p1", "position": 4, "disposition": "KEPT"}
+      ]
+    },
+    {
+      "note": "name is_null：NULL 行已被删除，结果为空的 FILTERED 之外——它是 DELETED",
+      "filter": {"column": "name", "op": "is_null"},
+      "expect": [
+        {"file_ref": "p1", "position": 0, "disposition": "DELETED"},
+        {"file_ref": "p1", "position": 1, "disposition": "FILTERED"},
+        {"file_ref": "p1", "position": 2, "disposition": "FILTERED"},
+        {"file_ref": "p1", "position": 3, "disposition": "DELETED"},
+        {"file_ref": "p1", "position": 4, "disposition": "FILTERED"}
+      ]
+    }
+  ],
+  "rows_cases": [
+    {
+      "note": "仅投影 name 列 + 过滤 age>15：即使投影不含 id（键列），删除语义不变",
+      "columns": ["name"],
+      "filter": {"column": "age", "op": ">", "value": 15},
+      "expect": [
+        {"file_ref": "p1", "position": 1, "values": {"name": "b"}},
+        {"file_ref": "p1", "position": 2, "values": {"name": "c"}},
+        {"file_ref": "p1", "position": 4, "values": {"name": "e"}}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "name": "02_delete_then_insert",
+  "description": "等值删除序列号窗口：同快照/后插入同键行不被删；更早删除对后来新文件不可见；再次删除命中新文件。",
+  "schema": {
+    "columns": [
+      {"name": "id", "type": "long"},
+      {"name": "name", "type": "string"}
+    ],
+    "primary_key": ["id"]
+  },
+  "versions": [
+    {
+      "note": "v1: a1 三行",
+      "operations": [
+        {"op": "append", "ref": "a1", "rows": [
+          {"id": 1, "name": "alice"},
+          {"id": 2, "name": "bob"},
+          {"id": 3, "name": "carol"}
+        ]}
+      ],
+      "expect": {
+        "files": ["a1"],
+        "dispositions": [
+          {"file_ref": "a1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "a1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "a1", "position": 2, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v2: 等值删除 id=2",
+      "operations": [
+        {"op": "equality_delete", "predicates": [{"key": {"id": 2}}]}
+      ],
+      "expect": {
+        "files": ["a1"],
+        "dispositions": [
+          {"file_ref": "a1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "a1", "position": 1, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "a1", "position": 2, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v3: 先删后插——同键 id=2 在新文件 a2 中必须存活（a2 added_seq=3 不小于删除 seq=2）",
+      "operations": [
+        {"op": "append", "ref": "a2", "rows": [
+          {"id": 2, "name": "bob-reborn"},
+          {"id": 4, "name": "dave"}
+        ]}
+      ],
+      "expect": {
+        "files": ["a1", "a2"],
+        "dispositions": [
+          {"file_ref": "a1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "a1", "position": 1, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "a1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "a2", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "a2", "position": 1, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v4: 再次等值删除 id=2——旧行携带 seq2+seq4 两条理由，新文件 a2 的 id2 此时被删",
+      "operations": [
+        {"op": "equality_delete", "predicates": [{"key": {"id": 2}}]}
+      ],
+      "expect": {
+        "files": ["a1", "a2"],
+        "dispositions": [
+          {"file_ref": "a1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "a1", "position": 1, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}, {"kind": "EQUALITY", "seq": 4}]},
+          {"file_ref": "a1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "a2", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 4}]},
+          {"file_ref": "a2", "position": 1, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v5: 删除不存在的键 id=99，无行变化",
+      "operations": [
+        {"op": "equality_delete", "predicates": [{"key": {"id": 99}}]}
+      ],
+      "expect": {
+        "files": ["a1", "a2"],
+        "dispositions": [
+          {"file_ref": "a1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "a1", "position": 1, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}, {"kind": "EQUALITY", "seq": 4}]},
+          {"file_ref": "a1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "a2", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 4}]},
+          {"file_ref": "a2", "position": 1, "disposition": "KEPT"}
+        ]
+      }
+    }
+  ],
+  "reads": [
+    {"version": 1, "note": "时间旅行回读 v1：三行全在",
+     "live": [
+       {"file_ref": "a1", "position": 0, "values": {"id": 1, "name": "alice"}},
+       {"file_ref": "a1", "position": 1, "values": {"id": 2, "name": "bob"}},
+       {"file_ref": "a1", "position": 2, "values": {"id": 3, "name": "carol"}}
+     ]},
+    {"version": 3, "note": "v3 存活行：a1 的 1、3 与 a2 的 2、4",
+     "live": [
+       {"file_ref": "a1", "position": 0, "values": {"id": 1, "name": "alice"}},
+       {"file_ref": "a1", "position": 2, "values": {"id": 3, "name": "carol"}},
+       {"file_ref": "a2", "position": 0, "values": {"id": 2, "name": "bob-reborn"}},
+       {"file_ref": "a2", "position": 1, "values": {"id": 4, "name": "dave"}}
+     ]}
+  ]
+}

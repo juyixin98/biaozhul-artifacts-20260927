@@ -1,0 +1,104 @@
+{
+  "name": "03_duplicate_and_null_keys",
+  "description": "重复键旧行全部删除；NULL 键删除不命中任何行（含 NULL 数据行）；删除向量与数据双侧 NULL 均安全；跨文件同键。",
+  "schema": {
+    "columns": [
+      {"name": "id", "type": "long"},
+      {"name": "grp", "type": "string"},
+      {"name": "tag", "type": "string"}
+    ],
+    "primary_key": ["id"]
+  },
+  "versions": [
+    {
+      "note": "v1: 两个文件，含重复键 id=5 与 NULL id 行",
+      "operations": [
+        {"op": "append", "ref": "g1", "rows": [
+          {"id": 5, "grp": "a", "tag": "g1-5a"},
+          {"id": 6, "grp": "a", "tag": "g1-6"},
+          {"id": null, "grp": "a", "tag": "g1-null"}
+        ]},
+        {"op": "append", "ref": "g2", "rows": [
+          {"id": 5, "grp": "b", "tag": "g2-5b"},
+          {"id": 7, "grp": "b", "tag": "g2-7"},
+          {"id": null, "grp": "b", "tag": "g2-null"}
+        ]}
+      ],
+      "expect": {
+        "files": ["g1", "g2"],
+        "dispositions": [
+          {"file_ref": "g1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "g1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "g1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 2, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v2: 删除 id=5 —— 两个文件中的重复旧行都必须删除",
+      "operations": [
+        {"op": "equality_delete", "predicates": [{"key": {"id": 5}}]}
+      ],
+      "expect": {
+        "files": ["g1", "g2"],
+        "dispositions": [
+          {"file_ref": "g1", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "g1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "g1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "g2", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 2, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v3: 删除向量包含 NULL 键（显式 null），不删除任何行——两条 NULL 数据行仍存活",
+      "operations": [
+        {"op": "equality_delete", "predicates": [{"key": {"id": null}}, {"key": {"id": 6}}]}
+      ],
+      "expect": {
+        "files": ["g1", "g2"],
+        "dispositions": [
+          {"file_ref": "g1", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "g1", "position": 1, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 3}]},
+          {"file_ref": "g1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "g2", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 2, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v4: 后插入 id=5 的行（去重语义），v2 的删除不可见，行存活",
+      "operations": [
+        {"op": "append", "ref": "g3", "rows": [
+          {"id": 5, "grp": "c", "tag": "g3-5c"},
+          {"id": null, "grp": "c", "tag": "g3-null"}
+        ]}
+      ],
+      "expect": {
+        "files": ["g1", "g2", "g3"],
+        "dispositions": [
+          {"file_ref": "g1", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "g1", "position": 1, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 3}]},
+          {"file_ref": "g1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "EQUALITY", "seq": 2}]},
+          {"file_ref": "g2", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "g2", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "g3", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "g3", "position": 1, "disposition": "KEPT"}
+        ]
+      }
+    }
+  ]
+}

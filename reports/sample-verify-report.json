@@ -1,0 +1,3258 @@
+{
+  "run_no": "20260928T001319Z",
+  "started_at": "2026-09-28T00:13:19.483712+00:00",
+  "scenarios": [
+    {
+      "name": "01_position_and_rewrite",
+      "description": "位置删除绑定文件内容身份；重写后旧行号不得复用（STALE_POSITION_TARGET）；跨文件位置删除。",
+      "status": "PASS",
+      "versions": [
+        {
+          "seq": 1,
+          "snapshot_id": "snap-2e32dc768de74159bbec",
+          "status": "OK",
+          "run_ids": [
+            "run-1c3ba5a43e634686bb1c32ee50705ffe",
+            "run-f27f408e4fe343cd82ff9d96f9f4e6b5"
+          ],
+          "evidence": {
+            "run_id": "run-5d832fc4c8ac4c68ab8edcfb2e66c0e4",
+            "snapshot_id": "snap-2e32dc768de74159bbec",
+            "seq": 1,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 0,
+              "equality_set_count": 0,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [],
+            "rows": [
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "n1",
+                  "age": 10
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 2,
+                  "name": "n2",
+                  "age": 20
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "n3",
+                  "age": 30
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 3,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 4,
+                  "name": "n4",
+                  "age": 40
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "f1",
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "rows": 4,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            }
+          ]
+        },
+        {
+          "seq": 2,
+          "snapshot_id": "snap-89fc84705ce9410380f5",
+          "status": "OK",
+          "run_ids": [
+            "run-1dfd9b663e224b2d8b3dac5617fc6be8",
+            "run-4a7e1ce201a14467870c96f44154bfde"
+          ],
+          "evidence": {
+            "run_id": "run-df6cb9b3fe424c70ba3781e9e0c82166",
+            "snapshot_id": "snap-89fc84705ce9410380f5",
+            "seq": 2,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 1,
+              "equality_set_count": 0,
+              "position_target_count": 1,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "kind": "POSITION",
+                "seq": 2,
+                "row_count": 2,
+                "target_file_id": "file-e25ef2a8a1c4458ea261"
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 1,
+                  "name": "n1",
+                  "age": 10
+                },
+                "basis": [
+                  {
+                    "rule": "POSITION",
+                    "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                    "delete_seq": 2,
+                    "matched_key": null
+                  }
+                ]
+              },
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 2,
+                  "name": "n2",
+                  "age": 20
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 3,
+                  "name": "n3",
+                  "age": 30
+                },
+                "basis": [
+                  {
+                    "rule": "POSITION",
+                    "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                    "delete_seq": 2,
+                    "matched_key": null
+                  }
+                ]
+              },
+              {
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "position": 3,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 4,
+                  "name": "n4",
+                  "age": 40
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "f1",
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "rows": 4,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "POSITION_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "target_file_id": "file-e25ef2a8a1c4458ea261",
+                "positions": [
+                  0,
+                  2
+                ]
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 1,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-2e32dc768de74159bbec"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 3,
+          "snapshot_id": "snap-96f8c47acdde4ac794f3",
+          "status": "OK",
+          "run_ids": [
+            "run-f0fc129d83c14540aa5837bf91c5837b",
+            "run-d719b18c4ec14b7b8b8f16c8b0ced848"
+          ],
+          "evidence": {
+            "run_id": "run-e7c8fe26637d4624a2efe5d1ac6796d6",
+            "snapshot_id": "snap-96f8c47acdde4ac794f3",
+            "seq": 3,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 1,
+              "equality_set_count": 0,
+              "position_target_count": 1,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "kind": "POSITION",
+                "seq": 2,
+                "row_count": 2,
+                "target_file_id": "file-e25ef2a8a1c4458ea261"
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "position": 0,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 10,
+                  "name": "ten",
+                  "age": 100
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "position": 1,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 11,
+                  "name": "eleven",
+                  "age": 110
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "f1",
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "rows": 4,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "POSITION_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "target_file_id": "file-e25ef2a8a1c4458ea261",
+                "positions": [
+                  0,
+                  2
+                ]
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 1,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-2e32dc768de74159bbec"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "DATA_FILE_REWRITTEN",
+              "payload": {
+                "ref": "f2",
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "rows": 2,
+                "drops": [
+                  "file-e25ef2a8a1c4458ea261"
+                ]
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 1,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-89fc84705ce9410380f5"
+              }
+            }
+          ]
+        },
+        {
+          "seq": null,
+          "status": "EXPECTED_ERROR",
+          "run_ids": [
+            "run-2f73d65ebfa4485a8c9ca563d29a38b6",
+            "run-2f73d65ebfa4485a8c9ca563d29a38b6"
+          ]
+        },
+        {
+          "seq": 4,
+          "snapshot_id": "snap-d8c7b460f54a4c7d8aef",
+          "status": "OK",
+          "run_ids": [
+            "run-e036be42b8ac45978a3ca66b2e3177a4",
+            "run-973d78c6cb8f49ff9dbc93df42202215"
+          ],
+          "evidence": {
+            "run_id": "run-1f090e0269e043899bccb8ac54a55ade",
+            "snapshot_id": "snap-d8c7b460f54a4c7d8aef",
+            "seq": 4,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 1,
+              "equality_set_count": 0,
+              "position_target_count": 1,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "kind": "POSITION",
+                "seq": 2,
+                "row_count": 2,
+                "target_file_id": "file-e25ef2a8a1c4458ea261"
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-88cb017c75a34538b3df",
+                "position": 0,
+                "added_seq": 4,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 20,
+                  "name": "twenty",
+                  "age": 200
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-88cb017c75a34538b3df",
+                "position": 1,
+                "added_seq": 4,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 21,
+                  "name": "twentyone",
+                  "age": 210
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "position": 0,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 10,
+                  "name": "ten",
+                  "age": 100
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "position": 1,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 11,
+                  "name": "eleven",
+                  "age": 110
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "f1",
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "rows": 4,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "POSITION_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "target_file_id": "file-e25ef2a8a1c4458ea261",
+                "positions": [
+                  0,
+                  2
+                ]
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 1,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-2e32dc768de74159bbec"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "DATA_FILE_REWRITTEN",
+              "payload": {
+                "ref": "f2",
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "rows": 2,
+                "drops": [
+                  "file-e25ef2a8a1c4458ea261"
+                ]
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 1,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-89fc84705ce9410380f5"
+              }
+            },
+            {
+              "seq": 4,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "f3",
+                "file_id": "file-88cb017c75a34538b3df",
+                "rows": 2,
+                "drops": []
+              }
+            },
+            {
+              "seq": 4,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-96f8c47acdde4ac794f3"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 5,
+          "snapshot_id": "snap-3ef627a08a93489a9ebe",
+          "status": "OK",
+          "run_ids": [
+            "run-76055039d26c4721adb0174f79cc67a0",
+            "run-f0e86b4019aa4024900aa86f5441be2c"
+          ],
+          "evidence": {
+            "run_id": "run-f79908abd3d244d6951487d67bcf122a",
+            "snapshot_id": "snap-3ef627a08a93489a9ebe",
+            "seq": 5,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 2,
+              "equality_set_count": 0,
+              "position_target_count": 2,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "kind": "POSITION",
+                "seq": 2,
+                "row_count": 2,
+                "target_file_id": "file-e25ef2a8a1c4458ea261"
+              },
+              {
+                "delete_file_id": "pdel-8709b1398f1847c68c96",
+                "kind": "POSITION",
+                "seq": 5,
+                "row_count": 1,
+                "target_file_id": "file-88cb017c75a34538b3df"
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-88cb017c75a34538b3df",
+                "position": 0,
+                "added_seq": 4,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 20,
+                  "name": "twenty",
+                  "age": 200
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-88cb017c75a34538b3df",
+                "position": 1,
+                "added_seq": 4,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 21,
+                  "name": "twentyone",
+                  "age": 210
+                },
+                "basis": [
+                  {
+                    "rule": "POSITION",
+                    "delete_file_id": "pdel-8709b1398f1847c68c96",
+                    "delete_seq": 5,
+                    "matched_key": null
+                  }
+                ]
+              },
+              {
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "position": 0,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 10,
+                  "name": "ten",
+                  "age": 100
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "position": 1,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 11,
+                  "name": "eleven",
+                  "age": 110
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "f1",
+                "file_id": "file-e25ef2a8a1c4458ea261",
+                "rows": 4,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "POSITION_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "pdel-e08fe2eec5134f32abfa",
+                "target_file_id": "file-e25ef2a8a1c4458ea261",
+                "positions": [
+                  0,
+                  2
+                ]
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 1,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-2e32dc768de74159bbec"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "DATA_FILE_REWRITTEN",
+              "payload": {
+                "ref": "f2",
+                "file_id": "file-c0bb543c2f0344bca1ec",
+                "rows": 2,
+                "drops": [
+                  "file-e25ef2a8a1c4458ea261"
+                ]
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 1,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-89fc84705ce9410380f5"
+              }
+            },
+            {
+              "seq": 4,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "f3",
+                "file_id": "file-88cb017c75a34538b3df",
+                "rows": 2,
+                "drops": []
+              }
+            },
+            {
+              "seq": 4,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-96f8c47acdde4ac794f3"
+              }
+            },
+            {
+              "seq": 5,
+              "type": "POSITION_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "pdel-8709b1398f1847c68c96",
+                "target_file_id": "file-88cb017c75a34538b3df",
+                "positions": [
+                  1
+                ]
+              }
+            },
+            {
+              "seq": 5,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 1,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-d8c7b460f54a4c7d8aef"
+              }
+            }
+          ]
+        }
+      ],
+      "error": null,
+      "table_id": "tbl-32608419108f459d"
+    },
+    {
+      "name": "02_delete_then_insert",
+      "description": "等值删除序列号窗口：同快照/后插入同键行不被删；更早删除对后来新文件不可见；再次删除命中新文件。",
+      "status": "PASS",
+      "versions": [
+        {
+          "seq": 1,
+          "snapshot_id": "snap-87d5c34961ff493091ff",
+          "status": "OK",
+          "run_ids": [
+            "run-603eff1cd3f540f4b30293d808de7245",
+            "run-0e9ac18bcd06486e95ac3be6f1f425d0"
+          ],
+          "evidence": {
+            "run_id": "run-27f038c9752541fc8f9ad6fc809d357e",
+            "snapshot_id": "snap-87d5c34961ff493091ff",
+            "seq": 1,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name"
+              ],
+              "projected_columns": [
+                "id",
+                "name"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 0,
+              "equality_set_count": 0,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [],
+            "rows": [
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "alice"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 2,
+                  "name": "bob"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "carol"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a1",
+                "file_id": "file-32dc48f3bdf247928090",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            }
+          ]
+        },
+        {
+          "seq": 2,
+          "snapshot_id": "snap-c299e53bea35468da87e",
+          "status": "OK",
+          "run_ids": [
+            "run-fee0615869c44695b7e4750d31da72e7",
+            "run-e18b2ea578524392a9392beacac5b9d6"
+          ],
+          "evidence": {
+            "run_id": "run-3bb997e84c3a453eaafe04a7e3401ee7",
+            "snapshot_id": "snap-c299e53bea35468da87e",
+            "seq": 2,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name"
+              ],
+              "projected_columns": [
+                "id",
+                "name"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 1,
+              "equality_set_count": 1,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "alice"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 2,
+                  "name": "bob"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-26ea609a6c40448d8264",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "carol"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a1",
+                "file_id": "file-32dc48f3bdf247928090",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-87d5c34961ff493091ff"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 3,
+          "snapshot_id": "snap-771dac77348442e39fbb",
+          "status": "OK",
+          "run_ids": [
+            "run-56850daae31b4d79bc82b06c790a5e87",
+            "run-b3b268c7a8ae430f935777db18e35a70"
+          ],
+          "evidence": {
+            "run_id": "run-2efd60d6f7d149898431ffe4a9dc6b13",
+            "snapshot_id": "snap-771dac77348442e39fbb",
+            "seq": 3,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name"
+              ],
+              "projected_columns": [
+                "id",
+                "name"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 1,
+              "equality_set_count": 1,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 1
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-285031126f8944a59131",
+                "position": 0,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 2,
+                  "name": "bob-reborn"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-285031126f8944a59131",
+                "position": 1,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 4,
+                  "name": "dave"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "alice"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 2,
+                  "name": "bob"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-26ea609a6c40448d8264",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "carol"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a1",
+                "file_id": "file-32dc48f3bdf247928090",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-87d5c34961ff493091ff"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a2",
+                "file_id": "file-285031126f8944a59131",
+                "rows": 2,
+                "drops": []
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-c299e53bea35468da87e"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 4,
+          "snapshot_id": "snap-62e454021bfa45d9a861",
+          "status": "OK",
+          "run_ids": [
+            "run-1299e510982c4c6bb502fbb414950e16",
+            "run-bcda28ffb74c45c9a29bb5bd7fdcb83a"
+          ],
+          "evidence": {
+            "run_id": "run-7ba470138525406185831208b484cc9d",
+            "snapshot_id": "snap-62e454021bfa45d9a861",
+            "seq": 4,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name"
+              ],
+              "projected_columns": [
+                "id",
+                "name"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 2,
+              "equality_set_count": 2,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 1
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              },
+              {
+                "delete_file_id": "edel-2d70c45b6e7246bba348",
+                "kind": "EQUALITY",
+                "seq": 4,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-285031126f8944a59131",
+                "position": 0,
+                "added_seq": 3,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 2,
+                  "name": "bob-reborn"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-2d70c45b6e7246bba348",
+                    "delete_seq": 4,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-285031126f8944a59131",
+                "position": 1,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 4,
+                  "name": "dave"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "alice"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 2,
+                  "name": "bob"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-26ea609a6c40448d8264",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  },
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-2d70c45b6e7246bba348",
+                    "delete_seq": 4,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "carol"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a1",
+                "file_id": "file-32dc48f3bdf247928090",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-87d5c34961ff493091ff"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a2",
+                "file_id": "file-285031126f8944a59131",
+                "rows": 2,
+                "drops": []
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-c299e53bea35468da87e"
+              }
+            },
+            {
+              "seq": 4,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-2d70c45b6e7246bba348",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 4,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-771dac77348442e39fbb"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 5,
+          "snapshot_id": "snap-0a74d0ec238844a9a356",
+          "status": "OK",
+          "run_ids": [
+            "run-28b7aba4b79744cab267e727b2716867",
+            "run-9a0cfae3ab8b46b5ab01e9e7ffab76fc"
+          ],
+          "evidence": {
+            "run_id": "run-41b2c19070c44219a22f618fcc85947d",
+            "snapshot_id": "snap-0a74d0ec238844a9a356",
+            "seq": 5,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name"
+              ],
+              "projected_columns": [
+                "id",
+                "name"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 3,
+              "equality_set_count": 3,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 1
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              },
+              {
+                "delete_file_id": "edel-2d70c45b6e7246bba348",
+                "kind": "EQUALITY",
+                "seq": 4,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              },
+              {
+                "delete_file_id": "edel-9d9a571c546d426e8b15",
+                "kind": "EQUALITY",
+                "seq": 5,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-285031126f8944a59131",
+                "position": 0,
+                "added_seq": 3,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 2,
+                  "name": "bob-reborn"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-2d70c45b6e7246bba348",
+                    "delete_seq": 4,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-285031126f8944a59131",
+                "position": 1,
+                "added_seq": 3,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 4,
+                  "name": "dave"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "alice"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 2,
+                  "name": "bob"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-26ea609a6c40448d8264",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  },
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-2d70c45b6e7246bba348",
+                    "delete_seq": 4,
+                    "matched_key": {
+                      "id": 2
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-32dc48f3bdf247928090",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "carol"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a1",
+                "file_id": "file-32dc48f3bdf247928090",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-26ea609a6c40448d8264",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-87d5c34961ff493091ff"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "a2",
+                "file_id": "file-285031126f8944a59131",
+                "rows": 2,
+                "drops": []
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-c299e53bea35468da87e"
+              }
+            },
+            {
+              "seq": 4,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-2d70c45b6e7246bba348",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 4,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-771dac77348442e39fbb"
+              }
+            },
+            {
+              "seq": 5,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-9d9a571c546d426e8b15",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 5,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-62e454021bfa45d9a861"
+              }
+            }
+          ]
+        }
+      ],
+      "error": null,
+      "table_id": "tbl-0830fd5a14fd493a"
+    },
+    {
+      "name": "03_duplicate_and_null_keys",
+      "description": "重复键旧行全部删除；NULL 键删除不命中任何行（含 NULL 数据行）；删除向量与数据双侧 NULL 均安全；跨文件同键。",
+      "status": "PASS",
+      "versions": [
+        {
+          "seq": 1,
+          "snapshot_id": "snap-95e0f92272db4fcea69a",
+          "status": "OK",
+          "run_ids": [
+            "run-34c98dfdd06745f1ac8e6e3e6bcc7e54",
+            "run-1931a5d4be6f414997f811a5a4c7ad52"
+          ],
+          "evidence": {
+            "run_id": "run-51e9e46744fe4b6cbbe1f943c3a7bc32",
+            "snapshot_id": "snap-95e0f92272db4fcea69a",
+            "seq": 1,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "projected_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 0,
+              "equality_set_count": 0,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [],
+            "rows": [
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 5,
+                  "grp": "b",
+                  "tag": "g2-5b"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 7,
+                  "grp": "b",
+                  "tag": "g2-7"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "b",
+                  "tag": "g2-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 5,
+                  "grp": "a",
+                  "tag": "g1-5a"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 6,
+                  "grp": "a",
+                  "tag": "g1-6"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "a",
+                  "tag": "g1-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g1",
+                "file_id": "file-94ec2ca056724776bee5",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g2",
+                "file_id": "file-821601046f3146e296ef",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 2,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            }
+          ]
+        },
+        {
+          "seq": 2,
+          "snapshot_id": "snap-a62951de46fb4841b9cb",
+          "status": "OK",
+          "run_ids": [
+            "run-84b393f1db92448cb776dc9558bd8c1e",
+            "run-50f16516410b46f99fcf7d2afa5b3282"
+          ],
+          "evidence": {
+            "run_id": "run-41c4eaf3591d4aeface7d7de2de54483",
+            "snapshot_id": "snap-a62951de46fb4841b9cb",
+            "seq": 2,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "projected_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 1,
+              "equality_set_count": 1,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 5,
+                  "grp": "b",
+                  "tag": "g2-5b"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 7,
+                  "grp": "b",
+                  "tag": "g2-7"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "b",
+                  "tag": "g2-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 5,
+                  "grp": "a",
+                  "tag": "g1-5a"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 6,
+                  "grp": "a",
+                  "tag": "g1-6"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "a",
+                  "tag": "g1-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g1",
+                "file_id": "file-94ec2ca056724776bee5",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g2",
+                "file_id": "file-821601046f3146e296ef",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 2,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-95e0f92272db4fcea69a"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 3,
+          "snapshot_id": "snap-0d414e1f208640c98a00",
+          "status": "OK",
+          "run_ids": [
+            "run-edb286df8d7141098b24966f1983e37a",
+            "run-31a6e760cd6a419baa2ed757bcb74579"
+          ],
+          "evidence": {
+            "run_id": "run-34339327b5ec42ff9d329fabdbdee801",
+            "snapshot_id": "snap-0d414e1f208640c98a00",
+            "seq": 3,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "projected_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "live_file_count": 2,
+              "visible_delete_file_count": 2,
+              "equality_set_count": 2,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [
+              {
+                "delete_file_id": "edel-526af4d6244847d08afe",
+                "seq": 3,
+                "count": 1
+              }
+            ],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              },
+              {
+                "delete_file_id": "edel-526af4d6244847d08afe",
+                "kind": "EQUALITY",
+                "seq": 3,
+                "row_count": 2,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 5,
+                  "grp": "b",
+                  "tag": "g2-5b"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 7,
+                  "grp": "b",
+                  "tag": "g2-7"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "b",
+                  "tag": "g2-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 5,
+                  "grp": "a",
+                  "tag": "g1-5a"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 6,
+                  "grp": "a",
+                  "tag": "g1-6"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-526af4d6244847d08afe",
+                    "delete_seq": 3,
+                    "matched_key": {
+                      "id": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "a",
+                  "tag": "g1-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g1",
+                "file_id": "file-94ec2ca056724776bee5",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g2",
+                "file_id": "file-821601046f3146e296ef",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 2,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-95e0f92272db4fcea69a"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-526af4d6244847d08afe",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 2,
+                "null_key_predicates": 1
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-a62951de46fb4841b9cb"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 4,
+          "snapshot_id": "snap-467d2b0f02354ead8104",
+          "status": "OK",
+          "run_ids": [
+            "run-66139af79c89460e8351dd08d0fe68b8",
+            "run-2c96bda2d52740d8ae266ce192f76c70"
+          ],
+          "evidence": {
+            "run_id": "run-d15f406781d34cda8d7758c45b68fed2",
+            "snapshot_id": "snap-467d2b0f02354ead8104",
+            "seq": 4,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "projected_columns": [
+                "id",
+                "grp",
+                "tag"
+              ],
+              "live_file_count": 3,
+              "visible_delete_file_count": 2,
+              "equality_set_count": 2,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 1
+            },
+            "null_keys_ignored": [
+              {
+                "delete_file_id": "edel-526af4d6244847d08afe",
+                "seq": 3,
+                "count": 1
+              }
+            ],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              },
+              {
+                "delete_file_id": "edel-526af4d6244847d08afe",
+                "kind": "EQUALITY",
+                "seq": 3,
+                "row_count": 2,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-0ceb73d2b3f541d4a0d4",
+                "position": 0,
+                "added_seq": 4,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 5,
+                  "grp": "c",
+                  "tag": "g3-5c"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-0ceb73d2b3f541d4a0d4",
+                "position": 1,
+                "added_seq": 4,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "c",
+                  "tag": "g3-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 5,
+                  "grp": "b",
+                  "tag": "g2-5b"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 7,
+                  "grp": "b",
+                  "tag": "g2-7"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-821601046f3146e296ef",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "b",
+                  "tag": "g2-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 5,
+                  "grp": "a",
+                  "tag": "g1-5a"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 5
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 6,
+                  "grp": "a",
+                  "tag": "g1-6"
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-526af4d6244847d08afe",
+                    "delete_seq": 3,
+                    "matched_key": {
+                      "id": 6
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-94ec2ca056724776bee5",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": null,
+                  "grp": "a",
+                  "tag": "g1-null"
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g1",
+                "file_id": "file-94ec2ca056724776bee5",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g2",
+                "file_id": "file-821601046f3146e296ef",
+                "rows": 3,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 2,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-c93dfaa0fbfa46deb521",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-95e0f92272db4fcea69a"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-526af4d6244847d08afe",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 2,
+                "null_key_predicates": 1
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-a62951de46fb4841b9cb"
+              }
+            },
+            {
+              "seq": 4,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "g3",
+                "file_id": "file-0ceb73d2b3f541d4a0d4",
+                "rows": 2,
+                "drops": []
+              }
+            },
+            {
+              "seq": 4,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-0d414e1f208640c98a00"
+              }
+            }
+          ]
+        }
+      ],
+      "error": null,
+      "table_id": "tbl-3591d306578041c5"
+    },
+    {
+      "name": "04_filter_projection",
+      "description": "过滤与列裁剪不改变删除语义：先删后过滤；被删行不参与过滤；投影不含键列时删除仍生效。",
+      "status": "PASS",
+      "versions": [
+        {
+          "seq": 1,
+          "snapshot_id": "snap-8b247cd05576445e9c8c",
+          "status": "OK",
+          "run_ids": [
+            "run-af3918062dcf409fbb7a3afdd1b21035",
+            "run-a902cc7a8cc34c29bc70322a4b2b4d82"
+          ],
+          "evidence": {
+            "run_id": "run-8a9e68520b024405a14147984193e5a2",
+            "snapshot_id": "snap-8b247cd05576445e9c8c",
+            "seq": 1,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 0,
+              "equality_set_count": 0,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [],
+            "rows": [
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "a",
+                  "age": 10
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 2,
+                  "name": "b",
+                  "age": 20
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "c",
+                  "age": 30
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 3,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 4,
+                  "name": null,
+                  "age": 40
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 4,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 5,
+                  "name": "e",
+                  "age": 50
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "p1",
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "rows": 5,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            }
+          ]
+        },
+        {
+          "seq": 2,
+          "snapshot_id": "snap-ee3211dc106146ecb284",
+          "status": "OK",
+          "run_ids": [
+            "run-d3b9cfe52e8f45aaa28a647f21ec3cbd",
+            "run-a8c3d6977cd34d9b9a94ef6b449d2afa"
+          ],
+          "evidence": {
+            "run_id": "run-3f46453367ad4ed38e0526f803d9ae35",
+            "snapshot_id": "snap-ee3211dc106146ecb284",
+            "seq": 2,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 1,
+              "equality_set_count": 1,
+              "position_target_count": 0,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-86511dabc14649b28f99",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 1,
+                  "name": "a",
+                  "age": 10
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 2,
+                  "name": "b",
+                  "age": 20
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "c",
+                  "age": 30
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 3,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 4,
+                  "name": null,
+                  "age": 40
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-86511dabc14649b28f99",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 4,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 5,
+                  "name": "e",
+                  "age": 50
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "p1",
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "rows": 5,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-86511dabc14649b28f99",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-8b247cd05576445e9c8c"
+              }
+            }
+          ]
+        },
+        {
+          "seq": 3,
+          "snapshot_id": "snap-b8229ed12700457caeeb",
+          "status": "OK",
+          "run_ids": [
+            "run-fcf4eaeded914e18836e4e42bb64944c",
+            "run-2e23ee2fe1ec4e74bb4f665e9f3a08e7"
+          ],
+          "evidence": {
+            "run_id": "run-73f50e71d7a440b6bc029e924d4b1688",
+            "snapshot_id": "snap-b8229ed12700457caeeb",
+            "seq": 3,
+            "intermediate_state": {
+              "read_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "projected_columns": [
+                "id",
+                "name",
+                "age"
+              ],
+              "live_file_count": 1,
+              "visible_delete_file_count": 2,
+              "equality_set_count": 1,
+              "position_target_count": 1,
+              "files_with_partial_equality_window": 0
+            },
+            "null_keys_ignored": [],
+            "delete_files_visible": [
+              {
+                "delete_file_id": "edel-86511dabc14649b28f99",
+                "kind": "EQUALITY",
+                "seq": 2,
+                "row_count": 1,
+                "key_columns": [
+                  "id"
+                ]
+              },
+              {
+                "delete_file_id": "pdel-a59cd83b8d3446b5875d",
+                "kind": "POSITION",
+                "seq": 3,
+                "row_count": 1,
+                "target_file_id": "file-a9ae34f2269d4dbebcdc"
+              }
+            ],
+            "rows": [
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 0,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 1,
+                  "name": "a",
+                  "age": 10
+                },
+                "basis": [
+                  {
+                    "rule": "POSITION",
+                    "delete_file_id": "pdel-a59cd83b8d3446b5875d",
+                    "delete_seq": 3,
+                    "matched_key": null
+                  }
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 1,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 2,
+                  "name": "b",
+                  "age": 20
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 2,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 3,
+                  "name": "c",
+                  "age": 30
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 3,
+                "added_seq": 1,
+                "disposition": "DELETED",
+                "row": {
+                  "id": 4,
+                  "name": null,
+                  "age": 40
+                },
+                "basis": [
+                  {
+                    "rule": "EQUALITY",
+                    "delete_file_id": "edel-86511dabc14649b28f99",
+                    "delete_seq": 2,
+                    "matched_key": {
+                      "id": 4
+                    }
+                  }
+                ]
+              },
+              {
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "position": 4,
+                "added_seq": 1,
+                "disposition": "KEPT",
+                "row": {
+                  "id": 5,
+                  "name": "e",
+                  "age": 50
+                },
+                "basis": [
+                  "survived all position & equality deletes"
+                ]
+              }
+            ]
+          },
+          "events_through_version": [
+            {
+              "seq": 1,
+              "type": "DATA_FILE_ADDED",
+              "payload": {
+                "ref": "p1",
+                "file_id": "file-a9ae34f2269d4dbebcdc",
+                "rows": 5,
+                "drops": []
+              }
+            },
+            {
+              "seq": 1,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 1,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 0
+                },
+                "parent": null
+              }
+            },
+            {
+              "seq": 2,
+              "type": "EQUALITY_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "edel-86511dabc14649b28f99",
+                "key_columns": [
+                  "id"
+                ],
+                "predicate_count": 1,
+                "null_key_predicates": 0
+              }
+            },
+            {
+              "seq": 2,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 0,
+                  "equality_delete_files": 1
+                },
+                "parent": "snap-8b247cd05576445e9c8c"
+              }
+            },
+            {
+              "seq": 3,
+              "type": "POSITION_DELETE_ADDED",
+              "payload": {
+                "delete_file_id": "pdel-a59cd83b8d3446b5875d",
+                "target_file_id": "file-a9ae34f2269d4dbebcdc",
+                "positions": [
+                  0
+                ]
+              }
+            },
+            {
+              "seq": 3,
+              "type": "SNAPSHOT_COMMITTED",
+              "payload": {
+                "summary": {
+                  "new_data_files": 0,
+                  "rewritten_files": 0,
+                  "position_delete_files": 1,
+                  "equality_delete_files": 0
+                },
+                "parent": "snap-ee3211dc106146ecb284"
+              }
+            }
+          ]
+        }
+      ],
+      "error": null,
+      "table_id": "tbl-37f8b02c223c40ea"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "failures_by_category": {}
+  },
+  "finished_at": "2026-09-28T00:13:20.092991+00:00",
+  "warehouse": "/tmp/rtda-verify-i62wysk9"
+}

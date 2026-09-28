@@ -1,0 +1,115 @@
+{
+  "name": "01_position_and_rewrite",
+  "description": "位置删除绑定文件内容身份；重写后旧行号不得复用（STALE_POSITION_TARGET）；跨文件位置删除。",
+  "schema": {
+    "columns": [
+      {"name": "id", "type": "long"},
+      {"name": "name", "type": "string"},
+      {"name": "age", "type": "int"}
+    ],
+    "primary_key": ["id"]
+  },
+  "versions": [
+    {
+      "note": "v1: 初始四行",
+      "operations": [
+        {"op": "append", "ref": "f1", "rows": [
+          {"id": 1, "name": "n1", "age": 10},
+          {"id": 2, "name": "n2", "age": 20},
+          {"id": 3, "name": "n3", "age": 30},
+          {"id": 4, "name": "n4", "age": 40}
+        ]}
+      ],
+      "expect": {
+        "files": ["f1"],
+        "dispositions": [
+          {"file_ref": "f1", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "f1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "f1", "position": 2, "disposition": "KEPT"},
+          {"file_ref": "f1", "position": 3, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v2: 位置删除 f1 的 0、2 行",
+      "operations": [
+        {"op": "position_delete", "target_file": "f1", "positions": [0, 2]}
+      ],
+      "expect": {
+        "files": ["f1"],
+        "dispositions": [
+          {"file_ref": "f1", "position": 0, "disposition": "DELETED",
+           "reasons": [{"kind": "POSITION", "seq": 2}]},
+          {"file_ref": "f1", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "f1", "position": 2, "disposition": "DELETED",
+           "reasons": [{"kind": "POSITION", "seq": 2}]},
+          {"file_ref": "f1", "position": 3, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v3: 重写 f1 为 f2（旧文件 DROP，新文件新身份）",
+      "operations": [
+        {"op": "rewrite", "ref": "f2", "drops": ["f1"],
+         "rows": [{"id": 10, "name": "ten", "age": 100}, {"id": 11, "name": "eleven", "age": 110}]}
+      ],
+      "expect": {
+        "files": ["f2"],
+        "dispositions": [
+          {"file_ref": "f2", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "f2", "position": 1, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v4（必须失败）: 用旧文件 f1 的旧行号做位置删除 -> 状态冲突，不产生快照",
+      "operations": [
+        {"op": "position_delete", "target_file": "f1", "positions": [0]}
+      ],
+      "expect_error": {"category": "STATE_CONFLICT", "code": "STALE_POSITION_TARGET"}
+    },
+    {
+      "note": "v5: 另一个文件 f3 追加两行（跨文件删除做准备）",
+      "operations": [
+        {"op": "append", "ref": "f3", "rows": [
+          {"id": 20, "name": "twenty", "age": 200},
+          {"id": 21, "name": "twentyone", "age": 210}
+        ]}
+      ],
+      "expect": {
+        "files": ["f2", "f3"],
+        "dispositions": [
+          {"file_ref": "f2", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "f2", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "f3", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "f3", "position": 1, "disposition": "KEPT"}
+        ]
+      }
+    },
+    {
+      "note": "v6: 跨文件位置删除 f3 的第 1 行；f2 不受影响，旧删除也不触及 f2",
+      "operations": [
+        {"op": "position_delete", "target_file": "f3", "positions": [1]}
+      ],
+      "expect": {
+        "files": ["f2", "f3"],
+        "dispositions": [
+          {"file_ref": "f2", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "f2", "position": 1, "disposition": "KEPT"},
+          {"file_ref": "f3", "position": 0, "disposition": "KEPT"},
+          {"file_ref": "f3", "position": 1, "disposition": "DELETED",
+           "reasons": [{"kind": "POSITION", "seq": 5}]}
+        ]
+      }
+    }
+  ],
+  "reads": [
+    {"version": 1, "note": "时间旅行：v6 之后回读 v1 仍是四行",
+     "live": [
+       {"file_ref": "f1", "position": 0, "values": {"id": 1, "name": "n1", "age": 10}},
+       {"file_ref": "f1", "position": 1, "values": {"id": 2, "name": "n2", "age": 20}},
+       {"file_ref": "f1", "position": 2, "values": {"id": 3, "name": "n3", "age": 30}},
+       {"file_ref": "f1", "position": 3, "values": {"id": 4, "name": "n4", "age": 40}}
+     ]}
+  ]
+}
