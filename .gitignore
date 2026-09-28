@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# 本地数据库与 WAL
+*.db
+*.db-wal
+*.db-shm
+ot.db
+
+# 测试运行日志（保留目录、忽略产物；如需归档可取消注释）
+test-runs/*.jsonl
+test-runs/index.json
