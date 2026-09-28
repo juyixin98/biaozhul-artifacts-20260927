@@ -1,0 +1,5 @@
+{
+  "listen": "127.0.0.1:18081",
+  "databasePath": "data/desired.db",
+  "controllerAuth": "local-dev-secret"
+}

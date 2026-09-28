@@ -1,0 +1,10 @@
+{
+  "desiredURL": "http://127.0.0.1:18081",
+  "actualURL": "http://127.0.0.1:18082",
+  "controllerAuth": "local-dev-secret",
+  "databasePath": "data/controller.db",
+  "diagnosticsAddr": "127.0.0.1:18083",
+  "resyncInterval": "1s",
+  "backoffBaseMS": 20,
+  "backoffMaxMS": 2000
+}
