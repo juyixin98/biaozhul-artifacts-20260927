@@ -1,0 +1,97 @@
+# Testing guide
+
+All tests are local and deterministic. Expected answers never come from the
+index core: they are literals or the independent overlap-preserving scan in
+`src/reference.rs` (also used by the `/verify` endpoint).
+
+## Commands
+
+```bash
+cargo test                                   # everything
+cargo test --lib                             # core units only
+cargo test --test oracle_crosscheck -- --nocapture   # see seed/volume line
+cargo clippy --all-targets                   # lints
+cargo run --bin fm-make-fixtures             # regenerate samples/*.json
+```
+
+## Latest real run
+
+`cargo test` on this machine (Rust 1.98.1), verbatim summary:
+
+```
+test result: ok. 18 passed; 0 failed   src/lib.rs (unit tests)
+test result: ok.  6 passed; 0 failed   tests/api_contract.rs
+test result: ok.  4 passed; 0 failed   tests/fixtures_e2e.rs
+test result: ok.  2 passed; 0 failed   tests/oracle_crosscheck.rs
+test result: ok.  9 passed; 0 failed   tests/persistence_corruption.rs
+test result: ok.  1 passed; 0 failed   tests/request_log.rs
+test result: ok.  3 passed; 0 failed   tests/sampling.rs
+```
+
+43 tests total, `cargo clippy --all-targets` clean.
+
+## Suite catalog — what each suite proves, with concrete assertions
+
+### Unit tests (`src/**`)
+
+* `coding` — sentinel symbol 0 ≠ coded zero byte (`0x00 → 1`), exactly one
+  terminal sentinel, round trip.
+* `suffix` — SA for `banana$` equals the literal `[6,5,3,1,0,4,2]` and an
+  O(n² log n) direct-comparison SA on all-zero runs, repetitive cycles and
+  binary bytes; internal/missing sentinel inputs rejected.
+* `bwt` — BWT of banana is literally `annb$aa`; BWT is a permutation of the
+  coded text; C table entries are exact (`C[a]=1`, `C[b]=3` for `aba$`).
+* `rank` — occ at **every** `i` against brute force for five symbols across
+  block boundaries; occ of the single sentinel at `i=n` is 1.
+* `fm` — empty pattern → `[0,n)` and positions `0..=len`; overlong pattern
+  → `[0,0)`; `aaaa` / `aa` → exactly overlapping `[0,1,2]`; banana patterns
+  vs naive scan for K = 1,2,3,5,6,7; bad arguments map to the right errors.
+* `reference` — naive scan overlaps (`aaaa`/`aa` = `[0,1,2]`), empty text,
+  zero-byte cases.
+* `persistence` — create/reload/delete lifecycle and name rules.
+
+### Integration tests (`tests/`)
+
+* **api_contract.rs** — exact positions (`ana→[1,3]`, `na→[2,4]`), half-open
+  bounds `[2,4)`, empty/overlong semantics over HTTP, overlapping runs,
+  binary zero text, and the four-way error split with exact codes:
+  `bad_base64/empty_text/bad_name/bad_sample_interval` (400),
+  `text_too_large` (413, category `resource_exhausted`),
+  `index_already_exists` (409), `index_not_found` (404), malformed JSON 400.
+* **oracle_crosscheck.rs** — 12 generated indexes over four text families
+  (high-repeat, zero-dominated, tiny alphabet, full binary alphabet),
+  24 patterns each (empty, overlong, guaranteed-hit substrings, random),
+  six different sample rates. Every result is compared position-by-position
+  with `naive_scan`; mismatches print the seed (`0x5151ABCD1234`), K, text
+  kind/length, the pattern, interval and both position lists. Server-side
+  `/verify` must independently report `all_agree:true` with scan counts.
+* **persistence_corruption.rs** — mutates real files: flipped magic;
+  truncation at header/TXT/BWT/SAS layers; one-byte payload flips in each
+  section (asserted to fail at that section's **CRC** check); a valid-CRC
+  out-of-alphabet BWT symbol (fails semantic `bwt` check); a valid-CRC
+  tampered SA sample (fails the on-load SA rebuild, section `sa_samples`);
+  header sample-interval mismatch; broken `catalog.json`
+  (`catalog_corrupt`); catalog pointing at a deleted file (`io_error`).
+  All are `compute_failure`, none panic.
+* **sampling.rs** — K = 1,2,5,13,37,257 all equal the scan on a long
+  repetitive text; localization after a fresh catalog reopen (purely from
+  disk) matches; localizing every row is a bijection onto `0..n` for
+  K = 1..=8 on four texts including a single `z` and a zero-byte text.
+* **fixtures_e2e.rs** — drives the checked-in `samples/*.json` fixtures
+  through create/search/verify for K = 1,8,32; concrete zero-fixture
+  assertions (`0xFF` occurs exactly at positions `[0,599]`, byte `0x02`
+  absent, 600 bytes).
+* **request_log.rs** — the JSONL log contains the success's `[lo,hi)`/hit
+  totals/pattern count, a 413 logged as `resource_exhausted/text_too_large`,
+  a 404 as `state_conflict/index_not_found`, and every line has run id,
+  timestamp and duration for replay.
+
+## Reproducing a problem from a log line
+
+1. Take the `run_id` the caller reports (also in `x-run-id`).
+2. Find its line in `requests.jsonl`: it records path, index, the final
+   interval, hit count and error category/code.
+3. Re-issue the same request (optionally passing the same `x-run-id` header
+   to keep correlation); random-oracle failures include the LCG seed so the
+   exact text/patterns can be regenerated by running that test with
+   `--nocapture` and adjusting the seed constant.

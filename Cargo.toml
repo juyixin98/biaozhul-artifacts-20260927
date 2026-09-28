@@ -1,0 +1,42 @@
+[package]
+name = "fm_index_svc"
+version = "0.1.0"
+edition = "2024"
+description = "Byte-text FM-index backend service (BWT + rank + sampled locations) over Axum"
+
+[lib]
+name = "fm_index_svc"
+path = "src/lib.rs"
+
+[[bin]]
+name = "fm-index-svc"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0.104"
+axum = { version = "0.8.9", features = ["macros"] }
+base64 = "0.23.1"
+bytes = "1.12.1"
+crc32fast = "1.5.2"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+sha2 = "0.11.0"
+thiserror = "2.0.21"
+tokio = { version = "1.53.1", features = ["full"] }
+tower = "0.5.3"
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+uuid = { version = "1.26.1", features = ["v4"] }
+
+[dev-dependencies]
+tempfile = "3"
+http-body-util = "0.1"
+crc32fast = "1.5.2"
+
+[profile.dev]
+# tests build a couple of large synthetic texts; keep them from being too slow
+opt-level = 1
+
+[[bin]]
+name = "fm-make-fixtures"
+path = "src/bin/fixtures.rs"
