@@ -1,0 +1,11 @@
+{
+  "name": "broken-ignore-vary-and-identity",
+  "cache_scope": "shared",
+  "vary_headers": [],
+  "include_authorization": false,
+  "include_cookie": false,
+  "allow_storing_authorization_response": true,
+  "allow_storing_cookie_response": true,
+  "respect_response_vary": false,
+  "vary_wildcard_mode": "forbid"
+}

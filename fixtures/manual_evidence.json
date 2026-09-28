@@ -1,0 +1,52 @@
+{
+  "evidence": [
+    {
+      "id": "me-alice",
+      "source": "synthetic_fixture",
+      "note": "合成用户 alice",
+      "request": {
+        "method": "get",
+        "scheme": "https",
+        "host": "local.test",
+        "path": "/me",
+        "query": "",
+        "headers": {
+          "Authorization": "Bearer synthetic-alice-token-0001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json",
+          "Cache-Control": "max-age=30"
+        },
+        "body": "{\"user\":\"alice\",\"balance\":100}",
+        "body_sha256": "1544f51be96c3630269071c256be2f03a37cb2fc138101b7a83db94c752f754a"
+      }
+    },
+    {
+      "id": "me-bob",
+      "source": "synthetic_fixture",
+      "note": "合成用户 bob",
+      "request": {
+        "method": "get",
+        "scheme": "https",
+        "host": "local.test",
+        "path": "/me",
+        "query": "",
+        "headers": {
+          "Authorization": "Bearer synthetic-bob-token-0002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json",
+          "Cache-Control": "max-age=30"
+        },
+        "body": "{\"user\":\"bob\",\"balance\":20}",
+        "body_sha256": "868a182453275f3236f5fe8a8931896683763b0b1a2aea7098102c4577302fc7"
+      }
+    }
+  ]
+}

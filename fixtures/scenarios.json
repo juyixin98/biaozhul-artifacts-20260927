@@ -1,0 +1,395 @@
+{
+  "comment": "本地合成夹具：无真实业务数据、无外部参与者。身份值为合成令牌。",
+  "policies": {
+    "broken_shared": {
+      "name": "broken-ignore-vary-and-identity",
+      "cache_scope": "shared",
+      "vary_headers": [],
+      "include_authorization": false,
+      "include_cookie": false,
+      "allow_storing_authorization_response": true,
+      "allow_storing_cookie_response": true,
+      "respect_response_vary": false,
+      "vary_wildcard_mode": "forbid"
+    },
+    "fixed_shared": {
+      "name": "fixed-key-shared",
+      "cache_scope": "shared",
+      "vary_headers": ["Accept-Language", "Accept-Encoding", "Accept"],
+      "include_authorization": true,
+      "include_cookie": true,
+      "allow_storing_authorization_response": true,
+      "allow_storing_cookie_response": true,
+      "respect_response_vary": true,
+      "vary_wildcard_mode": "forbid"
+    },
+    "broken_private": {
+      "name": "broken-private-cookie-not-declared",
+      "cache_scope": "private",
+      "vary_headers": [],
+      "include_authorization": false,
+      "include_cookie": false,
+      "allow_storing_authorization_response": false,
+      "allow_storing_cookie_response": false,
+      "respect_response_vary": false,
+      "vary_wildcard_mode": "forbid"
+    }
+  },
+  "scenarios": [
+    {
+      "id": "S1-language",
+      "kind": "language-negotiation",
+      "description": "同一 URL，Accept-Language 不同，响应体不同；源站声明 Vary: Accept-Language，但缺陷策略忽略响应 Vary 且未声明该维度。",
+      "policy": "broken_shared",
+      "evidence": [
+        {
+          "id": "lang-en",
+          "source": "synthetic_fixture",
+          "note": "英语请求",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/home", "query": "",
+            "headers": {"Accept-Language": "en"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/html", "Vary": "Accept-Language", "Cache-Control": "max-age=60"},
+            "body": "<h1>Welcome</h1>",
+            "body_sha256": "7a6d79396a55e7b3cc2ef10a0ce5d74501e1242121de5ed35b922f6967d463d9"
+          }
+        },
+        {
+          "id": "lang-fr",
+          "source": "synthetic_fixture",
+          "note": "法语请求",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/home", "query": "",
+            "headers": {"Accept-Language": "fr"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/html", "Vary": "Accept-Language", "Cache-Control": "max-age=60"},
+            "body": "<h1>Bienvenue</h1>",
+            "body_sha256": "dd81ce9e9b5a0e11a7585924db1905a403ce75ec4e9213de296ad145e4eeceed"
+          }
+        }
+      ],
+      "expected_broken": {
+        "findings_count": 1,
+        "witness": {"evidence": ["lang-en", "lang-fr"], "dimension": "Accept-Language",
+                     "reason": "response_vary_declared_but_policy_ignored", "severity": "medium"}
+      },
+      "expected_fixed": {"findings_count": 0}
+    },
+    {
+      "id": "S2-encoding",
+      "kind": "compression-negotiation",
+      "description": "Accept-Encoding: identity 与 gzip 得到不同原始字节；响应声明 Vary: Accept-Encoding 被缺陷策略忽略。",
+      "policy": "broken_shared",
+      "evidence": [
+        {
+          "id": "enc-identity",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/guide", "query": "",
+            "headers": {"Accept-Encoding": "identity"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/plain", "Vary": "Accept-Encoding", "Cache-Control": "max-age=60"},
+            "body": "Welcome, traveler. The southern gate is open at dawn.",
+            "body_sha256": "7f9644af71aa02c6ee1c9881f84e34840db1674f9c127344d12291becc2a89e0"
+          }
+        },
+        {
+          "id": "enc-gzip",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/guide", "query": "",
+            "headers": {"Accept-Encoding": "gzip"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/plain", "Content-Encoding": "gzip",
+                        "Vary": "Accept-Encoding", "Cache-Control": "max-age=60"},
+            "body": "H4sIAAAAAAACAwtPzUnOz03VUSgpSixLzUkt0lMIyUhVKM4vLclILcpTSE8sSVXILFbIL0jNU0gsUUhJLM/TAwAquWDVNQAAAA==",
+            "body_encoding": "base64",
+            "body_sha256": "b444c6c35117ba4dfbed00107e9eeb4956094db149578acb3d69a0239ab93c0a"
+          }
+        }
+      ],
+      "expected_broken": {
+        "findings_count": 1,
+        "witness": {"evidence": ["enc-identity", "enc-gzip"], "dimension": "Accept-Encoding",
+                     "reason": "response_vary_declared_but_policy_ignored", "severity": "medium"}
+      },
+      "expected_fixed": {"findings_count": 0}
+    },
+    {
+      "id": "S3-authz-identity",
+      "kind": "identity-authorization",
+      "description": "两个合成用户持不同 Bearer 令牌访问 /me；缺陷共享策略把 Authorization 排除在键外，且允许存储带授权响应，造成跨身份复用（critical）。",
+      "policy": "broken_shared",
+      "evidence": [
+        {
+          "id": "me-alice",
+          "source": "synthetic_fixture",
+          "note": "合成用户 alice",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/me", "query": "",
+            "headers": {"Authorization": "Bearer synthetic-alice-token-0001"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json", "Cache-Control": "max-age=30"},
+            "body": "{\"user\":\"alice\",\"balance\":100}",
+            "body_sha256": "1544f51be96c3630269071c256be2f03a37cb2fc138101b7a83db94c752f754a"
+          }
+        },
+        {
+          "id": "me-bob",
+          "source": "synthetic_fixture",
+          "note": "合成用户 bob",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/me", "query": "",
+            "headers": {"Authorization": "Bearer synthetic-bob-token-0002"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json", "Cache-Control": "max-age=30"},
+            "body": "{\"user\":\"bob\",\"balance\":20}",
+            "body_sha256": "868a182453275f3236f5fe8a8931896683763b0b1a2aea7098102c4577302fc7"
+          }
+        }
+      ],
+      "expected_broken": {
+        "findings_count": 1,
+        "witness": {"evidence": ["me-alice", "me-bob"], "dimension": "Authorization",
+                     "reason": "identity_authorization_cross_identity", "severity": "critical"}
+      },
+      "expected_fixed": {"findings_count": 0}
+    },
+    {
+      "id": "S4-private-cookie",
+      "kind": "private-cache-cookie",
+      "description": "私有缓存夹具：两个浏览器会话持不同 Cookie 访问 /cart。私有缓存即便策略漏配 Cookie 维度，键也必须隐式绑定身份；断言无跨会话碰撞。",
+      "policy": "broken_private",
+      "evidence": [
+        {
+          "id": "cart-s1",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/cart", "query": "",
+            "headers": {"Cookie": "sid=synthetic-session-aaaa"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json",
+                        "Cache-Control": "private, max-age=60"},
+            "body": "{\"cart\":[\"tent\"]}",
+            "body_sha256": "d9040e03e6d2d107cc387912f1c6af518fb44210b7b87fe6eedfd2c6e7c2f1a9"
+          }
+        },
+        {
+          "id": "cart-s2",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/cart", "query": "",
+            "headers": {"Cookie": "sid=synthetic-session-bbbb"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json",
+                        "Cache-Control": "private, max-age=60"},
+            "body": "{\"cart\":[\"rope\"]}",
+            "body_sha256": "bf6555fb83e336b530aedd8d429b4ab0dc1c6d84da68c46dfff17c63dd11e497"
+          }
+        }
+      ],
+      "expected_broken": {"findings_count": 0},
+      "expected_fixed": {"findings_count": 0},
+      "assert": "private_keys_differ_and_both_bound_to_cookie"
+    },
+    {
+      "id": "S5-vary-star",
+      "kind": "vary-wildcard",
+      "description": "源站对 /recommend 返回 Vary: *（每个请求唯一）。缺陷策略不尊重响应 Vary，且未声明 Accept 维度，导致推荐结果跨偏好复用；修复策略尊重 Vary:* 直接判不可缓存。",
+      "policy": "broken_shared",
+      "evidence": [
+        {
+          "id": "star-a",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/recommend", "query": "",
+            "headers": {"Accept": "application/json"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json", "Vary": "*", "Cache-Control": "max-age=60"},
+            "body": "{\"color\":\"blue\"}",
+            "body_sha256": "f234cb93c08ad64e15e04f6bfce153d704a2da911fb50a45fd45c81064b62617"
+          }
+        },
+        {
+          "id": "star-b",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/recommend", "query": "",
+            "headers": {"Accept": "text/html"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json", "Vary": "*", "Cache-Control": "max-age=60"},
+            "body": "{\"color\":\"green\"}",
+            "body_sha256": "b1c0d2a81c6839b36839e8d9b273cb17279370ab430e5e3fc8218e2bcaa6373b"
+          }
+        }
+      ],
+      "expected_broken": {
+        "findings_count": 1,
+        "witness": {"evidence": ["star-a", "star-b"], "dimension": "Accept",
+                     "reason": "response_vary_wildcard_ignored", "severity": "high"}
+      },
+      "expected_fixed": {"findings_count": 0, "both_uncacheable": true}
+    },
+    {
+      "id": "S6-missing-vary",
+      "kind": "vary-absent",
+      "description": "反例对照组：响应完全没有 Vary 头（absent，区别于 S5 的 wildcard），策略也未声明 Accept-Language；语言被错误共享。",
+      "policy": "broken_shared",
+      "evidence": [
+        {
+          "id": "absent-en",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/legacy", "query": "",
+            "headers": {"Accept-Language": "en"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/html", "Cache-Control": "max-age=60"},
+            "body": "<h1>Welcome</h1>",
+            "body_sha256": "7a6d79396a55e7b3cc2ef10a0ce5d74501e1242121de5ed35b922f6967d463d9"
+          }
+        },
+        {
+          "id": "absent-fr",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/legacy", "query": "",
+            "headers": {"Accept-Language": "fr"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/html", "Cache-Control": "max-age=60"},
+            "body": "<h1>Bienvenue</h1>",
+            "body_sha256": "dd81ce9e9b5a0e11a7585924db1905a403ce75ec4e9213de296ad145e4eeceed"
+          }
+        }
+      ],
+      "expected_broken": {
+        "findings_count": 1,
+        "witness": {"evidence": ["absent-en", "absent-fr"], "dimension": "Accept-Language",
+                     "reason": "vary_absent_and_policy_missing_dimension", "severity": "medium"}
+      },
+      "expected_fixed": {"findings_count": 0}
+    },
+    {
+      "id": "S8-shared-cookie",
+      "kind": "identity-cookie-shared",
+      "description": "共享缓存反例：同一 URL 被两个会话以不同 Cookie 访问，源站返回会话相关内容；缺陷策略未把 Cookie 纳入键且允许存储 Set-Cookie 响应，造成跨会话重用（critical）。",
+      "policy": "broken_shared",
+      "evidence": [
+        {
+          "id": "pref-s1",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/prefs", "query": "",
+            "headers": {"Cookie": "sid=synthetic-session-aaaa"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json",
+                        "Cache-Control": "max-age=60", "Set-Cookie": "sid=synthetic-session-aaaa"},
+            "body": "{\"cart\":[\"tent\"]}",
+            "body_sha256": "d9040e03e6d2d107cc387912f1c6af518fb44210b7b87fe6eedfd2c6e7c2f1a9"
+          }
+        },
+        {
+          "id": "pref-s2",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/prefs", "query": "",
+            "headers": {"Cookie": "sid=synthetic-session-bbbb"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "application/json",
+                        "Cache-Control": "max-age=60", "Set-Cookie": "sid=synthetic-session-bbbb"},
+            "body": "{\"cart\":[\"rope\"]}",
+            "body_sha256": "bf6555fb83e336b530aedd8d429b4ab0dc1c6d84da68c46dfff17c63dd11e497"
+          }
+        }
+      ],
+      "expected_broken": {
+        "findings_count": 1,
+        "witness": {"evidence": ["pref-s1", "pref-s2"], "dimension": "Cookie",
+                     "reason": "identity_cookie_cross_identity", "severity": "critical"}
+      },
+      "expected_fixed": {"findings_count": 0}
+    },
+    {
+      "id": "S7-static-ok",
+      "kind": "negative-control-identical",
+      "description": "阴性对照：两个语言不同的请求拿到字节完全相同的静态资源；不同请求但响应相同，不构成碰撞，也不允许误报。",
+      "policy": "broken_shared",
+      "evidence": [
+        {
+          "id": "static-1",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/assets/app.css", "query": "v=1",
+            "headers": {"Accept-Language": "en"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/css", "Cache-Control": "max-age=3600"},
+            "body": "/* app css v1 */ body{color:red}",
+            "body_sha256": "44786a83b033a06cdb003af69233f1a357024aa4872514ef7fee18192f551c83"
+          }
+        },
+        {
+          "id": "static-2",
+          "source": "synthetic_fixture",
+          "request": {
+            "method": "get", "scheme": "https", "host": "local.test",
+            "path": "/assets/app.css", "query": "v=1",
+            "headers": {"Accept-Language": "fr"}
+          },
+          "response": {
+            "status": 200,
+            "headers": {"Content-Type": "text/css", "Cache-Control": "max-age=3600"},
+            "body": "/* app css v1 */ body{color:red}",
+            "body_sha256": "44786a83b033a06cdb003af69233f1a357024aa4872514ef7fee18192f551c83"
+          }
+        }
+      ],
+      "expected_broken": {"findings_count": 0},
+      "expected_fixed": {"findings_count": 0}
+    }
+  ]
+}
