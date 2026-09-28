@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+var/
+tests/fixtures/generated/
+.pytest_cache/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

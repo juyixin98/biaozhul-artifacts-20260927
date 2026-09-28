@@ -1,0 +1,13 @@
+[project]
+name = "merge-engine"
+version = "0.1.0"
+description = "Composite-key MERGE decision backend (batch source -> SQLite target snapshot)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "capture: tests that capture the required phase-3 scenarios",
+]
