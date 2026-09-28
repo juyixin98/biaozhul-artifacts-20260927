@@ -1,0 +1,8 @@
+{
+  "data_dir": "data",
+  "catalog_path": "data/catalog.sqlite",
+  "log_file": "data/zindex.log",
+  "log_level": "INFO",
+  "default_chunk_capacity": 8192,
+  "default_max_intervals": 4096
+}
