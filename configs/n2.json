@@ -1,0 +1,17 @@
+{
+  "run_id": "local-run",
+  "listen": "127.0.0.1:18082",
+  "node_id": "n2",
+  "initial_balances": {"n2": 100},
+  "store": {
+    "driver": "memory",
+    "dsn": "postgres://clsnap:clsnap@127.0.0.1:5432/clsnap?sslmode=disable",
+    "schema": "n2"
+  },
+  "peers": [
+    {"id": "n1", "base_url": "http://127.0.0.1:18081"},
+    {"id": "n3", "base_url": "http://127.0.0.1:18083"}
+  ],
+  "outbox_cap": 4096,
+  "pump_interval_ms": 20
+}

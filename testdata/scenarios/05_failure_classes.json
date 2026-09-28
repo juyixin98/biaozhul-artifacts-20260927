@@ -1,0 +1,28 @@
+{
+  "name": "05_failure_classes",
+  "description": "Exercises the distinct failure categories: bad input (negative/zero amount, unknown peer), compute failure (insufficient funds, 422), state conflict (duplicate snapshot id, double abort), and snapshot interruption (acting on a session aborted by a restart). Each step asserts the precise error CLASS and code, not just 'call failed'. Resource exhaustion (outbox full) is covered deterministically by unit tests against a capped store.",
+  "nodes": [
+    {"id": "n1", "address": ""},
+    {"id": "n2", "address": ""},
+    {"id": "n3", "address": ""}
+  ],
+  "initial_balance": {"n1": 100, "n2": 100, "n3": 100},
+  "conserve_total": 300,
+  "steps": [
+    {"action": "start_snapshot", "node": "n1", "snap_id": "dup"},
+    {"action": "fail", "node": "n1", "peer": "__snapshot__", "snap_id": "dup", "reason": "state_conflict",
+     "note": "duplicate snapshot id -> state_conflict/session_exists"},
+
+    {"action": "fail", "node": "n1", "peer": "__transfer__", "to": "n2", "tx_id": "zero", "amount": 0, "reason": "input_invalid",
+     "note": "amount must be positive -> input_invalid/bad_amount"},
+    {"action": "fail", "node": "n1", "peer": "__transfer__", "to": "n9", "tx_id": "unknown", "amount": 5, "reason": "input_invalid",
+     "note": "unknown peer -> input_invalid/unknown_peer"},
+    {"action": "fail", "node": "n1", "peer": "__transfer__", "to": "n2", "tx_id": "broke", "amount": 500, "reason": "compute_failure",
+     "note": "insufficient funds -> compute_failure/insufficient_funds (422)"},
+
+    {"action": "abort_snapshot", "node": "n1", "snap_id": "dup", "reason": "manual abort"},
+    {"action": "fail", "node": "n1", "peer": "__abort__", "snap_id": "dup", "reason": "state_conflict",
+     "note": "session is gone after abort -> state_conflict/session_unknown"}
+  ],
+  "expect": {}
+}

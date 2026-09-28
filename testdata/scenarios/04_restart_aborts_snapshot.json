@@ -1,0 +1,50 @@
+{
+  "name": "04_restart_aborts_snapshot",
+  "description": "A snapshot is in flight (channel n2->n1 pinned, markers not everywhere) when n1 is restarted. The recovery rule aborts s1 on n1: the run must NOT stitch pre- and post-restart state. t1 then drains as ordinary traffic; markers for s1 are refused with snapshot_interrupted and peers abort the same dead round. The whole round is restarted: n2 and n3 are also restarted and a fresh snapshot id s2 succeeds and conserves 300.",
+  "nodes": [
+    {"id": "n1", "address": ""},
+    {"id": "n2", "address": ""},
+    {"id": "n3", "address": ""}
+  ],
+  "initial_balance": {"n1": 100, "n2": 100, "n3": 100},
+  "conserve_total": 300,
+  "steps": [
+    {"action": "pin", "node": "n2", "peer": "n1"},
+    {"action": "transfer", "node": "n2", "to": "n1", "tx_id": "t1", "amount": 30},
+    {"action": "start_snapshot", "node": "n1", "snap_id": "s1"},
+    {"action": "restart_node", "node": "n1",
+     "note": "restart while s1 is recording and t1 is in flight"},
+    {"action": "fail", "node": "n1", "peer": "__snapshot__", "snap_id": "s1", "reason": "state_conflict",
+     "note": "starting the SAME id again is a state_conflict, not a continuation"},
+    {"action": "release", "node": "n2", "peer": "n1",
+     "note": "t1 drains as ordinary traffic; the s1 marker behind it is refused and s1 aborts cluster-wide"},
+    {"action": "sleep", "meta": {"ms": 150}},
+    {"action": "expect_snapshot", "node": "n1", "snap_id": "s1"},
+
+    {"action": "restart_node", "node": "n2", "note": "restart the whole round: all processes that saw s1"},
+    {"action": "restart_node", "node": "n3"},
+    {"action": "sleep", "meta": {"ms": 100}},
+
+    {"action": "start_snapshot", "node": "n1", "snap_id": "s2",
+     "note": "fresh round, fresh snapshot id"},
+    {"action": "await_complete", "node": "n1", "snap_id": "s2"},
+    {"action": "expect_snapshot", "node": "n1", "snap_id": "s2"},
+    {"action": "await_settled"}
+  ],
+  "expect": {
+    "s1": {
+      "complete": false,
+      "expect_aborted": true,
+      "aborted_on": ["n1", "n2", "n3"],
+      "local": null
+    },
+    "s2": {
+      "complete": true,
+      "local": {"n1": 130, "n2": 70, "n3": 100},
+      "channels": {},
+      "global_total": 300,
+      "in_flight_sum": 0,
+      "final_balances": {"n1": 130, "n2": 70, "n3": 100}
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "03_overlapping_sessions",
+  "description": "Genuinely concurrent sessions: s1 starts with t1 held (n2->n1); before t1 is released s2 starts with t2 held (n3->n2). Both cuts are open at the same time and record their own in-flight sets. The s2 cut at n1 and n2 must include t1 as well: messages in transit are recorded once per snapshot that cut them. Both snapshots conserve 300.",
+  "nodes": [
+    {"id": "n1", "address": ""},
+    {"id": "n2", "address": ""},
+    {"id": "n3", "address": ""}
+  ],
+  "initial_balance": {"n1": 100, "n2": 100, "n3": 100},
+  "conserve_total": 300,
+  "steps": [
+    {"action": "pin", "node": "n2", "peer": "n1"},
+    {"action": "transfer", "node": "n2", "to": "n1", "tx_id": "t1", "amount": 30},
+    {"action": "start_snapshot", "node": "n1", "snap_id": "s1"},
+    {"action": "await_marker", "node": "n2", "snap_id": "s1", "peer": "n1",
+     "note": "s1 markers reach n2 before the n3 pin goes up"},
+    {"action": "await_marker", "node": "n3", "snap_id": "s1", "peer": "n1"},
+
+    {"action": "pin", "node": "n3", "peer": "n2"},
+    {"action": "transfer", "node": "n3", "to": "n2", "tx_id": "t2", "amount": 20},
+    {"action": "start_snapshot", "node": "n3", "snap_id": "s2",
+     "note": "s2 starts while t1 is STILL pinned in n2->n1 and t2 is held in n3->n2"},
+
+    {"action": "release", "node": "n2", "peer": "n1"},
+    {"action": "release", "node": "n3", "peer": "n2"},
+    {"action": "await_complete", "node": "n1", "snap_id": "s1"},
+    {"action": "await_complete", "node": "n3", "snap_id": "s2"},
+    {"action": "expect_snapshot", "node": "n1", "snap_id": "s1"},
+    {"action": "expect_snapshot", "node": "n3", "snap_id": "s2"},
+    {"action": "await_settled"}
+  ],
+  "expect": {
+    "s1": {
+      "complete": true,
+      "local": {"n1": 100, "n2": 70, "n3": 100},
+      "channels": {"n2->n1": [{"tx_id": "t1", "amount": 30}]},
+      "global_total": 270,
+      "in_flight_sum": 30
+    },
+    "s2": {
+      "complete": true,
+      "local": {"n1": 100, "n2": 70, "n3": 80},
+      "channels": {
+        "n2->n1": [{"tx_id": "t1", "amount": 30}],
+        "n3->n2": [{"tx_id": "t2", "amount": 20}]
+      },
+      "global_total": 250,
+      "in_flight_sum": 50,
+      "final_balances": {"n1": 130, "n2": 90, "n3": 80}
+    }
+  }
+}

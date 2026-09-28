@@ -1,0 +1,680 @@
+{
+  "run_id": "run-20260928T094838.122561546Z",
+  "scenario": "03_overlapping_sessions",
+  "started_at": "2026-09-28T09:48:38.122636915Z",
+  "finished_at": "2026-09-28T09:48:38.139242373Z",
+  "pass": false,
+  "steps": [
+    {
+      "index": 0,
+      "action": "pin",
+      "summary": "pin n2-\u003en1",
+      "lamport": {
+        "n1": 0,
+        "n2": 0,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 100,
+        "n3": 100
+      }
+    },
+    {
+      "index": 1,
+      "action": "transfer",
+      "summary": "transfer n2-\u003en1 t1=30",
+      "lamport": {
+        "n1": 0,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      }
+    },
+    {
+      "index": 2,
+      "action": "start_snapshot",
+      "summary": "start snapshot s1 at n1",
+      "lamport": {
+        "n1": 1,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      },
+      "session_status": {
+        "n1": "recording",
+        "n2": "missing",
+        "n3": "missing"
+      }
+    },
+    {
+      "index": 3,
+      "action": "pin",
+      "summary": "pin n3-\u003en2",
+      "lamport": {
+        "n1": 1,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      }
+    },
+    {
+      "index": 4,
+      "action": "transfer",
+      "summary": "transfer n3-\u003en2 t2=20",
+      "lamport": {
+        "n1": 1,
+        "n2": 1,
+        "n3": 1
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 80
+      }
+    },
+    {
+      "index": 5,
+      "action": "start_snapshot",
+      "summary": "start snapshot s2 at n3",
+      "lamport": {
+        "n1": 1,
+        "n2": 1,
+        "n3": 2
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 80
+      },
+      "session_status": {
+        "n1": "missing",
+        "n2": "missing",
+        "n3": "recording"
+      }
+    },
+    {
+      "index": 6,
+      "action": "release",
+      "summary": "release n2-\u003en1",
+      "lamport": {
+        "n1": 1,
+        "n2": 1,
+        "n3": 2
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 80
+      }
+    },
+    {
+      "index": 7,
+      "action": "release",
+      "summary": "release n3-\u003en2",
+      "lamport": {
+        "n1": 1,
+        "n2": 1,
+        "n3": 2
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 80
+      }
+    },
+    {
+      "index": 8,
+      "action": "await_complete",
+      "summary": "await snapshot s1 complete on all nodes",
+      "lamport": {
+        "n1": 8,
+        "n2": 8,
+        "n3": 8
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 90,
+        "n3": 80
+      },
+      "session_status": {
+        "n1": "complete",
+        "n2": "complete",
+        "n3": "complete"
+      }
+    },
+    {
+      "index": 9,
+      "action": "await_complete",
+      "summary": "await snapshot s2 complete on all nodes",
+      "lamport": {
+        "n1": 8,
+        "n2": 8,
+        "n3": 8
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 90,
+        "n3": 80
+      },
+      "session_status": {
+        "n1": "complete",
+        "n2": "complete",
+        "n3": "complete"
+      }
+    },
+    {
+      "index": 10,
+      "action": "expect_snapshot",
+      "summary": "verify snapshot s1",
+      "lamport": {
+        "n1": 8,
+        "n2": 8,
+        "n3": 8
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 90,
+        "n3": 80
+      },
+      "session_status": {
+        "n1": "complete",
+        "n2": "complete",
+        "n3": "complete"
+      }
+    },
+    {
+      "index": 11,
+      "action": "expect_snapshot",
+      "summary": "verify snapshot s2",
+      "lamport": {
+        "n1": 8,
+        "n2": 8,
+        "n3": 8
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 90,
+        "n3": 80
+      },
+      "session_status": {
+        "n1": "complete",
+        "n2": "complete",
+        "n3": "complete"
+      }
+    },
+    {
+      "index": 12,
+      "action": "await_settled",
+      "summary": "await all channels settled",
+      "lamport": {
+        "n1": 8,
+        "n2": 8,
+        "n3": 8
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 90,
+        "n3": 80
+      }
+    }
+  ],
+  "judgements": {
+    "s1": {
+      "snap_id": "s1",
+      "pass": false,
+      "reasons": [
+        "local state n3: want 100 got 80",
+        "in-flight total: expected 1 recorded messages across all channels, got 2",
+        "in-flight sum: want 30 got 50",
+        "local-state subtotal: want 270 got 250"
+      ],
+      "observed": {
+        "session_id": "s1",
+        "nodes": {
+          "n1": {
+            "session_id": "s1",
+            "initiator": "n1",
+            "status": "complete",
+            "started_at": "2026-09-28T09:48:38.122690278Z",
+            "completed_at": "2026-09-28T09:48:38.129308008Z",
+            "local": {
+              "node_id": "n1",
+              "lamport": 1,
+              "recorded_at": "2026-09-28T09:48:38.122692337Z",
+              "balances": {
+                "n1": 100
+              },
+              "total_balance": 100
+            },
+            "channels": {
+              "n2": {
+                "from": "n2",
+                "to": "n1",
+                "recorded": [
+                  {
+                    "tx_id": "t1",
+                    "amount": 30
+                  }
+                ],
+                "marker_seen_at": "2026-09-28T09:48:38.129307047Z",
+                "marker_lamport": 3,
+                "total_in_flight": 30
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n1",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.129248153Z",
+                "marker_lamport": 4,
+                "total_in_flight": 0
+              }
+            }
+          },
+          "n2": {
+            "session_id": "s1",
+            "initiator": "n1",
+            "status": "complete",
+            "started_at": "2026-09-28T09:48:38.125991371Z",
+            "completed_at": "2026-09-28T09:48:38.132415189Z",
+            "local": {
+              "node_id": "n2",
+              "lamport": 3,
+              "recorded_at": "2026-09-28T09:48:38.126015365Z",
+              "balances": {
+                "n2": 70
+              },
+              "total_balance": 70
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n2",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.126032029Z",
+                "marker_lamport": 1,
+                "total_in_flight": 0
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n2",
+                "recorded": [
+                  {
+                    "tx_id": "t2",
+                    "amount": 20
+                  }
+                ],
+                "marker_seen_at": "2026-09-28T09:48:38.13241419Z",
+                "marker_lamport": 4,
+                "total_in_flight": 20
+              }
+            }
+          },
+          "n3": {
+            "session_id": "s1",
+            "initiator": "n1",
+            "status": "complete",
+            "started_at": "2026-09-28T09:48:38.126037831Z",
+            "completed_at": "2026-09-28T09:48:38.126105431Z",
+            "local": {
+              "node_id": "n3",
+              "lamport": 4,
+              "recorded_at": "2026-09-28T09:48:38.126039539Z",
+              "balances": {
+                "n3": 80
+              },
+              "total_balance": 80
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.126045189Z",
+                "marker_lamport": 1,
+                "total_in_flight": 0
+              },
+              "n2": {
+                "from": "n2",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.126104554Z",
+                "marker_lamport": 3,
+                "total_in_flight": 0
+              }
+            }
+          }
+        },
+        "locals": {
+          "n1": {
+            "n1": 100
+          },
+          "n2": {
+            "n2": 70
+          },
+          "n3": {
+            "n3": 80
+          }
+        },
+        "local_totals": {
+          "n1": 100,
+          "n2": 70,
+          "n3": 80
+        },
+        "in_flight": [
+          {
+            "from": "n2",
+            "to": "n1",
+            "tx_id": "t1",
+            "amount": 30,
+            "transfer": {
+              "tx_id": "t1",
+              "amount": 30
+            }
+          },
+          {
+            "from": "n3",
+            "to": "n2",
+            "tx_id": "t2",
+            "amount": 20,
+            "transfer": {
+              "tx_id": "t2",
+              "amount": 20
+            }
+          }
+        ],
+        "in_flight_sum": 50,
+        "global_total": 250,
+        "complete": true
+      },
+      "expected": {
+        "complete": true,
+        "local": {
+          "n1": 100,
+          "n2": 70,
+          "n3": 100
+        },
+        "channels": {
+          "n2-\u003en1": [
+            {
+              "tx_id": "t1",
+              "amount": 30
+            }
+          ]
+        },
+        "global_total": 270,
+        "in_flight_sum": 30
+      },
+      "oracle": {
+        "aborted": {},
+        "channels": {
+          "n2-\u003en1": [
+            {
+              "tx_id": "t1",
+              "amount": 30
+            }
+          ]
+        },
+        "complete": true,
+        "global_total": 270,
+        "in_flight_sum": 30,
+        "local": {
+          "n1": 100,
+          "n2": 70,
+          "n3": 100
+        }
+      },
+      "conservation": {
+        "pass": true,
+        "want_total": 300,
+        "got_total": 300,
+        "explanation": "sum of recorded local balances (250) + sum of in-flight messages recorded once (50) = 300; closed system total = 300"
+      }
+    },
+    "s2": {
+      "snap_id": "s2",
+      "pass": false,
+      "reasons": [
+        "local state n2: want 70 got 90",
+        "channel n3-\u003en2: want 1 in-flight messages ([t2/20]), got 0 ([])",
+        "in-flight total: expected 2 recorded messages across all channels, got 1",
+        "in-flight sum: want 50 got 30",
+        "local-state subtotal: want 250 got 270"
+      ],
+      "observed": {
+        "session_id": "s2",
+        "nodes": {
+          "n1": {
+            "session_id": "s2",
+            "initiator": "n3",
+            "status": "complete",
+            "started_at": "2026-09-28T09:48:38.125933446Z",
+            "completed_at": "2026-09-28T09:48:38.132460325Z",
+            "local": {
+              "node_id": "n1",
+              "lamport": 4,
+              "recorded_at": "2026-09-28T09:48:38.125945151Z",
+              "balances": {
+                "n1": 100
+              },
+              "total_balance": 100
+            },
+            "channels": {
+              "n2": {
+                "from": "n2",
+                "to": "n1",
+                "recorded": [
+                  {
+                    "tx_id": "t1",
+                    "amount": 30
+                  }
+                ],
+                "marker_seen_at": "2026-09-28T09:48:38.13245952Z",
+                "marker_lamport": 6,
+                "total_in_flight": 30
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n1",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.126029495Z",
+                "marker_lamport": 2,
+                "total_in_flight": 0
+              }
+            }
+          },
+          "n2": {
+            "session_id": "s2",
+            "initiator": "n3",
+            "status": "complete",
+            "started_at": "2026-09-28T09:48:38.129255949Z",
+            "completed_at": "2026-09-28T09:48:38.129380593Z",
+            "local": {
+              "node_id": "n2",
+              "lamport": 6,
+              "recorded_at": "2026-09-28T09:48:38.12925907Z",
+              "balances": {
+                "n2": 90
+              },
+              "total_balance": 90
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n2",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.129377064Z",
+                "marker_lamport": 4,
+                "total_in_flight": 0
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n2",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.12927731Z",
+                "marker_lamport": 2,
+                "total_in_flight": 0
+              }
+            }
+          },
+          "n3": {
+            "session_id": "s2",
+            "initiator": "n3",
+            "status": "complete",
+            "started_at": "2026-09-28T09:48:38.122916796Z",
+            "completed_at": "2026-09-28T09:48:38.129412726Z",
+            "local": {
+              "node_id": "n3",
+              "lamport": 2,
+              "recorded_at": "2026-09-28T09:48:38.122918612Z",
+              "balances": {
+                "n3": 80
+              },
+              "total_balance": 80
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.129412189Z",
+                "marker_lamport": 4,
+                "total_in_flight": 0
+              },
+              "n2": {
+                "from": "n2",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:48:38.129334268Z",
+                "marker_lamport": 6,
+                "total_in_flight": 0
+              }
+            }
+          }
+        },
+        "locals": {
+          "n1": {
+            "n1": 100
+          },
+          "n2": {
+            "n2": 90
+          },
+          "n3": {
+            "n3": 80
+          }
+        },
+        "local_totals": {
+          "n1": 100,
+          "n2": 90,
+          "n3": 80
+        },
+        "in_flight": [
+          {
+            "from": "n2",
+            "to": "n1",
+            "tx_id": "t1",
+            "amount": 30,
+            "transfer": {
+              "tx_id": "t1",
+              "amount": 30
+            }
+          }
+        ],
+        "in_flight_sum": 30,
+        "global_total": 270,
+        "complete": true
+      },
+      "expected": {
+        "complete": true,
+        "local": {
+          "n1": 100,
+          "n2": 70,
+          "n3": 80
+        },
+        "channels": {
+          "n2-\u003en1": [
+            {
+              "tx_id": "t1",
+              "amount": 30
+            }
+          ],
+          "n3-\u003en2": [
+            {
+              "tx_id": "t2",
+              "amount": 20
+            }
+          ]
+        },
+        "global_total": 250,
+        "in_flight_sum": 50,
+        "final_balances": {
+          "n1": 130,
+          "n2": 100,
+          "n3": 70
+        }
+      },
+      "oracle": {
+        "aborted": {},
+        "channels": {
+          "n2-\u003en1": [
+            {
+              "tx_id": "t1",
+              "amount": 30
+            }
+          ],
+          "n3-\u003en2": [
+            {
+              "tx_id": "t2",
+              "amount": 20
+            }
+          ]
+        },
+        "complete": true,
+        "global_total": 250,
+        "in_flight_sum": 50,
+        "local": {
+          "n1": 100,
+          "n2": 70,
+          "n3": 80
+        }
+      },
+      "conservation": {
+        "pass": true,
+        "want_total": 300,
+        "got_total": 300,
+        "explanation": "sum of recorded local balances (270) + sum of in-flight messages recorded once (30) = 300; closed system total = 300"
+      }
+    }
+  },
+  "reasons": [
+    "local state n3: want 100 got 80",
+    "in-flight total: expected 1 recorded messages across all channels, got 2",
+    "in-flight sum: want 30 got 50",
+    "local-state subtotal: want 270 got 250",
+    "local state n2: want 70 got 90",
+    "channel n3-\u003en2: want 1 in-flight messages ([t2/20]), got 0 ([])",
+    "in-flight total: expected 2 recorded messages across all channels, got 1",
+    "in-flight sum: want 50 got 30",
+    "local-state subtotal: want 250 got 270",
+    "final balance for n2: want 100 got 90",
+    "final balance for n3: want 70 got 80"
+  ],
+  "final_balances": {
+    "n1": 130,
+    "n2": 90,
+    "n3": 80
+  },
+  "no_global_pause": true
+}

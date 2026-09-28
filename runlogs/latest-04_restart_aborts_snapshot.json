@@ -1,0 +1,595 @@
+{
+  "run_id": "run-20260928T095615.098219379Z",
+  "scenario": "04_restart_aborts_snapshot",
+  "started_at": "2026-09-28T09:56:15.098321559Z",
+  "finished_at": "2026-09-28T09:56:35.246136504Z",
+  "pass": false,
+  "steps": [
+    {
+      "index": 0,
+      "action": "pin",
+      "summary": "pin n2-\u003en1",
+      "lamport": {
+        "n1": 0,
+        "n2": 0,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 100,
+        "n3": 100
+      }
+    },
+    {
+      "index": 1,
+      "action": "transfer",
+      "summary": "transfer n2-\u003en1 t1=30",
+      "lamport": {
+        "n1": 0,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      }
+    },
+    {
+      "index": 2,
+      "action": "start_snapshot",
+      "summary": "start snapshot s1 at n1",
+      "lamport": {
+        "n1": 1,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      },
+      "session_status": {
+        "n1": "recording",
+        "n2": "missing",
+        "n3": "missing"
+      }
+    },
+    {
+      "index": 3,
+      "action": "restart_node",
+      "summary": "RESTART node n1 (unfinished snapshots must abort)",
+      "lamport": {
+        "n1": 0,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      }
+    },
+    {
+      "index": 4,
+      "action": "fail",
+      "summary": "expect failure class=state_conflict matched=true",
+      "lamport": {
+        "n1": 0,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      },
+      "session_status": {
+        "n1": "aborted",
+        "n2": "missing",
+        "n3": "missing"
+      },
+      "failure": {
+        "step": 4,
+        "want_class": "state_conflict",
+        "got_class": "state_conflict",
+        "got_code": "session_exists",
+        "message": "snapshot \"s1\" already exists with status aborted",
+        "matched": true
+      }
+    },
+    {
+      "index": 5,
+      "action": "release",
+      "summary": "release n2-\u003en1",
+      "lamport": {
+        "n1": 0,
+        "n2": 1,
+        "n3": 0
+      },
+      "balances": {
+        "n1": 100,
+        "n2": 70,
+        "n3": 100
+      }
+    },
+    {
+      "index": 6,
+      "action": "sleep",
+      "summary": "scheduling tick",
+      "lamport": {
+        "n1": 2,
+        "n2": 4,
+        "n3": 3
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 70,
+        "n3": 100
+      }
+    },
+    {
+      "index": 7,
+      "action": "expect_snapshot",
+      "summary": "verify snapshot s1",
+      "lamport": {
+        "n1": 2,
+        "n2": 4,
+        "n3": 3
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 70,
+        "n3": 100
+      },
+      "session_status": {
+        "n1": "aborted",
+        "n2": "aborted",
+        "n3": "aborted"
+      }
+    },
+    {
+      "index": 8,
+      "action": "start_snapshot",
+      "summary": "start snapshot s2 at n1",
+      "lamport": {
+        "n1": 3,
+        "n2": 4,
+        "n3": 3
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 70,
+        "n3": 100
+      },
+      "session_status": {
+        "n1": "recording",
+        "n2": "missing",
+        "n3": "missing"
+      }
+    },
+    {
+      "index": 9,
+      "action": "await_complete",
+      "summary": "await snapshot s2 complete on all nodes",
+      "lamport": {
+        "n1": 3,
+        "n2": 6,
+        "n3": 5
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 70,
+        "n3": 100
+      },
+      "session_status": {
+        "n1": "recording",
+        "n2": "aborted",
+        "n3": "aborted"
+      }
+    },
+    {
+      "index": 10,
+      "action": "expect_snapshot",
+      "summary": "verify snapshot s2",
+      "lamport": {
+        "n1": 3,
+        "n2": 6,
+        "n3": 5
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 70,
+        "n3": 100
+      },
+      "session_status": {
+        "n1": "recording",
+        "n2": "aborted",
+        "n3": "aborted"
+      }
+    },
+    {
+      "index": 11,
+      "action": "await_settled",
+      "summary": "await all channels settled",
+      "lamport": {
+        "n1": 3,
+        "n2": 6,
+        "n3": 5
+      },
+      "balances": {
+        "n1": 130,
+        "n2": 70,
+        "n3": 100
+      }
+    }
+  ],
+  "judgements": {
+    "s1": {
+      "snap_id": "s1",
+      "pass": true,
+      "observed": {
+        "session_id": "s1",
+        "nodes": {
+          "n1": {
+            "session_id": "s1",
+            "initiator": "n1",
+            "status": "aborted",
+            "started_at": "2026-09-28T09:56:15.098381384Z",
+            "aborted_at": "2026-09-28T09:56:15.098557187Z",
+            "abort_reason": "process restarted while session was recording",
+            "local": {
+              "node_id": "n1",
+              "lamport": 1,
+              "recorded_at": "2026-09-28T09:56:15.098383919Z",
+              "balances": {
+                "n1": 100
+              },
+              "total_balance": 100
+            },
+            "channels": {
+              "n2": {
+                "from": "n2",
+                "to": "n1",
+                "recorded": null,
+                "marker_seen_at": "0001-01-01T00:00:00Z",
+                "marker_lamport": 0,
+                "total_in_flight": 0
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n1",
+                "recorded": null,
+                "marker_seen_at": "0001-01-01T00:00:00Z",
+                "marker_lamport": 0,
+                "total_in_flight": 0
+              }
+            }
+          },
+          "n2": {
+            "session_id": "s1",
+            "initiator": "n1",
+            "status": "aborted",
+            "started_at": "2026-09-28T09:56:15.101699056Z",
+            "completed_at": "2026-09-28T09:56:15.105087153Z",
+            "aborted_at": "2026-09-28T09:56:15.105291701Z",
+            "abort_reason": "peer aborted session: session s1 is aborted on this node",
+            "local": {
+              "node_id": "n2",
+              "lamport": 3,
+              "recorded_at": "2026-09-28T09:56:15.101729862Z",
+              "balances": {
+                "n2": 70
+              },
+              "total_balance": 70
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n2",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:56:15.101754262Z",
+                "marker_lamport": 1,
+                "total_in_flight": 0
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n2",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:56:15.105085858Z",
+                "marker_lamport": 3,
+                "total_in_flight": 0
+              }
+            }
+          },
+          "n3": {
+            "session_id": "s1",
+            "initiator": "n1",
+            "status": "aborted",
+            "started_at": "2026-09-28T09:56:15.101761059Z",
+            "aborted_at": "2026-09-28T09:56:15.105012591Z",
+            "abort_reason": "peer aborted session: session s1 is aborted on this node",
+            "local": {
+              "node_id": "n3",
+              "lamport": 3,
+              "recorded_at": "2026-09-28T09:56:15.101770257Z",
+              "balances": {
+                "n3": 100
+              },
+              "total_balance": 100
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:56:15.101781689Z",
+                "marker_lamport": 1,
+                "total_in_flight": 0
+              },
+              "n2": {
+                "from": "n2",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "0001-01-01T00:00:00Z",
+                "marker_lamport": 0,
+                "total_in_flight": 0
+              }
+            }
+          }
+        },
+        "status_by_node": {
+          "n1": "aborted",
+          "n2": "aborted",
+          "n3": "aborted"
+        },
+        "aborted_on": [
+          "n1",
+          "n2",
+          "n3"
+        ],
+        "locals": {},
+        "local_totals": {},
+        "in_flight": null,
+        "in_flight_sum": 0,
+        "global_total": 0,
+        "complete": false,
+        "any_aborted": true
+      },
+      "expected": {
+        "complete": false,
+        "expect_aborted": true,
+        "aborted_on": [
+          "n1",
+          "n2"
+        ],
+        "local": null,
+        "global_total": 0,
+        "in_flight_sum": 0
+      },
+      "oracle": {
+        "aborted": {
+          "n1": "restarted while recording"
+        },
+        "channels": {
+          "n2-\u003en1": [
+            {
+              "tx_id": "t1",
+              "amount": 30
+            }
+          ]
+        },
+        "complete": false,
+        "global_total": 270,
+        "in_flight_sum": 30,
+        "local": {
+          "n1": 100,
+          "n2": 70,
+          "n3": 100
+        }
+      }
+    },
+    "s2": {
+      "snap_id": "s2",
+      "pass": false,
+      "reasons": [
+        "snapshot unexpectedly aborted on nodes [n2 n3]",
+        "TOKEN CONSERVATION BROKEN: sum of recorded local balances (0) + sum of in-flight messages recorded once (0) = 0; closed system total = 300",
+        "completion: want complete=true got complete=false missing=[]",
+        "local state n1: want 130 got -1",
+        "local state n2: want 70 got -1",
+        "local state n3: want 100 got -1",
+        "local-state subtotal: want 300 got 0"
+      ],
+      "observed": {
+        "session_id": "s2",
+        "nodes": {
+          "n1": {
+            "session_id": "s2",
+            "initiator": "n1",
+            "status": "recording",
+            "started_at": "2026-09-28T09:56:15.218948349Z",
+            "local": {
+              "node_id": "n1",
+              "lamport": 3,
+              "recorded_at": "2026-09-28T09:56:15.218951235Z",
+              "balances": {
+                "n1": 130
+              },
+              "total_balance": 130
+            },
+            "channels": {
+              "n2": {
+                "from": "n2",
+                "to": "n1",
+                "recorded": null,
+                "marker_seen_at": "0001-01-01T00:00:00Z",
+                "marker_lamport": 0,
+                "total_in_flight": 0
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n1",
+                "recorded": null,
+                "marker_seen_at": "0001-01-01T00:00:00Z",
+                "marker_lamport": 0,
+                "total_in_flight": 0
+              }
+            },
+            "peers_pending": [
+              "n2",
+              "n3"
+            ]
+          },
+          "n2": {
+            "session_id": "s2",
+            "initiator": "n1",
+            "status": "aborted",
+            "started_at": "2026-09-28T09:56:15.221987554Z",
+            "aborted_at": "2026-09-28T09:56:35.243957575Z",
+            "abort_reason": "fifo_order_violation: channel n2-\u003en3: expected seq 1, got 2",
+            "local": {
+              "node_id": "n2",
+              "lamport": 6,
+              "recorded_at": "2026-09-28T09:56:15.222014838Z",
+              "balances": {
+                "n2": 70
+              },
+              "total_balance": 70
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n2",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:56:15.222039146Z",
+                "marker_lamport": 3,
+                "total_in_flight": 0
+              },
+              "n3": {
+                "from": "n3",
+                "to": "n2",
+                "recorded": null,
+                "marker_seen_at": "0001-01-01T00:00:00Z",
+                "marker_lamport": 0,
+                "total_in_flight": 0
+              }
+            }
+          },
+          "n3": {
+            "session_id": "s2",
+            "initiator": "n1",
+            "status": "aborted",
+            "started_at": "2026-09-28T09:56:15.222045545Z",
+            "aborted_at": "2026-09-28T09:56:35.243919135Z",
+            "abort_reason": "fifo_order_violation: channel n3-\u003en1: expected seq 1, got 2",
+            "local": {
+              "node_id": "n3",
+              "lamport": 5,
+              "recorded_at": "2026-09-28T09:56:15.222047831Z",
+              "balances": {
+                "n3": 100
+              },
+              "total_balance": 100
+            },
+            "channels": {
+              "n1": {
+                "from": "n1",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "2026-09-28T09:56:15.22205299Z",
+                "marker_lamport": 3,
+                "total_in_flight": 0
+              },
+              "n2": {
+                "from": "n2",
+                "to": "n3",
+                "recorded": null,
+                "marker_seen_at": "0001-01-01T00:00:00Z",
+                "marker_lamport": 0,
+                "total_in_flight": 0
+              }
+            }
+          }
+        },
+        "status_by_node": {
+          "n1": "recording",
+          "n2": "aborted",
+          "n3": "aborted"
+        },
+        "aborted_on": [
+          "n2",
+          "n3"
+        ],
+        "locals": {},
+        "local_totals": {},
+        "in_flight": null,
+        "in_flight_sum": 0,
+        "global_total": 0,
+        "complete": false,
+        "any_aborted": true
+      },
+      "expected": {
+        "complete": true,
+        "local": {
+          "n1": 130,
+          "n2": 70,
+          "n3": 100
+        },
+        "global_total": 300,
+        "in_flight_sum": 0,
+        "final_balances": {
+          "n1": 130,
+          "n2": 70,
+          "n3": 100
+        }
+      },
+      "oracle": {
+        "aborted": {},
+        "channels": {},
+        "complete": true,
+        "global_total": 300,
+        "in_flight_sum": 0,
+        "local": {
+          "n1": 130,
+          "n2": 70,
+          "n3": 100
+        }
+      },
+      "conservation": {
+        "pass": false,
+        "want_total": 300,
+        "got_total": 0,
+        "explanation": "sum of recorded local balances (0) + sum of in-flight messages recorded once (0) = 0; closed system total = 300"
+      }
+    }
+  },
+  "classified_failures": [
+    {
+      "step": 4,
+      "want_class": "state_conflict",
+      "got_class": "state_conflict",
+      "got_code": "session_exists",
+      "message": "snapshot \"s1\" already exists with status aborted",
+      "matched": true
+    }
+  ],
+  "reasons": [
+    "step 9 (await_complete) failed: snapshot_interrupted/snapshot_interrupted_restart: snapshot aborted during wait",
+    "step 11 (await_settled) failed: timeout waiting full settlement",
+    "final settle: timeout waiting full settlement",
+    "snapshot unexpectedly aborted on nodes [n2 n3]",
+    "TOKEN CONSERVATION BROKEN: sum of recorded local balances (0) + sum of in-flight messages recorded once (0) = 0; closed system total = 300",
+    "completion: want complete=true got complete=false missing=[]",
+    "local state n1: want 130 got -1",
+    "local state n2: want 70 got -1",
+    "local state n3: want 100 got -1",
+    "local-state subtotal: want 300 got 0"
+  ],
+  "final_balances": {
+    "n1": 130,
+    "n2": 70,
+    "n3": 100
+  },
+  "no_global_pause": true
+}

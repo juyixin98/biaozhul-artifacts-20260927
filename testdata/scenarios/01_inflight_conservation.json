@@ -1,0 +1,35 @@
+{
+  "name": "01_inflight_conservation",
+  "description": "Single snapshot with a transfer held in-flight at the cut: the global total must be local states + the one in-flight message = 300. Channels are gated individually; processes never stop simultaneously.",
+  "nodes": [
+    {"id": "n1", "address": ""},
+    {"id": "n2", "address": ""},
+    {"id": "n3", "address": ""}
+  ],
+  "initial_balance": {"n1": 100, "n2": 100, "n3": 100},
+  "conserve_total": 300,
+  "steps": [
+    {"action": "pin",     "node": "n2", "peer": "n1", "note": "hold ONLY the n2->n1 directed channel"},
+    {"action": "transfer", "node": "n2", "to": "n1", "tx_id": "t1", "amount": 30,
+     "note": "n2 is debited at send; t1 sits in n2's reliable outbox"},
+    {"action": "start_snapshot", "node": "n1", "snap_id": "s1",
+     "note": "initiator records local state (n1=100) and marks flow"},
+    {"action": "release", "node": "n2", "peer": "n1",
+     "note": "t1 (before the marker on this FIFO channel) is delivered, then the marker"},
+    {"action": "await_complete", "node": "n1", "snap_id": "s1"},
+    {"action": "expect_snapshot", "node": "n1", "snap_id": "s1"},
+    {"action": "await_settled", "note": "all post-snapshot traffic drains"}
+  ],
+  "expect": {
+    "s1": {
+      "complete": true,
+      "local": {"n1": 100, "n2": 70, "n3": 100},
+      "channels": {
+        "n2->n1": [{"tx_id": "t1", "amount": 30}]
+      },
+      "global_total": 270,
+      "in_flight_sum": 30,
+      "final_balances": {"n1": 130, "n2": 70, "n3": 100}
+    }
+  }
+}
