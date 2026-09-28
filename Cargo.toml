@@ -1,0 +1,25 @@
+[package]
+name = "diff-constraints-service"
+version = "0.1.0"
+edition = "2021"
+description = "Integer difference constraints (x - y <= c) service: feasibility, solutions and negative-cycle conflict evidence"
+
+[lib]
+name = "diff_constraints_service"
+path = "src/lib.rs"
+
+[[bin]]
+name = "diff-constraints-service"
+path = "src/main.rs"
+
+[dependencies]
+axum = { version = "0.8", features = ["macros"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "sync", "signal"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt", "env-filter"] }
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"
