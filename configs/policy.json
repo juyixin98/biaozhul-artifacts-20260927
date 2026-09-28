@@ -1,0 +1,47 @@
+{
+  "policy_id": "shop-readonly-v1",
+  "description": "Shop demo policy: read-only synthetic schema, SELECT/INSERT/UPDATE/DELETE, dynamic order-by via slots.",
+  "dialect": "sqlite",
+  "allowed_statements": ["select", "insert", "update", "delete"],
+  "max_array_length": 1000,
+  "allow_empty_array": false,
+  "tables": {
+    "users": {
+      "columns": ["id", "email", "display_name", "country", "created_at"],
+      "allow": ["select", "insert", "update", "delete"]
+    },
+    "orders": {
+      "columns": ["id", "user_id", "status", "total_cents", "created_at"],
+      "allow": ["select", "insert", "update", "delete"]
+    },
+    "products": {
+      "columns": ["id", "sku", "name", "price_cents", "stock", "category"],
+      "allow": ["select", "insert", "update", "delete"]
+    },
+    "audit_events": {
+      "columns": ["id", "actor", "action", "created_at"],
+      "allow": ["select", "insert"]
+    }
+  },
+  "identifier_slots": {
+    "sort_col": {
+      "roles": ["column"],
+      "allowed": {
+        "orders": ["id", "total_cents", "created_at"],
+        "products": ["id", "price_cents", "name"]
+      }
+    },
+    "tbl": {
+      "roles": ["table"],
+      "allowed": ["users", "orders", "products", "audit_events"]
+    },
+    "any_col": {
+      "roles": ["column"],
+      "allow_unqualified_columns": true
+    },
+    "dir_kw": {
+      "roles": ["keyword"],
+      "allowed": ["ASC", "DESC"]
+    }
+  }
+}
