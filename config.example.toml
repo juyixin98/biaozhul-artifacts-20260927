@@ -1,0 +1,25 @@
+# Example configuration for the resampling service.
+# All keys are optional; environment variables RESAMP_* override these values.
+
+db_path = "./data/resamp.db"
+data_dir = "./data/jobs"
+log_dir = "./data/logs"
+
+# Largest single input chunk accepted (samples per request).
+max_input_chunk_samples = 1000000
+# Largest total input accumulated for one job.
+max_total_input_samples = 50000000
+# Hard ceiling on high-rate prototype FIR length (resource exhaustion guard).
+max_filter_taps = 2000001
+json_list_sample_cap = 8192
+
+min_rate = 1
+max_rate = 10000000
+# Both coprime factors L (up) and M (down) must not exceed this.
+max_ratio_factor = 4096
+
+# Kaiser window stop-band attenuation (dB).
+attenuation_db = 80.0
+# Half transition band as a fraction of the ideal cutoff min(fin,fout)/2:
+# pass-band edge = (1-x)*fc, stop-band edge = (1+x)*fc.
+transition_half_width = 0.1
