@@ -1,0 +1,10 @@
+# Pinned runtime dependencies (test-asset UTXO ledger)
+# Install: python -m pip install -r requirements.txt
+fastapi==0.115.6
+uvicorn==0.34.0
+pydantic==2.10.4
+cryptography==43.0.3
+
+# Test / verification extras
+pytest==8.3.4
+httpx==0.28.1

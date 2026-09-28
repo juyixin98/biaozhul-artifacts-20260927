@@ -1,0 +1,18 @@
+[project]
+name = "utxo-ledger-testasset"
+version = "0.1.0"
+description = "Test-asset UTXO ledger: canonical encoding, Ed25519 verification, chain-state kernel, SQLite index, offline replay"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi==0.115.6",
+    "uvicorn==0.34.0",
+    "pydantic==2.10.4",
+    "cryptography==43.0.3",
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.4", "httpx==0.28.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
