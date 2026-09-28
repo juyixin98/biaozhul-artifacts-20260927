@@ -1,0 +1,27 @@
+[package]
+name = "rb-format"
+version = "1.0.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+
+[features]
+# 仅供集成测试/校验工具构造分片容器与检查容器物理类型，生产路径不启用。
+test-util = []
+
+[dev-dependencies]
+rb-testkit = { workspace = true }
+
+[[test]]
+name = "container_threshold"
+required-features = ["test-util"]
+
+[[test]]
+name = "codec_roundtrip"
+required-features = ["test-util"]
+
+[[test]]
+name = "codec_corruption"
+required-features = ["test-util"]
