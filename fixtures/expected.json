@@ -1,0 +1,245 @@
+{
+  "_meta": {
+    "description": "独立测试预言（test oracle）。每条期望由人工依据 RFC/IP 地址分类手工编写，独立于 safeproxy 内核自身的实现。测试用标准库 ipaddress 独立复核 expect_classification，再与内核决策比对。",
+    "independent_oracle_principle": "expected_verdict/expected_code/expected_rule/expect_classification 均在此文件内手写，禁止由被测代码生成"
+  },
+  "cases": [
+    {
+      "id": "allow-local-origin",
+      "url": "http://127.0.0.1:18080/ok",
+      "expected_verdict": "allow",
+      "expected_code": null,
+      "expected_status": 200,
+      "expected_rule": "allow-local-origin",
+      "connect_should_happen": true,
+      "expect_classification": {"127.0.0.1": "loopback"},
+      "why": "唯一放行：环回上的固定测试端口"
+    },
+    {
+      "id": "deny-metadata-direct",
+      "url": "http://169.254.169.254/latest/meta-data/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-metadata-ipv4",
+      "connect_should_happen": false,
+      "expect_classification": {"169.254.169.254": "link_local"},
+      "why": "云元数据链路本地地址，直接拒绝，绝不连接"
+    },
+    {
+      "id": "deny-metadata-name",
+      "url": "http://metadata.example/latest/meta-data/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-metadata-ipv4",
+      "connect_should_happen": false,
+      "expect_classification": {"169.254.169.254": "link_local"},
+      "why": "名字解析到元数据地址"
+    },
+    {
+      "id": "deny-rebind-mixed-set",
+      "url": "http://rebind.example:18080/loophole",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-metadata-ipv4",
+      "connect_should_happen": false,
+      "expect_classification": {"127.0.0.1": "loopback", "169.254.169.254": "link_local"},
+      "must_not_connect_any": ["127.0.0.1", "169.254.169.254"],
+      "why": "重绑定：答案集合同时含'本跳可允许的本机源站'与元数据，deny_if_any_forbidden 整组拒绝——连那个允许的 127.0.0.1 也不连接"
+    },
+    {
+      "id": "deny-ipv4-mapped-ipv6",
+      "url": "http://mapped.example/x",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-loopback-v4",
+      "connect_should_happen": false,
+      "expect_classification": {"::ffff:127.0.0.1": "loopback_after_unwrap"},
+      "why": "::ffff:127.0.0.1 解包为 127.0.0.1，按环回拒绝；映射段规则同时兜底"
+    },
+    {
+      "id": "deny-mapped-meta",
+      "url": "http://mapped-meta.example/x",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-metadata-ipv4",
+      "connect_should_happen": false,
+      "expect_classification": {"::ffff:169.254.169.254": "link_local_after_unwrap"},
+      "why": "mapped 指向元数据，解包即 169.254.169.254"
+    },
+    {
+      "id": "deny-userinfo",
+      "url": "http://allowed@169.254.169.254/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-userinfo",
+      "connect_should_happen": false,
+      "expect_classification": {},
+      "why": "用户名片段不得被静默剥离后放行；属输入面拒绝"
+    },
+    {
+      "id": "deny-integer-ip",
+      "url": "http://2130706433/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-loopback-v4",
+      "connect_should_happen": false,
+      "expect_classification": {"2130706433": "127.0.0.1"},
+      "why": "十进制整数 IP（=127.0.0.1）必须先规范化再判定，不能因写法不同漏过"
+    },
+    {
+      "id": "deny-hex-ip",
+      "url": "http://0x7f000001/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-loopback-v4",
+      "connect_should_happen": false,
+      "expect_classification": {"0x7f000001": "127.0.0.1"},
+      "why": "十六进制整数 IP（=127.0.0.1）"
+    },
+    {
+      "id": "deny-octal-ip",
+      "url": "http://0177.0.0.1/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-loopback-v4",
+      "connect_should_happen": false,
+      "expect_classification": {"0177.0.0.1": "127.0.0.1"},
+      "why": "前导零八进制写法（0177=127），inet_aton 语义"
+    },
+    {
+      "id": "deny-mixed-private-set",
+      "url": "http://mixed.example:18080/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-private-192",
+      "connect_should_happen": false,
+      "expect_classification": {"127.0.0.1": "loopback", "192.168.1.10": "private"},
+      "must_not_connect_any": ["127.0.0.1", "192.168.1.10"],
+      "why": "允许的本机+私网混合集合，整组拒绝；本机候选也不连接"
+    },
+    {
+      "id": "deny-default-public",
+      "url": "http://public.example/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "default",
+      "connect_should_happen": false,
+      "expect_classification": {"203.0.113.9": "public"},
+      "why": "即使是公网，无 allow 命中也按 default_action=deny"
+    },
+    {
+      "id": "deny-private-name",
+      "url": "http://internal.example/",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-private-10",
+      "connect_should_happen": false,
+      "expect_classification": {"10.0.0.5": "private"},
+      "why": "RFC1918 内网"
+    },
+    {
+      "id": "input-bad-scheme",
+      "url": "gopher://127.0.0.1/",
+      "expected_verdict": "input_error",
+      "expected_code": "E_SCHEME_FORBIDDEN",
+      "connect_should_happen": false,
+      "expect_classification": {},
+      "why": "非白名单 scheme"
+    },
+    {
+      "id": "input-percent-host",
+      "url": "http://127.0.0.1%2f@allowed/",
+      "expected_verdict": "input_error",
+      "expected_code": "E_HOST_BAD_CHAR",
+      "connect_should_happen": false,
+      "expect_classification": {},
+      "why": "主机百分号编码在规范化前拒绝"
+    },
+    {
+      "id": "input-raw-ipv6",
+      "url": "http://::1/",
+      "expected_verdict": "input_error",
+      "expected_code": "E_IPV6_RAW",
+      "connect_should_happen": false,
+      "expect_classification": {},
+      "why": "裸 IPv6 必须加括号"
+    },
+    {
+      "id": "input-port-range",
+      "url": "http://127.0.0.1:70000/",
+      "expected_verdict": "input_error",
+      "expected_code": "E_PORT_RANGE",
+      "connect_should_happen": false,
+      "expect_classification": {},
+      "why": "端口越界"
+    },
+    {
+      "id": "input-empty",
+      "url": "",
+      "expected_verdict": "input_error",
+      "expected_code": "E_URL_EMPTY",
+      "connect_should_happen": false,
+      "expect_classification": {},
+      "why": "空 URL"
+    },
+    {
+      "id": "redirect-allow-to-meta",
+      "url": "http://127.0.0.1:18080/redirect-meta",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-metadata-ipv4",
+      "connect_should_happen": true,
+      "connect_allowed_peers": ["127.0.0.1"],
+      "forbidden_peer_never_connected": ["169.254.169.254"],
+      "min_hops": 2,
+      "expect_classification": {"169.254.169.254": "link_local"},
+      "why": "第 1 跳允许并真实连接本机源站；第 2 跳重校验元数据地址后拒绝，禁止地址从未连接"
+    },
+    {
+      "id": "redirect-allow-to-rebind",
+      "url": "http://127.0.0.1:18080/redirect-rebind",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-metadata-ipv4",
+      "connect_should_happen": true,
+      "connect_allowed_peers": ["127.0.0.1"],
+      "forbidden_peer_never_connected": ["169.254.169.254", "127.0.0.1"],
+      "min_hops": 2,
+      "expect_classification": {"127.0.0.1": "loopback", "169.254.169.254": "link_local"},
+      "why": "重定向到重绑定名字，第 2 跳重解析重校验，混合集合（本机+元数据）拒绝，第二跳一个都不连"
+    },
+    {
+      "id": "redirect-allow-to-mapped",
+      "url": "http://127.0.0.1:18080/redirect-mapped",
+      "expected_verdict": "deny",
+      "expected_code": "E_POLICY_DENY",
+      "expected_rule": "deny-loopback-v4",
+      "connect_should_happen": true,
+      "connect_allowed_peers": ["127.0.0.1"],
+      "forbidden_peer_never_connected": ["127.0.0.1"],
+      "min_hops": 2,
+      "expect_classification": {"::ffff:127.0.0.1": "loopback_after_unwrap"},
+      "why": "重定向到 mapped 名字，第 2 跳解包为环回（且该端口不匹配唯一 allow 端口），拒绝"
+    },
+    {
+      "id": "redirect-loop",
+      "url": "http://127.0.0.1:18080/loop-a",
+      "expected_verdict": "state_conflict",
+      "expected_code": "E_REDIRECT_LOOP",
+      "connect_should_happen": true,
+      "connect_allowed_peers": ["127.0.0.1"],
+      "expect_classification": {"127.0.0.1": "loopback"},
+      "why": "两个允许的环回地址互相重定向形成环，判状态冲突而非策略拒绝"
+    },
+    {
+      "id": "redirect-budget",
+      "url": "http://127.0.0.1:18080/many",
+      "expected_verdict": "resource_exhausted",
+      "expected_code": "E_REDIRECT_BUDGET",
+      "connect_should_happen": true,
+      "connect_allowed_peers": ["127.0.0.1"],
+      "expect_classification": {"127.0.0.1": "loopback"},
+      "why": "自跳重定向超过最大跳数，判资源耗尽"
+    }
+  ]
+}

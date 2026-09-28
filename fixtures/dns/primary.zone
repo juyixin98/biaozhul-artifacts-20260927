@@ -1,0 +1,35 @@
+# 受控 DNS 夹具（合成，不走公网）
+#
+# 列顺序即返回顺序；同一名字多行 = 多个 A/AAAA 答案。
+# 解析器（FixtureResolver）在多次调用间轮转起点，确定性地复现 DNS 重绑定。
+#
+# 场景映射见 fixtures/expected.json。
+
+# --- 正常允许目标：本机测试源站（与 ORIGIN_PORT 默认值一致）---
+# 内核在 IP 字面量 URL 时不查 DNS；这里提供名字形态供"名字也能解析到本机"
+# 的测试使用，但策略只放行 127.0.0.1:18080。
+local-origin.test.      A       127.0.0.1
+
+# --- 重绑定：第一次解析看起来是允许的本机源站（端口正确即允许），轮转后
+# 第二个答案是内网元数据。无论从哪个答案开始，返回集合始终同时包含二者，
+# 混合集规则 deny_if_any_forbidden 必须整组拒绝——
+# 连"这一跳本可允许"的 127.0.0.1:18080 也不能连。
+rebind.example.         A       127.0.0.1
+rebind.example.         A       169.254.169.254
+
+# --- 纯元数据/内网主机名 ---
+metadata.example.       A       169.254.169.254
+internal.example.       A       10.0.0.5
+
+# --- IPv4-mapped IPv6：解包后等同 127.0.0.1，必须按环回口径拒绝 ---
+mapped.example.         AAAA    ::ffff:127.0.0.1
+
+# --- IPv4-mapped 指向元数据（解包后 169.254.169.254）---
+mapped-meta.example.    AAAA    ::ffff:169.254.169.254
+
+# --- 混合集合：允许的本机源站 + 私网并存（同样要求整组拒绝，本机也不连）---
+mixed.example.          A       127.0.0.1
+mixed.example.          A       192.168.1.10
+
+# --- 普通公网主机：受 default_action=deny 拒绝（演示默认拒绝出站）---
+public.example.         A       203.0.113.9

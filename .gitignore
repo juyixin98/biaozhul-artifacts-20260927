@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+artifacts/*.sqlite3
+artifacts/*.sqlite3-*
+artifacts/*.key
+artifacts/*.log
+artifacts/demo.jsonl
+build/
+dist/

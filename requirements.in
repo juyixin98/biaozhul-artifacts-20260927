@@ -1,0 +1,8 @@
+# 直接依赖（精确锁定见 requirements.lock）
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+cryptography==44.0.0
+# 测试 / 本地客户端
+pytest==8.3.4
+httpx==0.28.1

@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "allowed_schemes": ["http"],
+  "default_action": "deny",
+  "mixed_address_set": "deny_if_any_forbidden",
+  "deny_userinfo": true,
+  "limits": {
+    "max_redirects": 2,
+    "max_dns_answers": 8,
+    "time_budget_ms": 5000,
+    "max_header_bytes": 65536,
+    "max_body_bytes": 1048576
+  },
+  "rules": [
+    {
+      "id": "deny-metadata-ipv4",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "169.254.0.0/16",
+      "rationale": "云元数据服务/链路本地：禁止出站"
+    },
+    {
+      "id": "deny-metadata-ipv6",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "fe80::/10",
+      "rationale": "IPv6 链路本地：禁止出站"
+    },
+    {
+      "id": "allow-local-origin",
+      "action": "allow",
+      "kind": "host",
+      "target": "127.0.0.1",
+      "port": 18080,
+      "rationale": "唯一放行：本机测试源站固定端口；必须排在无端口限制的环回拒绝之前"
+    },
+    {
+      "id": "deny-loopback-v4",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "127.0.0.0/8",
+      "rationale": "默认拒绝环回；固定端口的本机源站由更靠前的 allow-local-origin 放行"
+    },
+    {
+      "id": "deny-loopback-v6",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "::1/128",
+      "rationale": "IPv6 环回"
+    },
+    {
+      "id": "deny-mapped-segment",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "::ffff:0:0/96",
+      "rationale": "IPv4-mapped IPv6 映射段（即便下游未解包也命中）"
+    },
+    {
+      "id": "deny-private-10",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "10.0.0.0/8",
+      "rationale": "RFC1918 私网"
+    },
+    {
+      "id": "deny-private-172",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "172.16.0.0/12",
+      "rationale": "RFC1918 私网"
+    },
+    {
+      "id": "deny-private-192",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "192.168.0.0/16",
+      "rationale": "RFC1918 私网"
+    },
+    {
+      "id": "deny-unspecified",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "0.0.0.0/8",
+      "rationale": "本网络段/未指定地址"
+    },
+    {
+      "id": "deny-unique-local-v6",
+      "action": "deny",
+      "kind": "cidr",
+      "target": "fc00::/7",
+      "rationale": "IPv6 唯一本地地址"
+    }
+  ]
+}
