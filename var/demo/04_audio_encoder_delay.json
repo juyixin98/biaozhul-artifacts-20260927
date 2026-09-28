@@ -1,0 +1,513 @@
+{
+  "request": {
+    "segments": [
+      {
+        "path": "seg_audio_delay.json"
+      }
+    ]
+  },
+  "http_status": 201,
+  "body": {
+    "job_id": "d502ac3f0cc245f1",
+    "run_id": "26d4dc382af0",
+    "status": "completed",
+    "decision": "direct_concat",
+    "error_category": null,
+    "error_detail": null,
+    "app_version": "0.1.0",
+    "created_at": "2026-09-27T21:47:12.705035+00:00",
+    "updated_at": "2026-09-27T21:47:12.714423+00:00",
+    "request": {
+      "container": null,
+      "segments": [
+        {
+          "path": "seg_audio_delay.json",
+          "trim_in": null,
+          "trim_out": null
+        }
+      ]
+    },
+    "versions": {
+      "app": "0.1.0",
+      "python": "3.12.3",
+      "numpy": "2.5.3",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5"
+    },
+    "plan": {
+      "container": "mp4-constrained",
+      "decision": "direct_concat",
+      "reasons": [],
+      "tracks": [
+        {
+          "stream_type": "video",
+          "codec": "h264",
+          "time_base": [
+            1,
+            90000
+          ],
+          "edit_list_media_time": 0,
+          "samples": [
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 0,
+              "src_dts": -6000,
+              "src_pts": 0,
+              "out_dts": 0,
+              "out_pts": 6000,
+              "duration": 3000,
+              "keyframe": true,
+              "idr": true,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 1,
+              "src_dts": -3000,
+              "src_pts": 9000,
+              "out_dts": 3000,
+              "out_pts": 15000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 2,
+              "src_dts": 0,
+              "src_pts": 3000,
+              "out_dts": 6000,
+              "out_pts": 9000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 3,
+              "src_dts": 3000,
+              "src_pts": 6000,
+              "out_dts": 9000,
+              "out_pts": 12000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 4,
+              "src_dts": 6000,
+              "src_pts": 18000,
+              "out_dts": 12000,
+              "out_pts": 24000,
+              "duration": 3000,
+              "keyframe": true,
+              "idr": true,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 5,
+              "src_dts": 9000,
+              "src_pts": 12000,
+              "out_dts": 15000,
+              "out_pts": 18000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 6,
+              "src_dts": 12000,
+              "src_pts": 15000,
+              "out_dts": 18000,
+              "out_pts": 21000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 7,
+              "src_dts": 15000,
+              "src_pts": 27000,
+              "out_dts": 21000,
+              "out_pts": 33000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 8,
+              "src_dts": 18000,
+              "src_pts": 21000,
+              "out_dts": 24000,
+              "out_pts": 27000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "video",
+              "src_index": 9,
+              "src_dts": 21000,
+              "src_pts": 24000,
+              "out_dts": 27000,
+              "out_pts": 30000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            }
+          ]
+        },
+        {
+          "stream_type": "audio",
+          "codec": "aac",
+          "time_base": [
+            1,
+            48000
+          ],
+          "edit_list_media_time": 2048,
+          "samples": [
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 0,
+              "src_dts": 0,
+              "src_pts": -2048,
+              "out_dts": 0,
+              "out_pts": -2048,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "priming"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 1,
+              "src_dts": 1024,
+              "src_pts": -1024,
+              "out_dts": 1024,
+              "out_pts": -1024,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "priming"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 2,
+              "src_dts": 2048,
+              "src_pts": 0,
+              "out_dts": 2048,
+              "out_pts": 0,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 3,
+              "src_dts": 3072,
+              "src_pts": 1024,
+              "out_dts": 3072,
+              "out_pts": 1024,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 4,
+              "src_dts": 4096,
+              "src_pts": 2048,
+              "out_dts": 4096,
+              "out_pts": 2048,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 5,
+              "src_dts": 5120,
+              "src_pts": 3072,
+              "out_dts": 5120,
+              "out_pts": 3072,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 6,
+              "src_dts": 6144,
+              "src_pts": 4096,
+              "out_dts": 6144,
+              "out_pts": 4096,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 7,
+              "src_dts": 7168,
+              "src_pts": 5120,
+              "out_dts": 7168,
+              "out_pts": 5120,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 8,
+              "src_dts": 8192,
+              "src_pts": 6144,
+              "out_dts": 8192,
+              "out_pts": 6144,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 9,
+              "src_dts": 9216,
+              "src_pts": 7168,
+              "out_dts": 9216,
+              "out_pts": 7168,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 10,
+              "src_dts": 10240,
+              "src_pts": 8192,
+              "out_dts": 10240,
+              "out_pts": 8192,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 11,
+              "src_dts": 11264,
+              "src_pts": 9216,
+              "out_dts": 11264,
+              "out_pts": 9216,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 12,
+              "src_dts": 12288,
+              "src_pts": 10240,
+              "out_dts": 12288,
+              "out_pts": 10240,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 13,
+              "src_dts": 13312,
+              "src_pts": 11264,
+              "out_dts": 13312,
+              "out_pts": 11264,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 14,
+              "src_dts": 14336,
+              "src_pts": 12288,
+              "out_dts": 14336,
+              "out_pts": 12288,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 15,
+              "src_dts": 15360,
+              "src_pts": 13312,
+              "out_dts": 15360,
+              "out_pts": 13312,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 16,
+              "src_dts": 16384,
+              "src_pts": 14336,
+              "out_dts": 16384,
+              "out_pts": 14336,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_audio_delay",
+              "stream_type": "audio",
+              "src_index": 17,
+              "src_dts": 17408,
+              "src_pts": 15360,
+              "out_dts": 17408,
+              "out_pts": 15360,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            }
+          ]
+        }
+      ],
+      "segment_windows": [
+        {
+          "segment": "seg_audio_delay",
+          "sha256": "cc6b3a55d56ae7dbd61b86e4d505e1ca8daa625326a4397e8f46a9af6d2a152a",
+          "windows": {
+            "video": {
+              "in_tick": 0,
+              "out_tick": 30000
+            },
+            "audio": {
+              "in_tick": 0,
+              "out_tick": 16000
+            }
+          }
+        }
+      ]
+    }
+  },
+  "validate": {
+    "ok": true,
+    "violations": []
+  },
+  "events": [
+    {
+      "ts": "2026-09-27T21:47:12.706314+00:00",
+      "step": "queued",
+      "level": "INFO",
+      "message": "job accepted",
+      "data": {
+        "request": {
+          "container": null,
+          "segments": [
+            {
+              "path": "seg_audio_delay.json",
+              "trim_in": null,
+              "trim_out": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.709067+00:00",
+      "step": "analysing",
+      "level": "INFO",
+      "message": "analysis started"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.710831+00:00",
+      "step": "compat",
+      "level": "INFO",
+      "message": "running compatibility check"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.712703+00:00",
+      "step": "plan",
+      "level": "INFO",
+      "message": "plan built: decision=direct_concat",
+      "data": {
+        "decision": "direct_concat",
+        "reasons": []
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.716259+00:00",
+      "step": "completed",
+      "level": "INFO",
+      "message": "job completed with decision direct_concat",
+      "data": {
+        "decision": "direct_concat",
+        "reasons": []
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.720744+00:00",
+      "step": "validate",
+      "level": "INFO",
+      "message": "re-validation ok=True",
+      "data": {
+        "ok": true,
+        "violations": []
+      }
+    }
+  ]
+}

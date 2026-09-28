@@ -1,0 +1,233 @@
+{
+  "name": "seg_tb_mismatch",
+  "container": "mp4",
+  "streams": [
+    {
+      "type": "video",
+      "codec": "h264",
+      "profile": "high",
+      "level": 40,
+      "width": 1920,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "time_base": [
+        1,
+        25
+      ],
+      "samples": [
+        {
+          "dts": 0,
+          "pts": 0,
+          "duration": 1,
+          "keyframe": true,
+          "idr": true,
+          "depends_on": []
+        },
+        {
+          "dts": 1,
+          "pts": 1,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            0
+          ]
+        },
+        {
+          "dts": 2,
+          "pts": 2,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            1
+          ]
+        },
+        {
+          "dts": 3,
+          "pts": 3,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            2
+          ]
+        },
+        {
+          "dts": 4,
+          "pts": 4,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            3
+          ]
+        },
+        {
+          "dts": 5,
+          "pts": 5,
+          "duration": 1,
+          "keyframe": true,
+          "idr": true,
+          "depends_on": []
+        },
+        {
+          "dts": 6,
+          "pts": 6,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            5
+          ]
+        },
+        {
+          "dts": 7,
+          "pts": 7,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            6
+          ]
+        },
+        {
+          "dts": 8,
+          "pts": 8,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            7
+          ]
+        },
+        {
+          "dts": 9,
+          "pts": 9,
+          "duration": 1,
+          "keyframe": false,
+          "idr": false,
+          "depends_on": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "type": "audio",
+      "codec": "aac",
+      "profile": "lc",
+      "sample_rate": 48000,
+      "channels": 2,
+      "time_base": [
+        1,
+        48000
+      ],
+      "encoder_delay": 1024,
+      "samples": [
+        {
+          "dts": 0,
+          "pts": -1024,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 1024,
+          "pts": 0,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 2048,
+          "pts": 1024,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 3072,
+          "pts": 2048,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 4096,
+          "pts": 3072,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 5120,
+          "pts": 4096,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 6144,
+          "pts": 5120,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 7168,
+          "pts": 6144,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 8192,
+          "pts": 7168,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 9216,
+          "pts": 8192,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 10240,
+          "pts": 9216,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 11264,
+          "pts": 10240,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 12288,
+          "pts": 11264,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 13312,
+          "pts": 12288,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 14336,
+          "pts": 13312,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 15360,
+          "pts": 14336,
+          "duration": 1024,
+          "keyframe": false
+        },
+        {
+          "dts": 16384,
+          "pts": 15360,
+          "duration": 1024,
+          "keyframe": false
+        }
+      ]
+    }
+  ]
+}

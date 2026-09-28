@@ -1,0 +1,70 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/admin/Downloads/xinbiaozhu/opp240/b/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/admin/Downloads/xinbiaozhu/opp240/b
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 53 items
+
+tests/test_api.py::test_health_and_version_report_run_identity PASSED    [  1%]
+tests/test_api.py::test_happy_path_job_completes_with_direct_concat PASSED [  3%]
+tests/test_api.py::test_transcode_decision_is_explicit_not_faked PASSED  [  5%]
+tests/test_api.py::test_missing_reference_job_is_failed_not_success PASSED [  7%]
+tests/test_api.py::test_missing_input_file_is_client_error PASSED        [  9%]
+tests/test_api.py::test_unknown_job_404_and_no_plan_409 PASSED           [ 11%]
+tests/test_api.py::test_validate_endpoint_rechecks_stored_plan PASSED    [ 13%]
+tests/test_api.py::test_events_carry_steps_and_run_identity PASSED       [ 15%]
+tests/test_api.py::test_non_keyframe_trim_job_with_preroll PASSED        [ 16%]
+tests/test_audio.py::test_full_window_keeps_priming_frame PASSED         [ 18%]
+tests/test_audio.py::test_tail_padding_count_and_stamps PASSED           [ 20%]
+tests/test_audio.py::test_two_frame_encoder_delay PASSED                 [ 22%]
+tests/test_audio.py::test_trim_window_overlap_and_lead_in PASSED         [ 24%]
+tests/test_audio.py::test_padding_uses_ceil_for_partial_gap PASSED       [ 26%]
+tests/test_compat.py::test_compatible_segments_have_no_problems PASSED   [ 28%]
+tests/test_compat.py::test_timebase_mismatch_is_classified PASSED        [ 30%]
+tests/test_compat.py::test_codec_mismatch_is_classified PASSED           [ 32%]
+tests/test_compat.py::test_every_incompatibility_demands_transcode PASSED [ 33%]
+tests/test_compat.py::test_single_segment_is_always_compatible PASSED    [ 35%]
+tests/test_gop.py::test_window_selection_uses_presentation_time PASSED   [ 37%]
+tests/test_gop.py::test_closure_pulls_preroll_for_midgop_trim PASSED     [ 39%]
+tests/test_gop.py::test_open_gop_keeps_pre_keyframe_references PASSED    [ 41%]
+tests/test_gop.py::test_untrimmed_open_gop_keeps_everything PASSED       [ 43%]
+tests/test_gop.py::test_dangling_reference_is_hard_failure PASSED        [ 45%]
+tests/test_gop.py::test_empty_window_is_reported PASSED                  [ 47%]
+tests/test_planner.py::test_direct_concat_decision_and_tracks PASSED     [ 49%]
+tests/test_planner.py::test_video_dts_relocated_to_zero_and_continuous PASSED [ 50%]
+tests/test_planner.py::test_video_pts_preserves_reorder_offset_after_relocation PASSED [ 52%]
+tests/test_planner.py::test_segment_b_starts_at_cursor PASSED            [ 54%]
+tests/test_planner.py::test_audio_priming_edit_list_and_tail_padding PASSED [ 56%]
+tests/test_planner.py::test_no_negative_or_duplicate_dts PASSED          [ 58%]
+tests/test_planner.py::test_non_keyframe_trim_keeps_preroll PASSED       [ 60%]
+tests/test_planner.py::test_open_gop_plan_does_not_drop_required_reference PASSED [ 62%]
+tests/test_planner.py::test_two_frame_encoder_delay_plan PASSED          [ 64%]
+tests/test_planner.py::test_timebase_mismatch_forces_transcode PASSED    [ 66%]
+tests/test_planner.py::test_codec_mismatch_forces_transcode PASSED       [ 67%]
+tests/test_planner.py::test_dangling_reference_fails_categorically PASSED [ 69%]
+tests/test_planner.py::test_segment_windows_recorded_per_stream PASSED   [ 71%]
+tests/test_timebase.py::test_seconds_round_trip PASSED                   [ 73%]
+tests/test_timebase.py::test_rescale_hand_computed PASSED                [ 75%]
+tests/test_timebase.py::test_to_ticks_exact PASSED                       [ 77%]
+tests/test_timebase.py::test_inexact_conversion_is_an_error PASSED       [ 79%]
+tests/test_timebase.py::test_25fps_time_base_values PASSED               [ 81%]
+tests/test_validate.py::test_valid_plan_passes PASSED                    [ 83%]
+tests/test_validate.py::test_negative_dts_is_detected PASSED             [ 84%]
+tests/test_validate.py::test_non_monotonic_dts_is_detected PASSED        [ 86%]
+tests/test_validate.py::test_pts_before_dts_is_detected PASSED           [ 88%]
+tests/test_validate.py::test_dropped_reference_is_detected PASSED        [ 90%]
+tests/test_validate.py::test_coverage_gap_is_detected PASSED             [ 92%]
+tests/test_validate.py::test_padding_not_at_tail_is_detected PASSED      [ 94%]
+tests/test_validate.py::test_audio_priming_below_edit_list_floor_is_detected PASSED [ 96%]
+tests/test_validate.py::test_segment_keyframe_boundary_is_checked PASSED [ 98%]
+tests/test_validate.py::test_validation_without_segments_skips_reference_check PASSED [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /home/admin/Downloads/xinbiaozhu/opp240/b/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 53 passed, 1 warning in 0.77s =========================

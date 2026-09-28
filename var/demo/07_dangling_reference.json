@@ -1,0 +1,79 @@
+{
+  "request": {
+    "segments": [
+      {
+        "path": "seg_dangling_ref.json"
+      }
+    ]
+  },
+  "http_status": 201,
+  "body": {
+    "job_id": "ac4d913e794c4728",
+    "run_id": "26d4dc382af0",
+    "status": "failed",
+    "decision": "failed",
+    "error_category": "MISSING_REFERENCE",
+    "error_detail": "sample depends on index 99 which the stream does not contain",
+    "app_version": "0.1.0",
+    "created_at": "2026-09-27T21:47:12.769125+00:00",
+    "updated_at": "2026-09-27T21:47:12.776703+00:00",
+    "request": {
+      "container": null,
+      "segments": [
+        {
+          "path": "seg_dangling_ref.json",
+          "trim_in": null,
+          "trim_out": null
+        }
+      ]
+    },
+    "versions": {
+      "app": "0.1.0",
+      "python": "3.12.3",
+      "numpy": "2.5.3",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5"
+    }
+  },
+  "events": [
+    {
+      "ts": "2026-09-27T21:47:12.770569+00:00",
+      "step": "queued",
+      "level": "INFO",
+      "message": "job accepted",
+      "data": {
+        "request": {
+          "container": null,
+          "segments": [
+            {
+              "path": "seg_dangling_ref.json",
+              "trim_in": null,
+              "trim_out": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.773352+00:00",
+      "step": "analysing",
+      "level": "INFO",
+      "message": "analysis started"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.775100+00:00",
+      "step": "compat",
+      "level": "INFO",
+      "message": "running compatibility check"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.778080+00:00",
+      "step": "failed",
+      "level": "ERROR",
+      "message": "job failed: MISSING_REFERENCE",
+      "data": {
+        "detail": "sample depends on index 99 which the stream does not contain"
+      }
+    }
+  ]
+}

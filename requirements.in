@@ -1,0 +1,7 @@
+# Direct dependencies.  Full transitive lock with exact versions:
+# requirements.txt (produced via `pip freeze` inside .venv).
+fastapi==0.141.1
+numpy==2.5.3
+uvicorn==0.54.0
+httpx==0.28.1
+pytest==9.1.1

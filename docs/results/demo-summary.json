@@ -1,0 +1,58 @@
+[
+  {
+    "case": "01_direct_concat",
+    "http": 201,
+    "status": "completed",
+    "decision": "direct_concat",
+    "error_category": null
+  },
+  {
+    "case": "02_non_keyframe_trim",
+    "http": 201,
+    "status": "completed",
+    "decision": "direct_concat",
+    "error_category": null
+  },
+  {
+    "case": "03_open_gop_cut",
+    "http": 201,
+    "status": "completed",
+    "decision": "direct_concat",
+    "error_category": null
+  },
+  {
+    "case": "04_audio_encoder_delay",
+    "http": 201,
+    "status": "completed",
+    "decision": "direct_concat",
+    "error_category": null
+  },
+  {
+    "case": "05_timebase_mismatch",
+    "http": 201,
+    "status": "completed",
+    "decision": "transcode_required",
+    "error_category": null
+  },
+  {
+    "case": "06_codec_mismatch",
+    "http": 201,
+    "status": "completed",
+    "decision": "transcode_required",
+    "error_category": null
+  },
+  {
+    "case": "07_dangling_reference",
+    "http": 201,
+    "status": "failed",
+    "decision": "failed",
+    "error_category": "MISSING_REFERENCE"
+  },
+  {
+    "case": "08_missing_file",
+    "http": 422,
+    "status": null,
+    "decision": null,
+    "error_category": "INPUT_ERROR"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "request": {
+    "segments": [
+      {
+        "path": "no_such_file.json"
+      }
+    ]
+  },
+  "http_status": 422,
+  "body": {
+    "detail": {
+      "category": "INPUT_ERROR",
+      "detail": "segment descriptor not found: no_such_file.json"
+    }
+  }
+}

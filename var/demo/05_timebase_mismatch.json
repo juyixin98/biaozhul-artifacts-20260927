@@ -1,0 +1,157 @@
+{
+  "request": {
+    "segments": [
+      {
+        "path": "seg_ok_a.json"
+      },
+      {
+        "path": "seg_tb_mismatch.json"
+      }
+    ]
+  },
+  "http_status": 201,
+  "body": {
+    "job_id": "5b9a2c08960e4304",
+    "run_id": "26d4dc382af0",
+    "status": "completed",
+    "decision": "transcode_required",
+    "error_category": null,
+    "error_detail": null,
+    "app_version": "0.1.0",
+    "created_at": "2026-09-27T21:47:12.727328+00:00",
+    "updated_at": "2026-09-27T21:47:12.736966+00:00",
+    "request": {
+      "container": null,
+      "segments": [
+        {
+          "path": "seg_ok_a.json",
+          "trim_in": null,
+          "trim_out": null
+        },
+        {
+          "path": "seg_tb_mismatch.json",
+          "trim_in": null,
+          "trim_out": null
+        }
+      ]
+    },
+    "versions": {
+      "app": "0.1.0",
+      "python": "3.12.3",
+      "numpy": "2.5.3",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5"
+    },
+    "plan": {
+      "container": "mp4-constrained",
+      "decision": "transcode_required",
+      "reasons": [
+        {
+          "category": "TIMEBASE_MISMATCH",
+          "stream_type": "video",
+          "field": "time_base",
+          "values": [
+            "[1, 90000]",
+            "[1, 25]"
+          ],
+          "requirement": "transcode"
+        }
+      ],
+      "tracks": [],
+      "segment_windows": []
+    }
+  },
+  "validate": {
+    "ok": true,
+    "violations": []
+  },
+  "events": [
+    {
+      "ts": "2026-09-27T21:47:12.728923+00:00",
+      "step": "queued",
+      "level": "INFO",
+      "message": "job accepted",
+      "data": {
+        "request": {
+          "container": null,
+          "segments": [
+            {
+              "path": "seg_ok_a.json",
+              "trim_in": null,
+              "trim_out": null
+            },
+            {
+              "path": "seg_tb_mismatch.json",
+              "trim_in": null,
+              "trim_out": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.732014+00:00",
+      "step": "analysing",
+      "level": "INFO",
+      "message": "analysis started"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.734165+00:00",
+      "step": "compat",
+      "level": "INFO",
+      "message": "running compatibility check"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.735678+00:00",
+      "step": "plan",
+      "level": "INFO",
+      "message": "plan built: decision=transcode_required",
+      "data": {
+        "decision": "transcode_required",
+        "reasons": [
+          {
+            "category": "TIMEBASE_MISMATCH",
+            "stream_type": "video",
+            "field": "time_base",
+            "values": [
+              "[1, 90000]",
+              "[1, 25]"
+            ],
+            "requirement": "transcode"
+          }
+        ]
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.738225+00:00",
+      "step": "completed",
+      "level": "INFO",
+      "message": "job completed with decision transcode_required",
+      "data": {
+        "decision": "transcode_required",
+        "reasons": [
+          {
+            "category": "TIMEBASE_MISMATCH",
+            "stream_type": "video",
+            "field": "time_base",
+            "values": [
+              "[1, 90000]",
+              "[1, 25]"
+            ],
+            "requirement": "transcode"
+          }
+        ]
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.742335+00:00",
+      "step": "validate",
+      "level": "INFO",
+      "message": "re-validation ok=True",
+      "data": {
+        "ok": true,
+        "violations": []
+      }
+    }
+  ]
+}

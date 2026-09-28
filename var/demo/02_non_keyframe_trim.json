@@ -1,0 +1,351 @@
+{
+  "request": {
+    "segments": [
+      {
+        "path": "seg_midgop.json",
+        "trim_in": {
+          "num": 2,
+          "den": 15
+        },
+        "trim_out": {
+          "num": 4,
+          "den": 15
+        }
+      }
+    ]
+  },
+  "http_status": 201,
+  "body": {
+    "job_id": "4afcbcc4b61a45e5",
+    "run_id": "26d4dc382af0",
+    "status": "completed",
+    "decision": "direct_concat",
+    "error_category": null,
+    "error_detail": null,
+    "app_version": "0.1.0",
+    "created_at": "2026-09-27T21:47:12.663936+00:00",
+    "updated_at": "2026-09-27T21:47:12.674195+00:00",
+    "request": {
+      "container": null,
+      "segments": [
+        {
+          "path": "seg_midgop.json",
+          "trim_in": [
+            2,
+            15
+          ],
+          "trim_out": [
+            4,
+            15
+          ]
+        }
+      ]
+    },
+    "versions": {
+      "app": "0.1.0",
+      "python": "3.12.3",
+      "numpy": "2.5.3",
+      "fastapi": "0.141.1",
+      "pydantic": "2.13.5"
+    },
+    "plan": {
+      "container": "mp4-constrained",
+      "decision": "direct_concat",
+      "reasons": [],
+      "tracks": [
+        {
+          "stream_type": "video",
+          "codec": "h264",
+          "time_base": [
+            1,
+            90000
+          ],
+          "edit_list_media_time": 0,
+          "samples": [
+            {
+              "segment": "seg_midgop",
+              "stream_type": "video",
+              "src_index": 0,
+              "src_dts": -6000,
+              "src_pts": 0,
+              "out_dts": 0,
+              "out_pts": 6000,
+              "duration": 3000,
+              "keyframe": true,
+              "idr": true,
+              "role": "preroll"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "video",
+              "src_index": 1,
+              "src_dts": -3000,
+              "src_pts": 9000,
+              "out_dts": 3000,
+              "out_pts": 15000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "preroll"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "video",
+              "src_index": 4,
+              "src_dts": 6000,
+              "src_pts": 18000,
+              "out_dts": 12000,
+              "out_pts": 24000,
+              "duration": 3000,
+              "keyframe": true,
+              "idr": true,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "video",
+              "src_index": 5,
+              "src_dts": 9000,
+              "src_pts": 12000,
+              "out_dts": 15000,
+              "out_pts": 18000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "video",
+              "src_index": 6,
+              "src_dts": 12000,
+              "src_pts": 15000,
+              "out_dts": 18000,
+              "out_pts": 21000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "video",
+              "src_index": 7,
+              "src_dts": 15000,
+              "src_pts": 27000,
+              "out_dts": 21000,
+              "out_pts": 33000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "preroll"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "video",
+              "src_index": 8,
+              "src_dts": 18000,
+              "src_pts": 21000,
+              "out_dts": 24000,
+              "out_pts": 27000,
+              "duration": 3000,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            }
+          ]
+        },
+        {
+          "stream_type": "audio",
+          "codec": "aac",
+          "time_base": [
+            1,
+            48000
+          ],
+          "edit_list_media_time": 1024,
+          "samples": [
+            {
+              "segment": "seg_midgop",
+              "stream_type": "audio",
+              "src_index": 7,
+              "src_dts": 7168,
+              "src_pts": 6144,
+              "out_dts": 0,
+              "out_pts": -1024,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "priming"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "audio",
+              "src_index": 8,
+              "src_dts": 8192,
+              "src_pts": 7168,
+              "out_dts": 1024,
+              "out_pts": 0,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "audio",
+              "src_index": 9,
+              "src_dts": 9216,
+              "src_pts": 8192,
+              "out_dts": 2048,
+              "out_pts": 1024,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "audio",
+              "src_index": 10,
+              "src_dts": 10240,
+              "src_pts": 9216,
+              "out_dts": 3072,
+              "out_pts": 2048,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "audio",
+              "src_index": 11,
+              "src_dts": 11264,
+              "src_pts": 10240,
+              "out_dts": 4096,
+              "out_pts": 3072,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "audio",
+              "src_index": 12,
+              "src_dts": 12288,
+              "src_pts": 11264,
+              "out_dts": 5120,
+              "out_pts": 4096,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            },
+            {
+              "segment": "seg_midgop",
+              "stream_type": "audio",
+              "src_index": 13,
+              "src_dts": 13312,
+              "src_pts": 12288,
+              "out_dts": 6144,
+              "out_pts": 5120,
+              "duration": 1024,
+              "keyframe": false,
+              "idr": false,
+              "role": "present"
+            }
+          ]
+        }
+      ],
+      "segment_windows": [
+        {
+          "segment": "seg_midgop",
+          "sha256": "f6bb41a7e6e45da1f6bccb1c9cd88a86e86960e008d64f592a3967ea62a9d363",
+          "windows": {
+            "video": {
+              "in_tick": 12000,
+              "out_tick": 24000
+            },
+            "audio": {
+              "in_tick": 6400,
+              "out_tick": 12800
+            }
+          }
+        }
+      ]
+    }
+  },
+  "validate": {
+    "ok": true,
+    "violations": []
+  },
+  "events": [
+    {
+      "ts": "2026-09-27T21:47:12.665847+00:00",
+      "step": "queued",
+      "level": "INFO",
+      "message": "job accepted",
+      "data": {
+        "request": {
+          "container": null,
+          "segments": [
+            {
+              "path": "seg_midgop.json",
+              "trim_in": [
+                2,
+                15
+              ],
+              "trim_out": [
+                4,
+                15
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.668519+00:00",
+      "step": "analysing",
+      "level": "INFO",
+      "message": "analysis started"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.670552+00:00",
+      "step": "compat",
+      "level": "INFO",
+      "message": "running compatibility check"
+    },
+    {
+      "ts": "2026-09-27T21:47:12.672533+00:00",
+      "step": "plan",
+      "level": "INFO",
+      "message": "plan built: decision=direct_concat",
+      "data": {
+        "decision": "direct_concat",
+        "reasons": []
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.675572+00:00",
+      "step": "completed",
+      "level": "INFO",
+      "message": "job completed with decision direct_concat",
+      "data": {
+        "decision": "direct_concat",
+        "reasons": []
+      }
+    },
+    {
+      "ts": "2026-09-27T21:47:12.679342+00:00",
+      "step": "validate",
+      "level": "INFO",
+      "message": "re-validation ok=True",
+      "data": {
+        "ok": true,
+        "violations": []
+      }
+    }
+  ]
+}
