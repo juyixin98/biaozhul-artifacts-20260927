@@ -1,0 +1,4 @@
+[PASS] threshold_pulse  status=200 intervals=[[155, 380]] expected=[[155, 380]] run_id=run-20260928T052947-050aec79
+[PASS] long_silence     status=200 intervals=[[0, 150], [650, 800]] expected=[[0, 150], [650, 800]] run_id=run-20260928T052947-eb4a23be
+[PASS] all_silence      status=200 intervals=[] expected=[] run_id=run-20260928T052947-5072c1ec
+[PASS] trailing         status=200 intervals=[[150, 400]] expected=[[150, 400]] run_id=run-20260928T052947-6b371583

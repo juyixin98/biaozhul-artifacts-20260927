@@ -1,0 +1,21 @@
+# 全局配置（可用同名大写环境变量覆盖，例如 MAX_SAMPLES_PER_JOB=200000）
+# 服务
+host: 127.0.0.1
+port: 8000
+
+# 作业资源上限（超出返回 RESOURCE_EXHAUSTED）
+max_samples_per_job: 5000000        # 单作业最多 500 万采样点（单声道 float64 约 40MB）
+max_upload_bytes: 33554432          # 上传体最多 32MB
+stream_chunk_samples: 4000          # 服务内部喂给判定内核的块大小
+
+# 切段默认参数（API 请求可覆盖；时间量均为毫秒）
+default_min_silence_ms: 300
+default_min_activity_ms: 100
+default_pad_ms: 50
+default_merge_gap_ms: 120
+default_enter_threshold: 0.02
+default_exit_threshold: 0.05
+
+# 存储
+data_dir: ./data
+runs_log_path: ./data/runs.jsonl
