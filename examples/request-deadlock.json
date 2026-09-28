@@ -1,0 +1,22 @@
+{
+  "schema": "petri-analysis/v1",
+  "name": "linear-deadlock",
+  "places": [
+    {"name": "a", "capacity": 1},
+    {"name": "b", "capacity": 1},
+    {"name": "c", "capacity": 1}
+  ],
+  "transitions": [
+    {"name": "t1",
+     "inputs":  [{"place": "a", "weight": 1}],
+     "outputs": [{"place": "b", "weight": 1}]},
+    {"name": "t2",
+     "inputs":  [{"place": "b", "weight": 1}],
+     "outputs": [{"place": "c", "weight": 1}]}
+  ],
+  "initial": [1, 0, 0],
+  "targets": [
+    {"label": "terminal", "marking": [0, 0, 1]}
+  ],
+  "options": {"compute_invariants": true, "find_deadlocks": true}
+}

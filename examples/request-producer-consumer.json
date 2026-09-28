@@ -1,0 +1,26 @@
+{
+  "schema": "petri-analysis/v1",
+  "name": "bounded-buffer",
+  "places": [
+    {"name": "free",  "capacity": 2},
+    {"name": "ready", "capacity": 2},
+    {"name": "done",  "capacity": 2}
+  ],
+  "transitions": [
+    {"name": "produce",
+     "inputs":  [{"place": "free", "weight": 1}],
+     "outputs": [{"place": "ready", "weight": 1}]},
+    {"name": "consume",
+     "inputs":  [{"place": "ready", "weight": 1}],
+     "outputs": [{"place": "free", "weight": 1},
+                 {"place": "done", "weight": 1}]}
+  ],
+  "initial": [2, 0, 0],
+  "targets": [
+    {"label": "one-consumed", "marking": [2, 0, 1]},
+    {"label": "token-vanished", "marking": [1, 0, 0]},
+    {"label": "buffer-full",
+     "by_place": {"free": 0, "ready": 2, "done": 0}}
+  ],
+  "options": {"compute_invariants": true, "find_deadlocks": true}
+}

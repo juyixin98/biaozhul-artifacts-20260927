@@ -1,0 +1,22 @@
+{
+  "schema": "petri-analysis/v1",
+  "name": "mutex",
+  "places": [
+    {"name": "idle", "capacity": 1},
+    {"name": "busy", "capacity": 1}
+  ],
+  "transitions": [
+    {"name": "acquire",
+     "inputs":  [{"place": "idle", "weight": 1}],
+     "outputs": [{"place": "busy", "weight": 1}]},
+    {"name": "release",
+     "inputs":  [{"place": "busy", "weight": 1}],
+     "outputs": [{"place": "idle", "weight": 1}]}
+  ],
+  "initial": [1, 0],
+  "targets": [
+    {"label": "resource-held", "marking": [0, 1]},
+    {"label": "two-holders-impossible", "marking": [1, 1]}
+  ],
+  "options": {"compute_invariants": true, "find_deadlocks": true}
+}

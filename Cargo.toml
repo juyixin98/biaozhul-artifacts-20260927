@@ -1,0 +1,39 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/pn-core",
+    "crates/pn-lang",
+    "crates/pn-solver",
+    "crates/pn-verify",
+    "crates/pn-server",
+    "crates/pn-fixtures",
+    "crates/pn-tests",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+rust-version = "1.75"
+description = "Bounded-capacity weighted Petri net marking reachability backend"
+
+[workspace.dependencies]
+# Pinned direct dependencies (see Cargo.lock for the full transitive tree).
+serde = { version = "=1.0.229", features = ["derive"] }
+serde_json = "=1.0.151"
+thiserror = "=2.0.21"
+axum = "=0.8.9"
+tokio = { version = "=1.53.1", features = ["rt-multi-thread", "macros", "net", "sync"] }
+tower = { version = "=0.5.3", features = ["util"] }
+tracing = "=0.1.44"
+tracing-subscriber = { version = "=0.3.23", features = ["env-filter"] }
+http-body-util = "=0.1.5"
+
+pn-core = { path = "crates/pn-core", version = "0.1.0" }
+pn-lang = { path = "crates/pn-lang", version = "0.1.0" }
+pn-solver = { path = "crates/pn-solver", version = "0.1.0" }
+pn-verify = { path = "crates/pn-verify", version = "0.1.0" }
+pn-fixtures = { path = "crates/pn-fixtures", version = "0.1.0" }
+
+[profile.release]
+debug = false

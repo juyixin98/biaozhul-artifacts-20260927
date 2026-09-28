@@ -1,0 +1,19 @@
+[package]
+name = "pn-tests"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+pn-core = { workspace = true }
+pn-lang = { workspace = true }
+pn-solver = { workspace = true }
+pn-verify = { workspace = true }
+pn-fixtures = { workspace = true }
+pn-server = { path = "../pn-server", version = "0.1.0" }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+axum = { workspace = true }
+tower = { workspace = true }
+http-body-util = { workspace = true }

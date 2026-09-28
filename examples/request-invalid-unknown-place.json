@@ -1,0 +1,11 @@
+{
+  "schema": "petri-analysis/v1",
+  "name": "invalid-example",
+  "places": [{"name": "p", "capacity": 1}],
+  "transitions": [
+    {"name": "t",
+     "inputs":  [{"place": "ghost", "weight": 1}],
+     "outputs": []}
+  ],
+  "initial": [0]
+}
