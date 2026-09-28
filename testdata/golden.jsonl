@@ -1,0 +1,20 @@
+{"case": "root hash matches every non-empty topic", "subscriptions": {"s0": "#"}, "expectations": {"a": ["s0"], "a/b/c": ["s0"], "/": ["s0"], "//": ["s0"]}}
+{"case": "single plus matches empty layer", "subscriptions": {"p": "+"}, "expectations": {"a": ["p"], "": null, "/": [], "a/b": []}}
+{"case": "plus at depth two over empties", "subscriptions": {"p": "+/+", "h": "+/#"}, "expectations": {"/": ["h", "p"], "a": ["h"], "/a": ["h", "p"], "a/": ["h", "p"], "a/b": ["h", "p"], "a/b/c": ["h"]}}
+{"case": "overlapping hash and plus and exact", "subscriptions": {"all": "#", "sp": "sport/+", "sh": "sport/#", "ten": "sport/tennis", "tp": "sport/tennis/+"}, "expectations": {"sport": ["all", "sh"], "sport/tennis": ["all", "sh", "sp", "ten"], "sport/golf": ["all", "sh", "sp"], "sport/tennis/x": ["all", "sh", "tp"], "other/x": ["all"]}}
+{"case": "hash matches zero remaining layers at every depth", "subscriptions": {"a": "a/#", "ab": "a/b/#", "x": "x/+/y/#"}, "expectations": {"a": ["a"], "a/b": ["a", "ab"], "a/b/c": ["a", "ab"], "x/p/y": ["x"], "x/p/y/z": ["x"], "x/p/n": [], "b": []}}
+{"case": "empty literal layers are structural", "subscriptions": {"lead": "/#", "mid": "a//+", "exact": "/a"}, "expectations": {"/a": ["exact", "lead"], "/x": ["lead"], "a//x": ["mid"], "a/x": [], "a//x/y": []}}
+{"case": "plus and hash characters in topic are literals", "subscriptions": {"p": "x/+", "h": "x/#", "litp": "x/+", "l": "x/#"}, "expectations": {"x/+": ["h", "l", "litp", "p"], "x/#": ["h", "l", "litp", "p"], "x/y": ["h", "l", "litp", "p"]}}
+{"case": "cross pattern of plus wildcards", "subscriptions": {"c": "a/+/c/+"}, "expectations": {"a/b/c/d": ["c"], "a//c/": ["c"], "a/b/c": [], "a/b/c/d/e": []}}
+{"case": "many filters but only wildcards match", "subscriptions": {"all": "#", "f1": "a/b/c", "f2": "a/b/d", "f3": "x/y", "fh": "a/#"}, "expectations": {"zzz": ["all"], "a/b/c": ["all", "f1", "fh"], "a/q/q/q": ["all", "fh"], "x/y": ["all", "f3"]}}
+{"case": "triple empty topic layer", "subscriptions": {"h": "#", "e": "//", "p": "+/+"}, "expectations": {"///": ["h"], "//": ["e", "h"], "/a": ["h", "p"], "/": ["h", "p"]}}
+{"case": "no subscriptions means empty route set", "subscriptions": {}, "expectations": {"a": [], "a/b/c": []}}
+{"case": "identical filters distinct ids dedup is per id", "subscriptions": {"i1": "a/+", "i2": "a/+", "i3": "a/#"}, "expectations": {"a/x": ["i1", "i2", "i3"], "a": ["i3"]}}
+{"case": "deeply nested empty layers", "subscriptions": {"f": "a//b//c", "h": "a/#"}, "expectations": {"a//b//c": ["f", "h"], "a/x/b/y/c": ["h"], "a//b//c/d": ["h"]}}
+{"case": "leading slash hash prefix semantics", "subscriptions": {"h": "/#", "all": "#", "e": "/+"}, "expectations": {"/": ["all", "e", "h"], "/z": ["all", "e", "h"], "z": ["all"], "z/": ["all"]}}
+{"case": "hash under plus chain", "subscriptions": {"f": "+/+/+/#"}, "expectations": {"a/b/c": ["f"], "a/b/c/d/e": ["f"], "ab": [], "/a/b": ["f"]}}
+{"case": "embedded wildcard in filter layer is rejected by protocol", "invalid_filters": ["a/foo+bar", "a/foo#", "a/#/b", "+b"], "subscriptions": {"f": "a/foo"}, "expectations": {"a/foo": ["f"], "a/foo+bar": []}}
+{"case": "mixed prefix tree fan", "subscriptions": {"all": "#", "ev": "tenant/+/events/#", "lit": "tenant/acme/events/2026"}, "expectations": {"tenant/acme/events/2026": ["all", "ev", "lit"], "tenant/b/events/x/y": ["all", "ev"], "tenant/acme/other": ["all"]}}
+{"case": "single layer hash and plus overlap once", "subscriptions": {"h": "q/#", "p": "q/+"}, "expectations": {"q": ["h"], "q/r": ["h", "p"], "q/r/s": ["h"]}}
+{"case": "empty middle plus matching empties only", "subscriptions": {"f": "a//+"}, "expectations": {"a//": ["f"], "a//z": ["f"], "a/x/z": []}}
+{"case": "shared suffix does not confuse literals", "subscriptions": {"f1": "abc/def", "f2": "abc/defg", "h": "#"}, "expectations": {"abc/def": ["f1", "h"], "abc/defg": ["f2", "h"], "abc/def/ghi": ["h"], "abc/de": ["h"]}}
