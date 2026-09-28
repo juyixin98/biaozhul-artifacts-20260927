@@ -1,0 +1,59 @@
+
+=== healthz (run id propagated) ===
+{"bytes_on_disk":0,"ok":true,"run_id":"ex-health","service":"lz77b","store_cap_bytes":67108864,"store_root":"/tmp/lz77b-done-store2","stream_output_cap_bytes":16777216,"streams":0}
+
+=== create stream demo-1790538163 ===
+{"next_index":0,"ok":true,"run_id":"ex-create","stream_id":"demo-1790538163"}
+
+=== encode independent block 0 ===
+{
+    "dict_after": 35,
+    "dict_before": 0,
+    "frame_type": 0,
+    "index": 0,
+    "input_bytes": 35,
+    "match_tokens": 1,
+    "matched_bytes": 29,
+    "ok": true,
+    "payload_bytes": 12,
+    "run_id": "ex-enc0",
+    "stream_id": "demo-1790538163"
+}
+
+=== encode dependent block 1 (reuses predecessor dictionary) ===
+{
+    "dict_after": 58,
+    "dict_before": 35,
+    "frame_type": 1,
+    "index": 1,
+    "input_bytes": 23,
+    "match_tokens": 3,
+    "matched_bytes": 19,
+    "ok": true,
+    "payload_bytes": 16,
+    "run_id": "ex-enc1",
+    "stream_id": "demo-1790538163"
+}
+
+=== decode whole stream ===
+bytes: 58
+b'alpha alpha alpha alpha alpha alphaalpha again alpha again'
+
+=== stateless decode with independent-reference cross check ===
+ok= True cross= {'reference_agrees': True, 'reference_decompressed': 35}
+
+=== 400 input: malformed JSON ===
+{"category":"input","detail":"invalid JSON body: key must be a string at line 1 column 2","error_code":"bad_request","ok":false,"run_id":"run-18d944f93bfa8c38"}
+HTTP 400
+
+=== 409 state: dependent block appended without predecessor ===
+{"category":"state","detail":"block index 1 out of order, expected 0","error_code":"index_gap","ok":false,"run_id":"run-18d944f93c9125db"}
+HTTP 409
+
+=== 413 resource: 4 GiB output bomb in header ===
+{"category":"resource","detail":"declared 4294967296 bytes exceeds per-block cap 1048576","error_code":"output_cap_exceeded","ok":false,"run_id":"run-18d944f93eab2bb6"}
+HTTP 413
+
+=== 404 state/not-found: decode a stream that does not exist ===
+{"category":"state","detail":"stream never-existed not found","error_code":"not_found","ok":false,"run_id":"run-18d944f93f1ce992"}
+HTTP 404

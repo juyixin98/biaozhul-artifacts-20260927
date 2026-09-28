@@ -1,0 +1,9 @@
+# LZ77B evidence run: 02-corruption-18d9452952c5803a-0
+# test: 02-corruption
+# started: 2026-09-27 19:46:10 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:46:10 UTC] STATE :: crc-bad code = crc_mismatch
+002 [2026-09-27 19:46:10 UTC] STATE :: length-bad code = length_mismatch
+003 [2026-09-27 19:46:10 UTC] STATE :: magic-bad code = bad_magic
+004 [2026-09-27 19:46:10 UTC] RESULT :: verdict=PASS events=3 elapsed_ms=0

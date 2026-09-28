@@ -1,0 +1,10 @@
+# LZ77B evidence run: 01-bad-distance-18d9453a7c96f62a-3
+# test: 01-bad-distance
+# started: 2026-09-27 19:47:24 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:47:24 UTC] STATE :: core error code = bad_distance
+002 [2026-09-27 19:47:24 UTC] STATE :: core category = input
+003 [2026-09-27 19:47:24 UTC] STATE :: reference kind = Input
+004 [2026-09-27 19:47:24 UTC] NOTE :: both implementations classify an out-of-history distance as malformed input
+005 [2026-09-27 19:47:24 UTC] RESULT :: verdict=PASS events=4 elapsed_ms=0

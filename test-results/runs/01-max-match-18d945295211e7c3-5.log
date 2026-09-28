@@ -1,0 +1,8 @@
+# LZ77B evidence run: 01-max-match-18d945295211e7c3-5
+# test: 01-max-match
+# started: 2026-09-27 19:46:10 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:46:10 UTC] STATE :: longest single match = 65538
+002 [2026-09-27 19:46:10 UTC] PASS :: no match above fixed MAX_MATCH: expected true, actual true — length field is 16-bit over MIN_MATCH
+003 [2026-09-27 19:46:10 UTC] RESULT :: verdict=PASS events=2 elapsed_ms=7

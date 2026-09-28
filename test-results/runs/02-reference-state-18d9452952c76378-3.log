@@ -1,0 +1,10 @@
+# LZ77B evidence run: 02-reference-state-18d9452952c76378-3
+# test: 02-reference-state
+# started: 2026-09-27 19:46:10 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:46:10 UTC] STATE :: short-dict kind = Input
+002 [2026-09-27 19:46:10 UTC] STATE :: short-dict reason = distance 13 > history 2
+003 [2026-09-27 19:46:10 UTC] NOTE :: wrong same-length dict decodes to garbage — the digest binding (state error in the session) is the defense, not distance checks.
+004 [2026-09-27 19:46:10 UTC] PASS :: reference agrees on bytes with correct dict: expected 26, actual 26 — correct predecessor dictionary binds block 1
+005 [2026-09-27 19:46:10 UTC] RESULT :: verdict=PASS events=4 elapsed_ms=0

@@ -1,0 +1,23 @@
+# LZ77B evidence run: 01-cross-window-18d94529521112e7-4
+# test: 01-cross-window
+# started: 2026-09-27 19:46:10 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:46:10 UTC] NOTE :: A phrase appears before and after the 4 KiB sliding window edge.
+002 [2026-09-27 19:46:10 UTC] STATE :: match tokens total = 826
+003 [2026-09-27 19:46:10 UTC] STATE :: match[0] (distance,length) = 6,3
+004 [2026-09-27 19:46:10 UTC] STATE :: match[1] (distance,length) = 2,3
+005 [2026-09-27 19:46:10 UTC] STATE :: match[2] (distance,length) = 22,5
+006 [2026-09-27 19:46:10 UTC] STATE :: match[3] (distance,length) = 15,3
+007 [2026-09-27 19:46:10 UTC] STATE :: match[4] (distance,length) = 19,3
+008 [2026-09-27 19:46:10 UTC] STATE :: match[5] (distance,length) = 13,5
+009 [2026-09-27 19:46:10 UTC] STATE :: match[6] (distance,length) = 41,3
+010 [2026-09-27 19:46:10 UTC] STATE :: match[7] (distance,length) = 2,3
+011 [2026-09-27 19:46:10 UTC] STATE :: match[8] (distance,length) = 11,3
+012 [2026-09-27 19:46:10 UTC] STATE :: match[9] (distance,length) = 38,3
+013 [2026-09-27 19:46:10 UTC] STATE :: match[10] (distance,length) = 3,3
+014 [2026-09-27 19:46:10 UTC] STATE :: match[11] (distance,length) = 12,3
+015 [2026-09-27 19:46:10 UTC] PASS :: no match distance exceeds WINDOW_SIZE: expected <= 4096, actual max 2616 — expired history must never be referenced
+016 [2026-09-27 19:46:10 UTC] PASS :: the in-window repeat produced a long match: expected a match >= 20, actual 1 found — the adjacent repeated phrase is within the window and must compress
+017 [2026-09-27 19:46:10 UTC] PASS :: decoded length: expected 4257, actual 4257 — boundary input fully recovered
+018 [2026-09-27 19:46:10 UTC] RESULT :: verdict=PASS events=17 elapsed_ms=3

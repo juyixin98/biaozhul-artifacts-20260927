@@ -1,0 +1,4 @@
+2026-09-27T19:42:44.100317Z  WARN lz77b::http::handlers: request failed run_id=run-18d944f93bfa8c38 category=input code=bad_request detail=invalid JSON body: key must be a string at line 1 column 2
+2026-09-27T19:42:44.110205Z  WARN lz77b::http::handlers: request failed run_id=run-18d944f93c9125db category=state code=index_gap detail=block index 1 out of order, expected 0
+2026-09-27T19:42:44.145443Z  WARN lz77b::http::handlers: request failed run_id=run-18d944f93eab2bb6 category=resource code=output_cap_exceeded detail=declared 4294967296 bytes exceeds per-block cap 1048576
+2026-09-27T19:42:44.152909Z  WARN lz77b::http::handlers: request failed run_id=run-18d944f93f1ce992 category=state code=not_found detail=stream never-existed not found

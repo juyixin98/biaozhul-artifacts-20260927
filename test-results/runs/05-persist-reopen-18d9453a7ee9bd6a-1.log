@@ -1,0 +1,20 @@
+# LZ77B evidence run: 05-persist-reopen-18d9453a7ee9bd6a-1
+# test: 05-persist-reopen
+# started: 2026-09-27 19:47:24 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:47:24 UTC] STATE :: chunks = 9
+002 [2026-09-27 19:47:24 UTC] STATE :: stored block 0 bytes = 66
+003 [2026-09-27 19:47:24 UTC] STATE :: stored block 1 bytes = 35
+004 [2026-09-27 19:47:24 UTC] STATE :: stored block 2 bytes = 35
+005 [2026-09-27 19:47:24 UTC] STATE :: stored block 3 bytes = 35
+006 [2026-09-27 19:47:24 UTC] STATE :: stored block 4 bytes = 35
+007 [2026-09-27 19:47:24 UTC] STATE :: stored block 5 bytes = 35
+008 [2026-09-27 19:47:24 UTC] STATE :: stored block 6 bytes = 35
+009 [2026-09-27 19:47:24 UTC] STATE :: stored block 7 bytes = 43
+010 [2026-09-27 19:47:24 UTC] STATE :: stored block 8 bytes = 114
+011 [2026-09-27 19:47:24 UTC] STATE :: bytes on disk = 433
+012 [2026-09-27 19:47:24 UTC] PASS :: rescanned block count: expected 9, actual 9 — rescan must rebuild the index from filenames
+013 [2026-09-27 19:47:24 UTC] PASS :: rescanned byte total: expected 433, actual 433 — same bytes
+014 [2026-09-27 19:47:24 UTC] PASS :: decoded bytes: expected 4585, actual 4585 — full sample recovered from disk
+015 [2026-09-27 19:47:24 UTC] RESULT :: verdict=PASS events=14 elapsed_ms=8

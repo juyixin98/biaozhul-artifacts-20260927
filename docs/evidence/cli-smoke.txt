@@ -1,0 +1,6 @@
+### verify (core vs independent reference)
+OK: core and independent reference agree on 4585 bytes (frame=0, index=0)
+chunk=16 blocks=287 ROUNDTRIP OK
+chunk=100 blocks=46 ROUNDTRIP OK
+chunk=1024 blocks=5 ROUNDTRIP OK
+chunk=4096 blocks=2 ROUNDTRIP OK

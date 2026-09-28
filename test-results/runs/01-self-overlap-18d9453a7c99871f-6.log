@@ -1,0 +1,27 @@
+# LZ77B evidence run: 01-self-overlap-18d9453a7c99871f-6
+# test: 01-self-overlap
+# started: 2026-09-27 19:47:24 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:47:24 UTC] NOTE :: Distance-1 runs force the decoder to read bytes it is itself writing.
+002 [2026-09-27 19:47:24 UTC] PASS :: zeros: forced distance 1: expected 1, actual 1 — a single-byte history can only be referenced at distance 1
+003 [2026-09-27 19:47:24 UTC] STATE :: zeros: longest match length = 99
+004 [2026-09-27 19:47:24 UTC] PASS :: zeros: long match emitted: expected >=60, actual 99 — greedy parser must extend a distance-1 match far past the source
+005 [2026-09-27 19:47:24 UTC] PASS :: zeros: core byte length: expected 100, actual 100 — overlap expansion must produce exactly the declared length
+006 [2026-09-27 19:47:24 UTC] PASS :: zeros: core bytes exact: expected identical, actual identical — per-byte periodic reproduction
+007 [2026-09-27 19:47:24 UTC] PASS :: zeros: reference agrees: expected identical, actual identical — two independent implementations must agree on overlap bytes
+008 [2026-09-27 19:47:24 UTC] PASS :: Z: forced distance 1: expected 1, actual 1 — a single-byte history can only be referenced at distance 1
+009 [2026-09-27 19:47:24 UTC] STATE :: Z: longest match length = 4999
+010 [2026-09-27 19:47:24 UTC] PASS :: Z: long match emitted: expected >=60, actual 4999 — greedy parser must extend a distance-1 match far past the source
+011 [2026-09-27 19:47:24 UTC] PASS :: Z: core byte length: expected 5000, actual 5000 — overlap expansion must produce exactly the declared length
+012 [2026-09-27 19:47:24 UTC] PASS :: Z: core bytes exact: expected identical, actual identical — per-byte periodic reproduction
+013 [2026-09-27 19:47:24 UTC] PASS :: Z: reference agrees: expected identical, actual identical — two independent implementations must agree on overlap bytes
+014 [2026-09-27 19:47:24 UTC] PASS :: Q: forced distance 1: expected 1, actual 1 — a single-byte history can only be referenced at distance 1
+015 [2026-09-27 19:47:24 UTC] STATE :: Q: longest match length = 65538
+016 [2026-09-27 19:47:24 UTC] PASS :: Q: long match emitted: expected >=60, actual 65538 — greedy parser must extend a distance-1 match far past the source
+017 [2026-09-27 19:47:24 UTC] PASS :: Q: core byte length: expected 70000, actual 70000 — overlap expansion must produce exactly the declared length
+018 [2026-09-27 19:47:24 UTC] PASS :: Q: core bytes exact: expected identical, actual identical — per-byte periodic reproduction
+019 [2026-09-27 19:47:24 UTC] PASS :: Q: reference agrees: expected identical, actual identical — two independent implementations must agree on overlap bytes
+020 [2026-09-27 19:47:24 UTC] PASS :: AB period distance: expected 2, actual 2 — two-byte period
+021 [2026-09-27 19:47:24 UTC] STATE :: AB period match length = 998
+022 [2026-09-27 19:47:24 UTC] RESULT :: verdict=PASS events=21 elapsed_ms=1

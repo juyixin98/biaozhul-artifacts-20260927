@@ -1,0 +1,10 @@
+# LZ77B evidence run: 02-missing-predecessor-18d9452952c6c04f-2
+# test: 02-missing-predecessor
+# started: 2026-09-27 19:46:10 UTC
+# rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+# constants: WINDOW=4096 MIN_MATCH=3 MAX_MATCH=65538 MAX_PAYLOAD=65536 MAX_OUTPUT=1048576 MAX_EXPANSION=200000
+001 [2026-09-27 19:46:10 UTC] STATE :: observed code = index_gap
+002 [2026-09-27 19:46:10 UTC] STATE :: observed category = state
+003 [2026-09-27 19:46:10 UTC] STATE :: detail = block index 1 out of order, expected 0
+004 [2026-09-27 19:46:10 UTC] NOTE :: index continuity fails before digest comparison: predecessor is absent.
+005 [2026-09-27 19:46:10 UTC] RESULT :: verdict=PASS events=4 elapsed_ms=0
