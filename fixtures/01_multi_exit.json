@@ -1,0 +1,35 @@
+{
+  "name": "A-multi-exit-comparison-order",
+  "max_steps": 500,
+  "routers": [
+    {"name": "r9", "asn": 65009},
+    {"name": "r8", "asn": 65008},
+    {"name": "r1", "asn": 65001},
+    {"name": "r2", "asn": 65002},
+    {"name": "r3", "asn": 65003}
+  ],
+  "sessions": [
+    {"id": "s91", "a": "r9", "b": "r1", "type": "ebgp"},
+    {"id": "s82", "a": "r8", "b": "r2", "type": "ebgp"},
+    {"id": "s12", "a": "r1", "b": "r2", "type": "ebgp"},
+    {"id": "s23", "a": "r2", "b": "r3", "type": "ebgp"},
+    {"id": "s13", "a": "r1", "b": "r3", "type": "ebgp",
+      "export_a": [
+        {"name": "prepend-toward-r3", "match": {"prefix": "203.0.113.0/24"},
+         "actions": [{"type": "prepend_as", "prepend_as": [65010, 65010]}]}
+      ],
+      "import_b": [
+        {"name": "prefer-r1-exit", "match": {"from_router": "r1"},
+         "actions": [{"type": "set_local_pref", "set_local_pref": 200}]}
+      ]
+    }
+  ],
+  "events": [
+    {"seq": 1, "router": "r2", "peer": "r8", "kind": "update",
+     "prefix": "203.0.113.0/24",
+     "attrs": {"as_path": [65008], "med": 50, "origin": "igp"}},
+    {"seq": 2, "router": "r1", "peer": "r9", "kind": "update",
+     "prefix": "203.0.113.0/24",
+     "attrs": {"as_path": [65009], "med": 100, "origin": "igp"}}
+  ]
+}

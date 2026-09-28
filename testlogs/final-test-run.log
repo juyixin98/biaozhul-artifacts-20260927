@@ -1,0 +1,31 @@
+# pvsim FINAL test run — 2026-09-27T18:58:32Z
+# go: go version go1.23.4 linux/amd64
+# host: Linux 6.8.0-90-generic x86_64
+
+## go vet ./...
+VET_OK
+
+## go test -race -count=1 ./...
+?   	pvsim/cmd/pvsim	[no test files]
+ok  	pvsim/api	2.382s
+ok  	pvsim/config	1.030s
+ok  	pvsim/e2e	1.091s
+ok  	pvsim/engine	1.037s
+ok  	pvsim/internal/oracle	1.031s
+ok  	pvsim/model	1.024s
+ok  	pvsim/replay	1.273s
+ok  	pvsim/store	1.135s
+
+## go test -cover ./...
+ok  	pvsim/api	(cached)	coverage: 77.8% of statements
+	pvsim/cmd/pvsim		coverage: 0.0% of statements
+ok  	pvsim/config	(cached)	coverage: 63.8% of statements
+ok  	pvsim/e2e	(cached)	coverage: [no statements]
+ok  	pvsim/engine	(cached)	coverage: 85.9% of statements
+ok  	pvsim/internal/oracle	(cached)	coverage: 75.4% of statements
+ok  	pvsim/model	(cached)	coverage: 47.8% of statements
+ok  	pvsim/replay	(cached)	coverage: 63.6% of statements
+ok  	pvsim/store	(cached)	coverage: 68.0% of statements
+
+## go mod verify
+all modules verified

@@ -1,0 +1,47 @@
+{
+  "name": "C-policy-oscillation-bad-gadget",
+  "max_steps": 120,
+  "routers": [
+    {"name": "r0", "asn": 65000},
+    {"name": "a",  "asn": 65001},
+    {"name": "b",  "asn": 65002},
+    {"name": "c",  "asn": 65003}
+  ],
+  "sessions": [
+    {"id": "s0a", "a": "r0", "b": "a", "type": "ebgp"},
+    {"id": "s0b", "a": "r0", "b": "b", "type": "ebgp"},
+    {"id": "s0c", "a": "r0", "b": "c", "type": "ebgp"},
+    {"id": "sab", "a": "a", "b": "b", "type": "ebgp",
+      "import_b": [
+        {"name": "b-prefers-via-a",
+         "match": {"as_path_equals": [65001, 65000]},
+         "actions": [{"type": "set_local_pref", "set_local_pref": 200}]}
+      ]
+    },
+    {"id": "sbc", "a": "b", "b": "c", "type": "ebgp",
+      "import_b": [
+        {"name": "c-prefers-via-b",
+         "match": {"as_path_equals": [65002, 65000]},
+         "actions": [{"type": "set_local_pref", "set_local_pref": 200}]}
+      ]
+    },
+    {"id": "sca", "a": "c", "b": "a", "type": "ebgp",
+      "import_b": [
+        {"name": "a-prefers-via-c",
+         "match": {"as_path_equals": [65003, 65000]},
+         "actions": [{"type": "set_local_pref", "set_local_pref": 200}]}
+      ]
+    }
+  ],
+  "events": [
+    {"seq": 1, "router": "a", "peer": "r0", "kind": "update",
+     "prefix": "203.0.113.7/32",
+     "attrs": {"as_path": [65000], "origin": "igp"}},
+    {"seq": 2, "router": "b", "peer": "r0", "kind": "update",
+     "prefix": "203.0.113.7/32",
+     "attrs": {"as_path": [65000], "origin": "igp"}},
+    {"seq": 3, "router": "c", "peer": "r0", "kind": "update",
+     "prefix": "203.0.113.7/32",
+     "attrs": {"as_path": [65000], "origin": "igp"}}
+  ]
+}
