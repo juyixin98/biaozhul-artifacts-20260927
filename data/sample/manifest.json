@@ -1,0 +1,132 @@
+{
+  "spec": "smt-v1",
+  "hmac_note": "signed with the development key; rotate via SMT_JOURNAL_HMAC_KEY",
+  "inserted": [
+    {
+      "key": "000000000000000000000000000000000000000000000000000000000000ab00",
+      "value": "alpha"
+    },
+    {
+      "key": "000000000000000000000000000000000000000000000000000000000000ab01",
+      "value": "beta"
+    },
+    {
+      "key": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "value": "gamma"
+    }
+  ],
+  "absent_keys": [
+    "000000000000000000000000000000000000000000000000000000000000ab02",
+    "1111111111111111111111111111111111111111111111111111111111111111"
+  ],
+  "stages": [
+    {
+      "stage": "empty",
+      "revision": 1,
+      "root": "02843427f172cd963bf65b49f9c851a311ce3cec574338620e4fb6f9064d25ac"
+    },
+    {
+      "stage": "after_batch",
+      "revision": 2,
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c"
+    },
+    {
+      "stage": "after_delete_ka",
+      "revision": 3,
+      "root": "e2a020f59c4a9fe1f8f2f348874590d5fea8a3269063d490ee28d3fbb8c667f6"
+    },
+    {
+      "stage": "after_reinsert_ka",
+      "revision": 4,
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c"
+    }
+  ],
+  "final_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+  "batch_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+  "final_equals_batch_root": true,
+  "sample_proofs": {
+    "membership_ka": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "000000000000000000000000000000000000000000000000000000000000ab00",
+      "exists": true,
+      "terminal_depth": 256,
+      "terminal": {
+        "kind": "leaf",
+        "key": "000000000000000000000000000000000000000000000000000000000000ab00",
+        "value": "616c706861"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "fe72015882864dfd22ffd94774bec56c0c4249f5582c1de070aa52616da75506"
+        },
+        {
+          "kind": "empty_run",
+          "depth": 1,
+          "length": 254
+        },
+        {
+          "kind": "sibling",
+          "depth": 255,
+          "sibling_hash": "b1412fe76ef3dc5faee229e25e80a54a4bb147cf40154ca2640b68509d0c4e31"
+        }
+      ]
+    },
+    "nonmembership_in_subtree": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "000000000000000000000000000000000000000000000000000000000000ab02",
+      "exists": false,
+      "terminal_depth": 255,
+      "terminal": {
+        "kind": "empty"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "fe72015882864dfd22ffd94774bec56c0c4249f5582c1de070aa52616da75506"
+        },
+        {
+          "kind": "empty_run",
+          "depth": 1,
+          "length": 253
+        },
+        {
+          "kind": "sibling",
+          "depth": 254,
+          "sibling_hash": "156e996d9bc89206321faefcc3c7aed04894d45e8d18b4ff711cfefef2de9208"
+        }
+      ]
+    },
+    "nonmembership_elsewhere": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "1111111111111111111111111111111111111111111111111111111111111111",
+      "exists": false,
+      "terminal_depth": 4,
+      "terminal": {
+        "kind": "empty"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "fe72015882864dfd22ffd94774bec56c0c4249f5582c1de070aa52616da75506"
+        },
+        {
+          "kind": "empty_run",
+          "depth": 1,
+          "length": 2
+        },
+        {
+          "kind": "sibling",
+          "depth": 3,
+          "sibling_hash": "25b92edeaff6e77fed02f99dc7b8621bd9a9ceedc72a2675f552454836fe4dc2"
+        }
+      ]
+    }
+  }
+}

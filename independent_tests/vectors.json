@@ -1,0 +1,183 @@
+{
+  "spec": "smt-v1",
+  "keys": {
+    "ka": "000000000000000000000000000000000000000000000000000000000000ab00",
+    "kb": "000000000000000000000000000000000000000000000000000000000000ab01",
+    "kc": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "abs_subtree": "000000000000000000000000000000000000000000000000000000000000ab02",
+    "abs_far": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "empty_hashes": {
+    "level_0": "02843427f172cd963bf65b49f9c851a311ce3cec574338620e4fb6f9064d25ac",
+    "level_1": "c88b14b09bd6970a44923fd64214dda0b6c92b9dfb4b371a7ae4899aa33042b9",
+    "level_255": "30ff8de15d70d08c5b9f01468984c4a2d67bfe3a134143a3622b699cfe03c53a",
+    "level_256": "3e512c9f86bd1cc59a63adc72666b56d595f7b41914fbbc6df17d8f9efd5b939"
+  },
+  "leaf_hashes": {
+    "ka_alpha": "48493a42a8e3f7216009707e5dfaf8e2047119f3ea408da118d7f5120a554330",
+    "ka_emptyvalue": "03f0429faa9f806688bf614aeb8296ac614db6c68400a4048b08a6df7e28c408",
+    "kb_beta": "b1412fe76ef3dc5faee229e25e80a54a4bb147cf40154ca2640b68509d0c4e31"
+  },
+  "roots": {
+    "empty": "02843427f172cd963bf65b49f9c851a311ce3cec574338620e4fb6f9064d25ac",
+    "ka_only": "48493a42a8e3f7216009707e5dfaf8e2047119f3ea408da118d7f5120a554330",
+    "ka_kb": "150e2b63b3559b807da1a2543cfb20f6e28fb77608e04661cf81018616539681",
+    "ka_kb_kc": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c"
+  },
+  "delete_restore": {
+    "root_after_delete_ka": "b1412fe76ef3dc5faee229e25e80a54a4bb147cf40154ca2640b68509d0c4e31",
+    "root_after_reinsert_ka": "150e2b63b3559b807da1a2543cfb20f6e28fb77608e04661cf81018616539681",
+    "restored_matches_ka_kb": true,
+    "delete_ka_leaves_kb_root_equals_kaonly_shape_with_kb": true
+  },
+  "batch": {
+    "distinct_roots_for_all_orders": 1,
+    "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+    "empty_value_is_distinct_from_absent": true
+  },
+  "proofs": {
+    "membership_ka": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "000000000000000000000000000000000000000000000000000000000000ab00",
+      "exists": true,
+      "terminal_depth": 256,
+      "terminal": {
+        "kind": "leaf",
+        "key": "000000000000000000000000000000000000000000000000000000000000ab00",
+        "value": "616c706861"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "fe72015882864dfd22ffd94774bec56c0c4249f5582c1de070aa52616da75506"
+        },
+        {
+          "kind": "empty_run",
+          "depth": 1,
+          "length": 254
+        },
+        {
+          "kind": "sibling",
+          "depth": 255,
+          "sibling_hash": "b1412fe76ef3dc5faee229e25e80a54a4bb147cf40154ca2640b68509d0c4e31"
+        }
+      ]
+    },
+    "membership_kb": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "000000000000000000000000000000000000000000000000000000000000ab01",
+      "exists": true,
+      "terminal_depth": 256,
+      "terminal": {
+        "kind": "leaf",
+        "key": "000000000000000000000000000000000000000000000000000000000000ab01",
+        "value": "62657461"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "fe72015882864dfd22ffd94774bec56c0c4249f5582c1de070aa52616da75506"
+        },
+        {
+          "kind": "empty_run",
+          "depth": 1,
+          "length": 254
+        },
+        {
+          "kind": "sibling",
+          "depth": 255,
+          "sibling_hash": "48493a42a8e3f7216009707e5dfaf8e2047119f3ea408da118d7f5120a554330"
+        }
+      ]
+    },
+    "membership_kc": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "exists": true,
+      "terminal_depth": 1,
+      "terminal": {
+        "kind": "leaf",
+        "key": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "value": "67616d6d61"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "f34b574bb9e2bea3fb4958640873a85d7f0c03fbec16580ad3b38a936c3c05c8"
+        }
+      ]
+    },
+    "nonmember_in_subtree": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "000000000000000000000000000000000000000000000000000000000000ab02",
+      "exists": false,
+      "terminal_depth": 255,
+      "terminal": {
+        "kind": "empty"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "fe72015882864dfd22ffd94774bec56c0c4249f5582c1de070aa52616da75506"
+        },
+        {
+          "kind": "empty_run",
+          "depth": 1,
+          "length": 253
+        },
+        {
+          "kind": "sibling",
+          "depth": 254,
+          "sibling_hash": "156e996d9bc89206321faefcc3c7aed04894d45e8d18b4ff711cfefef2de9208"
+        }
+      ]
+    },
+    "nonmember_far": {
+      "version": "smt-v1",
+      "root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "key": "1111111111111111111111111111111111111111111111111111111111111111",
+      "exists": false,
+      "terminal_depth": 4,
+      "terminal": {
+        "kind": "empty"
+      },
+      "steps": [
+        {
+          "kind": "sibling",
+          "depth": 0,
+          "sibling_hash": "fe72015882864dfd22ffd94774bec56c0c4249f5582c1de070aa52616da75506"
+        },
+        {
+          "kind": "empty_run",
+          "depth": 1,
+          "length": 2
+        },
+        {
+          "kind": "sibling",
+          "depth": 3,
+          "sibling_hash": "25b92edeaff6e77fed02f99dc7b8621bd9a9ceedc72a2675f552454836fe4dc2"
+        }
+      ]
+    },
+    "nonmember_empty_tree": {
+      "version": "smt-v1",
+      "root": "02843427f172cd963bf65b49f9c851a311ce3cec574338620e4fb6f9064d25ac",
+      "key": "1111111111111111111111111111111111111111111111111111111111111111",
+      "exists": false,
+      "terminal_depth": 0,
+      "terminal": {
+        "kind": "empty"
+      },
+      "steps": []
+    }
+  },
+  "all_generated_proofs_check": true
+}

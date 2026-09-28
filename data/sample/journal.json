@@ -1,0 +1,95 @@
+{
+  "version": "smt-v1",
+  "records": [
+    {
+      "seq": 1,
+      "kind": "set",
+      "key_hex": "000000000000000000000000000000000000000000000000000000000000ab00",
+      "value_hex": "616c706861",
+      "prev_root": "02843427f172cd963bf65b49f9c851a311ce3cec574338620e4fb6f9064d25ac",
+      "new_root": "48493a42a8e3f7216009707e5dfaf8e2047119f3ea408da118d7f5120a554330",
+      "payload": {
+        "key_hex": "000000000000000000000000000000000000000000000000000000000000ab00",
+        "kind": "set",
+        "new_root": "48493a42a8e3f7216009707e5dfaf8e2047119f3ea408da118d7f5120a554330",
+        "prev_root": "02843427f172cd963bf65b49f9c851a311ce3cec574338620e4fb6f9064d25ac",
+        "value_hex": "616c706861",
+        "version": "smt-v1"
+      },
+      "signature_hex": "810dfec67902f1a493c015c4be99ee4b1c2bf2235da54cba691410e6f1be2245",
+      "created_at": "2026-09-28T03:16:38Z"
+    },
+    {
+      "seq": 2,
+      "kind": "set",
+      "key_hex": "000000000000000000000000000000000000000000000000000000000000ab01",
+      "value_hex": "62657461",
+      "prev_root": "48493a42a8e3f7216009707e5dfaf8e2047119f3ea408da118d7f5120a554330",
+      "new_root": "150e2b63b3559b807da1a2543cfb20f6e28fb77608e04661cf81018616539681",
+      "payload": {
+        "key_hex": "000000000000000000000000000000000000000000000000000000000000ab01",
+        "kind": "set",
+        "new_root": "150e2b63b3559b807da1a2543cfb20f6e28fb77608e04661cf81018616539681",
+        "prev_root": "48493a42a8e3f7216009707e5dfaf8e2047119f3ea408da118d7f5120a554330",
+        "value_hex": "62657461",
+        "version": "smt-v1"
+      },
+      "signature_hex": "4b6e4ab9a308368777c45c98a159e19cc282824bd87b7d6ed047c37b8f36089d",
+      "created_at": "2026-09-28T03:16:38Z"
+    },
+    {
+      "seq": 3,
+      "kind": "set",
+      "key_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "value_hex": "67616d6d61",
+      "prev_root": "150e2b63b3559b807da1a2543cfb20f6e28fb77608e04661cf81018616539681",
+      "new_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "payload": {
+        "key_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "kind": "set",
+        "new_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+        "prev_root": "150e2b63b3559b807da1a2543cfb20f6e28fb77608e04661cf81018616539681",
+        "value_hex": "67616d6d61",
+        "version": "smt-v1"
+      },
+      "signature_hex": "5bb26186968c5f0dce02360b1783e55d0f7dc211542c39ba3c0bb9a0ffe5df6f",
+      "created_at": "2026-09-28T03:16:38Z"
+    },
+    {
+      "seq": 4,
+      "kind": "delete",
+      "key_hex": "000000000000000000000000000000000000000000000000000000000000ab00",
+      "value_hex": null,
+      "prev_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "new_root": "e2a020f59c4a9fe1f8f2f348874590d5fea8a3269063d490ee28d3fbb8c667f6",
+      "payload": {
+        "key_hex": "000000000000000000000000000000000000000000000000000000000000ab00",
+        "kind": "delete",
+        "new_root": "e2a020f59c4a9fe1f8f2f348874590d5fea8a3269063d490ee28d3fbb8c667f6",
+        "prev_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+        "value_hex": null,
+        "version": "smt-v1"
+      },
+      "signature_hex": "d6f8a7a038573e56c84889fe3265ed6890f8ec8878e345ae337165283914ce1c",
+      "created_at": "2026-09-28T03:16:38Z"
+    },
+    {
+      "seq": 5,
+      "kind": "set",
+      "key_hex": "000000000000000000000000000000000000000000000000000000000000ab00",
+      "value_hex": "616c706861",
+      "prev_root": "e2a020f59c4a9fe1f8f2f348874590d5fea8a3269063d490ee28d3fbb8c667f6",
+      "new_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+      "payload": {
+        "key_hex": "000000000000000000000000000000000000000000000000000000000000ab00",
+        "kind": "set",
+        "new_root": "e7d7ebde7592b3af48fe6c5bb7de517b5c2ff9fe5f543fb18fef3c4ac452ca2c",
+        "prev_root": "e2a020f59c4a9fe1f8f2f348874590d5fea8a3269063d490ee28d3fbb8c667f6",
+        "value_hex": "616c706861",
+        "version": "smt-v1"
+      },
+      "signature_hex": "9147d64f972222392eb7a81e7ed0e3d9a5c9bb439fb2e4516c4a7dcaa19e52f9",
+      "created_at": "2026-09-28T03:16:38Z"
+    }
+  ]
+}
