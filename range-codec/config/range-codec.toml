@@ -1,0 +1,14 @@
+# range-codec example configuration.
+# Everything is optional; the values below match the built-in defaults.
+
+listen = "127.0.0.1:8080"
+data_dir = "./data"
+log_level = "info"
+http_body_limit = 8388608          # 8 MiB
+redact_payloads = true             # never log raw payload bytes
+
+[budget]
+max_symbol_count = 16777216       # 16 Mi symbols
+max_chunks = 4096
+max_payload_bytes = 67108864      # 64 MiB of coded payload
+max_chunk_symbols = 65535
