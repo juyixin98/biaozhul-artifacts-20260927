@@ -1,0 +1,165 @@
+2026-09-28 06:22:01,857 INFO [run=test-20260928T062201-54a62322] ctrie | 测试运行开始 run_id=test-20260928T062201-54a62322 python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:22:01,869 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_completion_concrete_resul0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:01,905 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:01,909 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:01,911 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:22:01,911 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:22:01,912 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] /complete prefix=prefix -> [('h', 100.0), ('m', 50.0)]
+2026-09-28 06:22:01,925 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_empty_prefix_global_topk0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:01,935 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:01,938 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:01,940 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:22:01,941 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:22:01,954 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_tie_collision_order_over_0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:01,964 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:01,971 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:01,972 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:22:01,973 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:22:01,984 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_diagnostics_trace_explain0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:01,994 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:01,997 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:01,998 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v2
+2026-09-28 06:22:02,000 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:02,001 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v3
+2026-09-28 06:22:02,002 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:22:02,002 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 诊断轨迹 pushed=6 expanded=4 pruned=2 decisions=9
+2026-09-28 06:22:02,015 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_prefix_normalization_retu0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,026 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,032 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:02,033 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:22:02,034 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:22:02,047 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_empty_term_is_validation_0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,061 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,061 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 请求参数校验失败: [{'type': 'string_too_short', 'loc': ('body', 'entries', 0, 'term'), 'msg': 'String should have at least 1 character', 'input': '', 'ctx': {'min_length': 1}}]
+2026-09-28 06:22:02,062 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:22:02,075 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_extra_field_rejected0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,088 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,089 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 请求参数校验失败: [{'type': 'extra_forbidden', 'loc': ('body', 'entries', 0, 'bogus'), 'msg': 'Extra inputs are not permitted', 'input': 2}]
+2026-09-28 06:22:02,089 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:22:02,103 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_nan_score_rejected0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,116 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,117 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 领域错误 VALIDATION_ERROR: entries[0].score 必须是有限实数，不能为 NaN/Infinity
+2026-09-28 06:22:02,117 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:22:02,132 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_invalid_k0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,145 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,147 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:02,148 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:22:02,149 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:22:02,149 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:22:02,150 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:22:02,151 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:22:02,151 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:22:02,152 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:22:02,152 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 领域错误 VALIDATION_ERROR: k 不能超过 50
+2026-09-28 06:22:02,153 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:22:02,167 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_delete_missing_returns_400/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,178 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:delete 开始 head=v1
+2026-09-28 06:22:02,179 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 领域错误 ENTRY_NOT_FOUND: 词条 'nope' 不存在
+2026-09-28 06:22:02,179 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:delete -> 404
+2026-09-28 06:22:02,193 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_missing_version_4040/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,204 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete 开始 head=v1
+2026-09-28 06:22:02,205 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 领域错误 VERSION_NOT_FOUND: 版本 424242 不存在
+2026-09-28 06:22:02,205 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/complete -> 404
+2026-09-28 06:22:02,218 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_restore_missing_snapshot_0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,227 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/snapshots:restore 开始 head=v1
+2026-09-28 06:22:02,228 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 领域错误 VERSION_NOT_FOUND: 快照版本 424242 不存在
+2026-09-28 06:22:02,228 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/snapshots:restore -> 404
+2026-09-28 06:22:02,239 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_malformed_json_not_succes0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,253 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,253 WARNING [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] 请求参数校验失败: [{'type': 'json_invalid', 'loc': ('body', 1), 'msg': 'JSON decode error', 'input': {}, 'ctx': {'error': 'Expecting property name enclosed in double quotes'}}]
+2026-09-28 06:22:02,254 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:22:02,266 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_status_reports_health_and0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,280 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,282 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:02,283 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/status 开始 head=v2
+2026-09-28 06:22:02,284 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/status -> 200
+2026-09-28 06:22:02,299 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_versions_and_snapshots_en0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,319 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:22:02,321 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:22:02,322 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/snapshots 开始 head=v2
+2026-09-28 06:22:02,325 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/snapshots -> 200
+2026-09-28 06:22:02,326 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/versions 开始 head=v3
+2026-09-28 06:22:02,326 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/versions -> 200
+2026-09-28 06:22:02,327 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/snapshots 开始 head=v3
+2026-09-28 06:22:02,328 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] GET /api/v1/snapshots -> 200
+2026-09-28 06:22:02,329 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/snapshots:restore 开始 head=v3
+2026-09-28 06:22:02,331 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322-httpx] POST /api/v1/snapshots:restore -> 200
+2026-09-28 06:22:02,346 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 关闭前 head=v2 结果数=4
+2026-09-28 06:22:02,360 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_versions_chain_parent_ids0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,378 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_bulk_upsert_is_atomic0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,393 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_invalid_scores_and_terms0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,406 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_delete_requires_existing_0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,582 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] Engine 混合操作 120 步交叉验证通过
+2026-09-28 06:22:02,592 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_snapshot_and_historical_q0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,597 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 当前=['c', 'a'] 快照v3=['a', 'b'] baseline=[]
+2026-09-28 06:22:02,610 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_restore_snapshot0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,627 INFO [run=test-20260928T062201-54a62322] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-139/test_restore_nonexistent_snaps0/engine-test-20260928T062201-54a62322.db
+2026-09-28 06:22:02,651 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='Hello' 期望='hello' (ASCII 大小写折叠)
+2026-09-28 06:22:02,652 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='ＣＡＦＥ' 期望='cafe' (全角拉丁 -> 半角 (NFKC) 再小写)
+2026-09-28 06:22:02,653 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='Straße' 期望='strasse' (德语 sharp s 的 casefold 展开为 ss)
+2026-09-28 06:22:02,654 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='ﬁle' 期望='file' (LATIN SMALL LIGATURE FI 经 NFKC 分解为 fi)
+2026-09-28 06:22:02,655 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='①' 期望='1' (带圈数字 1 的 NFKC 兼容映射)
+2026-09-28 06:22:02,655 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='Ｈｅｌｌｏ' 期望='hello' (全角 ASCII 规范化碰撞到 hello)
+2026-09-28 06:22:02,656 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='カフェ' 期望='カフェ' (片假名 NFKC 后保持（已是规范形式）)
+2026-09-28 06:22:02,657 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='Ω' 期望='ω' (希腊大写欧米伽 casefold)
+2026-09-28 06:22:02,658 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='Å' 期望='å' (Angstrom/NFC A-ring 的 NFKC+casefold)
+2026-09-28 06:22:02,659 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='ABC123' 期望='abc123' (字母数字混合)
+2026-09-28 06:22:02,660 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] normalize 输入='İ' 期望='i̇' (土耳其 İ casefold 为 i + combining dot above (U+0307))
+2026-09-28 06:22:02,673 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证开始 seed=20260927
+2026-09-28 06:22:02,791 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=20260927 收尾查询 prefix='' 命中=5 展开节点=10 整枝剪枝=38 终止词条扫描=41
+2026-09-28 06:22:02,791 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=20260927 收尾查询 prefix='a' 命中=5 展开节点=6 整枝剪枝=11 终止词条扫描=14
+2026-09-28 06:22:02,791 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=20260927 收尾查询 prefix='inter' 命中=5 展开节点=8 整枝剪枝=7 终止词条扫描=14
+2026-09-28 06:22:02,792 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=20260927 收尾查询 prefix='cafe' 命中=5 展开节点=5 整枝剪枝=6 终止词条扫描=19
+2026-09-28 06:22:02,792 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=20260927 收尾查询 prefix='abc' 命中=5 展开节点=4 整枝剪枝=4 终止词条扫描=9
+2026-09-28 06:22:02,792 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=20260927 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:22:02,792 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证通过 seed=20260927 总词条=164
+2026-09-28 06:22:02,793 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证开始 seed=17
+2026-09-28 06:22:02,892 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=17 收尾查询 prefix='' 命中=5 展开节点=15 整枝剪枝=28 终止词条扫描=42
+2026-09-28 06:22:02,893 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=17 收尾查询 prefix='a' 命中=5 展开节点=9 整枝剪枝=12 终止词条扫描=20
+2026-09-28 06:22:02,893 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=17 收尾查询 prefix='inter' 命中=5 展开节点=6 整枝剪枝=5 终止词条扫描=9
+2026-09-28 06:22:02,893 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=17 收尾查询 prefix='cafe' 命中=5 展开节点=8 整枝剪枝=13 终止词条扫描=18
+2026-09-28 06:22:02,893 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=17 收尾查询 prefix='abc' 命中=5 展开节点=9 整枝剪枝=5 终止词条扫描=10
+2026-09-28 06:22:02,894 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=17 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:22:02,894 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证通过 seed=17 总词条=151
+2026-09-28 06:22:02,895 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证开始 seed=90210
+2026-09-28 06:22:03,040 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=90210 收尾查询 prefix='' 命中=5 展开节点=12 整枝剪枝=28 终止词条扫描=18
+2026-09-28 06:22:03,040 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=90210 收尾查询 prefix='a' 命中=5 展开节点=7 整枝剪枝=9 终止词条扫描=9
+2026-09-28 06:22:03,040 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=90210 收尾查询 prefix='inter' 命中=5 展开节点=4 整枝剪枝=6 终止词条扫描=9
+2026-09-28 06:22:03,040 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=90210 收尾查询 prefix='cafe' 命中=5 展开节点=4 整枝剪枝=5 终止词条扫描=14
+2026-09-28 06:22:03,040 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=90210 收尾查询 prefix='abc' 命中=5 展开节点=6 整枝剪枝=2 终止词条扫描=5
+2026-09-28 06:22:03,040 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=90210 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:22:03,041 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证通过 seed=90210 总词条=117
+2026-09-28 06:22:03,042 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证开始 seed=424242
+2026-09-28 06:22:03,149 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=424242 收尾查询 prefix='' 命中=5 展开节点=10 整枝剪枝=21 终止词条扫描=19
+2026-09-28 06:22:03,149 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=424242 收尾查询 prefix='a' 命中=5 展开节点=8 整枝剪枝=11 终止词条扫描=13
+2026-09-28 06:22:03,149 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=424242 收尾查询 prefix='inter' 命中=5 展开节点=7 整枝剪枝=7 终止词条扫描=13
+2026-09-28 06:22:03,150 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=424242 收尾查询 prefix='cafe' 命中=5 展开节点=5 整枝剪枝=6 终止词条扫描=15
+2026-09-28 06:22:03,150 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=424242 收尾查询 prefix='abc' 命中=5 展开节点=7 整枝剪枝=5 终止词条扫描=7
+2026-09-28 06:22:03,150 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=424242 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:22:03,150 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证通过 seed=424242 总词条=151
+2026-09-28 06:22:03,151 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证开始 seed=7
+2026-09-28 06:22:03,237 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=7 收尾查询 prefix='' 命中=5 展开节点=12 整枝剪枝=24 终止词条扫描=29
+2026-09-28 06:22:03,237 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=7 收尾查询 prefix='a' 命中=5 展开节点=12 整枝剪枝=9 终止词条扫描=17
+2026-09-28 06:22:03,237 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=7 收尾查询 prefix='inter' 命中=5 展开节点=5 整枝剪枝=3 终止词条扫描=6
+2026-09-28 06:22:03,237 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=7 收尾查询 prefix='cafe' 命中=5 展开节点=10 整枝剪枝=6 终止词条扫描=13
+2026-09-28 06:22:03,238 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=7 收尾查询 prefix='abc' 命中=5 展开节点=9 整枝剪枝=5 终止词条扫描=7
+2026-09-28 06:22:03,238 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] seed=7 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:22:03,238 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 随机交叉验证通过 seed=7 总词条=131
+2026-09-28 06:22:03,240 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 长前缀查询 prefix='' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:22:03,240 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 长前缀查询 prefix='inter' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:22:03,240 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 长前缀查询 prefix='intern' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:22:03,241 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 长前缀查询 prefix='interna' got=['p5', 'p1', 'p2', 'p3'] want=['p5', 'p1', 'p2', 'p3']
+2026-09-28 06:22:03,241 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 长前缀查询 prefix='internation' got=['p1', 'p2', 'p3'] want=['p1', 'p2', 'p3']
+2026-09-28 06:22:03,241 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 长前缀查询 prefix='inte' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:22:03,241 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 长前缀查询 prefix='xyz' got=[] want=[]
+2026-09-28 06:22:03,247 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 剪枝统计 pushed=1 expanded=1 terminals_seen=1 pruned=0 pops=1
+2026-09-28 06:22:03,248 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 同分排序 got=['apple', 'avocado', 'banana', 'cherry'] want=['apple', 'avocado', 'banana', 'cherry']
+2026-09-28 06:22:03,252 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 降权后 top2=['mid', 'low']
+2026-09-28 06:22:03,253 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 热词降权剪枝记录: [('3', 48.0, "堆顶子树上界 (-48.0, ('bbb_cold3', 'bbb_cold3'"), ('aaa_hot', 1.0, "堆内剩余子树 'aaa_hot' 上界 (-1.0, ('aaa_hot1', ")]
+2026-09-28 06:22:03,257 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 删改后 pfx='' got=['d', 'b', 'c'] want=['d', 'b', 'c']
+2026-09-28 06:22:03,257 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 删改后 pfx='ma' got=['d', 'b', 'a'] want=['d', 'b', 'a']
+2026-09-28 06:22:03,258 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] 删改后 pfx='mang' got=['a'] want=['a']
+2026-09-28 06:22:03,260 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] pfx='grp1' k=1 剪枝审计通过，pruned=6
+2026-09-28 06:22:03,261 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] pfx='' k=3 剪枝审计通过，pruned=21
+2026-09-28 06:22:03,261 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] pfx='grp' k=5 剪枝审计通过，pruned=26
+2026-09-28 06:22:03,261 INFO [run=test-20260928T062201-54a62322] ctrie | [test-20260928T062201-54a62322] pfx='grp3' k=2 剪枝审计通过，pruned=6

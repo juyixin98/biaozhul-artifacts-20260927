@@ -1,0 +1,2 @@
+2026-09-28 06:15:31,657 INFO [run=test-20260928T061531-3a8efaf8] ctrie | 测试运行开始 run_id=test-20260928T061531-3a8efaf8 python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:15:31,658 INFO [run=test-20260928T061531-3a8efaf8] ctrie | [test-20260928T061531-3a8efaf8] 随机交叉验证开始 seed=7

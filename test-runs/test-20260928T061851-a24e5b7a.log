@@ -1,0 +1,59 @@
+2026-09-28 06:18:51,999 INFO [run=test-20260928T061851-a24e5b7a] ctrie | 测试运行开始 run_id=test-20260928T061851-a24e5b7a python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:18:52,000 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 长前缀查询 prefix='' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:18:52,000 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 长前缀查询 prefix='inter' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:18:52,000 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 长前缀查询 prefix='intern' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:18:52,000 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 长前缀查询 prefix='interna' got=['p5', 'p1', 'p2', 'p3'] want=['p5', 'p1', 'p2', 'p3']
+2026-09-28 06:18:52,000 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 长前缀查询 prefix='internation' got=['p1', 'p2', 'p3'] want=['p1', 'p2', 'p3']
+2026-09-28 06:18:52,001 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 长前缀查询 prefix='inte' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:18:52,001 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 长前缀查询 prefix='xyz' got=[] want=[]
+2026-09-28 06:18:52,010 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 剪枝统计 pushed=1 expanded=1 terminals_seen=1 pruned=0 pops=1
+2026-09-28 06:18:52,012 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 同分排序 got=['apple', 'avocado', 'banana', 'cherry'] want=['apple', 'avocado', 'banana', 'cherry']
+2026-09-28 06:18:52,018 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 降权后 top2=['mid', 'low']
+2026-09-28 06:18:52,019 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 热词降权剪枝记录: [('3', 48.0, "堆顶子树上界 (-48.0, ('bbb_cold3', 'bbb_cold3'"), ('aaa_hot', 1.0, "堆内剩余子树 'aaa_hot' 上界 (-1.0, ('aaa_hot1', ")]
+2026-09-28 06:18:52,025 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 删改后 pfx='' got=['d', 'b', 'c'] want=['d', 'b', 'c']
+2026-09-28 06:18:52,025 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 删改后 pfx='ma' got=['d', 'b', 'a'] want=['d', 'b', 'a']
+2026-09-28 06:18:52,025 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 删改后 pfx='mang' got=['a'] want=['a']
+2026-09-28 06:18:52,029 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] pfx='grp1' k=1 剪枝审计通过，pruned=6
+2026-09-28 06:18:52,029 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] pfx='' k=3 剪枝审计通过，pruned=21
+2026-09-28 06:18:52,030 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] pfx='grp' k=5 剪枝审计通过，pruned=26
+2026-09-28 06:18:52,030 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] pfx='grp3' k=2 剪枝审计通过，pruned=6
+2026-09-28 06:18:52,032 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证开始 seed=20260927
+2026-09-28 06:18:52,168 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=20260927 收尾查询 prefix='' 命中=5 展开节点=10 整枝剪枝=38 终止词条扫描=41
+2026-09-28 06:18:52,169 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=20260927 收尾查询 prefix='a' 命中=5 展开节点=6 整枝剪枝=11 终止词条扫描=14
+2026-09-28 06:18:52,169 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=20260927 收尾查询 prefix='inter' 命中=5 展开节点=8 整枝剪枝=7 终止词条扫描=14
+2026-09-28 06:18:52,169 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=20260927 收尾查询 prefix='cafe' 命中=5 展开节点=5 整枝剪枝=6 终止词条扫描=19
+2026-09-28 06:18:52,169 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=20260927 收尾查询 prefix='abc' 命中=5 展开节点=4 整枝剪枝=4 终止词条扫描=9
+2026-09-28 06:18:52,170 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=20260927 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:18:52,170 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证通过 seed=20260927 总词条=164
+2026-09-28 06:18:52,171 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证开始 seed=17
+2026-09-28 06:18:52,283 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=17 收尾查询 prefix='' 命中=5 展开节点=15 整枝剪枝=28 终止词条扫描=42
+2026-09-28 06:18:52,284 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=17 收尾查询 prefix='a' 命中=5 展开节点=9 整枝剪枝=12 终止词条扫描=20
+2026-09-28 06:18:52,284 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=17 收尾查询 prefix='inter' 命中=5 展开节点=6 整枝剪枝=5 终止词条扫描=9
+2026-09-28 06:18:52,284 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=17 收尾查询 prefix='cafe' 命中=5 展开节点=8 整枝剪枝=13 终止词条扫描=18
+2026-09-28 06:18:52,285 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=17 收尾查询 prefix='abc' 命中=5 展开节点=9 整枝剪枝=5 终止词条扫描=10
+2026-09-28 06:18:52,285 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=17 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:18:52,285 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证通过 seed=17 总词条=151
+2026-09-28 06:18:52,286 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证开始 seed=90210
+2026-09-28 06:18:52,407 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=90210 收尾查询 prefix='' 命中=5 展开节点=12 整枝剪枝=28 终止词条扫描=18
+2026-09-28 06:18:52,407 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=90210 收尾查询 prefix='a' 命中=5 展开节点=7 整枝剪枝=9 终止词条扫描=9
+2026-09-28 06:18:52,408 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=90210 收尾查询 prefix='inter' 命中=5 展开节点=4 整枝剪枝=6 终止词条扫描=9
+2026-09-28 06:18:52,408 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=90210 收尾查询 prefix='cafe' 命中=5 展开节点=4 整枝剪枝=5 终止词条扫描=14
+2026-09-28 06:18:52,408 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=90210 收尾查询 prefix='abc' 命中=5 展开节点=6 整枝剪枝=2 终止词条扫描=5
+2026-09-28 06:18:52,408 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=90210 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:18:52,408 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证通过 seed=90210 总词条=117
+2026-09-28 06:18:52,409 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证开始 seed=424242
+2026-09-28 06:18:52,526 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=424242 收尾查询 prefix='' 命中=5 展开节点=10 整枝剪枝=21 终止词条扫描=19
+2026-09-28 06:18:52,527 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=424242 收尾查询 prefix='a' 命中=5 展开节点=8 整枝剪枝=11 终止词条扫描=13
+2026-09-28 06:18:52,527 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=424242 收尾查询 prefix='inter' 命中=5 展开节点=7 整枝剪枝=7 终止词条扫描=13
+2026-09-28 06:18:52,527 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=424242 收尾查询 prefix='cafe' 命中=5 展开节点=5 整枝剪枝=6 终止词条扫描=15
+2026-09-28 06:18:52,527 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=424242 收尾查询 prefix='abc' 命中=5 展开节点=7 整枝剪枝=5 终止词条扫描=7
+2026-09-28 06:18:52,527 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=424242 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:18:52,527 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证通过 seed=424242 总词条=151
+2026-09-28 06:18:52,529 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证开始 seed=7
+2026-09-28 06:18:52,623 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=7 收尾查询 prefix='' 命中=5 展开节点=12 整枝剪枝=24 终止词条扫描=29
+2026-09-28 06:18:52,623 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=7 收尾查询 prefix='a' 命中=5 展开节点=12 整枝剪枝=9 终止词条扫描=17
+2026-09-28 06:18:52,623 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=7 收尾查询 prefix='inter' 命中=5 展开节点=5 整枝剪枝=3 终止词条扫描=6
+2026-09-28 06:18:52,623 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=7 收尾查询 prefix='cafe' 命中=5 展开节点=10 整枝剪枝=6 终止词条扫描=13
+2026-09-28 06:18:52,623 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=7 收尾查询 prefix='abc' 命中=5 展开节点=9 整枝剪枝=5 终止词条扫描=7
+2026-09-28 06:18:52,624 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] seed=7 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:18:52,624 INFO [run=test-20260928T061851-a24e5b7a] ctrie | [test-20260928T061851-a24e5b7a] 随机交叉验证通过 seed=7 总词条=131

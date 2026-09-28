@@ -1,0 +1,183 @@
+2026-09-28 06:10:44,271 INFO [run=test-20260928T061044-b59b04f5] ctrie | 测试运行开始 run_id=test-20260928T061044-b59b04f5 python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:10:44,288 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_completion_concrete_resul0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,323 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,327 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:44,327 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,393 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_empty_prefix_global_topk0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,404 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,406 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:44,407 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,408 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:10:44,409 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引处于降级状态，拒绝提供可能不一致的查询
+2026-09-28 06:10:44,409 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 500
+2026-09-28 06:10:44,449 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_tie_collision_order_over_0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,459 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,461 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:44,461 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,462 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:10:44,463 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引处于降级状态，拒绝提供可能不一致的查询
+2026-09-28 06:10:44,463 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 500
+2026-09-28 06:10:44,502 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_diagnostics_trace_explain0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,512 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,514 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:44,514 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,515 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v2
+2026-09-28 06:10:44,516 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引处于降级状态，拒绝写入
+2026-09-28 06:10:44,516 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,517 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:10:44,518 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引处于降级状态，拒绝提供可能不一致的查询
+2026-09-28 06:10:44,518 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 500
+2026-09-28 06:10:44,562 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_prefix_normalization_retu0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,572 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,574 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:44,574 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,576 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:10:44,577 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引处于降级状态，拒绝提供可能不一致的查询
+2026-09-28 06:10:44,577 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 500
+2026-09-28 06:10:44,627 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_empty_term_is_validation_0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,638 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,639 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 422
+2026-09-28 06:10:44,660 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_extra_field_rejected0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,671 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,672 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 422
+2026-09-28 06:10:44,689 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_nan_score_rejected0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,804 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_invalid_k0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,838 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,840 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:44,840 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,841 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:10:44,842 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:10:44,842 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:10:44,843 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:10:44,844 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:10:44,844 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:10:44,845 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:10:44,845 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 VALIDATION_ERROR: k 不能超过 50
+2026-09-28 06:10:44,845 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:10:44,883 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_delete_missing_returns_400/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,893 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:delete 开始 head=v1
+2026-09-28 06:10:44,894 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 ENTRY_NOT_FOUND: 词条 'nope' 不存在
+2026-09-28 06:10:44,894 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:delete -> 404
+2026-09-28 06:10:44,905 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_missing_version_4040/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,914 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete 开始 head=v1
+2026-09-28 06:10:44,915 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 VERSION_NOT_FOUND: 版本 424242 不存在
+2026-09-28 06:10:44,915 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/complete -> 404
+2026-09-28 06:10:44,927 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_restore_missing_snapshot_0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,936 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/snapshots:restore 开始 head=v1
+2026-09-28 06:10:44,937 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 VERSION_NOT_FOUND: 快照版本 424242 不存在
+2026-09-28 06:10:44,937 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/snapshots:restore -> 404
+2026-09-28 06:10:44,948 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_malformed_json_not_succes0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,958 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,959 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 422
+2026-09-28 06:10:44,975 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_status_reports_health_and0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:44,984 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:44,986 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:44,987 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:44,988 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/status 开始 head=v2
+2026-09-28 06:10:44,988 ERROR [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 未预期异常: 'tuple' object has no attribute 'parent'
+Traceback (most recent call last):
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 197, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/app/api.py", line 124, in add_request_id
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 173, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 352, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/app/api.py", line 144, in status
+    return eng().status()
+           ^^^^^^^^^^^^^^
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/app/engine.py", line 341, in status
+    violations = self.trie.check_invariants()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/app/trie.py", line 439, in check_invariants
+    postorder(self.root)
+  File "/home/admin/Downloads/xinbiaozhu/opp244/a/app/trie.py", line 406, in postorder
+    if child.parent is not n:
+       ^^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:45,380 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_versions_and_snapshots_en0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,391 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:10:45,393 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引更新失败: 'tuple' object has no attribute 'parent'
+2026-09-28 06:10:45,393 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/entries:bulkUpsert -> 500
+2026-09-28 06:10:45,395 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/snapshots 开始 head=v2
+2026-09-28 06:10:45,395 WARNING [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] 领域错误 INDEX_DEGRADED: 索引处于降级状态
+2026-09-28 06:10:45,395 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] POST /api/v1/snapshots -> 500
+2026-09-28 06:10:45,396 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/versions 开始 head=v2
+2026-09-28 06:10:45,397 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5-httpx] GET /api/v1/versions -> 200
+2026-09-28 06:10:45,480 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_versions_chain_parent_ids0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,548 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_bulk_upsert_is_atomic0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,609 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_invalid_scores_and_terms0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,619 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_delete_requires_existing_0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,726 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_snapshot_and_historical_q0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,788 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_restore_snapshot0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,853 INFO [run=test-20260928T061044-b59b04f5] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-112/test_restore_nonexistent_snaps0/engine-test-20260928T061044-b59b04f5.db
+2026-09-28 06:10:45,898 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='Hello' 期望='hello' (ASCII 大小写折叠)
+2026-09-28 06:10:45,899 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='ＣＡＦＥ' 期望='cafe' (全角拉丁 -> 半角 (NFKC) 再小写)
+2026-09-28 06:10:45,900 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='Straße' 期望='strasse' (德语 sharp s 的 casefold 展开为 ss)
+2026-09-28 06:10:45,901 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='ﬁle' 期望='file' (LATIN SMALL LIGATURE FI 经 NFKC 分解为 fi)
+2026-09-28 06:10:45,902 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='①' 期望='1' (带圈数字 1 的 NFKC 兼容映射)
+2026-09-28 06:10:45,903 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='Ｈｅｌｌｏ' 期望='hello' (全角 ASCII 规范化碰撞到 hello)
+2026-09-28 06:10:45,904 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='カフェ' 期望='カフェ' (片假名 NFKC 后保持（已是规范形式）)
+2026-09-28 06:10:45,905 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='Ω' 期望='ω' (希腊大写欧米伽 casefold)
+2026-09-28 06:10:45,906 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='Å' 期望='å' (Angstrom/NFC A-ring 的 NFKC+casefold)
+2026-09-28 06:10:45,907 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='ABC123' 期望='abc123' (字母数字混合)
+2026-09-28 06:10:45,908 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] normalize 输入='İ' 期望='i̇' (土耳其 İ casefold 为 i + combining dot above (U+0307))
+2026-09-28 06:10:45,922 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 随机交叉验证开始 seed=20260927
+2026-09-28 06:10:45,939 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 随机交叉验证开始 seed=17
+2026-09-28 06:10:45,957 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 随机交叉验证开始 seed=90210
+2026-09-28 06:10:45,974 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 随机交叉验证开始 seed=424242
+2026-09-28 06:10:45,990 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 随机交叉验证开始 seed=7
+2026-09-28 06:10:46,026 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 长前缀查询 prefix='' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:10:46,027 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 长前缀查询 prefix='inter' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:10:46,027 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 长前缀查询 prefix='intern' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:10:46,027 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 长前缀查询 prefix='interna' got=['p5', 'p1', 'p2', 'p3'] want=['p5', 'p1', 'p2', 'p3']
+2026-09-28 06:10:46,027 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 长前缀查询 prefix='internation' got=['p1', 'p2', 'p3'] want=['p1', 'p2', 'p3']
+2026-09-28 06:10:46,027 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 长前缀查询 prefix='inte' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:10:46,027 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 长前缀查询 prefix='xyz' got=[] want=[]
+2026-09-28 06:10:46,033 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 剪枝统计 pushed=1 expanded=1 terminals_seen=1 pruned=0 pops=1
+2026-09-28 06:10:46,034 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 同分排序 got=['apple', 'avocado', 'banana', 'cherry'] want=['apple', 'avocado', 'banana', 'cherry']
+2026-09-28 06:10:46,037 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 降权后 top2=['mid', 'low']
+2026-09-28 06:10:46,038 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 热词降权剪枝记录: [('3', 48.0, "堆顶子树上界 (-48.0, ('bbb_cold3', 'bbb_cold3'")]
+2026-09-28 06:10:46,066 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 删改后 pfx='' got=['d', 'b', 'c'] want=['d', 'b', 'c']
+2026-09-28 06:10:46,066 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 删改后 pfx='ma' got=['d', 'b', 'a'] want=['d', 'b', 'a']
+2026-09-28 06:10:46,067 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] 删改后 pfx='mang' got=['a'] want=['a']
+2026-09-28 06:10:46,087 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] pfx='grp1' k=1 剪枝审计通过，pruned=1
+2026-09-28 06:10:46,087 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] pfx='' k=3 剪枝审计通过，pruned=1
+2026-09-28 06:10:46,087 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] pfx='grp' k=5 剪枝审计通过，pruned=1
+2026-09-28 06:10:46,087 INFO [run=test-20260928T061044-b59b04f5] ctrie | [test-20260928T061044-b59b04f5] pfx='grp3' k=2 剪枝审计通过，pruned=1

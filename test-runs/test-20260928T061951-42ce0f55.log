@@ -1,0 +1,5 @@
+2026-09-28 06:19:51,228 INFO [run=test-20260928T061951-42ce0f55] ctrie | 测试运行开始 run_id=test-20260928T061951-42ce0f55 python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:19:51,252 INFO [run=test-20260928T061951-42ce0f55] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-131/test_empty_term_is_validation_0/engine-test-20260928T061951-42ce0f55.db
+2026-09-28 06:19:51,298 INFO [run=test-20260928T061951-42ce0f55] ctrie | [test-20260928T061951-42ce0f55-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:51,300 INFO [run=test-20260928T061951-42ce0f55] ctrie | [test-20260928T061951-42ce0f55-httpx] POST /api/v1/entries:bulkUpsert -> 422
+2026-09-28 06:19:51,341 INFO [run=test-20260928T061951-42ce0f55] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-131/test_nan_score_rejected0/engine-test-20260928T061951-42ce0f55.db

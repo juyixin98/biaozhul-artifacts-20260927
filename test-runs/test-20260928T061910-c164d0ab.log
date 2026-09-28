@@ -1,0 +1,89 @@
+2026-09-28 06:19:10,355 INFO [run=test-20260928T061910-c164d0ab] ctrie | 测试运行开始 run_id=test-20260928T061910-c164d0ab python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:19:10,372 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab] 关闭前 head=v2 结果数=4
+2026-09-28 06:19:10,388 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_versions_chain_parent_ids0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,404 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_bulk_upsert_is_atomic0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,423 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_invalid_scores_and_terms0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,435 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_delete_requires_existing_0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,540 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_snapshot_and_historical_q0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,546 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab] 当前=['c', 'a'] 快照v3=['a', 'b'] baseline=[]
+2026-09-28 06:19:10,558 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_restore_snapshot0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,578 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_restore_nonexistent_snaps0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,614 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_completion_concrete_resul0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,666 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:10,669 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:10,671 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:19:10,672 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:19:10,672 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab] /complete prefix=prefix -> [('h', 100.0), ('m', 50.0)]
+2026-09-28 06:19:10,685 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_empty_prefix_global_topk0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,697 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:10,700 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:10,701 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:19:10,703 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:19:10,716 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_tie_collision_order_over_0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,730 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:10,732 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:10,733 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:19:10,734 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:19:10,750 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_diagnostics_trace_explain0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,760 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:10,763 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:10,764 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v2
+2026-09-28 06:19:10,766 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:10,768 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v3
+2026-09-28 06:19:10,768 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:19:10,769 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab] 诊断轨迹 pushed=6 expanded=4 pruned=2 decisions=9
+2026-09-28 06:19:10,782 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_prefix_normalization_retu0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,794 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:10,797 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:10,798 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:19:10,799 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:19:10,815 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_empty_term_is_validation_0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,826 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:10,827 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 422
+2026-09-28 06:19:10,847 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_extra_field_rejected0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,859 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:10,860 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 422
+2026-09-28 06:19:10,879 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_nan_score_rejected0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:10,997 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_invalid_k0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:11,009 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:11,011 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:11,012 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:19:11,013 WARNING [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:19:11,013 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:19:11,014 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:19:11,015 WARNING [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:19:11,015 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:19:11,016 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:19:11,016 WARNING [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] 领域错误 VALIDATION_ERROR: k 不能超过 50
+2026-09-28 06:19:11,016 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:19:11,029 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_delete_missing_returns_400/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:11,039 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:delete 开始 head=v1
+2026-09-28 06:19:11,040 WARNING [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] 领域错误 ENTRY_NOT_FOUND: 词条 'nope' 不存在
+2026-09-28 06:19:11,040 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:delete -> 404
+2026-09-28 06:19:11,055 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_missing_version_4040/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:11,068 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete 开始 head=v1
+2026-09-28 06:19:11,069 WARNING [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] 领域错误 VERSION_NOT_FOUND: 版本 424242 不存在
+2026-09-28 06:19:11,069 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/complete -> 404
+2026-09-28 06:19:11,082 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_restore_missing_snapshot_0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:11,092 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/snapshots:restore 开始 head=v1
+2026-09-28 06:19:11,093 WARNING [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] 领域错误 VERSION_NOT_FOUND: 快照版本 424242 不存在
+2026-09-28 06:19:11,093 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/snapshots:restore -> 404
+2026-09-28 06:19:11,105 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_malformed_json_not_succes0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:11,115 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:11,116 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 422
+2026-09-28 06:19:11,134 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_status_reports_health_and0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:11,144 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:11,147 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:11,148 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/status 开始 head=v2
+2026-09-28 06:19:11,149 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/status -> 200
+2026-09-28 06:19:11,163 INFO [run=test-20260928T061910-c164d0ab] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-128/test_versions_and_snapshots_en0/engine-test-20260928T061910-c164d0ab.db
+2026-09-28 06:19:11,174 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:19:11,176 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:19:11,177 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/snapshots 开始 head=v2
+2026-09-28 06:19:11,179 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/snapshots -> 200
+2026-09-28 06:19:11,181 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/versions 开始 head=v3
+2026-09-28 06:19:11,181 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/versions -> 200
+2026-09-28 06:19:11,183 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/snapshots 开始 head=v3
+2026-09-28 06:19:11,183 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] GET /api/v1/snapshots -> 200
+2026-09-28 06:19:11,185 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/snapshots:restore 开始 head=v3
+2026-09-28 06:19:11,187 INFO [run=test-20260928T061910-c164d0ab] ctrie | [test-20260928T061910-c164d0ab-httpx] POST /api/v1/snapshots:restore -> 200

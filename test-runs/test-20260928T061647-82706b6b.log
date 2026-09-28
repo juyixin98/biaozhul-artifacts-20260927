@@ -1,0 +1,24 @@
+2026-09-28 06:16:47,204 INFO [run=test-20260928T061647-82706b6b] ctrie | 测试运行开始 run_id=test-20260928T061647-82706b6b python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:16:47,205 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 长前缀查询 prefix='' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:16:47,205 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 长前缀查询 prefix='inter' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:16:47,205 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 长前缀查询 prefix='intern' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:16:47,205 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 长前缀查询 prefix='interna' got=['p5', 'p1', 'p2', 'p3'] want=['p5', 'p1', 'p2', 'p3']
+2026-09-28 06:16:47,206 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 长前缀查询 prefix='internation' got=['p1', 'p2', 'p3'] want=['p1', 'p2', 'p3']
+2026-09-28 06:16:47,206 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 长前缀查询 prefix='inte' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:16:47,206 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 长前缀查询 prefix='xyz' got=[] want=[]
+2026-09-28 06:16:47,212 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 剪枝统计 pushed=1 expanded=1 terminals_seen=1 pruned=0 pops=1
+2026-09-28 06:16:47,213 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 同分排序 got=['apple', 'avocado', 'banana', 'cherry'] want=['apple', 'avocado', 'banana', 'cherry']
+2026-09-28 06:16:47,216 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 降权后 top2=['mid', 'low']
+2026-09-28 06:16:47,217 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 热词降权剪枝记录: [('3', 48.0, "堆顶子树上界 (-48.0, ('bbb_cold3', 'bbb_cold3'"), ('aaa_hot', 1.0, "堆内剩余子树 'aaa_hot' 上界 (-1.0, ('aaa_hot1', ")]
+2026-09-28 06:16:47,220 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 删改后 pfx='' got=['d', 'b', 'c'] want=['d', 'b', 'c']
+2026-09-28 06:16:47,221 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 删改后 pfx='ma' got=['d', 'b', 'a'] want=['d', 'b', 'a']
+2026-09-28 06:16:47,221 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 删改后 pfx='mang' got=['a'] want=['a']
+2026-09-28 06:16:47,223 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] pfx='grp1' k=1 剪枝审计通过，pruned=6
+2026-09-28 06:16:47,223 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] pfx='' k=3 剪枝审计通过，pruned=21
+2026-09-28 06:16:47,224 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] pfx='grp' k=5 剪枝审计通过，pruned=26
+2026-09-28 06:16:47,224 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] pfx='grp3' k=2 剪枝审计通过，pruned=6
+2026-09-28 06:16:47,226 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 随机交叉验证开始 seed=20260927
+2026-09-28 06:16:47,258 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 随机交叉验证开始 seed=17
+2026-09-28 06:16:47,265 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 随机交叉验证开始 seed=90210
+2026-09-28 06:16:47,273 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 随机交叉验证开始 seed=424242
+2026-09-28 06:16:47,282 INFO [run=test-20260928T061647-82706b6b] ctrie | [test-20260928T061647-82706b6b] 随机交叉验证开始 seed=7

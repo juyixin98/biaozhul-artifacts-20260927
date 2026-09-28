@@ -1,0 +1,10 @@
+2026-09-28 06:20:53,320 INFO [run=test-20260928T062053-a0b6fee4] ctrie | 测试运行开始 run_id=test-20260928T062053-a0b6fee4 python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:20:53,335 INFO [run=test-20260928T062053-a0b6fee4] ctrie | [test-20260928T062053-a0b6fee4] 关闭前 head=v2 结果数=4
+2026-09-28 06:20:53,346 INFO [run=test-20260928T062053-a0b6fee4] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-136/test_versions_chain_parent_ids0/engine-test-20260928T062053-a0b6fee4.db
+2026-09-28 06:20:53,360 INFO [run=test-20260928T062053-a0b6fee4] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-136/test_bulk_upsert_is_atomic0/engine-test-20260928T062053-a0b6fee4.db
+2026-09-28 06:20:53,372 INFO [run=test-20260928T062053-a0b6fee4] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-136/test_invalid_scores_and_terms0/engine-test-20260928T062053-a0b6fee4.db
+2026-09-28 06:20:53,382 INFO [run=test-20260928T062053-a0b6fee4] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-136/test_delete_requires_existing_0/engine-test-20260928T062053-a0b6fee4.db
+2026-09-28 06:20:53,487 INFO [run=test-20260928T062053-a0b6fee4] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-136/test_snapshot_and_historical_q0/engine-test-20260928T062053-a0b6fee4.db
+2026-09-28 06:20:53,492 INFO [run=test-20260928T062053-a0b6fee4] ctrie | [test-20260928T062053-a0b6fee4] 当前=['c', 'a'] 快照v3=['a', 'b'] baseline=[]
+2026-09-28 06:20:53,504 INFO [run=test-20260928T062053-a0b6fee4] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-136/test_restore_snapshot0/engine-test-20260928T062053-a0b6fee4.db
+2026-09-28 06:20:53,519 INFO [run=test-20260928T062053-a0b6fee4] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-136/test_restore_nonexistent_snaps0/engine-test-20260928T062053-a0b6fee4.db

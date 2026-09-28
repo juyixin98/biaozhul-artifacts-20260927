@@ -1,0 +1,165 @@
+2026-09-28 06:28:43,570 INFO [run=final-verify-001] ctrie | 测试运行开始 run_id=final-verify-001 python=3.12.3 cwd=/home/admin/Downloads/xinbiaozhu/opp244/a
+2026-09-28 06:28:43,583 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_completion_concrete_resul0/engine-final-verify-001.db
+2026-09-28 06:28:43,620 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,623 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,624 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:28:43,625 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:28:43,626 INFO [run=final-verify-001] ctrie | [final-verify-001] /complete prefix=prefix -> [('h', 100.0), ('m', 50.0)]
+2026-09-28 06:28:43,637 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_empty_prefix_global_topk0/engine-final-verify-001.db
+2026-09-28 06:28:43,647 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,650 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,651 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:28:43,652 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:28:43,664 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_tie_collision_order_over_0/engine-final-verify-001.db
+2026-09-28 06:28:43,674 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,676 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,677 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:28:43,678 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:28:43,689 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_diagnostics_trace_explain0/engine-final-verify-001.db
+2026-09-28 06:28:43,700 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,702 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,703 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v2
+2026-09-28 06:28:43,705 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,706 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v3
+2026-09-28 06:28:43,707 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:28:43,708 INFO [run=final-verify-001] ctrie | [final-verify-001] 诊断轨迹 pushed=6 expanded=4 pruned=2 decisions=9
+2026-09-28 06:28:43,720 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_prefix_normalization_retu0/engine-final-verify-001.db
+2026-09-28 06:28:43,730 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,732 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,733 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:28:43,734 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 200
+2026-09-28 06:28:43,746 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_empty_term_is_validation_0/engine-final-verify-001.db
+2026-09-28 06:28:43,755 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,756 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 请求参数校验失败: [{'type': 'string_too_short', 'loc': ('body', 'entries', 0, 'term'), 'msg': 'String should have at least 1 character', 'input': '', 'ctx': {'min_length': 1}}]
+2026-09-28 06:28:43,756 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:28:43,769 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_extra_field_rejected0/engine-final-verify-001.db
+2026-09-28 06:28:43,779 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,780 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 请求参数校验失败: [{'type': 'extra_forbidden', 'loc': ('body', 'entries', 0, 'bogus'), 'msg': 'Extra inputs are not permitted', 'input': 2}]
+2026-09-28 06:28:43,780 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:28:43,791 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_nan_score_rejected0/engine-final-verify-001.db
+2026-09-28 06:28:43,801 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,802 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 领域错误 VALIDATION_ERROR: entries[0].score 必须是有限实数，不能为 NaN/Infinity
+2026-09-28 06:28:43,802 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:28:43,813 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_invalid_k0/engine-final-verify-001.db
+2026-09-28 06:28:43,822 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,825 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,826 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:28:43,826 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:28:43,826 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:28:43,827 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:28:43,828 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 领域错误 VALIDATION_ERROR: k 必须 >= 1
+2026-09-28 06:28:43,828 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:28:43,829 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v2
+2026-09-28 06:28:43,830 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 领域错误 VALIDATION_ERROR: k 不能超过 50
+2026-09-28 06:28:43,830 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 400
+2026-09-28 06:28:43,843 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_delete_missing_returns_400/engine-final-verify-001.db
+2026-09-28 06:28:43,854 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:delete 开始 head=v1
+2026-09-28 06:28:43,855 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 领域错误 ENTRY_NOT_FOUND: 词条 'nope' 不存在
+2026-09-28 06:28:43,855 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:delete -> 404
+2026-09-28 06:28:43,866 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_missing_version_4040/engine-final-verify-001.db
+2026-09-28 06:28:43,876 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete 开始 head=v1
+2026-09-28 06:28:43,877 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 领域错误 VERSION_NOT_FOUND: 版本 424242 不存在
+2026-09-28 06:28:43,877 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/complete -> 404
+2026-09-28 06:28:43,889 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_restore_missing_snapshot_0/engine-final-verify-001.db
+2026-09-28 06:28:43,899 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/snapshots:restore 开始 head=v1
+2026-09-28 06:28:43,899 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 领域错误 VERSION_NOT_FOUND: 快照版本 424242 不存在
+2026-09-28 06:28:43,900 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/snapshots:restore -> 404
+2026-09-28 06:28:43,912 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_malformed_json_not_succes0/engine-final-verify-001.db
+2026-09-28 06:28:43,924 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,925 WARNING [run=final-verify-001] ctrie | [final-verify-001-httpx] 请求参数校验失败: [{'type': 'json_invalid', 'loc': ('body', 1), 'msg': 'JSON decode error', 'input': {}, 'ctx': {'error': 'Expecting property name enclosed in double quotes'}}]
+2026-09-28 06:28:43,925 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 400
+2026-09-28 06:28:43,937 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_status_reports_health_and0/engine-final-verify-001.db
+2026-09-28 06:28:43,947 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,949 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,950 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/status 开始 head=v2
+2026-09-28 06:28:43,951 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/status -> 200
+2026-09-28 06:28:43,962 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_versions_and_snapshots_en0/engine-final-verify-001.db
+2026-09-28 06:28:43,972 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert 开始 head=v1
+2026-09-28 06:28:43,974 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/entries:bulkUpsert -> 200
+2026-09-28 06:28:43,975 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/snapshots 开始 head=v2
+2026-09-28 06:28:43,977 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/snapshots -> 200
+2026-09-28 06:28:43,978 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/versions 开始 head=v3
+2026-09-28 06:28:43,979 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/versions -> 200
+2026-09-28 06:28:43,980 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/snapshots 开始 head=v3
+2026-09-28 06:28:43,980 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] GET /api/v1/snapshots -> 200
+2026-09-28 06:28:43,981 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/snapshots:restore 开始 head=v3
+2026-09-28 06:28:43,985 INFO [run=final-verify-001] ctrie | [final-verify-001-httpx] POST /api/v1/snapshots:restore -> 200
+2026-09-28 06:28:43,998 INFO [run=final-verify-001] ctrie | [final-verify-001] 关闭前 head=v2 结果数=4
+2026-09-28 06:28:44,009 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_versions_chain_parent_ids0/engine-final-verify-001.db
+2026-09-28 06:28:44,024 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_bulk_upsert_is_atomic0/engine-final-verify-001.db
+2026-09-28 06:28:44,035 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_invalid_scores_and_terms0/engine-final-verify-001.db
+2026-09-28 06:28:44,046 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_delete_requires_existing_0/engine-final-verify-001.db
+2026-09-28 06:28:44,209 INFO [run=final-verify-001] ctrie | [final-verify-001] Engine 混合操作 120 步交叉验证通过
+2026-09-28 06:28:44,220 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_snapshot_and_historical_q0/engine-final-verify-001.db
+2026-09-28 06:28:44,225 INFO [run=final-verify-001] ctrie | [final-verify-001] 当前=['c', 'a'] 快照v3=['a', 'b'] baseline=[]
+2026-09-28 06:28:44,235 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_restore_snapshot0/engine-final-verify-001.db
+2026-09-28 06:28:44,252 INFO [run=final-verify-001] ctrie | fixture: 创建 Engine db=/tmp/pytest-of-admin/pytest-160/test_restore_nonexistent_snaps0/engine-final-verify-001.db
+2026-09-28 06:28:44,272 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='Hello' 期望='hello' (ASCII 大小写折叠)
+2026-09-28 06:28:44,279 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='ＣＡＦＥ' 期望='cafe' (全角拉丁 -> 半角 (NFKC) 再小写)
+2026-09-28 06:28:44,280 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='Straße' 期望='strasse' (德语 sharp s 的 casefold 展开为 ss)
+2026-09-28 06:28:44,281 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='ﬁle' 期望='file' (LATIN SMALL LIGATURE FI 经 NFKC 分解为 fi)
+2026-09-28 06:28:44,282 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='①' 期望='1' (带圈数字 1 的 NFKC 兼容映射)
+2026-09-28 06:28:44,283 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='Ｈｅｌｌｏ' 期望='hello' (全角 ASCII 规范化碰撞到 hello)
+2026-09-28 06:28:44,284 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='カフェ' 期望='カフェ' (片假名 NFKC 后保持（已是规范形式）)
+2026-09-28 06:28:44,285 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='Ω' 期望='ω' (希腊大写欧米伽 casefold)
+2026-09-28 06:28:44,286 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='Å' 期望='å' (Angstrom/NFC A-ring 的 NFKC+casefold)
+2026-09-28 06:28:44,287 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='ABC123' 期望='abc123' (字母数字混合)
+2026-09-28 06:28:44,288 INFO [run=final-verify-001] ctrie | [final-verify-001] normalize 输入='İ' 期望='i̇' (土耳其 İ casefold 为 i + combining dot above (U+0307))
+2026-09-28 06:28:44,302 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证开始 seed=20260927
+2026-09-28 06:28:44,418 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=20260927 收尾查询 prefix='' 命中=5 展开节点=10 整枝剪枝=38 终止词条扫描=41
+2026-09-28 06:28:44,418 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=20260927 收尾查询 prefix='a' 命中=5 展开节点=6 整枝剪枝=11 终止词条扫描=14
+2026-09-28 06:28:44,419 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=20260927 收尾查询 prefix='inter' 命中=5 展开节点=8 整枝剪枝=7 终止词条扫描=14
+2026-09-28 06:28:44,419 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=20260927 收尾查询 prefix='cafe' 命中=5 展开节点=5 整枝剪枝=6 终止词条扫描=19
+2026-09-28 06:28:44,419 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=20260927 收尾查询 prefix='abc' 命中=5 展开节点=4 整枝剪枝=4 终止词条扫描=9
+2026-09-28 06:28:44,419 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=20260927 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:28:44,419 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证通过 seed=20260927 总词条=164
+2026-09-28 06:28:44,420 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证开始 seed=17
+2026-09-28 06:28:44,519 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=17 收尾查询 prefix='' 命中=5 展开节点=15 整枝剪枝=28 终止词条扫描=42
+2026-09-28 06:28:44,519 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=17 收尾查询 prefix='a' 命中=5 展开节点=9 整枝剪枝=12 终止词条扫描=20
+2026-09-28 06:28:44,520 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=17 收尾查询 prefix='inter' 命中=5 展开节点=6 整枝剪枝=5 终止词条扫描=9
+2026-09-28 06:28:44,520 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=17 收尾查询 prefix='cafe' 命中=5 展开节点=8 整枝剪枝=13 终止词条扫描=18
+2026-09-28 06:28:44,520 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=17 收尾查询 prefix='abc' 命中=5 展开节点=9 整枝剪枝=5 终止词条扫描=10
+2026-09-28 06:28:44,520 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=17 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:28:44,520 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证通过 seed=17 总词条=151
+2026-09-28 06:28:44,521 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证开始 seed=90210
+2026-09-28 06:28:44,618 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=90210 收尾查询 prefix='' 命中=5 展开节点=12 整枝剪枝=28 终止词条扫描=18
+2026-09-28 06:28:44,618 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=90210 收尾查询 prefix='a' 命中=5 展开节点=7 整枝剪枝=9 终止词条扫描=9
+2026-09-28 06:28:44,619 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=90210 收尾查询 prefix='inter' 命中=5 展开节点=4 整枝剪枝=6 终止词条扫描=9
+2026-09-28 06:28:44,619 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=90210 收尾查询 prefix='cafe' 命中=5 展开节点=4 整枝剪枝=5 终止词条扫描=14
+2026-09-28 06:28:44,619 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=90210 收尾查询 prefix='abc' 命中=5 展开节点=6 整枝剪枝=2 终止词条扫描=5
+2026-09-28 06:28:44,619 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=90210 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:28:44,619 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证通过 seed=90210 总词条=117
+2026-09-28 06:28:44,620 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证开始 seed=424242
+2026-09-28 06:28:44,722 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=424242 收尾查询 prefix='' 命中=5 展开节点=10 整枝剪枝=21 终止词条扫描=19
+2026-09-28 06:28:44,723 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=424242 收尾查询 prefix='a' 命中=5 展开节点=8 整枝剪枝=11 终止词条扫描=13
+2026-09-28 06:28:44,723 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=424242 收尾查询 prefix='inter' 命中=5 展开节点=7 整枝剪枝=7 终止词条扫描=13
+2026-09-28 06:28:44,723 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=424242 收尾查询 prefix='cafe' 命中=5 展开节点=5 整枝剪枝=6 终止词条扫描=15
+2026-09-28 06:28:44,723 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=424242 收尾查询 prefix='abc' 命中=5 展开节点=7 整枝剪枝=5 终止词条扫描=7
+2026-09-28 06:28:44,723 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=424242 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:28:44,723 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证通过 seed=424242 总词条=151
+2026-09-28 06:28:44,725 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证开始 seed=7
+2026-09-28 06:28:44,811 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=7 收尾查询 prefix='' 命中=5 展开节点=12 整枝剪枝=24 终止词条扫描=29
+2026-09-28 06:28:44,811 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=7 收尾查询 prefix='a' 命中=5 展开节点=12 整枝剪枝=9 终止词条扫描=17
+2026-09-28 06:28:44,811 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=7 收尾查询 prefix='inter' 命中=5 展开节点=5 整枝剪枝=3 终止词条扫描=6
+2026-09-28 06:28:44,811 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=7 收尾查询 prefix='cafe' 命中=5 展开节点=10 整枝剪枝=6 终止词条扫描=13
+2026-09-28 06:28:44,811 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=7 收尾查询 prefix='abc' 命中=5 展开节点=9 整枝剪枝=5 终止词条扫描=7
+2026-09-28 06:28:44,811 INFO [run=final-verify-001] ctrie | [final-verify-001] seed=7 收尾查询 prefix='zzz' 命中=0 展开节点=0 整枝剪枝=0 终止词条扫描=0
+2026-09-28 06:28:44,812 INFO [run=final-verify-001] ctrie | [final-verify-001] 随机交叉验证通过 seed=7 总词条=131
+2026-09-28 06:28:44,814 INFO [run=final-verify-001] ctrie | [final-verify-001] 长前缀查询 prefix='' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:28:44,814 INFO [run=final-verify-001] ctrie | [final-verify-001] 长前缀查询 prefix='inter' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:28:44,814 INFO [run=final-verify-001] ctrie | [final-verify-001] 长前缀查询 prefix='intern' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:28:44,814 INFO [run=final-verify-001] ctrie | [final-verify-001] 长前缀查询 prefix='interna' got=['p5', 'p1', 'p2', 'p3'] want=['p5', 'p1', 'p2', 'p3']
+2026-09-28 06:28:44,814 INFO [run=final-verify-001] ctrie | [final-verify-001] 长前缀查询 prefix='internation' got=['p1', 'p2', 'p3'] want=['p1', 'p2', 'p3']
+2026-09-28 06:28:44,814 INFO [run=final-verify-001] ctrie | [final-verify-001] 长前缀查询 prefix='inte' got=['p4', 'p5', 'p1', 'p2', 'p3'] want=['p4', 'p5', 'p1', 'p2', 'p3']
+2026-09-28 06:28:44,814 INFO [run=final-verify-001] ctrie | [final-verify-001] 长前缀查询 prefix='xyz' got=[] want=[]
+2026-09-28 06:28:44,821 INFO [run=final-verify-001] ctrie | [final-verify-001] 剪枝统计 pushed=1 expanded=1 terminals_seen=1 pruned=0 pops=1
+2026-09-28 06:28:44,822 INFO [run=final-verify-001] ctrie | [final-verify-001] 同分排序 got=['apple', 'avocado', 'banana', 'cherry'] want=['apple', 'avocado', 'banana', 'cherry']
+2026-09-28 06:28:44,825 INFO [run=final-verify-001] ctrie | [final-verify-001] 降权后 top2=['mid', 'low']
+2026-09-28 06:28:44,826 INFO [run=final-verify-001] ctrie | [final-verify-001] 热词降权剪枝记录: [('3', 48.0, "堆顶子树上界 (-48.0, ('bbb_cold3', 'bbb_cold3'"), ('aaa_hot', 1.0, "堆内剩余子树 'aaa_hot' 上界 (-1.0, ('aaa_hot1', ")]
+2026-09-28 06:28:44,830 INFO [run=final-verify-001] ctrie | [final-verify-001] 删改后 pfx='' got=['d', 'b', 'c'] want=['d', 'b', 'c']
+2026-09-28 06:28:44,830 INFO [run=final-verify-001] ctrie | [final-verify-001] 删改后 pfx='ma' got=['d', 'b', 'a'] want=['d', 'b', 'a']
+2026-09-28 06:28:44,830 INFO [run=final-verify-001] ctrie | [final-verify-001] 删改后 pfx='mang' got=['a'] want=['a']
+2026-09-28 06:28:44,833 INFO [run=final-verify-001] ctrie | [final-verify-001] pfx='grp1' k=1 剪枝审计通过，pruned=6
+2026-09-28 06:28:44,833 INFO [run=final-verify-001] ctrie | [final-verify-001] pfx='' k=3 剪枝审计通过，pruned=21
+2026-09-28 06:28:44,834 INFO [run=final-verify-001] ctrie | [final-verify-001] pfx='grp' k=5 剪枝审计通过，pruned=26
+2026-09-28 06:28:44,834 INFO [run=final-verify-001] ctrie | [final-verify-001] pfx='grp3' k=2 剪枝审计通过，pruned=6
