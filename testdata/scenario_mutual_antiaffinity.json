@@ -1,0 +1,26 @@
+{
+  "description": "Two instances in one anti-affinity group are both pinned to zone z-c, which has exactly one eligible node (n-5) and one cordoned node (n-6). Static filtering alone leaves one candidate each; only simultaneous placement reveals the mutual conflict. Temporary reservations must force ANTI_AFFINITY_CONFLICT rather than double-booking n-5.",
+  "cluster": {
+    "name": "small-6n-3z",
+    "nodes": [
+      {"id": "n-1", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web", "disk": "ssd"}, "eligible": true},
+      {"id": "n-2", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-3", "zone": "z-b", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web", "disk": "ssd"}, "eligible": true},
+      {"id": "n-4", "zone": "z-b", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-5", "zone": "z-c", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "db", "disk": "ssd"}, "eligible": true},
+      {"id": "n-6", "zone": "z-c", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": false}
+    ],
+    "groups": [
+      {"id": "g-spread", "mode": "anti_affinity", "member_ids": ["i-x", "i-y"]}
+    ],
+    "declared_zones": ["z-a", "z-b", "z-c"]
+  },
+  "intents": [
+    {"id": "i-x", "request": {"cpu": 1, "mem": 2}, "required_zone": "z-c", "affinity_groups": ["g-spread"]},
+    {"id": "i-y", "request": {"cpu": 1, "mem": 2}, "required_zone": "z-c", "affinity_groups": ["g-spread"]}
+  ],
+  "expect_failure": {
+    "top_code": "CONSTRAINT_CONFLICT",
+    "instance_codes": {"i-x": "ANTI_AFFINITY_CONFLICT", "i-y": "ANTI_AFFINITY_CONFLICT"}
+  }
+}

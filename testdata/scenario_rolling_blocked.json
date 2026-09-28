@@ -1,0 +1,24 @@
+{
+  "description": "Rolling replacement blocked case: old instance r-old (4 cpu) runs on n-1; zone z-a has two nodes n-1,n-2 each 8 cpu, and n-2 already runs r-busy consuming 6 cpu. The replacement i-new (4 cpu) must NOT land on n-1 (old copy still running, allow_recreate=false) and cannot fit n-2 (2 free). Must fail ROLLING_REPLACEMENT_BLOCKED, never silently double-book or evict.",
+  "cluster": {
+    "name": "rolling-blocked",
+    "nodes": [
+      {"id": "n-1", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "used": {"cpu": 0, "mem": 0}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-2", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "used": {"cpu": 0, "mem": 0}, "labels": {"role": "web"}, "eligible": true}
+    ],
+    "running": [
+      {"id": "r-old", "node_id": "n-1", "request": {"cpu": 4, "mem": 4}},
+      {"id": "r-busy", "node_id": "n-2", "request": {"cpu": 6, "mem": 4}}
+    ],
+    "declared_zones": ["z-a"]
+  },
+  "intents": [
+    {"id": "i-new", "request": {"cpu": 4, "mem": 4}, "required_zone": "z-a", "node_selector": {"equal": {"role": "web"}}}
+  ],
+  "replacements": {"i-new": {"old_id": "r-old"}},
+  "allow_recreate": false,
+  "expect_failure": {
+    "top_code": "CONSTRAINT_CONFLICT",
+    "instance_codes": {"i-new": "ROLLING_REPLACEMENT_BLOCKED"}
+  }
+}

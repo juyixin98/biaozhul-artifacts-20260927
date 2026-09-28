@@ -1,0 +1,21 @@
+{
+  "description": "Three instances each demand 8 cpu, but only two nodes are eligible (n-3,n-4,n-5,n-6 cannot host role=web-with-ssd-style workloads here via label selector role=web+ssd) and each eligible node holds exactly 8 cpu capacity. The first two place; the third cannot be satisfied simultaneously. Hard resource filter (including temporary reservation of earlier placements) must yield INSUFFICIENT_RESOURCE, never an overcommitted placement.",
+  "cluster": {
+    "name": "resource-tight",
+    "nodes": [
+      {"id": "n-1", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "used": {"cpu": 0, "mem": 0}, "labels": {"role": "web", "disk": "ssd"}, "eligible": true},
+      {"id": "n-2", "zone": "z-b", "capacity": {"cpu": 8, "mem": 16}, "used": {"cpu": 0, "mem": 0}, "labels": {"role": "web", "disk": "ssd"}, "eligible": true},
+      {"id": "n-3", "zone": "z-c", "capacity": {"cpu": 8, "mem": 16}, "used": {"cpu": 0, "mem": 0}, "labels": {"role": "db"}, "eligible": true}
+    ],
+    "declared_zones": ["z-a", "z-b"]
+  },
+  "intents": [
+    {"id": "i-big-1", "request": {"cpu": 8, "mem": 4}, "node_selector": {"equal": {"role": "web", "disk": "ssd"}}},
+    {"id": "i-big-2", "request": {"cpu": 8, "mem": 4}, "node_selector": {"equal": {"role": "web", "disk": "ssd"}}},
+    {"id": "i-big-3", "request": {"cpu": 8, "mem": 4}, "node_selector": {"equal": {"role": "web", "disk": "ssd"}}}
+  ],
+  "expect_failure": {
+    "top_code": "CONSTRAINT_CONFLICT",
+    "instance_codes": {"i-big-3": "INSUFFICIENT_RESOURCE"}
+  }
+}

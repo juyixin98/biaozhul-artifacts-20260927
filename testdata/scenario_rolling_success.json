@@ -1,0 +1,24 @@
+{
+  "description": "Rolling replacement success case: old instance r-old (4 cpu) runs on n-1 (zone z-a); n-2 in the same zone is free. allow_recreate=false. The replacement must land on n-2 (different node) and record replaces_id=r-old. Two extra fresh instances must then be spread across zones z-b/z-c by the skew objective.",
+  "cluster": {
+    "name": "small-6n-3z",
+    "nodes": [
+      {"id": "n-1", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-2", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-3", "zone": "z-b", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-4", "zone": "z-b", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-5", "zone": "z-c", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-6", "zone": "z-c", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": false}
+    ],
+    "running": [
+      {"id": "r-old", "node_id": "n-1", "request": {"cpu": 4, "mem": 4}}
+    ],
+    "declared_zones": ["z-a", "z-b", "z-c"]
+  },
+  "intents": [
+    {"id": "i-new", "request": {"cpu": 4, "mem": 4}, "required_zone": "z-a", "node_selector": {"equal": {"role": "web"}}}
+  ],
+  "replacements": {"i-new": {"old_id": "r-old"}},
+  "allow_recreate": false,
+  "expect_placement": {"i-new": "n-2"}
+}

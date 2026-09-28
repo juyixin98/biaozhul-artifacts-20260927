@@ -1,0 +1,22 @@
+{
+  "description": "Pinned instance requires a zone that does not exist in the cluster (domain missing). Hard filter must reject with MISSING_DOMAIN; soft scores may not rescue it.",
+  "cluster": {
+    "name": "small-6n-3z",
+    "nodes": [
+      {"id": "n-1", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web", "disk": "ssd"}, "eligible": true},
+      {"id": "n-2", "zone": "z-a", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-3", "zone": "z-b", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web", "disk": "ssd"}, "eligible": true},
+      {"id": "n-4", "zone": "z-b", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": true},
+      {"id": "n-5", "zone": "z-c", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "db", "disk": "ssd"}, "eligible": true},
+      {"id": "n-6", "zone": "z-c", "capacity": {"cpu": 8, "mem": 16}, "labels": {"role": "web"}, "eligible": false}
+    ],
+    "declared_zones": ["z-a", "z-b", "z-c"]
+  },
+  "intents": [
+    {"id": "i-missing", "request": {"cpu": 1, "mem": 2}, "required_zone": "z-zzz"}
+  ],
+  "expect_failure": {
+    "top_code": "CONSTRAINT_CONFLICT",
+    "instance_codes": {"i-missing": "MISSING_DOMAIN"}
+  }
+}
