@@ -1,0 +1,28 @@
+{
+  "columns": ["zip", "age", "disease"],
+  "quasi_identifiers": ["zip", "age"],
+  "sensitive": ["disease"],
+  "rows": [
+    ["10001", "23", "Flu"],
+    ["10002", "25", "Cold"],
+    ["10003", "31", "Flu"],
+    ["12001", "35", "Cold"],
+    ["12002", "40", "Flu"],
+    ["12003", "42", "Cold"]
+  ],
+  "hierarchies": {
+    "zip": {
+      "levels": [
+        {"rule": "prefix", "keep": 4, "name": "zip4"},
+        {"rule": "prefix", "keep": 2, "name": "region2"},
+        {"rule": "map", "mapping": {"10": "1x", "12": "1x"}, "name": "state-any"}
+      ]
+    },
+    "age": {
+      "levels": [
+        {"rule": "range", "bins": [0, 30, 50, 200], "labels": ["<30", "30-49", "50+"], "name": "decade"},
+        {"rule": "range", "bins": [0, 120], "labels": ["any_age"], "name": "any"}
+      ]
+    }
+  }
+}

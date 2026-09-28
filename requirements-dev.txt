@@ -1,0 +1,4 @@
+# 测试与开发依赖
+-r requirements.txt
+pytest==9.1.1
+httpx==0.28.1

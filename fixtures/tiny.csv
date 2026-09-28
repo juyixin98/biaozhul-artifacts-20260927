@@ -1,0 +1,7 @@
+id,zip,age,disease,note
+p1,10001,23,Flu,ok
+p2,10002,25,Cold,ok
+p3,10003,31,Flu,ok
+p4,12001,35,Cold,ok
+p5,12002,40,Flu,ok
+p6,12003,42,Cold,ok

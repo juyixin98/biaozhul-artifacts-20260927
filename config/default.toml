@@ -1,0 +1,38 @@
+# anon-risk 默认配置。
+# 环境变量覆盖规则：ANON_RISK_<节名大写>__<键名大写>，例如
+# ANON_RISK_KERNEL__LATTICE_COMBO_CAP=500、ANON_RISK_LOGGING__LEVEL=DEBUG。
+# 也可用 ANON_RISK_CONFIG=/path/to/other.toml 指定整个配置文件。
+
+[app]
+name = "anon-risk"
+version = "1.0.0"
+# 指标口径版本：风险报告始终携带，指标语义变化时必须升版本
+metric_version = "1.0.0"
+schema_version = 1
+
+[storage]
+# 相对路径相对于进程工作目录；测试中由 Settings 显式覆盖为临时目录
+data_dir = "data"
+runs_subdir = "runs"
+audit_db = "data/audit.db"
+log_dir = "logs"
+
+[security]
+# 主密钥（Fernet，urlsafe-base64 的 32 字节）从该环境变量读取
+master_key_env = "ANON_RISK_MASTER_KEY"
+# 管理令牌（审计接口）从该环境变量读取
+admin_token_env = "ANON_RISK_ADMIN_TOKEN"
+# 未配置主密钥/管理令牌时是否允许生成一次性临时密钥（仅限本地开发/测试）
+allow_ephemeral_key = true
+hkdf_salt = "anon-risk-run-v1"
+
+[kernel]
+# 穷举格点组合数上限；超过则显式失败 LATTICE_TOO_LARGE，而不是假装给出结果
+lattice_combo_cap = 10000
+# 等价类规模 n < risk_medium_factor * k 且已达标时，风险类别记为 MEDIUM
+risk_medium_factor = 2
+
+[logging]
+level = "INFO"
+# JSON 行日志文件（按日滚动），关联 run_id / correlation_id
+jsonl = true
