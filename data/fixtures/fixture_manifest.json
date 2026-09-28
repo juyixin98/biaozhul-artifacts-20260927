@@ -1,0 +1,449 @@
+{
+  "chain_id": "local-chain-0",
+  "domain": "localffg/validator-vote/v1",
+  "epoch_length": 10,
+  "registry": {
+    "chain_id": "local-chain-0",
+    "epoch_length": 10,
+    "validators": [
+      {
+        "pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+        "validator_id": "alice",
+        "weight_updates": [
+          [
+            0,
+            100
+          ],
+          [
+            2,
+            150
+          ]
+        ]
+      },
+      {
+        "pubkey": "a802b12c6dada0f5fb491b9407af19f6f3044a2025c4d7ecd3c03e43ac444686",
+        "validator_id": "bob",
+        "weight_updates": [
+          [
+            0,
+            100
+          ]
+        ]
+      },
+      {
+        "pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+        "validator_id": "carol",
+        "weight_updates": [
+          [
+            0,
+            100
+          ]
+        ]
+      },
+      {
+        "pubkey": "8215a6a210bcce764ea6c64b595024db1163146526bd86bf8ec52cb09112f3e6",
+        "validator_id": "dave",
+        "weight_updates": [
+          [
+            2,
+            80
+          ]
+        ]
+      },
+      {
+        "pubkey": "29de1372a9ab834615e06f9b2d6c498eeb725f02716b5210bc9b3f5489211d21",
+        "validator_id": "erin",
+        "weight_updates": [
+          [
+            0,
+            60
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "scenarios": {
+    "S10_weight_snapshot_offense": [
+      {
+        "label": "alice-epoch0-a",
+        "signed": {
+          "block_root": "f6120c4a6ac64fe442e158042d447d53be849b62294582c3fd4aae74bcee9031",
+          "chain_id": "local-chain-0",
+          "signature": "b643b9894c8bf0b13f55d48ce61d26772b763e820d8554943781b728c131ba6c109614872ad169e739241e74ede2bc8d9970c284d480e71a0c38338a569f8a0b",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 1,
+          "target_round": 3,
+          "validator_id": "alice"
+        }
+      },
+      {
+        "label": "alice-epoch0-b",
+        "signed": {
+          "block_root": "ecb5830250286fe8a628f324080cfdf3343d2edb3e3030a08cf617e9cc270519",
+          "chain_id": "local-chain-0",
+          "signature": "98846abc7da0b649d0f64f05759c7b5c6eff6e2a73bd4ad109fe69cb40fe32fff967ad0a762f10bf6fbb679bb174d5a272f68c0171302b7319b3a527c4a34909",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 2,
+          "target_round": 3,
+          "validator_id": "alice"
+        }
+      }
+    ],
+    "S11_mixed_conflict_then_rexmit": [
+      {
+        "label": "carol-m1",
+        "signed": {
+          "block_root": "e6bd748b7d8a56f019f75eb89183fc237db46291714d08b1efc916468e61f335",
+          "chain_id": "local-chain-0",
+          "signature": "a0806356d351a2147ee15592e3f327c0ae25e1504a78ee1d314b18ee1a495adcdfd918045e7a1176c4cde67b4013332679d2861b58eb0c19cd004a0474439f09",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 0,
+          "target_round": 9,
+          "validator_id": "carol"
+        }
+      },
+      {
+        "label": "carol-m2-double",
+        "signed": {
+          "block_root": "052fb75d05e8fd8155f761737ad02595ddc9a6700e4556a1fb614a48aa8ce5a3",
+          "chain_id": "local-chain-0",
+          "signature": "fe96d9473d773d94a2b9da1ede8c43867ee87b83fe266ac3d7afb328eed21b7681ecab456d2cdebfff7cf0539d049f1151a16dfebc60190e3ec53bfb19eca30c",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 4,
+          "target_round": 9,
+          "validator_id": "carol"
+        }
+      },
+      {
+        "label": "carol-m1-rexmit",
+        "signed": {
+          "block_root": "e6bd748b7d8a56f019f75eb89183fc237db46291714d08b1efc916468e61f335",
+          "chain_id": "local-chain-0",
+          "signature": "a0806356d351a2147ee15592e3f327c0ae25e1504a78ee1d314b18ee1a495adcdfd918045e7a1176c4cde67b4013332679d2861b58eb0c19cd004a0474439f09",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 0,
+          "target_round": 9,
+          "validator_id": "carol"
+        }
+      }
+    ],
+    "S1_duplicate_retransmit": [
+      {
+        "label": "alice-vote-1",
+        "signed": {
+          "block_root": "be837d2691d0ec893582b8bfbe8ffdf8cdcb18f5f8ddfb8845ef3262296b1dcf",
+          "chain_id": "local-chain-0",
+          "signature": "a51926770645f0234643f6f28861b20898d98469dcde1e8282e3783ea5f34400d8ebc0d4f8ecb4ca91560eb843dac95093556777a8bbeac11fc8312fea761e08",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 0,
+          "target_round": 5,
+          "validator_id": "alice"
+        }
+      },
+      {
+        "label": "alice-vote-1-rexmit",
+        "signed": {
+          "block_root": "be837d2691d0ec893582b8bfbe8ffdf8cdcb18f5f8ddfb8845ef3262296b1dcf",
+          "chain_id": "local-chain-0",
+          "signature": "a51926770645f0234643f6f28861b20898d98469dcde1e8282e3783ea5f34400d8ebc0d4f8ecb4ca91560eb843dac95093556777a8bbeac11fc8312fea761e08",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 0,
+          "target_round": 5,
+          "validator_id": "alice"
+        }
+      },
+      {
+        "label": "alice-vote-1-rexmit-2",
+        "signed": {
+          "block_root": "be837d2691d0ec893582b8bfbe8ffdf8cdcb18f5f8ddfb8845ef3262296b1dcf",
+          "chain_id": "local-chain-0",
+          "signature": "a51926770645f0234643f6f28861b20898d98469dcde1e8282e3783ea5f34400d8ebc0d4f8ecb4ca91560eb843dac95093556777a8bbeac11fc8312fea761e08",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 0,
+          "target_round": 5,
+          "validator_id": "alice"
+        }
+      }
+    ],
+    "S2_double_vote_same_target": [
+      {
+        "label": "bob-vote-a",
+        "signed": {
+          "block_root": "361765e5251cbd2bfc999a7324cbd8ba61ddfe2457231611ffa5fea103d3c141",
+          "chain_id": "local-chain-0",
+          "signature": "32b0ecadd998e5f6968f973f724118c1c53c55a25362cf1d184e0f34090ace0bf66882921f0a9f91e9a20db08bea783aed9fdfcb0d5696b166e90b6dffd6de04",
+          "signer_pubkey": "a802b12c6dada0f5fb491b9407af19f6f3044a2025c4d7ecd3c03e43ac444686",
+          "source_round": 0,
+          "target_round": 8,
+          "validator_id": "bob"
+        }
+      },
+      {
+        "label": "bob-vote-b",
+        "signed": {
+          "block_root": "c6df3b14e0b938665245d4aea49721eca56e6fe421d867279c3e449a285daeb7",
+          "chain_id": "local-chain-0",
+          "signature": "e831706ac9ce115755f6bfa831b1f24c5618a199cf01f2b505a1358d9cea6d30ff98c0647a97a407ead356e454fe54192a5469245bd7ee8897d274834be44701",
+          "signer_pubkey": "a802b12c6dada0f5fb491b9407af19f6f3044a2025c4d7ecd3c03e43ac444686",
+          "source_round": 2,
+          "target_round": 8,
+          "validator_id": "bob"
+        }
+      }
+    ],
+    "S3_surround_nested": [
+      {
+        "label": "carol-outer",
+        "signed": {
+          "block_root": "f408c589e3fe95e7f03dacfe64873a72f4d9a554260a674c086ce6ce8a50a2fb",
+          "chain_id": "local-chain-0",
+          "signature": "371d2f8c0ae6ab130b0993b3b522238cd46388cab43ace48cdb38b474cb6a6c3c75af87da032baeaa2b7f4c0ad46f0225d1ab52f34641239139e7628a5cf1008",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 0,
+          "target_round": 15,
+          "validator_id": "carol"
+        }
+      },
+      {
+        "label": "carol-inner",
+        "signed": {
+          "block_root": "1a24badd5dbe786c7c5b61793ec154dab5773f1a1c06dcff157b740501b6e894",
+          "chain_id": "local-chain-0",
+          "signature": "070c67596f85d0ca6275fd69f435b1d21ea1fc9a7c43938c4319c4ed6c523227b1d6fbd06c388295a4adcac3bbd357c53ae4ad472365e74a4ee5a2d7986fd805",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 5,
+          "target_round": 10,
+          "validator_id": "carol"
+        }
+      }
+    ],
+    "S3b_surround_reverse_order": [
+      {
+        "label": "carol-inner-first",
+        "signed": {
+          "block_root": "1a24badd5dbe786c7c5b61793ec154dab5773f1a1c06dcff157b740501b6e894",
+          "chain_id": "local-chain-0",
+          "signature": "070c67596f85d0ca6275fd69f435b1d21ea1fc9a7c43938c4319c4ed6c523227b1d6fbd06c388295a4adcac3bbd357c53ae4ad472365e74a4ee5a2d7986fd805",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 5,
+          "target_round": 10,
+          "validator_id": "carol"
+        }
+      },
+      {
+        "label": "carol-outer-after",
+        "signed": {
+          "block_root": "f408c589e3fe95e7f03dacfe64873a72f4d9a554260a674c086ce6ce8a50a2fb",
+          "chain_id": "local-chain-0",
+          "signature": "371d2f8c0ae6ab130b0993b3b522238cd46388cab43ace48cdb38b474cb6a6c3c75af87da032baeaa2b7f4c0ad46f0225d1ab52f34641239139e7628a5cf1008",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 0,
+          "target_round": 15,
+          "validator_id": "carol"
+        }
+      }
+    ],
+    "S3c_boundary_equality_no_offense": [
+      {
+        "label": "alice-adj-1",
+        "signed": {
+          "block_root": "0bc048bccfa0fb7d431bac4f14768f43f6c7d2ee9ddaea1ef401b96f848b2ff5",
+          "chain_id": "local-chain-0",
+          "signature": "2d62ad69f57c882c138eaa7723e3dc03780f896506ac29064331370adb4f61c0cea9fe73d4b68ecc9e6159bd42619e693c964af24f1fda258c29ef1e8573300b",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 0,
+          "target_round": 10,
+          "validator_id": "alice"
+        }
+      },
+      {
+        "label": "alice-adj-2",
+        "signed": {
+          "block_root": "dc9f125c085745806e7a877a2ccb05af461bd9a1c2f4a412815dc7a411072062",
+          "chain_id": "local-chain-0",
+          "signature": "63b6fa948d5e0f7a69d82d25f8dc2ec07cfe11379f47a956f82e480ea41a44986c64f194ece775d80b3342ff372c8ea0e75bf1e758b539ea454ead906a397108",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 10,
+          "target_round": 15,
+          "validator_id": "alice"
+        }
+      }
+    ],
+    "S3d_crossing_no_surround": [
+      {
+        "label": "bob-cross-a",
+        "signed": {
+          "block_root": "349089f62303e2088cac764c5a6e326c63ea6a63218cb8367c5f0c166724cea2",
+          "chain_id": "local-chain-0",
+          "signature": "587b343f7f1472b84478650228ca8b332296b613c38fa25baa44958e8065759c39b94778b87b426d8f29cd1af197b4154c3a22c086520dbe6268906eb84a190f",
+          "signer_pubkey": "a802b12c6dada0f5fb491b9407af19f6f3044a2025c4d7ecd3c03e43ac444686",
+          "source_round": 0,
+          "target_round": 10,
+          "validator_id": "bob"
+        }
+      },
+      {
+        "label": "bob-cross-b",
+        "signed": {
+          "block_root": "88a828f7e1cf593cbea74ae3ddc80a149c3894b3dd26a5baade63a0252ce9afb",
+          "chain_id": "local-chain-0",
+          "signature": "6dec63546d9a7d86bf225ddff17300b14a588c02dfe5ac0513ec18d0aed6f964cef841cb4f28ed63eccb863e923d7dca7fcc7535589fac0d060283cdfc132200",
+          "signer_pubkey": "a802b12c6dada0f5fb491b9407af19f6f3044a2025c4d7ecd3c03e43ac444686",
+          "source_round": 5,
+          "target_round": 20,
+          "validator_id": "bob"
+        }
+      }
+    ],
+    "S4_membership_change": [
+      {
+        "label": "dave-before-join-invalid",
+        "signed": {
+          "block_root": "284e31c1b62921bd2dd4262740465be36297d04dae14f74583e4cdb936f7b1b2",
+          "chain_id": "local-chain-0",
+          "signature": "6e4c2be89164eb418650892f4dda5101ee8d178d2de21eefc10d621ff6c650b3a0c28916cbf7ff1ea47710bfbc97bb847db92facb0164f013512c8c713984a03",
+          "signer_pubkey": "8215a6a210bcce764ea6c64b595024db1163146526bd86bf8ec52cb09112f3e6",
+          "source_round": 0,
+          "target_round": 5,
+          "validator_id": "dave"
+        }
+      },
+      {
+        "label": "dave-after-join-ok",
+        "signed": {
+          "block_root": "0581967c36ccc08ed7a0ac145c1ddb61ae61b328dc851a760e22641f87434b08",
+          "chain_id": "local-chain-0",
+          "signature": "77edadbe343c808c8d876e004c1a3d1a06d8923030a627a0dd17645b6d219a70f33f878b27842b639dd9d9655f9c4f4a22f11e349bd4c4113249a4f0c0c8b80a",
+          "signer_pubkey": "8215a6a210bcce764ea6c64b595024db1163146526bd86bf8ec52cb09112f3e6",
+          "source_round": 20,
+          "target_round": 25,
+          "validator_id": "dave"
+        }
+      },
+      {
+        "label": "erin-while-active-ok",
+        "signed": {
+          "block_root": "d6dde49e06ca1cc39e443cbbf9dfe5620cc49734fc5fb5b3ac47952876cf43ef",
+          "chain_id": "local-chain-0",
+          "signature": "a37903d55154def0b9419fcb4f41d3dd2b426d57a6043c1a900343f4a923057adb3e26d30a5a6289a69443f7e98114ab8398bcfac70d77ea15a9503bd3869702",
+          "signer_pubkey": "29de1372a9ab834615e06f9b2d6c498eeb725f02716b5210bc9b3f5489211d21",
+          "source_round": 0,
+          "target_round": 5,
+          "validator_id": "erin"
+        }
+      },
+      {
+        "label": "erin-after-exit-invalid",
+        "signed": {
+          "block_root": "15fd7924b932a02db4beebf283dfabd3537b61db51acd1ca328b0b33866ce79e",
+          "chain_id": "local-chain-0",
+          "signature": "8a93350dcb764cb7aa4c68f0a8d3b0b2c666627e9655d1123ab31801620f8e0e1869118b145865cf649765d973df77c765037737b76abcef965cf3b445d90d05",
+          "signer_pubkey": "29de1372a9ab834615e06f9b2d6c498eeb725f02716b5210bc9b3f5489211d21",
+          "source_round": 20,
+          "target_round": 25,
+          "validator_id": "erin"
+        }
+      }
+    ],
+    "S5_bad_signature": [
+      {
+        "label": "alice-tampered-signature",
+        "signed": {
+          "block_root": "54fe743afc6037deaaf817679400b76c917f0a55762968495538670b89e7d8f2",
+          "chain_id": "local-chain-0",
+          "signature": "334499438bcd2add0a53edac86e824783033af2fac48c0ce57413c8899813132f61b5ce00fdd7aa6671c199772c14a0513ba1c412fa87cd32acb79040f60800e",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 30,
+          "target_round": 35,
+          "validator_id": "alice"
+        }
+      }
+    ],
+    "S5b_wrong_signer_pubkey": [
+      {
+        "label": "mallory-claims-alice",
+        "signed": {
+          "block_root": "c067a79d0407372d0d9cec9fd0ab1dc558617a70324fa4f02e2f48656c93fa95",
+          "chain_id": "local-chain-0",
+          "signature": "f07a1a4965e0d0641ea6f4f660f1b5a10782e8a76c1d79129aa4bad0a76fbf707192b9d75c2d3ccbcc5fb106ea41bdf77b5baedc84e4a8e1e0c50d9604b18a0f",
+          "signer_pubkey": "a799a8f61894179505bbd8dcc9accd1e8dbb24cfe607ce34297d975d03d3639d",
+          "source_round": 40,
+          "target_round": 45,
+          "validator_id": "alice"
+        }
+      }
+    ],
+    "S6_unknown_validator": [
+      {
+        "label": "frank-unknown",
+        "signed": {
+          "block_root": "52fffc04173642d1fd4ef9755929c31245cc82b552d047ba1bb4a44fa1c335dc",
+          "chain_id": "local-chain-0",
+          "signature": "f733a5baac7564fe93b940d6a3b062e8bd35ca4ae299f88f7b780f72a99002ff7f0f7833c44f4fca1d46dcba465a19cdac179658e877729e1b3e88e33be8a802",
+          "signer_pubkey": "c78c94b22d45e129cc3ff4154b79f14771d8da403b40a87c2a7c9fa3691ea14c",
+          "source_round": 0,
+          "target_round": 5,
+          "validator_id": "frank"
+        }
+      }
+    ],
+    "S7_wrong_chain": [
+      {
+        "label": "bob-other-chain",
+        "signed": {
+          "block_root": "343f4f9d9be50bd2b3baa253651123d5ca50a502232d304c63f3d2be3f019d79",
+          "chain_id": "other-chain-9",
+          "signature": "a17020485b4e18d93839e7fce12ff3992df3163b894964bb1b222efbb6bff27372ad1c7fd6abee13667201196876222bd8c221e22cf1e0cb405699064b50ff01",
+          "signer_pubkey": "a802b12c6dada0f5fb491b9407af19f6f3044a2025c4d7ecd3c03e43ac444686",
+          "source_round": 0,
+          "target_round": 5,
+          "validator_id": "bob"
+        }
+      }
+    ],
+    "S8_bad_rounds": [
+      {
+        "label": "carol-s-equals-t",
+        "signed": {
+          "block_root": "6045c18060a3766f293e408d5a59cc5150d1a39e678c4dfaaf2d86a1fceb67f2",
+          "chain_id": "local-chain-0",
+          "signature": "6bbc4e03ada338f1c84cbdcce862a52691fcf6a6dcffcffd1564ab176683c7675853525c214dae935c9fcba5f01d3b87a1dc788dc9f86a3b8679fcdf94508307",
+          "signer_pubkey": "bd8e949a8e26577b3882558e131935396a617313aa618c63d163350eb8315775",
+          "source_round": 9,
+          "target_round": 9,
+          "validator_id": "carol"
+        }
+      }
+    ],
+    "S9_cross_validator_no_conflict": [
+      {
+        "label": "alice-t12",
+        "signed": {
+          "block_root": "81daca74699e67994c45423b98e3d2999e63ada1c2d5044fa52d5fc4cc09d4d1",
+          "chain_id": "local-chain-0",
+          "signature": "d924028e1ebb1cccf3a3aefd7069ea59ce6b92c7e83666b51699e63297af196406a818b05d7f38c30da710d123e8aee53e15c5df2b6e232db8d4545dac0ecd0d",
+          "signer_pubkey": "bde08c7338787182c078ce3fd20d45494daacf8caccf52fd85586f1a60509a62",
+          "source_round": 0,
+          "target_round": 12,
+          "validator_id": "alice"
+        }
+      },
+      {
+        "label": "bob-t12",
+        "signed": {
+          "block_root": "fef9eed454ea38330876136d38a7ba6312ec5bdb5099539ecb96d5d6668b0fc9",
+          "chain_id": "local-chain-0",
+          "signature": "a54d27dc27b7cd64a61abb73a937601c90c4d1c937e135b11ca9e043c83d8bfd3a56fe60a96f9517bc7137bbfd22569e93519033eddb3f0e903389e9d473bc08",
+          "signer_pubkey": "a802b12c6dada0f5fb491b9407af19f6f3044a2025c4d7ecd3c03e43ac444686",
+          "source_round": 1,
+          "target_round": 12,
+          "validator_id": "bob"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+# Pinned (locked) runtime + test dependencies for localffg.
+# Install: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+fastapi==0.115.5
+uvicorn==0.32.1
+pydantic==2.10.3
+cryptography==41.0.7
+PyYAML==6.0.1
+pytest==8.3.4
+httpx==0.28.1

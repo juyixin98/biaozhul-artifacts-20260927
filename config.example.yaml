@@ -1,0 +1,10 @@
+# Example localffg configuration. Override any key with environment
+# variables prefixed LOCALFFG_ (e.g. LOCALFFG_DB_PATH, LOCALFFG_HTTP_PORT).
+chain_id: local-chain-0
+epoch_length: 10
+db_path: data/localffg.db
+domain: localffg/validator-vote/v1
+http_host: 127.0.0.1
+http_port: 8000
+allow_bootstrap_api: true
+log_level: INFO
