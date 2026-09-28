@@ -1,0 +1,8 @@
+/target/
+node_modules/
+**/__pycache__/
+.venv/
+*.pyc
+out/
+dist/
+build/
