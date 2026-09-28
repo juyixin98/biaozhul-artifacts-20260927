@@ -1,0 +1,202 @@
+# go test -v ./... (Go go1.23.4, date 2026-09-27T21:44:06Z)
+
+?   	cidrcov/cmd/cidrcovd	[no test files]
+=== RUN   TestHealthAndVersion
+--- PASS: TestHealthAndVersion (0.01s)
+=== RUN   TestCoverSuccessIsExplainable
+--- PASS: TestCoverSuccessIsExplainable (0.00s)
+=== RUN   TestCoverGeneratedRequestID
+--- PASS: TestCoverGeneratedRequestID (0.00s)
+=== RUN   TestCoverInvalidEntryReturns422
+--- PASS: TestCoverInvalidEntryReturns422 (0.00s)
+=== RUN   TestCoverMalformedJSONReturns400
+--- PASS: TestCoverMalformedJSONReturns400 (0.00s)
+=== RUN   TestCoverUnknownFieldReturns400
+--- PASS: TestCoverUnknownFieldReturns400 (0.00s)
+=== RUN   TestDuplicateRequestIDReturns409
+--- PASS: TestDuplicateRequestIDReturns409 (0.00s)
+=== RUN   TestGetAndReplay
+--- PASS: TestGetAndReplay (0.00s)
+=== RUN   TestReplayUnknownReturns404
+--- PASS: TestReplayUnknownReturns404 (0.00s)
+=== RUN   TestEmptyCoverStatus
+--- PASS: TestEmptyCoverStatus (0.00s)
+=== RUN   TestBodyTooLargeRejected
+--- PASS: TestBodyTooLargeRejected (0.50s)
+PASS
+ok  	cidrcov/internal/api	(cached)
+?   	cidrcov/test/refmodel	[no test files]
+=== RUN   TestDefaultIsValid
+--- PASS: TestDefaultIsValid (0.00s)
+=== RUN   TestLoadFromFileAndRejectsUnknownKeys
+--- PASS: TestLoadFromFileAndRejectsUnknownKeys (0.00s)
+=== RUN   TestEnvOverride
+--- PASS: TestEnvOverride (0.00s)
+=== RUN   TestValidateRejects
+--- PASS: TestValidateRejects (0.00s)
+PASS
+ok  	cidrcov/internal/config	(cached)
+=== RUN   TestVerifyRejectsDefects
+=== RUN   TestVerifyRejectsDefects/unaligned_prefix
+=== RUN   TestVerifyRejectsDefects/escapes_address_space
+=== RUN   TestVerifyRejectsDefects/overlap
+=== RUN   TestVerifyRejectsDefects/extra_address
+=== RUN   TestVerifyRejectsDefects/missing_address
+=== RUN   TestVerifyRejectsDefects/mergeable_siblings
+=== RUN   TestVerifyRejectsDefects/valid_single_prefix_passes
+--- PASS: TestVerifyRejectsDefects (0.00s)
+    --- PASS: TestVerifyRejectsDefects/unaligned_prefix (0.00s)
+    --- PASS: TestVerifyRejectsDefects/escapes_address_space (0.00s)
+    --- PASS: TestVerifyRejectsDefects/overlap (0.00s)
+    --- PASS: TestVerifyRejectsDefects/extra_address (0.00s)
+    --- PASS: TestVerifyRejectsDefects/missing_address (0.00s)
+    --- PASS: TestVerifyRejectsDefects/mergeable_siblings (0.00s)
+    --- PASS: TestVerifyRejectsDefects/valid_single_prefix_passes (0.00s)
+=== RUN   TestFailureClasses
+=== RUN   TestFailureClasses/garbage_cidr
+=== RUN   TestFailureClasses/v4_prefix_too_long
+=== RUN   TestFailureClasses/v6_prefix_too_long
+=== RUN   TestFailureClasses/second_allow_bad
+=== RUN   TestFailureClasses/exclude_bad_at_index_3
+=== RUN   TestFailureClasses/negative-looking_slash
+--- PASS: TestFailureClasses (0.00s)
+    --- PASS: TestFailureClasses/garbage_cidr (0.00s)
+    --- PASS: TestFailureClasses/v4_prefix_too_long (0.00s)
+    --- PASS: TestFailureClasses/v6_prefix_too_long (0.00s)
+    --- PASS: TestFailureClasses/second_allow_bad (0.00s)
+    --- PASS: TestFailureClasses/exclude_bad_at_index_3 (0.00s)
+    --- PASS: TestFailureClasses/negative-looking_slash (0.00s)
+=== RUN   TestEntryLimit
+--- PASS: TestEntryLimit (0.00s)
+=== RUN   TestHostBitsAdvisory
+--- PASS: TestHostBitsAdvisory (0.00s)
+=== RUN   TestBareIPAdvisory
+--- PASS: TestBareIPAdvisory (0.00s)
+=== RUN   TestExcludeOutsideAllowAdvisory
+--- PASS: TestExcludeOutsideAllowAdvisory (0.00s)
+=== RUN   TestDuplicateEntryAdvisory
+--- PASS: TestDuplicateEntryAdvisory (0.00s)
+=== RUN   TestMappedIPv4InIPv6
+--- PASS: TestMappedIPv4InIPv6 (0.00s)
+=== RUN   TestMixedFamiliesAreSeparated
+--- PASS: TestMixedFamiliesAreSeparated (0.00s)
+=== RUN   TestTraceExplainsStepsAndVersions
+--- PASS: TestTraceExplainsStepsAndVersions (0.00s)
+=== RUN   TestSamePrefixInBothListsIsNotDuplicate
+--- PASS: TestSamePrefixInBothListsIsNotDuplicate (0.00s)
+=== RUN   TestKnownAnswersV4
+=== RUN   TestKnownAnswersV4/single_/24
+=== RUN   TestKnownAnswersV4/adjacent_/25_siblings_merge_to_/24
+=== RUN   TestKnownAnswersV4/merge_across_three_levels
+=== RUN   TestKnownAnswersV4/non-adjacent_do_not_merge
+=== RUN   TestKnownAnswersV4/overlapping_collapse
+=== RUN   TestKnownAnswersV4/host_bits_canonicalized
+=== RUN   TestKnownAnswersV4/bare_address_is_/32
+=== RUN   TestKnownAnswersV4/punch_one_host_out_of_/24
+=== RUN   TestKnownAnswersV4/punch_network_and_broadcast_addresses_(they_are_coverable)
+--- PASS: TestKnownAnswersV4 (0.00s)
+    --- PASS: TestKnownAnswersV4/single_/24 (0.00s)
+    --- PASS: TestKnownAnswersV4/adjacent_/25_siblings_merge_to_/24 (0.00s)
+    --- PASS: TestKnownAnswersV4/merge_across_three_levels (0.00s)
+    --- PASS: TestKnownAnswersV4/non-adjacent_do_not_merge (0.00s)
+    --- PASS: TestKnownAnswersV4/overlapping_collapse (0.00s)
+    --- PASS: TestKnownAnswersV4/host_bits_canonicalized (0.00s)
+    --- PASS: TestKnownAnswersV4/bare_address_is_/32 (0.00s)
+    --- PASS: TestKnownAnswersV4/punch_one_host_out_of_/24 (0.00s)
+    --- PASS: TestKnownAnswersV4/punch_network_and_broadcast_addresses_(they_are_coverable) (0.00s)
+=== RUN   TestV4AgainstBigTrie
+=== RUN   TestV4AgainstBigTrie/exclude_whole_/8_middle_run
+=== RUN   TestV4AgainstBigTrie/punch_one_host_/24
+=== RUN   TestV4AgainstBigTrie/punch_both_ends_/24
+=== RUN   TestV4AgainstBigTrie/many_excludes
+--- PASS: TestV4AgainstBigTrie (0.00s)
+    --- PASS: TestV4AgainstBigTrie/exclude_whole_/8_middle_run (0.00s)
+    --- PASS: TestV4AgainstBigTrie/punch_one_host_/24 (0.00s)
+    --- PASS: TestV4AgainstBigTrie/punch_both_ends_/24 (0.00s)
+    --- PASS: TestV4AgainstBigTrie/many_excludes (0.00s)
+=== RUN   TestFullV4MinusOneHost
+--- PASS: TestFullV4MinusOneHost (0.00s)
+=== RUN   TestKnownAnswersV6
+=== RUN   TestKnownAnswersV6/full_v6
+=== RUN   TestKnownAnswersV6/single_/64
+=== RUN   TestKnownAnswersV6/merge_two_/65_siblings
+=== RUN   TestKnownAnswersV6/punch_lowest_address_of_full_space
+--- PASS: TestKnownAnswersV6 (0.00s)
+    --- PASS: TestKnownAnswersV6/full_v6 (0.00s)
+    --- PASS: TestKnownAnswersV6/single_/64 (0.00s)
+    --- PASS: TestKnownAnswersV6/merge_two_/65_siblings (0.00s)
+    --- PASS: TestKnownAnswersV6/punch_lowest_address_of_full_space (0.00s)
+=== RUN   TestIPv6ExtremesAgainstBigTrie
+=== RUN   TestIPv6ExtremesAgainstBigTrie/full_space
+=== RUN   TestIPv6ExtremesAgainstBigTrie/empty
+=== RUN   TestIPv6ExtremesAgainstBigTrie/punch_lowest
+=== RUN   TestIPv6ExtremesAgainstBigTrie/punch_highest
+=== RUN   TestIPv6ExtremesAgainstBigTrie/punch_both_ends
+=== RUN   TestIPv6ExtremesAgainstBigTrie/exclude_/127_at_extreme_top
+=== RUN   TestIPv6ExtremesAgainstBigTrie/two_far_apart_hosts
+=== RUN   TestIPv6ExtremesAgainstBigTrie/allow_interval_minus_interior_/64
+=== RUN   TestIPv6ExtremesAgainstBigTrie/exclude_spans_entire_allow
+=== RUN   TestIPv6ExtremesAgainstBigTrie/huge_unaligned_interval
+--- PASS: TestIPv6ExtremesAgainstBigTrie (0.01s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/full_space (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/empty (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/punch_lowest (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/punch_highest (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/punch_both_ends (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/exclude_/127_at_extreme_top (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/two_far_apart_hosts (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/allow_interval_minus_interior_/64 (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/exclude_spans_entire_allow (0.00s)
+    --- PASS: TestIPv6ExtremesAgainstBigTrie/huge_unaligned_interval (0.00s)
+=== RUN   TestPrefixBoundaryPolicy
+--- PASS: TestPrefixBoundaryPolicy (0.00s)
+PASS
+ok  	cidrcov/internal/engine	(cached)
+=== RUN   TestParseCanonical
+--- PASS: TestParseCanonical (0.00s)
+=== RUN   TestParseHostBitsAdvisory
+--- PASS: TestParseHostBitsAdvisory (0.00s)
+=== RUN   TestParseBareAddress
+--- PASS: TestParseBareAddress (0.00s)
+=== RUN   TestParseV4MappedV6
+--- PASS: TestParseV4MappedV6 (0.00s)
+=== RUN   TestParseV6RoundTrip
+--- PASS: TestParseV6RoundTrip (0.00s)
+=== RUN   TestPrefixLengthOutOfRangeClass
+--- PASS: TestPrefixLengthOutOfRangeClass (0.00s)
+=== RUN   TestParseFailures
+--- PASS: TestParseFailures (0.00s)
+=== RUN   TestFormat
+--- PASS: TestFormat (0.00s)
+PASS
+ok  	cidrcov/internal/ipparse	(cached)
+=== RUN   TestExhaustiveWidth3
+--- PASS: TestExhaustiveWidth3 (0.00s)
+=== RUN   TestExhaustiveAllowWidth4
+--- PASS: TestExhaustiveAllowWidth4 (0.00s)
+=== RUN   TestRandomWidth8
+--- PASS: TestRandomWidth8 (0.30s)
+=== RUN   TestRandomWidth16
+--- PASS: TestRandomWidth16 (0.14s)
+=== RUN   TestFullSpacePrefix
+--- PASS: TestFullSpacePrefix (0.00s)
+=== RUN   TestEmptySet
+=== RUN   TestEmptySet/nothing_allowed
+=== RUN   TestEmptySet/everything_excluded
+=== RUN   TestEmptySet/more_excluded_than_allowed
+--- PASS: TestEmptySet (0.00s)
+    --- PASS: TestEmptySet/nothing_allowed (0.00s)
+    --- PASS: TestEmptySet/everything_excluded (0.00s)
+    --- PASS: TestEmptySet/more_excluded_than_allowed (0.00s)
+PASS
+ok  	cidrcov/internal/netmodel	(cached)
+=== RUN   TestSaveGetRoundTrip
+--- PASS: TestSaveGetRoundTrip (0.00s)
+=== RUN   TestGetNotFound
+--- PASS: TestGetNotFound (0.00s)
+=== RUN   TestDuplicateIDRejected
+--- PASS: TestDuplicateIDRejected (0.00s)
+=== RUN   TestRecentOrdering
+--- PASS: TestRecentOrdering (0.00s)
+PASS
+ok  	cidrcov/internal/store	(cached)

@@ -1,0 +1,5 @@
+{
+  "request_id": "fixture-full-v6",
+  "allow": ["::/0"],
+  "exclude": ["::1/128", "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128"]
+}

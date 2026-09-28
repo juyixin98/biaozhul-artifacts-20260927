@@ -1,0 +1,6 @@
+{
+  "listen": "127.0.0.1:8080",
+  "db_path": "data/cidrcov.db",
+  "max_entries_per_list": 10000,
+  "shutdown_timeout_ms": 5000
+}
